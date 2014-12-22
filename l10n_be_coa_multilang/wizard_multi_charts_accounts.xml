@@ -1,0 +1,36 @@
+<openerp>
+    <data>
+
+      <!--  Wizard for Multi Charts of Accounts -->
+      <record id="view_wizard_multi_chart_belgian_coa" model="ir.ui.view">
+        <field name="name">view.wizard.multi.chart.belgian.coa</field>
+        <field name="model">wizard.multi.charts.accounts</field>
+        <field name="inherit_id" ref="account.view_wizard_multi_chart"/>
+        <field name="arch" type="xml">
+          <data>
+            <field name="company_id" position="attributes">
+              <attribute name="attrs">{'invisible': [('multilang_be', '=', True)]}</attribute>
+            </field>
+            <field name="currency_id" position="attributes">
+              <attribute name="attrs">{'invisible': [('multilang_be', '=', True)]}</attribute>
+            </field>
+            <field name="code_digits" position="attributes">
+              <attribute name="attrs">{'invisible': [('multilang_be', '=', True)]}</attribute>
+            </field>
+            <xpath expr="//group[@groups='account.group_account_user']" position="after">
+              <group attrs="{'invisible': 1}">
+                <field name="multilang_be"/>
+              </group>
+              <group col="4">
+                <field name="load_nl_BE" attrs="{'invisible':[('multilang_be', '=', False)]}"/>
+                <field name="load_fr_BE" attrs="{'invisible':[('multilang_be', '=', False)]}"/>
+                <field name="load_nl_NL" attrs="{'invisible':[('multilang_be', '=', False)]}"/>
+                <field name="load_fr_FR" attrs="{'invisible':[('multilang_be', '=', False)]}"/>
+              </group>
+            </xpath>
+          </data>
+        </field>
+      </record>
+      
+    </data>
+</openerp>

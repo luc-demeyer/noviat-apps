@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    
+    <record id="view_account_financial_report_form_inherit" model="ir.ui.view">
+      <field name="name">account.financial.report.form.inherit</field>
+      <field name="model">account.financial.report</field>
+      <field name="inherit_id" ref="account.view_account_financial_report_form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="code"/>
+        </field>
+      </field>
+    </record>
+    <record id="view_account_financial_report_tree_inherit" model="ir.ui.view">
+      <field name="name">account.financial.report.tree.inherit</field>
+      <field name="model">account.financial.report</field>
+      <field name="inherit_id" ref="account.view_account_financial_report_tree"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="code"/>
+        </field>
+      </field>
+    </record>
+    <record id="view_account_financial_report_search_inherit" model="ir.ui.view">
+      <field name="name">account.financial.report.search.inherit</field>
+      <field name="model">account.financial.report</field>
+      <field name="inherit_id" ref="account.view_account_financial_report_search"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="code"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_account_report_tree_hierarchy_inherit" model="ir.ui.view">
+      <field name="name">account.report.hierarchy.inherit</field>
+      <field name="model">account.financial.report</field>
+      <field name="inherit_id" ref="account.view_account_report_tree_hierarchy"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="code"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="action_account_report_be_bs" model="ir.actions.act_window">
+      <field name="name">Belgian Balance Sheet</field>
+      <field name="res_model">accounting.report</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="account.accounting_report_view"/>
+      <field name="target">new</field>
+      <field name="context" eval="{'default_account_report_id':ref('account_financial_report_BE_2_FULL')}"/>
+    </record>
+    <menuitem icon="STOCK_PRINT" name="Belgian Balance Sheet" action="action_account_report_be_bs" id="menu_account_report_be_bs" parent="menu_finance_belgian_statement" sequence="1"/>
+
+    <record id="action_account_report_be_pl" model="ir.actions.act_window">
+      <field name="name">Belgian Profit And Loss</field>
+      <field name="res_model">accounting.report</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="account.accounting_report_view"/>
+      <field name="target">new</field>
+      <field name="context">{}</field>
+      <field name="context" eval="{'default_account_report_id':ref('account_financial_report_BE_3_FULL')}"/>
+    </record>
+    <menuitem icon="STOCK_PRINT" name="Belgian Profit And Loss" action="action_account_report_be_pl" id="menu_account_report_be_pl" parent="menu_finance_belgian_statement" sequence="2"/>   
+
+    <record id="view_be_legal_financial_reportscheme_tree" model="ir.ui.view">
+      <field name="name">be.legal.financial.reportscheme.tree</field>
+      <field name="model">be.legal.financial.reportscheme</field>
+      <field name="arch" type="xml">
+        <tree string="Belgian Legal Financial Report Scheme">
+          <field name="account_group"/>
+          <field name="report_id"/>
+        </tree>
+      </field>
+    </record>
+    <record id="view_be_legal_financial_reportscheme_form" model="ir.ui.view">
+      <field name="name">be.legal.financial.reportscheme.form</field>
+      <field name="model">be.legal.financial.reportscheme</field>
+      <field name="arch" type="xml">
+        <form string="Belgian Legal Financial Report Scheme">
+          <field name="account_group" select="1"/>
+          <field name="report_id" select="1"/>
+          <separator colspan="4"/>
+          <field colspan="4" name="account_ids" nolabel="1">
+            <tree string="Accounts">
+              <field name="code"/>
+              <field name="name"/>
+            </tree>
+          </field>
+        </form>
+      </field>
+    </record>
+    <record id="action_be_legal_financial_reportscheme" model="ir.actions.act_window">
+      <field name="name">Belgian Legal Financial Report Scheme</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">be.legal.financial.reportscheme</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="action_be_legal_financial_reportscheme" id="menu_be_legal_financial_reportscheme" parent="account.menu_account_reports" sequence="16"/>
+
+  </data>
+</openerp>

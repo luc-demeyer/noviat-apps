@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <report
+        id="action_report_l10nbevatdeclaration"
+        model="l10n_be.vat.declaration"
+        string="Periodical VAT Declaration"
+        report_type="qweb-pdf"
+        name="l10n_be_coa_multilang.report_l10nbevatdeclaration"
+        file="l10n_be_coa_multilang.report_l10nbevatdeclaration"
+        menu="False"
+        />
+
+    <report
+        id="action_report_l10nbevatlisting"
+        model="partner.vat.list"
+        string="Annual Listing of VAT-Subjected Customers"
+        report_type="qweb-pdf"
+        name="l10n_be_coa_multilang.report_l10nbevatlisting"
+        file="l10n_be_coa_multilang.report_l10nbevatlisting"
+        menu="False"
+        />
+
+    <report
+        id="action_report_l10nbevatintra"
+        model="partner.vat.intra"
+        string="Partner VAT Intra"
+        report_type="qweb-pdf"
+        name="l10n_be_coa_multilang.report_l10nbevatintra"
+        file="l10n_be_coa_multilang.report_l10nbevatintra"
+        menu="False"
+        />
+
+  </data>
+</openerp>

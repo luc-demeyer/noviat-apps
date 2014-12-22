@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_be_legal_financial_reportscheme_manager,be.legal.financial.reportscheme manager,model_be_legal_financial_reportscheme,account.group_account_manager,1,1,1,1
+access_be_legal_financial_reportscheme_user,be.legal.financial.reportscheme user,model_be_legal_financial_reportscheme,account.group_account_user,1,0,0,0

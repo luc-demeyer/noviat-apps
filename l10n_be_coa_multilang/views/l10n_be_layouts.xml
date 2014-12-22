@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <template id="l10n_be_layout">
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+      </t>
+      <div class="footer">
+        <div class="row">
+          <div class="col-xs-3" style="margin-top:50px;">
+            <span t-esc="report_date"/>
+          </div>
+          <div class="col-xs-2 col-xs-offset-2 text-center" style="margin-top:50px;">
+            <span t-esc="company.name"/>
+          </div>
+          <div class="col-xs-2 col-xs-offset-3 text-right" style="margin-top:50px;">
+            <ul class="list-inline">
+              <li>
+                <span class="page"/>
+              </li>
+              <li>/</li>
+              <li>
+                <span class="topage"/>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <t t-raw="0"/>
+    </template>
+    
+  </data>
+</openerp>

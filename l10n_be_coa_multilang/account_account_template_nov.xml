@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- account.account.template -->
+        <record id="aatn_0" model="account.account.template">
+            <field name="name">BELGIAN CHART OF ACCOUNTS</field>
+            <field name="code">0</field>
+            <field name="type">view</field>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_1" model="account.account.template">
+            <field name="name">CLASS 1. EQUITY CAPITAL, PROVISIONS AND DEFERRED TAXES AND AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="code">1</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_2" model="account.account.template">
+            <field name="name">CLASS 2. FORMATION EXPENSES, ASSETS AND AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="code">2</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_3" model="account.account.template">
+            <field name="name">CLASS 3. STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="code">3</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_4" model="account.account.template">
+            <field name="name">CLASS 4. AMOUNTS RECEIVABLE AND PAYABLE WITHIN ONE YEAR</field>
+            <field name="code">4</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_5" model="account.account.template">
+            <field name="name">CLASS 5. INVESTMENTS AND CASH</field>
+            <field name="code">5</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_6" model="account.account.template">
+            <field name="name">CLASS 6. CHARGES</field>
+            <field name="code">6</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_7" model="account.account.template">
+            <field name="name">CLASS 7. INCOMES</field>
+            <field name="code">7</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_0"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_10" model="account.account.template">
+            <field name="name">CAPITAL</field>
+            <field name="code">10</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_11" model="account.account.template">
+            <field name="name">SHARE PREMIUM ACCOUNT</field>
+            <field name="code">11</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_12" model="account.account.template">
+            <field name="name">REVALUATION SURPLUSES</field>
+            <field name="code">12</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_13" model="account.account.template">
+            <field name="name">RESERVES</field>
+            <field name="code">13</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_14" model="account.account.template">
+            <field name="name">ACCUMULATED PROFITS</field>
+            <field name="code">14</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_15" model="account.account.template">
+            <field name="name">INVESTMENT GRANTS</field>
+            <field name="code">15</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_16" model="account.account.template">
+            <field name="name">PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="code">16</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_17" model="account.account.template">
+            <field name="name">AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="code">17</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_1"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_20" model="account.account.template">
+            <field name="name">FORMATION EXPENSES</field>
+            <field name="code">20</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_21" model="account.account.template">
+            <field name="name">INTANGIBLE ASSETS</field>
+            <field name="code">21</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_22" model="account.account.template">
+            <field name="name">LAND AND BUILDINGS</field>
+            <field name="code">22</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_23" model="account.account.template">
+            <field name="name">PLANT, MACHINERY AND EQUIPMENT</field>
+            <field name="code">23</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_24" model="account.account.template">
+            <field name="name">FURNITURE AND VEHICLES</field>
+            <field name="code">24</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_25" model="account.account.template">
+            <field name="name">LEASING AND OTHER SIMILAR RIGHTS</field>
+            <field name="code">25</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_26" model="account.account.template">
+            <field name="name">OTHER TANGIBLE ASSETS</field>
+            <field name="code">26</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_27" model="account.account.template">
+            <field name="name">ASSETS UNDER CONSTR. AND ADVANCE PAYMENT</field>
+            <field name="code">27</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_28" model="account.account.template">
+            <field name="name">FINANCIAL ASSETS</field>
+            <field name="code">28</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_29" model="account.account.template">
+            <field name="name">AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="code">29</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_2"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_30" model="account.account.template">
+            <field name="name">RAW MATERIALS</field>
+            <field name="code">30</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_31" model="account.account.template">
+            <field name="name">CONSUMABLES</field>
+            <field name="code">31</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_32" model="account.account.template">
+            <field name="name">GOODS WORK IN PROGRESS</field>
+            <field name="code">32</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_33" model="account.account.template">
+            <field name="name">FINISHED GOODS</field>
+            <field name="code">33</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_34" model="account.account.template">
+            <field name="name">GOODS PURCHASED FOR RESALE</field>
+            <field name="code">34</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_35" model="account.account.template">
+            <field name="name">IMMOVABLE PROPERTY ACQUIRED FOR RESALE</field>
+            <field name="code">35</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_36" model="account.account.template">
+            <field name="name">ADVANCE PAYMENTS</field>
+            <field name="code">36</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_37" model="account.account.template">
+            <field name="name">CONTRACTS IN PROGRESS</field>
+            <field name="code">37</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_3"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_40" model="account.account.template">
+            <field name="name">TRADE DEBTORS</field>
+            <field name="code">40</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_41" model="account.account.template">
+            <field name="name">OTHER AMOUNTS RECEIVABLE</field>
+            <field name="code">41</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_42" model="account.account.template">
+            <field name="name">DEBTS OF MORE THAN 1 YEAR, PORTION WITHIN THE YEAR</field>
+            <field name="code">42</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_43" model="account.account.template">
+            <field name="name">FINANCIAL DEBTS</field>
+            <field name="code">43</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_44" model="account.account.template">
+            <field name="name">TRADE DEBTS</field>
+            <field name="code">44</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_45" model="account.account.template">
+            <field name="name">TAXES, REMUNERATION AND SOCIAL SECURITY</field>
+            <field name="code">45</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_46" model="account.account.template">
+            <field name="name">ADVANCES RECEIVED ON CONTRACTS IN PROGRESS</field>
+            <field name="code">46</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_47" model="account.account.template">
+            <field name="name">DEBTS RELATED TO THE DESTINATION OF THE RESULTS</field>
+            <field name="code">47</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_48" model="account.account.template">
+            <field name="name">VARIOUS DEBTS</field>
+            <field name="code">48</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_49" model="account.account.template">
+            <field name="name">ACCRUED CHARGES AND DEFERRED INCOME</field>
+            <field name="code">49</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_4"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_50" model="account.account.template">
+            <field name="name">OWN SHARES</field>
+            <field name="code">50</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_51" model="account.account.template">
+            <field name="name">SHARES</field>
+            <field name="code">51</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_52" model="account.account.template">
+            <field name="name">FIXED-INTEREST SECURITIES</field>
+            <field name="code">52</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_53" model="account.account.template">
+            <field name="name">FIXED DEPOSIT</field>
+            <field name="code">53</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_54" model="account.account.template">
+            <field name="name">EXPIRED VALUABLES TO CASH IN</field>
+            <field name="code">54</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_55" model="account.account.template">
+            <field name="name">FINANCE COMPANIES</field>
+            <field name="code">55</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_56" model="account.account.template">
+            <field name="name">GIRO SERVICE</field>
+            <field name="code">56</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_57" model="account.account.template">
+            <field name="name">CASH</field>
+            <field name="code">57</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_58" model="account.account.template">
+            <field name="name">INTERNAL TRANSFERS</field>
+            <field name="code">58</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_5"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_60" model="account.account.template">
+            <field name="name">RAW MATERIALS, CONSUMABLES AND GOODS FOR RESALE</field>
+            <field name="code">60</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_61" model="account.account.template">
+            <field name="name">SERVICES AND OTHER GOODS</field>
+            <field name="code">61</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_62" model="account.account.template">
+            <field name="name">REMUNERATIONS, SOCIAL SECURITY COSTS AND PENSIONS</field>
+            <field name="code">62</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_63" model="account.account.template">
+            <field name="name">DEPRECIATIONS, AMOUNTS WRITTEN OFF AND PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="code">63</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_64" model="account.account.template">
+            <field name="name">OTHER OPERATING CHARGES</field>
+            <field name="code">64</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_65" model="account.account.template">
+            <field name="name">FINANCIAL CHARGES</field>
+            <field name="code">65</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_66" model="account.account.template">
+            <field name="name">EXTRAORDINARY CHARGES</field>
+            <field name="code">66</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_67" model="account.account.template">
+            <field name="name">INCOME TAXES</field>
+            <field name="code">67</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_68" model="account.account.template">
+            <field name="name">TRANSFER TO DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="code">68</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_69" model="account.account.template">
+            <field name="name">PROFIT FOR THE PERIOD</field>
+            <field name="code">69</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_6"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_70" model="account.account.template">
+            <field name="name">TURNOVER</field>
+            <field name="code">70</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_71" model="account.account.template">
+            <field name="name">CHANGES IN STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="code">71</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_72" model="account.account.template">
+            <field name="name">FIXED ASSETS OWN CONSTRUCTION</field>
+            <field name="code">72</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_74" model="account.account.template">
+            <field name="name">OTHER OPERATING INCOME</field>
+            <field name="code">74</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_75" model="account.account.template">
+            <field name="name">FINANCIAL INCOME</field>
+            <field name="code">75</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_76" model="account.account.template">
+            <field name="name">EXTRAORDINARY INCOME</field>
+            <field name="code">76</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_77" model="account.account.template">
+            <field name="name">ADJUSTMENT OF INCOME TAXES AND TAX PROVISIONS</field>
+            <field name="code">77</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_78" model="account.account.template">
+            <field name="name">TRANSFER FROM DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="code">78</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_79" model="account.account.template">
+            <field name="name">PROFIT FOR THE PERIOD</field>
+            <field name="code">79</field>
+            <field name="type">view</field>
+            <field name="parent_id" ref="aatn_7"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_view"/>
+        </record>
+        <record id="aatn_140000" model="account.account.template">
+            <field name="name">Profit carried forward</field>
+            <field name="code">140000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_14"/>
+            <field name="reconcile" eval="1"/>
+            <field name="user_type" ref="user_type_equity"/>
+        </record>
+        <record id="aatn_400000" model="account.account.template">
+            <field name="name">Customers</field>
+            <field name="code">400000</field>
+            <field name="type">receivable</field>
+            <field name="parent_id" ref="aatn_40"/>
+            <field name="reconcile" eval="1"/>
+            <field name="user_type" ref="user_type_receivable_ar"/>
+        </record>
+        <record id="aatn_411000" model="account.account.template">
+            <field name="name">Input VAT - current account balance</field>
+            <field name="code">411000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_41"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_asset"/>
+        </record>
+        <record id="aatn_411059" model="account.account.template">
+            <field name="name">VAT Deductible</field>
+            <field name="code">411059</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_41"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_asset"/>
+        </record>
+        <record id="aatn_440000" model="account.account.template">
+            <field name="name">Suppliers</field>
+            <field name="code">440000</field>
+            <field name="type">payable</field>
+            <field name="parent_id" ref="aatn_44"/>
+            <field name="reconcile" eval="1"/>
+            <field name="user_type" ref="user_type_payable_ap"/>
+        </record>
+        <record id="aatn_451000" model="account.account.template">
+            <field name="name">Output VAT - current account balance</field>
+            <field name="code">451000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_45"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_liability"/>
+        </record>
+        <record id="aatn_451054" model="account.account.template">
+            <field name="name">VAT Debt</field>
+            <field name="code">451054</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_45"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_liability"/>
+        </record>
+        <record id="aatn_451055" model="account.account.template">
+            <field name="name">VAT Debt - Intracommunity</field>
+            <field name="code">451055</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_45"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_liability"/>
+        </record>
+        <record id="aatn_451056" model="account.account.template">
+            <field name="name">VAT Debt - Cocontractant</field>
+            <field name="code">451056</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_45"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_liability"/>
+        </record>
+        <record id="aatn_451057" model="account.account.template">
+            <field name="name">VAT Debt - Import</field>
+            <field name="code">451057</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_45"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_tax_liability"/>
+        </record>
+        <record id="aatn_499999" model="account.account.template">
+            <field name="name">Awaiting account</field>
+            <field name="code">499999</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_49"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_suspense"/>
+        </record>
+        <record id="aatn_550001" model="account.account.template">
+            <field name="name">Bank Current</field>
+            <field name="code">550001</field>
+            <field name="type">liquidity</field>
+            <field name="parent_id" ref="aatn_55"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_cash"/>
+        </record>
+        <record id="aatn_550002" model="account.account.template">
+            <field name="name">Bank Deposit</field>
+            <field name="code">550002</field>
+            <field name="type">liquidity</field>
+            <field name="parent_id" ref="aatn_55"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_cash"/>
+        </record>
+        <record id="aatn_570000" model="account.account.template">
+            <field name="name">Cash</field>
+            <field name="code">570000</field>
+            <field name="type">liquidity</field>
+            <field name="parent_id" ref="aatn_57"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_cash"/>
+        </record>
+        <record id="aatn_580000" model="account.account.template">
+            <field name="name">Internal transfer account</field>
+            <field name="code">580000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_58"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_cash"/>
+        </record>
+        <record id="aatn_600000" model="account.account.template">
+            <field name="name">Purchases of raw materials</field>
+            <field name="code">600000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_60"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_expense"/>
+        </record>
+        <record id="aatn_700000" model="account.account.template">
+            <field name="name">Sales</field>
+            <field name="code">700000</field>
+            <field name="type">other</field>
+            <field name="parent_id" ref="aatn_70"/>
+            <field name="reconcile" eval="0"/>
+            <field name="user_type" ref="user_type_income"/>
+        </record>
+
+    </data>
+</openerp>

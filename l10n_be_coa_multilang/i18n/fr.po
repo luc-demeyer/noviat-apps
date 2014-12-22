@@ -1,0 +1,3361 @@
+# French translation of OpenERP Server 7.0.
+# This file contains the translation of the following modules:
+#	* l10n_be_coa_multilang
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2013-11-25 16:23:09.376000\n"
+"PO-Revision-Date: 2013-11-25 16:23:09.376000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: l10n_be_coa_multilang
+#: model:account.chart.template,name:l10n_be_coa_multilang.l10n_be_coa_multilang_template
+msgid "Belgian Chart of Accounts (en/nl/fr)"
+msgstr "Plan Comptable Minimum Normalisé Belge (en/nl/fr)"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:10
+msgid "No records found for your selection!"
+msgstr "Aucun enregistrement trouvé pour votre sélection!"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:11
+msgid "No Data Available"
+msgstr "Aucune donnée disponible"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:10
+msgid "No records found for your selection!"
+msgstr "Aucun enregistrement trouvé pour votre sélection!"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:11
+msgid "No Data Available"
+msgstr "Aucune donnée disponible"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:'l10n_be_coa_multilang.action_account_report_be_bs
+msgid "Belgian Balance Sheet"
+msgstr "Bilan Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:'l10n_be_coa_multilang.action_account_report_be_pl
+msgid "Belgian Profit And Loss"
+msgstr "Compte de résultats Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_open_arap_fy
+msgid "Print Open Receivables/Payables by Fiscal Year"
+msgstr "Rapport débiteurs/créditeurs par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_open_arap_period
+msgid "Print Open Receivables/Payables by Period"
+msgstr "Rapport débiteurs/créditeurs par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_nov_print_journal
+msgid "Print Journal by Period"
+msgstr "Journal détaillé par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_nov_print_journal_fiscalyear
+msgid "Print Journal by Fiscal Year"
+msgstr "Journal détaillé par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_finance_belgian_statement
+msgid "Belgian Statements and Reports"
+msgstr "Rapports et Déclarations Belges"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_bs
+msgid "Belgian Balance Sheet"
+msgstr "Bilan Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_pl
+msgid "Belgian Profit And Loss"
+msgstr "Compte de résultats Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_be_legal_financial_reportscheme
+msgid "Belgian Legal Financial Report Scheme"
+msgstr "Plan rapport légale belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_be_legal_financial_reportscheme
+msgid "Belgian Legal Financial Report Scheme"
+msgstr "Plan rapport légale belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_declaration
+msgid "Periodical VAT Declaration"
+msgstr "Déclaration périodique à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_declaration
+msgid "Periodical VAT Declaration"
+msgstr "Déclaration périodique à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Periodical VAT Declaration"
+msgstr "Déclaration périodique à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Options"
+msgstr "Options"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Comments"
+msgstr "Commentaires"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Last Declaration"
+msgstr "Dernière déclaration"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,period_id:0
+msgid "Period"
+msgstr "Période"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,ask_restitution:0
+msgid "Ask Restitution"
+msgstr "Demande de restitution"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,ask_payment:0
+msgid "Ask Payment"
+msgstr "Demande de formulaires de paiement"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,client_nihil:0
+msgid "Last Declaration"
+msgstr "Dernière déclaration"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_intra
+msgid "Intracom VAT Declaration"
+msgstr "Déclaration intracommunautaire à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_intra
+msgid "Intracom VAT Declaration"
+msgstr "Déclaration intracommunautaire à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: view:partner.vat.intra:0
+msgid "Intracom VAT Declaration"
+msgstr "Déclaration intracommunautaire à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.partner_vat_listing
+msgid "Annual Listing Of VAT-Subjected Customers"
+msgstr "Listing annuel des clients assujettis à la TVA"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_vat_listing
+msgid "Partner VAT Listing"
+msgstr "Liste de la TVA par partenaire"
+
+#. module: l10n_be_coa_multilang
+#: field:partner.vat,year:0
+msgid "Year"
+msgstr "Année"
+
+#. module: l10n_be_coa_multilang
+#: field:partner.vat,limit_amount:0
+msgid "Limit Amount"
+msgstr "Montant Limite"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_fy
+msgid "Print Open Receivables/Payables by Fiscal Year"
+msgstr "Rapport débiteurs/créditeurs par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_period
+msgid "Print Open Receivables/Payables by Period"
+msgstr "Rapport débiteurs/créditeurs par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal
+msgid "Print Journal by Period"
+msgstr "Journal détaillé par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal_fiscalyear
+msgid "Print Journal by Fiscal Year"
+msgstr "Journal détaillé par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Journal Overview"
+msgstr "Journal détaillé"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Fiscal Year"
+msgstr "Exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Account"
+msgstr "Compte"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "VAT"
+msgstr "TVA"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Debit"
+msgstr "Débit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "VAT Declaration"
+msgstr "Déclaration TVA"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Journal Overview"
+msgstr "Journal détaillé"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Period"
+msgstr "Période"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Account"
+msgstr "Compte"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "VAT"
+msgstr "TVA"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Debit"
+msgstr "Débit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "VAT Declaration"
+msgstr "Déclaration TVA"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:10
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:11
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:12
+msgid "Due Date"
+msgstr "Echéance"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:13
+msgid "Account"
+msgstr "Compte"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:14
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:14
+msgid "Debit"
+msgstr "Débit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:15
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:16
+msgid "Balance"
+msgstr "Solde"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:17
+msgid "Totals"
+msgstr "Totals"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:10
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:11
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:12
+msgid "Due Date"
+msgstr "Echéance"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:13
+msgid "Account"
+msgstr "Compte"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:14
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:14
+msgid "Debit"
+msgstr "Débit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:15
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:16
+msgid "Balance"
+msgstr "Solde"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:17
+msgid "Totals"
+msgstr "Totals"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:10
+msgid "Open Receivables"
+msgstr "Débiteurs"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Open Payables"
+msgstr "Créditeurs"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Fiscal Year"
+msgstr "Exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Period"
+msgstr "Période"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Print Journal by Fiscal Year"
+msgstr "Journal détaillé par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "Exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,sort:0
+msgid "Entries Sorted By"
+msgstr "Entrées triées par"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal.fiscalyear,sort:0
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal.fiscalyear,sort:0
+msgid "Number"
+msgstr "Numéro"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Print Journal by Period"
+msgstr "Journal détaillé par période"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,journal_ids:0
+msgid "Journals"
+msgstr "Journaux"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,period_ids:0
+msgid "Periods"
+msgstr "Périodes"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,sort:0
+msgid "Entries Sorted By"
+msgstr "Entrées triées par"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal,sort:0
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal,sort:0
+msgid "Number"
+msgstr "Numéro"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_nv_sa
+msgid "nv/sa"
+msgstr "sa"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bvba_sprl
+msgid "bvba/sprl"
+msgstr "sprl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vzw_asbl
+msgid "vzw/asbl"
+msgstr "asbl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_cvba_scrl
+msgid "cvba/scrl"
+msgstr "scrl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vof_scn
+msgid "vof/scn"
+msgstr "scn"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bv
+msgid "bv"
+msgstr "bv"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_ag
+msgid "ag"
+msgstr "ag"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_inc
+msgid "inc"
+msgstr "inc"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
+msgid "corp"
+msgstr "corp"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:base.res_partner_title_ltd
+msgid "ltd"
+msgstr "ltd"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_view
+msgid "View"
+msgstr "Vue"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_equity
+msgid "Equity"
+msgstr "Capitaux propres"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_liability_longterm
+msgid "Long Term Liability"
+msgstr "Dettes à long terme"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_asset
+msgid "Assets"
+msgstr "Activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_stock
+msgid "Stock"
+msgstr "Stock et en-cours"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_receivable_ar
+msgid "Receivables A/R"
+msgstr "Recevable A/R"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_payable_ap
+msgid "Payables A/P"
+msgstr "Payable A/P"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_receivable
+msgid "Receivables"
+msgstr "Recevable"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_payable
+msgid "Payables"
+msgstr "Payable"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_suspense
+msgid "Suspense Accounts"
+msgstr "Comptes d'attente"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_tax_asset
+msgid "VAT Deductible"
+msgstr "TVA déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_tax_liability
+msgid "VAT Debt"
+msgstr "TVA à payer"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_cash
+msgid "Cash"
+msgstr "Financier"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_expense
+msgid "Expense"
+msgstr "Charges"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.type,name:l10n_be_coa_multilang.user_type_income
+msgid "Income"
+msgstr "Produits"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_0
+msgid "BELGIAN CHART OF ACCOUNTS"
+msgstr "PCMN BELGE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_1
+msgid "CLASS 1. EQUITY CAPITAL, PROVISIONS AND DEFERRED TAXES AND AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR"
+msgstr "CLASSE 1. FONDS PROPRES, PROVISIONS POUR RISQUES & CHARGES ET DETTES A PLUS D'UN AN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_2
+msgid "CLASS 2. FORMATION EXPENSES, ASSETS AND AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR"
+msgstr "CLASSE 2. FRAIS D'ETABLISSEMENT. ACTIFS IMMOBILISES ET CREANCES A PLUS D'UN AN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_3
+msgid "CLASS 3. STOCKS AND CONTRACTS IN PROGRESS"
+msgstr "CLASSE 3. STOCK ET COMMANDES EN COURS D'EXECUTION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_4
+msgid "CLASS 4. AMOUNTS RECEIVABLE AND PAYABLE WITHIN ONE YEAR"
+msgstr "CLASSE 4. CREANCES ET DETTES A UN AN AU PLUS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_5
+msgid "CLASS 5. INVESTMENTS AND CASH"
+msgstr "CLASSE 5. PLACEMENTS DE TRESORERIE ET DE VALEURS DISPONIBLES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_6
+msgid "CLASS 6. CHARGES"
+msgstr "CLASSE 6. CHARGES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_7
+msgid "CLASS 7. INCOMES"
+msgstr "CLASSE 7. PRODUITS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_10
+msgid "CAPITAL"
+msgstr "CAPITAL"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_11
+msgid "SHARE PREMIUM ACCOUNT"
+msgstr "PRIMES D'EMISSION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_12
+msgid "REVALUATION SURPLUSES"
+msgstr "PLUS-VALUES DE REEVALUATION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_13
+msgid "RESERVES"
+msgstr "RESERVES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_14
+msgid "ACCUMULATED PROFITS"
+msgstr "BENEFICE OU PERTE REPORTE(E)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_15
+msgid "INVESTMENT GRANTS"
+msgstr "SUBSIDES EN CAPITAL"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_16
+msgid "PROVISIONS FOR LIABILITIES AND CHARGES"
+msgstr "PROVISIONS POUR RISQUES ET CHARGES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_17
+msgid "AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR"
+msgstr "DETTES A PLUS D'UN AN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_20
+msgid "FORMATION EXPENSES"
+msgstr "FRAIS D'ETABLISSEMENT"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_21
+msgid "INTANGIBLE ASSETS"
+msgstr "IMMOBILISATIONS INCORPORELLES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_22
+msgid "LAND AND BUILDINGS"
+msgstr "TERRAINS ET CONSTRUCTIONS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_23
+msgid "PLANT, MACHINERY AND EQUIPMENT"
+msgstr "INSTALLATIONS, MACHINES ET OUTILLAGE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_24
+msgid "FURNITURE AND VEHICLES"
+msgstr "MOBILIER ET MATERIEL ROULANT"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_25
+msgid "LEASING AND OTHER SIMILAR RIGHTS"
+msgstr "IMMOBILISATION DETENUES EN LOCATION-FINANCEMENT ET DROITS SIMILAIRES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_26
+msgid "OTHER TANGIBLE ASSETS"
+msgstr "AUTRES IMMOBILISATIONS CORPORELLES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_27
+msgid "ASSETS UNDER CONSTR. AND ADVANCE PAYMENT"
+msgstr "IMMOBILISATIONS CORPORELLES EN COURS ET ACOMPTES VERSES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_28
+msgid "FINANCIAL ASSETS"
+msgstr "IMMOBILISATIONS FINANCIERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_29
+msgid "AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR"
+msgstr "CREANCES A PLUS D'UN AN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_30
+msgid "RAW MATERIALS"
+msgstr "APPROVISIONNEMENTS - MATIERES PREMIERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_31
+msgid "CONSUMABLES"
+msgstr "APPROVISIONNEMENTS ET FOURNITURES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_32
+msgid "GOODS WORK IN PROGRESS"
+msgstr "EN COURS DE FABRICATION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_33
+msgid "FINISHED GOODS"
+msgstr "PRODUITS FINIS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_34
+msgid "GOODS PURCHASED FOR RESALE"
+msgstr "MARCHANDISES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_35
+msgid "IMMOVABLE PROPERTY ACQUIRED FOR RESALE"
+msgstr "IMMEUBLES DESTINES A LA VENTE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_36
+msgid "ADVANCE PAYMENTS"
+msgstr "ACOMPTES VERSES SUR ACHATS POUR STOCKS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_37
+msgid "CONTRACTS IN PROGRESS"
+msgstr "COMMANDES EN COURS D'EXECUTION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_40
+msgid "TRADE DEBTORS"
+msgstr "CREANCES COMMERCIALES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_41
+msgid "OTHER AMOUNTS RECEIVABLE"
+msgstr "AUTRES CREANCES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_42
+msgid "DEBTS OF MORE THAN 1 YEAR, PORTION WITHIN THE YEAR"
+msgstr "DETTES A PLUS D'UN AN ECHEANT DANS L'ANNEE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_43
+msgid "FINANCIAL DEBTS"
+msgstr "DETTES FINANCIERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_44
+msgid "TRADE DEBTS"
+msgstr "DETTES COMMERCIALES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_45
+msgid "TAXES, REMUNERATION AND SOCIAL SECURITY"
+msgstr "DETTES FISCALES, SALARIALES ET SOCIALES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_46
+msgid "ADVANCES RECEIVED ON CONTRACTS IN PROGRESS"
+msgstr "ACOMPTES RECUS SUR COMMANDES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_47
+msgid "DEBTS RELATED TO THE DESTINATION OF THE RESULTS"
+msgstr "DETTES DECOULANT DE L'AFFECTATION DES RESULTATS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_48
+msgid "VARIOUS DEBTS"
+msgstr "DETTES DIVERSES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_49
+msgid "ACCRUED CHARGES AND DEFERRED INCOME"
+msgstr "COMPTES DE REGULARISATION ET COMPTES D'ATTENTE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_50
+msgid "OWN SHARES"
+msgstr "ACTIONS PROPRES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_51
+msgid "SHARES"
+msgstr "ACTIONS ET PARTS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_52
+msgid "FIXED-INTEREST SECURITIES"
+msgstr "TITRES A REVENUS FIXES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_53
+msgid "FIXED DEPOSIT"
+msgstr "DEPOTS A TERME"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_54
+msgid "EXPIRED VALUABLES TO CASH IN"
+msgstr "VALEURS ECHUES A L'ENCAISSEMENT"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_55
+msgid "FINANCE COMPANIES"
+msgstr "ETABLISSEMENTS DE CREDIT"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_56
+msgid "GIRO SERVICE"
+msgstr "OFFICE DES CHEQUES POSTAUX"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_57
+msgid "CASH"
+msgstr "CAISSES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_58
+msgid "INTERNAL TRANSFERS"
+msgstr "VIREMENTS INTERNES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_60
+msgid "RAW MATERIALS, CONSUMABLES AND GOODS FOR RESALE"
+msgstr "APPROVISIONNEMENTS ET MARCHANDISES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_61
+msgid "SERVICES AND OTHER GOODS"
+msgstr "SERVICES ET BIENS DIVERS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_62
+msgid "REMUNERATIONS, SOCIAL SECURITY COSTS AND PENSIONS"
+msgstr "REMUNERATIONS, CHARGES SOCIALES ET PENSIONS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_63
+msgid "DEPRECIATIONS, AMOUNTS WRITTEN OFF AND PROVISIONS FOR LIABILITIES AND CHARGES"
+msgstr "AMORTISSEMENTS, REDUCTIONS DE VALEUR ET PROVISIONS POUR RISQUES ET CHARGES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_64
+msgid "OTHER OPERATING CHARGES"
+msgstr "AUTRES CHARGES D'EXPLOITATION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_65
+msgid "FINANCIAL CHARGES"
+msgstr "CHARGES FINANCIERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_66
+msgid "EXTRAORDINARY CHARGES"
+msgstr "CHARGES EXCEPTIONNELLES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_67
+msgid "INCOME TAXES"
+msgstr "IMPOTS SUR LE RESULTAT"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_68
+msgid "TRANSFER TO DEFERRED TAXES AND UNTAXED RESERVES"
+msgstr "TRANSFERTS AUX RESERVES IMMUNISEES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_69
+msgid "PROFIT FOR THE PERIOD"
+msgstr "AFFECTATION DES RESULTATS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_70
+msgid "TURNOVER"
+msgstr "CHIFFRE D'AFFAIRES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_71
+msgid "CHANGES IN STOCKS AND CONTRACTS IN PROGRESS"
+msgstr "VARIATION DES STOCKS ET DES COMMANDES EN COURS D'EXECUTION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_72
+msgid "FIXED ASSETS OWN CONSTRUCTION"
+msgstr "PRODUCTION IMMOBILISEE"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_74
+msgid "OTHER OPERATING INCOME"
+msgstr "AUTRES PRODUITS D'EXPLOITATION"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_75
+msgid "FINANCIAL INCOME"
+msgstr "PRODUITS FINANCIERS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_76
+msgid "EXTRAORDINARY INCOME"
+msgstr "PRODUITS EXCEPTIONNELS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_77
+msgid "ADJUSTMENT OF INCOME TAXES AND TAX PROVISIONS"
+msgstr "REGULARISATIONS D'IMPOTS ET REPRISES DE PROVISIONS FISCALES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_78
+msgid "TRANSFER FROM DEFERRED TAXES AND UNTAXED RESERVES"
+msgstr "PRELEVEMENT SUR RESERVES IMMUNISEES ET IMPOTS DIFFERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_79
+msgid "PROFIT FOR THE PERIOD"
+msgstr "AFFECTATION AUX RESULTATS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_140000
+msgid "Profit carried forward"
+msgstr "Bénéfice reporté"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_400000
+msgid "Customers"
+msgstr "Clients"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_411000
+msgid "Input VAT - current account balance"
+msgstr "TVA à récupérer - Compte courant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_411059
+msgid "VAT Deductible"
+msgstr "TVA à récupérer"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_440000
+msgid "Suppliers"
+msgstr "Fournisseurs"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451000
+msgid "Output VAT - current account balance"
+msgstr "TVA à payer - Compte courant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451054
+msgid "VAT Debt"
+msgstr "TVA à payer"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451055
+msgid "VAT Debt - Intracommunity"
+msgstr "TVA à payer - intracommunautaire"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451056
+msgid "VAT Debt - Cocontractant"
+msgstr "TVA à payer - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451057
+msgid "VAT Debt - Import"
+msgstr "TVA à payer - importations avec report de perceptions"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_499999
+msgid "Awaiting account"
+msgstr "Compte d'attente"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_550001
+msgid "Bank Current"
+msgstr "Banque - Compte courant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_550002
+msgid "Bank Deposit"
+msgstr "Banque - Compte d'épargne"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_570000
+msgid "Cash"
+msgstr "Caisse"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_580000
+msgid "Internal transfer account"
+msgstr "Virements internes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_600000
+msgid "Purchases of raw materials"
+msgstr "Achats de matières premières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_700000
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_national
+msgid "National Regime"
+msgstr "Régime national"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_cocontractant
+msgid "National Regime - Cocontractant"
+msgstr "Régime national - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_intracom
+msgid "Intra Community Regime"
+msgstr "Régime intra-communautaire"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_extracom
+msgid "Extra Community Regime"
+msgstr "Régime extra-communautarie"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,note:l10n_be_coa_multilang.afptn_cocontractant
+msgid "VAT subject to reverse charge."
+msgstr "Auto-liquidation de la TVA."
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,note:l10n_be_coa_multilang.afptn_intracom
+msgid "Tax-free intra-Community supply / VAT subject to reverse charge."
+msgstr "Livraison intracommunautaire exemptée de TVA / Auto-liquidation."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_I
+msgid "Belgian Chart of Taxes"
+msgstr "Plan de Taxes Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_II
+msgid "Outgoing Operations"
+msgstr "Opérations à la sortie"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIA
+msgid "Operations subject to a special arrangement"
+msgstr "Opérations soumises à un régime particulier"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_00
+msgid "Operations subject to a special arrangement"
+msgstr "Opérations soumises à un régime particulier"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIB
+msgid "VAT due by the Declarant"
+msgstr "TVA due par le déclarant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_01
+msgid "Operations subject to 6% VAT"
+msgstr "Opérations avec TVA à 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_02
+msgid "Operations subject to 12% VAT"
+msgstr "Opérations avec TVA à 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_03
+msgid "Operations subject to 21% VAT"
+msgstr "Opérations avec TVA à 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIC
+msgid "Foreign VAT due by the Cocontractant"
+msgstr "TVA étrangère due par le cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_44
+msgid "Intra Community Services"
+msgstr "Services intra-communautaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IID
+msgid "VAT due by the Cocontractant"
+msgstr "Opérations avec TVA due par le cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_45
+msgid "VAT due by the Cocontractant"
+msgstr "Opérations avec TVA due par le cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIE
+msgid "VAT exempt Intra Community Supplies"
+msgstr "Livraisons intra-communautaire exemptées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_46
+msgid "VAT exempt Intra Community and ABC Supplies"
+msgstr "Livraisons intra-communautaire exemptées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_46L
+msgid "VAT exempt Intra Community Supplies of Goods"
+msgstr "Livraisons biens intra-communautaire exemptées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_46T
+msgid "VAT exempt Intra Community ABC Supplies"
+msgstr "ABC intra-communautaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIF
+msgid "Other VAT exempt Operations"
+msgstr "Autres opérations exemptées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_47
+msgid "Other VAT exempt Operations"
+msgstr "Autres operations exemptées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIG
+msgid "Issued Credit Notes and Negative Corrections"
+msgstr "Notes de crédit délivrées et corrections négatives"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_48
+msgid "Issued Credit Notes Operations Grid [44] and [46]"
+msgstr "Notes de crédit aux opérations grilles [44] et [46]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_48s44
+msgid "Issued Credit Notes Operations Grid [44]"
+msgstr "Notes de crédit aux opérations grille [44]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_48s46L
+msgid "Issued Credit Notes Operations Grid [46L]"
+msgstr "Notes de crédit aux opérations grille [46L]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_48s46T
+msgid "Issued Credit Notes Operations Grid [46T]"
+msgstr "Notes de crédit aux opérations grille [46T]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_49
+msgid "Issued Credit Notes Other Operations Section II"
+msgstr "Notes de crédit aux opérations du point II"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_III
+msgid "Incoming Operations"
+msgstr "Opérations a l'entrée"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIIA
+msgid "Incoming Operations incl. Credit Notes and Corrections"
+msgstr "Opérations à l'entrée y compris notes de crédit et corrections"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_81
+msgid "Purchases of Goods, Raw Materials and Consumables"
+msgstr "Marchandises, matières premières et auxiliaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_82
+msgid "Purchases of various Goods and Services"
+msgstr "Services et biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_83
+msgid "Purchases of Assets"
+msgstr "Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIIB
+msgid "Incoming Credit Notes and negative Corrections"
+msgstr "Notes de crédit reçues et corrections négatives"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_84
+msgid "Incoming Credit Notes Operations Grid [86] and [88]"
+msgstr "Notes de crédits sur opérations case [86] et [88]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_85
+msgid "Incoming Credit Notes other Operations"
+msgstr "Notes de crédits autres opérations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIIC
+msgid "Intra Community Acquisitions and ABC Sales"
+msgstr "Acquisition intra-communautaires et ventes ABC"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_86
+msgid "Intra Community and ABC Acquisitions"
+msgstr "Acquisition intra-communautaires et ventes ABC"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIID
+msgid "Other Incoming Operations with VAT due by the Declarant"
+msgstr "Autres opérations à l'entrée avec TVA due par le déclarant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_87
+msgid "Other Incoming Operations"
+msgstr "Autres opérations à l'entrée"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IIIE
+msgid "Intra Community Services"
+msgstr "Services intracommunautaires avec report de perception"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_88
+msgid "Intra Community Services"
+msgstr "Acquisition services intra-communautaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_VI
+msgid "Balance (71-72)"
+msgstr "Solde (71-72)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_XX
+msgid "To Pay - Total"
+msgstr "A payer - Total"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IVA
+msgid "VAT on Operations Grids [01], [02], [03], [86], [87], [88]"
+msgstr "TVA aux opérations en grilles [01], [02], [03], [86], [87],[88]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_54
+msgid "VAT on Operations Grids [01], [02], [03]"
+msgstr "TVA sur opérations des grilles [01], [02], [03]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_55
+msgid "VAT on Operations Grids [86] and  [88]"
+msgstr "TVA sur opérations des grilles [86] et [88]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_56
+msgid "VAT on Operations Grid [87]"
+msgstr "TVA sur opérations de la grille [87]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IVB
+msgid "VAT on Imports"
+msgstr "TVA relatives aux importations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_57
+msgid "VAT on Imports"
+msgstr "TVA relatives aux importations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IVC
+msgid "VAT adjustments in favor of the Tax Authority"
+msgstr "Diverses régularisations en faveur de l'Etat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_61
+msgid "VAT adjustments in favor of the Tax Authority"
+msgstr "Diverses régularisations en faveur de l'Etat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_IVD
+msgid "VAT Debt from Incoming Credit Notes"
+msgstr "TVA à reverser sur notes de crédit reçues"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_63
+msgid "VAT Debt from Incoming Credit Notes"
+msgstr "TVA à reverser sur notes de crédit reçues"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_YY
+msgid "Deductible - Total"
+msgstr "A déduire - Total"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_VA
+msgid "Deductible VAT"
+msgstr "TVA déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_59
+msgid "Deductible VAT"
+msgstr "TVA déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_VB
+msgid "VAT adjustments in favor of the Declarant"
+msgstr "Régularisations TVA en faveur du déclarant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_62
+msgid "VAT adjustments in favor of the Declarant"
+msgstr "Régularisations TVA en faveur du déclarant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_VC
+msgid "Deductible VAT from Outgoing Credit Notes"
+msgstr "TVA à recuperer sur notes de crédit delivrées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_64
+msgid "Deductible VAT from Outgoing Credit Notes"
+msgstr "TVA à recuperer sur notes de crédit delivrées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_VII
+msgid "Advance"
+msgstr "Acompte"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.code.template,name:l10n_be_coa_multilang.atctn_91
+msgid "Advance for Operations from December 1 to 20"
+msgstr "TVA due pour la période du 1er au 20 décembre"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-S
+msgid "VAT 21%"
+msgstr "TVA 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-L
+msgid "VAT 21%"
+msgstr "TVA 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-S
+msgid "VAT 21% - Cash Discount 2%"
+msgstr "TVA 21% - Escompte de caisse 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-L
+msgid "VAT 21% - Cash Discount 2%"
+msgstr "TVA 21% - Escompte de caisse 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-INC-S
+msgid "VAT 21% (Price Incl.)"
+msgstr "TVA 21% (Prix incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-INC-L
+msgid "VAT 21% (Price Incl.)"
+msgstr "TVA 21% (Prix incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-12-S
+msgid "VAT 12%"
+msgstr "TVA 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-12-L
+msgid "VAT 12%"
+msgstr "TVA 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-06-S
+msgid "VAT 6%"
+msgstr "TVA 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-06-L
+msgid "VAT 6%"
+msgstr "TVA 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-S
+msgid "VAT 0%"
+msgstr "TVA 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-L
+msgid "VAT 0%"
+msgstr "TVA 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-CC
+msgid "VAT 0% Cocontractant"
+msgstr "TVA 0% Cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-S
+msgid "Services within EU"
+msgstr "Services EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-L
+msgid "Goods within EU (Code L)"
+msgstr "Marchandises EU (Code L)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-T
+msgid "Goods within EU (Code T)"
+msgstr "Marchandises EU (Code T)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-ROW
+msgid "Export Outside EU"
+msgstr "Export hors EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-S
+msgid "VAT IN 21% - Services for resale"
+msgstr "TVA Déductible 21% - Services pour revente"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-S-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-S-C2
+msgid "VAT-IN-V81-21-S-C2"
+msgstr "VAT-IN-V81-21-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-G
+msgid "VAT IN 21% - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 21% - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-G-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-G-C2
+msgid "VAT-IN-V81-21-G-C2"
+msgstr "VAT-IN-V81-21-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12
+msgid "VAT IN 12% - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 12% - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-C2
+msgid "VAT-IN-V81-12-C2"
+msgstr "VAT-IN-V81-12-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06
+msgid "VAT IN 6% - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 6% - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-C2
+msgid "VAT-IN-V81-06-C2"
+msgstr "VAT-IN-V81-06-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00
+msgid "VAT IN 0% - Raw mat., consum. and goods for resale"
+msgstr "TVA à l'entrée 0% - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-C1
+msgid "VAT IN 0%"
+msgstr "TVA à l'entrée 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-C2
+msgid "VAT-IN-V81-00-C2"
+msgstr "VAT-IN-V81-00-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-S
+msgid "VAT IN 21% - Services"
+msgstr "TVA Déductible 21% - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-S-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-S-C2
+msgid "VAT-IN-V82-21-S-C2"
+msgstr "VAT-IN-V82-21-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CD2-S
+msgid "VAT IN 21% - Services - Cash Discount 2%"
+msgstr "TVA Déductible 21% - Services -  Escompte de caisse 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CD2-S-C1
+msgid "VAT IN 21% - Cash Discount 2%"
+msgstr "TVA Déductible 21% - Escompte de caisse 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CD2-S-C2
+msgid "VAT-IN-V82-21-CD2-S-C2"
+msgstr "attn_VAT-IN-V82-21-CD2-S"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-INC-S
+msgid "VAT IN 21% - Services (Price Incl.)"
+msgstr "TVA Déductible 21% - Services (Prix incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-INC-S-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-INC-S-C2
+msgid "VAT-IN-V82-21-INC-S-C2"
+msgstr "VAT-IN-V82-21-INC-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-G
+msgid "VAT IN 21% - Other goods"
+msgstr "TVA Déductible 21% - Biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-G-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-G-C2
+msgid "VAT-IN-V82-21-G-C2"
+msgstr "VAT-IN-V82-21-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-S
+msgid "VAT IN 12% - Services"
+msgstr "TVA Déductible 12% - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-S-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-S-C2
+msgid "VAT-IN-V82-12-S-C2"
+msgstr "VAT-IN-V82-12-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-G
+msgid "VAT IN 12% - Other goods"
+msgstr "TVA Déductible 12% - Biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-G-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-G-C2
+msgid "VAT-IN-V82-12-G-C2"
+msgstr "VAT-IN-V82-12-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-S
+msgid "VAT IN 6% - Services"
+msgstr "TVA Déductible 6% - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-S-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-S-C2
+msgid "VAT-IN-V82-06-S-C2"
+msgstr "VAT-IN-V82-06-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-G
+msgid "VAT IN 6% - Other goods"
+msgstr "TVA Déductible 6% - Biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-G-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-G-C2
+msgid "VAT-IN-V82-06-G-C2"
+msgstr "VAT-IN-V82-06-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-S
+msgid "VAT IN 0% - Services"
+msgstr "TVA à l'entrée 0% - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-S-C1
+msgid "VAT IN 0%"
+msgstr "TVA à l'entrée 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-S-C2
+msgid "VAT-IN-V82-00-S-C2"
+msgstr "VAT-IN-V82-00-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-G
+msgid "VAT IN 0% - Other goods"
+msgstr "TVA à l'entrée 0% - Biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-G-C1
+msgid "VAT IN 0%"
+msgstr "TVA à l'entrée 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-G-C2
+msgid "VAT-IN-V82-00-G-C2"
+msgstr "VAT-IN-V82-00-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21
+msgid "VAT IN 21% - Capital goods"
+msgstr "TVA Déductible 21% - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-C2
+msgid "VAT-IN-V83-21-C2"
+msgstr "VAT-IN-V83-21-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12
+msgid "VAT IN 12% - Capital goods"
+msgstr "TVA Déductible 12% - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-C2
+msgid "VAT-IN-V83-12-C2"
+msgstr "VAT-IN-V83-12-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06
+msgid "VAT IN 6% - Capital goods"
+msgstr "TVA Déductible 6% - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-C2
+msgid "VAT-IN-V83-06-C2"
+msgstr "VAT-IN-V83-06-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00
+msgid "VAT IN 0% - Capital goods"
+msgstr "TVA à l'entrée 0% - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-C1
+msgid "VAT IN 0%"
+msgstr "TVA à l'entrée 0%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-C2
+msgid "VAT-IN-V83-00-C2"
+msgstr "VAT-IN-V83-00-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC
+msgid "VAT IN 21% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 21% Cocontractant - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "TVA à payer 21% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C3
+msgid "VAT-IN-V81-21-CC-C3"
+msgstr "VAT-IN-V81-21-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC
+msgid "VAT IN 12% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 12% Cocontractant - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "TVA à payer 12% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C3
+msgid "VAT-IN-V81-12-CC-C3"
+msgstr "VAT-IN-V81-12-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC
+msgid "VAT IN 6% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 6% Cocontractant - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "TVA à payer 6% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C3
+msgid "VAT-IN-V81-06-CC-C3"
+msgstr "VAT-IN-V81-06-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-CC
+msgid "VAT IN 0% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 0% Cocontractant - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-CC-C1
+msgid "VAT IN 0%"
+msgstr "VAT-IN-V81-00-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-CC-C2
+msgid "VAT-IN-V81-00-CC-C2"
+msgstr "VAT-IN-V81-00-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-CC-C3
+msgid "VAT-IN-V81-00-CC-C3"
+msgstr "VAT-IN-V81-00-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC
+msgid "VAT IN 21% Cocontract. - Services and other goods"
+msgstr "TVA Déductible 21% Cocontractant - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "TVA à payer 21% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C3
+msgid "VAT-IN-V82-21-CC-C3"
+msgstr "VAT-IN-V82-21-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC
+msgid "VAT IN 12% Cocontract. - Services and other goods"
+msgstr "TVA Déductible 12% Cocontractant - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "TVA à payer 12% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C3
+msgid "VAT-IN-V82-12-CC-C3"
+msgstr "VAT-IN-V82-12-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC
+msgid "VAT IN 6% Cocontract. - Services and other goods"
+msgstr "TVA Déductible 6% Cocontractant - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "TVA à payer 6% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C3
+msgid "VAT-IN-V82-06-CC-C3"
+msgstr "VAT-IN-V82-06-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-CC
+msgid "VAT IN 0% Cocontract. - Services and other goods"
+msgstr "TVA Déductible 0% Cocontractant - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-CC-C1
+msgid "VAT IN 0%"
+msgstr "VAT-IN-V82-00-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-CC-C2
+msgid "VAT-IN-V82-00-CC-C2"
+msgstr "VAT-IN-V82-00-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-CC-C3
+msgid "VAT-IN-V82-00-CC-C3"
+msgstr "VAT-IN-V82-00-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC
+msgid "VAT IN 21% Cocontract. - Capital goods"
+msgstr "TVA Déductible 21% Cocontractant - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C1
+msgid "VAT IN 21%"
+msgstr "TVA Déductible 21%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "TVA à payer 21% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C3
+msgid "VAT-IN-V83-21-CC-C3"
+msgstr "VAT-IN-V83-21-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC
+msgid "VAT IN 12% Cocontract. - Capital goods"
+msgstr "TVA Déductible 12% Cocontractant - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C1
+msgid "VAT IN 12%"
+msgstr "TVA Déductible 12%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "TVA à payer 12% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C3
+msgid "VAT-IN-V83-12-CC-C3"
+msgstr "VAT-IN-V83-12-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC
+msgid "VAT IN 6% Cocontract. - Capital goods"
+msgstr "TVA Déductible 6% Cocontractant - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C1
+msgid "VAT IN 6%"
+msgstr "TVA Déductible 6%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "TVA à payer 6% - cocontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C3
+msgid "VAT-IN-V83-06-CC-C3"
+msgstr "VAT-IN-V83-06-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-CC
+msgid "VAT IN 0% Cocontract. - Capital goods"
+msgstr "TVA Déductible 0% Cocontractant - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-CC-C1
+msgid "VAT IN 0%"
+msgstr "VAT-IN-V83-00-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-CC-C2
+msgid "VAT-IN-V83-00-CC-C2"
+msgstr "VAT-IN-V83-00-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-CC-C3
+msgid "VAT-IN-V83-00-CC-C3"
+msgstr "VAT-IN-V83-00-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-INC
+msgid "VAT IN - Car Expenses - VAT 50% Deductible (Price Incl.)"
+msgstr "TVA Entrant - Frais de voiture - TVA 50% déduct. (Prix incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-INC-C1
+msgid "Car Expenses - VAT 50% Deductible"
+msgstr "Frais de voiture - TVA 50% déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-INC-C2
+msgid "Car Expenses - Refund Base Amount"
+msgstr "Frais de voiture - Montant du note de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-INC
+msgid "VAT IN - Car Expenses - VAT 35% Deductible (Price Incl.)"
+msgstr "TVA Entrant - Frais de voiture - TVA 35% déduct. (Prix incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-INC-C1
+msgid "Car Expenses - VAT 35% Deductible"
+msgstr "Frais de voiture - TVA 35% déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-INC-C2
+msgid "Car Expenses - Refund Base Amount"
+msgstr "Frais de voiture - Montant du note de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC
+msgid "VAT IN - Car Expenses - VAT 50% Deductible (Price Excl.)"
+msgstr "TVA Entrant - Frais de voiture - TVA 50% déduct. (Prix Excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C1
+msgid "Car Expenses - VAT Non Deductible"
+msgstr "Frais de voiture - TVA non déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C2
+msgid "Car Expenses - VAT 50% Deductible"
+msgstr "Frais de voiture - TVA 50% déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C3
+msgid "Car Expenses - Refund Base Amount"
+msgstr "Frais de voiture - Montant du note de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC
+msgid "VAT IN - Car Expenses - VAT 35% Deductible (Price Excl.)"
+msgstr "TVA Entrant - Frais de voiture - TVA 35% déduct. (Prix Excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C1
+msgid "Car Expenses - VAT Non Deductible"
+msgstr "Frais de voiture - TVA non déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C2
+msgid "Car Expenses - VAT 35% Deductible"
+msgstr "Frais de voiture - TVA 35% déductible"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C3
+msgid "Car Expenses - Refund Base Amount"
+msgstr "Frais de voiture - Montant du note de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S
+msgid "VAT IN 21% Intracomm. - Services for resale"
+msgstr "TVA Déductible 21% Intracomm. - Services pour revente"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C1
+msgid "VAT-IN-V81-21-EU-S-C1"
+msgstr "VAT-IN-V81-21-EU-S-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C2
+msgid "VAT-IN-V81-21-EU-S-C2"
+msgstr "VAT-IN-V81-21-EU-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C3
+msgid "VAT-IN-V81-21-EU-S-C3"
+msgstr "VAT-IN-V81-21-EU-S-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G
+msgid "VAT IN 21% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 21% Intracomm. - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C1
+msgid "VAT-IN-V81-21-EU-G-C1"
+msgstr "VAT-IN-V81-21-EU-G-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C2
+msgid "VAT-IN-V81-21-EU-G-C2"
+msgstr "VAT-IN-V81-21-EU-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C3
+msgid "VAT-IN-V81-21-EU-G-C3"
+msgstr "VAT-IN-V81-21-EU-G-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU
+msgid "VAT IN 12% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 12% Intracomm. - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C1
+msgid "VAT-IN-V81-12-EU-C1"
+msgstr "VAT-IN-V81-12-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C2
+msgid "VAT-IN-V81-12-EU-C2"
+msgstr "VAT-IN-V81-12-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C3
+msgid "VAT-IN-V81-12-EU-C3"
+msgstr "VAT-IN-V81-12-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU
+msgid "VAT IN 6% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 6% Intracomm. - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C1
+msgid "VAT-IN-V81-06-EU-C1"
+msgstr "VAT-IN-V81-06-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C2
+msgid "VAT-IN-V81-06-EU-C2"
+msgstr "VAT-IN-V81-06-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C3
+msgid "VAT-IN-V81-06-EU-C3"
+msgstr "VAT-IN-V81-06-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-EU
+msgid "VAT IN 0% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "TVA à l'entrée 0% Intracomm. - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-EU-C1
+msgid "VAT-IN-V81-00-EU-C1"
+msgstr "VAT-IN-V81-00-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-EU-C2
+msgid "VAT-IN-V81-00-EU-C2"
+msgstr "VAT-IN-V81-00-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-EU-C3
+msgid "VAT-IN-V81-00-EU-C3"
+msgstr "VAT-IN-V81-00-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S
+msgid "VAT IN 21% Intracomm. - Services"
+msgstr "TVA Déductible 21% Intracomm. - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C1
+msgid "VAT-IN-V82-21-EU-S-C1"
+msgstr "VAT-IN-V82-21-EU-S-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C2
+msgid "VAT-IN-V82-21-EU-S-C2"
+msgstr "VAT-IN-V82-21-EU-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C3
+msgid "VAT-IN-V82-21-EU-S-C3"
+msgstr "VAT-IN-V82-21-EU-S-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G
+msgid "VAT IN 21% Intracomm. - Other goods"
+msgstr "TVA Déductible 21% Intracomm. - Bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C1
+msgid "VAT-IN-V82-21-EU-G-C1"
+msgstr "VAT-IN-V82-21-EU-G-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C2
+msgid "VAT-IN-V82-21-EU-G-C2"
+msgstr "VAT-IN-V82-21-EU-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C3
+msgid "VAT-IN-V82-21-EU-G-C3"
+msgstr "VAT-IN-V82-21-EU-G-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S
+msgid "VAT IN 12% Intracomm. - Services"
+msgstr "TVA Déductible 12% Intracomm. - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C1
+msgid "VAT-IN-V82-12-EU-S-C1"
+msgstr "VAT-IN-V82-12-EU-S-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C2
+msgid "VAT-IN-V82-12-EU-S-C2"
+msgstr "VAT-IN-V82-12-EU-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C3
+msgid "VAT-IN-V82-12-EU-S-C3"
+msgstr "VAT-IN-V82-12-EU-S-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G
+msgid "VAT IN 12% Intracomm. - Other goods"
+msgstr "TVA Déductible 12% Intracomm. - Bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C1
+msgid "VAT-IN-V82-12-EU-G-C1"
+msgstr "VAT-IN-V82-12-EU-G-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C2
+msgid "VAT-IN-V82-12-EU-G-C2"
+msgstr "VAT-IN-V82-12-EU-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C3
+msgid "VAT-IN-V82-12-EU-G-C3"
+msgstr "VAT-IN-V82-12-EU-G-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S
+msgid "VAT IN 6% Intracomm. - Services"
+msgstr "TVA Déductible 6% Intracomm. - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C1
+msgid "VAT-IN-V82-06-EU-S-C1"
+msgstr "VAT-IN-V82-06-EU-S-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C2
+msgid "VAT-IN-V82-06-EU-S-C2"
+msgstr "VAT-IN-V82-06-EU-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C3
+msgid "VAT-IN-V82-06-EU-S-C3"
+msgstr "VAT-IN-V82-06-EU-S-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G
+msgid "VAT IN 6% Intracomm. - Other goods"
+msgstr "TVA Déductible 6% Intracomm. - Bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C1
+msgid "VAT-IN-V82-06-EU-G-C1"
+msgstr "VAT-IN-V82-06-EU-G-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C2
+msgid "VAT-IN-V82-06-EU-G-C2"
+msgstr "VAT-IN-V82-06-EU-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C3
+msgid "VAT-IN-V82-06-EU-G-C3"
+msgstr "VAT-IN-V82-06-EU-G-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-S
+msgid "VAT IN 0% Intracomm. - Services"
+msgstr "TVA à l'entrée 0% Intracomm. - Services"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-S-C1
+msgid "VAT-IN-V82-00-EU-S-C1"
+msgstr "VAT-IN-V82-00-EU-S-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-S-C2
+msgid "VAT-IN-V82-00-EU-S-C2"
+msgstr "VAT-IN-V82-00-EU-S-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-S-C3
+msgid "VAT-IN-V82-00-EU-S-C3"
+msgstr "VAT-IN-V82-00-EU-S-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-G
+msgid "VAT IN 0% Intracomm. - Other goods"
+msgstr "TVA à l'entrée 0% Intracomm. - Bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-G-C1
+msgid "VAT-IN-V82-00-EU-G-C1"
+msgstr "VAT-IN-V82-00-EU-G-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-G-C2
+msgid "VAT-IN-V82-00-EU-G-C2"
+msgstr "VAT-IN-V82-00-EU-G-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-G-C3
+msgid "VAT-IN-V82-00-EU-G-C3"
+msgstr "VAT-IN-V82-00-EU-G-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU
+msgid "VAT IN 21% Intracomm. - Capital goods"
+msgstr "TVA Déductible 21% Intracomm. - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C1
+msgid "VAT-IN-V83-21-EU-C1"
+msgstr "VAT-IN-V83-21-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C2
+msgid "VAT-IN-V83-21-EU-C2"
+msgstr "VAT-IN-V83-21-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C3
+msgid "VAT-IN-V83-21-EU-C3"
+msgstr "VAT-IN-V83-21-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU
+msgid "VAT IN 12% Intracomm. - Capital goods"
+msgstr "TVA Déductible 12% Intracomm. - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C1
+msgid "VAT-IN-V83-12-EU-C1"
+msgstr "VAT-IN-V83-12-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C2
+msgid "VAT-IN-V83-12-EU-C2"
+msgstr "VAT-IN-V83-12-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C3
+msgid "VAT-IN-V83-12-EU-C3"
+msgstr "VAT-IN-V83-12-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU
+msgid "VAT IN 6% Intracomm. - Capital goods"
+msgstr "TVA Déductible 6% Intracomm. - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C1
+msgid "VAT-IN-V83-06-EU-C1"
+msgstr "VAT-IN-V83-06-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C2
+msgid "VAT-IN-V83-06-EU-C2"
+msgstr "VAT-IN-V83-06-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C3
+msgid "VAT-IN-V83-06-EU-C3"
+msgstr "VAT-IN-V83-06-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-EU
+msgid "VAT IN 0% Intracomm. - Capital goods"
+msgstr "TVA à l'entrée 0% Intracomm. - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-EU-C1
+msgid "VAT-IN-V83-00-EU-C1"
+msgstr "VAT-IN-V83-00-EU-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-EU-C2
+msgid "VAT-IN-V83-00-EU-C2"
+msgstr "VAT-IN-V83-00-EU-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-EU-C3
+msgid "VAT-IN-V83-00-EU-C3"
+msgstr "VAT-IN-V83-00-EU-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC
+msgid "VAT IN 21% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 21% Hors EU - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C1
+msgid "VAT-IN-V81-21-ROW-CC-C1"
+msgstr "VAT-IN-V81-21-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C2
+msgid "VAT-IN-V81-21-ROW-CC-C2"
+msgstr "VAT-IN-V81-21-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C3
+msgid "VAT-IN-V81-21-ROW-CC-C3"
+msgstr "VAT-IN-V81-21-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC
+msgid "VAT IN 12% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 12% Hors EU - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C1
+msgid "VAT-IN-V81-12-ROW-CC-C1"
+msgstr "VAT-IN-V81-12-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C2
+msgid "VAT-IN-V81-12-ROW-CC-C2"
+msgstr "VAT-IN-V81-12-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C3
+msgid "VAT-IN-V81-12-ROW-CC-C3"
+msgstr "VAT-IN-V81-12-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC
+msgid "VAT IN 6% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "TVA Déductible 6% Hors EU - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C1
+msgid "VAT-IN-V81-06-ROW-CC-C1"
+msgstr "VAT-IN-V81-06-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C2
+msgid "VAT-IN-V81-06-ROW-CC-C2"
+msgstr "VAT-IN-V81-06-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C3
+msgid "VAT-IN-V81-06-ROW-CC-C3"
+msgstr "VAT-IN-V81-06-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC
+msgid "VAT IN 0% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "TVA à l'entrée 0% Hors EU - Approvisionn. et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC-C1
+msgid "VAT-IN-V81-00-ROW-CC-C1"
+msgstr "VAT-IN-V81-00-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC-C2
+msgid "VAT-IN-V81-00-ROW-CC-C2"
+msgstr "VAT-IN-V81-00-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC
+msgid "VAT IN 21% Outside EU - Services and other goods"
+msgstr "TVA Déductible 21% Hors EU - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C1
+msgid "VAT-IN-V82-21-ROW-CC-C1"
+msgstr "VAT-IN-V82-21-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C2
+msgid "VAT-IN-V82-21-ROW-CC-C2"
+msgstr "VAT-IN-V82-21-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C3
+msgid "VAT-IN-V82-21-ROW-CC-C3"
+msgstr "VAT-IN-V82-21-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC
+msgid "VAT IN 12% Outside EU - Services and other goods"
+msgstr "TVA Déductible 12% Hors EU - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C1
+msgid "VAT-IN-V82-12-ROW-CC-C1"
+msgstr "VAT-IN-V82-12-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C2
+msgid "VAT-IN-V82-12-ROW-CC-C2"
+msgstr "VAT-IN-V82-12-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C3
+msgid "VAT-IN-V82-12-ROW-CC-C3"
+msgstr "VAT-IN-V82-12-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC
+msgid "VAT IN 6% Outside EU - Services and other goods"
+msgstr "TVA Déductible 6% Hors EU - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C1
+msgid "VAT-IN-V82-06-ROW-CC-C1"
+msgstr "VAT-IN-V82-06-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C2
+msgid "VAT-IN-V82-06-ROW-CC-C2"
+msgstr "VAT-IN-V82-06-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C3
+msgid "VAT-IN-V82-06-ROW-CC-C3"
+msgstr "VAT-IN-V82-06-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC
+msgid "VAT IN 0% Outside EU - Services and other goods"
+msgstr "TVA à l'entrée 0% Hors EU - Services et bien divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC-C1
+msgid "VAT-IN-V82-00-ROW-CC-C1"
+msgstr "VAT-IN-V82-00-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC-C2
+msgid "VAT-IN-V82-00-ROW-CC-C2"
+msgstr "VAT-IN-V82-00-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC
+msgid "VAT IN 21% Outside EU - Capital goods"
+msgstr "TVA Déductible 21% Hors EU - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C1
+msgid "VAT-IN-V83-21-ROW-CC-C1"
+msgstr "VAT-IN-V83-21-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C2
+msgid "VAT-IN-V83-21-ROW-CC-C2"
+msgstr "VAT-IN-V83-21-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C3
+msgid "VAT-IN-V83-21-ROW-CC-C3"
+msgstr "VAT-IN-V83-21-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC
+msgid "VAT IN 12% Outside EU - Capital goods"
+msgstr "TVA Déductible 12% Hors EU - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C1
+msgid "VAT-IN-V83-12-ROW-CC-C1"
+msgstr "VAT-IN-V83-12-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C2
+msgid "VAT-IN-V83-12-ROW-CC-C2"
+msgstr "VAT-IN-V83-12-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C3
+msgid "VAT-IN-V83-12-ROW-CC-C3"
+msgstr "VAT-IN-V83-12-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC
+msgid "VAT IN 6% Outside EU - Capital goods"
+msgstr "TVA Déductible 6% Hors EU - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C1
+msgid "VAT-IN-V83-06-ROW-CC-C1"
+msgstr "VAT-IN-V83-06-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C2
+msgid "VAT-IN-V83-06-ROW-CC-C2"
+msgstr "VAT-IN-V83-06-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C3
+msgid "VAT-IN-V83-06-ROW-CC-C3"
+msgstr "VAT-IN-V83-06-ROW-CC-C3"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC
+msgid "VAT IN 0% Outside EU - Capital goods"
+msgstr "TVA à l'entrée 0% Hors EU - Biens d'investissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC-C1
+msgid "VAT-IN-V83-00-ROW-CC-C1"
+msgstr "VAT-IN-V83-00-ROW-CC-C1"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC-C2
+msgid "VAT-IN-V83-00-ROW-CC-C2"
+msgstr "VAT-IN-V83-00-ROW-CC-C2"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_BE_2_FULL
+msgid "Belgium Balance Sheet (Full Model)"
+msgstr "Bilan Belge (modèle complet)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_219000
+msgid "TOTAL ASSETS"
+msgstr "TOTAL DE L'ACTIF"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211000
+msgid "FIXED ASSETS"
+msgstr "ACTIFS IMMOBILISES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211100
+msgid "Formation Expenses"
+msgstr "Frais d'établissement"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211200
+msgid "Intangible Assets"
+msgstr "Immobilisations incorporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211300
+msgid "Tangible Assets"
+msgstr "Immobilisations corporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211310
+msgid "Land and Buildings"
+msgstr "Terrains et constructions"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211320
+msgid "Plant, Machinery and Equipment"
+msgstr "Installations, machines et outillage"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211330
+msgid "Furniture and Vehicles"
+msgstr "Mobilier et matériel roulant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211340
+msgid "Leasing and other similar Rights"
+msgstr "Location-financement et droits similaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211350
+msgid "Other Tangible Assets"
+msgstr "Autres immobilisations corporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211360
+msgid "Assets under Construction and Advance Payment"
+msgstr "Immobilisations en cours et acomptes versés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211400
+msgid "Financial Assets"
+msgstr "Immobilisations financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211410
+msgid "Affiliated Enterprises"
+msgstr "Entreprises liées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211411
+msgid "Participating Interests"
+msgstr "Participations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211412
+msgid "Amounts Receivable"
+msgstr "Créances"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211420
+msgid "Enterprises Linked by Participating Interests"
+msgstr "Autres entreprises avec lesquelles il existe un lien de participation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211421
+msgid "Participating Interests"
+msgstr "Participations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211422
+msgid "Amounts Receivable"
+msgstr "Créances"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211430
+msgid "Other Financial Assets"
+msgstr "Autres immobilisations financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211431
+msgid "Shares"
+msgstr "Actions et parts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211432
+msgid "Amounts Receivable and Cash Guarantees"
+msgstr "Créances et cautionnements en numéraire"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212000
+msgid "CURRENT ASSETS"
+msgstr "ACTIFS CIRCULANTS"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212100
+msgid "Amounts Receivable after One Year"
+msgstr "Créances à plus d'un an"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212110
+msgid "Trade Debtors"
+msgstr "Créances commerciales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212120
+msgid "Other Amounts Receivable"
+msgstr "Autres créances"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212200
+msgid "Stocks and Contracts in Progress"
+msgstr "Stocks et commandes en cours d'exécution"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212210
+msgid "Stocks"
+msgstr "Stocks"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212211
+msgid "Raw Materials and Consumables"
+msgstr "Approvisionnements"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212212
+msgid "Work in Progress"
+msgstr "En-cours de fabrication"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212213
+msgid "Finished Goods"
+msgstr "Produits finis"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212214
+msgid "Goods purchased for Resale"
+msgstr "Marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212215
+msgid "Imovable Property acquired for Resale"
+msgstr "Immeubles destinés à la vente"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212216
+msgid "Advance Payments"
+msgstr "Acomptes versés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212220
+msgid "Contracts in progress"
+msgstr "Commandes en cours d'exécution"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212300
+msgid "Amounts Receivable within one Year"
+msgstr "Créances à un an au plus"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212310
+msgid "Trade Debtors"
+msgstr "Créances commerciales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212320
+msgid "Other Amounts Receivable"
+msgstr "Autres créances"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212400
+msgid "Investments"
+msgstr "Placements de trésorerie"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212410
+msgid "Own Shares"
+msgstr "Actions propres"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212420
+msgid "Other Investments and Deposits"
+msgstr "Autres placements"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212500
+msgid "Cash at Bank and in Hand"
+msgstr "Valeurs disponibles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212600
+msgid "Deferred Charges and Accrued Income"
+msgstr "Comptes de régularisation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_229000
+msgid "TOTAL LIABILITIES"
+msgstr "TOTAL DU PASSIF"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221000
+msgid "EQUITY CAPITAL"
+msgstr "CAPITAUX PROPRES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221100
+msgid "Capital"
+msgstr "Capital"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221110
+msgid "Issued Capital"
+msgstr "Capital souscrit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221120
+msgid "Uncalled Capital"
+msgstr "Capital non appelé"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221200
+msgid "Share Premium Account"
+msgstr "Primes d'émission"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221300
+msgid "Revaluation Surpluses"
+msgstr "Plus-values de réévaluation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221400
+msgid "Reserves"
+msgstr "Réserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221410
+msgid "Legal Reserve"
+msgstr "Réserve légale"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221420
+msgid "Reserves not available for Distribution"
+msgstr "Réserves indisponibles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221421
+msgid "In respect of own Shares held"
+msgstr "Pour actions propres"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221422
+msgid "Other"
+msgstr "Autres"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221430
+msgid "Untaxed Reserves"
+msgstr "Réserves immunisées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221440
+msgid "Reserves available for Distribution"
+msgstr "Réserves disponibles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221500
+msgid "Accumulated Profits (Losses)"
+msgstr "Bénéfice (Perte) reporté(e)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221600
+msgid "Investment Grants"
+msgstr "Subsides en capital"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221700
+msgid "Advance to Partners on the distribution of the net assets"
+msgstr "Avance aux associés sur répartition de l'actif net"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222000
+msgid "PROVISIONS AND DEFERRED TAXES"
+msgstr "PROVISIONS ET IMPOTS DIFFERES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222100
+msgid "Provisions for Liabilities and Charges"
+msgstr "Provisions pour risques et charges"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222110
+msgid "Pensions and similar Obligations"
+msgstr "Pensions et obligations similaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222120
+msgid "Taxation"
+msgstr "Charges fiscales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222130
+msgid "Major Repairs and Maintenance"
+msgstr "Grosses réparations et gros entretien"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222140
+msgid "Other Liabilities and Charges"
+msgstr "Autres risques et charges"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222200
+msgid "Deferred Taxes"
+msgstr "Impôts différés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223000
+msgid "DEBTS"
+msgstr "DETTES"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223100
+msgid "Amounts Payable after one Year"
+msgstr "Dettes à plus d'un an"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223110
+msgid "Financial Debts"
+msgstr "Dettes financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223111
+msgid "Subordinated Loans"
+msgstr "Emprunts subordonnés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223112
+msgid "Unsubordinated Debentures"
+msgstr "Emprunts obligataires non subordonnés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223113
+msgid "Leasing and other similar Obligations"
+msgstr "Dettes de location-financement et assimilées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223114
+msgid "Credit Institutions"
+msgstr "Etablissements de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223115
+msgid "Other Loans"
+msgstr "Autres emprunts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223120
+msgid "Trade Debts"
+msgstr "Dettes commerciales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223121
+msgid "Suppliers"
+msgstr "Fournisseurs"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223122
+msgid "Bills of Exchange Payable"
+msgstr "Effets à payer"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223130
+msgid "Advances received on Contracts in Progress"
+msgstr "Acomptes reçus sur commandes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223140
+msgid "Other Amounts Payable"
+msgstr "Autres dettes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223200
+msgid "Amounts Payable within one Year"
+msgstr "Dettes à un an au plus"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223210
+msgid "Portion of amounts Payable after one Year due within the year"
+msgstr "Dettes à plus d'un an échéant dans l'année"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223220
+msgid "Financial Debts"
+msgstr "Dettes financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223221
+msgid "Credit Institutions"
+msgstr "Etablissements de crédit"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223222
+msgid "Other Loans"
+msgstr "Autres emprunts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223230
+msgid "Trade Debts"
+msgstr "Dettes commerciales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223231
+msgid "Suppliers"
+msgstr "Fournisseurs"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223232
+msgid "Bills of Exchange Payable"
+msgstr "Effets à payer"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223240
+msgid "Advances received on Contracts in Progress"
+msgstr "Acomptes reçus sur commandes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223250
+msgid "Taxes, Remuneration and Social Security"
+msgstr "Dettes fiscales, salariales et sociales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223251
+msgid "Taxes"
+msgstr "Impôts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223252
+msgid "Remuneration and Social Security"
+msgstr "Rémunérations et charges sociales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223260
+msgid "Other Amounts Payable"
+msgstr "Autres dettes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223300
+msgid "Accrued Charges and Deferred Income"
+msgstr "Comptes de régularisation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_BE_3_FULL
+msgid "Belgium P&L (Full Model)"
+msgstr "Compte de résultats Belge (modèle complet)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_35000
+msgid "Fiscal Year Profit (Loss) to be allocated"
+msgstr "Bénéfice (Perte) de l'exercice à affecter"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34000
+msgid "Fiscal Year Profit (Loss)"
+msgstr "Bénéfice (Perte) de l'exercice"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33000
+msgid "Fiscal Year Profit (Loss) before Taxation"
+msgstr "Bénéfice (Perte) de l'exercice avant impôts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32000
+msgid "Profit (Loss) from Normal Operations before Taxation"
+msgstr "Bénéfice (Perte) courant(e) avant impôts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31000
+msgid "Operating Profit (Loss)"
+msgstr "Bénéfice (Perte) d'exploitation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30100
+msgid "Operating Income"
+msgstr "Ventes et prestations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30110
+msgid "Turnover"
+msgstr "Chiffre d'affaires"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30120
+msgid "Increase (Decrease) in Stocks, Final Goods, Etc."
+msgstr "En-cours de fabrication, produits finis et commandes en cours d'exécution: augmentation (réduction)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30130
+msgid "Fixed Assets Own Construction"
+msgstr "Production immobilisée"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30140
+msgid "Other Operating Income"
+msgstr "Autres produits d'exploitation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30200
+msgid "Operating Charges"
+msgstr "Coût des ventes et des prestations"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30210
+msgid "Raw Materials, Consumables and Goods for Resale"
+msgstr "Approvisionnements et marchandises"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30211
+msgid "Purchases"
+msgstr "Achats"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30212
+msgid "Decrease (Increase) in Stocks"
+msgstr "Stocks: réduction (augmentation)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30220
+msgid "Services and Other Goods"
+msgstr "Services et biens divers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30230
+msgid "Remunerations, Social Security Costs and Pensions"
+msgstr "Rémunérations, charges sociales et pensions"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30240
+msgid "Depreciation and Amounts Written Off on Formation Expenses, on  Intangible and  Tangible Assets"
+msgstr "Amortissements et réductions de valeur sur frais d'établissement, sur immobilisations incorporelles et corporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30250
+msgid "Amounts Written Off on Stocks, Orders in Progress and Trade Debts: Increase (Decrease)"
+msgstr "Réductions de valeur sur stocks, sur commandes en cours d'exécution et sur créances commerciales: dotations (reprises)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30260
+msgid "Provisions for Liabilities and Charges: Increase (Decrease)"
+msgstr "Provisions pour risques et charges: dotations (utilisations et reprises)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30270
+msgid "Other Operating Charges"
+msgstr "Autres charges d'exploitation"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30280
+msgid "Restructuring Charges activated as Operating Charges"
+msgstr "Charges d'exploitation portées à l'actif au titre de frais de restructuration"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31100
+msgid "Financial Income"
+msgstr "Produits financiers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31110
+msgid "Income from Financial Fixed Assets"
+msgstr "Produits des immobilisations financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31120
+msgid "Income from Current Assets"
+msgstr "Produits des actifs circulants"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31130
+msgid "Other Financial Income"
+msgstr "Autres produits financiers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31200
+msgid "Financial Charges"
+msgstr "Charges financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31210
+msgid "Debt Charges"
+msgstr "Charges des dettes"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31220
+msgid "Amounts Written Off on other than Stocks, Orders in Progress and Trade Debts: Increase (Decrease)"
+msgstr "Réductions de valeur sur actifs circulants autres que stocks, commandes en cours et créances commerciales: dotations (reprises)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31230
+msgid "Other Financial Charges"
+msgstr "Autres charges financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32100
+msgid "Extraordinary Income"
+msgstr "Produits exceptionnels"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32110
+msgid "Adjustment to Depreciation and Write Off on Intangible and Tangible Assets"
+msgstr "Reprises d'amortissements et de réductions de valeur sur immobilisations incorporelles et corporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32120
+msgid "Adjustment to Amounts Written Off on Financial Fixed Assets"
+msgstr "Reprises de réductions de valeur sur immobilisations financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32130
+msgid "Adjustment to Provisions for Extraordinary Liabilities and Charges"
+msgstr "Reprises de provisions pour risques et charges exceptionnels"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32140
+msgid "Gain on Disposal of Fixed Assets"
+msgstr "Plus-values sur réalisation d'actifs immobilisés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32150
+msgid "Other Extraordinary Income"
+msgstr "Plus-values sur réalisation d'actifs immobilisés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32200
+msgid "Extraordinary Charges"
+msgstr "Charges exceptionnels"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32210
+msgid "Extraordinary Depreciation and Amounts Written Off on Formation Expenses, Intangible and Tangible Assets"
+msgstr "Amortissements et réductions de valeur exceptionnels sur frais d'établissement, sur immobilisations incorporelles et corporelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32220
+msgid "Amounts Written Off on Financial Fixed Assets"
+msgstr "Réductions de valeur sur immobilisations financières"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32230
+msgid "Provisions for Extraordinary Liabilities and Charges"
+msgstr "Provisions pour risques et charges exceptionnels: dotations (utilisations)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32240
+msgid "Loss on Disposal of Fixed Assets"
+msgstr "Moins-values sur réalisation d'actifs immobilisés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32250
+msgid "Other Extraordinary Charges"
+msgstr "Autres charges exceptionnelles"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32260
+msgid "Restructuring Charges activated as Extraordinary Charges"
+msgstr "Charges exceptionnelles portées à l'actif au titre de frais de restructuration"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33100
+msgid "Transfer from Deferred Taxes"
+msgstr "Prélèvements sur les impôts différés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33200
+msgid "Transfer to Deferred Taxes"
+msgstr "Transfert aux impôts différés"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33300
+msgid "Income Taxes"
+msgstr "Impôts sur le résultat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33310
+msgid "Income Taxes"
+msgstr "Impôts"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33320
+msgid "Adjustment of Income Taxes and Provisions for Taxes"
+msgstr "Régularisations d'impôts et reprises de provisions fiscales"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34100
+msgid "Transfer from Untaxed Reserves"
+msgstr "Prélèvements sur les réserves immunisées"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34200
+msgid "Transfer to Untaxed Reserves"
+msgstr "Transfert aux réserves immunisées"
+

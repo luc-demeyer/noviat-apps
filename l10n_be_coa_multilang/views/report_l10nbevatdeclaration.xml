@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <template id="report_l10nbevatdeclaration">
+      <t t-call="report.html_container">
+        <t t-set="data_report_margin_top" t-value="20"/>
+        <t t-call="l10n_be_coa_multilang.l10n_be_layout">
+
+          <div class="page">
+            <h3>Periodical VAT Declaration</h3>
+
+            <div class="row mt32 mb32">
+              <div class="col-xs-3">
+                <strong>Company Name</strong>
+                <p t-esc="res_company.name"/>
+              </div>
+              <div class="col-xs-3">
+                <strong>Vat Number</strong>
+                <p t-esc="res_company.vat"/>
+              </div>
+              <div class="col-xs-3">
+                <strong>Start Period</strong>
+                <p t-esc="period_start"/>
+              </div>
+              <div class="col-xs-3">
+                <strong>End Period</strong>
+                <p t-esc="period_end"/>
+              </div>
+            </div>
+
+            <table class="table table-condensed" width="100%">
+              <thead>
+                <tr>
+                  <th width="68%">Tax</th>
+                  <th width="32%" class="text-right">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr t-foreach="grid_data_list" t-as="o">
+                  <td>
+                    <span t-esc="o['code'].rjust(2,'0') + ' - ' + o['name']"/>
+                  </td>
+                  <td class="text-right">
+                    <span t-esc="formatLang(o['amt'], currency_obj=res_company.currency_id)"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </t>
+      </t>
+    </template>
+
+  </data>
+</openerp>

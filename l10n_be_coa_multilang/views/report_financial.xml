@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <template id="report_financiall10nbe" inherit_id="account.report_financial">
+      <xpath expr="//t[@t-call='report.html_container']" position="inside">
+        <t t-set="data_report_margin_top" t-value="20"/>
+      </xpath>
+      <xpath expr="//t[@t-call='report.internal_layout']" position="attributes">
+        <attribute name="t-call">l10n_be_coa_multilang.l10n_be_layout</attribute>
+      </xpath>
+      <xpath expr="//div[@class='page']/h2" position="replace">
+        <h3 t-esc="data['form']['account_report_id'][1]"/>
+      </xpath>
+    </template>
+
+  </data>
+</openerp>

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- account.tax.code.template -->
+        <record id="atctn_I" model="account.tax.code.template">
+            <field name="name">Belgian Chart of Taxes</field>
+            <field name="code">I</field>
+            <field name="sign">0</field>
+            <field name="info">Naam van de legale entiteit voor de BTW aangifte</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_II" model="account.tax.code.template">
+            <field name="name">Outgoing Operations</field>
+            <field name="code">II</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_I"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIA" model="account.tax.code.template">
+            <field name="name">Operations subject to a special arrangement</field>
+            <field name="code">II. A</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Handelingen onderworpen aan een bijzondere regeling</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_00" model="account.tax.code.template">
+            <field name="name">Operations subject to a special arrangement</field>
+            <field name="code">00</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIA"/>
+            <field name="info">Rooster [00]
+
+bedrag van de handelingen verricht in België en onderworpen aan een bijzondere regeling die, in principe, zowel de
+aangever als zijn medecontractant vrijstellen van de betaling van de belasting (tabaksfabrikaten, kranten, tijdschriften,
+recuperatieproducten, commissie op voorafbetaalde telefoonkaarten, interne verkopen van de leden van de
+btw-eenheid …).
+
+Voor wat de toepassing van de winstmargeregeling (art. 58, §4, van het btw-wetboek) betreft, vermeldt het rooster [00],
+voor statistische doeleinden, het bedrag van de verkochte goederen gewaardeerd tegen aanschaffingsprijs. Deze
+vermelding gebeurt :
+
+- ofwel in elke aangifte, wanneer de belastingplichtige de maatstaf van heffing per levering bepaalt;
+- ofwel één maal per jaar, in de laatste aangifte van het jaar, wanneer de belastingplichtige de maatstaf van heffing per aangifteperiode bepaalt.
+
+Wijziging per 1 jan 2010:
+
+Rooster [00]
+
+behalve de huidige beoogde handelingen zal dit rooster ook de door artikel 44 van het Wetboek vrijgestelde handelingen verricht door gemengde of gedeeltelijke belastingplichtigen moeten bevatten. Deze maatregel wordt genomen in het kader van de strijd tegen de fraude, van de risicoanalyse en van datamining. De beoogde handelingen zullen in principe worden vermeld in rooster 00 van de maand- of kwartaalaangifte met betrekking tot de periode waarin ze worden verricht. De administratie zal evenwel geen kritiek uiten indien de belastingplichtige ten minste éénmaal per kalenderjaar deze handelingen opneemt in rooster 00. Het spreekt vanzelf dat in dit geval de handelingen met betrekking tot het volledige jaar zullen moeten worden opgenomen in rooster 00 van de aangifte van de maand december of van het vierde kwartaal.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIB" model="account.tax.code.template">
+            <field name="name">VAT due by the Declarant</field>
+            <field name="code">II. B</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Roosters [01], [02] en [03] : maatstaf van heffing van de handelingen verricht in België waarvoor de belasting verschuldigd is door de aangever overeenkomstig artikel 51, §1, 1°, van het btw-wetboek.
+
+Rooster [01] : handelingen onderworpen aan het tarief van 6 pct.
+Rooster [02] : handelingen onderworpen aan het tarief van 12 pct.
+Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_01" model="account.tax.code.template">
+            <field name="name">Operations subject to 6% VAT</field>
+            <field name="code">01</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIB"/>
+            <field name="info">Rooster [01] : handelingen onderworpen aan het tarief van 6 pct.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_02" model="account.tax.code.template">
+            <field name="name">Operations subject to 12% VAT</field>
+            <field name="code">02</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIB"/>
+            <field name="info">Rooster [02] : handelingen onderworpen aan het tarief van 12 pct.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_03" model="account.tax.code.template">
+            <field name="name">Operations subject to 21% VAT</field>
+            <field name="code">03</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIB"/>
+            <field name="info">Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIC" model="account.tax.code.template">
+            <field name="name">Foreign VAT due by the Cocontractant</field>
+            <field name="code">II. C</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Diensten waarvoor de buitenlands btw verschuldigd is door de medecontractant</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_44" model="account.tax.code.template">
+            <field name="name">Intra Community Services</field>
+            <field name="code">44</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIC"/>
+            <field name="info">Vanaf 1 jan 2010: 
+
+rooster [44] : nieuw rooster voor de maatstaf van heffing van de verrichte diensten aan een belastingplichtige gevestigd in een andere lidstaat waar deze belastingplichtige schuldenaar is van de belasting en voor zover deze dienstverrichtingen niet vrijgesteld zijn van de belasting in deze lidstaat = handelingen op te nemen in de intracommunautaire opgave van de aangever (voorheen opgenomen in rooster [47]).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IID" model="account.tax.code.template">
+            <field name="name">VAT due by the Cocontractant</field>
+            <field name="code">II. D</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Handelingen waarvoor de btw verschuldigd is door de medecontractant.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_45" model="account.tax.code.template">
+            <field name="name">VAT due by the Cocontractant</field>
+            <field name="code">45</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IID"/>
+            <field name="info">Rooster [45] : maatstaf van heffing van de handelingen verricht in België waarvoor de belasting verschuldigd is door de medecontractant van de aangever.
+
+Het betreft :
+
+- de handelingen waarvoor de belasting verschuldigd is door de medecontractant op grond van artikel 51, § 2, van het btw-wetboek;
+
+- de handelingen bedoeld in de artikelen 20 en 20bis van het K.B. nr. 1;
+
+- de handelingen waarvoor de belasting verschuldigd is door de medecontractant krachtens een algemene of bijzondere administratieve vergunning.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIE" model="account.tax.code.template">
+            <field name="name">VAT exempt Intra Community Supplies</field>
+            <field name="code">II. E</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Vrijgestelde intracommunautaire leveringen verricht in België en ABC-verkopen.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_46" model="account.tax.code.template">
+            <field name="name">VAT exempt Intra Community and ABC Supplies</field>
+            <field name="code">46</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIE"/>
+            <field name="info">Rooster [46] : maatstaf van heffing :
+
+- van de intracommunautaire leveringen van goederen en gelijkgestelde handelingen (overbrengingen) - z. art. 39bis van het btw-wetboek;
+
+- van de leveringen van goederen bedoeld in artikel 25 quinquies, § 3, laatste lid, van het btw-wetboek, verricht in de Lidstaat van aankomst van de verzending of van het vervoer van de goederen.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_46L" model="account.tax.code.template">
+            <field name="name">VAT exempt Intra Community Supplies of Goods</field>
+            <field name="code">46L</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_46"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_46T" model="account.tax.code.template">
+            <field name="name">VAT exempt Intra Community ABC Supplies</field>
+            <field name="code">46T</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_46"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIF" model="account.tax.code.template">
+            <field name="name">Other VAT exempt Operations</field>
+            <field name="code">II. F</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Andere vrijgestelde handelingen en handelingen verricht in het buitenland.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_47" model="account.tax.code.template">
+            <field name="name">Other VAT exempt Operations</field>
+            <field name="code">47</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIF"/>
+            <field name="info">Andere vrijgestelde handelingen en handelingen verricht in het buitenland.
+
+Rooster [47] : maatstaf van heffing :
+
+- van de handelingen verricht in België en vrijgesteld van de belasting overeenkomstig de artikelen 39 tot 42 en 44bis van het btw-wetboek, met uitzondering van artikel 39bis van het btw-wetboek;
+
+- van de handelingen verricht in België en vrijgesteld van de belasting overeenkomstig artikel 44 van het btw-wetboek waarvoor in hoofde van de aangever een recht op aftrek van de belasting bestaat overeenkomstig artikel 45, §1, 4° en 5°, van het btw-wetboek;
+
+- van de handelingen verricht in het buitenland.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIG" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes and Negative Corrections</field>
+            <field name="code">II. G</field>
+            <field name="sign">-1</field>
+            <field name="parent_id" ref="atctn_II"/>
+            <field name="info">Bedrag van de uitgereikte creditnota’s en de negatieve verbeteringen.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_48" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes Operations Grid [44] and [46]</field>
+            <field name="code">48</field>
+            <field name="sign">-1</field>
+            <field name="parent_id" ref="atctn_IIG"/>
+            <field name="info">Bedrag van de uitgereikte creditnota’s en de negatieve verbeteringen
+
+Rooster [48] : bedrag van de uitgereikte creditnota’s en de negatieve verbeteringen met betrekking tot de handelingen ingeschreven in rooster [46].
+
+Vanaf 1 jan 2010: 
+
+[48] : behalve de huidige beoogde verbeteringen zal dit rooster ook de eventuele negatieve verbeteringen van de in rooster [44] vermelde handelingen moeten bevatten (voorheen opgenomen in rooster [49]).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_48s44" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes Operations Grid [44]</field>
+            <field name="code">48s44</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_48"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_48s46L" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes Operations Grid [46L]</field>
+            <field name="code">48s46L</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_48"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_48s46T" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes Operations Grid [46T]</field>
+            <field name="code">48s46T</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_48"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_49" model="account.tax.code.template">
+            <field name="name">Issued Credit Notes Other Operations Section II</field>
+            <field name="code">49</field>
+            <field name="sign">-1</field>
+            <field name="parent_id" ref="atctn_IIG"/>
+            <field name="info">Bedrag van de uitgereikte creditnota’s en de negatieve verbeteringen
+
+Rooster [49] : bedrag (btw niet inbegrepen) van de uitgereikte creditnota’s en de negatieve verbeteringen met betrekking tot de andere handelingen van kader II.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_III" model="account.tax.code.template">
+            <field name="name">Incoming Operations</field>
+            <field name="code">III</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_I"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIIA" model="account.tax.code.template">
+            <field name="name">Incoming Operations incl. Credit Notes and Corrections</field>
+            <field name="code">III. A</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_III"/>
+            <field name="info">Bedrag van de inkomende handelingen rekening houdend met de ontvangen creditnota’s en de andere verbeteringen
+
+Rooster [81] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van handelsgoederen, grond- en hulpstoffen.
+Rooster [82] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van diverse goederen en diensten.
+Rooster [83] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van bedrijfsmiddelen.
+
+In het geval de belastingplichtige een btw-eenheid betreft, bevat het bedrag van de roosters [81], [82] en [83] in voorkomend geval ook de interne aankopen van de leden van de btw-eenheid.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_81" model="account.tax.code.template">
+            <field name="name">Purchases of Goods, Raw Materials and Consumables</field>
+            <field name="code">81</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIA"/>
+            <field name="info">Bedrag van de inkomende handelingen rekening houdend met de ontvangen creditnota’s en de andere verbeteringen
+
+Rooster [81] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van handelsgoederen, grond- en hulpstoffen.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_82" model="account.tax.code.template">
+            <field name="name">Purchases of various Goods and Services</field>
+            <field name="code">82</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIA"/>
+            <field name="info">Bedrag van de inkomende handelingen rekening houdend met de ontvangen creditnota’s en de andere verbeteringen
+
+Rooster [82] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van diverse goederen en diensten.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_83" model="account.tax.code.template">
+            <field name="name">Purchases of Assets</field>
+            <field name="code">83</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIA"/>
+            <field name="info">Bedrag van de inkomende handelingen rekening houdend met de ontvangen creditnota’s en de andere verbeteringen
+
+Rooster [83] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van bedrijfsmiddelen.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIIB" model="account.tax.code.template">
+            <field name="name">Incoming Credit Notes and negative Corrections</field>
+            <field name="code">III. B</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_III"/>
+            <field name="info">Bedrag van de ontvangen creditnota’s en de negatieve verbeteringen.
+
+Rooster [84] : bedrag van de ontvangen creditnota’s en de negatieve verbeteringen met betrekking tot de handelingen ingeschreven in rooster [86].
+
+Rooster [85] : bedrag (btw niet inbegrepen) van de ontvangen creditnota’s en negatieve verbeteringen met betrekking tot de andere handelingen van kader III.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_84" model="account.tax.code.template">
+            <field name="name">Incoming Credit Notes Operations Grid [86] and [88]</field>
+            <field name="code">84</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIB"/>
+            <field name="info">Bedrag van de ontvangen creditnota’s en de negatieve verbeteringen
+
+Rooster [84] : bedrag van de ontvangen creditnota’s en de negatieve verbeteringen met betrekking tot de handelingen ingeschreven in rooster [86].
+
+Vanaf 1 jan 2010: 
+
+[84] : naast de correcties inzake intracommunautaire verwervingen [86], zal dit rooster ook de eventuele negatieve verbeteringen van de in rooster [88] vermelde handelingen moeten bevatten.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_85" model="account.tax.code.template">
+            <field name="name">Incoming Credit Notes other Operations</field>
+            <field name="code">85</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIB"/>
+            <field name="info">Bedrag van de ontvangen creditnota’s en de negatieve verbeteringen
+
+Rooster [85] : bedrag (btw niet inbegrepen) van de ontvangen creditnota’s en negatieve verbeteringen met betrekking tot de andere handelingen van kader III.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIIC" model="account.tax.code.template">
+            <field name="name">Intra Community Acquisitions and ABC Sales</field>
+            <field name="code">III. C</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_III"/>
+            <field name="info">Intracommunautaire verwervingen verricht in België en ABC-verkopen.
+
+Rooster [86] : maatstaf van heffing van :
+
+- de intracommunautaire verwervingen van goederen en gelijkgestelde handelingen verricht in België waarvoor de belasting verschuldigd is door de aangever overeenkomstig artikel 51, §1, 2° van het btw-wetboek;
+
+- de intracommunautaire verwervingen verricht onder de voorwaarden van artikel 25quinquies, §3, laatste lid, van het btw-wetboek;
+
+- de leveringen van goederen bedoeld in artikel 25ter, §1, tweede lid, 3°, van het btw-wetboek waarvoor de belasting verschuldigd is door de aangever overeenkomstig artikel 51, §2, 2°, van het btw-wetboek.
+
+De over deze handelingen verschuldigde belasting moet worden ingeschreven in rooster [55].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_86" model="account.tax.code.template">
+            <field name="name">Intra Community and ABC Acquisitions</field>
+            <field name="code">86</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIC"/>
+            <field name="info">Intracommunautaire verwervingen verricht in België en ABC-verkopen
+
+Rooster [86] : maatstaf van heffing van :
+
+- de intracommunautaire verwervingen van goederen en gelijkgestelde handelingen verricht in België waarvoor de belasting verschuldigd is door de aangever overeenkomstig artikel 51, §1, 2° van het btw-wetboek;
+
+- de intracommunautaire verwervingen verricht onder de voorwaarden van artikel 25quinquies, §3, laatste lid, van het btw-wetboek;
+
+- de leveringen van goederen bedoeld in artikel 25ter, §1, tweede lid, 3°, van het btw-wetboek waarvoor de belasting verschuldigd is door de aangever overeenkomstig artikel 51, §2, 2°, van het btw-wetboek.
+
+De over deze handelingen verschuldigde belasting moet worden ingeschreven in rooster [55].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIID" model="account.tax.code.template">
+            <field name="name">Other Incoming Operations with VAT due by the Declarant</field>
+            <field name="code">III. D</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_III"/>
+            <field name="info">Andere inkomende handelingen waarvoor de btw verschuldigd is door de aangever
+
+Rooster [87] : maatstaf van heffing van de andere inkomende handelingen verricht in België waarvoor de belasting verschuldigd is door de aangever.
+
+Het betreft :
+
+- de handelingen waarvoor de belasting verschuldigd is door de medecontractant (aangever) op grond van artikel 51, §2, 1°, 5° en 6°, van het btw-Wetboek;
+
+- de werken in onroerende staat of gelijkgestelde handelingen (art. 20, K.B. nr. 1);
+
+- de leveringen van beleggingsgoud (met belastingheffing), van goud of halffabrikaten met een zuiverheid van ten minste 325 duizendsten (art. 20bis, K.B. nr. 1);
+
+- de invoer van goederen afkomstig van niet Lidstaten van de Europese Unie, met verlegging van de heffing naar het binnenland (art. 5, §3, K.B. nr. 7);</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_87" model="account.tax.code.template">
+            <field name="name">Other Incoming Operations</field>
+            <field name="code">87</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIID"/>
+            <field name="info">Andere inkomende handelingen waarvoor de btw verschuldigd is door de aangever
+
+Rooster [87] : maatstaf van heffing van de andere inkomende handelingen verricht in België waarvoor de belasting verschuldigd is door de aangever.
+
+Het betreft :
+
+- de handelingen waarvoor de belasting verschuldigd is door de medecontractant (aangever) op grond van artikel 51, §2, 1°, 5° en 6°, van het btw-Wetboek;
+
+- de werken in onroerende staat of gelijkgestelde handelingen (art. 20, K.B. nr. 1);
+
+- de leveringen van beleggingsgoud (met belastingheffing), van goud of halffabrikaten met een zuiverheid van ten minste 325 duizendsten (art. 20bis, K.B. nr. 1);
+
+- de invoer van goederen afkomstig van niet Lidstaten van de Europese Unie, met verlegging van de heffing naar het binnenland (art. 5, §3, K.B. nr. 7);</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IIIE" model="account.tax.code.template">
+            <field name="name">Intra Community Services</field>
+            <field name="code">III. E</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_III"/>
+            <field name="info">Intracommunautaire diensten met verlegging van heffing</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_88" model="account.tax.code.template">
+            <field name="name">Intra Community Services</field>
+            <field name="code">88</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IIIE"/>
+            <field name="info">Vanaf 1 jan 2010: 
+
+Rooster [88] : in dit rooster wordt de maatstaf van heffing opgenomen “van de diensten ontvangen van een in een andere lidstaat gevestigde belastingplichtige, die plaatsvinden in België overeenkomstig de algemene regel van de plaats van vestiging van de afnemer, en waarvoor de aangever schuldenaar is van de belasting in België ingevolge de algemene verlegging van de heffing”. Het gaat dus om de handelingen die de buitenlandse dienstverrichter moet opnemen in zijn intracommunautaire opgave van diensten.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_VI" model="account.tax.code.template">
+            <field name="name">Balance (71-72)</field>
+            <field name="code">VI</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_I"/>
+            <field name="info">Kader VI : SALDO
+
+Rooster [71] : bedrag van de aan de Staat verschuldigde belasting: Rooster [xx] - Rooster [yy] van de aangifteperiode.
+
+Indien in de loop van het tijdvak geen enkele handeling werd verricht dient in de vakken van de eenheden en de centen een nul te worden ingevuld. 
+Dit geldt eveneens wanneer de in de roosters xx en yy ingevulde bedragen gelijk zijn (rooster 71 = 0,00).
+
+Rooster [72] : bedrag van de sommen verschuldigd door de Staat : Rooster [yy] - Rooster [xx] van de aangifteperiode.
+
+Slechts één van de twee roosters kan worden ingevuld.
+
+Bij het invullen van de roosters [71] of [72] houdt de belastingplichtige in geen geval rekening met de bedragen van de rekening-courant die de administratie voor hem bijhoudt.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_XX" model="account.tax.code.template">
+            <field name="name">To Pay - Total</field>
+            <field name="code">XX</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_VI"/>
+            <field name="info">Totaal van de roosters 54, 55, 56, 57, 61 en 63.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IVA" model="account.tax.code.template">
+            <field name="name">VAT on Operations Grids [01], [02], [03], [86], [87], [88]</field>
+            <field name="code">IV. A</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_XX"/>
+            <field name="info">BTW op de handelingen aangegeven in de roosters 01, 02, 03, 86 en 87.
+
+Rooster [54] : bedrag van de verschuldigde belasting op de handelingen vermeld in de roosters [01], [02] en [03].
+
+Rooster [55] : bedrag van de verschuldigde belasting op de handelingen vermeld in rooster [86].
+
+Rooster [56] : bedrag van de verschuldigde belasting op de handelingen vermeld in rooster [87], met uitzondering van de handelingen waarvoor de belasting wordt vermeld in rooster [57].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_54" model="account.tax.code.template">
+            <field name="name">VAT on Operations Grids [01], [02], [03]</field>
+            <field name="code">54</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVA"/>
+            <field name="info">Rooster [54] : bedrag van de verschuldigde belasting op de handelingen vermeld in de roosters [01], [02] en [03].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_55" model="account.tax.code.template">
+            <field name="name">VAT on Operations Grids [86] and  [88]</field>
+            <field name="code">55</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVA"/>
+            <field name="info">Rooster [55] : bedrag van de verschuldigde belasting op de handelingen vermeld in rooster [86].
+
+Vanaf 1 jan 2010: 
+
+[55] : behalve de BTW op intracommunautaire verwervingen, zal dit rooster voortaan ook de verschuldigde BTW moeten bevatten over de handelingen opgenomen in het nieuwe rooster [88].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_56" model="account.tax.code.template">
+            <field name="name">VAT on Operations Grid [87]</field>
+            <field name="code">56</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVA"/>
+            <field name="info">Rooster [56] : bedrag van de verschuldigde belasting op de handelingen vermeld in rooster [87], met uitzondering van de handelingen waarvoor de belasting wordt vermeld in rooster [57].</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IVB" model="account.tax.code.template">
+            <field name="name">VAT on Imports</field>
+            <field name="code">IV. B</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_XX"/>
+            <field name="info">BTW op invoeren met verlegging van heffing
+
+Rooster [57] : bedrag van de verschuldigde belasting op invoeren uit niet Lidstaten van de Europese Unie, met verlegging van de heffing naar het binnenland (z. art. 5, §3, K.B. nr. 7).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_57" model="account.tax.code.template">
+            <field name="name">VAT on Imports</field>
+            <field name="code">57</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVB"/>
+            <field name="info">BTW op invoeren met verlegging van heffing
+
+Rooster [57] : bedrag van de verschuldigde belasting op invoeren uit niet Lidstaten van de Europese Unie, met verlegging van de heffing naar het binnenland (z. art. 5, §3, K.B. nr. 7).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IVC" model="account.tax.code.template">
+            <field name="name">VAT adjustments in favor of the Tax Authority</field>
+            <field name="code">IV. C</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_XX"/>
+            <field name="info">Diverse btw-regularisaties in het voordeel van de Staat
+
+Rooster [61] : diverse btw-herzieningen in het voordeel van de Staat (ontoereikende heffingen vastgesteld door de aangever, herzieningen van de aftrek, regularisaties ingevolge administratieve beslissingen).
+
+Het bedrag van het debetsaldo van de rekening-courant die de administratie voor de belastingplichtige bijhoudt, mag GEENSZINS in de aangifte worden vermeld.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_61" model="account.tax.code.template">
+            <field name="name">VAT adjustments in favor of the Tax Authority</field>
+            <field name="code">61</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVC"/>
+            <field name="info">Diverse btw-regularisaties in het voordeel van de Staat
+
+Rooster [61] : diverse btw-herzieningen in het voordeel van de Staat (ontoereikende heffingen vastgesteld door de aangever, herzieningen van de aftrek, regularisaties ingevolge administratieve beslissingen).
+
+Het bedrag van het debetsaldo van de rekening-courant die de administratie voor de belastingplichtige bijhoudt, mag GEENSZINS in de aangifte worden vermeld.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_IVD" model="account.tax.code.template">
+            <field name="name">VAT Debt from Incoming Credit Notes</field>
+            <field name="code">IV. D</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_XX"/>
+            <field name="info">Terug te storten btw vermeld op ontvangen creditnota’s
+
+Rooster [63] : bedrag van de terug te storten belasting ingevolge ontvangen creditnota’s (t.t.z. de belasting die op de ontvangen creditnota’s is vermeld).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_63" model="account.tax.code.template">
+            <field name="name">VAT Debt from Incoming Credit Notes</field>
+            <field name="code">63</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_IVD"/>
+            <field name="info">Terug te storten btw vermeld op ontvangen creditnota’s
+
+Rooster [63] : bedrag van de terug te storten belasting ingevolge ontvangen creditnota’s (t.t.z. de belasting die op de ontvangen creditnota’s is vermeld).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_YY" model="account.tax.code.template">
+            <field name="name">Deductible - Total</field>
+            <field name="code">YY</field>
+            <field name="sign">-1</field>
+            <field name="parent_id" ref="atctn_VI"/>
+            <field name="info">Totaal van de roosters 59, 62 en 64.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_VA" model="account.tax.code.template">
+            <field name="name">Deductible VAT</field>
+            <field name="code">V. A</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_YY"/>
+            <field name="info">Aftrekbare BTW
+
+Rooster [59] : bedrag van de aftrekbare belasting met betrekking tot de inkomende handelingen (art. 45 van het btw-wetboek en het K.B. nr. 3).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_59" model="account.tax.code.template">
+            <field name="name">Deductible VAT</field>
+            <field name="code">59</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_VA"/>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_VB" model="account.tax.code.template">
+            <field name="name">VAT adjustments in favor of the Declarant</field>
+            <field name="code">V. B</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_YY"/>
+            <field name="info">Diverse btw-regularisaties in het voordeel van de aangever.
+
+Rooster [62] : diverse btw-herzieningen in het voordeel van de aangever
+(belasting waarvan de aangever teruggave kan verkrijgen, herzieningen van de aftrek, regularisaties ingevolge administratieve beslissingen).
+
+Het bedrag van het creditsaldo van de rekening-courant die de administratie voor de belastingplichtige bijhoudt, mag GEENSZINS in de aangifte worden vermeld.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_62" model="account.tax.code.template">
+            <field name="name">VAT adjustments in favor of the Declarant</field>
+            <field name="code">62</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_VB"/>
+            <field name="info">Diverse btw-regularisaties in het voordeel van de aangever.
+
+Rooster [62] : diverse btw-herzieningen in het voordeel van de aangever
+(belasting waarvan de aangever teruggave kan verkrijgen, herzieningen van de aftrek, regularisaties ingevolge administratieve beslissingen).
+
+Het bedrag van het creditsaldo van de rekening-courant die de administratie voor de belastingplichtige bijhoudt, mag GEENSZINS in de aangifte worden vermeld.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_VC" model="account.tax.code.template">
+            <field name="name">Deductible VAT from Outgoing Credit Notes</field>
+            <field name="code">V. C</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_YY"/>
+            <field name="info">Te recupereren btw vermeld op uitgereikte creditnota’s.
+
+Rooster [64] : bedrag van de te recupereren belasting ingevolge uitgereikte creditnota’s (t.t.z. de belasting die op de uitgereikte creditnota’s is vermeld).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_64" model="account.tax.code.template">
+            <field name="name">Deductible VAT from Outgoing Credit Notes</field>
+            <field name="code">64</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_VC"/>
+            <field name="info">Te recupereren btw vermeld op uitgereikte creditnota’s
+
+Rooster [64] : bedrag van de te recupereren belasting ingevolge uitgereikte creditnota’s (t.t.z. de belasting die op de uitgereikte creditnota’s is vermeld).</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_VII" model="account.tax.code.template">
+            <field name="name">Advance</field>
+            <field name="code">VII</field>
+            <field name="sign">0</field>
+            <field name="parent_id" ref="atctn_I"/>
+            <field name="info">Betreft uitsluitend de maandaandgifte van de december.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+        <record id="atctn_91" model="account.tax.code.template">
+            <field name="name">Advance for Operations from December 1 to 20</field>
+            <field name="code">91</field>
+            <field name="sign">1</field>
+            <field name="parent_id" ref="atctn_VII"/>
+            <field name="info">Rooster [91] : bedrag van het uiterlijk op 24 december verschuldigd voorschot op de belasting voor de handelingen van de maand december, dat overeenstemt met het bedrag van de belasting dat effectief verschuldigd is voor de handelingen verricht van de 1e tot en met de 20e december (z. art. 19, §3, tweede lid, van het K.B. nr.1).
+
+Opmerkingen :
+
+1. Rooster [91] wordt enkel ingevuld wanneer de voorwaarden a) en b) tegelijkertijd vervuld zijn :
+
+a) de betreffende aangifte is een maandaangifte met betrekking tot de maand december.
+-&gt; De belastingplichtige die gehouden is tot het indienen van btw-kwartaalaangiften mag bijgevolg nooit een bedrag vermelden in rooster [91]. Het betreft immers in geen geval de door hem te betalen voorschotten die verschuldigd zijn tijdens de 2de en 3de maand van elk kwartaal;
+
+b)de belastingplichtige heeft ervoor gekozen om zijn decembervoorschot te bepalen rekening houdend met de effectief verschuldigde belasting voor de handelingen verricht van 1 tot en met 20 december.
+-&gt; De belastingplichtige die wil vermijden dat het bedrag van het decembervoorschot op bovengenoemde wijze wordt vastgesteld, mag het rooster [91] van de aangifte met betrekking tot de handelingen van de maand december niet invullen. Het te betalen decembervoorschot is in dat geval gelijk aan het bedrag van de verschuldigde belasting voor de handelingen van de maand november van het lopende kalenderjaar (rooster [71] van die aangifte).
+-&gt; Daarenboven wordt de aandacht erop gevestigd dat de administratie slechts rekening kan houden met het bedrag vermeld in rooster [91] van de aangifte met betrekking tot de handelingen van de maand december wanneer die aangifte tijdig is ingediend, d.w.z. uiterlijk op 20 januari van het daaropvolgende jaar. Indien dit niet het geval is, is het bedrag van het te betalen decembervoorschot eveneens gelijk aan het bedrag van de verschuldigde belasting voor de handelingen van de maand november van het lopende kalenderjaar (rooster [71] van die aangifte).
+
+2. Indien overeenkomstig de hierboven opgenomen regels rooster [91] wordt ingevuld, onderscheiden zich twee mogelijkheden :
+
+a) ofwel is het bedrag van de opeisbare belasting voor de handelingen verricht tijdens de periode van 1 tot en met 20 december van het lopende kalenderjaar groter dan het bedrag van de belasting waarvoor de belastingplichtige zijn recht op aftrek kan uitoefenen voor diezelfde periode.
+-&gt; Het verschil tussen deze twee bedragen wordt vermeld in rooster [91];
+
+b) ofwel is het bedrag van de opeisbare belasting voor de handelingen verricht tijdens de periode van 1 tot en met 20 december van het lopende kalenderjaar kleiner of gelijk aan het bedrag van de belasting waarvoor de belastingplichtige zijn recht op aftrek kan uitoefenen voor diezelfde periode.
+-&gt; In rooster [91] wordt het cijfer “0,00” vermeld.</field>
+            <field name="notprintable" eval="0"/>
+        </record>
+
+    </data>
+</openerp>

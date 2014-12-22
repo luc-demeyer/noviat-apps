@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <!-- declarantnum sequences for  VAT wizards -->
+    <record model="ir.sequence.type" id="seq_type_declarantseq">
+      <field name="name">Declarantseq</field>
+      <field name="code">declarantseq</field>
+    </record>
+    <record model="ir.sequence" id="seq_declarantseq">
+      <field name="name">Declarantseq</field>
+      <field name="code">declarantseq</field>
+      <field name="padding">5</field>
+    </record>
+
+  </data>
+</openerp>

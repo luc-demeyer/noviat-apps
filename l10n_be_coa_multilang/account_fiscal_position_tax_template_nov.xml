@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- account.fiscal.position.tax.template -->
+        <record id="afpttn_cocontractant_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_3" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_5" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_6" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_9" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_11" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_12" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-00"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_13" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-06-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_14" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-12-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_15" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_17" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-00-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_18" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-00-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_19" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_20" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_22" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_23" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_24" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_25" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_26" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-00"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-00-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_27" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-06-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_28" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-12-CC"/>
+        </record>
+        <record id="afpttn_cocontractant_29" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_cocontractant"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-21"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-21-CC"/>
+        </record>
+        <record id="afpttn_intracom_32" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_33" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-L"/>
+        </record>
+        <record id="afpttn_intracom_34" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_35" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-L"/>
+        </record>
+        <record id="afpttn_intracom_36" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_37" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-L"/>
+        </record>
+        <record id="afpttn_intracom_38" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_39" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-L"/>
+        </record>
+        <record id="afpttn_intracom_40" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_41" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-EU-L"/>
+        </record>
+        <record id="afpttn_intracom_42" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-00"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-00-EU"/>
+        </record>
+        <record id="afpttn_intracom_43" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-06-EU"/>
+        </record>
+        <record id="afpttn_intracom_44" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-12-EU"/>
+        </record>
+        <record id="afpttn_intracom_45" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_46" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-EU-G"/>
+        </record>
+        <record id="afpttn_intracom_47" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-00-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-00-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_48" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-00-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-00-EU-G"/>
+        </record>
+        <record id="afpttn_intracom_49" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_50" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-EU-G"/>
+        </record>
+        <record id="afpttn_intracom_51" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_52" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-EU-G"/>
+        </record>
+        <record id="afpttn_intracom_53" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_54" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-EU-G"/>
+        </record>
+        <record id="afpttn_intracom_55" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-EU-S"/>
+        </record>
+        <record id="afpttn_intracom_56" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-00"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-00-EU"/>
+        </record>
+        <record id="afpttn_intracom_57" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-06-EU"/>
+        </record>
+        <record id="afpttn_intracom_58" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-12-EU"/>
+        </record>
+        <record id="afpttn_intracom_59" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_intracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-21"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-21-EU"/>
+        </record>
+        <record id="afpttn_extracom_36" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_37" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-00-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_38" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_39" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-06-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_40" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_41" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-12-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_42" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_43" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_44" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_45" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-OUT-21-INC-L"/>
+            <field name="tax_dest_id" ref="attn_VAT-OUT-00-ROW"/>
+        </record>
+        <record id="afpttn_extracom_46" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-06-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_47" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-12-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_48" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_49" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V81-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V81-21-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_50" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_51" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-06-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-06-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_52" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_53" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-12-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-12-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_54" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_55" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-G"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_56" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V82-21-INC-S"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V82-21-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_57" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-06"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-06-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_58" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-12"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-12-ROW-CC"/>
+        </record>
+        <record id="afpttn_extracom_59" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="afptn_extracom"/>
+            <field name="tax_src_id" ref="attn_VAT-IN-V83-21"/>
+            <field name="tax_dest_id" ref="attn_VAT-IN-V83-21-ROW-CC"/>
+        </record>
+
+    </data>
+</openerp>

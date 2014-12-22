@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!-- accounts : add search on Company -->
+    <record id="view_account_search_inherit" model="ir.ui.view">
+      <field name="name">account.account.search</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_search"/>
+      <field name="arch" type="xml">
+        <field name="user_type" position="after">
+          <field name="company_id" groups="base.group_multi_company"/>
+        </field>
+      </field>
+    </record>   
+
+    <!-- account types : search on 'note' + 'active' flag -->
+    <record id="view_account_type_search_inherit" model="ir.ui.view">
+      <field name="name">account.account.type.search.inherit</field>
+      <field name="model">account.account.type</field>
+      <field name="inherit_id" ref="account.view_account_type_search"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="note"/>
+        </field>
+      </field>
+    </record>
+    <record id="view_account_type_tree_inherit" model="ir.ui.view">
+      <field name="name">account.account.type.tree.inherit</field>
+      <field name="model">account.account.type</field>
+      <field name="inherit_id" ref="account.view_account_type_tree"/>
+      <field name="arch" type="xml">
+        <field name="code" position="after">
+          <field name="note"/>
+        </field>
+      </field>
+    </record>
+    <record id="view_account_type_form_inherit" model="ir.ui.view">
+      <field name="name">account.account.type.form.inherit</field>
+      <field name="model">account.account.type</field>
+      <field name="inherit_id" ref="account.view_account_type_form"/>
+      <field name="arch" type="xml">
+        <field name="code" position="after">
+          <field name="active"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- show account type on account list -->
+    <record id="nov_view_account_list" model="ir.ui.view">
+      <field name="name">nov.account.account.list</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_list"/>
+      <field name="arch" type="xml">
+        <field name="user_type" position="replace">
+          <field name="user_type"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- show financial reporting entries on account form -->
+    <record id="nov_view_account_form" model="ir.ui.view">
+      <field name="name">nov.account.account.form</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_form"/>
+      <field name="arch" type="xml">
+        <field name="note" position="after">
+          <separator colspan="4" string="Financial Reports"/>
+          <field colspan="4" name="financial_report_ids" nolabel="1"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

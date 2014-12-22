@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- account.account.type -->
+        <record id="user_type_view" model="account.account.type">
+            <field name="name">View</field>
+            <field name="code">view</field>
+            <field name="close_method">none</field>
+            <field name="report_type">none</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_equity" model="account.account.type">
+            <field name="name">Equity</field>
+            <field name="code">equity</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">liability</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_liability_longterm" model="account.account.type">
+            <field name="name">Long Term Liability</field>
+            <field name="code">longterm_liability</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">liability</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_asset" model="account.account.type">
+            <field name="name">Assets</field>
+            <field name="code">asset</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_stock" model="account.account.type">
+            <field name="name">Stock</field>
+            <field name="code">stock</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_receivable_ar" model="account.account.type">
+            <field name="name">Receivables A/R</field>
+            <field name="code">AR</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_payable_ap" model="account.account.type">
+            <field name="name">Payables A/P</field>
+            <field name="code">AP</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">liability</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_receivable" model="account.account.type">
+            <field name="name">Receivables</field>
+            <field name="code">receivable</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_payable" model="account.account.type">
+            <field name="name">Payables</field>
+            <field name="code">payable</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">liability</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_suspense" model="account.account.type">
+            <field name="name">Suspense Accounts</field>
+            <field name="code">suspense</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_tax_asset" model="account.account.type">
+            <field name="name">VAT Deductible</field>
+            <field name="code">tax_asset</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_tax_liability" model="account.account.type">
+            <field name="name">VAT Debt</field>
+            <field name="code">tax_liability</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">liability</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_cash" model="account.account.type">
+            <field name="name">Cash</field>
+            <field name="code">cash</field>
+            <field name="close_method">balance</field>
+            <field name="report_type">asset</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_expense" model="account.account.type">
+            <field name="name">Expense</field>
+            <field name="code">expense</field>
+            <field name="close_method">none</field>
+            <field name="report_type">expense</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+        <record id="user_type_income" model="account.account.type">
+            <field name="name">Income</field>
+            <field name="code">income</field>
+            <field name="close_method">none</field>
+            <field name="report_type">income</field>
+            <field name="note">l10n_be_coa_multilang account type</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_vat_declaration" model="ir.ui.view">
+      <field name="name">Periodical VAT Declaration</field>
+      <field name="model">l10n_be.vat.declaration</field>
+      <field name="arch" type="xml">
+        <form string="Periodical VAT Declaration">
+          <group col="4" groups="base.group_multi_company">
+            <field name="tax_code_id" string="Company" widget="selection"/>
+          </group>
+          <group string="Periods" col="4">
+            <field name="period_from"/>
+            <field name="period_to"/>
+          </group>
+          <group string="Options" col="4">
+            <field name="ask_restitution"/>
+            <field name="ask_payment"/>
+            <field name="client_nihil" string="Last Declaration"/>
+          </group>
+          <separator string="Comments"/>
+          <field name="comments"/>
+          <footer>
+            <button name="create_xml" string="Create XML" type="object" default_focus="1" class="oe_highlight"/>
+            <button name="print_vat_declaration" string="Print" type="object" class="oe_highlight"/>
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_vat_save" model="ir.ui.view">
+      <field name="name">Save XML</field>
+      <field name="model">l10n_be.vat.declaration</field>
+      <field name="arch" type="xml">
+        <form string="XML File has been Created.">
+          <p>Click on link below to download the XML File</p>
+          <p>
+            <b>
+              <field name="file_save" readonly="1" filename="name"/>
+              <field name="name" invisible="1"/>
+            </b>
+          </p>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_vat_declaration" model="ir.actions.act_window">
+      <field name="name">Periodical VAT Declaration</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">l10n_be.vat.declaration</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_vat_declaration"/>
+      <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Periodical VAT Declaration"
+        parent="menu_finance_belgian_statement"
+        action="action_vat_declaration"
+        id="l10n_be_vat_declaration"
+        groups="account.group_account_manager"/>
+
+  </data>
+</openerp>

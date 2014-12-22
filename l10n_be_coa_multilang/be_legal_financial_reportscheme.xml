@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- be.legal.financial.reportscheme -->
+        <record id="account_be_scheme_20" model="be.legal.financial.reportscheme">
+            <field name="account_group">20</field>
+            <field name="report_id" ref="account_financial_report_211100"/>
+        </record>
+        <record id="account_be_scheme_21" model="be.legal.financial.reportscheme">
+            <field name="account_group">21</field>
+            <field name="report_id" ref="account_financial_report_211200"/>
+        </record>
+        <record id="account_be_scheme_22" model="be.legal.financial.reportscheme">
+            <field name="account_group">22</field>
+            <field name="report_id" ref="account_financial_report_211310"/>
+        </record>
+        <record id="account_be_scheme_23" model="be.legal.financial.reportscheme">
+            <field name="account_group">23</field>
+            <field name="report_id" ref="account_financial_report_211320"/>
+        </record>
+        <record id="account_be_scheme_24" model="be.legal.financial.reportscheme">
+            <field name="account_group">24</field>
+            <field name="report_id" ref="account_financial_report_211330"/>
+        </record>
+        <record id="account_be_scheme_25" model="be.legal.financial.reportscheme">
+            <field name="account_group">25</field>
+            <field name="report_id" ref="account_financial_report_211340"/>
+        </record>
+        <record id="account_be_scheme_26" model="be.legal.financial.reportscheme">
+            <field name="account_group">26</field>
+            <field name="report_id" ref="account_financial_report_211350"/>
+        </record>
+        <record id="account_be_scheme_27" model="be.legal.financial.reportscheme">
+            <field name="account_group">27</field>
+            <field name="report_id" ref="account_financial_report_211360"/>
+        </record>
+        <record id="account_be_scheme_280" model="be.legal.financial.reportscheme">
+            <field name="account_group">280</field>
+            <field name="report_id" ref="account_financial_report_211411"/>
+        </record>
+        <record id="account_be_scheme_281" model="be.legal.financial.reportscheme">
+            <field name="account_group">281</field>
+            <field name="report_id" ref="account_financial_report_211412"/>
+        </record>
+        <record id="account_be_scheme_282" model="be.legal.financial.reportscheme">
+            <field name="account_group">282</field>
+            <field name="report_id" ref="account_financial_report_211421"/>
+        </record>
+        <record id="account_be_scheme_283" model="be.legal.financial.reportscheme">
+            <field name="account_group">283</field>
+            <field name="report_id" ref="account_financial_report_211422"/>
+        </record>
+        <record id="account_be_scheme_284" model="be.legal.financial.reportscheme">
+            <field name="account_group">284</field>
+            <field name="report_id" ref="account_financial_report_211431"/>
+        </record>
+        <record id="account_be_scheme285" model="be.legal.financial.reportscheme">
+            <field name="account_group">285</field>
+            <field name="report_id" ref="account_financial_report_211432"/>
+        </record>
+        <record id="account_be_scheme286" model="be.legal.financial.reportscheme">
+            <field name="account_group">286</field>
+            <field name="report_id" ref="account_financial_report_211432"/>
+        </record>
+        <record id="account_be_scheme287" model="be.legal.financial.reportscheme">
+            <field name="account_group">287</field>
+            <field name="report_id" ref="account_financial_report_211432"/>
+        </record>
+        <record id="account_be_scheme288" model="be.legal.financial.reportscheme">
+            <field name="account_group">288</field>
+            <field name="report_id" ref="account_financial_report_211432"/>
+        </record>
+        <record id="account_be_scheme_290" model="be.legal.financial.reportscheme">
+            <field name="account_group">290</field>
+            <field name="report_id" ref="account_financial_report_212110"/>
+        </record>
+        <record id="account_be_scheme_291" model="be.legal.financial.reportscheme">
+            <field name="account_group">291</field>
+            <field name="report_id" ref="account_financial_report_212120"/>
+        </record>
+        <record id="account_be_scheme30" model="be.legal.financial.reportscheme">
+            <field name="account_group">30</field>
+            <field name="report_id" ref="account_financial_report_212211"/>
+        </record>
+        <record id="account_be_scheme31" model="be.legal.financial.reportscheme">
+            <field name="account_group">31</field>
+            <field name="report_id" ref="account_financial_report_212211"/>
+        </record>
+        <record id="account_be_scheme_32" model="be.legal.financial.reportscheme">
+            <field name="account_group">32</field>
+            <field name="report_id" ref="account_financial_report_212212"/>
+        </record>
+        <record id="account_be_scheme_33" model="be.legal.financial.reportscheme">
+            <field name="account_group">33</field>
+            <field name="report_id" ref="account_financial_report_212213"/>
+        </record>
+        <record id="account_be_scheme_34" model="be.legal.financial.reportscheme">
+            <field name="account_group">34</field>
+            <field name="report_id" ref="account_financial_report_212214"/>
+        </record>
+        <record id="account_be_scheme_35" model="be.legal.financial.reportscheme">
+            <field name="account_group">35</field>
+            <field name="report_id" ref="account_financial_report_212215"/>
+        </record>
+        <record id="account_be_scheme_36" model="be.legal.financial.reportscheme">
+            <field name="account_group">36</field>
+            <field name="report_id" ref="account_financial_report_212216"/>
+        </record>
+        <record id="account_be_scheme_37" model="be.legal.financial.reportscheme">
+            <field name="account_group">37</field>
+            <field name="report_id" ref="account_financial_report_212220"/>
+        </record>
+        <record id="account_be_scheme_40" model="be.legal.financial.reportscheme">
+            <field name="account_group">40</field>
+            <field name="report_id" ref="account_financial_report_212310"/>
+        </record>
+        <record id="account_be_scheme_41" model="be.legal.financial.reportscheme">
+            <field name="account_group">41</field>
+            <field name="report_id" ref="account_financial_report_212320"/>
+        </record>
+        <record id="account_be_scheme_50" model="be.legal.financial.reportscheme">
+            <field name="account_group">50</field>
+            <field name="report_id" ref="account_financial_report_212410"/>
+        </record>
+        <record id="account_be_scheme51" model="be.legal.financial.reportscheme">
+            <field name="account_group">51</field>
+            <field name="report_id" ref="account_financial_report_212420"/>
+        </record>
+        <record id="account_be_scheme52" model="be.legal.financial.reportscheme">
+            <field name="account_group">52</field>
+            <field name="report_id" ref="account_financial_report_212420"/>
+        </record>
+        <record id="account_be_scheme53" model="be.legal.financial.reportscheme">
+            <field name="account_group">53</field>
+            <field name="report_id" ref="account_financial_report_212420"/>
+        </record>
+        <record id="account_be_scheme54" model="be.legal.financial.reportscheme">
+            <field name="account_group">54</field>
+            <field name="report_id" ref="account_financial_report_212500"/>
+        </record>
+        <record id="account_be_scheme55" model="be.legal.financial.reportscheme">
+            <field name="account_group">55</field>
+            <field name="report_id" ref="account_financial_report_212500"/>
+        </record>
+        <record id="account_be_scheme56" model="be.legal.financial.reportscheme">
+            <field name="account_group">56</field>
+            <field name="report_id" ref="account_financial_report_212500"/>
+        </record>
+        <record id="account_be_scheme57" model="be.legal.financial.reportscheme">
+            <field name="account_group">57</field>
+            <field name="report_id" ref="account_financial_report_212500"/>
+        </record>
+        <record id="account_be_scheme58" model="be.legal.financial.reportscheme">
+            <field name="account_group">58</field>
+            <field name="report_id" ref="account_financial_report_212500"/>
+        </record>
+        <record id="account_be_scheme490" model="be.legal.financial.reportscheme">
+            <field name="account_group">490</field>
+            <field name="report_id" ref="account_financial_report_212600"/>
+        </record>
+        <record id="account_be_scheme491" model="be.legal.financial.reportscheme">
+            <field name="account_group">491</field>
+            <field name="report_id" ref="account_financial_report_212600"/>
+        </record>
+        <record id="account_be_scheme499" model="be.legal.financial.reportscheme">
+            <field name="account_group">499</field>
+            <field name="report_id" ref="account_financial_report_212600"/>
+        </record>
+        <record id="account_be_scheme_100" model="be.legal.financial.reportscheme">
+            <field name="account_group">100</field>
+            <field name="report_id" ref="account_financial_report_221110"/>
+        </record>
+        <record id="account_be_scheme_101" model="be.legal.financial.reportscheme">
+            <field name="account_group">101</field>
+            <field name="report_id" ref="account_financial_report_221120"/>
+        </record>
+        <record id="account_be_scheme_11" model="be.legal.financial.reportscheme">
+            <field name="account_group">11</field>
+            <field name="report_id" ref="account_financial_report_221200"/>
+        </record>
+        <record id="account_be_scheme_12" model="be.legal.financial.reportscheme">
+            <field name="account_group">12</field>
+            <field name="report_id" ref="account_financial_report_221300"/>
+        </record>
+        <record id="account_be_scheme_130" model="be.legal.financial.reportscheme">
+            <field name="account_group">130</field>
+            <field name="report_id" ref="account_financial_report_221410"/>
+        </record>
+        <record id="account_be_scheme_1310" model="be.legal.financial.reportscheme">
+            <field name="account_group">1310</field>
+            <field name="report_id" ref="account_financial_report_221421"/>
+        </record>
+        <record id="account_be_scheme_1311" model="be.legal.financial.reportscheme">
+            <field name="account_group">1311</field>
+            <field name="report_id" ref="account_financial_report_221422"/>
+        </record>
+        <record id="account_be_scheme_132" model="be.legal.financial.reportscheme">
+            <field name="account_group">132</field>
+            <field name="report_id" ref="account_financial_report_221430"/>
+        </record>
+        <record id="account_be_scheme_133" model="be.legal.financial.reportscheme">
+            <field name="account_group">133</field>
+            <field name="report_id" ref="account_financial_report_221440"/>
+        </record>
+        <record id="account_be_scheme_14" model="be.legal.financial.reportscheme">
+            <field name="account_group">14</field>
+            <field name="report_id" ref="account_financial_report_221500"/>
+        </record>
+        <record id="account_be_scheme_15" model="be.legal.financial.reportscheme">
+            <field name="account_group">15</field>
+            <field name="report_id" ref="account_financial_report_221600"/>
+        </record>
+        <record id="account_be_scheme_19" model="be.legal.financial.reportscheme">
+            <field name="account_group">19</field>
+            <field name="report_id" ref="account_financial_report_221700"/>
+        </record>
+        <record id="account_be_scheme_160" model="be.legal.financial.reportscheme">
+            <field name="account_group">160</field>
+            <field name="report_id" ref="account_financial_report_222110"/>
+        </record>
+        <record id="account_be_scheme_161" model="be.legal.financial.reportscheme">
+            <field name="account_group">161</field>
+            <field name="report_id" ref="account_financial_report_222120"/>
+        </record>
+        <record id="account_be_scheme_162" model="be.legal.financial.reportscheme">
+            <field name="account_group">162</field>
+            <field name="report_id" ref="account_financial_report_222130"/>
+        </record>
+        <record id="account_be_scheme163" model="be.legal.financial.reportscheme">
+            <field name="account_group">163</field>
+            <field name="report_id" ref="account_financial_report_222140"/>
+        </record>
+        <record id="account_be_scheme164" model="be.legal.financial.reportscheme">
+            <field name="account_group">164</field>
+            <field name="report_id" ref="account_financial_report_222140"/>
+        </record>
+        <record id="account_be_scheme165" model="be.legal.financial.reportscheme">
+            <field name="account_group">165</field>
+            <field name="report_id" ref="account_financial_report_222140"/>
+        </record>
+        <record id="account_be_scheme_168" model="be.legal.financial.reportscheme">
+            <field name="account_group">168</field>
+            <field name="report_id" ref="account_financial_report_222200"/>
+        </record>
+        <record id="account_be_scheme_170" model="be.legal.financial.reportscheme">
+            <field name="account_group">170</field>
+            <field name="report_id" ref="account_financial_report_223111"/>
+        </record>
+        <record id="account_be_scheme_171" model="be.legal.financial.reportscheme">
+            <field name="account_group">171</field>
+            <field name="report_id" ref="account_financial_report_223112"/>
+        </record>
+        <record id="account_be_scheme_172" model="be.legal.financial.reportscheme">
+            <field name="account_group">172</field>
+            <field name="report_id" ref="account_financial_report_223113"/>
+        </record>
+        <record id="account_be_scheme_173" model="be.legal.financial.reportscheme">
+            <field name="account_group">173</field>
+            <field name="report_id" ref="account_financial_report_223114"/>
+        </record>
+        <record id="account_be_scheme_174" model="be.legal.financial.reportscheme">
+            <field name="account_group">174</field>
+            <field name="report_id" ref="account_financial_report_223115"/>
+        </record>
+        <record id="account_be_scheme_1750" model="be.legal.financial.reportscheme">
+            <field name="account_group">1750</field>
+            <field name="report_id" ref="account_financial_report_223121"/>
+        </record>
+        <record id="account_be_scheme_1751" model="be.legal.financial.reportscheme">
+            <field name="account_group">1751</field>
+            <field name="report_id" ref="account_financial_report_223122"/>
+        </record>
+        <record id="account_be_scheme_176" model="be.legal.financial.reportscheme">
+            <field name="account_group">176</field>
+            <field name="report_id" ref="account_financial_report_223130"/>
+        </record>
+        <record id="account_be_scheme178" model="be.legal.financial.reportscheme">
+            <field name="account_group">178</field>
+            <field name="report_id" ref="account_financial_report_223140"/>
+        </record>
+        <record id="account_be_scheme179" model="be.legal.financial.reportscheme">
+            <field name="account_group">179</field>
+            <field name="report_id" ref="account_financial_report_223140"/>
+        </record>
+        <record id="account_be_scheme_42" model="be.legal.financial.reportscheme">
+            <field name="account_group">42</field>
+            <field name="report_id" ref="account_financial_report_223210"/>
+        </record>
+        <record id="account_be_scheme430" model="be.legal.financial.reportscheme">
+            <field name="account_group">430</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme431" model="be.legal.financial.reportscheme">
+            <field name="account_group">431</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme432" model="be.legal.financial.reportscheme">
+            <field name="account_group">432</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme433" model="be.legal.financial.reportscheme">
+            <field name="account_group">433</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme434" model="be.legal.financial.reportscheme">
+            <field name="account_group">434</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme435" model="be.legal.financial.reportscheme">
+            <field name="account_group">435</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme436" model="be.legal.financial.reportscheme">
+            <field name="account_group">436</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme437" model="be.legal.financial.reportscheme">
+            <field name="account_group">437</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme438" model="be.legal.financial.reportscheme">
+            <field name="account_group">438</field>
+            <field name="report_id" ref="account_financial_report_223221"/>
+        </record>
+        <record id="account_be_scheme_439" model="be.legal.financial.reportscheme">
+            <field name="account_group">439</field>
+            <field name="report_id" ref="account_financial_report_223222"/>
+        </record>
+        <record id="account_be_scheme440" model="be.legal.financial.reportscheme">
+            <field name="account_group">440</field>
+            <field name="report_id" ref="account_financial_report_223231"/>
+        </record>
+        <record id="account_be_scheme442" model="be.legal.financial.reportscheme">
+            <field name="account_group">442</field>
+            <field name="report_id" ref="account_financial_report_223231"/>
+        </record>
+        <record id="account_be_scheme443" model="be.legal.financial.reportscheme">
+            <field name="account_group">443</field>
+            <field name="report_id" ref="account_financial_report_223231"/>
+        </record>
+        <record id="account_be_scheme444" model="be.legal.financial.reportscheme">
+            <field name="account_group">444</field>
+            <field name="report_id" ref="account_financial_report_223231"/>
+        </record>
+        <record id="account_be_scheme_441" model="be.legal.financial.reportscheme">
+            <field name="account_group">441</field>
+            <field name="report_id" ref="account_financial_report_223232"/>
+        </record>
+        <record id="account_be_scheme_46" model="be.legal.financial.reportscheme">
+            <field name="account_group">46</field>
+            <field name="report_id" ref="account_financial_report_223240"/>
+        </record>
+        <record id="account_be_scheme450" model="be.legal.financial.reportscheme">
+            <field name="account_group">450</field>
+            <field name="report_id" ref="account_financial_report_223251"/>
+        </record>
+        <record id="account_be_scheme451" model="be.legal.financial.reportscheme">
+            <field name="account_group">451</field>
+            <field name="report_id" ref="account_financial_report_223251"/>
+        </record>
+        <record id="account_be_scheme452" model="be.legal.financial.reportscheme">
+            <field name="account_group">452</field>
+            <field name="report_id" ref="account_financial_report_223251"/>
+        </record>
+        <record id="account_be_scheme453" model="be.legal.financial.reportscheme">
+            <field name="account_group">453</field>
+            <field name="report_id" ref="account_financial_report_223251"/>
+        </record>
+        <record id="account_be_scheme454" model="be.legal.financial.reportscheme">
+            <field name="account_group">454</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme455" model="be.legal.financial.reportscheme">
+            <field name="account_group">455</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme456" model="be.legal.financial.reportscheme">
+            <field name="account_group">456</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme457" model="be.legal.financial.reportscheme">
+            <field name="account_group">457</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme458" model="be.legal.financial.reportscheme">
+            <field name="account_group">458</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme459" model="be.legal.financial.reportscheme">
+            <field name="account_group">459</field>
+            <field name="report_id" ref="account_financial_report_223252"/>
+        </record>
+        <record id="account_be_scheme47" model="be.legal.financial.reportscheme">
+            <field name="account_group">47</field>
+            <field name="report_id" ref="account_financial_report_223260"/>
+        </record>
+        <record id="account_be_scheme48" model="be.legal.financial.reportscheme">
+            <field name="account_group">48</field>
+            <field name="report_id" ref="account_financial_report_223260"/>
+        </record>
+        <record id="account_be_scheme492" model="be.legal.financial.reportscheme">
+            <field name="account_group">492</field>
+            <field name="report_id" ref="account_financial_report_223300"/>
+        </record>
+        <record id="account_be_scheme493" model="be.legal.financial.reportscheme">
+            <field name="account_group">493</field>
+            <field name="report_id" ref="account_financial_report_223300"/>
+        </record>
+        <record id="account_be_scheme_70" model="be.legal.financial.reportscheme">
+            <field name="account_group">70</field>
+            <field name="report_id" ref="account_financial_report_30110"/>
+        </record>
+        <record id="account_be_scheme_71" model="be.legal.financial.reportscheme">
+            <field name="account_group">71</field>
+            <field name="report_id" ref="account_financial_report_30120"/>
+        </record>
+        <record id="account_be_scheme_72" model="be.legal.financial.reportscheme">
+            <field name="account_group">72</field>
+            <field name="report_id" ref="account_financial_report_30130"/>
+        </record>
+        <record id="account_be_scheme_74" model="be.legal.financial.reportscheme">
+            <field name="account_group">74</field>
+            <field name="report_id" ref="account_financial_report_30140"/>
+        </record>
+        <record id="account_be_scheme600" model="be.legal.financial.reportscheme">
+            <field name="account_group">600</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme601" model="be.legal.financial.reportscheme">
+            <field name="account_group">601</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme602" model="be.legal.financial.reportscheme">
+            <field name="account_group">602</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme603" model="be.legal.financial.reportscheme">
+            <field name="account_group">603</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme604" model="be.legal.financial.reportscheme">
+            <field name="account_group">604</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme605" model="be.legal.financial.reportscheme">
+            <field name="account_group">605</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme606" model="be.legal.financial.reportscheme">
+            <field name="account_group">606</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme607" model="be.legal.financial.reportscheme">
+            <field name="account_group">607</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme608" model="be.legal.financial.reportscheme">
+            <field name="account_group">608</field>
+            <field name="report_id" ref="account_financial_report_30211"/>
+        </record>
+        <record id="account_be_scheme_609" model="be.legal.financial.reportscheme">
+            <field name="account_group">609</field>
+            <field name="report_id" ref="account_financial_report_30212"/>
+        </record>
+        <record id="account_be_scheme_61" model="be.legal.financial.reportscheme">
+            <field name="account_group">61</field>
+            <field name="report_id" ref="account_financial_report_30220"/>
+        </record>
+        <record id="account_be_scheme_62" model="be.legal.financial.reportscheme">
+            <field name="account_group">62</field>
+            <field name="report_id" ref="account_financial_report_30230"/>
+        </record>
+        <record id="account_be_scheme_630" model="be.legal.financial.reportscheme">
+            <field name="account_group">630</field>
+            <field name="report_id" ref="account_financial_report_30240"/>
+        </record>
+        <record id="account_be_scheme631" model="be.legal.financial.reportscheme">
+            <field name="account_group">631</field>
+            <field name="report_id" ref="account_financial_report_30250"/>
+        </record>
+        <record id="account_be_scheme632" model="be.legal.financial.reportscheme">
+            <field name="account_group">632</field>
+            <field name="report_id" ref="account_financial_report_30250"/>
+        </record>
+        <record id="account_be_scheme633" model="be.legal.financial.reportscheme">
+            <field name="account_group">633</field>
+            <field name="report_id" ref="account_financial_report_30250"/>
+        </record>
+        <record id="account_be_scheme634" model="be.legal.financial.reportscheme">
+            <field name="account_group">634</field>
+            <field name="report_id" ref="account_financial_report_30250"/>
+        </record>
+        <record id="account_be_scheme635" model="be.legal.financial.reportscheme">
+            <field name="account_group">635</field>
+            <field name="report_id" ref="account_financial_report_30260"/>
+        </record>
+        <record id="account_be_scheme636" model="be.legal.financial.reportscheme">
+            <field name="account_group">636</field>
+            <field name="report_id" ref="account_financial_report_30260"/>
+        </record>
+        <record id="account_be_scheme637" model="be.legal.financial.reportscheme">
+            <field name="account_group">637</field>
+            <field name="report_id" ref="account_financial_report_30260"/>
+        </record>
+        <record id="account_be_scheme640" model="be.legal.financial.reportscheme">
+            <field name="account_group">640</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme641" model="be.legal.financial.reportscheme">
+            <field name="account_group">641</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme642" model="be.legal.financial.reportscheme">
+            <field name="account_group">642</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme643" model="be.legal.financial.reportscheme">
+            <field name="account_group">643</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme644" model="be.legal.financial.reportscheme">
+            <field name="account_group">644</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme645" model="be.legal.financial.reportscheme">
+            <field name="account_group">645</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme646" model="be.legal.financial.reportscheme">
+            <field name="account_group">646</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme647" model="be.legal.financial.reportscheme">
+            <field name="account_group">647</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme648" model="be.legal.financial.reportscheme">
+            <field name="account_group">648</field>
+            <field name="report_id" ref="account_financial_report_30270"/>
+        </record>
+        <record id="account_be_scheme_649" model="be.legal.financial.reportscheme">
+            <field name="account_group">649</field>
+            <field name="report_id" ref="account_financial_report_30280"/>
+        </record>
+        <record id="account_be_scheme_750" model="be.legal.financial.reportscheme">
+            <field name="account_group">750</field>
+            <field name="report_id" ref="account_financial_report_31110"/>
+        </record>
+        <record id="account_be_scheme_751" model="be.legal.financial.reportscheme">
+            <field name="account_group">751</field>
+            <field name="report_id" ref="account_financial_report_31120"/>
+        </record>
+        <record id="account_be_scheme752" model="be.legal.financial.reportscheme">
+            <field name="account_group">752</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme753" model="be.legal.financial.reportscheme">
+            <field name="account_group">753</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme754" model="be.legal.financial.reportscheme">
+            <field name="account_group">754</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme755" model="be.legal.financial.reportscheme">
+            <field name="account_group">755</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme756" model="be.legal.financial.reportscheme">
+            <field name="account_group">756</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme757" model="be.legal.financial.reportscheme">
+            <field name="account_group">757</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme758" model="be.legal.financial.reportscheme">
+            <field name="account_group">758</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme759" model="be.legal.financial.reportscheme">
+            <field name="account_group">759</field>
+            <field name="report_id" ref="account_financial_report_31130"/>
+        </record>
+        <record id="account_be_scheme_650" model="be.legal.financial.reportscheme">
+            <field name="account_group">650</field>
+            <field name="report_id" ref="account_financial_report_31210"/>
+        </record>
+        <record id="account_be_scheme_651" model="be.legal.financial.reportscheme">
+            <field name="account_group">651</field>
+            <field name="report_id" ref="account_financial_report_31220"/>
+        </record>
+        <record id="account_be_scheme652" model="be.legal.financial.reportscheme">
+            <field name="account_group">652</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme653" model="be.legal.financial.reportscheme">
+            <field name="account_group">653</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme654" model="be.legal.financial.reportscheme">
+            <field name="account_group">654</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme655" model="be.legal.financial.reportscheme">
+            <field name="account_group">655</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme656" model="be.legal.financial.reportscheme">
+            <field name="account_group">656</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme657" model="be.legal.financial.reportscheme">
+            <field name="account_group">657</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme658" model="be.legal.financial.reportscheme">
+            <field name="account_group">658</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme659" model="be.legal.financial.reportscheme">
+            <field name="account_group">659</field>
+            <field name="report_id" ref="account_financial_report_31230"/>
+        </record>
+        <record id="account_be_scheme_760" model="be.legal.financial.reportscheme">
+            <field name="account_group">760</field>
+            <field name="report_id" ref="account_financial_report_32110"/>
+        </record>
+        <record id="account_be_scheme_761" model="be.legal.financial.reportscheme">
+            <field name="account_group">761</field>
+            <field name="report_id" ref="account_financial_report_32120"/>
+        </record>
+        <record id="account_be_scheme_762" model="be.legal.financial.reportscheme">
+            <field name="account_group">762</field>
+            <field name="report_id" ref="account_financial_report_32130"/>
+        </record>
+        <record id="account_be_scheme_763" model="be.legal.financial.reportscheme">
+            <field name="account_group">763</field>
+            <field name="report_id" ref="account_financial_report_32140"/>
+        </record>
+        <record id="account_be_scheme764" model="be.legal.financial.reportscheme">
+            <field name="account_group">764</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme765" model="be.legal.financial.reportscheme">
+            <field name="account_group">765</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme766" model="be.legal.financial.reportscheme">
+            <field name="account_group">766</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme767" model="be.legal.financial.reportscheme">
+            <field name="account_group">767</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme768" model="be.legal.financial.reportscheme">
+            <field name="account_group">768</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme769" model="be.legal.financial.reportscheme">
+            <field name="account_group">769</field>
+            <field name="report_id" ref="account_financial_report_32150"/>
+        </record>
+        <record id="account_be_scheme_660" model="be.legal.financial.reportscheme">
+            <field name="account_group">660</field>
+            <field name="report_id" ref="account_financial_report_32210"/>
+        </record>
+        <record id="account_be_scheme_661" model="be.legal.financial.reportscheme">
+            <field name="account_group">661</field>
+            <field name="report_id" ref="account_financial_report_32220"/>
+        </record>
+        <record id="account_be_scheme_662" model="be.legal.financial.reportscheme">
+            <field name="account_group">662</field>
+            <field name="report_id" ref="account_financial_report_32230"/>
+        </record>
+        <record id="account_be_scheme_663" model="be.legal.financial.reportscheme">
+            <field name="account_group">663</field>
+            <field name="report_id" ref="account_financial_report_32240"/>
+        </record>
+        <record id="account_be_scheme664" model="be.legal.financial.reportscheme">
+            <field name="account_group">664</field>
+            <field name="report_id" ref="account_financial_report_32250"/>
+        </record>
+        <record id="account_be_scheme665" model="be.legal.financial.reportscheme">
+            <field name="account_group">665</field>
+            <field name="report_id" ref="account_financial_report_32250"/>
+        </record>
+        <record id="account_be_scheme666" model="be.legal.financial.reportscheme">
+            <field name="account_group">666</field>
+            <field name="report_id" ref="account_financial_report_32250"/>
+        </record>
+        <record id="account_be_scheme667" model="be.legal.financial.reportscheme">
+            <field name="account_group">667</field>
+            <field name="report_id" ref="account_financial_report_32250"/>
+        </record>
+        <record id="account_be_scheme668" model="be.legal.financial.reportscheme">
+            <field name="account_group">668</field>
+            <field name="report_id" ref="account_financial_report_32250"/>
+        </record>
+        <record id="account_be_scheme_669" model="be.legal.financial.reportscheme">
+            <field name="account_group">669</field>
+            <field name="report_id" ref="account_financial_report_32260"/>
+        </record>
+        <record id="account_be_scheme_780" model="be.legal.financial.reportscheme">
+            <field name="account_group">780</field>
+            <field name="report_id" ref="account_financial_report_33100"/>
+        </record>
+        <record id="account_be_scheme_680" model="be.legal.financial.reportscheme">
+            <field name="account_group">680</field>
+            <field name="report_id" ref="account_financial_report_33200"/>
+        </record>
+        <record id="account_be_scheme670" model="be.legal.financial.reportscheme">
+            <field name="account_group">670</field>
+            <field name="report_id" ref="account_financial_report_33310"/>
+        </record>
+        <record id="account_be_scheme671" model="be.legal.financial.reportscheme">
+            <field name="account_group">671</field>
+            <field name="report_id" ref="account_financial_report_33310"/>
+        </record>
+        <record id="account_be_scheme672" model="be.legal.financial.reportscheme">
+            <field name="account_group">672</field>
+            <field name="report_id" ref="account_financial_report_33310"/>
+        </record>
+        <record id="account_be_scheme673" model="be.legal.financial.reportscheme">
+            <field name="account_group">673</field>
+            <field name="report_id" ref="account_financial_report_33310"/>
+        </record>
+        <record id="account_be_scheme_77" model="be.legal.financial.reportscheme">
+            <field name="account_group">77</field>
+            <field name="report_id" ref="account_financial_report_33320"/>
+        </record>
+        <record id="account_be_scheme69" model="be.legal.financial.reportscheme">
+            <field name="account_group">69</field>
+            <field name="report_id" ref="account_financial_report_34000"/>
+        </record>
+        <record id="account_be_scheme79" model="be.legal.financial.reportscheme">
+            <field name="account_group">79</field>
+            <field name="report_id" ref="account_financial_report_34000"/>
+        </record>
+        <record id="account_be_scheme_789" model="be.legal.financial.reportscheme">
+            <field name="account_group">789</field>
+            <field name="report_id" ref="account_financial_report_34100"/>
+        </record>
+        <record id="account_be_scheme_689" model="be.legal.financial.reportscheme">
+            <field name="account_group">689</field>
+            <field name="report_id" ref="account_financial_report_34200"/>
+        </record>
+
+    </data>
+</openerp>

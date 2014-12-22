@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- account.financial.report -->
+        <record id="account_financial_report_BE_2_FULL" model="account.financial.report">
+            <field name="name">Belgium Balance Sheet (Full Model)</field>
+            <field name="sequence">200000</field>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+        </record>
+        <record id="account_financial_report_219000" model="account.financial.report">
+            <field name="name">TOTAL ASSETS</field>
+            <field name="code">20/58</field>
+            <field name="sequence">219000</field>
+            <field name="parent_id" ref="account_financial_report_BE_2_FULL"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_211000" model="account.financial.report">
+            <field name="name">FIXED ASSETS</field>
+            <field name="code">20/28</field>
+            <field name="sequence">211000</field>
+            <field name="parent_id" ref="account_financial_report_219000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_211100" model="account.financial.report">
+            <field name="name">Formation Expenses</field>
+            <field name="code">20</field>
+            <field name="sequence">211100</field>
+            <field name="parent_id" ref="account_financial_report_211000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_211200" model="account.financial.report">
+            <field name="name">Intangible Assets</field>
+            <field name="code">21</field>
+            <field name="sequence">211200</field>
+            <field name="parent_id" ref="account_financial_report_211000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_211300" model="account.financial.report">
+            <field name="name">Tangible Assets</field>
+            <field name="code">22/27</field>
+            <field name="sequence">211300</field>
+            <field name="parent_id" ref="account_financial_report_211000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_211310" model="account.financial.report">
+            <field name="name">Land and Buildings</field>
+            <field name="code">22</field>
+            <field name="sequence">211310</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211320" model="account.financial.report">
+            <field name="name">Plant, Machinery and Equipment</field>
+            <field name="code">23</field>
+            <field name="sequence">211320</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211330" model="account.financial.report">
+            <field name="name">Furniture and Vehicles</field>
+            <field name="code">24</field>
+            <field name="sequence">211330</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211340" model="account.financial.report">
+            <field name="name">Leasing and other similar Rights</field>
+            <field name="code">25</field>
+            <field name="sequence">211340</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211350" model="account.financial.report">
+            <field name="name">Other Tangible Assets</field>
+            <field name="code">26</field>
+            <field name="sequence">211350</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211360" model="account.financial.report">
+            <field name="name">Assets under Construction and Advance Payment</field>
+            <field name="code">27</field>
+            <field name="sequence">211360</field>
+            <field name="parent_id" ref="account_financial_report_211300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211400" model="account.financial.report">
+            <field name="name">Financial Assets</field>
+            <field name="code">28</field>
+            <field name="sequence">211400</field>
+            <field name="parent_id" ref="account_financial_report_211000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_211410" model="account.financial.report">
+            <field name="name">Affiliated Enterprises</field>
+            <field name="code">280/1</field>
+            <field name="sequence">211410</field>
+            <field name="parent_id" ref="account_financial_report_211400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211411" model="account.financial.report">
+            <field name="name">Participating Interests</field>
+            <field name="code">280</field>
+            <field name="sequence">211411</field>
+            <field name="parent_id" ref="account_financial_report_211410"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_211412" model="account.financial.report">
+            <field name="name">Amounts Receivable</field>
+            <field name="code">281</field>
+            <field name="sequence">211412</field>
+            <field name="parent_id" ref="account_financial_report_211410"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_211420" model="account.financial.report">
+            <field name="name">Enterprises Linked by Participating Interests</field>
+            <field name="code">282/3</field>
+            <field name="sequence">211420</field>
+            <field name="parent_id" ref="account_financial_report_211400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211421" model="account.financial.report">
+            <field name="name">Participating Interests</field>
+            <field name="code">282</field>
+            <field name="sequence">211421</field>
+            <field name="parent_id" ref="account_financial_report_211420"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_211422" model="account.financial.report">
+            <field name="name">Amounts Receivable</field>
+            <field name="code">283</field>
+            <field name="sequence">211422</field>
+            <field name="parent_id" ref="account_financial_report_211420"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_211430" model="account.financial.report">
+            <field name="name">Other Financial Assets</field>
+            <field name="code">284/8</field>
+            <field name="sequence">211430</field>
+            <field name="parent_id" ref="account_financial_report_211400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_211431" model="account.financial.report">
+            <field name="name">Shares</field>
+            <field name="code">284</field>
+            <field name="sequence">211431</field>
+            <field name="parent_id" ref="account_financial_report_211430"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_211432" model="account.financial.report">
+            <field name="name">Amounts Receivable and Cash Guarantees</field>
+            <field name="code">285/8</field>
+            <field name="sequence">211432</field>
+            <field name="parent_id" ref="account_financial_report_211430"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212000" model="account.financial.report">
+            <field name="name">CURRENT ASSETS</field>
+            <field name="code">29/58</field>
+            <field name="sequence">212000</field>
+            <field name="parent_id" ref="account_financial_report_219000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_212100" model="account.financial.report">
+            <field name="name">Amounts Receivable after One Year</field>
+            <field name="code">29</field>
+            <field name="sequence">212100</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_212110" model="account.financial.report">
+            <field name="name">Trade Debtors</field>
+            <field name="code">290</field>
+            <field name="sequence">212110</field>
+            <field name="parent_id" ref="account_financial_report_212100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212120" model="account.financial.report">
+            <field name="name">Other Amounts Receivable</field>
+            <field name="code">291</field>
+            <field name="sequence">212120</field>
+            <field name="parent_id" ref="account_financial_report_212100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212200" model="account.financial.report">
+            <field name="name">Stocks and Contracts in Progress</field>
+            <field name="code">3</field>
+            <field name="sequence">212200</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_212210" model="account.financial.report">
+            <field name="name">Stocks</field>
+            <field name="code">30/36</field>
+            <field name="sequence">212210</field>
+            <field name="parent_id" ref="account_financial_report_212200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212211" model="account.financial.report">
+            <field name="name">Raw Materials and Consumables</field>
+            <field name="code">30/31</field>
+            <field name="sequence">212211</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212212" model="account.financial.report">
+            <field name="name">Work in Progress</field>
+            <field name="code">32</field>
+            <field name="sequence">212212</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212213" model="account.financial.report">
+            <field name="name">Finished Goods</field>
+            <field name="code">33</field>
+            <field name="sequence">212213</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212214" model="account.financial.report">
+            <field name="name">Goods purchased for Resale</field>
+            <field name="code">34</field>
+            <field name="sequence">212214</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212215" model="account.financial.report">
+            <field name="name">Imovable Property acquired for Resale</field>
+            <field name="code">35</field>
+            <field name="sequence">212215</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212216" model="account.financial.report">
+            <field name="name">Advance Payments</field>
+            <field name="code">36</field>
+            <field name="sequence">212216</field>
+            <field name="parent_id" ref="account_financial_report_212210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_212220" model="account.financial.report">
+            <field name="name">Contracts in progress</field>
+            <field name="code">37</field>
+            <field name="sequence">212220</field>
+            <field name="parent_id" ref="account_financial_report_212200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212300" model="account.financial.report">
+            <field name="name">Amounts Receivable within one Year</field>
+            <field name="code">40/41</field>
+            <field name="sequence">212300</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_212310" model="account.financial.report">
+            <field name="name">Trade Debtors</field>
+            <field name="code">40</field>
+            <field name="sequence">212310</field>
+            <field name="parent_id" ref="account_financial_report_212300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212320" model="account.financial.report">
+            <field name="name">Other Amounts Receivable</field>
+            <field name="code">41</field>
+            <field name="sequence">212320</field>
+            <field name="parent_id" ref="account_financial_report_212300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212400" model="account.financial.report">
+            <field name="name">Investments</field>
+            <field name="code">50/53</field>
+            <field name="sequence">212400</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_212410" model="account.financial.report">
+            <field name="name">Own Shares</field>
+            <field name="code">50</field>
+            <field name="sequence">212410</field>
+            <field name="parent_id" ref="account_financial_report_212400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212420" model="account.financial.report">
+            <field name="name">Other Investments and Deposits</field>
+            <field name="code">51/53</field>
+            <field name="sequence">212420</field>
+            <field name="parent_id" ref="account_financial_report_212400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_212500" model="account.financial.report">
+            <field name="name">Cash at Bank and in Hand</field>
+            <field name="code">54/58</field>
+            <field name="sequence">212500</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_212600" model="account.financial.report">
+            <field name="name">Deferred Charges and Accrued Income</field>
+            <field name="code">490/1</field>
+            <field name="sequence">212600</field>
+            <field name="parent_id" ref="account_financial_report_212000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_229000" model="account.financial.report">
+            <field name="name">TOTAL LIABILITIES</field>
+            <field name="code">10/49</field>
+            <field name="sequence">229000</field>
+            <field name="parent_id" ref="account_financial_report_BE_2_FULL"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_221000" model="account.financial.report">
+            <field name="name">EQUITY CAPITAL</field>
+            <field name="code">10/15</field>
+            <field name="sequence">221000</field>
+            <field name="parent_id" ref="account_financial_report_229000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_221100" model="account.financial.report">
+            <field name="name">Capital</field>
+            <field name="code">10</field>
+            <field name="sequence">221100</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221110" model="account.financial.report">
+            <field name="name">Issued Capital</field>
+            <field name="code">100</field>
+            <field name="sequence">221110</field>
+            <field name="parent_id" ref="account_financial_report_221100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221120" model="account.financial.report">
+            <field name="name">Uncalled Capital</field>
+            <field name="code">101</field>
+            <field name="sequence">221120</field>
+            <field name="parent_id" ref="account_financial_report_221100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221200" model="account.financial.report">
+            <field name="name">Share Premium Account</field>
+            <field name="code">11</field>
+            <field name="sequence">221200</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221300" model="account.financial.report">
+            <field name="name">Revaluation Surpluses</field>
+            <field name="code">12</field>
+            <field name="sequence">221300</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221400" model="account.financial.report">
+            <field name="name">Reserves</field>
+            <field name="code">13</field>
+            <field name="sequence">221400</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221410" model="account.financial.report">
+            <field name="name">Legal Reserve</field>
+            <field name="code">130</field>
+            <field name="sequence">221410</field>
+            <field name="parent_id" ref="account_financial_report_221400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221420" model="account.financial.report">
+            <field name="name">Reserves not available for Distribution</field>
+            <field name="code">131</field>
+            <field name="sequence">221420</field>
+            <field name="parent_id" ref="account_financial_report_221400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221421" model="account.financial.report">
+            <field name="name">In respect of own Shares held</field>
+            <field name="code">1310</field>
+            <field name="sequence">221421</field>
+            <field name="parent_id" ref="account_financial_report_221420"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_221422" model="account.financial.report">
+            <field name="name">Other</field>
+            <field name="code">1311</field>
+            <field name="sequence">221422</field>
+            <field name="parent_id" ref="account_financial_report_221420"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_221430" model="account.financial.report">
+            <field name="name">Untaxed Reserves</field>
+            <field name="code">132</field>
+            <field name="sequence">221430</field>
+            <field name="parent_id" ref="account_financial_report_221400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221440" model="account.financial.report">
+            <field name="name">Reserves available for Distribution</field>
+            <field name="code">133</field>
+            <field name="sequence">221440</field>
+            <field name="parent_id" ref="account_financial_report_221400"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_221500" model="account.financial.report">
+            <field name="name">Accumulated Profits (Losses)</field>
+            <field name="code">14</field>
+            <field name="sequence">221500</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221600" model="account.financial.report">
+            <field name="name">Investment Grants</field>
+            <field name="code">15</field>
+            <field name="sequence">221600</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_221700" model="account.financial.report">
+            <field name="name">Advance to Partners on the distribution of the net assets</field>
+            <field name="code">19</field>
+            <field name="sequence">221700</field>
+            <field name="parent_id" ref="account_financial_report_221000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_222000" model="account.financial.report">
+            <field name="name">PROVISIONS AND DEFERRED TAXES</field>
+            <field name="code">16</field>
+            <field name="sequence">222000</field>
+            <field name="parent_id" ref="account_financial_report_229000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_222100" model="account.financial.report">
+            <field name="name">Provisions for Liabilities and Charges</field>
+            <field name="code">160/5</field>
+            <field name="sequence">222100</field>
+            <field name="parent_id" ref="account_financial_report_222000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_222110" model="account.financial.report">
+            <field name="name">Pensions and similar Obligations</field>
+            <field name="code">160</field>
+            <field name="sequence">222110</field>
+            <field name="parent_id" ref="account_financial_report_222100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_222120" model="account.financial.report">
+            <field name="name">Taxation</field>
+            <field name="code">161</field>
+            <field name="sequence">222120</field>
+            <field name="parent_id" ref="account_financial_report_222100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_222130" model="account.financial.report">
+            <field name="name">Major Repairs and Maintenance</field>
+            <field name="code">162</field>
+            <field name="sequence">222130</field>
+            <field name="parent_id" ref="account_financial_report_222100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_222140" model="account.financial.report">
+            <field name="name">Other Liabilities and Charges</field>
+            <field name="code">163/5</field>
+            <field name="sequence">222140</field>
+            <field name="parent_id" ref="account_financial_report_222100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_222200" model="account.financial.report">
+            <field name="name">Deferred Taxes</field>
+            <field name="code">168</field>
+            <field name="sequence">222200</field>
+            <field name="parent_id" ref="account_financial_report_222000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_223000" model="account.financial.report">
+            <field name="name">DEBTS</field>
+            <field name="code">17/49</field>
+            <field name="sequence">223000</field>
+            <field name="parent_id" ref="account_financial_report_229000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_223100" model="account.financial.report">
+            <field name="name">Amounts Payable after one Year</field>
+            <field name="code">17</field>
+            <field name="sequence">223100</field>
+            <field name="parent_id" ref="account_financial_report_223000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_223110" model="account.financial.report">
+            <field name="name">Financial Debts</field>
+            <field name="code">170/4</field>
+            <field name="sequence">223110</field>
+            <field name="parent_id" ref="account_financial_report_223100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223111" model="account.financial.report">
+            <field name="name">Subordinated Loans</field>
+            <field name="code">170</field>
+            <field name="sequence">223111</field>
+            <field name="parent_id" ref="account_financial_report_223110"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223112" model="account.financial.report">
+            <field name="name">Unsubordinated Debentures</field>
+            <field name="code">171</field>
+            <field name="sequence">223112</field>
+            <field name="parent_id" ref="account_financial_report_223110"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223113" model="account.financial.report">
+            <field name="name">Leasing and other similar Obligations</field>
+            <field name="code">172</field>
+            <field name="sequence">223113</field>
+            <field name="parent_id" ref="account_financial_report_223110"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223114" model="account.financial.report">
+            <field name="name">Credit Institutions</field>
+            <field name="code">173</field>
+            <field name="sequence">223114</field>
+            <field name="parent_id" ref="account_financial_report_223110"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223115" model="account.financial.report">
+            <field name="name">Other Loans</field>
+            <field name="code">174</field>
+            <field name="sequence">223115</field>
+            <field name="parent_id" ref="account_financial_report_223110"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223120" model="account.financial.report">
+            <field name="name">Trade Debts</field>
+            <field name="code">175</field>
+            <field name="sequence">223120</field>
+            <field name="parent_id" ref="account_financial_report_223100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223121" model="account.financial.report">
+            <field name="name">Suppliers</field>
+            <field name="code">1750</field>
+            <field name="sequence">223121</field>
+            <field name="parent_id" ref="account_financial_report_223120"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223122" model="account.financial.report">
+            <field name="name">Bills of Exchange Payable</field>
+            <field name="code">1751</field>
+            <field name="sequence">223122</field>
+            <field name="parent_id" ref="account_financial_report_223120"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223130" model="account.financial.report">
+            <field name="name">Advances received on Contracts in Progress</field>
+            <field name="code">176</field>
+            <field name="sequence">223130</field>
+            <field name="parent_id" ref="account_financial_report_223100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223140" model="account.financial.report">
+            <field name="name">Other Amounts Payable</field>
+            <field name="code">178/9</field>
+            <field name="sequence">223140</field>
+            <field name="parent_id" ref="account_financial_report_223100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223200" model="account.financial.report">
+            <field name="name">Amounts Payable within one Year</field>
+            <field name="code">42/48</field>
+            <field name="sequence">223200</field>
+            <field name="parent_id" ref="account_financial_report_223000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_223210" model="account.financial.report">
+            <field name="name">Portion of amounts Payable after one Year due within the year</field>
+            <field name="code">42</field>
+            <field name="sequence">223210</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223220" model="account.financial.report">
+            <field name="name">Financial Debts</field>
+            <field name="code">43</field>
+            <field name="sequence">223220</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223221" model="account.financial.report">
+            <field name="name">Credit Institutions</field>
+            <field name="code">430/8</field>
+            <field name="sequence">223221</field>
+            <field name="parent_id" ref="account_financial_report_223220"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223222" model="account.financial.report">
+            <field name="name">Other Loans</field>
+            <field name="code">439</field>
+            <field name="sequence">223222</field>
+            <field name="parent_id" ref="account_financial_report_223220"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223230" model="account.financial.report">
+            <field name="name">Trade Debts</field>
+            <field name="code">44</field>
+            <field name="sequence">223230</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223231" model="account.financial.report">
+            <field name="name">Suppliers</field>
+            <field name="code">440/4</field>
+            <field name="sequence">223231</field>
+            <field name="parent_id" ref="account_financial_report_223230"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223232" model="account.financial.report">
+            <field name="name">Bills of Exchange Payable</field>
+            <field name="code">441</field>
+            <field name="sequence">223232</field>
+            <field name="parent_id" ref="account_financial_report_223230"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223240" model="account.financial.report">
+            <field name="name">Advances received on Contracts in Progress</field>
+            <field name="code">46</field>
+            <field name="sequence">223240</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223250" model="account.financial.report">
+            <field name="name">Taxes, Remuneration and Social Security</field>
+            <field name="code">45</field>
+            <field name="sequence">223250</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223251" model="account.financial.report">
+            <field name="name">Taxes</field>
+            <field name="code">450/3</field>
+            <field name="sequence">223251</field>
+            <field name="parent_id" ref="account_financial_report_223250"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223252" model="account.financial.report">
+            <field name="name">Remuneration and Social Security</field>
+            <field name="code">454/9</field>
+            <field name="sequence">223252</field>
+            <field name="parent_id" ref="account_financial_report_223250"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_223260" model="account.financial.report">
+            <field name="name">Other Amounts Payable</field>
+            <field name="code">47/48</field>
+            <field name="sequence">223260</field>
+            <field name="parent_id" ref="account_financial_report_223200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_223300" model="account.financial.report">
+            <field name="name">Accrued Charges and Deferred Income</field>
+            <field name="code">492/3</field>
+            <field name="sequence">223300</field>
+            <field name="parent_id" ref="account_financial_report_223000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_BE_3_FULL" model="account.financial.report">
+            <field name="name">Belgium P&amp;L (Full Model)</field>
+            <field name="sequence">30000</field>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+        </record>
+        <record id="account_financial_report_35000" model="account.financial.report">
+            <field name="name">Fiscal Year Profit (Loss) to be allocated</field>
+            <field name="code">9905</field>
+            <field name="sequence">35000</field>
+            <field name="parent_id" ref="account_financial_report_BE_3_FULL"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_34000" model="account.financial.report">
+            <field name="name">Fiscal Year Profit (Loss)</field>
+            <field name="code">9904</field>
+            <field name="sequence">34000</field>
+            <field name="parent_id" ref="account_financial_report_35000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_33000" model="account.financial.report">
+            <field name="name">Fiscal Year Profit (Loss) before Taxation</field>
+            <field name="code">9903</field>
+            <field name="sequence">33000</field>
+            <field name="parent_id" ref="account_financial_report_34000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_32000" model="account.financial.report">
+            <field name="name">Profit (Loss) from Normal Operations before Taxation</field>
+            <field name="code">9902</field>
+            <field name="sequence">32000</field>
+            <field name="parent_id" ref="account_financial_report_33000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_31000" model="account.financial.report">
+            <field name="name">Operating Profit (Loss)</field>
+            <field name="code">9901</field>
+            <field name="sequence">31000</field>
+            <field name="parent_id" ref="account_financial_report_32000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="2"/>
+        </record>
+        <record id="account_financial_report_30100" model="account.financial.report">
+            <field name="name">Operating Income</field>
+            <field name="code">70/74</field>
+            <field name="sequence">30100</field>
+            <field name="parent_id" ref="account_financial_report_31000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_30110" model="account.financial.report">
+            <field name="name">Turnover</field>
+            <field name="code">70</field>
+            <field name="sequence">30110</field>
+            <field name="parent_id" ref="account_financial_report_30100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30120" model="account.financial.report">
+            <field name="name">Increase (Decrease) in Stocks, Final Goods, Etc.</field>
+            <field name="code">71</field>
+            <field name="sequence">30120</field>
+            <field name="parent_id" ref="account_financial_report_30100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30130" model="account.financial.report">
+            <field name="name">Fixed Assets Own Construction</field>
+            <field name="code">72</field>
+            <field name="sequence">30130</field>
+            <field name="parent_id" ref="account_financial_report_30100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30140" model="account.financial.report">
+            <field name="name">Other Operating Income</field>
+            <field name="code">74</field>
+            <field name="sequence">30140</field>
+            <field name="parent_id" ref="account_financial_report_30100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30200" model="account.financial.report">
+            <field name="name">Operating Charges</field>
+            <field name="code">60/64</field>
+            <field name="sequence">30200</field>
+            <field name="parent_id" ref="account_financial_report_31000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_30210" model="account.financial.report">
+            <field name="name">Raw Materials, Consumables and Goods for Resale</field>
+            <field name="code">60</field>
+            <field name="sequence">30210</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30211" model="account.financial.report">
+            <field name="name">Purchases</field>
+            <field name="code">600/8</field>
+            <field name="sequence">30211</field>
+            <field name="parent_id" ref="account_financial_report_30210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_30212" model="account.financial.report">
+            <field name="name">Decrease (Increase) in Stocks</field>
+            <field name="code">609</field>
+            <field name="sequence">30212</field>
+            <field name="parent_id" ref="account_financial_report_30210"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="5"/>
+        </record>
+        <record id="account_financial_report_30220" model="account.financial.report">
+            <field name="name">Services and Other Goods</field>
+            <field name="code">61</field>
+            <field name="sequence">30220</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30230" model="account.financial.report">
+            <field name="name">Remunerations, Social Security Costs and Pensions</field>
+            <field name="code">62</field>
+            <field name="sequence">30230</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30240" model="account.financial.report">
+            <field name="name">Depreciation and Amounts Written Off on Formation Expenses, on  Intangible and  Tangible Assets</field>
+            <field name="code">630</field>
+            <field name="sequence">30240</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30250" model="account.financial.report">
+            <field name="name">Amounts Written Off on Stocks, Orders in Progress and Trade Debts: Increase (Decrease)</field>
+            <field name="code">631/4</field>
+            <field name="sequence">30250</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30260" model="account.financial.report">
+            <field name="name">Provisions for Liabilities and Charges: Increase (Decrease)</field>
+            <field name="code">635/7</field>
+            <field name="sequence">30260</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30270" model="account.financial.report">
+            <field name="name">Other Operating Charges</field>
+            <field name="code">640/8</field>
+            <field name="sequence">30270</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_30280" model="account.financial.report">
+            <field name="name">Restructuring Charges activated as Operating Charges</field>
+            <field name="code">649</field>
+            <field name="sequence">30280</field>
+            <field name="parent_id" ref="account_financial_report_30200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31100" model="account.financial.report">
+            <field name="name">Financial Income</field>
+            <field name="code">75</field>
+            <field name="sequence">31100</field>
+            <field name="parent_id" ref="account_financial_report_32000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_31110" model="account.financial.report">
+            <field name="name">Income from Financial Fixed Assets</field>
+            <field name="code">750</field>
+            <field name="sequence">31110</field>
+            <field name="parent_id" ref="account_financial_report_31100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31120" model="account.financial.report">
+            <field name="name">Income from Current Assets</field>
+            <field name="code">751</field>
+            <field name="sequence">31120</field>
+            <field name="parent_id" ref="account_financial_report_31100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31130" model="account.financial.report">
+            <field name="name">Other Financial Income</field>
+            <field name="code">752/9</field>
+            <field name="sequence">31130</field>
+            <field name="parent_id" ref="account_financial_report_31100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31200" model="account.financial.report">
+            <field name="name">Financial Charges</field>
+            <field name="code">65</field>
+            <field name="sequence">31200</field>
+            <field name="parent_id" ref="account_financial_report_32000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_31210" model="account.financial.report">
+            <field name="name">Debt Charges</field>
+            <field name="code">650</field>
+            <field name="sequence">31210</field>
+            <field name="parent_id" ref="account_financial_report_31200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31220" model="account.financial.report">
+            <field name="name">Amounts Written Off on other than Stocks, Orders in Progress and Trade Debts: Increase (Decrease)</field>
+            <field name="code">651</field>
+            <field name="sequence">31220</field>
+            <field name="parent_id" ref="account_financial_report_31200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_31230" model="account.financial.report">
+            <field name="name">Other Financial Charges</field>
+            <field name="code">652/9</field>
+            <field name="sequence">31230</field>
+            <field name="parent_id" ref="account_financial_report_31200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32100" model="account.financial.report">
+            <field name="name">Extraordinary Income</field>
+            <field name="code">76</field>
+            <field name="sequence">32100</field>
+            <field name="parent_id" ref="account_financial_report_33000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_32110" model="account.financial.report">
+            <field name="name">Adjustment to Depreciation and Write Off on Intangible and Tangible Assets</field>
+            <field name="code">760</field>
+            <field name="sequence">32110</field>
+            <field name="parent_id" ref="account_financial_report_32100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32120" model="account.financial.report">
+            <field name="name">Adjustment to Amounts Written Off on Financial Fixed Assets</field>
+            <field name="code">761</field>
+            <field name="sequence">32120</field>
+            <field name="parent_id" ref="account_financial_report_32100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32130" model="account.financial.report">
+            <field name="name">Adjustment to Provisions for Extraordinary Liabilities and Charges</field>
+            <field name="code">762</field>
+            <field name="sequence">32130</field>
+            <field name="parent_id" ref="account_financial_report_32100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32140" model="account.financial.report">
+            <field name="name">Gain on Disposal of Fixed Assets</field>
+            <field name="code">763</field>
+            <field name="sequence">32140</field>
+            <field name="parent_id" ref="account_financial_report_32100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32150" model="account.financial.report">
+            <field name="name">Other Extraordinary Income</field>
+            <field name="code">764/9</field>
+            <field name="sequence">32150</field>
+            <field name="parent_id" ref="account_financial_report_32100"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32200" model="account.financial.report">
+            <field name="name">Extraordinary Charges</field>
+            <field name="code">66</field>
+            <field name="sequence">32200</field>
+            <field name="parent_id" ref="account_financial_report_33000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_32210" model="account.financial.report">
+            <field name="name">Extraordinary Depreciation and Amounts Written Off on Formation Expenses, Intangible and Tangible Assets</field>
+            <field name="code">660</field>
+            <field name="sequence">32210</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32220" model="account.financial.report">
+            <field name="name">Amounts Written Off on Financial Fixed Assets</field>
+            <field name="code">661</field>
+            <field name="sequence">32220</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32230" model="account.financial.report">
+            <field name="name">Provisions for Extraordinary Liabilities and Charges</field>
+            <field name="code">662</field>
+            <field name="sequence">32230</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32240" model="account.financial.report">
+            <field name="name">Loss on Disposal of Fixed Assets</field>
+            <field name="code">663</field>
+            <field name="sequence">32240</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32250" model="account.financial.report">
+            <field name="name">Other Extraordinary Charges</field>
+            <field name="code">664/668</field>
+            <field name="sequence">32250</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_32260" model="account.financial.report">
+            <field name="name">Restructuring Charges activated as Extraordinary Charges</field>
+            <field name="code">669</field>
+            <field name="sequence">32260</field>
+            <field name="parent_id" ref="account_financial_report_32200"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_33100" model="account.financial.report">
+            <field name="name">Transfer from Deferred Taxes</field>
+            <field name="code">780</field>
+            <field name="sequence">33100</field>
+            <field name="parent_id" ref="account_financial_report_34000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_33200" model="account.financial.report">
+            <field name="name">Transfer to Deferred Taxes</field>
+            <field name="code">680</field>
+            <field name="sequence">33200</field>
+            <field name="parent_id" ref="account_financial_report_34000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_33300" model="account.financial.report">
+            <field name="name">Income Taxes</field>
+            <field name="code">67/77</field>
+            <field name="sequence">33300</field>
+            <field name="parent_id" ref="account_financial_report_34000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">sum</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_33310" model="account.financial.report">
+            <field name="name">Income Taxes</field>
+            <field name="code">670/3</field>
+            <field name="sequence">33310</field>
+            <field name="parent_id" ref="account_financial_report_33300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_33320" model="account.financial.report">
+            <field name="name">Adjustment of Income Taxes and Provisions for Taxes</field>
+            <field name="code">77</field>
+            <field name="sequence">33320</field>
+            <field name="parent_id" ref="account_financial_report_33300"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="4"/>
+        </record>
+        <record id="account_financial_report_34100" model="account.financial.report">
+            <field name="name">Transfer from Untaxed Reserves</field>
+            <field name="code">789</field>
+            <field name="sequence">34100</field>
+            <field name="parent_id" ref="account_financial_report_35000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="sign" eval="-1"/>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+        <record id="account_financial_report_34200" model="account.financial.report">
+            <field name="name">Transfer to Untaxed Reserves</field>
+            <field name="code">689</field>
+            <field name="sequence">34200</field>
+            <field name="parent_id" ref="account_financial_report_35000"/>
+            <field name="display_detail">no_detail</field>
+            <field name="type">accounts</field>
+            <field name="style_overwrite" eval="3"/>
+        </record>
+
+    </data>
+</openerp>
