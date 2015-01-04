@@ -62,7 +62,8 @@ class account_config_settings(models.TransientModel):
         """
         config = self.browse(cr, uid, ids[0], context)
         if config.chart_template_id:
-            assert config.expects_chart_of_accounts and not config.has_chart_of_accounts
+            assert config.expects_chart_of_accounts \
+                and not config.has_chart_of_accounts
             if config.chart_template_id.multilang_be:
                 return {}
         super(account_config_settings, self).set_chart_of_accounts(

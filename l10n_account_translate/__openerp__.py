@@ -20,11 +20,15 @@
 #
 ##############################################################################
 
-from . import wizard_multi_charts_accounts
-from . import res_config
-from . import account
-from . import account_fix
-from . import account_tax_fix
-from . import account_financial_report
-from . import partner
-from . import wizard
+{
+    'name': 'Multilingual General Accounts',
+    'version': '0.1',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'website': 'http://www.noviat.com',
+    'category': 'Localization/Account Charts',
+    'summary': 'Multilingual General Accounts',
+    'depends': [
+        'account',
+    ],
+}

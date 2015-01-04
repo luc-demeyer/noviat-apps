@@ -70,13 +70,13 @@ class wizard_multi_charts_accounts(models.TransientModel):
             res = self.env.user.company_id.id
         return res
 
-    company_id = fields.Many2one(default = _default_company)
+    company_id = fields.Many2one(default=_default_company)
 
     def default_get(self, cr, uid, fields, context=None):
         if not context:
-            context={}
+            context = {}
         res = super(wizard_multi_charts_accounts, self).default_get(
-                cr, uid, fields, context)
+            cr, uid, fields, context)
         if res.get('chart_template_id'):
             chart_template = self.pool['account.chart.template'].browse(
                 cr, uid, res['chart_template_id'], context=context)
@@ -407,4 +407,3 @@ class wizard_multi_charts_accounts(models.TransientModel):
             }
 
         return res
-
