@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_account_config" model="ir.ui.view">
+      <field name="name">account settings</field>
+      <field name="model">account.config.settings</field>
+      <field name="inherit_id" ref="account.view_account_config_settings"/>
+      <field name="arch" type="xml">
+        <xpath expr="//separator[@string='Chart of Accounts']" position="after">
+          <group>
+            <label for="id" string="Features"/>
+            <div>
+              <field name="module_l10n_account_translate" class="oe_inline"/>
+              <label for="module_l10n_account_translate"/>
+            </div>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

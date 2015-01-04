@@ -150,10 +150,10 @@ class l10n_be_vat_declaration(orm.TransientModel):
         quarter = str(((int(starting_month) - 1) / 3) + 1)
 
         if not address_id.email:
-            raise (_('Data Insufficient!'),
+            raise orm.except_orm(_('Data Insufficient!'),
                 _('No email address associated with the company.'))
         if not address_id.phone:
-            raise (_('Data Insufficient!'),
+            raise orm.except_orm(_('Data Insufficient!'),
                 _('No phone associated with the company.'))
         xml_dict = {
             'issued_by': issued_by,
@@ -187,7 +187,7 @@ class l10n_be_vat_declaration(orm.TransientModel):
         for item in tax_info:
             if tax_info['91'][1] and ending_month != 12:
                 #the tax code 91 can only be send for the declaration of December
-                raise (_('Incorrect Data!'),
+                raise orm.except_orm(_('Incorrect Data!'),
                     _('Tax Case 91 is only allowed for the declaration of December.'))
             if tax_info[item][1] and item in list_of_tags:
                 cases_list.append(item)

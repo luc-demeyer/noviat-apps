@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+# noqa: skip pep8 since code infra is correction of standard account module
+# flake8: noqa
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,10 +22,25 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp.osv import orm
+
+
+class account_tax_code(orm.Model):
+    """
+    add 'unique (code,company_id)' constraint
+    cf. https://github.com/odoo/odoo/pull/4513
+    """
+    _inherit = 'account.tax.code'
+    _sql_constraints = [
+        ('code_company_uniq', 'unique (code,company_id)',
+         'The code of the Tax Case must be unique per company !')
+    ]
 
 
 class account_tax(orm.Model):
+    """
+    refine tax constraint
+    """
     _inherit = 'account.tax'
 
     def init(self, cr):
@@ -47,11 +64,3 @@ class account_tax(orm.Model):
             DROP INDEX IF EXISTS account_tax_name_code_unique;
             CREATE UNIQUE INDEX account_tax_name_code_unique ON account_tax (name, description, company_id) WHERE parent_id IS NULL;
         """)
-
-    def copy(self, cr, uid, id, default={}, context=None, done_list=[], local=False):
-        tax = self.browse(cr, uid, id, context=context)
-        if not default:
-            default = {}
-        default = default.copy()
-        default['description'] = (tax['description'] or '') + '(copy)'
-        return super(account_tax, self).copy(cr, uid, id, default, context=context)

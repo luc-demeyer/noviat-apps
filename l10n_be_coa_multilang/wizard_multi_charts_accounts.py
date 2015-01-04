@@ -20,103 +20,203 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class wizard_multi_charts_accounts(orm.TransientModel):
+class wizard_multi_charts_accounts(models.TransientModel):
     """
     Change wizard that creates a new account chart for a company.
         * update company_id country to Belgium
         * load nl & fr languages
         * Replace creation of financial accounts by copy from template.
-          This change results in adherence to Belgian MAR numbering scheme for cash accounts.
+          This change results in adherence to Belgian MAR numbering scheme
+          for cash accounts.
     """
     _inherit = 'wizard.multi.charts.accounts'
 
-    def onchange_chart_template_id(self, cr, uid, ids, chart_template_id=False, context=None):
-        res = super(wizard_multi_charts_accounts, self).onchange_chart_template_id(cr, uid, ids, chart_template_id, context=context)
+    load_nl_BE = fields.Boolean('Load Dutch (nl_BE) Translation')
+    load_fr_BE = fields.Boolean('Load French (fr_BE) Translation')
+    load_nl_NL = fields.Boolean('Load Dutch (nl_NL) Translation')
+    load_fr_FR = fields.Boolean('Load French (fr_FR) Translation')
+    multilang_be = fields.Boolean('Multilingual Belgian CoA')
+    multilang_coa = fields.Boolean(
+        'Multilingual Chart of Accounts',
+        help="If checked, the General Account will become "
+             "a multilingual field. \n"
+             "THis behaviour can be changed afterwards via "
+             "Settings -> Configuration -> Accounting")
+
+    @api.model
+    def _coa_lang(self):
+        res = self._context.get('lang')
+        res = res and res[:2]
+        return res in ['fr', 'nl'] and res or 'en'
+
+    coa_lang = fields.Selection(
+        [('en', 'English'),
+         ('fr', 'French'),
+         ('nl', 'Dutch')],
+        string='Chart of Accounts Language',
+        default=_coa_lang,
+        help="Select the language of the Chart Of Accounts")
+
+    @api.model
+    def _default_company(self):
+        res = self._context.get('company_id')
+        if not res:
+            res = self.env.user.company_id.id
+        return res
+
+    company_id = fields.Many2one(default = _default_company)
+
+    def default_get(self, cr, uid, fields, context=None):
+        if not context:
+            context={}
+        res = super(wizard_multi_charts_accounts, self).default_get(
+                cr, uid, fields, context)
+        if res.get('chart_template_id'):
+            chart_template = self.pool['account.chart.template'].browse(
+                cr, uid, res['chart_template_id'], context=context)
+            res['multilang_be'] = chart_template.multilang_be
+        if 'company_id' in context:
+            res['company_id'] = context['company_id']
+        return res
+
+    def onchange_chart_template_id(self, cr, uid, ids,
+                                   chart_template_id=False, context=None):
+        res = super(
+            wizard_multi_charts_accounts, self).onchange_chart_template_id(
+                cr, uid, ids, chart_template_id, context=context)
         obj_chart_template = self.pool.get('account.chart.template')
         res_update = {}
         if chart_template_id:
-            chart_template = obj_chart_template.browse(cr, uid, chart_template_id, context=context)
+            chart_template = obj_chart_template.browse(
+                cr, uid, chart_template_id, context=context)
             multilang_be = chart_template.multilang_be
             res_update['multilang_be'] = multilang_be
         res['value'].update(res_update)
         return res
 
-    def copy_xlat(self, cr, uid, langs, in_obj, in_field, in_ids, out_obj, out_ids):
-        # create ir.translation entries based upon 1-1 relationship between in_ and out_ params
-        xlat_obj = self.pool.get('ir.translation')
-        error = False
+    def onchange_lang(self, cr, uid, ids,
+                      load_nl_BE, load_fr_BE, load_nl_NL, load_fr_FR):
+        res = {}
+        value = {}
+        if load_nl_BE or load_fr_BE:
+            if load_nl_NL:
+                value['load_nl_NL'] = False
+            if load_fr_FR:
+                value['load_fr_FR'] = False
+        elif load_nl_NL or load_fr_FR:
+            if load_nl_BE:
+                value['load_nl_BE'] = False
+            if load_fr_BE:
+                value['load_fr_BE'] = False
+        if load_nl_BE or load_nl_NL:
+            value['coa_lang'] = 'nl'
+        elif load_fr_BE or load_fr_FR:
+            value['coa_lang'] = 'fr'
+        if value:
+            res['value'] = value
+        return res
+
+    def copy_xlat(self, langs, in_field, in_recs, out_recs):
+        # create ir.translation entries based upon
+        # 1-1 relationship between in_ and out_ params
+        cr = in_recs._cr
+        in_ids = [x.id for x in in_recs]
+        out_ids = [x.id for x in out_recs]
         if len(in_ids) != len(out_ids):
-            _logger.error('generate translations from template for %s failed (error 1)!', out_obj._name)
-            error = True
-        else:
-            cr.execute("SELECT id, " + in_field + " FROM " + in_obj._table + " WHERE id IN %s ORDER BY id", (tuple(in_ids),))
-            sources = cr.fetchall()
-            for lang in langs:
-                cr.execute("SELECT res_id, src, value FROM ir_translation "
-                           "WHERE name=%s AND type='model' AND lang=%s AND res_id IN %s "
-                           "ORDER by res_id",
-                           (in_obj._name + ',' + in_field, lang, tuple(in_ids)))
-                xlats = cr.fetchall()
-                if len(xlats) != len(filter(lambda x: x[1], sources)):
-                    _logger.warn('generate translations from template for %s failed (template translations incomplete, lang = %s)!', out_obj._name, lang)
-                else:
-                    xi = 0
-                    for i in range(len(out_ids)):
-                        if sources[i][1]:
-                            src = xlats[xi][1]
-                            value = xlats[xi][2]
-                            xi += 1
-                            out_record = out_obj.browse(cr, uid, out_ids[i], context={'lang': 'en_US'})
-                            if getattr(out_record, in_field) != src:
-                                _logger.error("generate translations from template %s (id:%s) failed (error 3)!"
-                                    "\n%s,%s = '%s' i.s.o. '%s'.",
-                                    in_obj._name, xlats[xi][0], out_record, in_field, getattr(out_record, in_field), src)
-                                error = True
-                            else:
-                                xlat_obj.create(cr, uid, {
-                                      'name': out_obj._name + ',' + in_field,
-                                      'type': 'model',
-                                      'res_id': out_record.id,
-                                      'lang': lang,
-                                      'src': src,
-                                      'value': value,
-                                })
-        if error:
-            raise orm.except_orm(_('Warning!'),
-                 _('The generation of translations from the template for %s failed!'
-                   '\nPlease report this issue via your OpenERP support channel.' % out_obj._name))
+            _logger.error(
+                "generate translations from template "
+                "for %s failed (error 1)!", out_recs._name)
+            raise Warning(
+                _("The generation of translations from the template "
+                  "for %s failed!"
+                  "\nPlease report this issue via your Odoo support channel.")
+                % out_recs._name)
+        cr.execute(
+            "SELECT id, " + in_field + " FROM " + in_recs._table +
+            " WHERE id IN %s ORDER BY id", (tuple(in_ids),))
+        sources = cr.fetchall()
+        cr.execute(
+            "SELECT id, " + in_field + " FROM " + out_recs._table +
+            " WHERE id IN %s ORDER BY id", (tuple(out_ids),))
+        sources_checks = cr.fetchall()
+        for lang in langs:
+            cr.execute(
+                "SELECT res_id, src, value FROM ir_translation "
+                "WHERE name=%s AND type='model' "
+                "AND lang=%s AND res_id IN %s "
+                "AND module=%s "
+                "ORDER by res_id",
+                (in_recs._name + ',' + in_field, lang, tuple(in_ids),
+                 'l10n_be_coa_multilang'))
+            xlats = cr.fetchall()
+            if len(xlats) != len(filter(lambda x: x[1], sources)):
+                _logger.warn(
+                    "generate translations from template for %s failed "
+                    "(template translations incomplete, lang = %s)!",
+                    out_recs._name, lang)
+            else:
+                xi = 0
+                for i, check in enumerate(sources_checks):
+                    if sources[i][1]:
+                        src = xlats[xi][1]
+                        value = xlats[xi][2]
+                        xi += 1
+                        if check[1] != src:
+                            _logger.error(
+                                "generate translations from template "
+                                "%s (id:%s) failed (error 3)!"
+                                "\n%s,%s = '%s' i.s.o. '%s'.",
+                                in_recs._name, xlats[xi][0], out_recs._name,
+                                in_field, check, src)
+                            raise Warning(
+                                _("The generation of translations "
+                                  "from the template for %s failed!"
+                                  "\nPlease report this issue via your "
+                                  "Odoo support channel.")
+                                % out_recs._name)
+                        in_recs.env['ir.translation'].create(
+                            {'name': out_recs._name + ',' + in_field,
+                             'type': 'model',
+                             'res_id': out_recs[i].id,
+                             'lang': lang,
+                             'src': src,
+                             'value': value,
+                             'module': 'l10n_be_coa_multilang',
+                             'state': 'translated'})
 
     def execute(self, cr, uid, ids, context=None):
-        # update company country (required for auto-configuration of the legal financial reportscheme)
-        obj_multi = self.browse(cr, uid, ids[0], context=context)
-        company_id = obj_multi.company_id.id
-        be_country_id = self.pool.get('res.country').search(cr, uid, [('code', '=', 'BE')])[0]
-        self.pool.get('res.company').write(cr, uid, company_id, {'country_id': be_country_id})
-        ctx = context.copy()
-        ctx['lang'] = 'en_US'
-        res = super(wizard_multi_charts_accounts, self).execute(cr, uid, ids, context=ctx)
+        if not context:
+            context = {}
+        if context.get('next_action') == 'account.action_wizard_multi_chart':
+            del context['next_action']
+            del context['company_id']
+        env = api.Environment(cr, uid, context)
+        wiz = self.browse(cr, uid, ids[0])
+        res = super(wizard_multi_charts_accounts, self).execute(
+            cr, uid, ids, context={})
+        if not wiz.multilang_be:
+            return res
 
-        obj_mod = self.pool.get('ir.module.module')
-        obj_lang = self.pool.get('res.lang')
-        obj_acc_template = self.pool.get('account.account.template')
-        obj_acc = self.pool.get('account.account')
-        obj_tax_code_template = self.pool.get('account.tax.code.template')
-        obj_tax_code = self.pool.get('account.tax.code')
-        obj_tax_template = self.pool.get('account.tax.template')
-        obj_tax = self.pool.get('account.tax')
-        obj_fiscal_position_template = self.pool.get('account.fiscal.position.template')
-        obj_fiscal_position = self.pool.get('account.fiscal.position')
-        obj_data = self.pool.get('ir.model.data')
-        obj_sequence = self.pool.get('ir.sequence')
-        analytic_journal_obj = self.pool.get('account.analytic.journal')
+        if wiz.multilang_coa:
+            to_install = env['ir.module.module'].search(
+                [('name', '=', 'l10n_account_translate')])[0]
+            if to_install.state != 'installed':
+                self.pool['ir.module.module'].button_immediate_install(
+                    cr, uid, [to_install.id],
+                    context=context)
 
-        chart_template = obj_multi.chart_template_id
+        # Update company country, this is required for auto-configuration
+        # of the legal financial reportscheme.
+        belgium = env['res.country'].search([('code', '=', 'BE')])[0]
+        wiz.company_id.write({'country_id': belgium.id})
+
+        chart_template = wiz.chart_template_id
         chart_template_root = chart_template
 
         chart_templates = [chart_template]
@@ -126,140 +226,185 @@ class wizard_multi_charts_accounts(orm.TransientModel):
             chart_template_root = parent_chart
             parent_chart = parent_chart.parent_id
 
-        # load languages and copy translations
-        langs = (obj_multi.load_nl_BE and ['nl_BE'] or []) + (obj_multi.load_fr_BE and ['fr_BE'] or []) + \
-            (obj_multi.load_nl_NL and ['nl_NL'] or []) + (obj_multi.load_fr_FR and ['fr_FR'] or [])
-        if langs and obj_multi.multilang_be:
-            installed_mids = obj_mod.search(cr, uid, [('state', '=', 'installed')])
+        # load languages
+        langs = (wiz.load_nl_BE and ['nl_BE'] or []) + \
+            (wiz.load_fr_BE and ['fr_BE'] or []) + \
+            (wiz.load_nl_NL and ['nl_NL'] or []) + \
+            (wiz.load_fr_FR and ['fr_FR'] or [])
+
+        if langs:
+            installed_modules = env['ir.module.module'].search(
+                [('state', '=', 'installed')])
             for lang in langs:
-                lang_ids = obj_lang.search(cr, uid, [('code', '=', lang)])
-                if not lang_ids:
-                    obj_mod.update_translations(cr, uid, installed_mids, lang)
+                lang_recs = env['res.lang'].search([('code', '=', lang)])
+                if not lang_recs:
+                    self.pool['ir.module.module'].update_translations(
+                        cr, uid, [x.id for x in installed_modules], lang,
+                        context=context)
 
-            # copy account.account translations
+        # find all installed en/fr/nl languages
+        cr.execute(
+            "SELECT code from res_lang "
+            "WHERE code like 'en_%' "
+            "OR code like 'fr_%' "
+            "OR code like 'nl_%'")
+        langs = cr.fetchall()
+        langs = [x[0] for x in langs]
+
+        # copy account.account translations
+        in_field = 'name'
+        acc_root = env['account.account'].search(
+            [('company_id', '=', wiz.company_id.id),
+             ('parent_id', '=', None)])[0]
+        account_tmpls = env['account.account.template']
+        for template in chart_templates:
+            children_acc_criteria = [('chart_template_id', '=', template.id)]
+            if template.account_root_id.id:
+                children_acc_criteria = ['|'] + children_acc_criteria + \
+                    ['&', ('parent_id', 'child_of',
+                           [template.account_root_id.id]),
+                     ('chart_template_id', '=', False)]
+            account_tmpls += account_tmpls.search(
+                [('nocreate', '!=', True)] +
+                children_acc_criteria, order='id')
+        account_tmpls = account_tmpls[1:]
+        accounts = acc_root.search(
+            [('id', 'child_of', [acc_root.id])], order='id')[1:]
+        # remove accounts created outside the template copy process
+        # (e.g. bank accounts)
+        diff = len(accounts) - len(account_tmpls)
+        if diff:
+            accounts = accounts[:-diff]
+        # Perform basic sanity check on in/out pairs to protect against
+        # changes in the process that generates accounts from templates
+        for i, tmpl in enumerate(account_tmpls):
+            if tmpl.code != accounts[i].code:
+                raise Warning(
+                    _("The generation of translations from the template "
+                      "for %s failed! \nPlease report this issue via "
+                      "your Odoo support channel.")
+                    % accounts._name)
+        if not wiz.multilang_coa:
+            lang = False
+            if wiz.coa_lang == 'en':
+                cr.execute(
+                    "SELECT code from res_lang "
+                    "WHERE code like 'en_%' LIMIT 1")
+                lang = cr.fetchone()
+                lang = lang and lang[0]
+            elif wiz.coa_lang == 'nl':
+                lang = (wiz.load_nl_BE and 'nl_BE') or \
+                    (wiz.load_nl_NL and 'nl_NL')
+                if not lang:
+                    cr.execute(
+                        "SELECT code from res_lang "
+                        "WHERE code like 'nl_%' LIMIT 1")
+                    lang = cr.fetchone()
+                    lang = lang and lang[0]
+            elif wiz.coa_lang == 'fr':
+                lang = (wiz.load_fr_BE and 'fr_BE') or \
+                    (wiz.load_fr_FR and 'fr_FR')
+                if not lang:
+                    cr.execute(
+                        "SELECT code from res_lang "
+                        "WHERE code like 'fr_%' LIMIT 1")
+                    lang = cr.fetchone()
+                    lang = lang and lang[0]
+            if not lang:
+                raise Warning(
+                    _("The setup of the Accounts has failed since language "
+                      "'%s' is not installed on your database.")
+                    % wiz.coa_lang)
+            account_tmpls = account_tmpls.with_context(lang=lang)
+            for i, account in enumerate(accounts):
+                account.name = account_tmpls[i].name
+        else:
+            self.copy_xlat(langs, in_field, account_tmpls, accounts)
+
+        # copy account.tax.code translations
+        in_field = 'name'
+        tax_code_template_root = \
+            chart_template_root.tax_code_root_id
+        tax_code_root = env['account.tax.code'].with_context({}).search(
+            [('company_id', '=', wiz.company_id.id),
+             ('parent_id', '=', None)])[0]
+        tax_code_tmpls = tax_code_template_root.search(
+            [('id', 'child_of', [tax_code_template_root.id])],
+            order='id')[1:]
+        tax_codes = tax_code_root.search(
+            [('id', 'child_of', [tax_code_root.id])], order='id')[1:]
+        # Perform basic sanity check on in/out pairs to protect against
+        # changes in the process that generates tax codes from templates
+        for i, tmpl in enumerate(tax_code_tmpls):
+            if tmpl.name != tax_codes[i].name:
+                raise Warning(_(
+                    "The generation of translations from the template "
+                    "for %s failed! \nPlease report this issue via "
+                    "your Odoo support channel.")
+                    % tax_codes._name)
+        self.copy_xlat(langs, in_field, tax_code_tmpls, tax_codes)
+
+        # copy account.tax translations
+        # skip xlats from templates in case tax rates (and hence naming)
+        # can be modified via setup wizard
+        if wiz.complete_tax_set:
             in_field = 'name'
-            acc_root_id = obj_acc.search(cr, uid, [('company_id', '=', company_id), ('parent_id', '=', None)])[0]
-            in_ids = []
+            tax_tmpls = env['account.tax.template'].with_context({})
             for template in chart_templates:
-                children_acc_criteria = [('chart_template_id', '=', template.id)]
-                if template.account_root_id.id:
-                    children_acc_criteria = ['|'] + children_acc_criteria + \
-                        ['&', ('parent_id', 'child_of', [template.account_root_id.id]), ('chart_template_id', '=', False)]
-                in_ids += obj_acc_template.search(cr, uid, [('nocreate', '!=', True)] + children_acc_criteria, order='id')
-            if in_ids:
-                in_ids.pop(0)
-                out_ids = obj_acc.search(cr, uid, [('id', 'child_of', [acc_root_id])], order='id')[1:]
-                # remove accounts created outside the template copy process (e.g. bank accounts)
-                if len(in_ids) != len(out_ids):
-                    diff = len(out_ids) - len(in_ids)
-                    out_ids = out_ids[:-diff]
-                # Perform basic sanity check on in/out pairs to protect against changes in the
-                # process that generates accounts from templates
-                for i in range(len(in_ids)):
-                    in_acc = obj_acc_template.browse(cr, uid, in_ids[i])
-                    out_acc = obj_acc.browse(cr, uid, out_ids[i])
-                    if in_acc.code[0] != out_acc.code[0]:
-                        raise orm.except_orm(_('Warning!'),
-                             _('The generation of translations from the template for %s failed!'
-                               '\nPlease report this issue via your OpenERP support channel.' % obj_acc._name))
-                self.copy_xlat(cr, uid, langs, obj_acc_template, in_field, in_ids, obj_acc, out_ids)
-                acc_template_ids = in_ids   # cf. infra : creation of bank accounts
+                tax_tmpls += tax_tmpls.search(
+                    [('chart_template_id', '=', template.id)], order='id'
+                    )
+            taxes = env['account.tax'].with_context({}).search(
+                [('company_id', '=', wiz.company_id.id)], order='id'
+                )
+            # Perform basic sanity check on in/out pairs to protect against
+            # changes in the process that generates tax objects from templates
+            for i, tmpl in enumerate(tax_tmpls):
+                if tmpl.name != taxes[i].name:
+                    raise Warning(_(
+                        "The generation of translations from the template "
+                        "for %s failed! \nPlease report this issue via "
+                        "your Odoo support channel.")
+                        % taxes._name)
+            self.copy_xlat(langs, in_field, tax_tmpls, taxes)
 
-            # copy account.tax.code translations
-            in_field = 'name'
-            tax_code_template_root_id = chart_template_root.tax_code_root_id.id
-            tax_code_root_id = obj_tax_code.search(cr, uid, [('company_id', '=', company_id), ('parent_id', '=', None)])[0]
-            in_ids = obj_tax_code_template.search(cr, uid, [('id', 'child_of', [tax_code_template_root_id])], order='id')[1:]
-            if in_ids:
-                out_ids = obj_tax_code.search(cr, uid, [('id', 'child_of', [tax_code_root_id])], order='id')[1:]
-                # Perform basic sanity check on in/out pairs to protect against changes in the
-                # process that generates tax codes from templates
-                for i in range(len(in_ids)):
-                    in_tax_code = obj_tax_code_template.browse(cr, uid, in_ids[i])
-                    out_tax_code = obj_tax_code.browse(cr, uid, out_ids[i])
-                    if in_tax_code.name[0] != out_tax_code.name[0]:
-                        raise orm.except_orm(_('Warning!'),
-                             _('The generation of translations from the template for %s failed!'    \
-                               '\nPlease report this issue via your OpenERP support channel.' % obj_tax_code._name))
-                self.copy_xlat(cr, uid, langs, obj_tax_code_template, in_field, in_ids, obj_tax_code, out_ids)
+        # copy account.fiscal.position translations and note field
+        fpos_tmpls = env['account.fiscal.position.template'].with_context({})
+        for template in chart_templates:
+            fpos_tmpls += fpos_tmpls.search(
+                [('chart_template_id', '=', template.id)], order='id'
+                )
+        fpos = env['account.fiscal.position'].with_context({}).search(
+            [('company_id', '=', wiz.company_id.id)], order='id'
+            )
+        # Perform basic sanity check on in/out pairs to protect against
+        # changes in the process that generates tax objects from templates
+        for i, tmpl in enumerate(fpos_tmpls):
+            if tmpl.name != fpos[i].name:
+                raise Warning(_(
+                    "The generation of translations from the template "
+                    "for %s failed! \nPlease report this issue via "
+                    "your Odoo support channel.")
+                    % fpos._name)
+        for i, tmpl in enumerate(fpos_tmpls):
+            if tmpl.note:
+                fpos[i].note = tmpl.note
+        in_fields = ['name', 'note']
+        for in_field in in_fields:
+            self.copy_xlat(langs, in_field, fpos_tmpls, fpos)
 
-            # copy account.tax translations
-            if obj_multi.complete_tax_set:  # skip xlats from templates in case tax rates (and hence naming) can be modified via setup wizard
-                in_field = 'name'
-                in_ids = []
-                for template in chart_templates:
-                    in_ids += sorted([x.id for x in template.tax_template_ids])
-                if in_ids:
-                    out_ids = obj_tax.search(cr, uid, [('company_id', '=', company_id)], order='id')
-                    # Perform basic sanity check on in/out pairs to protect against changes in the
-                    # process that generates tax objects from templates
-                    for i in range(len(in_ids)):
-                        in_tax = obj_tax_template.browse(cr, uid, in_ids[i])
-                        out_tax = obj_tax.browse(cr, uid, out_ids[i])
-                        if in_tax.name[0] != out_tax.name[0]:
-                            raise orm.except_orm(_('Warning!'),
-                                 _('The generation of translations from the template for %s failed!'
-                                   '\nPlease report this issue via your OpenERP support channel.' % obj_tax._name))
-                    self.copy_xlat(cr, uid, langs, obj_tax_template, in_field, in_ids, obj_tax, out_ids)
+        # update the entries in the BNB/NBB legal report scheme
+        note = env['l10n_be.update_be_reportscheme']._update_be_reportscheme()
+        if note:
+            raise Warning(note)
 
-            # copy account.fiscal.position note field
-            in_ids = []
-            for template in chart_templates:
-                in_ids += obj_fiscal_position_template.search(cr, uid, [('chart_template_id', '=', template.id)], order='id')
-            if in_ids:
-                out_ids = obj_fiscal_position.search(cr, uid, [('company_id', '=', company_id)], order='id')
-                # Perform basic sanity check on in/out pairs to protect against changes in the
-                # process that generates fiscal positions from templates
-                for i in range(len(in_ids)):
-                    in_fp = obj_fiscal_position_template.browse(cr, uid, in_ids[i])
-                    out_fp = obj_fiscal_position.browse(cr, uid, out_ids[i])
-                    if in_fp.name[0] != out_fp.name[0]:
-                        raise orm.except_orm(_('Warning!'),
-                             _('The generation of translations from the template for %s failed!'
-                               '\nPlease report this issue via your OpenERP support channel.' % obj_fiscal_position._name))
-                for i in range(len(in_ids)):
-                    fp_note = obj_fiscal_position_template.read(cr, uid, in_ids[i], ['note'])
-                    fp_note = fp_note['note']
-                    if fp_note:
-                        obj_fiscal_position.write(cr, uid, out_ids[i], {'note': fp_note})
-                # copy account.fiscal.position translations
-                in_fields = ['name', 'note']
-                for in_field in in_fields:
-                    self.copy_xlat(cr, uid, langs, obj_fiscal_position_template, in_field, in_ids, obj_fiscal_position, out_ids)
+        if not res:
+            menu = env.ref('base.menu_administration')
+            res = {
+                'type': 'ir.actions.client',
+                'tag': 'reload',
+                'params': {'menu_id': menu.id}
+            }
 
         return res
 
-    def _get_load_BE(self, cr, uid, context=None):
-        if context and context.get('lang'):
-            if context['lang'] in ['nl_NL', 'fr_FR']:
-                return False
-        return True
-
-    def _get_load_noBE(self, cr, uid, context=None):
-        if context and context.get('lang'):
-            if context['lang'] in ['nl_NL', 'fr_FR']:
-                return True
-        return False
-
-    _columns = {
-        'load_nl_BE': fields.boolean('Load Dutch (nl_BE) Translation'),
-        'load_fr_BE': fields.boolean('Load French (fr_BE) Translation'),
-        'load_nl_NL': fields.boolean('Load Dutch (nl_NL) Translation'),
-        'load_fr_FR': fields.boolean('Load French (fr_FR) Translation'),
-        'multilang_be': fields.boolean('Multilang Belgian CoA'),
-    }
-    _defaults = {
-        'load_nl_BE': _get_load_BE,
-        'load_fr_BE': _get_load_BE,
-        'load_nl_NL': _get_load_noBE,
-        'load_fr_FR': _get_load_noBE,
-        'multilang_be': False,
-    }
-
-    def default_get(self, cr, uid, fields, context=None):
-        res = super(wizard_multi_charts_accounts, self).default_get(cr, uid, fields, context=context)
-        if res.get('chart_template_id'):
-            chart_template = self.pool.get('account.chart.template').browse(cr, uid, res['chart_template_id'], context=context)
-            res['multilang_be'] = chart_template.multilang_be
-            res['only_one_chart_template'] = True  # Currently only one Chart available
-        return res

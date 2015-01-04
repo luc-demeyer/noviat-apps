@@ -5,12 +5,19 @@
       <p class="oe_mt32">
         This module activates the following functionality:
         <ul>
-          <li>multilanguage support (en/nl/fr) for Chart of Accounts, Taxes and Tax Codes</li>
-          <li>multilingual accounting templates</li>
-          <li>update partner titles for commonly used legal entities</li>
-          <li>add constraint to ensure unique Tax Code per Company</li>
-          <li>support for the NBB/BNB legal Balance and P&L reportscheme including autoconfiguration of the correct financial report entry when creating/changing a general account</li>
-          <li>the setup wizard allows to select which languages to install and copies the CoA, Tax, Tax Code and Fiscal Position translations from the installation templates</li>
+          <li>Multilanguage support (en/nl/fr) for Chart of Accounts, Taxes and Tax Codes</li>
+          <li>Multilingual accounting templates</li>
+          <li>Update partner titles for commonly used legal entities</li>
+          <li>Support for the NBB/BNB legal Balance and P&L reportscheme including autoconfiguration of the correct financial report entry when creating/changing a general account</li>
+          <li>
+          The setup wizard
+          </li>
+            <ul>
+              <li>allows to select mono- versus multilingual Chart of Accounts</li>
+              <li>allows to select which languages to install</li>
+              <li>copies the CoA, Tax, Tax Code and Fiscal Position translations from the installation templates</li>
+            </ul>
+          </li>
           <li>
           Intervat XML VAT declarations
             <ul>
@@ -19,6 +26,15 @@
               <li>Annual Listing of VAT-Subjected Customers</li>
             </ul>
           </li>
+          <li>
+          Standard accounting module enhancements
+          </li>
+            <ul>
+              <li>Allow 'Deferral Method' = 'Balance' on Accounts Payable and Receivable (AP/AR) accounts</li>
+              <li>Add constraint to ensure unique Tax Code per Company</li>
+              <li>Replace Tax Object (account.tax) unique on (name, company_id) constraint by unique on (name, description, company_id)</li>
+              <li>Improved multi-company support via 'active' and 'company_id' fields on 'account.account.type'</li>
+            </ul>
         </ul>
       </p>
     </div>

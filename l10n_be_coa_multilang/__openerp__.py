@@ -22,45 +22,12 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '1.1',
+    'version': '1.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Localization/Account Charts',
     'summary': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'description': """
-Multilanguage alternative for the 'l10n_be' belgian accounting module.
-======================================================================
-
-This module activates the following functionality:
-
-    * Multilanguage support (en/nl/fr) for Chart of Accounts, Taxes
-      and Tax Codes.
-    * Multilingual accounting templates.
-    * Update partner titles for commonly used legal entities.
-    * Add constraint to ensure unique Tax Code per Company.
-    * Support for the NBB/BNB legal Balance and P&L reportscheme including
-      autoconfiguration of the correct financial report entry when
-      creating/changing a general account
-    * The setup wizard allows to select which languages to install and
-      copies the CoA, Tax, Tax Code and Fiscal Position translations from the
-      installation templates.
-    * Intervat XML VAT declarations
-        - Periodical VAT Declaration
-        - Periodical Intracom Declaration
-        - Annual Listing of VAT-Subjected Customers
-
-This module has a different approach for the population of the
-Chart of Accounts (CoA).
-The l10n_be module comes with a fully populated CoA whereas this module
-will only create the CoA Classes, Groups and a strict minimum set of
-general accounts.
-In order to have a fully populated CoA, you have to import the customer's
-CoA after the installation of this module.
-As an alternative, you can first install the l10n_be module to get a
-fully populated CoA and afterwards uninstall l10n_be and install this module.
-
-    """,
     'depends': [
         'account_cancel',
         'base_vat',
@@ -72,6 +39,7 @@ fully populated CoA and afterwards uninstall l10n_be and install this module.
         'security/account_security.xml',
         'security/ir.model.access.csv',
         'account_view.xml',
+        'res_config_view.xml',
         'account_menuitem.xml',
         'account_account_type_nov.xml',
         'account_account_template_nov.xml',
@@ -87,7 +55,6 @@ fully populated CoA and afterwards uninstall l10n_be and install this module.
         'be_legal_financial_reportscheme.xml',
         'account_financial_report_view.xml',
         'update_be_reportscheme.xml',
-        # l10n_be wizards
         'wizard/reports.xml',
         'wizard/l10n_be_vat_declaration_view.xml',
         'wizard/l10n_be_vat_intra_view.xml',
