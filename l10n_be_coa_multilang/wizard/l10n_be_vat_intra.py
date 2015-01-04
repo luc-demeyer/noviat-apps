@@ -232,7 +232,6 @@ class partner_vat_intra(orm.TransientModel):
                 'vatnum': record['vat'],
                 'vat': record['vat'],
                 'country': record['vat'][:2],
-                'amount': amt,
                 'amount': '%.2f' % amt,  # used in xml
                 'amt': amt,  # used in pdf
                 'intra_code': record['intra_code'],
