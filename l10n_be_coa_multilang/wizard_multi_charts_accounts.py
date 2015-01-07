@@ -242,11 +242,10 @@ class wizard_multi_charts_accounts(models.TransientModel):
                         cr, uid, [x.id for x in installed_modules], lang,
                         context=context)
 
-        # find all installed en/fr/nl languages
+        # find all installed fr/nl languages
         cr.execute(
             "SELECT code from res_lang "
-            "WHERE code like 'en_%' "
-            "OR code like 'fr_%' "
+            "WHERE code like 'fr_%' "
             "OR code like 'nl_%'")
         langs = cr.fetchall()
         langs = [x[0] for x in langs]
