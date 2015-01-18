@@ -1,0 +1,201 @@
+# Dutch translation of Odoo 8.0.
+# This file contains the translation of the following modules:
+#    * l10n_be_invoice_layout
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2015-01-18 11:34:04.875000\n"
+"PO-Revision-Date: 2015-01-18 11:34:04.875000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: l10n_be_invoice_layout
+#: code:addons/l10n_be_invoice_layout/report/report_be_invoice.py:1
+msgid "Attn."
+msgstr "T.a.v."
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "VAT"
+msgstr "BTW"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "VAT:"
+msgstr "BTW:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Invoice"
+msgstr "Factuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "PRO-FORMA"
+msgstr "PRO-FORMA"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Draft Invoice"
+msgstr "Concept factuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Cancelled Invoice"
+msgstr "Geannuleerde factuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Supplier Invoice"
+msgstr "Inkoopfactuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Refund"
+msgstr "Credit nota"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Supplier Refund"
+msgstr "Credit inkoopfactuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Subject:"
+msgstr "Onderwerp:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Invoice Date:"
+msgstr "Factuurdatum:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Source:"
+msgstr "Brondocument:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Customer Code:"
+msgstr "Klantnummer:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Supplier Code:"
+msgstr "Nummer leverancier:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Customer VAT nr:"
+msgstr "BTW nr klant"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Supplier VAT nr:"
+msgstr "BTW nr leverancier:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Qty"
+msgstr "Aantal"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Unit Price"
+msgstr "Tarief"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Disc. (%)"
+msgstr "Korting (%)"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "VAT (%)"
+msgstr "BTW (%)"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Price"
+msgstr "Prijs"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Net Total"
+msgstr "Totaal excl."
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Total VAT"
+msgstr "Totaal BTW"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Total Payable"
+msgstr "Te Betalen"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Base VAT"
+msgstr "Maatstaf BTW"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "VAT Amount"
+msgstr "Bedrag BTW"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Total"
+msgstr "Totaal"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Invoice Due Date"
+msgstr "Vervaldatum factuur"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Payable with"
+msgstr "Te betalen met"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "as Payment Reference."
+msgstr "als referentie."
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_document
+msgid "Paid via"
+msgstr "Voldaan via"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_layout_footer
+msgid "Phone:"
+msgstr "Tel:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_layout_footer
+msgid "Fax:"
+msgstr "Fax:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_layout_footer
+msgid "Email:"
+msgstr "Email:"
+
+#. module: l10n_be_invoice_layout
+#: view:website:l10n_be_invoice_layout.report_be_invoice_layout_footer
+msgid "Web:"
+msgstr "Web:"
+

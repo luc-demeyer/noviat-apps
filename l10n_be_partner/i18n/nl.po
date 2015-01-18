@@ -1,0 +1,116 @@
+# Dutch translation of Odoo 8.0.
+# This file contains the translation of the following modules:
+#    * l10n_be_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2015-01-16 11:30:51.934000\n"
+"PO-Revision-Date: 2015-01-16 11:30:51.934000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_nv_sa
+msgid "nv/sa"
+msgstr "nv"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_bvba_sprl
+msgid "bvba/sprl"
+msgstr "bvba"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_vzw_asbl
+msgid "vzw/asbl"
+msgstr "vzw"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_cvba_scrl
+msgid "cvba/scrl"
+msgstr "cvba"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_vof_scn
+msgid "vof/scn"
+msgstr "vof"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_bv
+msgid "bv"
+msgstr "bv"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_ag
+msgid "ag"
+msgstr "ag"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:l10n_be_partner.rptn_inc
+msgid "inc"
+msgstr "inc"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
+msgid "corp"
+msgstr "corp"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,name:base.res_partner_title_ltd
+msgid "ltd"
+msgstr "ltd"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "nv/sa"
+msgstr "nv"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "bvba/sprl"
+msgstr "bvba"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "vzw/asbl"
+msgstr "vzw"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "cvba/scrl"
+msgstr "cvba"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "vof/scn"
+msgstr "vof"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "bv"
+msgstr "bv"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "ag"
+msgstr "ag"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "inc"
+msgstr "inc"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "corp"
+msgstr "corp"
+
+#. module: l10n_be_partner
+#: model:res.partner.title,shortcut:0
+msgid "ltd"
+msgstr "ltd"
+

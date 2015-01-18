@@ -6,7 +6,6 @@ This module activates the following functionality:
     * Multilanguage support (en/nl/fr) for Chart of Accounts (CoA), Taxes
       and Tax Codes.
     * Multilingual accounting templates.
-    * Update partner titles for commonly used legal entities.
     * Support for the NBB/BNB legal Balance and P&L reportscheme including
       auto-configuration of the correct financial report entry when
       creating/changing a general account

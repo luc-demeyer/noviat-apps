@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2014-12-29 19:45:07.529000\n"
-"PO-Revision-Date: 2014-12-29 19:45:07.529000\n"
+"POT-Creation-Date: 2015-01-16 11:19:03.438000\n"
+"PO-Revision-Date: 2015-01-16 11:19:03.438000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -478,56 +478,6 @@ msgstr "Date"
 #: selection:nov.print.journal,sort:0
 msgid "Number"
 msgstr "Numéro"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_nv_sa
-msgid "nv/sa"
-msgstr "sa"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bvba_sprl
-msgid "bvba/sprl"
-msgstr "sprl"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vzw_asbl
-msgid "vzw/asbl"
-msgstr "asbl"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_cvba_scrl
-msgid "cvba/scrl"
-msgstr "scrl"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vof_scn
-msgid "vof/scn"
-msgstr "scn"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bv
-msgid "bv"
-msgstr "bv"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_ag
-msgid "ag"
-msgstr "ag"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_inc
-msgid "inc"
-msgstr "inc"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
-msgid "corp"
-msgstr "corp"
-
-#. module: l10n_be_coa_multilang
-#: model:res.partner.title,name:base.res_partner_title_ltd
-msgid "ltd"
-msgstr "ltd"
 
 #. module: l10n_be_coa_multilang
 #: model:account.account.type,name:l10n_be_coa_multilang.user_type_view

@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '1.3',
+    'version': '1.4',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -35,7 +35,6 @@
         'account_chart',
     ],
     'data': [
-        'belgium_base_data.xml',
         'security/account_security.xml',
         'security/ir.model.access.csv',
         'account_view.xml',

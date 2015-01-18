@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <!-- res.partner.title -->
+    <record id="rptn_nv_sa" model="res.partner.title">
+      <field name="name">nv/sa</field>
+      <field name="shortcut">nv/sa</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_bvba_sprl" model="res.partner.title">
+      <field name="name">bvba/sprl</field>
+      <field name="shortcut">bvba/sprl</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_vzw_asbl" model="res.partner.title">
+      <field name="name">vzw/asbl</field>
+      <field name="shortcut">vzw/asbl</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_cvba_scrl" model="res.partner.title">
+      <field name="name">cvba/scrl</field>
+      <field name="shortcut">cvba/scrl</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_vof_scn" model="res.partner.title">
+      <field name="name">vof/scn</field>
+      <field name="shortcut">vof/scn</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_bv" model="res.partner.title">
+      <field name="name">bv</field>
+      <field name="shortcut">bv</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_ag" model="res.partner.title">
+      <field name="name">ag</field>
+      <field name="shortcut">ag</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="rptn_inc" model="res.partner.title">
+      <field name="name">inc</field>
+      <field name="shortcut">inc</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="base.res_partner_title_pvt_ltd" model="res.partner.title">
+      <field name="name">corp</field>
+      <field name="shortcut">corp</field>
+      <field name="domain">partner</field>
+    </record>
+    <record id="base.res_partner_title_ltd" model="res.partner.title">
+      <field name="name">ltd</field>
+      <field name="shortcut">ltd</field>
+      <field name="domain">partner</field>
+    </record>
+
+  </data>
+</openerp>
