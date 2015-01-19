@@ -22,14 +22,13 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '1.4',
+    'version': '1.5',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Localization/Account Charts',
     'summary': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
     'depends': [
-        'account_cancel',
         'base_vat',
         'base_iban',
         'account_chart',
