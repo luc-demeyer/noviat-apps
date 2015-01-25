@@ -393,9 +393,22 @@ class wizard_multi_charts_accounts(models.TransientModel):
             self.copy_xlat(langs, in_field, fpos_tmpls, fpos)
 
         # update the entries in the BNB/NBB legal report scheme
-        note = env['l10n_be.update_be_reportscheme']._update_be_reportscheme()
+        upd_wiz = env['l10n_be.update_be_reportscheme']
+        note = upd_wiz._update_be_reportscheme()
         if note:
-            raise Warning(note)
+            wiz = upd_wiz.create({'note': note})
+            view = env.ref(
+                'l10n_be_coa_multilang.update_be_reportscheme_result_view')
+            return {
+                'name': _('Results'),
+                'res_id': wiz.id,
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'l10n_be.update_be_reportscheme',
+                'view_id': False,
+                'target': 'new',
+                'views': [(view.id, 'form')],
+                'type': 'ir.actions.act_window'}
 
         if not res:
             menu = env.ref('base.menu_administration')
