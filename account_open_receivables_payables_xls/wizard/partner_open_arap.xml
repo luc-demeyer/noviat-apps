@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_partner_open_arap_period" model="ir.ui.view">
+      <field name="name">Print Unpaid Payables/Receivables by Period</field>
+      <field name="model">wiz.partner.open.arap.period</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Open Receivables/Payables by Period">
+          <group col="4" colspan="4">
+            <field name="period_id"/>
+            <field name="target_move"/>
+            <field name="result_selection"/>
+            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+          </group>
+          <footer>
+            <button name="print_report" string="Print" type="object"/>
+            or
+            <button name="xls_export" string="Export" type="object" icon="gtk-execute" context="{'xls_export':1}" class="oe_highlight"/>
+            <button string="Cancel" class="oe_link" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_partner_open_arap_period" model="ir.actions.act_window">
+      <field name="name">Open Receivables/Payables by Period</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">wiz.partner.open.arap.period</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_partner_open_arap_period"/>
+      <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Open Receivables/Payables by Period"
+        parent="account.next_id_22"
+        action="action_partner_open_arap_period"
+        id="menu_partner_open_arap_period"
+        icon="STOCK_PRINT"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <report
+      id="balance_report"
+      model="bank.statement.balance.print"
+      string="Bank Statement Balances Report"
+      report_type="qweb-pdf"
+      name="account_bank_statement_advanced.report_statement_balances"
+      file="account_bank_statement_advanced.report_statement_balances"/>
+
+  </data>
+</openerp>

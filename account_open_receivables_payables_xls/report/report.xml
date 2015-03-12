@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <report
+        id="arap_report"
+        model="wiz.partner.open.arap.period"
+        string="Open Receivables/Payables by Period"
+        report_type="qweb-pdf"
+        name="account_open_receivables_payables_xls.report_open_arap"
+        file="account_open_receivables_payables_xls.report_open_arap"
+        menu="False"
+        />
+
+  </data>
+</openerp>

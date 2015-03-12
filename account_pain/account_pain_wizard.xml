@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <record id="account_pain_save_view" model="ir.ui.view">
+      <field name="name">ISO 20022 payment file</field>
+      <field name="model">account.pain.create</field>
+      <field name="priority">1</field>
+      <field name="arch" type="xml">
+        <form string="The ISO 20022 payment file has been created">
+          <p>Click on link below to download the XML File</p>
+          <p>
+            <b>
+              <field name="pain_data" readonly="1" filename="pain_fname"/>
+              <field name="pain_fname" invisible="1"/>
+            </b>
+          </p>
+          <separator colspan="4"/>
+          <field name="note" colspan="4" attrs="{'invisible':[('note','=',False)]}"/>
+          <separator colspan="4"/>
+        </form>
+      </field>
+    </record>
+    
+    <record id="action_account_pain_create" model="ir.actions.act_window">
+      <field name="name">The ISO 20022 payment file has been created</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.pain.create</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="account_pain_save_view"/>
+      <field name="target">new</field>
+    </record>
+
+  </data> 
+</openerp>

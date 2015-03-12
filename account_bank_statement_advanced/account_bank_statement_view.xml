@@ -1,0 +1,222 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <!-- Batch Payment Info form -->
+    <record id="view_statement_line_global_form" model="ir.ui.view">
+      <field name="name">statement.line.global.form</field>
+      <field name="model">account.bank.statement.line.global</field>
+      <field name="arch" type="xml">
+        <form string="Batch Payment Info">
+          <group col="4">
+            <field name="payment_reference"/>
+            <field name="amount"/>
+            <field name="code"/>
+            <field name="parent_id"/>
+            <field name="type"/>
+            <field name="name"/>
+          </group>
+          <notebook>
+            <page string="Transactions">
+              <field colspan="2" name="bank_statement_line_ids" nolabel="1"/>
+            </page>
+            <page string="Child Batch Payments">
+              <field colspan="2" name="child_ids" nolabel="1">
+                <tree string="Child Batch Payments">
+                  <field name="name"/>
+                  <field name="amount"/>
+                  <field name="code"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_bank_statement_form_advanced" model="ir.ui.view">
+      <field name="name">view.bank.statement.form.advanded</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="//sheet" position="attributes">
+            <attribute name="class">oe_form_sheet_full_screen</attribute>
+          </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
+            <attribute name="colors">blue:move_state!='posted';</attribute>
+            <attribute name="editable"/>
+          </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='date']" position="after">
+            <field name="val_date"/>
+          </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="after">
+            <field name="globalisation_id" string="Glob. Id" invisible="1"/>
+            <field name="reconcile_get"/>
+            <field name="move_get"/>
+            <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
+            <field name="state" invisible="1"/>
+            <field name="move_state" invisible="1"/>
+          </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="attributes">
+            <attribute name="invisible">1</attribute>
+          </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="after">
+            <form string="Statement Line" create="false" delete="false">
+              <header>
+                <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
+                <button name="action_cancel" attrs="{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}" string="Cancel" type="object" icon="gtk-cancel"/>
+              </header>
+              <group col="4" attrs="{'readonly':[('state','=','confirm')]}">
+                <field name="date"/>
+                <field name="val_date"/>
+                <field name="name"/>
+                <field name="ref"/>
+                <field name="partner_id"/>
+                <field name="bank_account_id"/>
+                <newline/>
+                <field name="amount"/>
+                <field name="globalisation_id" readonly="1"/>
+                <field name="state" invisible="1"/>
+                <field name="move_state" invisible="1"/>
+                <newline/>
+                <field name="reconcile_get"/>
+                <field name="move_get"/>
+                <field name="sequence" attrs="{'readonly':[('move_state', '!=', False)]}"/>
+              </group>
+              <separator string="Notes"/>
+              <field colspan="2" name="note" nolabel="1"/>
+            </form>
+          </xpath>
+        </data>
+      </field>
+    </record>
+
+    <record id="absa_bank_statement_cancel_form_inherit" model="ir.ui.view">
+      <field name="name">absa.bank.statement.cancel.form.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account_cancel.bank_statement_cancel_form_inherit"/>
+      <field name="arch" type="xml">
+        <button name="cancel" position="attributes">
+          <attribute name="name">action_cancel</attribute>
+          <attribute name="icon">gtk-cancel</attribute>
+          <attribute name="attrs">{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}</attribute>
+        </button>
+      </field>
+    </record>
+
+    <!-- Bank Statement Line View -->
+    <record id="view_bank_statement_line_list" model="ir.ui.view">
+      <field name="name">bank.statement.line.list</field>
+      <field name="model">account.bank.statement.line</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" string="Statement Lines" create="false" delete="false" colors="blue:move_state != 'posted';">
+          <field name="sequence" readonly="1" invisible="1"/>
+          <field name="journal_id" readonly="1" invisible="1"/>
+          <field name="journal_code" readonly="1"/>
+          <field name="date" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="val_date" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="name" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="statement_id" readonly="1"/>
+          <field name="ref" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="partner_id" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="amount" readonly="1" sum="Total Amount"/>
+          <field name="globalisation_id" string="Glob. Id" attrs="{'readonly':[('state','=','confirm')]}"/>
+          <field name="globalisation_amount" string="Glob. Am."/>
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
+          <button name="cancel" attrs="{'invisible': [('move_state', '=', False)]}" string="Cancel" type="object" icon="gtk-cancel"/>
+          <field name="state" invisible="1"/>
+          <field name="move_state" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_bank_statement_line_form" model="ir.ui.view">
+      <field name="name">bank.statement.line.form</field>
+      <field name="model">account.bank.statement.line</field>
+      <field name="priority">8</field>
+      <field name="arch" type="xml">
+        <form string="Statement Line" create="false" delete="false">
+          <header>
+            <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
+            <button name="cancel" attrs="{'invisible': [('move_state', '=', False)]}" string="Cancel" type="object" icon="gtk-cancel"/>
+          </header>
+          <sheet class="oe_form_sheet_full_screen">
+            <group col="4" attrs="{'readonly':[('state','=','confirm')]}">
+              <field name="statement_id" readonly="1"/>
+              <field name="journal_id" readonly="1" invisible="1"/>
+              <field name="journal_code" readonly="1"/>
+              <field name="date"/>
+              <field name="val_date"/>
+              <field name="name"/>
+              <field name="ref"/>
+              <field name="partner_id"/>
+              <field name="bank_account_id"/>
+              <field name="amount" readonly="1"/>
+              <field name="globalisation_id"/>
+              <field name="state" invisible="1"/>
+              <field name="move_state" invisible="1"/>
+              <newline/>
+              <field name="reconcile_get"/>
+              <field name="move_get"/>
+              <field name="sequence" attrs="{'readonly':[('move_state', '!=', False)]}"/>
+            </group>
+            <separator string="Notes"/>
+            <field colspan="2" name="note" nolabel="1"/>
+          </sheet>
+        </form>
+
+      </field>
+    </record>
+
+    <record id="view_bank_statement_line_filter" model="ir.ui.view">
+      <field name="name">bank.statement.line.filter</field>
+      <field name="model">account.bank.statement.line</field>
+      <field name="arch" type="xml">
+        <search string="Search Bank Transactions">
+          <field name="name" filter_domain="['|', ('name','ilike',self), ('ref','ilike',self)]" string="Bank Transaction"/>
+          <field name="val_date"/>
+          <filter name="debit" string="Debit" domain="[('amount','&gt;',0)]" icon="terp-folder-green" help="Debit Transactions."/>
+          <filter name="credit" string="Credit" domain="[('amount','&lt;',0)]" icon="terp-folder-orange" help="Credit Transactions."/>
+          <separator/>
+          <filter name="draft" string="Draft" domain="[('state','=','draft')]" icon="terp-document-new" help="Draft Statement Lines."/>
+          <filter name="confirm" string="Confirmed" domain="[('state','=','confirm')]" icon="terp-camera_test" help="Confirmed Statement Lines."/>
+          <field name="journal_id"/>
+          <field name="statement_id"/>
+          <separator/>
+          <field name="amount"/>
+          <field name="globalisation_id" string="Glob. Id"/>
+          <field name="globalisation_amount" string="Glob. Amount"/>
+          <group string="Extended Filters..." expand="0">
+            <field name="partner_id"/>
+            <field name="note"/>
+          </group>
+          <newline/>
+          <group string="Group By..." expand="1">
+            <filter string="Journal" context="{'group_by':'journal_id'}" icon="terp-folder-green"/>
+            <filter string="Statement" context="{'group_by':'statement_id'}" icon="terp-folder-orange"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_bank_statement_line" model="ir.actions.act_window">
+      <field name="name">Bank Statement Lines</field>
+      <field name="res_model">account.bank.statement.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'block_statement_line_delete' : 1}</field>
+      <field name="search_view_id" ref="view_bank_statement_line_filter"/>
+      <field name="view_id" ref="view_bank_statement_line_list"/>
+    </record>
+
+    <menuitem action="action_bank_statement_line"
+              id="bank_statement_line"
+              parent="account.menu_finance_bank_and_cash"
+              sequence="7"
+              groups="account.group_account_user"/>
+
+  </data>
+</openerp>

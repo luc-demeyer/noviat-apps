@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="view_move_from_bank_form" model="ir.ui.view">
+      <field name="name">account.move.from.bank.form</field>
+      <field name="model">account.move</field>
+      <field name="priority">24</field>
+      <field name="arch" type="xml">
+        <form string="Journal Entry">
+          <header>
+            <button name="button_validate" states="draft" string="Post" type="object" class="oe_highlight"/>
+            <button name="button_cancel" states="posted" string="Cancel Entry" type="object"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <separator string="Journal Entry"/>
+          <group col="6">
+            <group>
+              <field name="name" readonly="1"/>
+              <field name="journal_id" readonly="1"/>
+              <field name="company_id" required="1" groups="base.group_multi_company"/>
+            </group>
+            <group>
+              <field name="ref" readonly="1"/>
+              <field name="period_id"/>
+            </group>
+            <group>
+              <field name="to_check"/>
+              <field name="date" readonly="1"/>
+            </group>
+          </group>
+          <group colspan="4">
+            <label string="Journal Items" colspan="4"/>
+            <field name="line_id" widget="one2many_list" nolabel="1" context="{'line_id':line_id,'journal_id':journal_id}">
+              <tree string="Journal Items" editable="top">
+                <field name="ref"/>
+                <field name="date"/>
+                <field name="statement_id" readonly="1" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="account_id"/>
+                <field name="name"/>
+                <field name="debit"/>
+                <field name="credit"/>
+                <field name="analytic_account_id" domain="[('parent_id','!=',False)]" groups="analytic.group_analytic_accounting"/>
+                <field name="reconcile_id"/>
+                <field name="reconcile_partial_id"/>
+                <field name="tax_code_id"/>
+                <field name="tax_amount"/>
+                <field name="state"/>
+                <field name="amount_currency"/>
+                <field name="currency_id"/>
+              </tree>
+            </field>
+            <field name="narration" colspan="4" placeholder="Add an internal note..." nolabel="1" height="50"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>

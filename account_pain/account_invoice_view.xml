@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="supplier_invoice_form_inherit" model="ir.ui.view">
+      <field name="name">account.invoice.supplier.form.inherit</field>
+      <field name="model">account.invoice</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="//page[@string='Other Info']//field[@name='payment_term']" position="after">
+            <field name="supplier_direct_debit"/>
+          </xpath>
+        </data>
+      </field>
+    </record>
+
+  </data>
+</openerp>

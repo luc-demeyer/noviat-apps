@@ -1,0 +1,181 @@
+# Dutch translation of Odoo 8.0.
+# This file contains the translation of the following modules:
+#    * account_open_receivables_payables_xls
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2015-03-01 20:51:30.190000\n"
+"PO-Revision-Date: 2015-03-01 20:51:30.190000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_open_receivables_payables_xls
+#: model:ir.actions.act_window,name:account_open_receivables_payables_xls.action_partner_open_arap_period
+msgid "Open Receivables/Payables by Period"
+msgstr "Debiteuren/Crediteuren overzicht per periode"
+
+#. module: account_open_receivables_payables_xls
+#: model:ir.ui.menu,name:account_open_receivables_payables_xls.menu_partner_open_arap_period
+msgid "Open Receivables/Payables by Period"
+msgstr "Debiteuren/Crediteuren overzicht per periode"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Company Name"
+msgstr "Bedrijfsnaam"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Report"
+msgstr "Rapport"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Target Moves"
+msgstr "Welke boekingen"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Document"
+msgstr "Document"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Date"
+msgstr "Datum"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Due Date"
+msgstr "Vervaldatum"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Account"
+msgstr "Rekening"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Debit"
+msgstr "Debet"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Credit"
+msgstr "Credit"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: account_open_receivables_payables_xls
+#: view:website:account_open_receivables_payables_xls.report_open_arap
+msgid "Totals"
+msgstr "Totalen"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Company Name"
+msgstr "Bedrijfsnaam"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Report"
+msgstr "Rapport"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Target Moves"
+msgstr "Welke boekingen"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Document"
+msgstr "Document"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Due Date"
+msgstr "Vervaldatum"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Account"
+msgstr "Rekening"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Debit"
+msgstr "Debet"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Credit"
+msgstr "Credit"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Totals"
+msgstr "Totalen"
+
+#. module: account_open_receivables_payables_xls
+#: report:account.partner.open.arap:0
+msgid "Partner Reference"
+msgstr "Referentie partner"
+
+#. module: account_open_receivables_payables_xls
+#: code:addons/account_open_receivables_payables_xls/report/account_partner_open_arap.py:10
+msgid "Open Receivables"
+msgstr "Debiteuren"
+
+#. module: account_open_receivables_payables_xls
+#: code:addons/account_open_receivables_payables_xls/report/account_partner_open_arap.py:11
+msgid "Open Payables"
+msgstr "Crediteuren"
+
+#. module: account_open_receivables_payables_xls
+#: code:addons/account_open_receivables_payables_xls/report/account_partner_open_arap.py:11
+msgid "Fiscal Year"
+msgstr "Boekjaar"
+
+#. module: account_open_receivables_payables_xls
+#: code:addons/account_open_receivables_payables_xls/report/account_partner_open_arap.py:11
+msgid "Period"
+msgstr "Periode"
+
