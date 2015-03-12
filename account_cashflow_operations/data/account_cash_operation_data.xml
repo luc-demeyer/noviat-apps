@@ -1,0 +1,206 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+
+      <!-- Cash Operations Sequences (loan, placement) -->
+      <record model="ir.sequence.type" id="seq_type_straight_loan">
+        <field name="name">Straight Loan Demand</field>
+        <field name="code">account.straight.loan.demand</field>
+      </record>
+      <record model="ir.sequence" id="seq_straight_loan">
+        <field name="name">Straight Loan Demand</field>
+        <field name="code">account.straight.loan.demand</field>
+        <field eval="3" name="padding"/>
+        <field name="prefix">SL/%(y)s/</field>
+      </record>
+      
+      <record model="ir.sequence.type" id="seq_type_placement">
+        <field name="name">Cash Placement</field>
+        <field name="code">account.placement.demand</field>
+      </record>
+      <record model="ir.sequence" id="seq_placement">
+        <field name="name">Cash Placement</field>
+        <field name="code">account.placement.demand</field>
+        <field eval="3" name="padding"/>
+        <field name="prefix">PL/%(y)s/</field>
+      </record>
+
+      <!-- Cash Operations Reports (loan, placement) -->
+      <record id="ir_header_webkit_cash_operation_letter" model="ir.header_webkit">
+        <field name="name">Cash Operation Demand Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="format">A4</field>
+        <field eval="50.0" name="margin_top"/>
+        <field name="css" >
+          <![CDATA[
+body {
+font-family:helvetica;
+font-size:12;
+}
+
+.header {
+margin-left:0;
+text-align:left;
+width:300px;
+font-size:12;
+}
+
+.dest_address {
+margin-left:60%;
+font-size:12;
+}
+
+.subject {
+margin-left:0;
+text-align:left;
+font-size:12;
+}
+
+.table_noborder_left_12 {
+}
+.table_noborder_left_12 td {
+text-align:left;
+font-size:12;
+padding-right:3px;
+padding-left:3px;
+padding-top:3px;
+padding-bottom:3px;
+}
+
+.table_grey_left_12 {
+border-collapse:collapse;
+}
+.table_grey_left_12 td {
+border:1px solid lightGrey;
+text-align:left;
+font-size:12;
+padding-right:3px;
+padding-left:3px;
+padding-top:3px;
+padding-bottom:3px;
+}
+
+.basic_table{
+text-align:center;
+border:1px solid lightGrey;
+border-collapse: collapse;
+}
+.basic_table td {
+border:1px solid lightGrey;
+font-size:12;
+}
+
+.list_table {
+border-color:black;
+text-align:center;
+border-collapse: collapse;
+}
+.list_table td {
+border-color:gray;
+border-top:1px solid gray;
+text-align:left;
+font-size:12;
+padding-right:3px
+padding-left:3px
+padding-top:3px
+padding-bottom:3px
+}
+.list_table th {
+border-bottom:2px solid black;
+text-align:left;
+font-size:12;
+font-weight:bold;
+padding-right:3px
+padding-left:3px
+}
+.list_tabe thead {
+    display:table-header-group;
+}
+          ]]>
+        </field>
+        <field name="html">
+          <![CDATA[
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+        <table class="header" style="border-bottom: 0px solid black; width: 100%">
+            <tr>
+                <td>${company.logo and helper.embed_image('png',company.logo, width=210, height=70) or ''|n}</td>
+                <td style="text-align:right"> </td>
+            </tr>
+            <tr>
+                <td><br/></td>
+                <td style="text-align:right"> </td>
+            </tr>
+            <tr>
+                <td>${company.partner_id.name |entity}</td>
+                <td/>
+            </tr>
+            <tr>
+                <td>${company.partner_id.address and company.partner_id.address[0].street or ''|entity}</td>
+                <td/>
+            </tr>
+            <tr>
+                <td>${company.partner_id.address and company.partner_id.address[0].zip or ''|entity} ${company.partner_id.address and company.partner_id.address[0].city or ''|entity}</td>
+                <td/>
+            </tr>
+            <tr>
+                <td >${company.partner_id.address and company.partner_id.address[0].country_id.name or ''|entity}</td>
+                <td/>
+            </tr>
+        </table> ${_debug or ''|n} </body>
+</html>
+           ]]>
+        </field>
+        <field name="footer_html">
+          <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+      var vars = {};
+      var x = document.location.search.substring(1).split('&');
+      for (var i in x) { var z = x[i].split('=', 2); vars[z[0]] = unescape(z[1]); }
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+      for (var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+    </script>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+    <table style="border-top: 1px solid black; width: 100%">
+      <tr>
+        <td style="text-align:center;font-size:12;">
+          ${_("Commercial in Confidence")}&nbsp;&nbsp;-&nbsp;&nbsp;p. <span class="page">1</span> / <span class="topage">1</span>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+          ]]>
+        </field>
+      </record>
+      
+  </data>
+  </openerp>
+  

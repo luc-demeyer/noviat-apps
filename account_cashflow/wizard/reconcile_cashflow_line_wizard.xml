@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <record id="view_reconcile_cashflow_line_form" model="ir.ui.view">
+      <field name="name">reconcile.cashflow.line.form</field>
+      <field name="model">reconcile.cashflow.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Reconcile Cash Flow Lines">
+          <group colspan="4">
+            <field name="note" width="350" height="100" nolabel="1" attrs="{'invisible': [('state','=','draft')]}" colspan="4"/>
+          </group>
+          <separator colspan="4" />
+          <group colspan="4" col="6">
+            <label string="" colspan="2"/>
+            <button icon="terp-dialog-close" special="cancel" string="Close Window"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="action_reconcile_cashflow_line" model="ir.actions.act_window">
+      <field name="name">Reconcile Cash Flow Lines</field>
+      <field name="res_model">reconcile.cashflow.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_reconcile_cashflow_line_form"/>
+      <field name="context">{}</field>
+      <field name="help">Reconcile selected lines.</field>
+      <field name="target">new</field>
+    </record>
+    <record model="ir.values" id="action_reconcile_cashflow_line_values">
+      <field name="name">Reconcile Cash Flow Lines</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_reconcile_cashflow_line'))" />
+      <field name="model">account.cashflow.line.overview</field>
+    </record>
+
+  </data> 
+</openerp>

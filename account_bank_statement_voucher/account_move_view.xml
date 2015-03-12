@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="view_move_from_bank_form" model="ir.ui.view">
+      <field name="name">account.move.from.bank.form</field>
+      <field name="model">account.move</field>
+      <field name="type">form</field>
+      <field name="priority">24</field>    
+      <field name="arch" type="xml">
+        <form string="Journal Entry">
+          <group colspan="4" col="6">
+            <field name="name" readonly="True"/>
+            <field name="ref"/>
+            <field name="to_check" groups="base.group_extended"/>
+            <field name="journal_id"/>
+            <field name="period_id"/>
+            <field name="date"/>
+            <field name="company_id" required="1" groups="base.group_multi_company"/>
+          </group>
+          <notebook colspan="4">
+            <page string="Journal Items">
+              <field colspan="4" name="line_id" nolabel="1" height="250" widget="one2many_list" default_get="{'lines':line_id , 'journal':journal_id, 'period_id':period_id}">
+                <tree string="Journal Items" colors="blue:state in ('draft');black:state in ('posted')" editable="bottom">
+                  <field name="ref"/>
+                  <field name="date"/>
+                  <field name="statement_id"/>
+                  <field name="partner_id"/>
+                  <field name="account_id"/>
+                  <field name="name"/>
+                  <field name="debit"/>
+                  <field name="credit"/>
+                  <field name="analytic_account_id" domain="[('parent_id','!=',False)]" groups="analytic.group_analytic_accounting"/>
+                  <field name="reconcile_id"/>
+                  <field name="reconcile_partial_id"/>
+                  <field name="tax_code_id" on_change="onchange_tax_code(tax_code_id,debit,credit)"/>
+                  <field name="tax_amount"/>
+                  <field name="state"/>
+                  <field name="amount_currency"/>
+                  <field name="currency_id"/>
+                </tree>
+              </field>
+              <separator colspan="4" string="Narration"/>
+              <field name="narration" colspan="4" nolabel="1" height="50"/>
+              <group col="6" colspan="4">
+                <field name="state" select="1"/>
+                <button name="button_cancel" states="posted" string="Cancel" type="object" icon="gtk-cancel"/>
+                <button name="button_validate" states="draft" string="Approve" type="object" icon="terp-camera_test"/>
+                <button name="button_dummy" states="draft" string="Save" type="object" icon="gtk-save"/>
+                <button special="cancel" string="Close Window" icon="terp-dialog-close" type="object"/>
+              </group>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+    
+  </data>
+</openerp>

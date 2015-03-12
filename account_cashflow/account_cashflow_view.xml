@@ -1,0 +1,639 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <!-- Cash Flow Management -->
+
+    <menuitem name="Cash Flow Management" parent="account.menu_finance_bank_and_cash" id="menu_account_cashflow" groups="base.group_extended" sequence="50"/>
+
+    <!-- Cash Flow Management Configuration -->
+    
+    <menuitem id="menu_manage_cashflow" name="Cash Flow Management Configuration" parent="account.menu_finance_accounting" sequence="40"/>
+       
+    <!-- Cash Flow Codes -->
+    
+    <record id="view_account_cashflow_code_search" model="ir.ui.view">
+      <field name="name">account.cashflow.code.search</field>
+      <field name="model">account.cashflow.code</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Cash Flow Codes">
+          <filter string="Active" icon="terp-camera_test" domain="[('active','=',True)]" name="active"/>
+          <filter string="Inactive" icon="terp-gdu-smart-failing" domain="[('active','=',False)]"/>
+          <separator orientation="vertical"/>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="parent_id"/>
+          <field name="type"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </search>
+      </field>
+    </record>
+    
+    <record id="view_account_cashflow_code_list" model="ir.ui.view">
+      <field name="name">account.cashflow.code.list</field>
+      <field name="model">account.cashflow.code</field>
+      <field name="type">tree</field>
+      <field name="priority" eval="1"/>
+      <field name="arch" type="xml">
+        <tree string="Cash Flow Codes" colors="blue:type=='view';darkgreen:type=='init';black:type=='normal';magenta:type=='provision'">
+          <field name="code"/>
+          <field name="name"/>
+          <field name="parent_sign"/>
+          <field name="type"/>
+          <field name="sequence" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_code_form" model="ir.ui.view">
+      <field name="name">account.cashflow.code.form</field>
+      <field name="model">account.cashflow.code</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Codes">
+          <field name="name"/>
+          <field name="code"/>
+          <field name="type"/>
+          <field name="sequence"/>
+          <newline/>
+          <field name="parent_id" attrs="{'required':[('type','in',['normal','provision'])]}" on_change="onchange_parent_id(parent_id)"/>
+          <field name="parent_sign"/>
+          <field name="active"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </form>
+      </field>
+    </record>
+    
+    <record id="action_account_cashflow_code_list" model="ir.actions.act_window">
+      <field name="name">Cash Flow Codes</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.cashflow.code</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('type', '!=', 'provision')]</field>
+      <field name="context">{'search_default_active': 1, 'manage_cfc': 1}</field>
+      <field name="view_id" ref="view_account_cashflow_code_list"/>
+      <field name="search_view_id" ref="view_account_cashflow_code_search"/>
+    </record>
+    
+    <menuitem action="action_account_cashflow_code_list" id="menu_account_cashflow_code_list" parent="menu_manage_cashflow"  sequence="1"/>
+
+    <!-- Cash Flow Code Rules Engine -->
+
+    <record id="view_account_cashflow_rule_search" model="ir.ui.view">
+      <field name="name">account.cashflow.rule.search</field>
+      <field name="model">account.cashflow.rule</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Cash Flow Code Assignment Rules">
+          <group>
+            <field name="cashflow_code_id"/>
+            <field name="name"/>
+            <field name="journal_id"/>
+            <field name="account_id"/>
+            <field name="partner_id"/>
+            <field name="sign"/>
+            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="Cash Flow Code" icon="terp-folder-yellow" context="{'group_by':'cashflow_code_id'}" help="Cash Flow Code"/>
+            <filter string="Journal" icon="terp-folder-orange"  context="{'group_by':'journal_id'}" help="Journal" />
+            <filter string="Account" icon="terp-folder-blue"  context="{'group_by':'account_id'}" help="Account"/>
+            <filter string="Sign" icon="terp-folder-green"  context="{'group_by':'sign'}" help="Movement Sign"/>
+            <filter string="Partner" icon="terp-partner"  context="{'group_by':'partner_id'}" help="Partner"/>
+            <separator orientation="vertical"/>
+            <filter string="Company" icon="terp-go-home"  context="{'group_by':'company_id'}"  help="Comapny" groups="base.group_multi_company" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_rule_list" model="ir.ui.view">
+      <field name="name">account.cashflow.rule.list</field>
+      <field name="model">account.cashflow.rule</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Cash Flow Code Assignment Rules">
+          <field name="sequence" invisible="1"/>
+          <field name="name"/>
+          <field name="cashflow_code_id"/>
+          <field name="journal_id"/>
+          <field name="account_id"/>
+          <field name="partner_id"/>
+          <field name="sign"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_rule_form" model="ir.ui.view">
+      <field name="name">account.cashflow.rule.form</field>
+      <field name="model">account.cashflow.rule</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Code Assignment Rules">
+          <field name="name"/>
+          <field name="cashflow_code_id" required="1" domain="[('type','=', 'normal')]"/>
+          <field name="sequence"/>
+          <field name="active"/>
+          <separator string="Conditions" colspan="4"/>
+          <field name="journal_id"/>
+          <field name="account_id"/>
+          <field name="partner_id"/>
+          <field name="sign"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_account_cashflow_rule_list" model="ir.actions.act_window">
+      <field name="name">Cash Flow Code Assignment Rules</field>
+      <field name="res_model">account.cashflow.rule</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_account_cashflow_rule_search"/>
+    </record>
+
+    <menuitem action="action_account_cashflow_rule_list" id="menu_account_cashflow_rule_list" parent="menu_manage_cashflow"  sequence="2"/>
+
+    <!-- Cash Flow Line View -->
+
+    <record id="view_account_cashflow_line_list" model="ir.ui.view">
+      <field name="name">account.cashflow.line.list</field>
+      <field name="model">account.cashflow.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" string="Cash Flow Transaction Lines">
+          <field name="sequence" readonly="1" invisible="1"/>
+          <field name="journal_id" readonly="1"/>
+          <field name="cashflow_code_id"/>
+          <field name="date" readonly="1" groups="base.group_extended"/>
+          <field name="val_date" readonly="1"/>
+          <field name="name"/>
+          <field name="statement_id" readonly="1"/>
+          <field name="ref" readonly="1"/>
+          <field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
+          <field name="type" on_change="onchange_type(partner_id, type)"/>
+          <field name="account_id"/>
+          <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>
+          <field name="amount" readonly="1" sum="Total Amount"/>
+          <field name="globalisation_id" string="Glob. Id"/>
+          <field name="globalisation_amount" string="Glob. Am."/>
+          <field name="state"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_line_graph" model="ir.ui.view">
+      <field name="name">account.cashflow.line.graph</field>
+      <field name="model">account.cashflow.line</field>
+      <field name="type">graph</field>
+      <field name="arch" type="xml">
+        <graph string="Cash Flow Overview" type="bar" orientation="horizontal">
+          <field name="cashflow_code_id"/>
+          <field name="amount" operator="+"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_line_form" model="ir.ui.view">
+      <field name="name">account.cashflow.line.form</field>
+      <field name="model">account.cashflow.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Transaction Line">
+          <field name="statement_id"/>
+          <field name="journal_id"/>
+          <field name="date"/>
+          <field name="val_date"/>
+          <field name="name"/>
+          <field name="ref" readonly="0"/>
+          <field name="partner_id" on_change="onchange_partner_id(partner_id)"/>
+          <field name="type" on_change="onchange_type(partner_id, type)"/>
+          <field name="account_id" domain="[('type', '!=', 'view'),('journal_id', '=', journal_id)]"/>
+          <field name="cashflow_code_id"/>
+          <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('company_id', '=', parent.company_id), ('type', '&lt;&gt;', 'view')]"/>
+          <field name="amount"/>
+          <field name="globalisation_id"/>
+          <field name="sequence" readonly="0"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+          <field name="state"/>
+          <separator colspan="4" string="Notes"/>
+          <field colspan="4" name="note" nolabel="1"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_line_filter" model="ir.ui.view">
+      <field name="name">account.cashflow.line.filter</field>
+      <field name="model">account.cashflow.line</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Cash Flow Transactions">
+          <group col='6' colspan='4'>
+            <filter name="debit" string="Debit" domain="[('amount','&gt;',0)]" icon="terp-folder-green" help="Debit Transactions."/>
+            <filter name="credit" string="Credit" domain="[('amount','&lt;',0)]" icon="terp-folder-orange" help="Credit Transactions."/>
+            <separator orientation="vertical"/>
+            <filter name="draft" string="Draft" domain="[('state','=','draft')]" icon="terp-document-new" help="Draft Statement Lines"/>
+            <filter name="confirm" string="Confirmed" domain="[('state','=','confirm')]" icon="terp-camera_test" help="Posted Journal Items"/>
+            <separator orientation="vertical"/>
+            <field name="statement_id"/>
+            <field name="cashflow_code_id" domain="[('type', '=', 'normal')]"/>
+            <field name="val_date"/>
+            <field name="amount"/>
+            <field name="globalisation_id" string="Glob. Id"/>
+            <field name="globalisation_amount" string="Glob. Amount"/>
+            <field name="name"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Extended Filters...">
+            <field name="journal_id"/>
+            <field name="account_id"/>
+            <field name="partner_id"/>
+            <field name="update_date"/>
+            <field name="update_by"/>
+            <field name="ref"/>
+            <field name="note"/>
+            <field name="state"/>
+          </group>
+          <newline/>
+          <group string="Group By..." expand="0">
+            <filter string="Cash Flow Code" context="{'group_by':'cashflow_code_id'}" icon="terp-folder-blue"/>
+            <separator orientation="vertical"/>
+            <filter string="Journal" context="{'group_by':'journal_id'}" icon="terp-folder-green"/>
+            <filter string="Statement" context="{'group_by':'statement_id'}" icon="terp-folder-orange"/>
+            <filter string="Fin.Account" context="{'group_by':'account_id'}" icon="terp-folder-yellow"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_account_cashflow_line" model="ir.actions.act_window">
+      <field name="name">Cash Flow Transaction Lines</field>
+      <field name="res_model">account.cashflow.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,graph,form</field>
+      <field name="context">{'cashflow_code_name_get': 'code', 'block_statement_line_delete' : 1}</field>
+      <field name="search_view_id" ref="view_account_cashflow_line_filter"/>
+      <field name="view_id" ref="view_account_cashflow_line_list"/>
+    </record>
+
+    <menuitem action="action_account_cashflow_line" id="account_cashflow_line" parent="menu_account_cashflow" sequence="20"/>
+
+    <!-- Cash Flow Provision Line View -->
+
+    <record id="view_cashflow_provision_line_list" model="ir.ui.view">
+      <field name="name">account.cashflow.provision.line.list</field>
+      <field name="model">account.cashflow.provision.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree editable="bottom" string="Cash Flow Provision Lines">
+          <field name="description"/>
+          <field name="journal_id" required="1"/>
+          <field name="cashflow_code_id"/>
+          <field name="date" readonly="1" groups="base.group_extended"/>
+          <field name="val_date"/>
+          <field name="name"/>
+          <field name="payment_reference"/>
+          <field name="partner_id"/>
+          <field name="type"/>
+          <field name="account_id" domain="[('journal_id','=',journal_id)]"/>
+          <field name="amount" sum="Total Amount"/>
+          <field name="state"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_cashflow_provision_line_form" model="ir.ui.view">
+      <field name="name">account.cashflow.provision.line.form</field>
+      <field name="model">account.cashflow.provision.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Provision Lines">
+          <field name="description"/>
+          <field name="cashflow_code_id"/>
+          <newline/>
+          <field name="date"/>
+          <field name="state"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+          <separator string="Cash Flow Line reconciliation process - Provision Line Lookup Fields" colspan="4" col="4"/>
+          <field name="journal_id" required="1"/>
+          <field name="val_date"/>
+          <field name="amount"/>
+          <field name="partner_id"/>
+          <field name="name"/>
+          <field name="payment_reference"/>
+          <separator string="Cash Flow Line reconciliation process - Resulting Cash Flow Line values" colspan="4" col="4"/>
+          <field name="type"/>
+          <field domain="[('type', '!=', 'view'),('journal_id', '=', journal_id)]" name="account_id"/>
+          <notebook colspan="4">
+            <page string="Notes">
+              <field name="origin"/>
+              <separator colspan="4" string="Notes"/>
+              <field colspan="4" name="note" nolabel="1"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_cashflow_provision_line_filter" model="ir.ui.view">
+      <field name="name">account.cashflow.provision.line.filter</field>
+      <field name="model">account.cashflow.provision.line</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Cash Flow Provisions">
+          <group col='6' colspan='4'>
+            <filter name="debit" string="Debit" domain="[('amount','&gt;',0)]" icon="terp-folder-green" help="Debit Transactions."/>
+            <filter name="credit" string="Credit" domain="[('amount','&lt;',0)]" icon="terp-folder-orange" help="Credit Transactions."/>
+            <separator orientation="vertical"/>
+            <filter name="draft" string="Draft" domain="[('state','=','draft')]" icon="terp-document-new" help="Draft Statement Lines"/>
+            <filter name="confirm" string="Confirmed" domain="[('state','=','confirm')]" icon="terp-camera_test" help="Posted Journal Items"/>
+            <separator orientation="vertical"/>
+            <field name="description"/>
+            <field name="cashflow_code_id" domain="[('type', '=', 'normal')]"/>
+            <field name="val_date"/>
+            <field name="amount"/>
+            <field name="payment_reference"/>
+            <field name="name"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Extended Filters...">
+            <field name="journal_id"/>
+            <field name="account_id"/>
+            <field name="partner_id"/>
+            <field name="update_date"/>
+            <field name="update_by"/>
+            <field name="note"/>
+            <field name="state"/>
+          </group>
+          <newline/>
+          <group string="Group By..." expand="0">
+            <filter string="Cash Flow Code" context="{'group_by':'cashflow_code_id'}" icon="terp-folder-blue"/>
+            <separator orientation="vertical"/>
+            <filter string="Journal" context="{'group_by':'journal_id'}" icon="terp-folder-green"/>
+            <filter string="Statement" context="{'group_by':'statement_id'}" icon="terp-folder-orange"/>
+            <filter string="Fin.Account" context="{'group_by':'account_id'}" icon="terp-folder-yellow"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_cashflow_provision_line" model="ir.actions.act_window">
+      <field name="name">Cash Flow Provision Lines</field>
+      <field name="res_model">account.cashflow.provision.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,graph,form</field>
+      <field name="context">{'cashflow_code_name_get': 'code'}</field>
+      <field name="search_view_id" ref="view_cashflow_provision_line_filter"/>
+      <field name="view_id" ref="view_cashflow_provision_line_list"/>
+    </record>
+
+    <menuitem action="action_cashflow_provision_line" id="cashflow_provision_line" parent="menu_account_cashflow" sequence="20"/>
+
+    <!-- Cash Flow All Lines View -->
+
+    <record id="view_cashflow_line_overview_list" model="ir.ui.view">
+      <field name="name">account.cashflow.line.overview.list</field>
+      <field name="model">account.cashflow.line.overview</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree editable="top" string="Cash Flow All Lines" colors="magenta:cashflow_type=='provision'">
+          <field name="journal_id"/>
+          <field name="cashflow_code_id"/>
+          <field name="cashflow_type"/>
+          <field name="val_date"/>
+          <field name="name"/>
+          <field name="payment_reference"/>
+          <field name="partner_id"/>
+          <field name="type"/>
+          <field name="account_id"/>
+          <field name="amount" sum="Total Amount"/>
+          <field name="globalisation_id" string="Glob. Id"/>
+          <field name="globalisation_amount" string="Glob. Am."/>
+          <field name="state"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_cashflow_line_overview_form" model="ir.ui.view">
+      <field name="name">account.cashflow.line.overview.form</field>
+      <field name="model">account.cashflow.line.overview</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow All Lines">
+          <field name="journal_id"/>
+          <field name="date"/>
+          <field name="val_date"/>
+          <field name="name"/>
+          <field name="payment_reference"/>
+          <field name="partner_id"/>
+          <field name="type"/>
+          <field name="account_id"/>
+          <field name="cashflow_code_id"/>
+          <field name="cashflow_type"/>
+          <field name="amount"/>
+          <field name="globalisation_id"/>
+          <field name="update_date"/>
+          <field name="update_by"/>
+          <field name="state"/>
+          <separator colspan="4" string="Notes"/>
+          <field colspan="4" name="note" nolabel="1"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_cashflow_line_overview_filter" model="ir.ui.view">
+      <field name="name">account.cashflow.line.overview.filter</field>
+      <field name="model">account.cashflow.line.overview</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Cash Flow Lines">
+          <group col='6' colspan='4'>
+            <filter name="debit" string="Debit" domain="[('amount','&gt;',0)]" icon="terp-folder-green" help="Debit Transactions."/>
+            <filter name="credit" string="Credit" domain="[('amount','&lt;',0)]" icon="terp-folder-orange" help="Credit Transactions."/>
+            <separator orientation="vertical"/>
+            <filter name="draft" string="Draft" domain="[('state','=','draft')]" icon="terp-document-new" help="Draft Statement Lines"/>
+            <filter name="confirm" string="Confirmed" domain="[('state','=','confirm')]" icon="terp-camera_test" help="Posted Journal Items"/>
+            <separator orientation="vertical"/>
+            <field name="cashflow_code_id"/>
+            <field name="cashflow_type"/>
+            <field name="val_date"/>
+            <field name="amount"/>
+            <field name="globalisation_id" string="Glob. Id"/>
+            <field name="globalisation_amount" string="Glob. Amount"/>
+            <field name="name"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Extended Filters...">
+            <field name="journal_id"/>
+            <field name="account_id"/>
+            <field name="partner_id"/>
+            <field name="update_date"/>
+            <field name="update_by"/>
+            <field name="payment_reference"/>
+            <field name="note"/>
+            <field name="state"/>
+          </group>
+          <newline/>
+          <group string="Group By..." expand="0">
+            <filter string="Cash Flow Code" context="{'group_by':'cashflow_code_id'}" icon="terp-folder-blue"/>
+            <separator orientation="vertical"/>
+            <filter string="Journal" context="{'group_by':'journal_id'}" icon="terp-folder-green"/>
+            <filter string="Statement" context="{'group_by':'statement_id'}" icon="terp-folder-orange"/>
+            <filter string="Fin.Account" context="{'group_by':'account_id'}" icon="terp-folder-yellow"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_cashflow_line_overview_list" model="ir.actions.act_window">
+      <field name="name">Cash Flow All Lines</field>
+      <field name="res_model">account.cashflow.line.overview</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,graph,form</field>
+      <field name="context">{'cashflow_code_name_get': 'code', 'block_cashflow_line_delete' : 1}</field>
+      <field name="search_view_id" ref="view_cashflow_line_overview_filter"/>
+      <field name="view_id" ref="view_cashflow_line_overview_list"/>
+    </record>
+    
+    <menuitem action="action_cashflow_line_overview_list" id="menu_cashflow_line_overview_list" parent="menu_account_cashflow" sequence="20"/>
+    
+    <!-- Cash Flow Opening Balances -->
+
+    <record id="view_account_cashflow_opening_balance_search" model="ir.ui.view">
+      <field name="name">account.cashflow.opening.balance.search</field>
+      <field name="model">account.cashflow.opening.balance</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Cash Flow Opening Balances">
+          <field name="date"/>
+          <field name="journal_id"/>
+          <field name="balance"/>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="Valuta Date" icon="terp-folder-orange"  context="{'group_by':'date'}" help="Valuta Date" />
+            <filter string="Journal" icon="terp-folder-yellow" context="{'group_by':'journal_id'}" help="Journal"/>
+          </group>
+        </search>
+      </field>
+    </record>
+    
+    <record id="view_account_cashflow_opening_balance_list" model="ir.ui.view">
+      <field name="name">account.cashflow.opening.balance.list</field>
+      <field name="model">account.cashflow.opening.balance</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Cash Flow Opening Balances" colors="blue:balance&gt;=0.0;red:balance&lt;0.0">
+          <field name="date"/>
+          <field name="journal_id"/>
+          <field name="balance"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_opening_balance_form" model="ir.ui.view">
+      <field name="name">account.cashflow.opening.balance.form</field>
+      <field name="model">account.cashflow.opening.balance</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Opening Balance">
+          <field name="date"/>
+          <field name="balance"/>
+          <field name="journal_id"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_account_cashflow_opening_balance_list" model="ir.actions.act_window">
+      <field name="name">Cash Flow Opening Balances</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.cashflow.opening.balance</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_account_cashflow_opening_balance_list"/>
+      <field name="search_view_id" ref="view_account_cashflow_opening_balance_search"/>
+      <field name="help">The most recent opening balance will be used to calculate the daily initial balance as follows : opening balance plus sum of daily cash flow movements.</field>
+    </record>
+
+    <menuitem action="action_account_cashflow_opening_balance_list" id="menu_account_cashflow_opening_balance_list" parent="menu_account_cashflow"  sequence="30"/>
+
+    <!-- Cash Flow Code Balances -->
+
+    <record id="view_account_cashflow_balance_search" model="ir.ui.view">
+      <field name="name">account.cashflow.balance.search</field>
+      <field name="model">account.cashflow.balance</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Cash Flow Balances">
+          <field name="date"/>
+          <field name="journal_id"/>
+          <field name="cashflow_code_id"/>
+          <field name="balance"/>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="Valuta Date" icon="terp-folder-orange"  context="{'group_by':'date'}" help="Valuta Date" />
+            <filter string="Cash Flow Code" icon="terp-folder-yellow" context="{'group_by':'cashflow_code_id'}" help="Cash Flow Code"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_account_cashflow_balance_list" model="ir.ui.view">
+      <field name="name">account.cashflow.balance.list</field>
+      <field name="model">account.cashflow.balance</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Cash Flow Code Balances" colors="black:cfc_type=='normal';magenta:cfc_type=='provision'">
+          <field name="date"/>
+          <field name="journal_id"/>
+          <field name="cashflow_code_id"/>
+          <field name="cfc_type"/>
+          <field name="balance" sum="Total"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record id="view_account_cashflow_balance_form" model="ir.ui.view">
+      <field name="name">account.cashflow.balance.form</field>
+      <field name="model">account.cashflow.balance</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Code Balances">
+          <field name="date"/>
+          <field name="balance"/>
+          <field name="cashflow_code_id"/>
+          <field name="cfc_type"/>
+          <field name="journal_id"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_account_cashflow_balance_list" model="ir.actions.act_window">
+      <field name="name">Cash Flow Code Balances</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.cashflow.balance</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_account_cashflow_balance_list"/>
+      <field name="search_view_id" ref="view_account_cashflow_balance_search"/>
+    </record>
+
+    <menuitem action="action_account_cashflow_balance_list" id="menu_account_cashflow_balance_list" parent="menu_account_cashflow"  sequence="40"/>
+
+  </data>
+</openerp>

@@ -5,6 +5,7 @@
     <record id="view_payment_line_search" model="ir.ui.view">
       <field name="name">payment.line.tree.search</field>
       <field name="model">payment.line</field>
+      <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Search Payment Lines">
           <group>
@@ -50,10 +51,12 @@
       <field name="view_id" ref="account_payment.view_create_payment_order"/>
     </record>
 
+    <!-- change compared to view in account payment : 'name'-field replaced by 'invoice'-field -->
     <record model="ir.ui.view" id="view_move_line_tree_account_pain">
       <field name="name">account.pain.move.line.tree</field>
       <field name="model">account.move.line</field>
-      <field name="priority" eval="2"/>
+      <field name="type">tree</field>
+      <field name="priority" eval="1"/>
       <field name="arch" type="xml">
         <tree string="Account Entry Line">
           <field name="partner_id"/>
@@ -79,17 +82,17 @@
       <field name="inherit_id" ref="account_payment.view_payment_order_form"/>
       <field name="arch" type="xml">
         <data>
-          <xpath expr="//field[@name='line_ids']//page[@string='Payment']//field[@name='state']" position="after">
+          <xpath expr="/form/field/form/notebook/page/field[@name='state']" position="after">
             <group colspan="4" attrs="{'invisible':[('state','=','normal')]}">
               <field name="struct_comm_type" attrs="{'required':[('state','=','structured')]}"/>
             </group>
           </xpath>
-          <button name="cancel" position="after">
+          <xpath expr="/form/group/button[@name='cancel']" position="after">
             <button name="button_undo_payment" states="done" string="Undo Payment" type="object" groups="account.group_account_manager" icon="gtk-cancel"/>
-          </button>
-          <button name="set_done" position="replace">
+          </xpath>
+          <xpath expr="/form/group/button[@name='set_done']" position="replace">
             <button name="%(account_payment.action_account_payment_make_payment)d" states="open" string="Make Payments" type="action" icon="gtk-execute"/>
-          </button>
+          </xpath>
         </data>
       </field>
     </record>
@@ -130,6 +133,10 @@
         <field name="bank_id" position="after">
           <field name="initgpty_id" attrs="{'invisible':[('type','!=','iso20022')]}"/>
           <field name="initgpty_issr" attrs="{'invisible':[('type','!=','iso20022')]}"/>
+        </field>
+        <!--correct partner_id field for GTK client -->
+        <field name="partner_id" position="replace">
+          <field name="partner_id" invisible="1"/>
         </field>
       </field>
     </record>

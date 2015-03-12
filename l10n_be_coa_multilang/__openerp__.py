@@ -22,23 +22,33 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '1.5',
+    'version': '3.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
-    'category': 'Localization/Account Charts',
-    'summary': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'depends': [
-        'base_vat',
-        'base_iban',
-        'account_chart',
+    'category' : 'Localization/Account Charts',
+    'description': """
+
+    Belgian localisation (on top of l10n_be):
+    * Multilanguage support (en/nl/fr) for Chart of Accounts, Taxes, Tax Codes and Journals
+    * Multilingual accounting templates
+    * Multilanguage support Analytic Chart of Accounts and Analytic Journals
+    * Update partner titles for commonly used legal entities
+    * Add constraint to ensure unique Tax Code per Company
+    * Auto-select correct financial report entry when creating/changing a general account
+    * Setup wizard changes
+        - Copy translations for CoA, Tax, Tax Code and Fiscal Position from templates to target objects
+        - Add options to install the nl and fr languages during the setup
+    """,
+    'depends': ['account_accountant','l10n_be','account_cancel'],
+    'init_xml': [
+        'belgium_base_data.xml',
     ],
     'data': [
         'security/account_security.xml',
         'security/ir.model.access.csv',
-        'account_view.xml',
-        'res_config_view.xml',
-        'account_menuitem.xml',
+        'account_view.xml',        
+        'account_menuitem.xml',   
         'account_account_type_nov.xml',
         'account_account_template_nov.xml',
         'account_tax_code_template_nov.xml',
@@ -47,21 +57,16 @@
         'account_fiscal_position_template_nov.xml',
         'account_fiscal_position_tax_template_nov.xml',
         'account_fiscal_position_account_template_nov.xml',
-        'l10n_be_sequence.xml',
         'wizard_multi_charts_accounts.xml',
         'account_financial_report.xml',
         'be_legal_financial_reportscheme.xml',
         'account_financial_report_view.xml',
         'update_be_reportscheme.xml',
-        'wizard/reports.xml',
+        # l10n_be wizards
         'wizard/l10n_be_vat_declaration_view.xml',
-        'wizard/l10n_be_vat_intra_view.xml',
         'wizard/l10n_be_partner_vat_listing.xml',
-        'views/l10n_be_layouts.xml',
-        'views/report_financial.xml',
-        'views/report_l10nbevatdeclaration.xml',
-        'views/report_l10nbevatlisting.xml',
-        'views/report_l10nbevatintra.xml',
     ],
-    'installable': True,
-}
+    'active': False,
+    'installable': True,}
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <menuitem id="menu_contract" name="Contracts" sequence="10" parent="account.menu_finance"/>
+
+    <record id="view_contract_line_billing_list" model="ir.ui.view">
+      <field name="name">contract.line.billing.list</field>
+      <field name="model">contract.line.billing</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contract Line Billing History">
+          <field name="number"/>
+          <field name="date"/>
+          <field name="billed"/>
+          <field name="invoice_id"/>
+          <field name="service_period"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_contract_line_billing_form" model="ir.ui.view">
+      <field name="name">contract.line.billing.form</field>
+      <field name="model">contract.line.billing</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Contract Line Billing History">
+          <field name="number"/>
+          <field name="date"/>
+          <field name="billed"/>
+          <field name="invoice_id" on_change="onchange_invoice_id(invoice_id)" 
+                 domain="[('partner_id', '=', context.get('partner_id'))]" />
+          <field name="service_period"/>
+          <separator string="Notes" colspan="4"/>
+          <field name="note" nolabel="1" colspan="4"/>
+        </form>
+      </field>
+    </record>
+    
+    <record id="view_contract_line_list" model="ir.ui.view">
+      <field name="name">contract.line.list</field>
+      <field name="model">contract.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contract Lines" colors="blue:type=='heading';black:type=='normal';">
+          <field name="sequence"/>
+          <field name="name"/>
+          <field name="parent_id"/>
+          <field name="billing_start"/>
+          <field name="product_id"/>
+          <field name="quantity"/>
+          <field name="price_unit"/>
+          <field name="discount"/>
+          <field name="price_subtotal"/>
+          <field name="billing_type"/>
+          <field name="type" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_contract_line_form" model="ir.ui.view">
+      <field name="name">contract.line.form</field>
+      <field name="model">contract.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Contract Line">
+          <notebook>
+            <page string="Product/Service">
+              <group>
+                <field name="product_id" context="{'contract_type': context.get('contract_type')}"
+                       attrs="{'invisible':[('type','=','heading')]}"
+                       domain="context.get('contract_type')=='sale' and [('sale_ok','=',True)] or [('purchase_ok','=',True)]"
+                       options='{"quick_create": false}'
+                       on_change="onchange_product_id(product_id, parent.type, parent.partner_id, parent.company_id, parent.currency_id, parent.fiscal_position, context)"/>
+                <field name="uom_id" attrs="{'invisible':[('type','=','heading')]}"/>
+                <field colspan="4" name="name"/>
+                <newline/>
+                <field name="type" on_change="onchange_type(type)"/>
+                <field name="parent_id" domain="[('contract_id','=',parent.id),('type','=','heading')]"/>
+                <field name="account_id"
+                       attrs="{'invisible':[('type','=','heading')],'required':[('type','=','normal')]}"
+                       domain="[('company_id', '=', parent.company_id), ('journal_id', '=', parent.journal_id), ('type', '&lt;&gt;', 'view')]"
+                       on_change="onchange_account_id(product_id, parent.partner_id, parent.type, parent.fiscal_position,account_id)"/>
+                <field name="analytic_account_id"
+                       attrs="{'invisible':[('type','=','heading')]}"
+                       groups="analytic.group_analytic_accounting"/>
+                <field name="quantity" attrs="{'invisible':[('type','=','heading')]}"/>
+                <field name="price_unit" attrs="{'invisible':[('type','=','heading')]}"/>
+                <field name="discount" attrs="{'invisible':[('type','=','heading')]}"/>
+                <field name="sequence"/>
+                <field name="hidden"/>
+                <group attrs="{'invisible':[('type','=','heading')]}" colspan="4">
+                  <separator colspan="4" string="Taxes"/>
+                  <field colspan="4"
+                         name="tax_ids" 
+                         domain="[('parent_id', '=', False), ('company_id', '=', parent.company_id), ('type_tax_use', 'in', [parent.type, 'all'])]"
+                         nolabel="1"/>
+                  <newline/>
+                  <separator colspan="4" string="Billing Instructions"/>
+                  <group colspan="4" col="8">
+                    <field name="billing_type" attrs="{'required':[('type','=','normal')]}"/>
+                    <field name="billing_period_id" attrs="{'invisible':[('billing_type','=','one_time')],'required':[('type','=','normal'),('billing_type','=','recurring')]}"
+                           on_change="onchange_billing_end(billing_start, billing_period_id, billing_period_nbr, billing_unlimited)"/>
+                    <field name="billing_unlimited" attrs="{'invisible':[('billing_type','=','one_time')]}"
+                           on_change="onchange_billing_unlimited(billing_unlimited)"/>
+                    <field name="billing_period_nbr" attrs="{'invisible':['|',('billing_type','=','one_time'),('billing_unlimited','=',True)],'required':[('billing_type','=','recurring')]}"
+                           on_change="onchange_billing_end(billing_start, billing_period_id, billing_period_nbr, billing_unlimited)"/>
+                    <newline/>
+                    <field name="billing_start" attrs="{'required':[('type','=','normal')]}" 
+                           on_change="onchange_billing_end(billing_start, billing_period_id, billing_period_nbr, billing_unlimited)"/>
+                    <field name="billing_end"/>
+                    <field name="prepaid"/>
+                    <field name="billing_result"/>
+                  </group>
+                </group>
+                <separator colspan="4" string="Product/Service Subtotal"/>
+                <field name="price_subtotal"/>
+              </group>
+            </page>
+            <page string="Billing History">
+              <field colspan="4" name="billing_ids" nolabel="1" widget="one2many_list"
+                     context="{'partner_id': context.get('partner_id'), 'billing_type': billing_type, 'billing_period_id': billing_period_id, 'billing_start': billing_start}"/>                
+              <group col="4" colspan="4">
+                <button name="generate_billing_table" string="Generate Billing Table" type="object" icon="gtk-apply"
+                        help="Use this function in order to facilitate the manual entry of the billing history."/>
+              </group>
+            </page>
+            <page string="Notes">
+              <field name="note" nolabel="1" colspan="4"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_contract_document_related_list" model="ir.ui.view">
+      <field name="name">contract.document.related.list</field>
+      <field name="model">contract.document.related</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contracts - related documents">
+          <field name="sequence"/>
+          <field name="name"/>
+          <field name="document"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_contract_document_related_form" model="ir.ui.view">
+      <field name="name">contract.document.related.form</field>
+      <field name="model">contract.document.related</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Contract - related document">
+          <field name="name" colspan="4"/>
+          <field name="document"/>
+          <field name="sequence"/>
+          <separator colspan="4" string="Notes"/>
+          <field name="note" nolabel="1" colspan="4"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_contract_filter" model="ir.ui.view">
+      <field name="name">contract.document.select</field>
+      <field name="model">contract.document</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Contract">
+          <filter icon="terp-document-new" string="Draft" domain="[('state','=','draft')]" help="Draft Contracts"/>
+          <filter icon="terp-check" string="Customers" domain="[('type','=','sale')]" help="Customer Contracts"/>
+          <filter icon="terp-check" string="Suppliers" domain="[('type','=','purchase')]" help="Supplier Contracts"/>
+          <separator orientation="vertical"/>
+          <field name="name"
+              filter_domain="[('name','ilike',self)]"/>
+          <field name="partner_id"/>
+          <field name="categ_id"/>
+          <field name="state"/>
+          <field name="analytic_account_id"/>
+          <field name="note"/>
+          <field name="user_id">
+            <filter domain="[('user_id','=',uid)]" help="My Contracts" icon="terp-personal"/>
+          </field>
+          <newline/>
+          <group expand="0" string="Group By..." groups="base.group_extended">
+            <filter string="Customer" icon="terp-personal" domain="[]" context="{'group_by':'partner_id'}"/>
+            <filter string="Salesman" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+            <separator orientation="vertical"/>
+            <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Category" icon="terp-folder-blue" domain="[]" context="{'group_by':'categ_id'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Currency" icon="terp-dolar" domain="[]" context="{'group_by':'currency_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_contract_tree" model="ir.ui.view">
+      <field name="name">contract.document.tree</field>
+      <field name="model">contract.document</field>
+      <field name="type">tree</field>
+      <field name="priority">2</field>
+      <field name="arch" type="xml">
+        <tree string="Contracts" colors="grey:state in('end','cancel');blue:state=='draft';">
+          <field name="name"/>
+          <field name="date_start"/>
+          <field name="partner_id"/>
+          <field name="categ_id"/>
+          <field name="total_mrc" sum="Total MRC"/>
+          <field name="total_otc" sum="Total OTC"/>
+          <field name="currency_id" string="Curr."/>
+          <field name="state"/>
+          <field name="analytic_account_id"/>
+          <field name="user_id"/>
+          <field name="type"/>
+          <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- customer contract -->
+
+    <record id="view_customer_contract_form" model="ir.ui.view">
+      <field name="name">customer.contract.form</field>
+      <field name="model">contract.document</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Customer Contract">
+          <group colspan="4" col="6">
+            <field name="partner_id" string="Customer" on_change="onchange_partner_id(partner_id)" context="{'search_default_customer': 1}"
+                   options='{"quick_create": false}' domain="[('customer', '=', True)]"/>
+            <field name="name"/>
+            <field name="categ_id"/>
+            <newline/>
+            <field name="analytic_account_id"/>
+            <field name="parent_id" domain="[('state','=','active')]"/>
+            <field name="user_id"/>
+            <newline/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+            <field name="type" invisible="1"/>
+          </group>
+          <notebook colspan="5">
+            <page string="Products and Services">
+              <field colspan="4" name="contract_line" nolabel="1" widget="one2many_list"
+                     context="{'address_invoice_id': address_invoice_id, 'partner_id': partner_id, 'contract_type': type}"
+                     />
+              <group col="4" colspan="4">
+                <group col="2" colspan="1">
+                  <field name="state" widget="statusbar" statusbar_visible="draft,active,end"/>
+                </group>
+                <group col="4" colspan="3">
+                  <button name="action_confirm" states="draft" string="Confirm Contract" type="object" icon="gtk-apply"/>
+                  <button name="action_end" states="active" string="Terminate" type="object" icon="gtk-apply"/>
+                  <button name="action_cancel" states="draft,active" string="Cancel Contract" type="object" icon="gtk-cancel"/>
+                  <button name="action_draft" states="cancel,end" string="Reset to Draft" type="object" icon="terp-stock_effects-object-colorize"/>
+                </group>
+              </group>
+            </page>
+            <page string="Other Info">
+              <field name="address_contact_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id': partner_id}" options='{"quick_create": false}'/>
+              <field name="address_invoice_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id': partner_id}" options='{"quick_create": false}'/>
+              <field name="payment_term"/>
+              <field name="fiscal_position"/>
+              <field name="journal_id" domain="[('type','=','sale')]"/>
+              <field name="currency_id"/>
+              <field name="partner_ref"/>
+            </page>
+            <page string="Invoice History">
+              <separator colspan="4" string="Invoices"/>
+              <field colspan="4" name="invoice_ids" nolabel="1"/>
+            </page>
+            <page string="Related Documents">
+              <field colspan="4" name="related_ids" nolabel="1"/>
+            </page>
+            <page string="Notes">
+              <field name="note" nolabel="1" colspan="4"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_customer_contract" model="ir.actions.act_window">
+      <field name="name">Customer Contracts</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">contract.document</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_contract_filter"/>
+      <field name="domain">[('type','=','sale')]</field>
+      <field name="context">{'default_type':'sale'}</field>
+    </record>
+    <record id="action_customer_contract_tree" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="view_contract_tree"/>
+      <field name="act_window_id" ref="action_customer_contract"/>
+    </record>
+    <record id="action_customer_contract_form" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_customer_contract_form"/>
+      <field name="act_window_id" ref="action_customer_contract"/>
+    </record>
+
+    <menuitem action="action_customer_contract" id="menu_customer_contract" parent="menu_contract" sequence="1" groups="account.group_account_invoice"/>
+
+    <!-- supplier contract -->
+    
+    <record id="view_supplier_contract_form" model="ir.ui.view">
+      <field name="name">supplier.contract.form</field>
+      <field name="model">contract.document</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Supplier Contract">
+          <group colspan="4" col="6">
+            <field name="partner_id" string="Supplier" on_change="onchange_partner_id(partner_id)" context="{'search_default_supplier': 1}"
+                   options='{"quick_create": false}' domain="[('supplier', '=', True)]"/>
+            <field name="name"/>
+            <field name="categ_id"/>
+            <newline/>
+            <field name="analytic_account_id"/>
+            <field name="parent_id" domain="[('state','=','active')]"/>
+            <field name="user_id"/>
+            <newline/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+            <field name="type" invisible="1"/>
+          </group>
+          <notebook colspan="5">
+            <page string="Products and Services">
+              <field colspan="4" name="contract_line" nolabel="1" widget="one2many_list"
+                     context="{'address_invoice_id': address_invoice_id, 'partner_id': partner_id, 'contract_type': type}"
+                     />
+              <group col="4" colspan="4">
+                <group col="2" colspan="1">
+                  <field name="state" widget="statusbar" statusbar_visible="draft,active,end"/>
+                </group>
+                <group col="4" colspan="3">
+                  <button name="action_confirm" states="draft" string="Confirm Contract" type="object" icon="gtk-apply"/>
+                  <button name="action_end" states="active" string="Terminate" type="object" icon="gtk-apply"/>
+                  <button name="action_cancel" states="draft,active" string="Cancel Contract" type="object" icon="gtk-cancel"/>
+                  <button name="action_draft" states="cancel,end" string="Reset to Draft" type="object" icon="terp-stock_effects-object-colorize"/>
+                </group>
+              </group>
+            </page>
+            <page string="Other Info">
+              <field name="address_contact_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id': partner_id}" options='{"quick_create": false}'/>
+              <field name="address_invoice_id" domain="[('partner_id','=',partner_id)]" context="{'default_partner_id': partner_id}" options='{"quick_create": false}'/>
+              <field name="payment_term"/>
+              <field name="fiscal_position"/>
+              <field name="journal_id" domain="[('type','=','purchase')]"/>
+              <field name="currency_id"/>
+              <field name="partner_ref"/>
+            </page>
+            <page string="Invoice History">
+              <separator colspan="4" string="Invoices"/>
+              <field colspan="4" name="invoice_ids" nolabel="1"/>
+            </page>
+            <page string="Related Documents">
+              <field colspan="4" name="related_ids" nolabel="1"/>
+            </page>
+            <page string="Notes">
+              <field name="note" nolabel="1" colspan="4"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_supplier_contract" model="ir.actions.act_window">
+      <field name="name">Supplier Contracts</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">contract.document</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="view_contract_filter"/>
+      <field name="domain">[('type','=','purchase')]</field>
+      <field name="context">{'default_type':'purchase'}</field>
+    </record>
+    <record id="action_supplier_contract_tree" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="view_contract_tree"/>
+      <field name="act_window_id" ref="action_supplier_contract"/>
+    </record>
+    <record id="action_supplier_contract_form" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="view_supplier_contract_form"/>
+      <field name="act_window_id" ref="action_supplier_contract"/>
+    </record>
+
+    <menuitem action="action_supplier_contract" id="menu_supplier_contract" parent="menu_contract" sequence="1" groups="account.group_account_invoice"/>
+
+    <!-- Contracts Configuration -->
+    <menuitem id="menu_manage_contract" name="Contract Configuration" parent="account.menu_finance_accounting" sequence="30"/>
+
+    <!-- Contract Category -->
+    <record id="view_contract_category_tree" model="ir.ui.view">
+      <field name="name">contract.category.tree</field>
+      <field name="model">contract.category</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Contract category">
+          <field name="name"/>
+          <field name="code"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+    <record id="view_contract_category_form" model="ir.ui.view">
+      <field name="name">contract.category.form</field>
+      <field name="model">contract.category</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Contract category">
+          <field name="name"/>
+          <field name="code"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+          <field name="active"/>
+        </form>
+      </field>
+    </record>
+    <record id="action_contract_category" model="ir.actions.act_window">
+      <field name="name">Contract categories</field>
+      <field name="res_model">contract.category</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_contract_category_tree"/>
+    </record>
+    <menuitem id="menu_action_contract_category_form" action="action_contract_category" parent="menu_manage_contract" sequence="10"/>
+
+    <!-- Menu entry for Billing Period configuration -->
+    <record id="view_billing_period_list" model="ir.ui.view">
+      <field name="name">billing.period.list</field>
+      <field name="model">billing.period</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Recurring Billing Periods">
+          <field name="name"/>
+          <field name="code"/>
+          <field name="base_period"/>
+          <field name="base_period_multiplier"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+    <record id="view_billing_period_form" model="ir.ui.view">
+      <field name="name">billing.period.form</field>
+      <field name="model">billing.period</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Recurring Billing Period">
+          <field name="name"/>
+          <field name="code"/>
+          <field name="base_period"/>
+          <field name="base_period_multiplier"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+          <field name="active"/>
+        </form>
+      </field>
+    </record>
+    <record id="action_billing_period" model="ir.actions.act_window">
+      <field name="name">Recurring Billing Periods</field>
+      <field name="res_model">billing.period</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_billing_period_list"/>
+    </record>
+    <menuitem id="menu_billing_period_config" name="Recurring Billing Periods" action="action_billing_period" parent="menu_manage_contract" sequence="20"/>
+
+  </data>
+</openerp>

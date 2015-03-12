@@ -1,0 +1,254 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <menuitem name="Cash Management Operations" parent="account_cashflow.menu_account_cashflow" id="menu_account_cash_operation" sequence="70"/>
+    
+    <!-- Straigh Loan Demand -->   
+    
+    <record model="ir.ui.view" id="view_account_straight_loan_demand_tree">
+      <field name="name">account.straight.loan.demand.tree</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Straight Loan Demands">
+          <field name="description"/>
+          <field name="name"/>
+          <field name="journal_id"/>
+          <field name="cfc_id_main_start"/>
+          <field name="cfc_id_main_stop"/>
+          <field name="date_start"/>
+          <field name="date_stop"/>
+          <field name="amount_main"/>
+          <field name="state"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>          
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_straight_loan_demand_form">
+      <field name="name">account.straight.loan.demand.form</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Straight Loan Demand">
+          <group>
+            <field name="description"/>
+            <newline/>
+            <field name="name" readonly="1"/>
+            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+            <newline/>
+            <field name="date"/>
+            <field name="user_id"/>
+            <field name="update_date"/>
+            <field name="update_by"/>
+          </group>
+          <separator colspan="4" string="Straight Loan Demand Fields"/>
+          <group colspan="4" col="6">
+            <field name="amount_main"/>
+            <field name="rate"/>
+            <field name="amount_cost"/>
+            <field name="date_start" on_change="onchange_date(date_start, date_stop)" required="1"/>
+            <field name="date_stop" on_change="onchange_date(date_start, date_stop)" required="1"/>
+            <field name="days"/>
+            <field name="day_count_basis"/>
+            <field name="interest_payment"/>
+            <field name="bank_id" domain="[('partner_id.ref_companies', 'in', [company_id])]"/>
+          </group>
+          <separator colspan="4" string="Cash Flow Management Fields"/>
+          <group>
+            <field name="journal_id"/>
+            <newline/>
+            <field name="cfc_id_main_start"/>
+            <field name="cfc_id_main_stop"/>
+            <field name="cfc_id_interest"/>
+            <field name="cfc_id_cost"/>
+            <field name="amount_end"/>
+            <field name="amount_interest"/>
+          </group>
+          <separator colspan="4" string="Confirmation Letter Fields"/>
+          <group colspan="4" col="4">
+            <field name="partner_id"/>
+            <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+            <field name="partner_contact"/>
+            <field name="partner_lang"/>
+            <field colspan="4" name="subject"/>
+            <field colspan="4" name="intro"/>
+            <field colspan="4" name="close"/>
+          </group>
+          <group col="5" colspan="4">
+            <field name="state"/>
+            <button name="button_dummy" states="draft" string="Compute" type="object" icon="terp-stock_format-scientific"/>
+            <button name="button_cancel" states="confirm" string="Cancel" type="object" icon="gtk-cancel"/>
+            <button name="button_confirm" states="draft" string="Confirm" type="object" icon="gtk-go-forward"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    
+    <record id="view_account_straight_loan_demand_search" model="ir.ui.view">
+      <field name="name">account.straight.loan.demand.search</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Straight Loan Demands">
+          <group col="10" colspan="4">
+            <field name="description"/>
+            <field name="name"/>
+            <field name="journal_id"/>
+            <field name="cfc_id_main_start"/>
+            <field name="cfc_id_main_stop"/>
+            <field name="date_start"/>
+            <field name="date_stop"/>
+            <field name="amount_main"/>
+            <field name="subject"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="State" icon="terp-stock_effects-object-colorize" context="{'group_by':'state'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Company" icon="terp-go-home" domain="[]" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_account_straight_loan_demand">
+      <field name="name">Straight Loan Demand</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.cash.operation</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('type','=','loan')]</field>
+      <field name="context">{'type':'loan'}</field>
+      <field name="view_id" ref="view_account_straight_loan_demand_tree"/>
+      <field name="search_view_id" ref="view_account_straight_loan_demand_search"/>
+    </record>
+
+    <menuitem name="Straight Loan Demands" parent="menu_account_cash_operation" id="menu_account_straight_loan_demand" action="action_account_straight_loan_demand"  sequence="71"/>
+
+    <!-- Investment Demand -->
+
+    <record model="ir.ui.view" id="view_account_invest_demand_tree">
+      <field name="name">account.invest.demand.tree</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Investment Demands">
+          <field name="description"/>
+          <field name="name"/>
+          <field name="journal_id"/>
+          <field name="cfc_id_main_start"/>
+          <field name="cfc_id_main_stop"/>
+          <field name="date_start"/>
+          <field name="date_stop"/>
+          <field name="amount_main"/>
+          <field name="state"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_invest_demand_form">
+      <field name="name">account.invest.demand.form</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Investment Demand">
+          <group>
+            <field name="description"/>
+            <newline/>
+            <field name="name" readonly="1"/>
+            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+            <newline/>
+            <field name="date"/>
+            <field name="user_id"/>
+            <field name="update_date"/>
+            <field name="update_by"/>
+          </group>
+          <separator colspan="4" string="Investment Demand Fields"/>
+          <group colspan="4" col="6">
+            <field name="amount_main"/>
+            <field name="rate"/>
+            <field name="amount_cost"/>
+            <field name="date_start" on_change="onchange_date(date_start, date_stop)" required="1"/>
+            <field name="date_stop" on_change="onchange_date(date_start, date_stop)" required="1"/>
+            <field name="days"/>
+            <field name="day_count_basis"/>
+            <field name="interest_payment"/>
+            <field name="bank_id" domain="[('partner_id.ref_companies', 'in', [company_id])]"/>
+          </group>
+          <separator colspan="4" string="Cash Flow Management Fields"/>
+          <group>
+            <field name="journal_id"/>
+            <newline/>
+            <field name="cfc_id_main_start"/>
+            <field name="cfc_id_main_stop"/>
+            <field name="cfc_id_interest"/>
+            <field name="cfc_id_cost"/>
+            <field name="amount_end"/>
+            <field name="amount_interest"/>
+          </group>
+          <separator colspan="4" string="Confirmation Letter Fields"/>
+          <group colspan="4" col="4">
+            <field name="partner_id"/>
+            <field name="partner_address_id" domain="[('partner_id','=',partner_id)]"/>
+            <field name="partner_contact"/>
+            <field name="partner_lang"/>
+            <field colspan="4" name="subject"/>
+            <field colspan="4" name="intro"/>
+            <field colspan="4" name="close"/>
+          </group>
+          <group col="5" colspan="4">
+            <field name="state"/>
+            <button name="button_dummy" states="draft" string="Compute" type="object" icon="terp-stock_format-scientific"/>
+            <button name="button_cancel" states="confirm" string="Cancel" type="object" icon="gtk-cancel"/>
+            <button name="button_confirm" states="draft" string="Confirm" type="object" icon="gtk-go-forward"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_account_invest_demand_search" model="ir.ui.view">
+      <field name="name">account.invest.demand.search</field>
+      <field name="model">account.cash.operation</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Investment Demands">
+          <group col="10" colspan="4">
+            <field name="description"/>
+            <field name="name"/>
+            <field name="journal_id"/>
+            <field name="cfc_id_main_start"/>
+            <field name="cfc_id_main_stop"/>
+            <field name="date_start"/>
+            <field name="date_stop"/>
+            <field name="amount_main"/>
+            <field name="subject"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="State" icon="terp-stock_effects-object-colorize" context="{'group_by':'state'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Company" icon="terp-go-home" domain="[]" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_account_invest_demand">
+      <field name="name">Investment Demand</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.cash.operation</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('type','=','invest')]</field>
+      <field name="context">{'type':'invest'}</field>
+      <field name="view_id" ref="view_account_invest_demand_tree"/>
+      <field name="search_view_id" ref="view_account_invest_demand_search"/>
+    </record>
+
+    <menuitem name="Investment Demands" parent="menu_account_cash_operation" id="menu_account_invest_demand" action="action_account_invest_demand"  sequence="72"/>
+
+  </data>
+</openerp>

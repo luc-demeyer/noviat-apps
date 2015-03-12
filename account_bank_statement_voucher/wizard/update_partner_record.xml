@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_update_partner_record_form" model="ir.ui.view">
+        <field name="name">update.partner.record.form</field>
+        <field name="model">update.partner.record</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+
+          <form string="Update Partner Record">
+            <separator string="Partner Record Update Details" colspan="4"/>
+            <field name="info" width="550" height="150" colspan="4" nolabel="1"/>
+            <separator string="Select option to proceed" colspan="4"/>
+            <group colspan="4">
+              <field name="update_partner"/>
+            </group>
+            <separator colspan="4"/>
+            <button special="cancel" string="Close Window" icon="terp-dialog-close"/>
+            <button name="button_process" string="Continue" colspan="1" type="object" icon="gtk-go-forward"/>
+          </form>
+          
+        </field>
+      </record>
+
+      <record id="action_update_partner_record" model="ir.actions.act_window">
+        <field name="name">Update Partner Record</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">update.partner.record</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+    </data>
+</openerp>

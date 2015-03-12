@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-# noqa: skip pep8 control until this wizard is rewritten.
-# flake8: noqa
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
-#    Corrections & modifications by Noviat nv/sa, (http://www.noviat.com):
+#    Corrections & modifications by Noviat nv/sa, (http://www.noviat.be):
 #    - VAT listing based upon year in stead of fiscal year
 #    - sql query adapted to select only 'tax-out' move lines
 #    - grouping by vat number
@@ -30,9 +28,6 @@
 import time
 import base64
 import operator
-from datetime import datetime
-from openerp.osv.fields import datetime as datetime_field
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.translate import _
 from openerp.osv import fields, orm
 from openerp.report import report_sxw
@@ -43,8 +38,8 @@ _logger = logging.getLogger(__name__)
 class vat_listing_clients(orm.TransientModel):
     _name = 'vat.listing.clients'
     _columns = {
-        'name': fields.char('Client Name'),
-        'vat': fields.char('VAT'),
+        'name': fields.char('Client Name', size=32),
+        'vat': fields.char('VAT', size=64),
         'turnover': fields.float('Base Amount'),
         'vat_amount': fields.float('VAT Amount'),
     }
@@ -60,7 +55,7 @@ class partner_vat(orm.TransientModel):
         obj_vat_lclient = self.pool.get('vat.listing.clients')
         obj_model_data = self.pool.get('ir.model.data')
         obj_module = self.pool.get('ir.module.module')
-        data = self.read(cr, uid, ids)[0]
+        data  = self.read(cr, uid, ids)[0]
         year = data['year']
         date_start = year + '-01-01'
         date_stop = year + '-12-31'
@@ -68,25 +63,20 @@ class partner_vat(orm.TransientModel):
             company_id = context['company_id']
         else:
             company_id = self.pool.get('res.users').browse(cr, uid, uid, context=context).company_id.id
-        period_ids = obj_period.search(cr, uid, [('date_start', '>=', date_start), ('date_stop', '<=', date_stop), ('company_id', '=', company_id)])
+        period_ids = obj_period.search(cr, uid, [('date_start' ,'>=', date_start), ('date_stop','<=',date_stop), ('company_id','=',company_id)])
         if not period_ids:
-            raise orm.except_orm(_('Insufficient Data!'), _('No data for the selected year.'))
+             raise orm.except_orm(_('Insufficient Data!'), _('No data for the selected year.'))
 
         partners = []
-        # FODFIN Notice 725: 
-        # All customers with Belgian VAT number must be included in the annual VAT Listing,
-        # except those with only operations according article 44 of the VAT lawbook (reported via tax code 00).
-        # You should uncheck the 'vat_subjected' flag for those customers.
-        partner_ids = obj_partner.search(cr, uid, [('vat_subjected', '!=', False), ('vat', 'ilike', 'BE%')], context=context)
+        partner_ids = obj_partner.search(cr, uid, [('vat_subjected', '!=', False), ('vat','ilike','BE%')], context=context)
         if not partner_ids:
-            raise orm.except_orm(_('Error'), _('No belgian customers with a VAT number in your database.'))
-        codes = ('00', '01', '02', '03', '45', '49')
+             raise orm.except_orm(_('Error'),_('No belgian contact with a VAT number in your database.'))
         cr.execute("""SELECT sub1.partner_id, sub1.name, sub1.vat, sub1.turnover, sub2.vat_amount
-                FROM (SELECT l.partner_id, p.name, coalesce(p.vat,'') AS vat, SUM(CASE WHEN c.code ='49' THEN -l.tax_amount ELSE l.tax_amount END) as turnover
+                FROM (SELECT l.partner_id, p.name, p.vat, SUM(CASE WHEN c.code ='49' THEN -l.tax_amount ELSE l.tax_amount END) as turnover
                       FROM account_move_line l
                       LEFT JOIN res_partner p ON l.partner_id = p.id
                       LEFT JOIN account_tax_code c ON l.tax_code_id = c.id
-                      WHERE c.code IN %s
+                      WHERE c.code IN ('01','02','03','45','49')
                       AND l.partner_id IN %s
                       AND l.period_id IN %s
                       GROUP BY l.partner_id, p.name, p.vat) AS sub1
@@ -97,11 +87,10 @@ class partner_vat(orm.TransientModel):
                       AND l2.partner_id IN %s
                       AND l2.period_id IN %s
                       GROUP BY l2.partner_id) AS sub2 ON sub1.partner_id = sub2.partner_id
-                    """,
-            (codes, tuple(partner_ids), tuple(period_ids), tuple(partner_ids), tuple(period_ids)))
+                    """,(tuple(partner_ids),tuple(period_ids),tuple(partner_ids),tuple(period_ids)))
         records = []
         for record in cr.dictfetchall():
-            record['vat'] = record['vat'].replace(' ', '').upper()
+            record['vat'] = record['vat'].replace(' ','').upper()
             if record['turnover'] >= data['limit_amount']:
                 records.append(record)
         records.sort(key=operator.itemgetter('vat'))
@@ -113,14 +102,14 @@ class partner_vat(orm.TransientModel):
         if not partners:
             raise orm.except_orm(_('insufficient data!'), _('No data found for the selected year.'))
         context.update({'partner_ids': partners, 'year': data['year'], 'limit_amount': data['limit_amount']})
-        model_data_ids = obj_model_data.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'view_vat_listing')])
+        model_data_ids = obj_model_data.search(cr, uid, [('model','=','ir.ui.view'), ('name','=','view_vat_listing')])
         resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
         return {
             'name': _('Vat Listing'),
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'partner.vat.list',
-            'views': [(resource_id, 'form')],
+            'views': [(resource_id,'form')],
             'context': context,
             'type': 'ir.actions.act_window',
             'target': 'new',
@@ -131,8 +120,8 @@ class partner_vat(orm.TransientModel):
         'limit_amount': fields.integer('Limit Amount', required=True),
     }
 
-    _defaults = {
-        'year': lambda *a: str(int(time.strftime('%Y')) - 1),
+    _defaults={
+        'year': lambda *a: str(int(time.strftime('%Y'))-1),
         'limit_amount': 250,
     }
 
@@ -141,18 +130,16 @@ class partner_vat_list(orm.TransientModel):
     """ Partner Vat Listing """
     _name = "partner.vat.list"
     _columns = {
-        'partner_ids': fields.many2many('vat.listing.clients', 'vat_partner_rel', 'vat_id', 'partner_id', 'Clients',
-            help="Uncheck the TIN check box of the customer record in order to "
-                 "remove customers which should not be included in this report."),
-        'name': fields.char('File Name'),
-        'file_save': fields.binary('Save File', readonly=True),
+        'partner_ids': fields.many2many('vat.listing.clients', 'vat_partner_rel', 'vat_id', 'partner_id', 'Clients', help='You can remove clients/partners which you do not want to show in xml file'),
+        'name': fields.char('File Name', size=32),
+        'file_save' : fields.binary('Save File', readonly=True),
         'comments': fields.text('Comments'),
     }
 
     def _get_partners(self, cr, uid, context=None):
         return context.get('partner_ids', [])
 
-    _defaults = {
+    _defaults={
         'partner_ids': _get_partners,
     }
 
@@ -179,8 +166,8 @@ class partner_vat_list(orm.TransientModel):
                 seq += 1
             sum_tax += line['vat_amount']
             sum_turnover += line['turnover']
-            vat = line['vat'].replace(' ', '').upper()
-            amount_data = {
+            vat = line['vat'].replace(' ','').upper()
+            amount_data ={
                 'seq': str(seq),
                 'vat': vat,
                 'only_vat': vat[2:],
@@ -199,28 +186,29 @@ class partner_vat_list(orm.TransientModel):
         obj_sequence = self.pool.get('ir.sequence')
         obj_users = self.pool.get('res.users')
         obj_partner = self.pool.get('res.partner')
+        obj_addr = self.pool.get('res.partner.address')
         obj_model_data = self.pool.get('ir.model.data')
         obj_cmpny = obj_users.browse(cr, uid, uid, context=context).company_id
         company_vat = obj_cmpny.partner_id.vat
         year = context['year']
 
         if not company_vat:
-            raise orm.except_orm(_('Insufficient Data!'), _('No VAT number associated with the company.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No VAT number associated with the company.'))
 
-        company_vat = company_vat.replace(' ', '').upper()
+        company_vat = company_vat.replace(' ','').upper()
         SenderId = company_vat[2:]
         issued_by = company_vat[:2]
-        seq_declarantnum = obj_sequence.get(cr, uid, 'declarantseq')
+        seq_declarantnum = obj_sequence.get(cr, uid, 'declarantnum')
         dnum = company_vat[2:] + seq_declarantnum[-4:]
         street = city = country = ''
         addr = obj_partner.address_get(cr, uid, [obj_cmpny.partner_id.id], ['invoice'])
-        if addr.get('invoice', False):
-            ads = obj_partner.browse(cr, uid, [addr['invoice']], context=context)[0]
-            phone = ads.phone and ads.phone.replace(' ', '') or ''
+        if addr.get('invoice',False):
+            ads = obj_addr.browse(cr, uid, [addr['invoice']], context=context)[0]
+            phone = ads.phone and ads.phone.replace(' ','') or ''
             email = ads.email or ''
             name = ads.name or ''
-            city = ads.city or ''
-            zip = obj_partner.browse(cr, uid, ads.id, context=context).zip or ''
+            city = obj_addr.get_city(cr, uid, ads.id)
+            zip = obj_addr.browse(cr, uid, ads.id, context=context).zip or ''
             if not city:
                 city = ''
             if ads.street:
@@ -235,9 +223,9 @@ class partner_vat_list(orm.TransientModel):
         comp_name = obj_cmpny.name
 
         if not email:
-            raise orm.except_orm(_('Insufficient Data!'), _('No email address associated with the company.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No email address associated with the company.'))
         if not phone:
-            raise orm.except_orm(_('Insufficient Data!'), _('No phone associated with the company.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No phone associated with the company.'))
         annual_listing_data = {
             'issued_by': issued_by,
             'company_vat': company_vat,
@@ -262,7 +250,7 @@ class partner_vat_list(orm.TransientModel):
         <PostCode>%(zip)s</PostCode>
         <City>%(city)s</City>"""
         if annual_listing_data['country']:
-            data_file += "\n\t\t<CountryCode>%(country)s</CountryCode>"
+            data_file +="\n\t\t<CountryCode>%(country)s</CountryCode>"
         data_file += """
         <EmailAddress>%(email)s</EmailAddress>
         <Phone>%(phone)s</Phone>
@@ -286,7 +274,7 @@ class partner_vat_list(orm.TransientModel):
         # Turnover and Farmer tags are not included
         records = self._get_datas(cr, uid, ids, context=context)
         if not records:
-            raise orm.except_orm(_('No data!'), _('No VAT listing data available.'))
+            raise orm.except_orm(_('No data!'),_('No VAT listing data available.'))
         client_datas = []
         previous_record = {}
         for record in records:
@@ -303,8 +291,8 @@ class partner_vat_list(orm.TransientModel):
         data_client_info = ''
         for amount_data in client_datas:
             amount_data.update({
-                'turnover': '%.2f' % amount_data['turnover'],
-                'vat_amount': '%.2f' % amount_data['vat_amount'],
+                'turnover': '%.2f' %amount_data['turnover'],
+                'vat_amount': '%.2f' %amount_data['vat_amount'],
             })
             data_client_info += """
         <ns2:Client SequenceNumber="%(seq)s">
@@ -316,8 +304,8 @@ class partner_vat_list(orm.TransientModel):
         amount_data_begin = client_datas[-1]
         amount_data_begin.update({
             'dnum': dnum,
-            'sum_turnover': '%.2f' % amount_data_begin['sum_turnover'],
-            'sum_tax': '%.2f' % amount_data['sum_tax'],
+            'sum_turnover': '%.2f' %amount_data_begin['sum_turnover'],
+            'sum_tax': '%.2f' %amount_data['sum_tax'],
         })
         data_begin = """
     <ns2:ClientListing SequenceNumber="1" ClientsNbr="%(seq)s" DeclarantReference="%(dnum)s"
@@ -333,8 +321,8 @@ class partner_vat_list(orm.TransientModel):
 
         data_file += data_begin + data_comp + data_client_info + data_end
         file_save = base64.encodestring(data_file.encode('utf8'))
-        self.write(cr, uid, ids, {'file_save': file_save, 'name': 'vat_list_%s.xml' % year}, context=context)
-        model_data_ids = obj_model_data.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'view_vat_listing_result')])
+        self.write(cr, uid, ids, {'file_save':file_save, 'name':'vat_list_%s.xml' %year}, context=context)
+        model_data_ids = obj_model_data.search(cr, uid, [('model','=','ir.ui.view'), ('name','=','view_vat_listing_result')])
         resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
 
         return {
@@ -343,7 +331,7 @@ class partner_vat_list(orm.TransientModel):
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'partner.vat.list',
-            'views': [(resource_id, 'form')],
+            'views': [(resource_id,'form')],
             'context': context,
             'type': 'ir.actions.act_window',
             'target': 'new',
@@ -352,6 +340,7 @@ class partner_vat_list(orm.TransientModel):
     def print_vatlist(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
+        obj_vat_lclient = self.pool.get('vat.listing.clients')
         datas = {'ids': []}
         datas['model'] = 'res.company'
         datas['year'] = context['year']
@@ -359,44 +348,40 @@ class partner_vat_list(orm.TransientModel):
         client_datas = self._get_datas(cr, uid, ids, context=context)
         for record in client_datas:
             record.update({
-                'turnover': record['turnover'],
-                'vat_amount': record['vat_amount'],
-                'sum_turnover': record['sum_turnover'],
-                'sum_tax': record['sum_tax'],
+                'turnover': '%.2f' %record['turnover'],
+                'vat_amount': '%.2f' %record['vat_amount'],
+                'sum_turnover': '%.2f' %record['sum_turnover'],
+                'sum_tax': '%.2f' %record['sum_tax'],
             })
         datas['client_datas'] = client_datas
         if not datas['client_datas']:
-            raise orm.except_orm(_('Error!'), _('No record to print.'))
-        return self.pool['report'].get_action(
-            cr, uid, [], 'l10n_be_coa_multilang.report_l10nbevatlisting',
-            data=datas, context=context
-        )
+            raise orm.except_orm(_('Error!'),_('No record to print.'))
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'partner.vat.listing.print_nov',
+            'datas': datas,
+        }
 
 
 class partner_vat_listing_print(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
         super(partner_vat_listing_print, self).__init__(cr, uid, name, context=context)
-        self.context = context
+        self.localcontext.update( {
+            'time': time,
+        })
 
     def set_context(self, objects, data, ids, report_type=None):
         client_datas = data['client_datas']
-        report_date = datetime_field.context_timestamp(self.cr, self.uid,
-            datetime.now(), self.context).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        self.localcontext.update({
+        self.localcontext.update( {
             'year': data['year'],
             'sum_turnover': client_datas[-1]['sum_turnover'],
             'sum_tax': client_datas[-1]['sum_tax'],
             'client_list': client_datas,
-            'report_date': report_date,
         })
         super(partner_vat_listing_print, self).set_context(objects, data, ids)
 
 
-class wrapped_vat_listing_print(orm.AbstractModel):
-    _name = 'report.l10n_be_coa_multilang.report_l10nbevatlisting'
-    _inherit = 'report.abstract_report'
-    _template = 'l10n_be_coa_multilang.report_l10nbevatlisting'
-    _wrapped_report_class = partner_vat_listing_print
+report_sxw.report_sxw('report.partner.vat.listing.print_nov', 'res.partner', 'addons/l10n_be_coa_multilang/wizard/l10n_be_partner_vat_listing.rml', parser=partner_vat_listing_print,header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

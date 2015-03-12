@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <act_window
+       id="action_partner_contracts"
+       name="Contracts"
+       res_model="contract.document"
+       context="{'search_default_partner_id':[active_id], 'default_partner_id': active_id}"
+       src_model="res.partner"
+       view_type="form"
+       view_mode="tree,form"
+       groups="account.group_account_invoice"/>
+
+  </data>
+</openerp>
+

@@ -1,24 +1,27 @@
 <?xml version="1.0"?>
 <openerp>
-
   <data>
 
     <!-- Update entries in Belgium Legal NBB/BNB reportscheme. -->
-
+    
     <record id="update_be_reportscheme_view" model="ir.ui.view">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="model">l10n_be.update_be_reportscheme</field>
+      <field name="type">form</field>
       <field name="priority">1</field>
       <field name="arch" type="xml">
-        <form string="Update financial reports configurattion" version="7.0">
-          <group>
-            <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
+        <form string="Update financial reports configurattion">
+          <newline/>
+          <newline/>
+          <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
+          <newline/>
+          <newline/>
+          <separator/>
+          <newline/>
+          <group colspan="4" col="2">
+            <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+            <button name="update_be_reportscheme" string="Update" type="object" icon="gtk-execute"/>
           </group>
-          <footer>
-            <button name="update_be_reportscheme" string="Update" type="object" class="oe_highlight"/>
-            or
-            <button string="Cancel" class="oe_link" special="cancel"/>
-          </footer>
         </form>
       </field>
     </record>
@@ -26,25 +29,29 @@
     <record id="update_be_reportscheme_result_view" model="ir.ui.view">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="model">l10n_be.update_be_reportscheme</field>
+      <field name="type">form</field>
       <field name="priority">2</field>
       <field name="arch" type="xml">
-        <form string="Update financial reports configurattion" version="7.0">
-          <group>
-            <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
-          </group>
+        <form string="Update financial reports configurattion">
+          <newline/>
+          <newline/>
+          <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
+          <newline/>
+          <newline/>
           <group colspan="4" col="1">
             <separator string="Results:"/>
             <field name="note" nolabel="1" width="850" height="200"/>
           </group>
-          <footer>
-            <button name="update_be_reportscheme" string="Update" type="object" class="oe_highlight"/>
-            or
-            <button string="Cancel" class="oe_link" special="cancel"/>
-          </footer>
+          <separator/>
+          <newline/>
+          <group colspan="4" col="2">
+            <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+            <button name="update_be_reportscheme" string="Update" type="object" icon="gtk-execute"/>
+          </group>
         </form>
       </field>
     </record>
-
+    
     <record id="update_be_reportscheme_action" model="ir.actions.act_window">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="type">ir.actions.act_window</field>
@@ -55,15 +62,11 @@
       <field name="view_id" ref="update_be_reportscheme_view"/>
     </record>
 
-  </data>
-
-  <data noupdate="1">
     <record id="update_be_reportscheme_todo" model="ir.actions.todo">
-      <field name="name">Belgian BNB/NBB reportscheme Configuration</field>
       <field name="action_id" ref="update_be_reportscheme_action"/>
-      <field name="type">manual</field>
-      <field name="state">done</field>
+      <field name="category_id" ref="account.category_accounting_configuration"/>
+      <field name="type">automatic</field>
     </record>
+    
   </data>
-
 </openerp>

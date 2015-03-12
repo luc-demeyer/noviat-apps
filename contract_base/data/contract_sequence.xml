@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<openerp>
+  <data noupdate="1">
+
+    <!-- Contract Sequence -->
+    <record model="ir.sequence.type" id="customer_contract_seq_type">
+      <field name="name">Customer Contract Sequence Type</field>
+      <field name="code">customer.contract.sequence</field>
+    </record>
+    <record model="ir.sequence" id="customer_contract_seq">
+      <field name="name">Customer Contract Sequence</field>
+      <field name="code">customer.contract.sequence</field>
+      <field name="padding" eval="4"/>
+      <field name="implementation">no_gap</field>
+      <field name="prefix">CC-%(year)s-</field>
+    </record>
+
+    <record model="ir.sequence.type" id="supplier_contract_seq_type">
+      <field name="name">Supplier Contract Sequence Type</field>
+      <field name="code">supplier.contract.sequence</field>
+    </record>
+    <record model="ir.sequence" id="supplier_contract_seq">
+      <field name="name">Supplier Contract Sequence</field>
+      <field name="code">supplier.contract.sequence</field>
+      <field name="padding" eval="4"/>
+      <field name="implementation">no_gap</field>
+      <field name="prefix">SC-%(year)s-</field>
+    </record>
+    
+  </data>
+</openerp>

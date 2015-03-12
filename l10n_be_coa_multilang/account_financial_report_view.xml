@@ -6,6 +6,7 @@
       <field name="name">account.financial.report.form.inherit</field>
       <field name="model">account.financial.report</field>
       <field name="inherit_id" ref="account.view_account_financial_report_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="code"/>
@@ -16,6 +17,7 @@
       <field name="name">account.financial.report.tree.inherit</field>
       <field name="model">account.financial.report</field>
       <field name="inherit_id" ref="account.view_account_financial_report_tree"/>
+      <field name="type">tree</field>
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="code"/>
@@ -26,6 +28,7 @@
       <field name="name">account.financial.report.search.inherit</field>
       <field name="model">account.financial.report</field>
       <field name="inherit_id" ref="account.view_account_financial_report_search"/>
+      <field name="type">search</field>
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="code"/>
@@ -37,6 +40,7 @@
       <field name="name">account.report.hierarchy.inherit</field>
       <field name="model">account.financial.report</field>
       <field name="inherit_id" ref="account.view_account_report_tree_hierarchy"/>
+      <field name="type">tree</field>
       <field name="arch" type="xml">
         <field name="name" position="after">
           <field name="code"/>
@@ -44,34 +48,17 @@
       </field>
     </record>
 
-    <record id="action_account_report_be_bs" model="ir.actions.act_window">
-      <field name="name">Belgian Balance Sheet</field>
-      <field name="res_model">accounting.report</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">form</field>
-      <field name="view_id" ref="account.accounting_report_view"/>
-      <field name="target">new</field>
+    <record id="l10n_be.action_account_report_be_bs" model="ir.actions.act_window">
       <field name="context" eval="{'default_account_report_id':ref('account_financial_report_BE_2_FULL')}"/>
     </record>
-    <menuitem icon="STOCK_PRINT" name="Belgian Balance Sheet" action="action_account_report_be_bs" id="menu_account_report_be_bs" parent="menu_finance_belgian_statement" sequence="1"/>
-
-    <record id="action_account_report_be_pl" model="ir.actions.act_window">
-      <field name="name">Belgian Profit And Loss</field>
-      <field name="res_model">accounting.report</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">form</field>
-      <field name="view_id" ref="account.accounting_report_view"/>
-      <field name="target">new</field>
-      <field name="context">{}</field>
+    <record id="l10n_be.action_account_report_be_pl" model="ir.actions.act_window">
       <field name="context" eval="{'default_account_report_id':ref('account_financial_report_BE_3_FULL')}"/>
-    </record>
-    <menuitem icon="STOCK_PRINT" name="Belgian Profit And Loss" action="action_account_report_be_pl" id="menu_account_report_be_pl" parent="menu_finance_belgian_statement" sequence="2"/>   
+    </record>   
 
     <record id="view_be_legal_financial_reportscheme_tree" model="ir.ui.view">
       <field name="name">be.legal.financial.reportscheme.tree</field>
       <field name="model">be.legal.financial.reportscheme</field>
+      <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Belgian Legal Financial Report Scheme">
           <field name="account_group"/>
@@ -82,6 +69,7 @@
     <record id="view_be_legal_financial_reportscheme_form" model="ir.ui.view">
       <field name="name">be.legal.financial.reportscheme.form</field>
       <field name="model">be.legal.financial.reportscheme</field>
+      <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Belgian Legal Financial Report Scheme">
           <field name="account_group" select="1"/>
@@ -91,6 +79,7 @@
             <tree string="Accounts">
               <field name="code"/>
               <field name="name"/>
+              <field name="company_id" groups="base.group_multi_company"/>
             </tree>
           </field>
         </form>

@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2013 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,16 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
 from . import wizard_multi_charts_accounts
-from . import res_config
 from . import account
-from . import account_fix
 from . import account_tax_fix
 from . import account_financial_report
+from . import project
 from . import partner
 from . import wizard
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

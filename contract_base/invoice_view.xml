@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+  <data>
+
+    <record id="account_invoice_line_print_filter" model="ir.ui.view">
+      <field name="name">account.invoice.line.print.filter</field>
+      <field name="model">account.invoice.line.print</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Search Invoice Print Lines">
+          <group>
+            <filter name="heading" icon="terp-folder-blue" string="Section Heading" domain="[('type','=','heading')]" help="Section Heading Line"/>
+            <filter name="normal" icon="terp-folder-green" string="Normal" domain="[('type','=','normal')]" help="Normal Invoice Line"/>
+            <separator orientation="vertical"/>
+            <field name="name"/>
+          </group>
+        </search>
+      </field>
+    </record>
+    
+    <record id="view_invoice_line_print_tree" model="ir.ui.view">
+      <field name="name">account.invoice.line.print.tree</field>
+      <field name="model">account.invoice.line.print</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Invoice Print Lines" colors="blue:type=='heading';black:type=='normal';">
+          <field name="sequence"/>
+          <field name="name"/>
+          <field name="parent_id"/>
+          <field name="quantity"/>
+          <field name="price_unit"/>
+          <field name="discount"/>
+          <field name="price_subtotal"/>
+          <field name="type" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_invoice_line_print_form" model="ir.ui.view">
+      <field name="name">account.invoice.line.print.form</field>
+      <field name="model">account.invoice.line.print</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Invoice Print Line">
+          <notebook>
+            <page string="Invoice Print Line">
+              <field name="product_id" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="uos_id" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field colspan="4" name="name"/>
+              <newline/>
+              <field name="type"/>
+              <field name="parent_id" domain="[('invoice_id','=',parent.id),('type','=','heading')]"/>
+              <field name="quantity" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="price_unit" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="discount" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="price_subtotal" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="sequence"/>
+              <field name="hidden"/>
+              <field name="service_period" attrs="{'invisible':[('type','=','heading')]}"/>
+              <field name="service_period_section" attrs="{'invisible':[('type','=','normal')]}"/>
+              <group attrs="{'invisible':[('type','=','heading')]}" colspan="4">
+                <separator colspan="4" string="Taxes"/>
+                <field colspan="4" name="invoice_line_tax_id" nolabel="1"/>
+              </group>
+            </page>
+            <page string="Notes">
+              <field name="note" nolabel="1" colspan="4"/>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+    
+    <record id="view_invoice_line_form_inherit" model="ir.ui.view">
+      <field name="name">account.invoice.line.form.inherit</field>
+      <field name="model">account.invoice.line</field>
+      <field name="inherit_id" ref="account.view_invoice_line_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <field name="company_id" position="before">
+          <field name="service_period"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="invoice_form_inherit" model="ir.ui.view">
+      <field name="name">account.invoice.form.inherit</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <xpath expr="/form/notebook/page[@string='Other Info']" position="before">
+          <page string="Invoice Print Lines">
+            <field colspan="4" name="print_line_ids" nolabel="1" widget="one2many_list"/>
+          </page>
+        </xpath>
+      </field>
+    </record>
+    
+  </data>
+</openerp>

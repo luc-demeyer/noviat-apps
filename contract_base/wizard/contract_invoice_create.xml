@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="contract_invoice_create_view" model="ir.ui.view">
+      <field name="name">Create Invoices</field>
+      <field name="model">contract.invoice.create</field>
+      <field name="type">form</field>
+      <field name="priority">1</field>
+      <field name="arch" type="xml">
+        <form string="Create Invoices">
+          <label nolabel="1" string="Create invoices for the selected contracts."/>
+          <newline/>
+          <label nolabel="1" string="Only confirmed contracts will be taken into account."/>
+          <newline/>
+          <label nolabel="1" string=""/>
+          <newline/>
+          <group>
+            <field name="contract_select"/>
+            <newline/>
+            <field name="date_invoice"/>
+            <field name="period_id"/>
+          </group>
+          <newline/>
+          <separator/>
+          <newline/>
+          <group>
+            <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+            <button name="invoice_create" string="Create" type="object" icon="gtk-execute"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_contract_invoice_create" model="ir.actions.act_window">
+      <field name="name">Create Invoices</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">contract.invoice.create</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="multi" eval="0"/>
+      <field name="target">new</field>
+      <field name="view_id" ref="contract_invoice_create_view"/>
+    </record>
+
+    <record id="contract_invoice_create_ir_value" model="ir.values">
+      <field name="key2">client_action_multi</field>
+      <field name="model">contract.document</field>
+      <field name="name">Create Invoices</field>
+      <field name="value" eval="'ir.actions.act_window,%d'%action_contract_invoice_create"/>
+    </record>
+    
+  </data>
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="view_coda_bank_account_form_sale" model="ir.ui.view">
+      <field name="name">coda.bank.account.form.sale</field>
+      <field name="model">coda.bank.account</field>
+      <field name="inherit_id" ref="account_coda.view_coda_bank_account_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <field name="find_bbacom" position="before">
+          <field name="find_payment"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <!-- Assign Cash Flow Code -->
+
+    <!-- Assign Cash Flow Code to Cash Flow Lines -->
+    <record id="view_assign_cashflow_code" model="ir.ui.view">
+      <field name="name">assign.cashflow.code.form</field>
+      <field name="model">assign.cashflow.code</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Assign Cash Flow Code">
+          <group colspan="4">
+            <field name="note" width="350" height="100" nolabel="1" attrs="{'invisible': [('state','=','draft')]}" colspan="4"/>
+            <newline/>
+            <field name="cashflow_code_id" width="350" attrs="{'readonly': [('state','=','ok')], 'invisible': [('state','=','done')]}" colspan="4"/>
+          </group>
+          <separator colspan="4" />
+          <group colspan="4" col="6">
+            <field name="state" invisible="1"/>
+            <label string="" colspan="2"/>
+            <button icon="terp-dialog-close" special="cancel" states="done" string="Close Window"/>
+            <button icon="gtk-cancel" states="draft,ok" special="cancel" string="Cancel"/>
+            <button icon="gtk-execute" states="draft" string="Update Lines" name="warning" type="object"/>
+            <button icon="gtk-execute" states="ok" string="Update Lines" name="update_lines" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="action_assign_cashflow_code" model="ir.actions.act_window">
+      <field name="name">Assign Cash Flow Code</field>
+      <field name="res_model">assign.cashflow.code</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_assign_cashflow_code"/>
+      <field name="help">Update selected lines.</field>
+      <field name="target">new</field>
+    </record>
+    <record model="ir.values" id="action_assign_cashflow_code_values">
+      <field name="name">Assign Cash Flow Code</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_assign_cashflow_code'))" />
+      <field name="model">account.cashflow.line</field>
+    </record>
+
+    <!-- Assign Cash Flow Code to all Cash Flow Lines -->
+    <record id="view_assign_cashflow_code_all_line" model="ir.ui.view">
+      <field name="name">assign.cashflow.code.all.line.form</field>
+      <field name="model">assign.cashflow.code.all.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Assign Cash Flow Code">
+          <group colspan="4">
+            <field name="note" width="350" height="100" nolabel="1" attrs="{'invisible': [('state','=','draft')]}" colspan="4"/>
+            <newline/>
+            <field name="cashflow_code_id" width="350" attrs="{'readonly': [('state','=','ok')], 'invisible': [('state','=','done')]}" colspan="4"/>
+          </group>
+          <separator colspan="4" />
+          <group colspan="4" col="6">
+            <field name="state" invisible="1"/>
+            <label string="" colspan="2"/>
+            <button icon="terp-dialog-close" special="cancel" states="done" string="Close Window"/>
+            <button icon="gtk-cancel" states="draft,ok" special="cancel" string="Cancel"/>
+            <button icon="gtk-execute" states="draft" string="Update Lines" name="warning" type="object"/>
+            <button icon="gtk-execute" states="ok" string="Update Lines" name="update_lines" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="action_assign_cashflow_code_all_line" model="ir.actions.act_window">
+      <field name="name">Assign Cash Flow Code</field>
+      <field name="res_model">assign.cashflow.code.all.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_assign_cashflow_code_all_line"/>
+      <field name="context">{}</field>
+      <field name="help">Update selected lines.</field>
+      <field name="target">new</field>
+    </record>
+    <record model="ir.values" id="action_assign_cashflow_code_all_line_values">
+      <field name="name">Assign Cash Flow Code</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_assign_cashflow_code_all_line'))" />
+      <field name="model">account.cashflow.line.overview</field>
+    </record>
+
+  </data> 
+</openerp>

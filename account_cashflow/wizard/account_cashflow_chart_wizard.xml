@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+    
+    <!-- Cash Flow Chart -->
+    
+    <record id="view_cashflow_chart_tree" model="ir.ui.view">
+      <field name="name">account.cashflow.chart.tree</field>
+      <field name="model">account.cashflow.code</field>
+      <field name="field_parent">child_ids</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Cash Flow Codes" colors="blue:type=='view';darkgreen:type=='init';black:type=='normal';magenta:type=='provision'" toolbar="1">
+          <field name="code"/>
+          <field name="name"/>
+          
+          <field name="balance_day01"/>
+          <field name="balance_day02"/>
+          <field name="balance_day03"/>
+          <field name="balance_day04"/>
+          <field name="balance_day05"/>
+          <field name="balance_day06"/>
+          <field name="balance_day07"/>
+
+          <field name="balance_day08"/>
+          <field name="balance_day09"/>
+          <field name="balance_day10"/>
+          <field name="balance_day11"/>
+          <field name="balance_day12"/>
+          <field name="balance_day13"/>
+          <field name="balance_day14"/>
+
+          <field name="balance_day15"/>
+          <field name="balance_day16"/>
+          <field name="balance_day17"/>
+          <field name="balance_day18"/>
+          <field name="balance_day19"/>
+          <field name="balance_day20"/>
+          <field name="balance_day21"/>
+
+          <field name="balance_day22"/>
+          <field name="balance_day23"/>
+          <field name="balance_day24"/>
+          <field name="balance_day25"/>
+          <field name="balance_day26"/>
+          <field name="balance_day27"/>
+          <field name="balance_day28"/>
+
+          <field name="balance_day29"/>
+          <field name="balance_day30"/>
+          <field name="balance_day31"/>
+          <field name="balance_day32"/>
+          <field name="balance_day33"/>
+          <field name="balance_day34"/>
+          <field name="balance_day35"/>
+
+          <field name="balance_day36"/>
+          <field name="balance_day37"/>
+          <field name="balance_day38"/>
+          <field name="balance_day39"/>
+          <field name="balance_day40"/>
+          <field name="balance_day41"/>
+          <field name="balance_day42"/>
+
+          <field name="balance_period"/>
+          <field name="type" invisible="1"/>
+          <field name="parent_id" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_cashflow_chart_tree" model="ir.actions.act_window">
+      <field name="name">Cash Flow Chart</field>
+      <field name="res_model">account.cashflow.code</field>
+      <field name="domain">[('parent_id','=',False)]</field>
+      <field name="view_type">tree</field>
+      <field name="view_id" ref="view_cashflow_chart_tree"/>
+    </record>
+    
+    <record id="view_cashflow_chart" model="ir.ui.view">
+      <field name="name">account.cashflow.chart.form</field>
+      <field name="model">account.cashflow.chart</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Cash Flow Chart">
+          <group colspan="4">
+            <field name="date_start"/>
+            <field name="date_stop"/>
+            <separator string="Financial Journals" colspan="4"/>
+            <field name="journal_ids" nolabel="1" colspan="4"/>
+          </group>
+          <separator string="" colspan="4"/>
+          <group colspan="4" col="6">
+            <label string ="" colspan="2"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+            <button icon="terp-gtk-go-back-rtl" string="Open Chart" name="open_cashflow_chart" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    
+    <record id="action_cashflow_chart" model="ir.actions.act_window">
+      <field name="name">Cash Flow Chart</field>
+      <field name="res_model">account.cashflow.chart</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[]</field>
+      <field name="view_id" ref="view_cashflow_chart"/>
+      <field name="help">The Cash Flow Chart shows the current Cash Flow situation. It’s presented in a hierarchical structure, which can be modified to fit your needs.</field>
+      <field name="target">new</field>
+    </record>
+
+    <record id="ir_open_cashflow_line" model="ir.values">
+      <field eval="'tree_but_open'" name="key2"/>
+      <field eval="'account.cashflow.code'" name="model"/>
+      <field name="name">Open Associated Cash Flow Lines</field>
+      <field eval="'ir.actions.act_window,%d'%action_cashflow_line_overview_list" name="value"/>
+    </record>
+
+    <menuitem icon="STOCK_INDENT" action="action_cashflow_chart" id="menu_cashflow_chart" parent="menu_account_cashflow" sequence="10"/>
+    <menuitem icon="STOCK_INDENT" action="action_cashflow_chart" id="menu_cashflow_chart2" parent="account.menu_finance_charts" sequence="20"/>
+
+  </data> 
+</openerp>

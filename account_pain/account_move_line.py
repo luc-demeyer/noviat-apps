@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,6 +20,7 @@
 #
 ##############################################################################
 
+from openerp.tools.translate import _
 from openerp.osv import fields, orm
 from operator import itemgetter
 import logging
@@ -29,25 +30,23 @@ _logger = logging.getLogger(__name__)
 class account_move_line(orm.Model):
     _inherit = "account.move.line"
 
-    def _amount_to_pay(self, cr, uid, ids, name, arg={}, context=None):
-        """
-        Return the amount still to pay regarding all the payment orders
-        """
+    def amount_to_pay(self, cr, uid, ids, name, arg={}, context=None):
+        """ Return the amount still to pay regarding all the payment orders
+        (excepting cancelled orders)"""
         if not ids:
             return {}
-        amounts_residual = self.read(
-            cr, uid, ids, ['amount_residual_currency'], context=context)
-        cr.execute(
-            "SELECT ml.id, "
-            "  (SELECT coalesce(sum(amount_currency), 0) "
-            "     FROM payment_line pl "
-            "     INNER JOIN payment_order po "
-            "       ON (pl.order_id = po.id) "
-            "     WHERE move_line_id = ml.id "
-            "       AND po.state != 'cancel' "
-            "       AND pl.bank_statement_line_id IS NULL) AS pl_amount "
-            "FROM account_move_line ml "
-            "WHERE id IN %s", (tuple(ids), ))
+        amounts_residual = self.read(cr, uid, ids, ['amount_residual_currency'], context=context)
+        cr.execute("""SELECT ml.id, 
+                    (SELECT coalesce(sum(amount_currency),0)
+                        FROM payment_line pl
+                            INNER JOIN payment_order po
+                                ON (pl.order_id = po.id)
+                        WHERE move_line_id = ml.id
+                        AND po.state != 'cancel'
+                        AND pl.bank_statement_line_id IS NULL
+                        ) AS pl_amount
+                    FROM account_move_line ml
+                    WHERE id IN %s""", (tuple(ids),))
         amounts_paylines = dict(cr.fetchall())
         amounts_to_pay = {}
         for entry in amounts_residual:
@@ -60,31 +59,29 @@ class account_move_line(orm.Model):
         if not args:
             return []
         line_obj = self.pool.get('account.move.line')
-        query = line_obj._query_get(cr, uid, context={'all_fiscalyear': True})
+        query = line_obj._query_get(cr, uid, context={'all_fiscalyear': True})  # fix Noviat to include open entries from previous fy's
         query += 'AND l.blocked = False '  # fix Noviat
-        where = ' and '.join(
-            map(lambda x: """
-                (SELECT
-                CASE WHEN l.amount_currency < 0
-                    THEN - l.amount_currency
-                    ELSE l.credit
-                END - coalesce(sum(pl.amount_currency), 0)
-                FROM payment_line pl
-                INNER JOIN payment_order po ON (pl.order_id = po.id)
-                WHERE move_line_id = l.id
-                AND po.state != 'cancel'
-                AND pl.bank_statement_line_id IS NULL /* fix Noviat */
-                ) %(operator)s %%s """ % {'operator': x[1]},
-                args))
+        where = ' and '.join(map(lambda x: '''(SELECT
+        CASE WHEN l.amount_currency < 0
+            THEN - l.amount_currency
+            ELSE l.credit
+        END - coalesce(sum(pl.amount_currency), 0)
+        FROM payment_line pl
+        INNER JOIN payment_order po ON (pl.order_id = po.id)
+        WHERE move_line_id = l.id
+        AND po.state != 'cancel'
+        AND pl.bank_statement_line_id IS NULL /* fix Noviat */
+        ) %(operator)s %%s ''' % {'operator': x[1]}, args))
         sql_args = tuple(map(itemgetter(2), args))
 
-        cr.execute(
-            "SELECT id FROM account_move_line l "
-            "WHERE account_id IN "
-            "(select id FROM account_account WHERE type in %s AND active) "
-            "AND reconcile_id IS null AND credit > 0 AND "
-            + where + " AND " + query,
-            (('payable', 'receivable'), ) + sql_args)
+        cr.execute(('''SELECT id
+            FROM account_move_line l
+            WHERE account_id IN (select id
+                FROM account_account
+                WHERE type in %s AND active)
+            AND reconcile_id IS null
+            AND credit > 0
+            AND ''' + where + ' AND ' + query), (('payable','receivable'),)+sql_args ) # fix Noviat to include sale refunds
 
         res = cr.fetchall()
         if not res:
@@ -92,30 +89,19 @@ class account_move_line(orm.Model):
         return [('id', 'in', map(lambda x:x[0], res))]
 
     _columns = {
-        'amount_to_pay': fields.function(
-            _amount_to_pay, method=True,
+        'amount_to_pay': fields.function(amount_to_pay, method=True,
             type='float', string='Amount to pay', fnct_search=_to_pay_search),
-        'supplier_direct_debit': fields.related(
-            'invoice', 'supplier_direct_debit', type='boolean',
-            relation='account.invoice',
-            string='Supplier Direct Debit', readonly=True),
+        'supplier_direct_debit': fields.related('invoice', 'supplier_direct_debit', type='boolean', relation='account.invoice', string='Supplier Direct Debit', readonly=True),
     }
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
         if view_type == 'tree':
             mod_obj = self.pool.get('ir.model.data')
             if context is None:
                 context = {}
             if context.get('account_payment', False):
-                model_data_ids = mod_obj.search(
-                    cr, uid,
-                    [('model', '=', 'ir.ui.view'),
-                     ('name', '=', 'view_move_line_tree_account_pain')],
-                    context=context)
-                view_id = mod_obj.read(
-                    cr, uid, model_data_ids, fields=['res_id'],
-                    context=context)[0]['res_id']
-        return super(account_move_line, self).fields_view_get(
-            cr, uid, view_id, view_type, context=context, toolbar=toolbar,
-            submenu=submenu)
+                model_data_ids = mod_obj.search(cr, uid,[('model', '=', 'ir.ui.view'), ('name', '=', 'view_move_line_tree_account_pain')], context=context)
+                view_id = mod_obj.read(cr, uid, model_data_ids, fields=['res_id'], context=context)[0]['res_id']        
+        return super(account_move_line, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar, submenu=submenu)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

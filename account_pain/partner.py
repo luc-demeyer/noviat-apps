@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,14 +21,15 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
+import logging
+_logger = logging.getLogger(__name__)
 
 
-class res_partner(orm.Model):
+class res_partner(orm.Model):  
     _inherit = 'res.partner'
-
-    _columns = {
-        'supplier_direct_debit': fields.boolean(
-            'Supplier Direct Debit',
-            help="The 'Supplier Direct Debit' flag will be set "
-                 "by default on Supplier Invoices."),
+   
+    _columns = { 
+        'supplier_direct_debit': fields.boolean('Supplier Direct Debit',
+            help="The 'Supplier Direct Debit' flag will be set by default on Supplier Invoices."),
     }

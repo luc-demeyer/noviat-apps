@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+            <record forcecreate="True" id="ir_cron_statement_process_scheduler_action" model="ir.cron">
+            <field name="name">Update Monthly Recurring Charges per Contract</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'contract.document'"/>
+            <field eval="'_update_mrc'" name="function"/>
+            <field eval="'(None,)'" name="args"/>
+        </record>
+    </data>
+</openerp>

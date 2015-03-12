@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+      <report
+        auto="False"
+        header="True"
+        id="cash_operation_letter_print"
+        menu="True"
+        model="account.cash.operation"
+        name="cash.operation.letter.print"
+        string="Confirmation Letter"
+        report_type="webkit"
+        attachment="(object.state == 'confirm' and ((object.name or 'CL').replace('/','-') + '.pdf'))"
+        attachment_use="1"
+        file="account_cashflow_operations/report/cash_operation_letter.mako"/>
+
+      <record id="cash_operation_letter_print" model="ir.actions.report.xml">
+        <field name="webkit_header" ref="account_cashflow_operations.ir_header_webkit_cash_operation_letter"/>
+      </record>
+
+    </data>
+</openerp>

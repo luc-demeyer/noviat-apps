@@ -1,6 +1,6 @@
 # Dutch translation of openobject-addons.
 # This file contains the translation of the following modules:
-#   * account_invoice_line_default
+#	* account_invoice_line_default
 #
 msgid ""
 msgstr ""

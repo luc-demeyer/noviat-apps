@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_cashflow_code_manager,account.cashflow.code manager,model_account_cashflow_code,account.group_account_manager,1,1,1,1
+access_account_cashflow_code_user,account.cashflow.code user,model_account_cashflow_code,account.group_account_user,1,0,0,0
+access_account_cashflow_rule_manager,account.cashflow.rule manager,model_account_cashflow_rule,account.group_account_manager,1,1,1,1
+access_account_cashflow_rule_user,account.cashflow.rule user,model_account_cashflow_rule,account.group_account_user,1,0,0,0
+access_account_cashflow_line_manager,account.cashflow.line manager,model_account_cashflow_line,account.group_account_manager,1,1,1,1
+access_account_cashflow_line_user,account.cashflow.line user,model_account_cashflow_line,account.group_account_user,1,0,0,0
+access_account_cashflow_provision_line_manager,account.cashflow.provision.line manager,model_account_cashflow_provision_line,account.group_account_manager,1,1,1,1
+access_account_cashflow_provision_line_user,account.cashflow.provision.line user,model_account_cashflow_provision_line,account.group_account_user,1,0,0,0
+access_account_cashflow_line_overview_manager,account.cashflow.line.overview manager,model_account_cashflow_line_overview,account.group_account_manager,1,1,1,1
+access_account_cashflow_line_overview_user,account.cashflow.line.overview user,model_account_cashflow_line_overview,account.group_account_user,1,0,0,0
+access_account_cashflow_balance_manager,account.cashflow.balance manager,model_account_cashflow_balance,account.group_account_manager,1,1,1,1
+access_account_cashflow_balance_user,account.cashflow.balance user,model_account_cashflow_balance,account.group_account_user,1,0,0,0
+access_account_cashflow_opening_balance_manager,account.cashflow.opening.balance manager,model_account_cashflow_opening_balance,account.group_account_manager,1,1,1,1
+access_account_cashflow_opening_balance_user,account.cashflow.opening.balance user,model_account_cashflow_opening_balance,account.group_account_user,1,0,0,0

@@ -2,19 +2,23 @@
 <openerp>
   <data>
 
-    <record id="invoice_supplier_form" model="ir.ui.view">
-      <field name="name">account.invoice.supplier.form.inherit</field>
+    <!-- Adapt Supplier Invoices : move 'name' field to first notebook page -->
+
+    <record id="supplier_invoice_inherit_nov" model="ir.ui.view">
+      <field name="name">account.invoice.supplier.form.inherit.nov</field>
       <field name="model">account.invoice</field>
+      <field name="type">form</field>
       <field name="inherit_id" ref="account.invoice_supplier_form"/>
       <field name="arch" type="xml">
         <data>
-          <field name="origin" position="before">
+          <xpath expr="/form/notebook/page[@string='Other Info']/field[@name='name']" position="replace"/>
+          <xpath expr="/form/group/group[@groups='account.group_account_user']" position="after">
+            <newline/>
             <field name="name"/>
-          </field>
-          <xpath expr="//notebook/page[@string='Other Info']//field[@name='name']" position="replace"/>
+          </xpath>
         </data>
       </field>
     </record>
-
+    
   </data>
 </openerp>

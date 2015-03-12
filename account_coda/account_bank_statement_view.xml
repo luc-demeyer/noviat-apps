@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+   
+    <!-- show Globalisation Id on bank statement line -->
+    
+    <record id="view_bank_statement_form_show_globid" model="ir.ui.view">
+      <field name="name">view.bank.statement.form.show.globid</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account_bank_statement_extensions.view_bank_statement_form_add_fields"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="/form/notebook/page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='globalisation_id']" position="replace">
+            <field name="globalisation_id" string="Glob. Id" readonly="1"/>
+          </xpath>
+        </data>
+      </field>
+    </record>
+
+  </data>
+</openerp>

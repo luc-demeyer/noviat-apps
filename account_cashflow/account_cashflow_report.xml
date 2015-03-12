@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+      <report
+        auto="False"
+        header="True"
+        id="account_cashflow_report"
+        menu="True"
+        model="account.cashflow.code"
+        name="account.cashflow.report"
+        string="Cash Flow Report"
+        report_type="webkit"
+        file="account_cashflow/report/account_cashflow_report.mako"
+        multi="True"/>
+
+      <record id="account_cashflow_report" model="ir.actions.report.xml">
+        <field name="webkit_header" ref="ir_header_webkit_cashflow_report"/>
+      </record>
+
+      <report
+        auto="False"
+        header="True"
+        id="account_cashflow_summary_report"
+        menu="True"
+        model="account.cashflow.code"
+        name="account.cashflow.summary.report"
+        string="Cash Flow Summary Report"
+        report_type="webkit"
+        file="account_cashflow/report/account_cashflow_summary_report.mako"
+        multi="True"/>
+
+      <record id="account_cashflow_summary_report" model="ir.actions.report.xml">
+        <field name="webkit_header" ref="ir_header_webkit_cashflow_summary_report"/>
+      </record>
+
+    </data>
+</openerp>

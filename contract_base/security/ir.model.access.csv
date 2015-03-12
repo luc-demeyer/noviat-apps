@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contract_category_manager,contract.category manager,model_contract_category,account.group_account_manager,1,1,1,1
+access_contract_category_user,contract.category user,model_contract_category,account.group_account_user,1,0,0,0
+access_contract_document_manager,contract.document manager,model_contract_document,account.group_account_manager,1,1,1,1
+access_contract_document_user,contract.document user,model_contract_document,account.group_account_user,1,0,0,0
+access_contract_line_manager,contract.line manager,model_contract_line,account.group_account_manager,1,1,1,1
+access_contract_line_user,contract.line user,model_contract_line,account.group_account_user,1,0,0,0
+access_contract_line_billing_manager,contract.line.billing manager,model_contract_line_billing,account.group_account_manager,1,1,1,1
+access_contract_line_billing_user,contract.line.billing user,model_contract_line_billing,account.group_account_user,1,0,0,0
+access_contract_document_related_manager,contract.document.related manager,model_contract_document_related,account.group_account_manager,1,1,1,1
+access_contract_document_related_user,contract.document.related user,model_contract_document_related,account.group_account_user,1,0,0,0
+access_billing_period_manager,billing.period manager,model_billing_period,account.group_account_manager,1,1,1,1
+access_billing_period_user,billing.period user,model_billing_period,account.group_account_user,1,0,0,0
+access_account_invoice_line_print_manager,account.invoice.line.print manager,model_account_invoice_line_print,account.group_account_manager,1,1,1,1
+access_account_invoice_line_print_invoice,account.invoice.line.print invoice,model_account_invoice_line_print,account.group_account_invoice,1,1,1,1
+access_account_invoice_line_print_user,account.invoice.line.print user,model_account_invoice_line_print,account.group_account_user,1,0,0,0

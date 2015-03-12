@@ -1,25 +1,26 @@
 <?xml version="1.0" ?>
 <openerp>
 	<data>
-   
+
     <record id="aml_import_view" model="ir.ui.view">
       <field name="name">aml.import.form</field>
       <field name="model">aml.import</field>
+      <field name="type">form</field>
       <field name="priority">1</field>
       <field name="arch" type="xml">
         <form string="Import File">
           <group col="4">
             <separator string="Select your file :" colspan="4"/>
             <field name="aml_data" filename="aml_fname"/>
-            <newline/>
             <field name="csv_separator"/>
+            <field name="aml_fname"/>
             <field name="decimal_separator"/>
           </group>
-          <footer>
-            <button name="aml_import" string="_Import" type="object" class="oe_highlight"/>
-            or
-            <button string="Cancel" class="oe_link" special="cancel"/>
-          </footer>
+          <separator colspan="4"/>
+          <group colspan="4">
+            <button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+            <button name="aml_import" string="_Import" type="object" icon="gtk-ok"/>
+          </group>
         </form>
       </field>
     </record>
@@ -27,14 +28,15 @@
     <record id="aml_import_result_view" model="ir.ui.view">
       <field name="name">aml.import.result.form</field>
       <field name="model">aml.import</field>
+      <field name="type">form</field>
       <field name="priority">2</field>
       <field name="arch" type="xml">
         <form string="Import File">
           <separator colspan="4" string="Results :" />
           <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
-          <footer>
-            <button string="Close" class="oe_link" special="cancel"/>
-          </footer>
+          <newline/>
+          <separator colspan="6"/>
+          <button special="cancel" string="Close" icon="gtk-cancel"/>
         </form>
       </field>
     </record>

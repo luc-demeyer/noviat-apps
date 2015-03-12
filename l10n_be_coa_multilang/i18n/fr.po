@@ -1,13 +1,13 @@
-# French translation of Odoo 8.0.
+# French translation of OpenERP Server 6.1.
 # This file contains the translation of the following modules:
-#    * l10n_be_coa_multilang
+#	* l10n_be_coa_multilang
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 8.0\n"
-"Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2015-01-16 11:19:03.438000\n"
-"PO-Revision-Date: 2015-01-16 11:19:03.438000\n"
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2013-10-31 11:40:37.878000\n"
+"PO-Revision-Date: 2013-10-31 11:40:37.878000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,464 +20,54 @@ msgid "Belgian Chart of Accounts (en/nl/fr)"
 msgstr "Plan Comptable Minimum Normalisé Belge (en/nl/fr)"
 
 #. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:10
-msgid "No records found for your selection!"
-msgstr "Aucun enregistrement trouvé pour votre sélection!"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_nv_sa
+msgid "nv/sa"
+msgstr "sa"
 
 #. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:11
-msgid "No Data Available"
-msgstr "Aucune donnée disponible"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bvba_sprl
+msgid "bvba/sprl"
+msgstr "sprl"
 
 #. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:10
-msgid "No records found for your selection!"
-msgstr "Aucun enregistrement trouvé pour votre sélection!"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vzw_asbl
+msgid "vzw/asbl"
+msgstr "asbl"
 
 #. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:11
-msgid "No Data Available"
-msgstr "Aucune donnée disponible"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_cvba_scrl
+msgid "cvba/scrl"
+msgstr "scrl"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_bs
-msgid "Belgian Balance Sheet"
-msgstr "Bilan Belge"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vof_scn
+msgid "vof/scn"
+msgstr "scn"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_pl
-msgid "Belgian Profit And Loss"
-msgstr "Compte de résultats Belge"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bv
+msgid "bv"
+msgstr "bv"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_finance_belgian_statement
-msgid "Belgian Statements and Reports"
-msgstr "Rapports et Déclarations Belges"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_ag
+msgid "ag"
+msgstr "ag"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_bs
-msgid "Belgian Balance Sheet"
-msgstr "Bilan Belge"
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_inc
+msgid "inc"
+msgstr "inc"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_pl
-msgid "Belgian Profit And Loss"
-msgstr "Compte de résultats Belge"
+#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
+msgid "corp"
+msgstr "corp"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_be_legal_financial_reportscheme
-msgid "Belgian Legal Financial Report Scheme"
-msgstr "Plan rapport légale belge"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_be_legal_financial_reportscheme
-msgid "Belgian Legal Financial Report Scheme"
-msgstr "Plan rapport légale belge"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_declaration
-msgid "Periodical VAT Declaration"
-msgstr "Déclaration périodique à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_declaration
-msgid "Periodical VAT Declaration"
-msgstr "Déclaration périodique à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: view:l10n_be.vat.declaration:0
-msgid "Periodical VAT Declaration"
-msgstr "Déclaration périodique à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: view:l10n_be.vat.declaration:0
-msgid "Options"
-msgstr "Options"
-
-#. module: l10n_be_coa_multilang
-#: view:l10n_be.vat.declaration:0
-msgid "Comments"
-msgstr "Commentaires"
-
-#. module: l10n_be_coa_multilang
-#: view:l10n_be.vat.declaration:0
-msgid "Last Declaration"
-msgstr "Dernière déclaration"
-
-#. module: l10n_be_coa_multilang
-#: field:l10n_be.vat.declaration,period_id:0
-msgid "Period"
-msgstr "Période"
-
-#. module: l10n_be_coa_multilang
-#: field:l10n_be.vat.declaration,ask_restitution:0
-msgid "Ask Restitution"
-msgstr "Demande de restitution"
-
-#. module: l10n_be_coa_multilang
-#: field:l10n_be.vat.declaration,ask_payment:0
-msgid "Ask Payment"
-msgstr "Demande de formulaires de paiement"
-
-#. module: l10n_be_coa_multilang
-#: field:l10n_be.vat.declaration,client_nihil:0
-msgid "Last Declaration"
-msgstr "Dernière déclaration"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_intra
-msgid "Intracom VAT Declaration"
-msgstr "Déclaration intracommunautaire à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_intra
-msgid "Intracom VAT Declaration"
-msgstr "Déclaration intracommunautaire à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: view:partner.vat.intra:0
-msgid "Intracom VAT Declaration"
-msgstr "Déclaration intracommunautaire à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.partner_vat_listing
-msgid "Annual Listing Of VAT-Subjected Customers"
-msgstr "Listing annuel des clients assujettis à la TVA"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_vat_listing
-msgid "Partner VAT Listing"
-msgstr "Liste de la TVA par partenaire"
-
-#. module: l10n_be_coa_multilang
-#: field:partner.vat,year:0
-msgid "Year"
-msgstr "Année"
-
-#. module: l10n_be_coa_multilang
-#: field:partner.vat,limit_amount:0
-msgid "Limit Amount"
-msgstr "Montant Limite"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_fy
-msgid "Print Open Receivables/Payables by Fiscal Year"
-msgstr "Rapport débiteurs/créditeurs par exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_period
-msgid "Print Open Receivables/Payables by Period"
-msgstr "Rapport débiteurs/créditeurs par période"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal
-msgid "Print Journal by Period"
-msgstr "Journal détaillé par période"
-
-#. module: l10n_be_coa_multilang
-#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal_fiscalyear
-msgid "Print Journal by Fiscal Year"
-msgstr "Journal détaillé par exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Journal Overview"
-msgstr "Journal détaillé"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Fiscal Year"
-msgstr "Exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Document"
-msgstr "Document"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Account"
-msgstr "Compte"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Description"
-msgstr "Description"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "VAT"
-msgstr "TVA"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Debit"
-msgstr "Débit"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.fiscalyear.print:0
-msgid "VAT Declaration"
-msgstr "Déclaration TVA"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Journal Overview"
-msgstr "Journal détaillé"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Period"
-msgstr "Période"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Document"
-msgstr "Document"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Account"
-msgstr "Compte"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Description"
-msgstr "Description"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "VAT"
-msgstr "TVA"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Debit"
-msgstr "Débit"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: l10n_be_coa_multilang
-#: report:nov.account.journal.period.print:0
-msgid "VAT Declaration"
-msgstr "Déclaration TVA"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:10
-msgid "Document"
-msgstr "Document"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:11
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:12
-msgid "Due Date"
-msgstr "Echéance"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:13
-msgid "Account"
-msgstr "Compte"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:14
-msgid "Description"
-msgstr "Description"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:14
-msgid "Debit"
-msgstr "Débit"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:15
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:16
-msgid "Balance"
-msgstr "Solde"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.fy.print:17
-msgid "Totals"
-msgstr "Totals"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:10
-msgid "Document"
-msgstr "Document"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:11
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:12
-msgid "Due Date"
-msgstr "Echéance"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:13
-msgid "Account"
-msgstr "Compte"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:14
-msgid "Description"
-msgstr "Description"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:14
-msgid "Debit"
-msgstr "Débit"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:15
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:16
-msgid "Balance"
-msgstr "Solde"
-
-#. module: l10n_be_coa_multilang
-#: report:account.partner.open.arap.period.print:17
-msgid "Totals"
-msgstr "Totals"
-
-#. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:10
-msgid "Open Receivables"
-msgstr "Débiteurs"
-
-#. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
-msgid "Open Payables"
-msgstr "Créditeurs"
-
-#. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
-msgid "Fiscal Year"
-msgstr "Exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
-msgid "Period"
-msgstr "Période"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal.fiscalyear:0
-msgid "Print Journal by Fiscal Year"
-msgstr "Journal détaillé par exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal.fiscalyear:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal.fiscalyear,fiscalyear_id:0
-msgid "Fiscal Year"
-msgstr "Exercice fiscal"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal.fiscalyear,journal_id:0
-msgid "Journal"
-msgstr "Journal"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal.fiscalyear:0
-msgid "Print"
-msgstr "Imprimer"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal.fiscalyear,sort:0
-msgid "Entries Sorted By"
-msgstr "Entrées triées par"
-
-#. module: l10n_be_coa_multilang
-#: selection:nov.print.journal.fiscalyear,sort:0
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: selection:nov.print.journal.fiscalyear,sort:0
-msgid "Number"
-msgstr "Numéro"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal:0
-msgid "Print Journal by Period"
-msgstr "Journal détaillé par période"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal,journal_ids:0
-msgid "Journals"
-msgstr "Journaux"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal,period_ids:0
-msgid "Periods"
-msgstr "Périodes"
-
-#. module: l10n_be_coa_multilang
-#: view:nov.print.journal:0
-msgid "Print"
-msgstr "Imprimer"
-
-#. module: l10n_be_coa_multilang
-#: field:nov.print.journal,sort:0
-msgid "Entries Sorted By"
-msgstr "Entrées triées par"
-
-#. module: l10n_be_coa_multilang
-#: selection:nov.print.journal,sort:0
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coa_multilang
-#: selection:nov.print.journal,sort:0
-msgid "Number"
-msgstr "Numéro"
+#: model:res.partner.title,name:base.res_partner_title_ltd
+msgid "ltd"
+msgstr "ltd"
 
 #. module: l10n_be_coa_multilang
 #: model:account.account.type,name:l10n_be_coa_multilang.user_type_view
@@ -2805,7 +2395,7 @@ msgid "Issued Capital"
 msgstr "Capital souscrit"
 
 #. module: l10n_be_coa_multilang
-#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221120
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221111
 msgid "Uncalled Capital"
 msgstr "Capital non appelé"
 
