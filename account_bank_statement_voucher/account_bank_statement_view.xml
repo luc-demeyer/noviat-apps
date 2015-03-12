@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <!-- unreconcile bank statement wizard -->
+    <record id="unreconcile_statement_entries_form_view" model="ir.ui.view">
+      <field name="name">Unreconcile Bank Statement Accounting Entries</field>
+      <field name="model">unreconcile.statement.entries</field>
+      <field name="arch" type="xml">
+        <form string="Unreconcile Bank Statement Accounting Entries" version="7.0">
+          <group>
+            <field name="note" colspan="4" nolabel="1"/>
+          </group>
+            <footer>
+               <field name="state" invisible="1"/>
+               <button name="unreconcile" states="draft" string="Unreconcile entries" type="object" class="oe_highlight"/>
+               <button name="view_invoices" states="done" string="View Invoices" icon="gtk-ok" type="object"/>
+               <button name="view_moves" states="done" string="View Moves" icon="gtk-ok" type="object"/>
+               or
+               <button special="cancel" states="draft" string="Cancel" class="oe_link"/>
+               <button special="cancel" states="done" string="Close Window" class="oe_link"/>
+             </footer>
+          </form>
+      </field>
+    </record>
+    <record id="action_unreconcile_statement_entries" model="ir.actions.act_window">
+      <field name="name">Unreconcile Bank Statement Accounting Entries</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">unreconcile.statement.entries</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="unreconcile_statement_entries_form_view"/>
+      <field name="target">new</field>
+    </record>
+
+    <!-- bank statement -->
+    <record id="view_bank_statement_form_voucher_inherit" model="ir.ui.view">
+      <field name="name">account.bank.statement.voucher.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account_voucher.view_bank_statement_form_voucher"/>
+      <field name="arch" type="xml">
+        <xpath expr="//sheet" position="attributes">
+          <attribute name="class">oe_form_sheet_full_screen</attribute>
+        </xpath>
+        <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='voucher_id']" position="replace">
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <field name="state" invisible="1"/>
+          <field name="voucher_state" invisible="1"/>
+          <field name="move_state" invisible="1"/>
+          <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+          <button name="action_undo" string="Undo Associated Reconciliations/Accounting Move" type="object"
+                  attrs="{'invisible':['|','&amp;',('move_state','=',False),('voucher_state','=',False),('move_state','=','posted')]}"            
+                  icon="gtk-cancel"/>
+        </xpath>
+        <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/form/group[@col='4']" position="before">
+          <header>
+            <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+            <button name="action_undo" string="Undo Associated Reconciliations/Accounting Moves" type="object"
+                    attrs="{'invisible':['|','&amp;',('move_state','=',False),('voucher_state','=',False),('move_state','=','posted')]}"
+                    icon="gtk-cancel"/>
+          </header>
+        </xpath>
+        <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/form/group/field[@name='voucher_id']" position="replace"/>
+        <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/form/group/field[@name='sequence']" position="after">
+          <newline/>
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <field name="state" invisible="1"/>
+          <field name="voucher_state" invisible="1"/>
+          <field name="move_state" invisible="1"/>
+        </xpath>
+        <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
+           <attribute name="colors">blue:move_state!='posted';</attribute>
+           <attribute name="editable"/>
+        </xpath>
+        <xpath expr="//page[@name='statement_line_ids']" position="after">
+          <page string="Journal Items" name="move_live_ids" nolabel="1" groups="account.group_account_manager">
+            <header>
+              <button name="unpost_statement_moves" states="draft" string="Unpost Moves"
+                confirm="Are you sure ?"
+                type="object" groups="base.group_no_one"/>
+              <button name="%(action_unreconcile_statement_entries)d" states="draft" string="Unreconcile Entries"
+                type="action" groups="base.group_no_one"/>
+            </header>
+            <field colspan="4" name="move_line_ids" nolabel="1">
+              <tree string="Journal Items">
+                <field name="move_id"/>
+                <field name="ref"/>
+                <field name="date"/>
+                <field name="period_id"/>
+                <field name="partner_id" on_change="onchange_partner_id(move_id, partner_id, account_id, debit, credit, date, journal_id)"/>
+                <field name="account_id"/>
+                <field name="name"/>
+                <field name="journal_id" invisible="1"/>
+                <field name="debit" sum="Total debit"/>
+                <field name="credit" sum="Total credit"/>
+                <field name="reconcile_partial_id"/>
+                <field name="reconcile_id"/>
+                <field name="state"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="view_bank_statement_form_journal_items" model="ir.ui.view">
+      <field name="name">account.bank.statement.journal.items.form.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form_journal_items"/>
+      <field name="arch" type="xml">
+        <button name="button_journal_entries" position="attributes">
+          <attribute name="attrs">{'invisible':[('move_line_ids','=',[])]}</attribute>
+        </button>
+      </field>
+    </record>
+
+    <!-- bank statement line-->
+    <record id="view_bank_statement_line_list_inherit" model="ir.ui.view">
+      <field name="name">bank.statement.line.list.inherit</field>
+      <field name="model">account.bank.statement.line</field>
+      <field name="inherit_id" ref="account_bank_statement_extensions.view_bank_statement_line_list"/>
+      <field name="arch" type="xml">
+        <xpath expr="/tree" position="attributes">
+          <attribute name="colors">blue:move_state!='posted';</attribute>
+        </xpath>
+        <field name="state" position="before">
+          <field name="voucher_state" invisible="1"/>
+          <field name="move_state" invisible="1"/>
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+          <button name="action_undo" string="Undo Associated Reconciliations/Accounting Moves" type="object" 
+                  attrs="{'invisible':['|','&amp;',('move_state','=',False),('voucher_state','=',False),('move_state','=','posted')]}"
+                  icon="gtk-cancel"/>
+        </field>
+      </field>
+    </record>
+    <record id="view_bank_statement_line_form_inherit" model="ir.ui.view">
+      <field name="name">bank.statement.line.form.inherit</field>
+      <field name="model">account.bank.statement.line</field>
+      <field name="inherit_id" ref="account_bank_statement_extensions.view_bank_statement_line_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/group[@col='4']" position="before">
+          <header>
+            <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+            <button name="action_undo" string="Undo Associated Reconciliations/Accounting Moves" type="object"
+                    attrs="{'invisible':['|','&amp;',('move_state','=',False),('voucher_state','=',False),('move_state','=','posted')]}"
+                    icon="gtk-cancel" />
+          </header>
+        </xpath>
+        <field name="state" position="after">
+          <newline/>
+          <field name="voucher_state" invisible="1"/>
+          <field name="move_state" invisible="1"/>
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

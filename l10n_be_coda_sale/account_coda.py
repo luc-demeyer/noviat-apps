@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,15 +20,19 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import orm, fields
 
 
-class coda_bank_account(models.Model):
-    _inherit = 'coda.bank.account'
+class coda_bank_account(orm.Model):
+    _inherit= 'coda.bank.account'
 
-    find_so_number = fields.Boolean(
-        string='Lookup Sales Order Number', default=True,
-        help="Partner lookup and reconciliation via the Sales Order "
-             "when a communication in free format is used."
-             "\nA reconciliation will only be created in case of exact match "
-             "between the Sales Order Invoice and Bank Transaction amounts.")
+    _columns = {
+        'find_so_number': fields.boolean('Lookup Sales Order Number',
+            help='Partner lookup and reconciliation via the Sales Order when a communication in free format is used.' \
+                  '\nA reconciliation will only be created in case of exact match between the Sales Order Invoice and Bank Transaction amounts.'),
+    }
+    _defaults = {
+        'find_so_number': True,
+    }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

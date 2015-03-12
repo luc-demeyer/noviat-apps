@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-# noqa: skip pep8 control until this wizard is rewritten.
-# flake8: noqa
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
-#    Corrections & modifications by Noviat nv/sa, (http://www.noviat.com):
+#    Adapted by Noviat to
 #     - support Noviat tax code scheme
 #     - align with periodical VAT declaration
-#     - grouping by vat number / code
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,19 +22,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 import time
 import base64
-import operator
-from datetime import datetime
-from openerp.osv.fields import datetime as datetime_field
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.report import report_sxw
 import logging
 _logger = logging.getLogger(__name__)
-
 
 class partner_vat_intra(orm.TransientModel):
     """ VAT Intracom declaration
@@ -45,16 +37,13 @@ class partner_vat_intra(orm.TransientModel):
     _name = 'partner.vat.intra'
     _description = 'Partner VAT Intra'
 
-    def _get_period(self, cr, uid, context=None):
+    def _get_period(self, cr, uid, context=None):       
         domain = [('special', '=', False), ('date_stop', '<', time.strftime('%Y-%m-%d'))]
         result = self.pool.get('account.period').search(cr, uid, domain)
         return result and result[-1:] or False
 
     def _get_europe_country(self, cr, uid, context=None):
-        return self.pool.get('res.country').search(cr, uid, [('code', 'in',
-            ['AT', 'BG', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
-             'HR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL',
-             'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'])])
+        return self.pool.get('res.country').search(cr, uid, [('code', 'in', ['AT', 'BG', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'])])
 
     def _get_tax_code(self, cr, uid, context=None):
         obj_tax_code = self.pool.get('account.tax.code')
@@ -65,11 +54,11 @@ class partner_vat_intra(orm.TransientModel):
 
     _columns = {
         'name': fields.char('File Name', size=32),
-        'file_save': fields.binary('Save File', readonly=True),
+        'file_save' : fields.binary('Save File', readonly=True),
         'period_ids': fields.many2many('account.period', 'vat_intra_period_rel', 'acc_id', 'period_id', 'Period (s)', required=True,
             help='Select here the period(s) you want to include in your Intracom declaration'),
-        'period_code': fields.char('Period Code', size=6, required=True,
-            help="""This field allows you to override the period code for the Intracom declaration.
+        'period_code': fields.char('Period Code',size = 6,
+               help = """This field allows you to override the period code for the Intracom declaration.
       Format: PPYYYY
       PP can stand for a month: from '01' to '12'.
       PP can stand for a trimester: '31','32','33','34'
@@ -119,19 +108,19 @@ class partner_vat_intra(orm.TransientModel):
         # Get Company vat
         company_vat = data_company.partner_id.vat
         if not company_vat:
-            raise orm.except_orm(_('insufficient data!'), _('No VAT number associated with your company.'))
-        company_vat = company_vat.replace(' ', '').upper()
+            raise orm.except_orm(_('insufficient data!'),_('No VAT number associated with your company.'))
+        company_vat = company_vat.replace(' ','').upper()
         issued_by = company_vat[:2]
 
         if wiz_data.period_code and len(wiz_data.period_code) != 6:
             raise orm.except_orm(_('Error!'), _('Period code is not valid.'))
 
         if not wiz_data.period_ids:
-            raise orm.except_orm(_('Insufficient Data!'), _('Please select at least one Period.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('Please select at least one Period.'))
 
-        p_id_list = obj_partner.search(cr, uid, [('vat', '!=', False)], context=context)
+        p_id_list = obj_partner.search(cr, uid, [('vat','!=',False)], context=context)
         if not p_id_list:
-            raise orm.except_orm(_('Insufficient Data!'), _('No partner has a VAT number asociated with him.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No partner has a VAT number asociated with him.'))
 
         seq_declarantnum = obj_sequence.get(cr, uid, 'declarantseq')
         dnum = company_vat[2:] + seq_declarantnum[-4:]
@@ -140,7 +129,7 @@ class partner_vat_intra(orm.TransientModel):
         email = data_company.partner_id.email or ''
         phone = data_company.partner_id.phone or ''
 
-        if addr.get('invoice', False):
+        if addr.get('invoice',False):
             ads = obj_partner.browse(cr, uid, [addr['invoice']])[0]
             city = (ads.city or '')
             post_code = (ads.zip or '')
@@ -155,15 +144,15 @@ class partner_vat_intra(orm.TransientModel):
         if not country:
             country = company_vat[:2]
         if not email:
-            raise orm.except_orm(_('Insufficient Data!'), _('No email address associated with the company.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No email address associated with the company.'))
         if not phone:
-            raise orm.except_orm(_('Insufficient Data!'), _('No phone associated with the company.'))
+            raise orm.except_orm(_('Insufficient Data!'),_('No phone associated with the company.'))
 
         account_periods = wiz_data.period_ids
 
         period_end_dates = sorted([x.date_stop for x in account_periods])
-        period_start_dates = sorted([x.date_start for x in account_periods])
-
+        period_start_dates = sorted([x.date_start for x in account_periods])                    
+        
         starting_month = period_start_dates[0][5:7]
         ending_month = period_end_dates[-1][5:7]
         year = period_end_dates[-1][:4]
@@ -180,8 +169,8 @@ class partner_vat_intra(orm.TransientModel):
             'post_code': post_code,
             'country': country,
             'email': email,
-            'phone': phone.replace('/', '').replace('.', '').replace('(', '').replace(')', '').replace(' ', ''),
-            'period_code': wiz_data.period_code,
+            'phone': phone.replace('/','').replace('.','').replace('(','').replace(')','').replace(' ',''),
+            'period_code': wiz_data.period_code,             
             'quarter': quarter,
             'starting_month': starting_month,
             'ending_month': ending_month,
@@ -192,7 +181,7 @@ class partner_vat_intra(orm.TransientModel):
             })
 
         codes = ('44', '46L', '46T', '48s44', '48s46L', '48s46T')
-        cr.execute("""SELECT p.name AS partner_name, l.partner_id AS partner_id, coalesce(p.vat,'') AS vat,
+        cr.execute("""SELECT p.name AS partner_name, l.partner_id AS partner_id, p.vat AS vat,
                       (CASE WHEN t.code = '48s44' THEN '44'
                             WHEN t.code = '48s46L' THEN '46L'
                             WHEN t.code = '48s46T' THEN '46T'
@@ -205,44 +194,42 @@ class partner_vat_intra(orm.TransientModel):
                        AND l.period_id IN %s
                        AND t.company_id = %s
                        AND (l.debit+l.credit) != 0
-                      GROUP BY p.name, l.partner_id, p.vat, intra_code""",
+                      GROUP BY p.name, l.partner_id, p.vat, intra_code""", 
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
-        records = []
-        for record in cr.dictfetchall():
-            record['vat'] = record['vat'].replace(' ', '').upper()
-            records.append(record)
-        records.sort(key=operator.itemgetter('vat'))
-        if not records:
-            raise orm.except_orm(_('No Data Available'), _('No intracom transactions found for the selected period(s) !'))
+        
+        rows = cr.dictfetchall()       
+        if not rows:
+            raise orm.except_orm(_('No Data Available'), _('No intracom transactions found for the selected period(s) !'))           
 
         p_count = 0
-        previous_vat = False
-        for record in records:
-            if not record['vat']:
+        for row in rows:
+            if not row['vat']:
+                row['vat'] = ''
                 p_count += 1
-            if record['vat'] != previous_vat:
-                seq += 1
-            previous_vat = record['vat']
-            amt = record['amount'] or 0.0
+
+            seq += 1
+            amt = row['amount'] or 0.0
             amount_sum += amt
-            intra_code = record['intra_code'] == '44' and 'S' or (record['intra_code'] == '46L' and 'L' or (record['intra_code'] == '46T' and 'T' or ''))
+
+            intra_code = row['intra_code'] == '44' and 'S' or (row['intra_code'] == '46L' and 'L' or (row['intra_code'] == '46T' and 'T' or ''))
+
             xmldict['clientlist'].append({
-                'partner_name': record['partner_name'],
+                'partner_name': row['partner_name'],
                 'seq': seq,
-                'vatnum': record['vat'],
-                'vat': record['vat'],
-                'country': record['vat'][:2],
-                'amount': '%.2f' % amt,  # used in xml
-                'amt': amt,  # used in pdf
-                'intra_code': record['intra_code'],
-                'code': intra_code
-            })
+                'vatnum': row['vat'][2:].replace(' ','').upper(),
+                'vat': row['vat'],
+                'country': row['vat'][:2].upper(),
+                'amount': amt,
+                'amount': '%.2f' %amt, # used in xml
+                'amt': amt,            # used in pdf      
+                'intra_code': row['intra_code'],
+                'code': intra_code})
 
         xmldict.update({
-            'dnum': dnum,
-            'clientnbr': str(seq),
-            'amountsum': '%.2f' % amount_sum,  # used in xml
-            'amtsum': amount_sum,  # used in pdf
+            'dnum': dnum, 
+            'clientnbr': str(seq), 
+            'amountsum': '%.2f' %amount_sum, # used in xml
+            'amtsum': amount_sum, # used in pdf  
             'partner_wo_vat': p_count})
         return xmldict
 
@@ -270,32 +257,17 @@ class partner_vat_intra(orm.TransientModel):
     </ns2:Representative>""" % (xml_data)
         #if xml_data['mand_id']:
         #    data_head += '\n\t\t<ns2:RepresentativeReference>%(mand_id)s</ns2:RepresentativeReference>' % (xml_data)
-        data_comp_period = '\n\t\t<ns2:Declarant>' \
-            '\n\t\t\t<VATNumber>%(vatnum)s</VATNumber>' \
-            '\n\t\t\t<Name>%(company_name)s</Name>' \
-            '\n\t\t\t<Street>%(street)s</Street>' \
-            '\n\t\t\t<PostCode>%(post_code)s</PostCode>' \
-            '\n\t\t\t<City>%(city)s</City>' \
-            '\n\t\t\t<CountryCode>%(country)s</CountryCode>' \
-            '\n\t\t\t<EmailAddress>%(email)s</EmailAddress>' \
-            '\n\t\t\t<Phone>%(phone)s</Phone>' \
-            '\n\t\t</ns2:Declarant>' \
-            % (xml_data)
+        data_comp_period = '\n\t\t<ns2:Declarant>\n\t\t\t<VATNumber>%(vatnum)s</VATNumber>\n\t\t\t<Name>%(company_name)s</Name>\n\t\t\t<Street>%(street)s</Street>\n\t\t\t<PostCode>%(post_code)s</PostCode>\n\t\t\t<City>%(city)s</City>\n\t\t\t<CountryCode>%(country)s</CountryCode>\n\t\t\t<EmailAddress>%(email)s</EmailAddress>\n\t\t\t<Phone>%(phone)s</Phone>\n\t\t</ns2:Declarant>' % (xml_data)
 
         if xml_data['period_code']:
             month_quarter = xml_data['period_code'][:2]
             year = xml_data['period_code'][2:]
             if month_quarter.startswith('3'):
-                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Quarter>' + month_quarter[1] + \
-                    '</ns2:Quarter> \n\t\t\t<ns2:Year>' + year + \
-                    '</ns2:Year>\n\t\t</ns2:Period>'
+                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Quarter>'+month_quarter[1]+'</ns2:Quarter> \n\t\t\t<ns2:Year>'+year+'</ns2:Year>\n\t\t</ns2:Period>'
             elif month_quarter.startswith('0') and month_quarter.endswith('0'):
-                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Year>' + year + \
-                    '</ns2:Year>\n\t\t</ns2:Period>'
+                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Year>'+year+'</ns2:Year>\n\t\t</ns2:Period>'
             else:
-                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Month>' + month_quarter + \
-                    '</ns2:Month> \n\t\t\t<ns2:Year>' + year + \
-                    '</ns2:Year>\n\t\t</ns2:Period>'
+                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Month>'+month_quarter+'</ns2:Month> \n\t\t\t<ns2:Year>'+year+'</ns2:Year>\n\t\t</ns2:Period>'
         else:
             year = xml_data['year']
             if xml_data['starting_month'] != xml_data['ending_month']:
@@ -305,46 +277,27 @@ class partner_vat_intra(orm.TransientModel):
                 data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Quarter>%(quarter)s</ns2:Quarter> \n\t\t\t<ns2:Year>%(year)s</ns2:Year>\n\t\t</ns2:Period>' % (xml_data)
             else:
                 month_quarter = xml_data['ending_month']
-                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Month>' + xml_data['ending_month'] + \
-                    '</ns2:Month> \n\t\t\t<ns2:Year>%(year)s</ns2:Year>\n\t\t</ns2:Period>' \
-                    % (xml_data)
-
-        records = xml_data['clientlist']
-        client_datas = []
-        previous_record = {}
-        for record in records:
-            if record['vat'] == previous_record.get('vat') and record['code'] == previous_record.get('code'):
-                client_datas.pop()
-                record['amt'] += previous_record['amt']
-                record['amount'] = '%.2f' % record['amt']
-                record['partner_name'] += ', ' + previous_record['partner_name']
-            client_datas.append(record)
-            previous_record = record
+                data_comp_period += '\n\t\t<ns2:Period>\n\t\t\t<ns2:Month>'+xml_data['ending_month']+'</ns2:Month> \n\t\t\t<ns2:Year>%(year)s</ns2:Year>\n\t\t</ns2:Period>' % (xml_data)
 
         data_clientinfo = ''
-        for client_data in client_datas:
-            if not client_data['vatnum']:
-                raise orm.except_orm(_('Insufficient Data!'), _('No vat number defined for %s.') % client_data['partner_name'])
-            data_clientinfo += '\n\t\t<ns2:IntraClient SequenceNumber="%(seq)s">' \
-                '\n\t\t\t<ns2:CompanyVATNumber issuedBy="%(country)s">%(vatnum)s</ns2:CompanyVATNumber>' \
-                '\n\t\t\t<ns2:Code>%(code)s</ns2:Code>' \
-                '\n\t\t\t<ns2:Amount>%(amount)s</ns2:Amount>' \
-                '\n\t\t</ns2:IntraClient>' \
-                % (client_data)
+        for client in xml_data['clientlist']:
+            if not client['vatnum']:
+                raise orm.except_orm(_('Insufficient Data!'),_('No vat number defined for %s.') % client['partner_name'])
+            data_clientinfo +='\n\t\t<ns2:IntraClient SequenceNumber="%(seq)s">\n\t\t\t<ns2:CompanyVATNumber issuedBy="%(country)s">%(vatnum)s</ns2:CompanyVATNumber>\n\t\t\t<ns2:Code>%(code)s</ns2:Code>\n\t\t\t<ns2:Amount>%(amount)s</ns2:Amount>\n\t\t</ns2:IntraClient>' % (client)
 
         data_decl = '\n\t<ns2:IntraListing SequenceNumber="1" ClientsNbr="%(clientnbr)s" DeclarantReference="%(dnum)s" AmountSum="%(amountsum)s">' % (xml_data)
 
         data_file += data_head + data_decl + data_comp_period + data_clientinfo
         if xml_data['comments']:
             data_file += '\n\t\t<ns2:Comment>%(comments)s</ns2:Comment>' % (xml_data)
-        data_file += '\n\t</ns2:IntraListing>\n</ns2:IntraConsignment>'
+        data_file += '\n\t</ns2:IntraListing>\n</ns2:IntraConsignment>' 
 
         self.write(cr, uid, ids, {
-            'file_save': base64.encodestring(data_file.encode('utf8')),
-            'name': 'vat_intra_%s_%s.xml' % (year, month_quarter[0] == '3' and ('Q' + month_quarter[1]) or month_quarter),
+            'file_save': base64.encodestring(data_file.encode('utf8')), 
+            'name': 'vat_intra_%s_%s.xml' %(year, month_quarter[0] == '3' and ('Q' + month_quarter[1]) or month_quarter),
             }, context=context)
 
-        model_data_ids = mod_obj.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'view_vat_intra_save')], context=context)
+        model_data_ids = mod_obj.search(cr, uid,[('model','=','ir.ui.view'),('name','=','view_vat_intra_save')], context=context)
         resource_id = mod_obj.read(cr, uid, model_data_ids, fields=['res_id'], context=context)[0]['res_id']
 
         return {
@@ -354,48 +307,32 @@ class partner_vat_intra(orm.TransientModel):
             'view_mode': 'form',
             'res_id': ids[0],
             'res_model': 'partner.vat.intra',
-            'views': [(resource_id, 'form')],
+            'views': [(resource_id,'form')],
             'view_id': 'view_vat_intra_save',
             'type': 'ir.actions.act_window',
             'target': 'new',
         }
 
-    def print_vatintra(self, cr, uid, ids, context=None):
+    def preview(self, cr, uid, ids, context=None):
         xml_data = self._get_datas(cr, uid, ids, context=context)
         datas = {
              'ids': [],
              'model': 'partner.vat.intra',
              'form': xml_data
         }
-        return self.pool['report'].get_action(
-            cr, uid, [], 'l10n_be_coa_multilang.report_l10nbevatintra',
-            data=datas, context=context
-        )
-
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': 'partner.vat.intra.print_nov',
+            'datas': datas,
+        }
 
 class vat_intra_print(report_sxw.rml_parse):
-
     def __init__(self, cr, uid, name, context):
         super(vat_intra_print, self).__init__(cr, uid, name, context=context)
-        self.context = context
-
-    def set_context(self, objects, data, ids, report_type=None):
-        report_date = datetime_field.context_timestamp(self.cr, self.uid,
-            datetime.now(), self.context).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         self.localcontext.update({
-            'period_code': data['form']['period_code'],
-            'partner_wo_vat': data['form']['partner_wo_vat'],
-            'amtsum': data['form']['amtsum'],
-            'report_date': report_date,
-            'clientlist': data['form']['clientlist'],
+            'time': time,
         })
-        super(vat_intra_print, self).set_context(objects, data, ids)
 
-
-class wrapped_vat_intra_print(orm.AbstractModel):
-    _name = 'report.l10n_be_coa_multilang.report_l10nbevatintra'
-    _inherit = 'report.abstract_report'
-    _template = 'l10n_be_coa_multilang.report_l10nbevatintra'
-    _wrapped_report_class = vat_intra_print
+report_sxw.report_sxw('report.partner.vat.intra.print_nov', 'partner.vat.intra', 'addons/l10n_be_coa_multilang/wizard/l10n_be_vat_intra_print.rml', parser=vat_intra_print, header="internal")
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

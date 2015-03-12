@@ -22,17 +22,20 @@
 
 {
     'name': 'Open Receivables/Payables XLS export',
-    'version': '0.1',
+    'version': '0.7',
     'license': 'AGPL-3',
     'author': 'Noviat',
-    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
-    'summary': 'Open Receivables/Payables XLS export',
+    'description': """
+Open Receivables/Payables XLS export
+------------------------------------
+
+This module adds the 'Open Receivables/Payables by Period' report to the
+Accounting Partners reports.
+The report is available in PDF and XLS format.
+    """,
     'depends': ['account', 'report_xls'],
     'data': [
         'wizard/partner_open_arap.xml',
-        'report/report.xml',
-        'views/arap_layouts.xml',
-        'views/report_open_arap.xml',
     ],
 }

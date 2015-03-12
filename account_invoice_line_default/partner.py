@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2011-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,20 +23,25 @@
 from openerp.osv import fields, orm
 
 
-class res_partner(orm.Model):
+class res_partner(orm.Model):  
     _inherit = 'res.partner'
 
     _columns = {
         'property_in_inv_acc': fields.property(
+            'account.account',
             type='many2one',
             relation='account.account',
             string='Incoming Invoice Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
+            view_load=True,
+            domain=[('type','<>','view'), ('type', '<>', 'closed')],
             help="Default Account on incoming Invoices."),
         'property_out_inv_acc': fields.property(
+            'account.account',
             type='many2one',
             relation='account.account',
             string='Outgoing Invoice Account',
-            domain=[('type', '<>', 'view'), ('type', '<>', 'closed')],
+            view_load=True,
+            domain=[('type','<>','view'), ('type', '<>', 'closed')],
             help="Default Account on outgoing Invoices."),
     }
+

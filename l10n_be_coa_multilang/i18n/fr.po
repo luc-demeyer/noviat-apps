@@ -1,13 +1,13 @@
-# French translation of Odoo 8.0.
+# French translation of OpenERP Server 7.0.
 # This file contains the translation of the following modules:
-#    * l10n_be_coa_multilang
+#	* l10n_be_coa_multilang
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 8.0\n"
-"Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2015-01-16 11:19:03.438000\n"
-"PO-Revision-Date: 2015-01-16 11:19:03.438000\n"
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2013-11-25 16:23:09.376000\n"
+"PO-Revision-Date: 2013-11-25 16:23:09.376000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,14 +40,34 @@ msgid "No Data Available"
 msgstr "Aucune donnée disponible"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_bs
+#: model:ir.actions.act_window,name:'l10n_be_coa_multilang.action_account_report_be_bs
 msgid "Belgian Balance Sheet"
 msgstr "Bilan Belge"
 
 #. module: l10n_be_coa_multilang
-#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_pl
+#: model:ir.actions.act_window,name:'l10n_be_coa_multilang.action_account_report_be_pl
 msgid "Belgian Profit And Loss"
 msgstr "Compte de résultats Belge"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_open_arap_fy
+msgid "Print Open Receivables/Payables by Fiscal Year"
+msgstr "Rapport débiteurs/créditeurs par exercice fiscal"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_open_arap_period
+msgid "Print Open Receivables/Payables by Period"
+msgstr "Rapport débiteurs/créditeurs par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_nov_print_journal
+msgid "Print Journal by Period"
+msgstr "Journal détaillé par période"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_nov_print_journal_fiscalyear
+msgid "Print Journal by Fiscal Year"
+msgstr "Journal détaillé par exercice fiscal"
 
 #. module: l10n_be_coa_multilang
 #: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_finance_belgian_statement
@@ -478,6 +498,56 @@ msgstr "Date"
 #: selection:nov.print.journal,sort:0
 msgid "Number"
 msgstr "Numéro"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_nv_sa
+msgid "nv/sa"
+msgstr "sa"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bvba_sprl
+msgid "bvba/sprl"
+msgstr "sprl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vzw_asbl
+msgid "vzw/asbl"
+msgstr "asbl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_cvba_scrl
+msgid "cvba/scrl"
+msgstr "scrl"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_vof_scn
+msgid "vof/scn"
+msgstr "scn"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_bv
+msgid "bv"
+msgstr "bv"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_ag
+msgid "ag"
+msgstr "ag"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:l10n_be_coa_multilang.rptn_inc
+msgid "inc"
+msgstr "inc"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
+msgid "corp"
+msgstr "corp"
+
+#. module: l10n_be_coa_multilang
+#: model:res.partner.title,name:base.res_partner_title_ltd
+msgid "ltd"
+msgstr "ltd"
 
 #. module: l10n_be_coa_multilang
 #: model:account.account.type,name:l10n_be_coa_multilang.user_type_view

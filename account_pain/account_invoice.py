@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,26 +20,25 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp.osv import orm, fields
+import logging
+_logger = logging.getLogger(__name__)
 
 
-class account_invoice(models.Model):
+class account_invoice(orm.Model):
     _inherit = 'account.invoice'
 
-    supplier_direct_debit = fields.Boolean(
-        string='Supplier Direct Debit',
-        help="Set this flag to exclude Supplier Invoices from the "
-             "Payment Order 'Select Invoices to Pay' selection.")
+    _columns = { 
+        'supplier_direct_debit': fields.boolean('Supplier Direct Debit',
+            help="Set this flag to exclude Supplier Invoices from the Payment Order 'Select Invoices to Pay' selection."),
+    }
 
-    @api.multi
-    def onchange_partner_id(self, type, partner_id, date_invoice=False,
-                            payment_term=False, partner_bank_id=False,
-                            company_id=False):
-        result = super(account_invoice, self).onchange_partner_id(
-            type, partner_id, date_invoice, payment_term, partner_bank_id,
-            company_id)
+    def onchange_partner_id(self, cr, uid, ids, type, partner_id,
+            date_invoice=False, payment_term=False, partner_bank_id=False, company_id=False):
+        result = super(account_invoice, self).onchange_partner_id(cr, uid, ids, type, partner_id,
+            date_invoice, payment_term, partner_bank_id, company_id)
         if type == 'in_invoice' and partner_id:
-            partner = self.env['res.partner'].browse(partner_id)
-            result['value']['supplier_direct_debit'] = \
-                partner.supplier_direct_debit
+            partner = self.pool.get('res.partner').browse(cr, uid, partner_id)
+            result['value']['supplier_direct_debit'] = partner.supplier_direct_debit
         return result
+

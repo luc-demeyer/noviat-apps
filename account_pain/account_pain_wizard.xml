@@ -7,7 +7,7 @@
       <field name="model">account.pain.create</field>
       <field name="priority">1</field>
       <field name="arch" type="xml">
-        <form string="The ISO 20022 payment file has been created">
+        <form string="The ISO 20022 payment file has been created" version="7.0">
           <p>Click on link below to download the XML File</p>
           <p>
             <b>

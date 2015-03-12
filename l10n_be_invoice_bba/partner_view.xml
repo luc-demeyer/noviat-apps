@@ -10,8 +10,7 @@
       <field name="arch" type="xml">
         <field name="last_reconciliation_date" position="after">
           <field name="out_inv_comm_type"/>
-          <field name="out_inv_comm_algorithm"
-                 attrs="{'invisible': [('out_inv_comm_type', '!=', 'bba')], 'required': [('out_inv_comm_type', '=', 'bba')]}"/>
+          <field name="out_inv_comm_algorithm" attrs="{'invisible':[('out_inv_comm_type','!=','bba')],'required':[('out_inv_comm_type','=','bba')]}"/>
         </field>
       </field>
     </record>

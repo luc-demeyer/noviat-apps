@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2011-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,27 +20,24 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 from lxml import etree
+import logging
+_logger = logging.getLogger(__name__)
 
 
-class account_invoice(models.Model):
+class account_invoice(osv.osv):
     _inherit = 'account.invoice'
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
-        res = super(account_invoice, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type,
-            context=context, toolbar=toolbar, submenu=False)
-        if not context:
-            context = {}
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
+        res = super(account_invoice, self).fields_view_get(cr, uid, view_id=view_id, view_type=view_type, context=context, toolbar=toolbar, submenu=False)
+        if not context: context={}
         if not context.get('account_invoice_line_default', False):
             if view_type == 'form':
                 view_obj = etree.XML(res['arch'])
                 invoice_line = view_obj.xpath("//field[@name='invoice_line']")
-                extra_ctx = "'account_invoice_line_default': 1, " \
-                    "'inv_name': name, 'inv_type': type, " \
-                    "'inv_partner_id': partner_id"
+                extra_ctx = "'account_invoice_line_default': 1, 'inv_name': name, 'inv_type': type, 'inv_partner_id': partner_id"        
                 for el in invoice_line:
                     ctx = el.get('context')
                     if ctx:
@@ -53,30 +50,60 @@ class account_invoice(models.Model):
         return res
 
 
-class account_invoice_line(models.Model):
+class account_invoice_line(osv.osv):
     _inherit = 'account.invoice.line'
 
-    @api.multi
-    def product_id_change(
-            self, product, uom_id, qty=0, name='', type='out_invoice',
-            partner_id=False, fposition_id=False, price_unit=False,
-            currency_id=False, company_id=None):
-        res = super(account_invoice_line, self).product_id_change(
-            product, uom_id, qty, name, type,
-            partner_id, fposition_id, price_unit, currency_id,
-            company_id)
-        ctx = self._context
-        if ctx.get('account_invoice_line_default'):
-            vals = res['value']
-            if not res.get('account_id'):
-                if ctx.get('inv_partner_id'):
-                    partner = self.env['res.partner'].browse(
-                        ctx['inv_partner_id'])
-                    partner = partner.commercial_partner_id
-                    if ctx['inv_type'] in ['in_invoice', 'in_refund']:
-                        vals['account_id'] = partner.property_in_inv_acc.id
-                    elif ctx['inv_type'] in ['out_invoice', 'out_refund']:
-                        vals['account_id'] = partner.property_out_inv_acc.id
-            if not vals.get('name') and ctx.get('inv_name'):
-                vals['name'] = ctx['inv_name']
+    def _inv_name_default(self, cr, uid, context=None):
+        name = None
+        if context is None:
+            context = {}
+        if context and context.has_key('inv_name'):
+            name = context['inv_name']
+        return name
+
+    def _inv_account_default(self, cr, uid, context=None):
+        partner_obj = self.pool.get('res.partner')
+        account_id = None
+        inv_type = None
+        if context is None:
+            context = {}
+        if context and context.has_key('inv_type'):
+            if context.get('inv_partner_id'):               
+                partner = self.pool.get('res.partner').browse(cr, uid, context['inv_partner_id'])
+                partner = partner.commercial_partner_id # replace by the partner for which the accounting entries will be created
+                if context['inv_type'] in ['in_invoice', 'in_refund']:
+                    account_id = partner.property_in_inv_acc.id
+                if context['inv_type'] in ['out_invoice', 'out_refund']:
+                    account_id = partner.property_out_inv_acc.id
+        return account_id
+
+    def _inv_tax_default(self, cr, uid, context=None):
+        partner_obj = self.pool.get('res.partner')
+        account_obj = self.pool.get('account.account')
+        fpos_obj = self.pool.get('account.fiscal.position')
+        account_id = None
+        inv_type = None
+        res = []
+        if context is None:
+            context = {}
+        if context and context.has_key('inv_type'):
+            if context.get('inv_partner_id'):
+                partner = self.pool.get('res.partner').browse(cr, uid, context['inv_partner_id'])
+                partner = partner.commercial_partner_id # replace by the partner for which the accounting entries will be created                
+                if context['inv_type'] in ['in_invoice', 'in_refund']:
+                    account_id = partner.property_in_inv_acc.id
+                if context['inv_type'] in ['out_invoice', 'out_refund']:
+                    account_id = partner.property_out_inv_acc.id
+                if account_id:
+                    taxes = account_obj.browse(cr, uid, account_id).tax_ids
+                    fposition_id = partner.property_account_position
+                    fpos = fposition_id and fpos_obj.browse(cr, uid, fposition_id) or False
+                    res = fpos_obj.map_tax(cr, uid, fpos, taxes)
         return res
+
+    _defaults = {
+        'name': _inv_name_default,
+        'account_id': _inv_account_default,
+        'invoice_line_tax_id': _inv_tax_default,
+    }
+

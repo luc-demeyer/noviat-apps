@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-  <data noupdate="1">
+  <data>
 
     <record id="coda_bank_account_comp_rule" model="ir.rule">
       <field name="name">Coda Bank Account model company rule</field>
-      <field name="model_id" ref="model_coda_bank_account"/>
+      <field model="ir.model" name="model_id" ref="model_coda_bank_account"/>
       <field eval="True" name="global"/>
       <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>
 
     <record id="account_coda_comp_rule" model="ir.rule">
       <field name="name">Account Coda model company rule</field>
-      <field name="model_id" ref="model_account_coda"/>
+      <field model="ir.model" name="model_id" ref="model_account_coda"/>
+      <field eval="True" name="global"/>
+      <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <!-- OpenERP 6.1 has no record rule for res.partner.bank -->
+    <record id="res_partner_bank_comp_rule" model="ir.rule">
+      <field name="name">res.partner.bank model company rule</field>
+      <field model="ir.model" name="model_id" ref="base.model_res_partner_bank"/>
       <field eval="True" name="global"/>
       <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
     </record>

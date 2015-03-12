@@ -20,9 +20,7 @@
 #
 ##############################################################################
 
-from datetime import datetime
-from openerp.osv.fields import datetime as datetime_field
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import time
 from openerp.report import report_sxw
 from openerp.tools.translate import _
 from openerp.osv import orm
@@ -37,41 +35,70 @@ class partner_open_arap_print(report_sxw.rml_parse):
             context = {}
         super(partner_open_arap_print, self).__init__(
             cr, uid, name, context=context)
-        self.context = context
         self.localcontext.update({
-            'formatLang_zero2blank': self.formatLang_zero2blank,
-            })
+            'time': time,
+        })
+        self.context = context
 
     def set_context(self, objects, data, ids, report_type=None):
         cr = self.cr
         uid = self.uid
         context = self.context
 
-        period_obj = self.pool['account.period']
+        fy_obj = self.pool.get('account.fiscalyear')
+        period_obj = self.pool.get('account.period')
 
         posted = (data['target_move'] == 'posted') and True or False
         result_selection = data['result_selection']
         company_id = data['company_id']
-        period_id = data['period_id']
-        period = period_obj.browse(cr, uid, period_id, context=context)
-        period_code = period.code
-        title_prefix = _('Period') + ' %s : ' % period_code
-        title_short_prefix = period_code
-        digits = self.pool['decimal.precision'].precision_get(cr, uid, 'Account')
 
-        # perform query on selected period as well as preceding periods.
-        period_date_start = period.date_start
-        period_query_ids = period_obj.search(
-            cr, uid,
-            [('date_stop', '<=', period_date_start),
-             ('company_id', '=', company_id)])
-        period_query_ids += [period_id]
-        # find periods to select move_lines
-        # that are reconciled after period
-        next_period_ids = period_obj.search(
-            cr, uid,
-            [('date_stop', '>', period.date_stop),
-             ('company_id', '=', company_id)])
+        by_fy = False
+        if data.get('fiscalyear_id'):
+            by_fy = True
+            fiscalyear_id = data['fiscalyear_id']
+            fiscalyear = fy_obj.browse(
+                cr, uid, fiscalyear_id, context=context)
+            fy_code = fiscalyear.code
+            title_prefix = _('Fiscal Year') + ' %s : ' % fy_code
+            title_short_prefix = fy_code
+
+            # perform query on selected fiscal year as well as
+            # periods of preceding fy's.
+            fy_date_start = fiscalyear.date_start
+            fy_query_ids = fy_obj.search(
+                cr, uid,
+                [('date_stop', '<=', fy_date_start),
+                 ('company_id', '=', company_id)])
+            fy_query_ids += [fiscalyear_id]
+            # find periods to select move_lines within
+            # FY that are reconciled after FY
+            next_fy_ids = fy_obj.search(
+                cr, uid,
+                [('date_stop', '>', fiscalyear.date_stop),
+                 ('company_id', '=', company_id)])
+            next_period_ids = period_obj.search(
+                cr, uid, [('fiscalyear_id', 'in', next_fy_ids)])
+
+        if data.get('period_id'):
+            period_id = data['period_id']
+            period = period_obj.browse(cr, uid, period_id, context=context)
+            period_code = period.code
+            title_prefix = _('Period') + ' %s : ' % period_code
+            title_short_prefix = period_code
+
+            # perform query on selected period as well as preceding periods.
+            period_date_start = period.date_start
+            period_query_ids = period_obj.search(
+                cr, uid,
+                [('date_stop', '<=', period_date_start),
+                 ('company_id', '=', company_id)])
+            period_query_ids += [period_id]
+            # find periods to select move_lines
+            # that are reconciled after period
+            next_period_ids = period_obj.search(
+                cr, uid,
+                [('date_stop', '>', period.date_stop),
+                 ('company_id', '=', company_id)])
 
         report_ar = {
             'type': 'receivable',
@@ -116,8 +143,12 @@ class partner_open_arap_print(report_sxw.rml_parse):
             move_selection = ''
             report_info = _('All Entries')
 
-        move_selection += "AND account_period.id in %s" % str(
-            tuple(period_query_ids)).replace(',)', ')')
+        if by_fy:
+            move_selection += "AND account_period.fiscalyear_id in %s " % str(
+                tuple(fy_query_ids)).replace(',)', ')')
+        else:
+            move_selection += "AND account_period.id in %s" % str(
+                tuple(period_query_ids)).replace(',)', ')')
 
         # define subquery to select move_lines within FY/period
         # that are reconciled after FY/period
@@ -192,11 +223,9 @@ class partner_open_arap_print(report_sxw.rml_parse):
                         debits = map(
                             lambda x: x['debit'] or 0.0, partner_lines)
                         sum_debit = reduce(lambda x, y: x + y, debits)
-                        sum_debit = round(sum_debit, digits)
                         credits = map(
                             lambda x: x['credit'] or 0.0, partner_lines)
                         sum_credit = reduce(lambda x, y: x + y, credits)
-                        sum_credit = round(sum_credit, digits)
                         balance = sum_debit - sum_credit
                         p.update(
                             {'d': sum_debit,
@@ -204,18 +233,16 @@ class partner_open_arap_print(report_sxw.rml_parse):
                              'b': balance})
                 report.update({'partners': partners})
 
-                sum_debit = 0.0
-                sum_credit = 0.0
+                sum_debit = 0
+                sum_credit = 0
                 acc_lines = filter(
                     lambda x: x['a_type'] == report['type'], all_lines)
                 debits = map(lambda x: x['debit'] or 0.0, acc_lines)
                 if debits:
                     sum_debit = reduce(lambda x, y: x + y, debits)
-                    sum_debit = round(sum_debit, digits)
                 credits = map(lambda x: x['credit'] or 0.0, acc_lines)
                 if credits:
                     sum_credit = reduce(lambda x, y: x + y, credits)
-                    sum_credit = round(sum_credit, digits)
                 balance = sum_debit - sum_credit
                 report.update({'d': sum_debit, 'c': sum_credit, 'b': balance})
 
@@ -225,19 +252,14 @@ class partner_open_arap_print(report_sxw.rml_parse):
                 _('No Data Available'),
                 _('No records found for your selection!'))
 
-        report_date = datetime_field.context_timestamp(
-            cr, uid, datetime.now(), context
-            ).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-
         self.localcontext.update({
             'report_info': report_info,
-            'report_date': report_date,
             'reports': reports,
             })
         super(partner_open_arap_print, self).set_context(
             objects, data, ids, report_type)
 
-    def formatLang_zero2blank(self, value, digits=None, date=False, date_time=False,
+    def formatLang(self, value, digits=None, date=False, date_time=False,
                    grouping=True, monetary=False, dp=False,
                    currency_obj=False):
         if isinstance(value, (float, int)) and not value:
@@ -247,8 +269,9 @@ class partner_open_arap_print(report_sxw.rml_parse):
                 value, digits, date, date_time, grouping,
                 monetary, dp, currency_obj)
 
-class wrapped_vat_declaration_print(orm.AbstractModel):
-    _name = 'report.account_open_receivables_payables_xls.report_open_arap'
-    _inherit = 'report.abstract_report'
-    _template = 'account_open_receivables_payables_xls.report_open_arap'
-    _wrapped_report_class = partner_open_arap_print
+report_sxw.report_sxw(
+    'report.account.partner.open.arap.period.print',
+    'account.period',
+    'addons/account_open_receivables_payables_xls/'
+    'report/account_partner_open_arap.rml',
+    parser=partner_open_arap_print, header=False)

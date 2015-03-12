@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_move_line_reconcile_search" model="ir.ui.view">
+        <field name="name">account.move.line.reconcile.search</field>
+        <field name="model">account.move.line</field>
+        <field name="priority">20</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+          <search string="Search Journal Items">
+            <group>
+              <!-- To DO: add query on amount_residual
+              <field name="amount_residual" sum="Total Residual"/>
+              -->
+              <field name="date"/>
+              <field name="date_maturity"/>
+              <field name="invoice"/>
+              <field name="partner_id"/>
+            </group>
+            <newline/>
+            <group>
+              <field name="ref"/>
+              <field name="debit" sum="Total Debit"/>
+              <field name="credit" sum="Total Credit"/>
+              <!-- To DO: add query on amount_residual
+              <field name="amount_residual_currency" string="Residual Amount in Currency"/>
+              -->
+              <field name="currency_id"/>
+            </group>
+            <newline/>
+            <group>
+              <field name="account_id"/>
+              <field name="move_id" string="Number (Move)"/>
+              <field name="name"/>
+              <field name="journal_id" widget="selection"/>
+              <field name="period_id"/>
+            </group>
+          </search>
+        </field>
+      </record>
+      <record id="view_move_line_reconcile_tree" model="ir.ui.view">
+        <field name="name">account.move.line.reconcile.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="type">tree</field>
+        <field eval="4" name="priority"/>
+        <field name="arch" type="xml">
+          <tree string="Account Entry Line">
+            <field name="ref"/>
+            <field name="date"/>
+            <field name="date_maturity"/>
+            <field name="debit" sum="Total Debit"/>
+            <field name="credit" sum="Total Credit"/>
+            <field name="amount_residual" sum="Total Residual"/>
+            <field name="amount_residual_currency" string="Res. Amount in Curr." sum="Total Residual"/>
+            <field name="currency_id"/>
+            <field name="invoice"/>
+            <field name="partner_id"/>
+            <field name="account_id"/>
+            <field name="move_id"/>
+            <field name="name"/>
+            <field name="journal_id" invisible="1"/>
+            <field name="period_id" invisible="1"/>
+          </tree>
+        </field>
+      </record>
+      
+      <record id="view_account_voucher_create_form" model="ir.ui.view">
+        <field name="name">account.voucher.create.form</field>
+        <field name="model">account.voucher.create</field>
+        <field name="arch" type="xml">
+          <form string="Select Outstanding Transactions" version="7.0">
+            <header>
+              <button name="create_voucher" string="Select for Reconciliation" type="object" class="oe_highlight"/>
+              <button name="create_move" string="Create Move without Reconciliation" type="object"/>
+              or
+              <button string="Cancel" class="oe_link" special="cancel"/>
+            </header>
+            <sheet>
+              <group col="4" colspan="6">
+                <separator string="Bank Transaction Details" colspan="4"/>
+                <field name="stline" colspan="4" nolabel="1"/>
+                <separator string="Press 'Add' to get a list of all Outstanding Partner Transactions" colspan="4"/>
+                <field name="move_line_ids" colspan="4" nolabel="1" default_focus="1" height="450" width="1000" 
+                       context="{'act_window_from_bank_statement':1,'entries':context.get('entries'),'partner_id':context.get('partner_id'),'company_id':context.get('company_id')}"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+    </data>
+</openerp>

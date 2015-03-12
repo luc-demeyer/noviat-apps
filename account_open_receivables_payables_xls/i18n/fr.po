@@ -1,13 +1,13 @@
-# French translation of Odoo 8.0.
+# French translation of OpenERP Server 6.1.
 # This file contains the translation of the following modules:
-#    * account_open_receivables_payables_xls
+#	* account_open_receivables_payables_xls
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 8.0\n"
-"Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2015-03-01 20:51:30.205000\n"
-"PO-Revision-Date: 2015-03-01 20:51:30.205000\n"
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2013-10-30 12:45:14.160000\n"
+"PO-Revision-Date: 2013-10-30 12:45:14.160000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,139 +25,49 @@ msgid "Open Receivables/Payables by Period"
 msgstr "Rapport débiteurs/créditeurs par période"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
-msgid "Company Name"
-msgstr "Nom de la société"
-
-#. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
-msgid "Report"
-msgstr "Rapport"
-
-#. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
-msgid "Target Moves"
-msgstr "Mouvements cibles"
-
-#. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
-msgid "Currency"
-msgstr "Devise"
-
-#. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:10
 msgid "Document"
 msgstr "Document"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:11
 msgid "Date"
 msgstr "Date"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:12
 msgid "Due Date"
 msgstr "Echéance"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:13
 msgid "Account"
 msgstr "Compte"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:14
 msgid "Description"
 msgstr "Description"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:14
 msgid "Debit"
 msgstr "Débit"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:15
 msgid "Credit"
 msgstr "Crédit"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:16
 msgid "Balance"
 msgstr "Solde"
 
 #. module: account_open_receivables_payables_xls
-#: view:website:account_open_receivables_payables_xls.report_open_arap
+#: report:account.partner.open.arap.period.print:17
 msgid "Totals"
 msgstr "Totals"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Company Name"
-msgstr "Nom de la société"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Report"
-msgstr "Rapport"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Target Moves"
-msgstr "Mouvements cibles"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Currency"
-msgstr "Devise"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Document"
-msgstr "Document"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Date"
-msgstr "Date"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Due Date"
-msgstr "Echéance"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Account"
-msgstr "Compte"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Description"
-msgstr "Description"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Debit"
-msgstr "Débit"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Balance"
-msgstr "Solde"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Totals"
-msgstr "Totals"
-
-#. module: account_open_receivables_payables_xls
-#: report:account.partner.open.arap:0
-msgid "Partner Reference"
-msgstr "Partner Reference"
 
 #. module: account_open_receivables_payables_xls
 #: code:addons/account_open_receivables_payables_xls/report/account_partner_open_arap.py:10

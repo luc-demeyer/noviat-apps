@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_intra_belgium_report","report.intrastat.belgium accountant","model_report_intrastat_belgium","account.group_account_manager",1,1,1,1
+"access_intra_belgium_report_line","report.intrastat.belgium.line accountant","model_report_intrastat_belgium_line","account.group_account_manager",1,1,1,1

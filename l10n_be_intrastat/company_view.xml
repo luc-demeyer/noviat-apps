@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="report_intrastat_belgium_company_form_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.company.form</field>
+      <field name="model">res.company</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page string="Belgium Intrastat">
+            <group>
+              <field name="intrastat_belgium"/>
+            </group>
+            <group colspan="4" col="4" string="Belgium Intrastat" attrs="{'invisible': [('intrastat_belgium','=',False)]}">
+              <group colspan="2" col="2">
+                <field name="intrastat_belgium_region"/>
+                <field name="data_source"/>
+              </group>
+              <group colspan="2" col="2">
+                <separator string="Arrival Declaration" colspan="2"/>
+                <field name="intrastat_belgium_arrival"/>
+                <field name="intrastat_belgium_arrival_extended" attrs="{'readonly': [('intrastat_belgium_arrival','=',False)]}"/>
+                <separator string="Departure Declaration" colspan="2"/>
+                <field name="intrastat_belgium_departure"/>
+                <field name="intrastat_belgium_departure_extended" attrs="{'readonly': [('intrastat_belgium_departure','=',False)]}"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

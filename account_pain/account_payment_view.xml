@@ -131,6 +131,10 @@
           <field name="initgpty_id" attrs="{'invisible':[('type','!=','iso20022')]}"/>
           <field name="initgpty_issr" attrs="{'invisible':[('type','!=','iso20022')]}"/>
         </field>
+        <!--correct partner_id field for GTK client -->
+        <field name="partner_id" position="replace">
+          <field name="partner_id" invisible="1"/>
+        </field>
       </field>
     </record>
 

@@ -2,18 +2,6 @@
 <openerp>
   <data>
 
-    <!-- accounts : add search on Company -->
-    <record id="view_account_search_inherit" model="ir.ui.view">
-      <field name="name">account.account.search</field>
-      <field name="model">account.account</field>
-      <field name="inherit_id" ref="account.view_account_search"/>
-      <field name="arch" type="xml">
-        <field name="user_type" position="after">
-          <field name="company_id" groups="base.group_multi_company"/>
-        </field>
-      </field>
-    </record>   
-
     <!-- account types : search on 'note' + 'active' flag -->
     <record id="view_account_type_search_inherit" model="ir.ui.view">
       <field name="name">account.account.type.search.inherit</field>
@@ -42,6 +30,19 @@
       <field name="arch" type="xml">
         <field name="code" position="after">
           <field name="active"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- accounts : add search on Company -->
+    <record id="view_account_search_inherit" model="ir.ui.view">
+      <field name="name">account.account.search</field>
+      <field name="model">account.account</field>
+      <field name="inherit_id" ref="account.view_account_search"/>
+      <field name="arch" type="xml">
+        <field name="user_type" position="after">
+          <field name="company_id" groups="base.group_multi_company"/>
         </field>
       </field>
     </record>
@@ -54,6 +55,7 @@
       <field name="arch" type="xml">
         <field name="user_type" position="replace">
           <field name="user_type"/>
+          <field name="company_id" groups="base.group_multi_company"/>
         </field>
       </field>
     </record>

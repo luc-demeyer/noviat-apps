@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,12 +20,27 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import orm, fields
 
 
-class account_bank_statement(models.Model):
+class account_bank_statement(orm.Model):
     _inherit = 'account.bank.statement'
+    _columns = {
+        'coda_id': fields.many2one(
+            'account.coda', 'CODA Data File', ondelete='cascade'),
+        'fiscalyear_id': fields.related(
+            'period_id', 'fiscalyear_id', type='many2one',
+            relation='account.fiscalyear', string='Fiscal Year',
+            store=True, readonly=True),
+        'coda_note': fields.text('CODA Notes'),
+    }
 
-    coda_id = fields.Many2one(
-        'account.coda', string='CODA Data File', ondelete='cascade')
-    coda_note = fields.Text('CODA Notes')
+    def init(self, cr):
+        cr.execute("""
+    ALTER TABLE account_bank_statement
+      DROP CONSTRAINT IF EXISTS account_bank_statement_name_uniq;
+    DROP INDEX IF EXISTS account_bank_statement_name_non_slash_uniq;
+    CREATE UNIQUE INDEX account_bank_statement_name_non_slash_uniq ON
+      account_bank_statement(name, journal_id, fiscalyear_id, company_id)
+      WHERE name !='/';
+        """)

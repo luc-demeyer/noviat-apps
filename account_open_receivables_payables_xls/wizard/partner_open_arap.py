@@ -31,10 +31,14 @@ class wiz_partner_open_arap_period(orm.TransientModel):
     _description = 'Print Open Receivables/Payables by Period'
 
     def _get_period(self, cr, uid, context=None):
+        if context.get('active_model') == 'account.period' and \
+                context.get('active_ids'):
+            if len(context['active_ids']) == 1:
+                return context['active_ids'][0]
         now = time.strftime('%Y-%m-%d')
         periods = self.pool.get('account.period').search(
             cr, uid,
-            [('date_start', '<=', now), ('date_stop', '>=', now)], limit=1)
+            [('date_start', '<', now), ('date_stop', '>', now)], limit=1)
         return periods and periods[0] or False
 
     def _get_company(self, cr, uid, context=None):
@@ -69,19 +73,20 @@ class wiz_partner_open_arap_period(orm.TransientModel):
         period_id = data['period_id'][0]
         company_id = data['company_id'][0]
         data.update({
+            'ids': [period_id],
             'period_id': period_id,
             'company_id': company_id,
+            'model': 'account.period',
         })
         if context.get('xls_export'):
             return {'type': 'ir.actions.report.xml',
                     'report_name': 'account.partner.open.arap.period.xls',
                     'datas': data}
         else:
-            context['landscape'] = True
-            return self.pool['report'].get_action(
-                cr, uid, [],
-                'account_open_receivables_payables_xls.report_open_arap',
-                data=data, context=context)
+            return {
+                'type': 'ir.actions.report.xml',
+                'report_name': 'account.partner.open.arap.period.print',
+                'datas': data}
 
     def xls_export(self, cr, uid, ids, context=None):
         return self.print_report(cr, uid, ids, context=context)

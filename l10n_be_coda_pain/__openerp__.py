@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,19 +22,19 @@
 {
     'name': 'CODA Import - ISO 20022 Payment Order Matching',
     'version': '0.2',
-    'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
-    'complexity': 'normal',
+    'complexity': 'normal',    
     'description': """
-This Module adds logic to match CODA transactions with
-ISO 20022 Payment Order transactions.
+This Module adds logic to match CODA transactions with ISO 20022 Payment Order transactions.
     """,
-    'depends': [
-        'l10n_be_coda_advanced',
-        'account_pain',
-    ],
-    'data': [
+    'depends': ['l10n_be_coda_advanced', 'account_pain'],
+    'data' : [
         'account_coda_view.xml',
     ],
+    'active': False,
+    'installable': True,
+    'license': 'AGPL-3',
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

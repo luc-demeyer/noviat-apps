@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="report_intrastat_belgium_search_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.search</field>
+      <field name="model">report.intrastat.belgium</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search>
+          <filter name="filter_draft" string="Draft" domain="[('state','=','draft')]"/>
+          <filter name="filter_done" string="Done" domain="[('state','=','done')]"/>
+          <filter name="filter_type_arrival" string="Arrival" domain="[('ttype','=','A')]"/>
+          <filter name="filter_type_departure" string="Departure" domain="[('ttype','=','D')]"/>
+          <separator orientation="vertical"/>
+          <field name="start_date"/>
+          <field name="company_id"/>
+          <field name="extended"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="report_intrastat_belgium_tree_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.tree</field>
+      <field name="model">report.intrastat.belgium</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Belgian Intrastat Declarations">
+          <field name="company_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="extended"/>
+          <field name="ttype"/>
+          <field name="total_amount"/>
+          <field name="num_lines"/>
+          <field name="revision"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="report_intrastat_belgium_form_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.form</field>
+      <field name="model">report.intrastat.belgium</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Belgian Intrastat Declaration" version="7.0">
+          <header>
+            <button type="object" name="action_gather" string="Gather lines" states="draft"/>
+            <button type="object" name="action_send" string="Create file" states="draft,edit" help="Create ITX formatted file for IDEP import"/>
+            <button type="object" name="action_reset" string="Reset to draft" states="edit,done"/>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <group colspan="4" col="6">
+            <field name="company_id" on_change="onchange_company_or_ttype(company_id, ttype)"/>
+            <field name="ttype" on_change="onchange_company_or_ttype(company_id, ttype)"/>
+            <field name="revision"/>
+            <field name="start_date"/>
+            <field name="end_date"/>
+            <field name="extended"/>
+          </group>
+          <field name="intrastat_line_ids" string="Declaration details" colspan="4" nolabel="1"/>
+          <group colspan="4" col="6">
+            <field name="total_amount"/>
+            <field name="num_lines"/>
+          </group>
+          <group colspan="2" col="4">
+            <field name="date_done"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="report_intrastat_belgium_line_search_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.line.search</field>
+      <field name="model">report.intrastat.belgium.line</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search>
+        </search>
+      </field>
+    </record>
+
+    <record id="report_intrastat_belgium_line_tree_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.line.tree</field>
+      <field name="model">report.intrastat.belgium.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Belgian Intrastat Declarations">
+          <field name="country_id"/>
+          <field name="transaction"/>
+          <field name="intrastat_code"/>
+          <field name="weight"/>
+          <field name="quantity"/>
+          <field name="amount_company_currency"/>
+          <field name="extnr"/>
+          <field name="region"/>
+          <field name="incoterm"/>
+          <field name="transport"/>
+          <field name="state" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="report_intrastat_belgium_line_form_view" model="ir.ui.view">
+      <field name="name">report.intrastat.belgium.line.form</field>
+      <field name="model">report.intrastat.belgium.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Belgian Intrastat Declarations" version="7.0">
+          <field name="state" invisible="1"/>
+          <separator string="Limited Declaration" colspan="4"/>
+          <field name="transaction"/>
+          <newline/>
+          <field name="country_id" domain="[('intrastat','=',True)]" on_change="onchange_country(country_id)"/>
+          <field name="country_code"/>
+          <field name="product_id" on_change="onchange_product(product_id, quantity)"/>
+          <field name="quantity" on_change="onchange_qty(product_id, quantity)"/>
+          <field name="intrastat_id"/>
+          <field name="intrastat_code"/>
+          <field name="weight"/>
+          <field name="amount_company_currency"/>
+          <field name="region"/>
+          <field name="extnr"/>
+          <separator string="Extended Declaration" colspan="4"/>
+          <field name="transport"/>
+          <field name="incoterm_id"/>
+          <separator string="OpenERP details" colspan="4"/>
+          <field name="invoice_id"/>
+          <field name="invoice_line_id"/>
+          <field name="picking_id"/>
+          <field name="move_id"/>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_report_intrastat_belgium" model="ir.actions.act_window">
+      <field name="name">Belgium Intrastat Report</field>
+      <field name="res_model">report.intrastat.belgium</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_report_intrastat_belgium"
+      parent="intrastat_base.menu_intrastat_base_root"
+      action="action_report_intrastat_belgium"/>
+
+  </data>
+</openerp>

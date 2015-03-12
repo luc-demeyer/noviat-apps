@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
-# noqa: skip pep8 since code infra is correction of standard account module
-# flake8: noqa
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2013 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -14,33 +12,20 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-from openerp.osv import orm
-
-
-class account_tax_code(orm.Model):
-    """
-    add 'unique (code,company_id)' constraint
-    cf. https://github.com/odoo/odoo/pull/4513
-    """
-    _inherit = 'account.tax.code'
-    _sql_constraints = [
-        ('code_company_uniq', 'unique (code,company_id)',
-         'The code of the Tax Case must be unique per company !')
-    ]
-
+from openerp.osv import fields, orm
+#from openerp.tools.translate import _
+#import logging
+#_logger = logging.getLogger(__name__)
 
 class account_tax(orm.Model):
-    """
-    refine tax constraint
-    """
     _inherit = 'account.tax'
 
     def init(self, cr):
@@ -48,19 +33,20 @@ class account_tax(orm.Model):
         # first check existence since 'DROP CONSTRAINT IF EXISTS' not yet supported in Postgresql 8
         cr.execute("""
             SELECT
-                tc.constraint_name, tc.constraint_type, tc.table_name, kcu.column_name,
+                tc.constraint_name, tc.constraint_type, tc.table_name, kcu.column_name, 
                 ccu.table_name AS foreign_table_name,
-                ccu.column_name AS foreign_column_name
-            FROM
-                information_schema.table_constraints AS tc
+                ccu.column_name AS foreign_column_name 
+            FROM 
+                information_schema.table_constraints AS tc 
                 JOIN information_schema.key_column_usage AS kcu ON tc.constraint_name = kcu.constraint_name
                 JOIN information_schema.constraint_column_usage AS ccu ON ccu.constraint_name = tc.constraint_name
-                WHERE constraint_type = 'UNIQUE' AND  tc.table_name='account_tax' and tc.constraint_name='account_tax_name_company_uniq';
+                WHERE constraint_type = 'UNIQUE' AND  tc.table_name='account_tax' and tc.constraint_name='account_tax_name_company_uniq';    
         """)
         res = cr.fetchone()
         if res:
             cr.execute('ALTER TABLE account_tax DROP CONSTRAINT account_tax_name_company_uniq;')
         cr.execute("""
             DROP INDEX IF EXISTS account_tax_name_code_unique;
-            CREATE UNIQUE INDEX account_tax_name_code_unique ON account_tax (name, description, company_id) WHERE parent_id IS NULL;
+            CREATE UNIQUE INDEX account_tax_name_code_unique ON account_tax (name, description, company_id) WHERE parent_id IS NULL; 
         """)
+

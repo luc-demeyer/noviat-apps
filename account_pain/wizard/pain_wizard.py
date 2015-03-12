@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -42,24 +42,21 @@ class account_payment_make_payment(orm.TransientModel):
         """
         if context is None:
             context = {}
-        obj_payment_order = self.pool['payment.order']
-        obj_model = self.pool['ir.model.data']
-        obj_act = self.pool['ir.actions.act_window']
-        order = obj_payment_order.browse(
-            cr, uid, context['active_id'], context)
+        obj_payment_order = self.pool.get('payment.order')
+        obj_model = self.pool.get('ir.model.data')
+        obj_act = self.pool.get('ir.actions.act_window')
+        order = obj_payment_order.browse(cr, uid, context['active_id'], context)
         payment_type = order.mode and order.mode.type or 'manual'
         gw = obj_payment_order.get_wizard(payment_type)
         if (not gw) or (payment_type == 'manual'):
-            obj_payment_order.set_done(
-                cr, uid, [context['active_id']], context)
+            obj_payment_order.set_done(cr, uid, [context['active_id']], context)
             return {'type': 'ir.actions.act_window_close'}
 
-        # add support community modules using the
-        # payment gateway wizard plugin
+        # add support community modules using the payment gateway wizard plugin
         module, wizard = gw
         result = obj_model._get_id(cr, uid, module, wizard)
         wiz_id = obj_model.read(cr, uid, [result], ['res_id'])[0]['res_id']
-        if payment_type != 'iso20022':
+        if payment_type != 'iso20022':            
             return_act = obj_act.read(cr, uid, [wiz_id])[0]
             return_act.update({'context': context})
             return return_act
@@ -68,12 +65,8 @@ class account_payment_make_payment(orm.TransientModel):
         data = self.generate_pain(cr, uid, context)
         apc_id = self.pool.get('account.pain.create').create(cr, uid, data)
         obj_model = self.pool.get('ir.model.data')
-        model_data_ids = obj_model.search(
-            cr, uid,
-            [('model', '=', 'ir.ui.view'),
-             ('name', '=', 'account_pain_save_view')])
-        resource_id = obj_model.read(
-            cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
+        model_data_ids = obj_model.search(cr,uid,[('model','=','ir.ui.view'), ('name','=','account_pain_save_view')])
+        resource_id = obj_model.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
         return {
             'name': _('The ISO 20022 payment file has been created'),
             'view_type': 'form',
@@ -90,7 +83,7 @@ class account_payment_make_payment(orm.TransientModel):
         bbacomm = re.sub('\D', '', comm)
         if len(bbacomm) == 12:
             base = int(bbacomm[:10])
-            mod = base % 97 or 97
+            mod = base % 97 or 97      
             if mod == int(bbacomm[-2:]):
                 return bbacomm
         return False
@@ -110,24 +103,25 @@ class account_payment_make_payment(orm.TransientModel):
         payment_mode = payment.mode
         pain_fname = re.sub('\W', '_', payment.reference).lower() + '.xml'
         company = self.pool.get('res.users').browse(cr, uid, uid).company_id
-        if not (payment_mode.bank_id.bank_bic
-                or payment_mode.bank_id.bank.bic):
-            raise orm.except_orm(
-                _('Configuration Error!'),
-                _("Please fill in the BIC code of the Bank "
-                  "Debtor Account for this Payment Order!"))
+        if not (payment_mode.bank_id.bank_bic or payment_mode.bank_id.bank.bic):
+            raise orm.except_orm(_('Configuration Error!'),
+                _("Please fill in the BIC code of the Bank Debtor Account for this Payment Order!"))
         if not payment.line_ids:
-            raise orm.except_orm(
-                _('Data Error!'),
-                _("Your Payment Order does not contain "
-                  "payment instructions!"))
+             raise orm.except_orm(_('Data Error!'),
+                _("Your Payment Order does not contain payment instructions!"))
+        """
+        if payment_mode.journal.currency and (payment_mode.journal.currency != company.currency_id):
+            raise orm.except_orm(_('Payment Order Error!'),
+                _('Only payments from a bank account in company currency are supported in the current release ' \
+                  'of the ISO 20022 payment module!'))
+        """
 
         # create XML
         ns_map = {
             None: 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
             'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
         }
-        pain = etree.Element('Document', nsmap=ns_map)
+        pain = etree.Element('Document', nsmap = ns_map)
         CstmrCdtTrfInitn = etree.SubElement(pain, 'CstmrCdtTrfInitn')
         # GroupHeader
         GrpHdr = etree.SubElement(CstmrCdtTrfInitn, 'GrpHdr')
@@ -141,7 +135,7 @@ class account_payment_make_payment(orm.TransientModel):
         CtrlSum.text = '%.2f' % payment.total_line_amount
         InitgPty = etree.SubElement(GrpHdr, 'InitgPty')
         Nm = etree.SubElement(InitgPty, 'Nm')
-        Nm.text = company.name
+        Nm.text = company.name       
         if payment_mode.initgpty_id:
             Id = etree.SubElement(InitgPty, 'Id')
             OrgId = etree.SubElement(Id, 'OrgId')
@@ -154,20 +148,21 @@ class account_payment_make_payment(orm.TransientModel):
         # PaymentInformation
         payment_method = 'TRF'
         for line in payment.line_ids:
-
+            """
+            if line.currency != company.currency_id:
+                raise orm.except_orm(_('Payment Instruction Error!'),
+                    _('Unsupported Payment Instruction in Payment Line %s.\n'         \
+                      'Only payments in company currency are supported in the current release '   \
+                      'of the ISO 20022 payment module!') % line.name)
+            """
             if not line.amount:
-                raise orm.except_orm(
-                    _('Payment Instruction Error!'),
-                    _('Payment Instruction Error in Payment Line %s.\n'
-                      'Please fill in the transaction amount!'
-                      ) % line.name)
+                raise orm.except_orm(_('Payment Instruction Error!'),
+                    _('Payment Instruction Error in Payment Line %s.\n' \
+                      'Please fill in the transaction amount!') %line.name)
             if not (line.bank_id and line.bank_id.acc_number):
-                raise orm.except_orm(
-                    _('Payment Instruction Error!'),
-                    _("Unsupported Payment Instruction in Payment Line %s.\n"
-                      "Please fill in the bank account number of the "
-                      "Creditor for this Payment Line!"
-                      ) % line.name)
+                raise orm.except_orm(_('Payment Instruction Error!'),
+                    _('Unsupported Payment Instruction in Payment Line %s.\n' \
+                      'Please fill in the bank account number of the Creditor for this Payment Line!') % line.name)
 
             if payment.date_prefered == 'now':
                 execution_date = time.strftime('%Y-%m-%d')
@@ -182,20 +177,14 @@ class account_payment_make_payment(orm.TransientModel):
                 else:
                     execution_date = line.date
             else:
-                raise orm.except_orm(
-                    _('Unsupported Payment Order Option!'),
-                    _("Please ensure that the 'Preferred date' is equal "
-                      "to 'Due date', 'Directly' or 'Fixed date'!"))
+                raise orm.except_orm(_('Unsupported Payment Order Option!'),
+                   _("Please ensure that the 'Preferred date' is equal to 'Due date', 'Directly' or 'Fixed date'!"))
             if execution_date < time.strftime('%Y-%m-%d'):
                 execution_date = time.strftime('%Y-%m-%d')
             if line.date != execution_date:
-                note += _(
-                    "\nThe Payment Date on Payment "
-                    "Line %s has been changed."
-                    ) % line.name
-                payment_line_obj.write(
-                    cr, uid, line.id, {'date': execution_date})
-
+                note += _('\nThe Payment Date on Payment Line %s has been changed.') % line.name
+                payment_line_obj.write(cr, uid, line.id, {'date': execution_date})
+                                
             PmtInf = etree.SubElement(CstmrCdtTrfInitn, 'PmtInf')
             PmtInfId = etree.SubElement(PmtInf, 'PmtInfId')
             PmtInfId.text = line.name
@@ -207,27 +196,23 @@ class account_payment_make_payment(orm.TransientModel):
                 PmtTpInf = etree.SubElement(PmtInf, 'PmtTpInf')
                 InstrPrty = etree.SubElement(PmtTpInf, 'InstrPrty')
                 InstrPrty.text = 'NORM'
-                if line.currency.name == 'EUR' \
-                        or payment_mode.journal.currency == 'EUR':
+                if line.currency.name == 'EUR' or payment_mode.journal.currency == 'EUR':
                     SvcLvl = etree.SubElement(PmtTpInf, 'SvcLvl')
                     Cd = etree.SubElement(SvcLvl, 'Cd')
                     Cd.text = 'SEPA'
                 ReqdExctnDt = etree.SubElement(PmtInf, 'ReqdExctnDt')
                 ReqdExctnDt.text = execution_date
                 Dbtr = etree.SubElement(PmtInf, 'Dbtr')
-                Nm = etree.SubElement(Dbtr, 'Nm')
+                Nm = etree.SubElement(Dbtr, 'Nm')            
                 Nm.text = company.name
                 DbtrAcct = etree.SubElement(PmtInf, 'DbtrAcct')
                 Id = etree.SubElement(DbtrAcct, 'Id')
                 IBAN = etree.SubElement(Id, 'IBAN')
-                IBAN.text = payment_mode.bank_id.iban.upper().replace(' ', '')
+                IBAN.text = payment_mode.bank_id.iban.upper().replace(' ','')
                 DbtrAgt = etree.SubElement(PmtInf, 'DbtrAgt')
                 FinInstnId = etree.SubElement(DbtrAgt, 'FinInstnId')
                 BIC = etree.SubElement(FinInstnId, 'BIC')
-                BIC.text = re.sub(
-                    '\s', '',
-                    payment_mode.bank_id.bank_bic.upper()
-                    or payment_mode.bank_id.bank.bic.upper())
+                BIC.text = re.sub('\s','',payment_mode.bank_id.bank_bic.upper() or payment_mode.bank_id.bank.bic.upper())
                 ChrgBr = etree.SubElement(PmtInf, 'ChrgBr')
                 ChrgBr.text = line.bank_id.charge_bearer or 'SLEV'
                 CdtTrfTxInf = etree.SubElement(PmtInf, 'CdtTrfTxInf')
@@ -235,35 +220,25 @@ class account_payment_make_payment(orm.TransientModel):
                 EndToEndId = etree.SubElement(PmtId, 'EndToEndId')
                 EndToEndId.text = line.name
                 Amt = etree.SubElement(CdtTrfTxInf, 'Amt')
-                InstdAmt = etree.SubElement(
-                    Amt, 'InstdAmt', Ccy=line.currency.name)
+                InstdAmt = etree.SubElement(Amt, 'InstdAmt', Ccy=line.currency.name)
                 InstdAmt.text = '%.2f' % line.amount_currency
-                # to be completed with other countries allowing
-                # payments without BIC
-                if line.bank_id.iban[0:2].upper() not in ['BE']:
+                if line.bank_id.iban[0:2].upper() not in ['BE']: # to be completed with other countries allowing payments without BIC
                     if not (line.bank_id.bank_bic or line.bank_id.bank.bic):
-                        raise orm.except_orm(
-                            _('Configuration Error!'),
-                            _("Unsupported Payment Instruction "
-                              "in Payment Line %s.\n"
-                              "Please fill in the BIC code of the Bank "
-                              "Creditor Account for this Payment Line!"
-                              ) % line.name)
+                        raise orm.except_orm(_('Configuration Error!'),
+                           _('Unsupported Payment Instruction in Payment Line %s.\n' \
+                             'Please fill in the BIC code of the Bank Creditor Account for this Payment Line!') % line.name)
                 if line.bank_id.bank_bic or line.bank_id.bank.bic:
                     CdtrAgt = etree.SubElement(CdtTrfTxInf, 'CdtrAgt')
                     FinInstnId = etree.SubElement(CdtrAgt, 'FinInstnId')
                     BIC = etree.SubElement(FinInstnId, 'BIC')
-                    BIC.text = re.sub(
-                        '\s', '',
-                        (line.bank_id.bank_bic or line.bank_id.bank.bic
-                         ).upper())
+                    BIC.text = re.sub('\s','',(line.bank_id.bank_bic or line.bank_id.bank.bic).upper())
                 Cdtr = etree.SubElement(CdtTrfTxInf, 'Cdtr')
                 Nm = etree.SubElement(Cdtr, 'Nm')
                 Nm.text = line.partner_id.name
                 CdtrAcct = etree.SubElement(CdtTrfTxInf, 'CdtrAcct')
                 Id = etree.SubElement(CdtrAcct, 'Id')
                 IBAN = etree.SubElement(Id, 'IBAN')
-                IBAN.text = line.bank_id.iban.upper().replace(' ', '')
+                IBAN.text = line.bank_id.iban.upper().replace(' ','')
                 if line.communication:
                     comm = line.communication
                     if line.communication2:
@@ -283,29 +258,21 @@ class account_payment_make_payment(orm.TransientModel):
                         Issr.text = 'BBA'
                         comm = self.format_comm(line.communication)
                         if not comm:
-                            raise orm.except_orm(
-                                _('Payment Instruction Error!'),
-                                _("Unsupported Structured Communication "
-                                  "in Payment Line %s.\n"
-                                  "Only the Belgian Structured Communication "
-                                  "format (BBA) is supported in the current "
-                                  "release of the ISO 20022 payment module!"
-                                  ) % line.name)
+                            raise orm.except_orm(_('Payment Instruction Error!'),
+                               _('Unsupported Structured Communication in Payment Line %s.\n'                                  \
+                                 'Only the Belgian Structured Communication format (BBA) is supported in the current release ' \
+                                 'of the ISO 20022 payment module!') % line.name)
                         Ref = etree.SubElement(CdtrRefInf, 'Ref')
                         Ref.text = comm
                     else:
-                        raise orm.except_orm(
-                            _('Configuration Error!'),
-                            _("Unsupported Communication Type "
-                              "in Payment Line %s.\n"
-                              ) % line.name)
-        pain_data = etree.tostring(
-            pain, encoding='UTF-8', xml_declaration=True, pretty_print=True)
+                        raise orm.except_orm(_('Configuration Error!'),
+                            _('Unsupported Communication Type in Payment Line %s.\n') % line.name)
+        pain_data = etree.tostring(pain, encoding='UTF-8', xml_declaration=True, pretty_print=True)
         # validate the generated XML schema
         xsd = tools.file_open('account_pain/xsd/pain.001.001.03.xsd')
         xmlschema_doc = etree.parse(xsd)
         xmlschema = etree.XMLSchema(xmlschema_doc)
-        xml_to_validate = StringIO(pain_data)
+        xml_to_validate =  StringIO(pain_data)
         parse_result = etree.parse(xml_to_validate)
         if xmlschema.validate(parse_result):
             pain_data = base64.encodestring(pain_data)
@@ -318,21 +285,16 @@ class account_payment_make_payment(orm.TransientModel):
                 }, context=context)
             payment_obj.set_done(cr, uid, [active_id], context)
         else:
-            _logger.error(
-                'The generated XML file does not fit the required schema !')
+            _logger.error('The generated XML file does not fit the required schema !')
             _logger.error(tools.ustr(xmlschema.error_log.last_error))
             error = xmlschema.error_log[0]
-            raise orm.except_orm(
-                _('The generated XML file does not fit the required schema !'
-                  ), error.message)
+            raise orm.except_orm(_('The generated XML file does not fit the required schema !'),
+                error.message)
 
         if note:
             note = _('Warning:\n') + note
 
-        return {
-            'pain_data': pain_data,
-            'pain_fname': pain_fname,
-            'note': note}
+        return {'pain_data': pain_data, 'pain_fname': pain_fname, 'note': note}
 
 
 class account_pain_create(orm.TransientModel):
@@ -340,9 +302,9 @@ class account_pain_create(orm.TransientModel):
     _description = 'ISO 20022 payment file'
 
     _columns = {
-        'pain_data': fields.binary(
-            'Payment File', required=True, readonly=True),
-        'pain_fname': fields.char(
-            'Filename', size=128, required=True),
+        'pain_data': fields.binary('Payment File', required=True, readonly=True),
+        'pain_fname': fields.char('Filename', size=128, required=True),
         'note': fields.text('Remarks'),
     }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

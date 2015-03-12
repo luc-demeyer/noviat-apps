@@ -9,7 +9,7 @@
                 <form string="Intracom VAT Declaration" version="7.0">
                     <group>
                         <separator string="Intracom VAT Declaration"/>
-                    </group>
+                    </group>   
                     <notebook colspan="4">
                         <page string="General Information">
                           <group>
@@ -34,8 +34,8 @@
                         </page>
                     </notebook>
                     <footer>
-                        <button name="create_xml" string="Create XML" type="object" class="oe_highlight"/>
-                        <button name="print_vatintra" string="Print" type="object" class="oe_highlight" />
+                        <button name="create_xml" string="Create _XML" type="object" class="oe_highlight"/>
+                        <button name="preview" string="_Preview" type="object" class="oe_highlight" />
                         or
                         <button string="Cancel" class="oe_link" special="cancel" />
                     </footer>

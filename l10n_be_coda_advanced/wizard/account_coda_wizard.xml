@@ -1,17 +1,17 @@
 <?xml version="1.0" ?>
 <openerp>
-  <data>
+	<data>
 
     <record id="account_coda_import_view" model="ir.ui.view">
       <field name="name">Import CODA File</field>
       <field name="model">account.coda.import</field>
       <field name="priority">1</field>
       <field name="arch" type="xml">
-        <form string="Import CODA File">
+        <form string="Import CODA File" version="7.0">
           <group>
             <separator string="Select your file :" colspan="2"/>
-            <field name="coda_data" filename="coda_fname" on_change="onchange_fdata(coda_fname)"/>
-            <field name="coda_fname" invisible="1"/>
+            <field name="coda_data" filename="coda_fname"/>
+            <field name="coda_fname" invisible="1" on_change="onchange_fname(coda_fname)"/>
             <field name="coda_fname_dummy"/>
             <field name="period_id"/>
           </group>
@@ -28,7 +28,7 @@
       <field name="name">Process CODA File</field>
       <field name="model">account.coda.import</field>
       <field name="arch" type="xml">
-        <form string="Process CODA File">
+        <form string="Process CODA File" version="7.0">
           <group>
             <field name="period_id"/>
           </group>
@@ -46,7 +46,7 @@
       <field name="model">account.coda.import</field>
       <field name="priority">2</field>
       <field name="arch" type="xml">
-        <form string="Import CODA File">
+        <form string="Import CODA File" version="7.0">
           <separator colspan="4" string="Results :" />
           <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
           <footer>
@@ -68,8 +68,6 @@
       <field name="view_id" ref="account_coda_import_view"/>
     </record>
 
-    <menuitem name="Import CODA Files" parent="menu_account_coda" id="menu_account_coda_import" action="action_account_coda_import" sequence="41"/>
-
     <act_window name="Import CODA File"
       res_model="account.coda.import"
       src_model="coda.bank.statement"
@@ -83,6 +81,6 @@
       view_type="form" view_mode="form" target="new"
       key2="client_action_multi" multi="True"
       id="wizard_account_coda_import_2"/>
-
-  </data>
+    
+  </data> 
 </openerp>
