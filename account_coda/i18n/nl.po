@@ -1,0 +1,1136 @@
+# Dutch translation of OpenERP Server 6.0.
+# This file contains the translation of the following modules:
+#	* account_coda
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2012-04-07 21:06:57.922000\n"
+"PO-Revision-Date: 2012-04-07 21:06:57.922000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_coda
+#: view:account.bank.statement:0
+msgid "Bank Statements"
+msgstr "Afschriften"
+
+#. module: account_coda
+#: field:account.bank.statement,coda_statement_id:0
+msgid "Associated CODA Bank Statement"
+msgstr "Bijhorend CODA dagafschrift"
+
+#. module: account_coda
+#: view:account.coda:0
+msgid "CODA Files"
+msgstr "CODA bestanden"
+
+#. module: account_coda
+#: view:account.coda:0
+msgid "CODA File"
+msgstr "CODA bestand"
+
+#. module: account_coda
+#: view:account.coda:0
+msgid "Additional Information"
+msgstr "Bijkomende informatie"
+
+#. module: account_coda
+#: field:account.coda,coda_creation_date:0
+msgid "CODA Creation Date"
+msgstr "Datum aanmaak CODA"
+
+#. module: account_coda
+#: field:account.coda,coda_data:0
+msgid "CODA File"
+msgstr "CODA bestand"
+
+#. module: account_coda
+#: field:account.coda,date:0
+msgid "Import Date"
+msgstr "Datum import"
+
+#. module: account_coda
+#: field:account.coda,name:0
+msgid "CODA Filename"
+msgstr "CODA bestandsnaam"
+
+#. module: account_coda
+#: field:account.coda,note:0
+msgid "Import Log"
+msgstr "Import log"
+
+#. module: account_coda
+#: field:account.coda,statement_ids:0
+msgid "Generated CODA Bank Statements"
+msgstr "Gegenereerde CODA dagafschriften"
+
+#. module: account_coda
+#: field:account.coda,user_id:0
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: account_coda
+#: view:account.coda.comm.type:0
+msgid "CODA Structured Communication Types"
+msgstr "CODA verrichtingen - Gestructureerde mededelingen"
+
+#. module: account_coda
+#: view:account.coda.comm.type:0
+msgid "CODA Structured Communication Type"
+msgstr "CODA verrichtingen - Gestructureerde mededeling"
+
+#. module: account_coda
+#: field:account.coda.comm.type,code:0
+msgid "Structured Communication Type"
+msgstr "Type gestructureerde mededeling"
+
+#. module: account_coda
+#: field:account.coda.comm.type,description:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_coda
+#: field:account.coda.import:0
+msgid "Log"
+msgstr "Log"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importeer CODA bestand"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Select Details"
+msgstr "Selecteer details"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Select your file :"
+msgstr "Selecteer uw bestand:"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importeer CODA bestand"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "_Cancel"
+msgstr "_Annuleer"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "_Import"
+msgstr "_Importeer"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Results :"
+msgstr "Resultaat :"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "Close"
+msgstr "Sluiten"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "View Bank Statement(s)"
+msgstr "Bekijk bankafschrift(en)"
+
+#. module: account_coda
+#: view:account.coda.import:0
+msgid "View CODA Bank Statement(s)"
+msgstr "Bekijk CODA dagafschrift(en)"
+
+#. module: account_coda
+#: field:account.coda.import,coda_data:0
+msgid "CODA File"
+msgstr "CODA bestand"
+
+#. module: account_coda
+#: field:account.coda.import,coda_fname:0
+msgid "CODA Filename"
+msgstr "CODA bestandsnaam"
+
+#. module: account_coda
+#: field:account.coda.import,def_payable:0
+msgid "Default Payable Account"
+msgstr "Default rekening leveranciers"
+
+#. module: account_coda
+#: field:account.coda.import,def_receivable:0
+msgid "Default Receivable Account"
+msgstr "Default rekening klanten"
+
+#. module: account_coda
+#: field:account.coda.import,transfer_account:0
+msgid "Default Internal Transfer Account"
+msgstr "Standaard rekening voor interne overboekingen"
+
+#. module: account_coda
+#: view:account.coda.trans.category:0
+msgid "CODA Transaction Categories"
+msgstr "CODA verrichtingen - Rubrieken"
+
+#. module: account_coda
+#: view:account.coda.trans.category:0
+msgid "CODA Transaction Category"
+msgstr "CODA verrichtingen - Rubriek"
+
+#. module: account_coda
+#: field:account.coda.trans.category,category:0
+msgid "Transaction Category"
+msgstr "CODA verrichtingen - Rubriek"
+
+#. module: account_coda
+#: field:account.coda.trans.category,description:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_coda
+#: view:account.coda.trans.code:0
+msgid "CODA Transaction Codes"
+msgstr "CODA verrichtingen - Codes"
+
+#. module: account_coda
+#: view:account.coda.trans.code:0
+msgid "CODA Transaction Code"
+msgstr "CODA verrichtingen - Code"
+
+#. module: account_coda
+#: field:account.coda.trans.code,comment:0
+msgid "Comment"
+msgstr "Toelichting"
+
+#. module: account_coda
+#: field:account.coda.trans.code,description:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_coda
+#: field:account.coda.trans.code,parent_id:0
+msgid "Family"
+msgstr "Familie"
+
+#. module: account_coda
+#: selection:account.coda.trans.code,type:0
+msgid "Transaction Code"
+msgstr "CODA verrichtingen - Code"
+
+#. module: account_coda
+#: selection:account.coda.trans.code,type:0
+msgid "Transaction Family"
+msgstr "CODA verrichtingen - Family"
+
+#. module: account_coda
+#: view:account.coda.trans.type:0
+msgid "CODA Transaction Types"
+msgstr "CODA verrichtingen - Types"
+
+#. module: account_coda
+#: view:account.coda.trans.type:0
+msgid "CODA Transaction Type"
+msgstr "CODA verrichtingen - Type"
+
+#. module: account_coda
+#: field:account.coda.trans.type,description:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_coda
+#: field:account.coda.trans.type,type:0
+msgid "Transaction Type"
+msgstr "CODA verrichtingen - Type"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:10
+msgid "Bank Statements"
+msgstr "Afschriften"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:11
+msgid "CODA Bank Statements"
+msgstr "CODA dagafschriften"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:13
+msgid "CODA File is Imported  :"
+msgstr "Het CODA bestand is geimporteerd  :"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:14
+msgid "\n\nNumber of statements : "
+msgstr "\n\nAantal afschriften : "
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:15
+msgid "\n\nBank Journal: %s\nCODA Version: %s\nCODA Sequence Number: %s\nPaper Statement Sequence Number: %s\nBank Account: %s\nAccount Holder Name: %s\nDate: %s, Starting Balance:  %.2f, Ending Balance: %.2f%s"
+msgstr "\n\nFinancieel dagboek: %s\nCODA Versie: %s\nVolgnummer CODA: %s\nVolgnummer papieren afschrift: %s\nBankrekening: %s\nNaam rekeninghouder: %s\nDatum: %s, Oud saldo:  %.2f, Nieuw saldo: %.2f%s"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:16
+msgid "Transaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nCommunication: %s"
+msgstr "Verrichtingstype: %s - %s\nVerrichtingsfamilie: %s - %s\nVerrichtingscode: %s - %s\nVerrichtingsrubriek: %s - %s\nType gestructureerde mededeling: %s - %s\nMededeling: %s"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:17
+msgid "Partner Name: %s \nPartner Account Number: %s\nTransaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nPayment Reference: %s\nCommunication: %s"
+msgstr "Naam Partner: %s \nBankrekeningnummer partner: %s\nVerrichtingstype: %s - %s\nVerrichtingsfamilie: %s - %s\nVerrichtingscode: %s - %s\nVerrichtingsrubriek: %s - %s\nType gestructureerde mededeling: %s - %s\nBetaalreferte: %s\nMededeling: %s"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:18
+msgid "Free Communication:\n %s"
+msgstr "Vrij bericht:\n %s"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:20
+msgid "Payment with ISO 11649 structured format communication"
+msgstr "Betaling met ISO 11649 gestructureerde mededeling"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:21
+msgid "Payment with a structured format communication applying the ISO standard 11649"
+msgstr "Betaling met een gestructureerde mededeling volgens ISO standaard 11649"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:23
+msgid "Number (e.g. of the cheque, of the card, etc.)"
+msgstr "Nummer (bijv. van de cheque, kaart, enz.)"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:26
+msgid "Gross amount in the currency of the account"
+msgstr "Brutobedrag in de munt van de rekening"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:27
+msgid "Gross amount in the original currency"
+msgstr "Brutobedrag in oorspronkelijk munt"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:28
+msgid "Rate"
+msgstr "Koers"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:29
+msgid "Currency"
+msgstr "Devies"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:30
+msgid "Structured format communication"
+msgstr "Gestructureerde mededeling"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:31
+msgid "Country code of the principal"
+msgstr "Landcode van de opdrachtgever"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:32
+msgid "Equivalent in EUR"
+msgstr "Tegenwaarde in EUR"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:34
+msgid "VAT, withholding tax on income, commission, etc."
+msgstr "BTW, roerende voorheffing, provisie, enz."
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:35
+msgid "Equivalent in the currency of the account"
+msgstr "Tegenwaarde in de munt van de rekening"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:36
+msgid "Amount on which % is calculated"
+msgstr "Bedrag waarop % wordt berekend"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:37
+msgid "Percent"
+msgstr "Percent"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:38
+msgid "Minimum applicable"
+msgstr "Minimum van toepassing"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:39
+msgid "Minimum not applicable"
+msgstr "Minimum niet van toepassing"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:41
+msgid "Direct debit – DOM’80"
+msgstr "Domiciliëringen – DOM’80"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:42
+msgid "Direct Debit Number"
+msgstr "Domiciliëringsnummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:43
+msgid "Central (Pivot) Date"
+msgstr "Spildatum"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:44
+msgid "Communication Zone"
+msgstr "Mededelingszone"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:45
+msgid "Paid or reason for refusal"
+msgstr "Betaald of reden van weigering"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:46
+msgid "Creditor's Number"
+msgstr "Nummer schuldeiser"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:47
+msgid "paid"
+msgstr "betaald"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:48
+msgid "direct debit cancelled or nonexistent"
+msgstr "herroepen of onbestaande domiciliëring"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:49
+msgid "refusal - other reason"
+msgstr "weigering - andere reden"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:50
+msgid "payer disagrees"
+msgstr "betaler niet akkoord"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:51
+msgid "direct debit number linked to another identification number of the creditor"
+msgstr "domiciliëringsnummer gekoppeld aan een ander identificatienummer schuldeiser"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:53
+msgid "Closing"
+msgstr "Afsluiting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:54
+msgid "Closing, period from %s to %s"
+msgstr "Afsluiting, periode van %s tot %s"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:55
+msgid "Interest rates, calculation basis"
+msgstr "Rentegetallen, berekeningsbasis"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:56
+msgid "Interest"
+msgstr "Rente"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:58
+msgid "ATM/POS debit"
+msgstr "Debet ATM/POS"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:59
+msgid "Card Number"
+msgstr "Kaartnummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:60
+msgid "Card Scheme"
+msgstr "Kaartschema"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:61
+msgid "Terminal Number"
+msgstr "Terminalnummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:62
+msgid "First Transaction Sequence Number"
+msgstr "Volgnummer eerste verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:63
+msgid "Last Transaction Sequence Number"
+msgstr "Volgnummer laatste verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:64
+msgid "Transaction Sequence Number"
+msgstr "Volgnummer verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:65
+msgid "Date of first transaction"
+msgstr "Datum eerste verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:66
+msgid "Date of last transaction"
+msgstr "Datum laatste verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:67
+msgid "Time"
+msgstr "Tijdstip"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:68
+msgid "Transaction Type"
+msgstr "Soort verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:69
+msgid "Terminal Identification"
+msgstr "Identificatie van de terminal"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:70
+msgid "Original Amount"
+msgstr "Oorspronkelijk bedrag"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:71
+msgid "Volume"
+msgstr "Volume"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:72
+msgid "Product Code"
+msgstr "Productcode"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:73
+msgid "Unit Price"
+msgstr "Eenheidsprijs"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:74
+msgid "Private"
+msgstr "Privé"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:75
+msgid "Other"
+msgstr "Andere"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:77
+msgid "Withdrawal"
+msgstr "Afhaling"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:78
+msgid "Proton loading"
+msgstr "Proton oplading"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:79
+msgid "Reimbursement Proton balance"
+msgstr "Teruggave proton saldo"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:80
+msgid "Reversal of purchases"
+msgstr "Terugboeking aankopen"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:81
+msgid "Distribution sector"
+msgstr "Distributiesector"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:82
+msgid "Teledata"
+msgstr "Teledata"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:83
+msgid "Fuel"
+msgstr "Brandstof"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:85
+msgid "POS credit - globalisation"
+msgstr "Credit POS - globalisatie"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:86
+msgid "POS credit - individual transaction"
+msgstr "Credit POS - individuele verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:87
+msgid "POS Number"
+msgstr "POS-nummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:88
+msgid "Period Number"
+msgstr "Periodenummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:89
+msgid "Transaction Reference"
+msgstr "Referte verrichting"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:91
+msgid "guarantee without fixed term"
+msgstr "borgstelling zonder vaste termijn"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:92
+msgid "Starting Date"
+msgstr "Begindatum"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:93
+msgid "Maturity Date"
+msgstr "Vervaldatum"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:94
+msgid "Basic Amount"
+msgstr "Basisbedrag"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:95
+msgid "Percentage"
+msgstr "Percentage"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:96
+msgid "Term in days"
+msgstr "Termijn in dagen"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:97
+msgid "Guarantee Number"
+msgstr "Borgstellingsnummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:99
+msgid "Settlement credit cards"
+msgstr "Afrekening kredietkaarten"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:100
+msgid "Issuing Institution"
+msgstr "Uitgevende instelling"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:101
+msgid "Invoice Number"
+msgstr "Factuurnummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:102
+msgid "Identification Number"
+msgstr "Identificatienummer"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:103
+msgid "Date"
+msgstr "Datum"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:105
+msgid "Credit"
+msgstr "Krediet"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:106
+msgid "Credit Account Number"
+msgstr "Rekeningnummer van het krediet"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:107
+msgid "Old Balance"
+msgstr "Oud saldo"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:108
+msgid "New Balance"
+msgstr "Nieuw saldo"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:109
+msgid "Amount"
+msgstr "Bedrag"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:110
+msgid "End Date"
+msgstr "Einddatum"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:111
+msgid "Nominal Interest Rate or Rate of Charge"
+msgstr "Nominale rentevoet of lastenpercentage"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:114
+msgid "Name"
+msgstr "Naam"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:115
+msgid "Street"
+msgstr "Straat"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:116
+msgid "Locality"
+msgstr "Lokaliteit"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:117
+msgid "Identification Code"
+msgstr "Identificatiecode"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:120
+msgid "Description of the detail"
+msgstr "Aard van het detail"
+
+#. module: account_coda
+#: code:addons/account_coda/wizard/account_coda_import.py:121
+msgid "Category"
+msgstr "Rubriek"
+
+#. module: account_coda
+#: view:coda.bank.account:0
+msgid "CODA Bank Account Configuration"
+msgstr "CODA bankrekening instellingen"
+
+#. module: account_coda
+#: field:coda.bank.account,acive:0
+msgid "Active"
+msgstr "Actief"
+
+#. module: account_coda
+#: field:coda.bank.account,awaiting_account:0
+msgid "Default Account for Unrecognized Movement"
+msgstr "Standaard rekening voor niet-herkende boeking"
+
+#. module: account_coda
+#: field:coda.bank.account,bank_id:0
+msgid "Bank Account"
+msgstr "Bankrekening"
+
+#. module: account_coda
+#: field:coda.bank.account,coda_st_naming:0
+msgid "Bank Statement Naming Policy"
+msgstr "Bankafschrift naamgeving"
+
+#. module: account_coda
+#: field:coda.bank.account,company_id:0
+msgid "Company"
+msgstr "Bedrijfsnaam"
+
+#. module: account_coda
+#: field:coda.bank.account,currency:0
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: account_coda
+#: field:coda.bank.account,description1:0
+msgid "Primary Account Description"
+msgstr "Omschrijving van de rekening"
+
+#. module: account_coda
+#: field:coda.bank.account,description2:0
+msgid "Secondary Account Description"
+msgstr "Alernatieve omschrijving van de rekening"
+
+#. module: account_coda
+#: field:coda.bank.account,journal:0
+msgid "Journal"
+msgstr "Dagboek"
+
+#. module: account_coda
+#: field:coda.bank.account,name:0
+msgid "Name"
+msgstr "Naam"
+
+#. module: account_coda
+#: field:coda.bank.account,state:0
+msgid "Type"
+msgstr "Type"
+
+#. module: account_coda
+#: selection:coda.bank.account,state:0
+msgid "Info"
+msgstr "Info"
+
+#. module: account_coda
+#: selection:coda.bank.account,state:0
+msgid "Normal"
+msgstr "Normaal"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "CODA Bank Statements"
+msgstr "CODA dagafschriften"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "CODA Bank Statement"
+msgstr "CODA dagafschrift"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "Transactions"
+msgstr "Verrichtingen"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "CODA Statement Lines"
+msgstr "CODA details"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "_Generate Bank Statement"
+msgstr "_Genereer bankafschrift"
+
+#. module: account_coda
+#: view:coda.bank.statement:0
+msgid "_Cancel"
+msgstr "_Annuleer"
+
+#. module: account_coda
+#: field:coda.bank.statement,balance_end:0
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: account_coda
+#: field:coda.bank.statement,balance_end_real:0
+msgid "Ending Balance"
+msgstr "Eindsaldo"
+
+#. module: account_coda
+#: field:coda.bank.statement,balance_start:0
+msgid "Starting Balance"
+msgstr "Beginsaldo"
+
+#. module: account_coda
+#: field:coda.bank.statement,coda_bank_account_id:0
+msgid "Bank Account"
+msgstr "Bankrekening"
+
+#. module: account_coda
+#: field:coda.bank.statement,coda_id:0
+msgid "CODA Data File"
+msgstr "CODA bestand"
+
+#. module: account_coda
+#: field:coda.bank.statement,currency:0
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: account_coda
+#: field:coda.bank.statement,date:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: account_coda
+#: field:coda.bank.statement,journal_id:0
+msgid "Journal"
+msgstr "Dagboek"
+
+#. module: account_coda
+#: field:coda.bank.statement,line_ids:0
+msgid "CODA Bank Statement lines"
+msgstr "CODA details"
+
+#. module: account_coda
+#: field:coda.bank.statement,name:0
+msgid "Name"
+msgstr "Naam"
+
+#. module: account_coda
+#: field:coda.bank.statement,period_id:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: account_coda
+#: field:coda.bank.statement,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: account_coda
+#: selection:coda.bank.statement,type:0
+msgid "Info"
+msgstr "Info"
+
+#. module: account_coda
+#: selection:coda.bank.statement,type:0
+msgid "Normal"
+msgstr "Normaal"
+
+#. module: account_coda
+#: field:coda.bank.statement,state:0
+msgid "State"
+msgstr "Status"
+
+#. module: account_coda
+#: selection:coda.bank.statement,state:0
+msgid "Draft"
+msgstr "Concept"
+
+#. module: account_coda
+#: selection:coda.bank.statement,state:0
+msgid "Done"
+msgstr "Verwerkt"
+
+#. module: account_coda
+#: field:coda.bank.statement,statement_id:0
+msgid "Associated Bank Statement"
+msgstr "Bijhorend bankafschrift"
+
+#. module: account_coda
+#: view:coda.bank.statement.line:0
+msgid "CODA Statement Lines"
+msgstr "CODA details"
+
+#. module: account_coda
+#: view:coda.bank.statement.line:0
+msgid "Glob. Amount"
+msgstr "Glob. bedrag"
+
+#. module: account_coda
+#: view:coda.bank.statement.line:0
+msgid "Glob. Lvl"
+msgstr "Glob. niveau"
+
+#. module: account_coda
+#: view:coda.bank.statement.line:0
+msgid "Notes"
+msgstr "Notities"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,account_id:0
+msgid "Account"
+msgstr "Grootboekrekening"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,amount:0
+msgid "Amount"
+msgstr "Bedrag"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,date:0
+msgid "Entry Date"
+msgstr "Boekingsdatum"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,globalisation_amount:0
+msgid "Globalisation Amount"
+msgstr "Globalisatie bedrag"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,globalisation_level:0
+msgid "Globalisation Level"
+msgstr "Globalisatie niveau"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,name:0
+msgid "Communication"
+msgstr "Mededeling"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,note:0
+msgid "Notes"
+msgstr "Notities"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,payment_reference:0
+msgid "Payment Reference"
+msgstr "Betaalreferte"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,ref:0
+msgid "Reference"
+msgstr "Referentie"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,sequence:0
+msgid "Sequence"
+msgstr "Volgorde"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,statement_id:0
+msgid "CODA Bank Statement"
+msgstr "CODA dagafschrift"
+
+#. module: account_coda
+#: field:coda.bank.statement.line,val_date:0
+msgid "Valuta Date"
+msgstr "Valutadatum"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "Supplier"
+msgstr "Leverancier"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "Customer"
+msgstr "Klant"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "General"
+msgstr "Algemeen"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "Globalisation"
+msgstr "Globalisatie"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "Information"
+msgstr "Informatie"
+
+#. module: account_coda
+#: selection:coda.bank.statement.line,type:0
+msgid "Communication"
+msgstr "Mededeling"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.act_account_bank_statement_goto_coda_bank_statement
+msgid "CODA Bank Statement"
+msgstr "CODA dagafschrift"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.act_coda_bank_statement_goto_account_bank_statement
+msgid "Bank Statement"
+msgstr "Afschrift"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.act_coda_bank_statement_goto_account_coda
+msgid "CODA Data File"
+msgstr "CODA bestand"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_coda_bank_account_form
+msgid "CODA Bank Account Configuration"
+msgstr "CODA bankrekening instellingen"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_account_coda_comm_type_form
+msgid "CODA Structured Communication Types"
+msgstr "CODA verrichtingen - Gestructureerde mededelingen"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_account_coda_trans_category_form
+msgid "CODA Transaction Categories"
+msgstr "CODA verrichtingen - Rubrieken"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_account_coda_trans_code_form
+msgid "CODA Transaction Codes"
+msgstr "CODA verrichtingen - Codes"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_account_coda_trans_type_form
+msgid "CODA Transaction Types"
+msgstr "CODA verrichtingen - Types"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_coda_bank_statements
+msgid "CODA Bank Statements"
+msgstr "CODA dagafschriften"
+
+#. module: account_coda
+#: model:ir.actions.act_window,name:account_coda.action_imported_coda_files
+msgid "Imported CODA Files"
+msgstr "Geïmporteerde CODA bestanden"
+
+#. module: account_coda
+#: model:ir.actions.wizard,name:account_coda.wizard_account_coda_import_1
+msgid "Import CODA File"
+msgstr "Importeer CODA bestand"
+
+#. module: account_coda
+#: model:ir.actions.wizard,name:account_coda.wizard_account_coda_import_2
+msgid "Import CODA File"
+msgstr "Importeer CODA bestand"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_account_coda
+msgid "CODA Processing"
+msgstr "CODA verwerking"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_account_coda_import
+msgid "Import CODA Files"
+msgstr "Importeer CODA bestanden"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_action_coda_bank_account_form
+msgid "CODA Bank Account Configuration"
+msgstr "CODA bankrekening instellingen"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_action_account_coda_comm_type_form
+msgid "CODA Structured Communication Types"
+msgstr "CODA verrichtingen - Gestructureerde mededelingen"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_action_account_coda_trans_category_form
+msgid "CODA Transaction Categories"
+msgstr "CODA verrichtingen - Rubrieken"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_action_account_coda_trans_code_form
+msgid "CODA Transaction Codes"
+msgstr "CODA verrichtingen - Codes"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_action_account_coda_trans_type_form
+msgid "CODA Transaction Types"
+msgstr "CODA verrichtingen - Types"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_coda_bank_statements
+msgid "CODA Bank Statements"
+msgstr "CODA dagafschriften"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_imported_coda_files
+msgid "Imported CODA Files"
+msgstr "Geïmporteerde CODA bestanden"
+
+#. module: account_coda
+#: model:ir.ui.menu,name:account_coda.menu_manage_coda
+msgid "CODA Configuration"
+msgstr "CODA configuratie"
+

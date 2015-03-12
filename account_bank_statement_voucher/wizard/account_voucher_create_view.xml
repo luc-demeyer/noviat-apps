@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_move_line_reconcile_tree" model="ir.ui.view">
+        <field name="name">account.move.line.reconcile.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="type">tree</field>
+        <field eval="4" name="priority"/>
+        <field name="arch" type="xml">
+          <tree string="Account Entry Line">
+            <field name="ref"/>
+            <field name="date"/>
+            <field name="date_maturity"/>
+            <field name="debit" sum="Total Debit"/>
+            <field name="credit" sum="Total Credit"/>
+            <field name="amount_residual" sum="Total Residual"/>
+            <field name="invoice"/>
+            <field name="partner_id"/>
+            <field name="move_id"/>
+            <field name="account_id" invisible="1"/>
+            <field name="journal_id" invisible="1"/>
+            <field name="period_id" invisible="1"/>
+          </tree>
+        </field>
+      </record>
+      
+      <record id="view_account_voucher_create_form" model="ir.ui.view">
+        <field name="name">account.voucher.create.form</field>
+        <field name="model">account.voucher.create</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Select Outstanding Transactions">
+            <group col="4" colspan="6">
+              <separator string="Bank Transaction Details" colspan="4"/>
+              <field name="stline" colspan="4" nolabel="1"/>
+              <separator string="Press '+' to get a list of all Outstanding Partner Transactions" colspan="4"/>
+              <field name="move_line_ids" colspan="4" nolabel="1" default_focus="1" height="450" width="1000" context="{'act_window_from_bank_statement':1}"/>
+            </group>
+            <separator colspan="4"/>
+            <group col="3" colspan="4">
+              <button special="cancel"  string="Cancel" icon='gtk-cancel'/>
+              <button name="create_voucher" string="Select for Reconciliation" colspan="1" type="object" icon="gtk-find"/>
+              <button name="create_move" string="Create Move without Reconciliation" colspan="1" type="object" icon="gtk-find"/>
+            </group>
+          </form>
+        </field>
+      </record>
+
+      <record id="action_account_voucher_create" model="ir.actions.act_window">
+        <field name="name">Select Account Voucher Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.voucher.create</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+    </data>
+</openerp>

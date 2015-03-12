@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_account_move_create_form" model="ir.ui.view">
+        <field name="name">account.move.create.form</field>
+        <field name="model">account.move.create</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Create Account Move">
+            <group col="4" colspan="4" fill="1">
+              <label align="0.0" width="250" colspan="4" string="No Outstanding Partner Transactions found for this Bank Transaction!"/>
+            </group>
+            <separator colspan="4"/>
+            <group colspan="4" col="6">
+              <button special="cancel" string="Close Window" icon="terp-dialog-close"/>
+              <button name="create_move" string="Create Move without Reconciliation" colspan="1" type="object" icon="gtk-find"/>
+            </group>
+          </form>
+        </field>
+      </record>
+
+      <record id="action_account_move_create" model="ir.actions.act_window">
+        <field name="name">Create Account Move</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.create</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+      </record>
+
+    </data>
+</openerp>

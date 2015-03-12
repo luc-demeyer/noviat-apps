@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <!-- Confirm selected cashflow lines -->
+    <record id="view_confirm_cashflow_line" model="ir.ui.view">
+      <field name="name">confirm.cashflow.line.form</field>
+      <field name="model">confirm.cashflow.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Confirm selected Cash Flow lines">
+          <label string="" colspan="4"/>
+          <label colspan="4" string="Are you sure you want to confirm the selected Cash Flow lines ?"/>
+          <label colspan="4" string="Confirmed lines cannot be changed anymore."/>
+          <label string="" colspan="4"/>
+          <separator colspan="4"/>
+          <group>
+            <label string="" colspan="2"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+            <button icon="gtk-execute" string="Confirm Lines" name="confirm_lines" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>   
+    <record id="action_confirm_cashflow_line" model="ir.actions.act_window">
+      <field name="name">Confirm selected Cash Flow lines</field>
+      <field name="res_model">confirm.cashflow.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_confirm_cashflow_line"/>
+      <field name="help">Confirm selected Cash Flow lines.</field>
+      <field name="target">new</field>
+    </record>
+    <record model="ir.values" id="action_confirm_cashflow_line_values">
+      <field name="object" eval="1" />
+      <field name="name">Confirm selected Cash Flow lines</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_confirm_cashflow_line'))" />
+      <field name="model">account.cashflow.line</field>
+    </record>
+
+    <!-- Confirm selected cashflow provision lines -->
+    <record id="view_confirm_cashflow_provision_line" model="ir.ui.view">
+      <field name="name">confirm.cashflow.provision.line.form</field>
+      <field name="model">confirm.cashflow.provision.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Confirm selected Cash Flow Provision lines">
+          <label string="" colspan="4"/>
+          <label colspan="4" string="Are you sure you want to confirm the selected Cash Flow Provision lines ?"/>
+          <label colspan="4" string="Confirmed lines cannot be changed anymore."/>
+          <label string="" colspan="4"/>
+          <separator colspan="4"/>
+          <group>
+            <label string="" colspan="2"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+            <button icon="gtk-execute" string="Confirm Lines" name="confirm_lines" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="action_confirm_cashflow_provision_line" model="ir.actions.act_window">
+      <field name="name">Confirm selected Cash Flow Provision lines</field>
+      <field name="res_model">confirm.cashflow.provision.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_confirm_cashflow_provision_line"/>
+      <field name="help">Confirm selected Cash Flow Provision lines.</field>
+      <field name="target">new</field>
+    </record>
+    <record model="ir.values" id="action_confirm_cashflow_provision_line_values">
+      <field name="object" eval="1" />
+      <field name="name">Confirm selected Cash Flow Provision lines</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_confirm_cashflow_provision_line'))" />
+      <field name="model">account.cashflow.provision.line</field>
+    </record>
+
+  </data> 
+</openerp>

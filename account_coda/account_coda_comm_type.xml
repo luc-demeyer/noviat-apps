@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- account.coda.comm.type -->
+        <record id="acct_001" model="account.coda.comm.type">
+            <field name="code">001</field>
+            <field name="description">Data concerning the counterparty</field>
+        </record>
+        <record id="acct_002" model="account.coda.comm.type">
+            <field name="code">002</field>
+            <field name="description">Communication of the bank</field>
+        </record>
+        <record id="acct_003" model="account.coda.comm.type">
+            <field name="code">003</field>
+            <field name="description">RBP data</field>
+        </record>
+        <record id="acct_004" model="account.coda.comm.type">
+            <field name="code">004</field>
+            <field name="description">Counterparty’s banker</field>
+        </record>
+        <record id="acct_005" model="account.coda.comm.type">
+            <field name="code">005</field>
+            <field name="description">Data concerning the correspondent</field>
+        </record>
+        <record id="acct_006" model="account.coda.comm.type">
+            <field name="code">006</field>
+            <field name="description">Information concerning the detail amount</field>
+        </record>
+        <record id="acct_007" model="account.coda.comm.type">
+            <field name="code">007</field>
+            <field name="description">Information concerning the detail cash</field>
+        </record>
+        <record id="acct_008" model="account.coda.comm.type">
+            <field name="code">008</field>
+            <field name="description">Identification of the de ultimate beneficiary/creditor (SEPA SCT/SDD)</field>
+        </record>
+        <record id="acct_009" model="account.coda.comm.type">
+            <field name="code">009</field>
+            <field name="description">Identification of the de ultimate ordering customer/debtor (SEPA SCT/SDD)</field>
+        </record>
+        <record id="acct_010" model="account.coda.comm.type">
+            <field name="code">010</field>
+            <field name="description">Information pertaining to sale or purchase of securities</field>
+        </record>
+        <record id="acct_011" model="account.coda.comm.type">
+            <field name="code">011</field>
+            <field name="description">Information pertaining to coupons</field>
+        </record>
+        <record id="acct_100" model="account.coda.comm.type">
+            <field name="code">100</field>
+            <field name="description">(SEPA) payment with a structured format communication applying the ISO standard 11649: Structured creditor reference to remittance information</field>
+        </record>
+        <record id="acct_101" model="account.coda.comm.type">
+            <field name="code">101</field>
+            <field name="description">Credit transfer or cash payment with structured format communication</field>
+        </record>
+        <record id="acct_102" model="account.coda.comm.type">
+            <field name="code">102</field>
+            <field name="description">Credit transfer or cash payment with reconstituted structured format communication</field>
+        </record>
+        <record id="acct_103" model="account.coda.comm.type">
+            <field name="code">103</field>
+            <field name="description">number (e.g. of the cheque, of the card, etc.)</field>
+        </record>
+        <record id="acct_104" model="account.coda.comm.type">
+            <field name="code">104</field>
+            <field name="description">Equivalent in EUR</field>
+        </record>
+        <record id="acct_105" model="account.coda.comm.type">
+            <field name="code">105</field>
+            <field name="description">original amount of the transaction</field>
+        </record>
+        <record id="acct_106" model="account.coda.comm.type">
+            <field name="code">106</field>
+            <field name="description">Method of calculation (VAT, withholding tax on income, commission, etc.)</field>
+        </record>
+        <record id="acct_107" model="account.coda.comm.type">
+            <field name="code">107</field>
+            <field name="description">Direct debit – DOM’80</field>
+        </record>
+        <record id="acct_108" model="account.coda.comm.type">
+            <field name="code">108</field>
+            <field name="description">Closing</field>
+        </record>
+        <record id="acct_111" model="account.coda.comm.type">
+            <field name="code">111</field>
+            <field name="description">POS credit – Globalisation</field>
+        </record>
+        <record id="acct_112" model="account.coda.comm.type">
+            <field name="code">112</field>
+            <field name="description">ATM payment (usually Eurocheque card)</field>
+        </record>
+        <record id="acct_113" model="account.coda.comm.type">
+            <field name="code">113</field>
+            <field name="description">ATM/POS debit</field>
+        </record>
+        <record id="acct_114" model="account.coda.comm.type">
+            <field name="code">114</field>
+            <field name="description">POS credit - individual transaction</field>
+        </record>
+        <record id="acct_115" model="account.coda.comm.type">
+            <field name="code">115</field>
+            <field name="description">Terminal cash deposit</field>
+        </record>
+        <record id="acct_120" model="account.coda.comm.type">
+            <field name="code">120</field>
+            <field name="description">Correction of a transaction</field>
+        </record>
+        <record id="acct_121" model="account.coda.comm.type">
+            <field name="code">121</field>
+            <field name="description">Commercial bills</field>
+        </record>
+        <record id="acct_122" model="account.coda.comm.type">
+            <field name="code">122</field>
+            <field name="description">Bills - calculation of interest</field>
+        </record>
+        <record id="acct_123" model="account.coda.comm.type">
+            <field name="code">123</field>
+            <field name="description">Fees and commissions</field>
+        </record>
+        <record id="acct_124" model="account.coda.comm.type">
+            <field name="code">124</field>
+            <field name="description">Number of the credit card</field>
+        </record>
+        <record id="acct_125" model="account.coda.comm.type">
+            <field name="code">125</field>
+            <field name="description">Credit</field>
+        </record>
+        <record id="acct_126" model="account.coda.comm.type">
+            <field name="code">126</field>
+            <field name="description">Term investments</field>
+        </record>
+        <record id="acct_127" model="account.coda.comm.type">
+            <field name="code">127</field>
+            <field name="description">European direct debit (SEPA)</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="acct_001_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_001"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Data concerning the counterparty</field>
+            <field name="value">Gegevens over de tegenpartij</field>
+        </record>
+        <record id="acct_002_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_002"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Communication of the bank</field>
+            <field name="value">Mededeling van de bank</field>
+        </record>
+        <record id="acct_003_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_003"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">RBP data</field>
+            <field name="value">RBP gegevens</field>
+        </record>
+        <record id="acct_004_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_004"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Counterparty’s banker</field>
+            <field name="value">bankier van de tegenpartij</field>
+        </record>
+        <record id="acct_005_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_005"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Data concerning the correspondent</field>
+            <field name="value">gegevens van de correspondent</field>
+        </record>
+        <record id="acct_006_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_006"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Information concerning the detail amount</field>
+            <field name="value">Informatie met betrekking tot detail bedragen</field>
+        </record>
+        <record id="acct_007_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_007"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Information concerning the detail cash</field>
+            <field name="value">Detail van cash</field>
+        </record>
+        <record id="acct_008_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_008"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Identification of the de ultimate beneficiary/creditor (SEPA SCT/SDD)</field>
+            <field name="value">Identificatie van de ultieme begunstigde/schuldeiser (SEPA SCT/SDD)</field>
+        </record>
+        <record id="acct_009_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_009"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Identification of the de ultimate ordering customer/debtor (SEPA SCT/SDD)</field>
+            <field name="value">Identificatie van de ultieme opdrachtgever/schuldenaar (SEPA SCT/SDD)</field>
+        </record>
+        <record id="acct_010_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_010"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Information pertaining to sale or purchase of securities</field>
+            <field name="value">Informatie met betrekking tot de verkoop of de aankoop van effecten</field>
+        </record>
+        <record id="acct_011_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_011"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Information pertaining to coupons</field>
+            <field name="value">Informatie betreffende coupons</field>
+        </record>
+        <record id="acct_100_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_100"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">(SEPA) payment with a structured format communication applying the ISO standard 11649: Structured creditor reference to remittance information</field>
+            <field name="value">betaling met een gestructureerde mededeling volgens ISO standaard 11649</field>
+        </record>
+        <record id="acct_101_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_101"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit transfer or cash payment with structured format communication</field>
+            <field name="value">overschrijving of storting met een gestructureerde mededeling</field>
+        </record>
+        <record id="acct_102_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_102"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit transfer or cash payment with reconstituted structured format communication</field>
+            <field name="value">overschrijving of storting met een wedersamengestelde gestructureerde mededeling</field>
+        </record>
+        <record id="acct_103_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_103"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">number (e.g. of the cheque, of the card, etc.)</field>
+            <field name="value">nummer</field>
+        </record>
+        <record id="acct_104_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_104"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Equivalent in EUR</field>
+            <field name="value">tegenwaarde in EUR</field>
+        </record>
+        <record id="acct_105_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_105"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">original amount of the transaction</field>
+            <field name="value">oorspronkelijk bedrag van de verrichting</field>
+        </record>
+        <record id="acct_106_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_106"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Method of calculation (VAT, withholding tax on income, commission, etc.)</field>
+            <field name="value">berekeningswijze</field>
+        </record>
+        <record id="acct_107_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_107"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Direct debit – DOM’80</field>
+            <field name="value">domiciliëringen - DOM80</field>
+        </record>
+        <record id="acct_108_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_108"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Closing</field>
+            <field name="value">afsluiting</field>
+        </record>
+        <record id="acct_111_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_111"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">POS credit – Globalisation</field>
+            <field name="value">credit POS - globalisatie</field>
+        </record>
+        <record id="acct_112_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_112"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ATM payment (usually Eurocheque card)</field>
+            <field name="value">ATM storting (meestal eurochequekaart)</field>
+        </record>
+        <record id="acct_113_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_113"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ATM/POS debit</field>
+            <field name="value">debet ATM/POS</field>
+        </record>
+        <record id="acct_114_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_114"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">POS credit - individual transaction</field>
+            <field name="value">credit POS - individuele verrichting</field>
+        </record>
+        <record id="acct_115_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_115"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Terminal cash deposit</field>
+            <field name="value">storting aan terminal</field>
+        </record>
+        <record id="acct_120_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_120"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Correction of a transaction</field>
+            <field name="value">Correctie van een verrichting</field>
+        </record>
+        <record id="acct_121_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_121"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Commercial bills</field>
+            <field name="value">handelswissels</field>
+        </record>
+        <record id="acct_122_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_122"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Bills - calculation of interest</field>
+            <field name="value">wissels - berekening van de rente</field>
+        </record>
+        <record id="acct_123_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_123"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fees and commissions</field>
+            <field name="value">kosten en provisies</field>
+        </record>
+        <record id="acct_124_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_124"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Number of the credit card</field>
+            <field name="value">nummer van de kredietkaart</field>
+        </record>
+        <record id="acct_125_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_125"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit</field>
+            <field name="value">krediet</field>
+        </record>
+        <record id="acct_126_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_126"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Term investments</field>
+            <field name="value">termijnbeleggingen</field>
+        </record>
+        <record id="acct_127_nl_NL" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_127"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">European direct debit (SEPA)</field>
+            <field name="value">europese domicilëring</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="acct_001_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_001"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Data concerning the counterparty</field>
+            <field name="value">Données de la contrepartie</field>
+        </record>
+        <record id="acct_002_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_002"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Communication of the bank</field>
+            <field name="value">Communication de la banque</field>
+        </record>
+        <record id="acct_003_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_003"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">RBP data</field>
+            <field name="value">données RBP</field>
+        </record>
+        <record id="acct_004_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_004"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Counterparty’s banker</field>
+            <field name="value">Banquier de la contrepartie</field>
+        </record>
+        <record id="acct_005_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_005"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Data concerning the correspondent</field>
+            <field name="value">Données du correspondant</field>
+        </record>
+        <record id="acct_006_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_006"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Information concerning the detail amount</field>
+            <field name="value">Informations relatives à des montants du détail</field>
+        </record>
+        <record id="acct_007_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_007"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Information concerning the detail cash</field>
+            <field name="value">Informations relatives aux espèces</field>
+        </record>
+        <record id="acct_008_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_008"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Identification of the de ultimate beneficiary/creditor (SEPA SCT/SDD)</field>
+            <field name="value">Identification du créditeur final/ultime du SEPA CT ou DD</field>
+        </record>
+        <record id="acct_009_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_009"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Identification of the de ultimate ordering customer/debtor (SEPA SCT/SDD)</field>
+            <field name="value">Identification du débiteur final/ultime du SEPA CT ou DD</field>
+        </record>
+        <record id="acct_010_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_010"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Information pertaining to sale or purchase of securities</field>
+            <field name="value">Informations relatives à une vente ou à un achat de titres</field>
+        </record>
+        <record id="acct_011_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_011"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Information pertaining to coupons</field>
+            <field name="value">Information relative à des coupons</field>
+        </record>
+        <record id="acct_100_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_100"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">(SEPA) payment with a structured format communication applying the ISO standard 11649: Structured creditor reference to remittance information</field>
+            <field name="value">Communication structurée d’un paiement conforme au standard ISO 11649: &quot;Structured creditor reference to remittance information&quot;</field>
+        </record>
+        <record id="acct_101_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_101"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit transfer or cash payment with structured format communication</field>
+            <field name="value">Virement ou versement à communication structurée</field>
+        </record>
+        <record id="acct_102_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_102"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit transfer or cash payment with reconstituted structured format communication</field>
+            <field name="value">Virement ou versement à communication structurée reconstituée</field>
+        </record>
+        <record id="acct_103_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_103"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">number (e.g. of the cheque, of the card, etc.)</field>
+            <field name="value">numéro</field>
+        </record>
+        <record id="acct_104_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_104"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Equivalent in EUR</field>
+            <field name="value">montant de la contre-valeur en EUR</field>
+        </record>
+        <record id="acct_105_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_105"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">original amount of the transaction</field>
+            <field name="value">montant initial de l'opération</field>
+        </record>
+        <record id="acct_106_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_106"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Method of calculation (VAT, withholding tax on income, commission, etc.)</field>
+            <field name="value">Mode de calcul (TVA, précompte mobilier, commission, etc.)</field>
+        </record>
+        <record id="acct_107_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_107"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Direct debit – DOM’80</field>
+            <field name="value">Domiciliations – DOM'80</field>
+        </record>
+        <record id="acct_108_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_108"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Closing</field>
+            <field name="value">Clôture</field>
+        </record>
+        <record id="acct_111_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_111"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">POS credit – Globalisation</field>
+            <field name="value">Crédit POS – globalisation</field>
+        </record>
+        <record id="acct_112_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_112"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ATM payment (usually Eurocheque card)</field>
+            <field name="value">Versement ATM ( généralement carte eurochèque)</field>
+        </record>
+        <record id="acct_113_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_113"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ATM/POS debit</field>
+            <field name="value">Débit ATM/POS</field>
+        </record>
+        <record id="acct_114_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_114"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">POS credit - individual transaction</field>
+            <field name="value">Crédit POS – opération individuelle</field>
+        </record>
+        <record id="acct_115_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_115"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Terminal cash deposit</field>
+            <field name="value">Versement au terminal</field>
+        </record>
+        <record id="acct_120_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_120"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Correction of a transaction</field>
+            <field name="value">Opération corrigée</field>
+        </record>
+        <record id="acct_121_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_121"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Commercial bills</field>
+            <field name="value">Effets de commerce</field>
+        </record>
+        <record id="acct_122_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_122"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Bills - calculation of interest</field>
+            <field name="value">Effets - calcul de l'intérêt</field>
+        </record>
+        <record id="acct_123_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_123"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fees and commissions</field>
+            <field name="value">Frais et commissions</field>
+        </record>
+        <record id="acct_124_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_124"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Number of the credit card</field>
+            <field name="value">Numéro de la carte de crédit</field>
+        </record>
+        <record id="acct_125_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_125"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit</field>
+            <field name="value">Crédit</field>
+        </record>
+        <record id="acct_126_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_126"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Term investments</field>
+            <field name="value">Placements à terme</field>
+        </record>
+        <record id="acct_127_fr_FR" model="ir.translation">
+            <field name="name">account.coda.comm.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="acct_127"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">European direct debit (SEPA)</field>
+            <field name="value">Domiciliation européenne (Direct debit SEPA)</field>
+        </record>
+
+    </data>
+</openerp>

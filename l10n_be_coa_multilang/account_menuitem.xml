@@ -3,9 +3,9 @@
   <data>
 
     <menuitem
-      id="menu_finance_belgian_statement"
+      id="l10n_be.menu_finance_belgian_statement"
       name="Belgian Statements and Reports"
-      parent="account.menu_finance_legal_statement" groups="account.group_account_manager"/>
+      parent="account.menu_finance_legal_statement"/>
 
   </data>
 </openerp>

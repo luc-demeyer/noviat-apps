@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="payment_order_form_inherit" model="ir.ui.view">
+        <field name="name">payment.order.form.inherit</field>
+        <field name="model">payment.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account_payment.view_payment_order_form"/>
+        <field name="arch" type="xml">
+          <data>
+            <xpath expr="/form/field[@name='line_ids']/form/notebook/page[@string='Payment']/field[@name='state']" position="after">
+              <newline/>
+              <field name="cashflow_code_id"/>
+            </xpath>
+            <xpath expr="/form/field[@name='line_ids']/tree/field[@name='amount']" position="after">
+              <field name="cashflow_code_id"/>
+            </xpath>
+          </data>
+        </field>
+      </record>
+
+    </data>
+</openerp>

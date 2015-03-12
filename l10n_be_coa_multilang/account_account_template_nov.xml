@@ -7,7 +7,6 @@
             <field name="name">BELGIAN CHART OF ACCOUNTS</field>
             <field name="code">0</field>
             <field name="type">view</field>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_1" model="account.account.template">
@@ -15,7 +14,6 @@
             <field name="code">1</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_2" model="account.account.template">
@@ -23,7 +21,6 @@
             <field name="code">2</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_3" model="account.account.template">
@@ -31,7 +28,6 @@
             <field name="code">3</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_4" model="account.account.template">
@@ -39,7 +35,6 @@
             <field name="code">4</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_5" model="account.account.template">
@@ -47,7 +42,6 @@
             <field name="code">5</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_6" model="account.account.template">
@@ -55,7 +49,6 @@
             <field name="code">6</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_7" model="account.account.template">
@@ -63,7 +56,6 @@
             <field name="code">7</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_0"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_10" model="account.account.template">
@@ -71,7 +63,6 @@
             <field name="code">10</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_11" model="account.account.template">
@@ -79,7 +70,6 @@
             <field name="code">11</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_12" model="account.account.template">
@@ -87,7 +77,6 @@
             <field name="code">12</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_13" model="account.account.template">
@@ -95,7 +84,6 @@
             <field name="code">13</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_14" model="account.account.template">
@@ -103,7 +91,6 @@
             <field name="code">14</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_15" model="account.account.template">
@@ -111,7 +98,6 @@
             <field name="code">15</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_16" model="account.account.template">
@@ -119,7 +105,6 @@
             <field name="code">16</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_17" model="account.account.template">
@@ -127,7 +112,6 @@
             <field name="code">17</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_1"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_20" model="account.account.template">
@@ -135,7 +119,6 @@
             <field name="code">20</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_21" model="account.account.template">
@@ -143,7 +126,6 @@
             <field name="code">21</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_22" model="account.account.template">
@@ -151,7 +133,6 @@
             <field name="code">22</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_23" model="account.account.template">
@@ -159,7 +140,6 @@
             <field name="code">23</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_24" model="account.account.template">
@@ -167,7 +147,6 @@
             <field name="code">24</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_25" model="account.account.template">
@@ -175,7 +154,6 @@
             <field name="code">25</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_26" model="account.account.template">
@@ -183,7 +161,6 @@
             <field name="code">26</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_27" model="account.account.template">
@@ -191,7 +168,6 @@
             <field name="code">27</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_28" model="account.account.template">
@@ -199,7 +175,6 @@
             <field name="code">28</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_29" model="account.account.template">
@@ -207,7 +182,6 @@
             <field name="code">29</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_2"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_30" model="account.account.template">
@@ -215,7 +189,6 @@
             <field name="code">30</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_31" model="account.account.template">
@@ -223,7 +196,6 @@
             <field name="code">31</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_32" model="account.account.template">
@@ -231,7 +203,6 @@
             <field name="code">32</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_33" model="account.account.template">
@@ -239,7 +210,6 @@
             <field name="code">33</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_34" model="account.account.template">
@@ -247,7 +217,6 @@
             <field name="code">34</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_35" model="account.account.template">
@@ -255,7 +224,6 @@
             <field name="code">35</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_36" model="account.account.template">
@@ -263,7 +231,6 @@
             <field name="code">36</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_37" model="account.account.template">
@@ -271,7 +238,6 @@
             <field name="code">37</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_3"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_40" model="account.account.template">
@@ -279,7 +245,6 @@
             <field name="code">40</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_41" model="account.account.template">
@@ -287,7 +252,6 @@
             <field name="code">41</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_42" model="account.account.template">
@@ -295,7 +259,6 @@
             <field name="code">42</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_43" model="account.account.template">
@@ -303,7 +266,6 @@
             <field name="code">43</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_44" model="account.account.template">
@@ -311,7 +273,6 @@
             <field name="code">44</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_45" model="account.account.template">
@@ -319,7 +280,6 @@
             <field name="code">45</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_46" model="account.account.template">
@@ -327,7 +287,6 @@
             <field name="code">46</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_47" model="account.account.template">
@@ -335,7 +294,6 @@
             <field name="code">47</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_48" model="account.account.template">
@@ -343,7 +301,6 @@
             <field name="code">48</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_49" model="account.account.template">
@@ -351,7 +308,6 @@
             <field name="code">49</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_4"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_50" model="account.account.template">
@@ -359,7 +315,6 @@
             <field name="code">50</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_51" model="account.account.template">
@@ -367,7 +322,6 @@
             <field name="code">51</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_52" model="account.account.template">
@@ -375,7 +329,6 @@
             <field name="code">52</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_53" model="account.account.template">
@@ -383,7 +336,6 @@
             <field name="code">53</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_54" model="account.account.template">
@@ -391,7 +343,6 @@
             <field name="code">54</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_55" model="account.account.template">
@@ -399,7 +350,6 @@
             <field name="code">55</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_56" model="account.account.template">
@@ -407,7 +357,6 @@
             <field name="code">56</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_57" model="account.account.template">
@@ -415,7 +364,6 @@
             <field name="code">57</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_58" model="account.account.template">
@@ -423,7 +371,6 @@
             <field name="code">58</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_5"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_60" model="account.account.template">
@@ -431,7 +378,6 @@
             <field name="code">60</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_61" model="account.account.template">
@@ -439,7 +385,6 @@
             <field name="code">61</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_62" model="account.account.template">
@@ -447,7 +392,6 @@
             <field name="code">62</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_63" model="account.account.template">
@@ -455,7 +399,6 @@
             <field name="code">63</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_64" model="account.account.template">
@@ -463,7 +406,6 @@
             <field name="code">64</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_65" model="account.account.template">
@@ -471,7 +413,6 @@
             <field name="code">65</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_66" model="account.account.template">
@@ -479,7 +420,6 @@
             <field name="code">66</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_67" model="account.account.template">
@@ -487,7 +427,6 @@
             <field name="code">67</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_68" model="account.account.template">
@@ -495,7 +434,6 @@
             <field name="code">68</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_69" model="account.account.template">
@@ -503,7 +441,6 @@
             <field name="code">69</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_6"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_70" model="account.account.template">
@@ -511,7 +448,6 @@
             <field name="code">70</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_71" model="account.account.template">
@@ -519,7 +455,6 @@
             <field name="code">71</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_72" model="account.account.template">
@@ -527,7 +462,6 @@
             <field name="code">72</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_74" model="account.account.template">
@@ -535,7 +469,6 @@
             <field name="code">74</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_75" model="account.account.template">
@@ -543,7 +476,6 @@
             <field name="code">75</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_76" model="account.account.template">
@@ -551,7 +483,6 @@
             <field name="code">76</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_77" model="account.account.template">
@@ -559,7 +490,6 @@
             <field name="code">77</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_78" model="account.account.template">
@@ -567,7 +497,6 @@
             <field name="code">78</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_79" model="account.account.template">
@@ -575,7 +504,6 @@
             <field name="code">79</field>
             <field name="type">view</field>
             <field name="parent_id" ref="aatn_7"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_view"/>
         </record>
         <record id="aatn_140000" model="account.account.template">
@@ -599,7 +527,6 @@
             <field name="code">411000</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_41"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_asset"/>
         </record>
         <record id="aatn_411059" model="account.account.template">
@@ -607,7 +534,6 @@
             <field name="code">411059</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_41"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_asset"/>
         </record>
         <record id="aatn_440000" model="account.account.template">
@@ -623,7 +549,6 @@
             <field name="code">451000</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_45"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_liability"/>
         </record>
         <record id="aatn_451054" model="account.account.template">
@@ -631,7 +556,6 @@
             <field name="code">451054</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_45"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_liability"/>
         </record>
         <record id="aatn_451055" model="account.account.template">
@@ -639,7 +563,6 @@
             <field name="code">451055</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_45"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_liability"/>
         </record>
         <record id="aatn_451056" model="account.account.template">
@@ -647,7 +570,6 @@
             <field name="code">451056</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_45"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_liability"/>
         </record>
         <record id="aatn_451057" model="account.account.template">
@@ -655,7 +577,6 @@
             <field name="code">451057</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_45"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_tax_liability"/>
         </record>
         <record id="aatn_499999" model="account.account.template">
@@ -663,7 +584,6 @@
             <field name="code">499999</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_49"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_suspense"/>
         </record>
         <record id="aatn_550001" model="account.account.template">
@@ -671,7 +591,6 @@
             <field name="code">550001</field>
             <field name="type">liquidity</field>
             <field name="parent_id" ref="aatn_55"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_cash"/>
         </record>
         <record id="aatn_550002" model="account.account.template">
@@ -679,15 +598,13 @@
             <field name="code">550002</field>
             <field name="type">liquidity</field>
             <field name="parent_id" ref="aatn_55"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_cash"/>
         </record>
         <record id="aatn_570000" model="account.account.template">
             <field name="name">Cash</field>
             <field name="code">570000</field>
             <field name="type">liquidity</field>
-            <field name="parent_id" ref="aatn_57"/>
-            <field name="reconcile" eval="0"/>
+            <field name="parent_id" ref="aatn_55"/>
             <field name="user_type" ref="user_type_cash"/>
         </record>
         <record id="aatn_580000" model="account.account.template">
@@ -695,7 +612,6 @@
             <field name="code">580000</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_58"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_cash"/>
         </record>
         <record id="aatn_600000" model="account.account.template">
@@ -703,7 +619,6 @@
             <field name="code">600000</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_60"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_expense"/>
         </record>
         <record id="aatn_700000" model="account.account.template">
@@ -711,8 +626,1435 @@
             <field name="code">700000</field>
             <field name="type">other</field>
             <field name="parent_id" ref="aatn_70"/>
-            <field name="reconcile" eval="0"/>
             <field name="user_type" ref="user_type_income"/>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="aatn_0_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_0"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">BELGIAN CHART OF ACCOUNTS</field>
+            <field name="value">MAR BELGIE</field>
+        </record>
+        <record id="aatn_1_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_1"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 1. EQUITY CAPITAL, PROVISIONS AND DEFERRED TAXES AND AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">KLASSE 1. EIGEN VERMOGEN, VOORZIENINGEN VOOR RISICO'S EN KOSTEN EN SCHULDEN OP MEER DAN ÉÉN JAAR</field>
+        </record>
+        <record id="aatn_2_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_2"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 2. FORMATION EXPENSES, ASSETS AND AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">KLASSE 2. OPRICHTINGSKOSTEN, VASTE ACTIVA EN VORDERINGEN OP MEER DAN ÉÉN JAAR</field>
+        </record>
+        <record id="aatn_3_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_3"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 3. STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="value">KLASSE 3. VOORRADEN EN BESTELLINGEN IN UITVOERING</field>
+        </record>
+        <record id="aatn_4_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_4"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 4. AMOUNTS RECEIVABLE AND PAYABLE WITHIN ONE YEAR</field>
+            <field name="value">KLASSE 4. VORDERINGEN EN SCHULDEN OP TEN HOOGSTE ÉÉN JAAR</field>
+        </record>
+        <record id="aatn_5_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_5"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 5. INVESTMENTS AND CASH</field>
+            <field name="value">KLASSE 5. GELDBELEGGINGEN EN LIQUIDE MIDDELEN</field>
+        </record>
+        <record id="aatn_6_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_6"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 6. CHARGES</field>
+            <field name="value">KLASSE 6. KOSTEN</field>
+        </record>
+        <record id="aatn_7_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_7"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CLASS 7. INCOMES</field>
+            <field name="value">KLASSE 7. OPBRENGSTEN</field>
+        </record>
+        <record id="aatn_10_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_10"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CAPITAL</field>
+            <field name="value">KAPITAAL</field>
+        </record>
+        <record id="aatn_11_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_11"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">SHARE PREMIUM ACCOUNT</field>
+            <field name="value">UITGIFTEPREMIES</field>
+        </record>
+        <record id="aatn_12_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_12"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">REVALUATION SURPLUSES</field>
+            <field name="value">HERWAARDERINGSMEERWAARDEN</field>
+        </record>
+        <record id="aatn_13_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_13"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">RESERVES</field>
+            <field name="value">RESERVES</field>
+        </record>
+        <record id="aatn_14_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_14"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ACCUMULATED PROFITS</field>
+            <field name="value">OVERGEDRAGEN WINST - OVERGEDRAGEN VERLIES (-)</field>
+        </record>
+        <record id="aatn_15_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_15"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">INVESTMENT GRANTS</field>
+            <field name="value">KAPITAALSUBSIDIES</field>
+        </record>
+        <record id="aatn_16_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_16"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="value">VOORZIENINGEN EN UITGESTELDE BELASTINGEN</field>
+        </record>
+        <record id="aatn_17_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_17"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">SCHULDEN OP MEER DAN ÉÉN JAAR</field>
+        </record>
+        <record id="aatn_20_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_20"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FORMATION EXPENSES</field>
+            <field name="value">OPRICHTINGSKOSTEN</field>
+        </record>
+        <record id="aatn_21_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_21"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">INTANGIBLE ASSETS</field>
+            <field name="value">IMMATERIELE VASTE ACTIVA</field>
+        </record>
+        <record id="aatn_22_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_22"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">LAND AND BUILDINGS</field>
+            <field name="value">TERREINEN EN GEBOUWEN</field>
+        </record>
+        <record id="aatn_23_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_23"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">PLANT, MACHINERY AND EQUIPMENT</field>
+            <field name="value">INSTALLATIES, MACHINES EN UITRUSTING</field>
+        </record>
+        <record id="aatn_24_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_24"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FURNITURE AND VEHICLES</field>
+            <field name="value">MEUBILAIR EN ROLLEND MATERIEEL</field>
+        </record>
+        <record id="aatn_25_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_25"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">LEASING AND OTHER SIMILAR RIGHTS</field>
+            <field name="value">VASTE ACTIVA IN LEASING OF OP GROND VAN EEN SOORTGELIJK RECHT</field>
+        </record>
+        <record id="aatn_26_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_26"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">OTHER TANGIBLE ASSETS</field>
+            <field name="value">ANDERE MATERIELE VASTE ACTIVA</field>
+        </record>
+        <record id="aatn_27_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_27"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ASSETS UNDER CONSTR. AND ADVANCE PAYMENT</field>
+            <field name="value">VASTE ACTIVA IN AANBOUW EN VOORUITBETALINGEN</field>
+        </record>
+        <record id="aatn_28_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_28"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINANCIAL ASSETS</field>
+            <field name="value">FINANCIELE VASTE ACTIVA</field>
+        </record>
+        <record id="aatn_29_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_29"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">VORDERINGEN OP MEER DAN ÉÉN JAAR</field>
+        </record>
+        <record id="aatn_30_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_30"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">RAW MATERIALS</field>
+            <field name="value">GRONDSTOFFEN</field>
+        </record>
+        <record id="aatn_31_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_31"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CONSUMABLES</field>
+            <field name="value">HULPSTOFFEN</field>
+        </record>
+        <record id="aatn_32_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_32"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">GOODS WORK IN PROGRESS</field>
+            <field name="value">GOEDEREN IN BEWERKING</field>
+        </record>
+        <record id="aatn_33_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_33"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINISHED GOODS</field>
+            <field name="value">GEREED PRODUCT</field>
+        </record>
+        <record id="aatn_34_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_34"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">GOODS PURCHASED FOR RESALE</field>
+            <field name="value">HANDELSGOEDEREN</field>
+        </record>
+        <record id="aatn_35_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_35"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">IMMOVABLE PROPERTY ACQUIRED FOR RESALE</field>
+            <field name="value">ONROERENDE GOEDEREN BESTEMD VOOR VERKOOP</field>
+        </record>
+        <record id="aatn_36_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_36"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ADVANCE PAYMENTS</field>
+            <field name="value">VOORUITBETALINGEN OP VOORRAADINKOPEN</field>
+        </record>
+        <record id="aatn_37_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_37"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CONTRACTS IN PROGRESS</field>
+            <field name="value">BESTELLINGEN IN UITVOERING</field>
+        </record>
+        <record id="aatn_40_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_40"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TRADE DEBTORS</field>
+            <field name="value">HANDELSVORDERINGEN</field>
+        </record>
+        <record id="aatn_41_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_41"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">OTHER AMOUNTS RECEIVABLE</field>
+            <field name="value">OVERIGE VORDERINGEN</field>
+        </record>
+        <record id="aatn_42_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_42"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">DEBTS OF MORE THAN 1 YEAR, PORTION WITHIN THE YEAR</field>
+            <field name="value">SCHULDEN OP MEER DAN EEN JAAR DIE BINNEN HET JAAR VERVALLEN</field>
+        </record>
+        <record id="aatn_43_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_43"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINANCIAL DEBTS</field>
+            <field name="value">FINANCIELE SCHULDEN</field>
+        </record>
+        <record id="aatn_44_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_44"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TRADE DEBTS</field>
+            <field name="value">HANDELSSCHULDEN</field>
+        </record>
+        <record id="aatn_45_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_45"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TAXES, REMUNERATION AND SOCIAL SECURITY</field>
+            <field name="value">SCHULDEN MET BETREKKING TOT BELASTINGEN, BEZOLDIGINGEN EN SOCIALE LASTEN</field>
+        </record>
+        <record id="aatn_46_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_46"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ADVANCES RECEIVED ON CONTRACTS IN PROGRESS</field>
+            <field name="value">ONTVANGEN VOORUITBETALINGEN OP BESTELLINGEN</field>
+        </record>
+        <record id="aatn_47_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_47"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">DEBTS RELATED TO THE DESTINATION OF THE RESULTS</field>
+            <field name="value">SCHULDEN UIT DE BESTEMMING VAN HET RESULTAAT</field>
+        </record>
+        <record id="aatn_48_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_48"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VARIOUS DEBTS</field>
+            <field name="value">DIVERSE SCHULDEN</field>
+        </record>
+        <record id="aatn_49_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_49"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ACCRUED CHARGES AND DEFERRED INCOME</field>
+            <field name="value">OVERLOPENDE REKENINGEN</field>
+        </record>
+        <record id="aatn_50_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_50"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">OWN SHARES</field>
+            <field name="value">EIGEN AANDELEN</field>
+        </record>
+        <record id="aatn_51_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_51"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">SHARES</field>
+            <field name="value">AANDELEN</field>
+        </record>
+        <record id="aatn_52_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_52"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FIXED-INTEREST SECURITIES</field>
+            <field name="value">VASTRENTENDE EFFECTEN</field>
+        </record>
+        <record id="aatn_53_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_53"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FIXED DEPOSIT</field>
+            <field name="value">TERMIJNDEPOSITO'S</field>
+        </record>
+        <record id="aatn_54_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_54"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">EXPIRED VALUABLES TO CASH IN</field>
+            <field name="value">TE INCASSEREN VERVALLEN WAARDEN</field>
+        </record>
+        <record id="aatn_55_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_55"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINANCE COMPANIES</field>
+            <field name="value">KREDIETINSTELLINGEN</field>
+        </record>
+        <record id="aatn_56_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_56"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">GIRO SERVICE</field>
+            <field name="value">POSTCHEQUE- EN GIRODIENST</field>
+        </record>
+        <record id="aatn_57_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_57"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CASH</field>
+            <field name="value">KASSEN</field>
+        </record>
+        <record id="aatn_58_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_58"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">INTERNAL TRANSFERS</field>
+            <field name="value">INTERNE OVERBOEKINGEN</field>
+        </record>
+        <record id="aatn_60_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_60"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">RAW MATERIALS, CONSUMABLES AND GOODS FOR RESALE</field>
+            <field name="value">HANDELSGOEDEREN, GROND- EN HULPSTOFFEN</field>
+        </record>
+        <record id="aatn_61_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_61"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">SERVICES AND OTHER GOODS</field>
+            <field name="value">DIENSTEN EN DIVERSE GOEDEREN</field>
+        </record>
+        <record id="aatn_62_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_62"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">REMUNERATIONS, SOCIAL SECURITY COSTS AND PENSIONS</field>
+            <field name="value">BEZOLDIGINGEN, SOCIALE LASTEN EN PENSIOENEN</field>
+        </record>
+        <record id="aatn_63_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_63"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">DEPRECIATIONS, AMOUNTS WRITTEN OFF AND PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="value">AFSCHRIJVINGEN, WAARDEVERMINDERINGEN EN VOORZIENINGEN VOOR RISICO'S EN KOSTEN</field>
+        </record>
+        <record id="aatn_64_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_64"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">OTHER OPERATING CHARGES</field>
+            <field name="value">ANDERE BEDRIJFSKOSTEN</field>
+        </record>
+        <record id="aatn_65_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_65"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINANCIAL CHARGES</field>
+            <field name="value">FINANCIELE KOSTEN</field>
+        </record>
+        <record id="aatn_66_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_66"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">EXTRAORDINARY CHARGES</field>
+            <field name="value">UITZONDERLIJKE KOSTEN</field>
+        </record>
+        <record id="aatn_67_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_67"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">INCOME TAXES</field>
+            <field name="value">BELASTINGEN OP HET RESULTAAT</field>
+        </record>
+        <record id="aatn_68_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_68"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TRANSFER TO DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="value">OVERBOEKING NAAR DE UITGESTELDE BELASTINGEN EN DE BELASTINGVRIJE RESERVES</field>
+        </record>
+        <record id="aatn_69_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_69"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">PROFIT FOR THE PERIOD</field>
+            <field name="value">RESULTAATVERWERKING</field>
+        </record>
+        <record id="aatn_70_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_70"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TURNOVER</field>
+            <field name="value">OMZET</field>
+        </record>
+        <record id="aatn_71_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_71"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">CHANGES IN STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="value">WIJZIGINGEN IN DE VOORRADEN EN IN DE BESTELLINGEN IN UITVOERING</field>
+        </record>
+        <record id="aatn_72_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_72"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FIXED ASSETS OWN CONSTRUCTION</field>
+            <field name="value">GEPRODUCEERDE VASTE ACTIVA</field>
+        </record>
+        <record id="aatn_74_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_74"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">OTHER OPERATING INCOME</field>
+            <field name="value">ANDERE BEDRIJFSOPBRENGSTEN</field>
+        </record>
+        <record id="aatn_75_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_75"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">FINANCIAL INCOME</field>
+            <field name="value">FINANCIELE OPBRENGSTEN</field>
+        </record>
+        <record id="aatn_76_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_76"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">EXTRAORDINARY INCOME</field>
+            <field name="value">UITZONDERLIJKE OPBRENGSTEN</field>
+        </record>
+        <record id="aatn_77_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_77"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ADJUSTMENT OF INCOME TAXES AND TAX PROVISIONS</field>
+            <field name="value">REGULARISERING VAN BELASTINGEN EN TERUGNEMING VAN FISCALE VOORZIENINGEN</field>
+        </record>
+        <record id="aatn_78_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_78"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">TRANSFER FROM DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="value">ONTTREKKINGEN AAN DE BELASTINGVRIJE RESERVES EN UITGESTELDE BELASTINGEN</field>
+        </record>
+        <record id="aatn_79_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_79"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">PROFIT FOR THE PERIOD</field>
+            <field name="value">RESULTAATVERWERKING</field>
+        </record>
+        <record id="aatn_140000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_140000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Profit carried forward</field>
+            <field name="value">Overgedragen winst</field>
+        </record>
+        <record id="aatn_400000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_400000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Customers</field>
+            <field name="value">Klanten</field>
+        </record>
+        <record id="aatn_411000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_411000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Input VAT - current account balance</field>
+            <field name="value">Terug te vorderen BTW - Rekening courant</field>
+        </record>
+        <record id="aatn_411059_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_411059"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT Deductible</field>
+            <field name="value">BTW Aftrekbaar</field>
+        </record>
+        <record id="aatn_440000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_440000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Suppliers</field>
+            <field name="value">Leveranciers</field>
+        </record>
+        <record id="aatn_451000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Output VAT - current account balance</field>
+            <field name="value">Te betalen BTW - Rekening courant</field>
+        </record>
+        <record id="aatn_451054_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451054"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT Debt</field>
+            <field name="value">BTW schuld</field>
+        </record>
+        <record id="aatn_451055_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451055"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT Debt - Intracommunity</field>
+            <field name="value">BTW schuld - Intracommunautaire verwervingen</field>
+        </record>
+        <record id="aatn_451056_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451056"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT Debt - Cocontractant</field>
+            <field name="value">BTW schuld - medecontractant</field>
+        </record>
+        <record id="aatn_451057_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451057"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT Debt - Import</field>
+            <field name="value">BTW schuld - invoer met verlegging</field>
+        </record>
+        <record id="aatn_499999_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_499999"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Awaiting account</field>
+            <field name="value">Wachtrekening</field>
+        </record>
+        <record id="aatn_550001_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_550001"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Bank Current</field>
+            <field name="value">Bank - Rekening courant</field>
+        </record>
+        <record id="aatn_550002_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_550002"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Bank Deposit</field>
+            <field name="value">Bank - Deposito</field>
+        </record>
+        <record id="aatn_570000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_570000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Cash</field>
+            <field name="value">Kas</field>
+        </record>
+        <record id="aatn_580000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_580000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Internal transfer account</field>
+            <field name="value">Interne overboekingen</field>
+        </record>
+        <record id="aatn_600000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_600000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Purchases of raw materials</field>
+            <field name="value">Aankopen van grondstoffen</field>
+        </record>
+        <record id="aatn_700000_nl_NL" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_700000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Sales</field>
+            <field name="value">Verkopen</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="aatn_0_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_0"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">BELGIAN CHART OF ACCOUNTS</field>
+            <field name="value">PCMN BELGE</field>
+        </record>
+        <record id="aatn_1_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_1"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 1. EQUITY CAPITAL, PROVISIONS AND DEFERRED TAXES AND AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">CLASSE 1. FONDS PROPRES, PROVISIONS POUR RISQUES &amp; CHARGES ET DETTES A PLUS D'UN AN</field>
+        </record>
+        <record id="aatn_2_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_2"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 2. FORMATION EXPENSES, ASSETS AND AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">CLASSE 2. FRAIS D'ETABLISSEMENT. ACTIFS IMMOBILISES ET CREANCES A PLUS D'UN AN</field>
+        </record>
+        <record id="aatn_3_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_3"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 3. STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="value">CLASSE 3. STOCK ET COMMANDES EN COURS D'EXECUTION</field>
+        </record>
+        <record id="aatn_4_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_4"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 4. AMOUNTS RECEIVABLE AND PAYABLE WITHIN ONE YEAR</field>
+            <field name="value">CLASSE 4. CREANCES ET DETTES A UN AN AU PLUS</field>
+        </record>
+        <record id="aatn_5_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_5"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 5. INVESTMENTS AND CASH</field>
+            <field name="value">CLASSE 5. PLACEMENTS DE TRESORERIE ET DE VALEURS DISPONIBLES</field>
+        </record>
+        <record id="aatn_6_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_6"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 6. CHARGES</field>
+            <field name="value">CLASSE 6. CHARGES</field>
+        </record>
+        <record id="aatn_7_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_7"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CLASS 7. INCOMES</field>
+            <field name="value">CLASSE 7. PRODUITS</field>
+        </record>
+        <record id="aatn_10_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_10"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CAPITAL</field>
+            <field name="value">CAPITAL</field>
+        </record>
+        <record id="aatn_11_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_11"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">SHARE PREMIUM ACCOUNT</field>
+            <field name="value">PRIMES D'EMISSION</field>
+        </record>
+        <record id="aatn_12_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_12"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">REVALUATION SURPLUSES</field>
+            <field name="value">PLUS-VALUES DE REEVALUATION</field>
+        </record>
+        <record id="aatn_13_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_13"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">RESERVES</field>
+            <field name="value">RESERVES</field>
+        </record>
+        <record id="aatn_14_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_14"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ACCUMULATED PROFITS</field>
+            <field name="value">BENEFICE OU PERTE REPORTE(E)</field>
+        </record>
+        <record id="aatn_15_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_15"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">INVESTMENT GRANTS</field>
+            <field name="value">SUBSIDES EN CAPITAL</field>
+        </record>
+        <record id="aatn_16_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_16"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="value">PROVISIONS POUR RISQUES ET CHARGES</field>
+        </record>
+        <record id="aatn_17_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_17"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">AMOUNTS PAYABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">DETTES A PLUS D'UN AN</field>
+        </record>
+        <record id="aatn_20_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_20"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FORMATION EXPENSES</field>
+            <field name="value">FRAIS D'ETABLISSEMENT</field>
+        </record>
+        <record id="aatn_21_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_21"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">INTANGIBLE ASSETS</field>
+            <field name="value">IMMOBILISATIONS INCORPORELLES</field>
+        </record>
+        <record id="aatn_22_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_22"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">LAND AND BUILDINGS</field>
+            <field name="value">TERRAINS ET CONSTRUCTIONS</field>
+        </record>
+        <record id="aatn_23_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_23"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">PLANT, MACHINERY AND EQUIPMENT</field>
+            <field name="value">INSTALLATIONS, MACHINES ET OUTILLAGE</field>
+        </record>
+        <record id="aatn_24_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_24"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FURNITURE AND VEHICLES</field>
+            <field name="value">MOBILIER ET MATERIEL ROULANT</field>
+        </record>
+        <record id="aatn_25_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_25"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">LEASING AND OTHER SIMILAR RIGHTS</field>
+            <field name="value">IMMOBILISATION DETENUES EN LOCATION-FINANCEMENT ET DROITS SIMILAIRES</field>
+        </record>
+        <record id="aatn_26_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_26"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">OTHER TANGIBLE ASSETS</field>
+            <field name="value">AUTRES IMMOBILISATIONS CORPORELLES</field>
+        </record>
+        <record id="aatn_27_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_27"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ASSETS UNDER CONSTR. AND ADVANCE PAYMENT</field>
+            <field name="value">IMMOBILISATIONS CORPORELLES EN COURS ET ACOMPTES VERSES</field>
+        </record>
+        <record id="aatn_28_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_28"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINANCIAL ASSETS</field>
+            <field name="value">IMMOBILISATIONS FINANCIERES</field>
+        </record>
+        <record id="aatn_29_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_29"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">AMOUNTS RECEIVABLE AFTER MORE THAN ONE YEAR</field>
+            <field name="value">CREANCES A PLUS D'UN AN</field>
+        </record>
+        <record id="aatn_30_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_30"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">RAW MATERIALS</field>
+            <field name="value">APPROVISIONNEMENTS - MATIERES PREMIERES</field>
+        </record>
+        <record id="aatn_31_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_31"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CONSUMABLES</field>
+            <field name="value">APPROVISIONNEMENTS ET FOURNITURES</field>
+        </record>
+        <record id="aatn_32_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_32"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">GOODS WORK IN PROGRESS</field>
+            <field name="value">EN COURS DE FABRICATION</field>
+        </record>
+        <record id="aatn_33_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_33"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINISHED GOODS</field>
+            <field name="value">PRODUITS FINIS</field>
+        </record>
+        <record id="aatn_34_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_34"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">GOODS PURCHASED FOR RESALE</field>
+            <field name="value">MARCHANDISES</field>
+        </record>
+        <record id="aatn_35_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_35"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">IMMOVABLE PROPERTY ACQUIRED FOR RESALE</field>
+            <field name="value">IMMEUBLES DESTINES A LA VENTE</field>
+        </record>
+        <record id="aatn_36_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_36"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ADVANCE PAYMENTS</field>
+            <field name="value">ACOMPTES VERSES SUR ACHATS POUR STOCKS</field>
+        </record>
+        <record id="aatn_37_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_37"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CONTRACTS IN PROGRESS</field>
+            <field name="value">COMMANDES EN COURS D'EXECUTION</field>
+        </record>
+        <record id="aatn_40_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_40"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TRADE DEBTORS</field>
+            <field name="value">CREANCES COMMERCIALES</field>
+        </record>
+        <record id="aatn_41_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_41"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">OTHER AMOUNTS RECEIVABLE</field>
+            <field name="value">AUTRES CREANCES</field>
+        </record>
+        <record id="aatn_42_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_42"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">DEBTS OF MORE THAN 1 YEAR, PORTION WITHIN THE YEAR</field>
+            <field name="value">DETTES A PLUS D'UN AN ECHEANT DANS L'ANNEE</field>
+        </record>
+        <record id="aatn_43_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_43"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINANCIAL DEBTS</field>
+            <field name="value">DETTES FINANCIERES</field>
+        </record>
+        <record id="aatn_44_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_44"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TRADE DEBTS</field>
+            <field name="value">DETTES COMMERCIALES</field>
+        </record>
+        <record id="aatn_45_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_45"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TAXES, REMUNERATION AND SOCIAL SECURITY</field>
+            <field name="value">DETTES FISCALES, SALARIALES ET SOCIALES</field>
+        </record>
+        <record id="aatn_46_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_46"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ADVANCES RECEIVED ON CONTRACTS IN PROGRESS</field>
+            <field name="value">ACOMPTES RECUS SUR COMMANDES</field>
+        </record>
+        <record id="aatn_47_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_47"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">DEBTS RELATED TO THE DESTINATION OF THE RESULTS</field>
+            <field name="value">DETTES DECOULANT DE L'AFFECTATION DES RESULTATS</field>
+        </record>
+        <record id="aatn_48_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_48"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VARIOUS DEBTS</field>
+            <field name="value">DETTES DIVERSES</field>
+        </record>
+        <record id="aatn_49_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_49"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ACCRUED CHARGES AND DEFERRED INCOME</field>
+            <field name="value">COMPTES DE REGULARISATION ET COMPTES D'ATTENTE</field>
+        </record>
+        <record id="aatn_50_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_50"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">OWN SHARES</field>
+            <field name="value">ACTIONS PROPRES</field>
+        </record>
+        <record id="aatn_51_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_51"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">SHARES</field>
+            <field name="value">ACTIONS ET PARTS</field>
+        </record>
+        <record id="aatn_52_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_52"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FIXED-INTEREST SECURITIES</field>
+            <field name="value">TITRES A REVENUS FIXES</field>
+        </record>
+        <record id="aatn_53_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_53"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FIXED DEPOSIT</field>
+            <field name="value">DEPOTS A TERME</field>
+        </record>
+        <record id="aatn_54_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_54"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">EXPIRED VALUABLES TO CASH IN</field>
+            <field name="value">VALEURS ECHUES A L'ENCAISSEMENT</field>
+        </record>
+        <record id="aatn_55_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_55"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINANCE COMPANIES</field>
+            <field name="value">ETABLISSEMENTS DE CREDIT</field>
+        </record>
+        <record id="aatn_56_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_56"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">GIRO SERVICE</field>
+            <field name="value">OFFICE DES CHEQUES POSTAUX</field>
+        </record>
+        <record id="aatn_57_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_57"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CASH</field>
+            <field name="value">CAISSES</field>
+        </record>
+        <record id="aatn_58_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_58"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">INTERNAL TRANSFERS</field>
+            <field name="value">VIREMENTS INTERNES</field>
+        </record>
+        <record id="aatn_60_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_60"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">RAW MATERIALS, CONSUMABLES AND GOODS FOR RESALE</field>
+            <field name="value">APPROVISIONNEMENTS ET MARCHANDISES</field>
+        </record>
+        <record id="aatn_61_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_61"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">SERVICES AND OTHER GOODS</field>
+            <field name="value">SERVICES ET BIENS DIVERS</field>
+        </record>
+        <record id="aatn_62_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_62"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">REMUNERATIONS, SOCIAL SECURITY COSTS AND PENSIONS</field>
+            <field name="value">REMUNERATIONS, CHARGES SOCIALES ET PENSIONS</field>
+        </record>
+        <record id="aatn_63_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_63"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">DEPRECIATIONS, AMOUNTS WRITTEN OFF AND PROVISIONS FOR LIABILITIES AND CHARGES</field>
+            <field name="value">AMORTISSEMENTS, REDUCTIONS DE VALEUR ET PROVISIONS POUR RISQUES ET CHARGES</field>
+        </record>
+        <record id="aatn_64_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_64"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">OTHER OPERATING CHARGES</field>
+            <field name="value">AUTRES CHARGES D'EXPLOITATION</field>
+        </record>
+        <record id="aatn_65_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_65"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINANCIAL CHARGES</field>
+            <field name="value">CHARGES FINANCIERES</field>
+        </record>
+        <record id="aatn_66_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_66"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">EXTRAORDINARY CHARGES</field>
+            <field name="value">CHARGES EXCEPTIONNELLES</field>
+        </record>
+        <record id="aatn_67_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_67"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">INCOME TAXES</field>
+            <field name="value">IMPOTS SUR LE RESULTAT</field>
+        </record>
+        <record id="aatn_68_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_68"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TRANSFER TO DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="value">TRANSFERTS AUX RESERVES IMMUNISEES</field>
+        </record>
+        <record id="aatn_69_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_69"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">PROFIT FOR THE PERIOD</field>
+            <field name="value">AFFECTATION DES RESULTATS</field>
+        </record>
+        <record id="aatn_70_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_70"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TURNOVER</field>
+            <field name="value">CHIFFRE D'AFFAIRES</field>
+        </record>
+        <record id="aatn_71_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_71"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">CHANGES IN STOCKS AND CONTRACTS IN PROGRESS</field>
+            <field name="value">VARIATION DES STOCKS ET DES COMMANDES EN COURS D'EXECUTION</field>
+        </record>
+        <record id="aatn_72_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_72"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FIXED ASSETS OWN CONSTRUCTION</field>
+            <field name="value">PRODUCTION IMMOBILISEE</field>
+        </record>
+        <record id="aatn_74_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_74"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">OTHER OPERATING INCOME</field>
+            <field name="value">AUTRES PRODUITS D'EXPLOITATION</field>
+        </record>
+        <record id="aatn_75_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_75"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">FINANCIAL INCOME</field>
+            <field name="value">PRODUITS FINANCIERS</field>
+        </record>
+        <record id="aatn_76_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_76"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">EXTRAORDINARY INCOME</field>
+            <field name="value">PRODUITS EXCEPTIONNELS</field>
+        </record>
+        <record id="aatn_77_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_77"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ADJUSTMENT OF INCOME TAXES AND TAX PROVISIONS</field>
+            <field name="value">REGULARISATIONS D'IMPOTS ET REPRISES DE PROVISIONS FISCALES</field>
+        </record>
+        <record id="aatn_78_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_78"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">TRANSFER FROM DEFERRED TAXES AND UNTAXED RESERVES</field>
+            <field name="value">PRELEVEMENT SUR RESERVES IMMUNISEES ET IMPOTS DIFFERES</field>
+        </record>
+        <record id="aatn_79_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_79"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">PROFIT FOR THE PERIOD</field>
+            <field name="value">AFFECTATION AUX RESULTATS</field>
+        </record>
+        <record id="aatn_140000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_140000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Profit carried forward</field>
+            <field name="value">Bénéfice reporté</field>
+        </record>
+        <record id="aatn_400000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_400000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Customers</field>
+            <field name="value">Clients</field>
+        </record>
+        <record id="aatn_411000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_411000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Input VAT - current account balance</field>
+            <field name="value">TVA à récupérer - Compte courant</field>
+        </record>
+        <record id="aatn_411059_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_411059"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT Deductible</field>
+            <field name="value">TVA à récupérer</field>
+        </record>
+        <record id="aatn_440000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_440000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Suppliers</field>
+            <field name="value">Fournisseurs</field>
+        </record>
+        <record id="aatn_451000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Output VAT - current account balance</field>
+            <field name="value">TVA à payer - Compte courant</field>
+        </record>
+        <record id="aatn_451054_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451054"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT Debt</field>
+            <field name="value">TVA à payer</field>
+        </record>
+        <record id="aatn_451055_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451055"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT Debt - Intracommunity</field>
+            <field name="value">TVA à payer - intracommunautaire</field>
+        </record>
+        <record id="aatn_451056_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451056"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT Debt - Cocontractant</field>
+            <field name="value">TVA à payer - cocontractant</field>
+        </record>
+        <record id="aatn_451057_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_451057"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT Debt - Import</field>
+            <field name="value">TVA à payer - importations avec report de perceptions</field>
+        </record>
+        <record id="aatn_499999_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_499999"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Awaiting account</field>
+            <field name="value">Compte d'attente</field>
+        </record>
+        <record id="aatn_550001_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_550001"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Bank Current</field>
+            <field name="value">Banque - Compte courant</field>
+        </record>
+        <record id="aatn_550002_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_550002"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Bank Deposit</field>
+            <field name="value">Banque - Compte d'épargne</field>
+        </record>
+        <record id="aatn_570000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_570000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Cash</field>
+            <field name="value">Caisse</field>
+        </record>
+        <record id="aatn_580000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_580000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Internal transfer account</field>
+            <field name="value">Virements internes</field>
+        </record>
+        <record id="aatn_600000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_600000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Purchases of raw materials</field>
+            <field name="value">Achats de matières premières</field>
+        </record>
+        <record id="aatn_700000_fr_FR" model="ir.translation">
+            <field name="name">account.account.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="aatn_700000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Sales</field>
+            <field name="value">Ventes</field>
         </record>
 
     </data>

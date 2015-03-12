@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <!-- 
+      changes to 'account.bank.statement.voucher.tree/form' views
+      -->
+    <record id="account_voucher.view_bank_statement_tree_voucher" model="ir.ui.view">
+      <field name="name">account.bank.statement.voucher.tree.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/notebook/page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='amount']" position="after">
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+          <button name="action_undo" string="Undo Associated Accounting Move" type="object" icon="gtk-cancel"/>
+        </xpath>
+      </field>
+    </record>
+    <record id="account_voucher.view_bank_statement_form_voucher" model="ir.ui.view">
+      <field name="name">account.bank.statement.voucher.form.inherit</field>
+      <field name="model">account.bank.statement</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/notebook/page[@name='statement_line_ids']/field[@name='line_ids']/form/field[@name='sequence']" position="after">
+          <newline/>
+          <field name="reconcile_get"/>
+          <field name="move_get"/>
+          <group colspan="4" col="2">
+            <button name="action_process" string="Reconciliation/Move" type="object" icon="gtk-go-forward"/>
+            <button name="action_undo" string="Undo Associated Accounting Moves" type="object" icon="gtk-cancel"/>
+          </group>
+          <newline/>
+        </xpath>
+      </field>
+    </record>
+    
+    <!-- change move_line_ids from editable to non-editable list -->
+    <record id="view_bank_statement_form_moves_readonly" model="ir.ui.view">
+      <field name="name">view.bank.statement.form.moves.readonly</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <xpath expr="/form/notebook/page/field[@name='move_line_ids']" position="replace">
+          <field colspan="4" name="move_line_ids" nolabel="1" mode="tree,form">
+            <tree string="Journal Items">
+              <field name="move_id"/>
+              <field name="ref"/>
+              <field name="date"/>
+              <field name="period_id"/>
+              <field name="partner_id" on_change="onchange_partner_id(move_id, partner_id, account_id, debit, credit, date, journal_id)"/>
+              <field name="account_id"/>
+              <field name="name"/>
+              <field name="journal_id" invisible="1"/>
+              <field name="debit" sum="Total debit"/>
+              <field name="credit" sum="Total credit"/>
+              <field name="reconcile_partial_id" groups="base.group_extended"/>
+              <field name="reconcile_id"/>
+              <field name="state"/>
+            </tree>
+          </field>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- unreconcile bank statements wizard -->
+    <record id="unreconcile_statement_entries_form_view" model="ir.ui.view">
+      <field name="name">Unreconcile Bank Statement Accounting Entries</field>
+      <field name="model">unreconcile.statement.entries</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Unreconcile Bank Statement Accounting Entries">
+          <field name="note" colspan="4" nolabel="1" width="850" height="300"/>
+          <newline/>
+          <group col="7" colspan="4">
+            <field name="state"/>
+            <button special="cancel" states="draft" string="Cancel" icon="gtk-cancel" type="object"/>
+            <button special="cancel" states="done" string="Close Window" icon="terp-dialog-close" type="object"/>
+            <button name="unreconcile" states="draft" string="Unreconcile entries" icon="gtk-execute" type="object"/>
+            <button name="view_invoices" states="done" string="View Invoices" icon="gtk-ok" type="object"/>
+            <button name="view_moves" states="done" string="View Moves" icon="gtk-ok" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record id="action_unreconcile_statement_entries" model="ir.actions.act_window">
+      <field name="name">Unreconcile Bank Statement Accounting Entries</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">unreconcile.statement.entries</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="unreconcile_statement_entries_form_view"/>
+      <field name="target">new</field>
+    </record>
+
+    <!-- add buttons to account.bank.statement.form to unpost account moves and unreconcile account move lines -->
+    <record id="view_bank_statement_form_add_undo_buttons" model="ir.ui.view">
+      <field name="name">view.bank.statement.form.undo.buttons</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <xpath expr="/form/notebook/page/field[@name='move_line_ids']" position="after">
+          <group colspan="4">
+            <button name="unpost_statement_moves" states="draft" string="Unpost Moves"
+              confirm="Are you sure ?"
+              type="object" icon="gtk-execute" groups="base.group_no_one"/>
+            <!--
+            <button name="post_statement_moves" states="confirm" string="Post Moves"
+              confirm="Are you sure ?"
+              type="object" icon="gtk-execute" groups="base.group_no_one"/>
+            -->
+            <button name="%(action_unreconcile_statement_entries)d" states="draft" string="Unreconcile Entries"
+              type="action" icon="gtk-execute" groups="base.group_no_one"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+    
+  </data>
+</openerp>

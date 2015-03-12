@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- account.coda.trans.type -->
+        <record id="actt_0" model="account.coda.trans.type">
+            <field name="type">0</field>
+            <field name="description">Simple amount without detailed data; e.g. : an individual credit transfer (free of charges).</field>
+        </record>
+        <record id="actt_1" model="account.coda.trans.type">
+            <field name="type">1</field>
+            <field name="description">Amount as totalised by the customer; e.g. a file regrouping payments of wages or payments made to suppliers or a file regrouping collections for which the customer is debited or credited with one single amount. As a matter of principle, this type is also used when no detailed data is following (type 5).</field>
+        </record>
+        <record id="actt_5" model="account.coda.trans.type">
+            <field name="type">5</field>
+            <field name="parent_id" ref="actt_1"/>
+            <field name="description">Detail of 1. Standard procedure is no detailing. However, the customer may ask for detailed data to be included into his file after the overall record (type 1).</field>
+        </record>
+        <record id="actt_2" model="account.coda.trans.type">
+            <field name="type">2</field>
+            <field name="description">Amount as totalised by the bank; e.g. : the total amount of a series of credit transfers with a structured communication As a matter of principle, this type will also be used when no detailed data (type 6 or 7) is following.</field>
+        </record>
+        <record id="actt_6" model="account.coda.trans.type">
+            <field name="type">6</field>
+            <field name="parent_id" ref="actt_2"/>
+            <field name="description">Detail of 2. Simple amount without detailed data. Normally, data of this kind comes after type 2. The customer may ask for a separate file containing the detailed data. In that case, one will speak of a ‘separate application’. The records in a separate application keep type 6.</field>
+        </record>
+        <record id="actt_7" model="account.coda.trans.type">
+            <field name="type">7</field>
+            <field name="parent_id" ref="actt_2"/>
+            <field name="description">Detail of 2. Simple account with detailed data The records in a separate application keep type 7.</field>
+        </record>
+        <record id="actt_9" model="account.coda.trans.type">
+            <field name="type">9</field>
+            <field name="parent_id" ref="actt_7"/>
+            <field name="description">Detail of 7. The records in a separate application keep type 9.</field>
+        </record>
+        <record id="actt_3" model="account.coda.trans.type">
+            <field name="type">3</field>
+            <field name="description">Simple amount with detailed data; e.g. in case of charges for cross-border credit transfers.</field>
+        </record>
+        <record id="actt_8" model="account.coda.trans.type">
+            <field name="type">8</field>
+            <field name="parent_id" ref="actt_3"/>
+            <field name="description">Detail of 3.</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="actt_0_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_0"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Simple amount without detailed data; e.g. : an individual credit transfer (free of charges).</field>
+            <field name="value">Enkelvoudig bedrag zonder details; bijv. : een individuele overschrijving (zonder kosten).</field>
+        </record>
+        <record id="actt_1_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_1"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Amount as totalised by the customer; e.g. a file regrouping payments of wages or payments made to suppliers or a file regrouping collections for which the customer is debited or credited with one single amount. As a matter of principle, this type is also used when no detailed data is following (type 5).</field>
+            <field name="value">Bedrag getotaliseerd door de cliënt; bijv. een bestand met loon- of leveranciersbetalingen of een bestand met invorderingen waarvoor de cliënt in één bedrag wordt gedebiteerd of gecrediteerd. Dit type wordt in principe ook gebruikt als er geen details (type 5) volgen.</field>
+        </record>
+        <record id="actt_5_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_5"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Detail of 1. Standard procedure is no detailing. However, the customer may ask for detailed data to be included into his file after the overall record (type 1).</field>
+            <field name="value">Detail van 1. Standaard worden de details niet weergegeven. De cliënt kan er echter wel voor kiezen om de details na het globaal record (type 1) te ontvangen in zijn bestand.</field>
+        </record>
+        <record id="actt_2_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_2"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Amount as totalised by the bank; e.g. : the total amount of a series of credit transfers with a structured communication As a matter of principle, this type will also be used when no detailed data (type 6 or 7) is following.</field>
+            <field name="value">Bedrag getotaliseerd door de bank; bijv. : het totale bedrag van een reeks overschrijvingen met gestructureerde mededeling. Dit type wordt in principe ook gebruikt als er geen details (type 6 of 7) volgen.</field>
+        </record>
+        <record id="actt_6_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_6"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Detail of 2. Simple amount without detailed data. Normally, data of this kind comes after type 2. The customer may ask for a separate file containing the detailed data. In that case, one will speak of a ‘separate application’. The records in a separate application keep type 6.</field>
+            <field name="value">Detail van 2. Enkelvoudig bedrag zonder details. Normaal volgen deze details op het type 2. De cliënt kan er voor kiezen om deze details in een apart bestand te ontvangen. Men spreekt dan van een ‘afzonderlijke toepassing’. De records in een afzonderlijke toepassing behouden het type 6</field>
+        </record>
+        <record id="actt_7_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_7"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Detail of 2. Simple account with detailed data The records in a separate application keep type 7.</field>
+            <field name="value">Detail van 2. Enkelvoudig bedrag met details. De records in een afzonderlijke toepassing behouden het type 7.</field>
+        </record>
+        <record id="actt_9_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_9"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Detail of 7. The records in a separate application keep type 9.</field>
+            <field name="value">Detail van 7. De records in een afzonderlijke toepassing behouden het type 9.</field>
+        </record>
+        <record id="actt_3_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_3"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Simple amount with detailed data; e.g. in case of charges for cross-border credit transfers.</field>
+            <field name="value">Enkelvoudig bedrag met details; bijv. bij kosten op buitenlandse overschrijvingen.</field>
+        </record>
+        <record id="actt_8_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_8"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Detail of 3.</field>
+            <field name="value">Detail van 3.</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="actt_0_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_0"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Simple amount without detailed data; e.g. : an individual credit transfer (free of charges).</field>
+            <field name="value">Montant simple sans détails, par ex. : un virement individuel (sans frais).</field>
+        </record>
+        <record id="actt_1_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_1"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Amount as totalised by the customer; e.g. a file regrouping payments of wages or payments made to suppliers or a file regrouping collections for which the customer is debited or credited with one single amount. As a matter of principle, this type is also used when no detailed data is following (type 5).</field>
+            <field name="value">Montant globalisé par le client, par ex. un fichier avec paiements de salaire ou de fournisseurs ou un fichier avec recouvrements pour lesquels le client est débité ou crédité d'un montant unique. Ce type peut, en principe, également être utilisé s'il n'y a pas de détails (type 5) qui suivent.</field>
+        </record>
+        <record id="actt_5_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_5"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Detail of 1. Standard procedure is no detailing. However, the customer may ask for detailed data to be included into his file after the overall record (type 1).</field>
+            <field name="value">Détails de 1. De manière standard, les détails ne sont pas rendus. Le client peut toutefois choisir de recevoir les détails après l'enregistrement global (type 1) dans son fichier.</field>
+        </record>
+        <record id="actt_2_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_2"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Amount as totalised by the bank; e.g. : the total amount of a series of credit transfers with a structured communication As a matter of principle, this type will also be used when no detailed data (type 6 or 7) is following.</field>
+            <field name="value">Montant globalisé par la banque, par ex. : le montant total d'une série de virements à communication structurée. Ce type peut, en principe, également être utilisé s'il n'y a pas de détails (type 6 ou 7) qui suivent.</field>
+        </record>
+        <record id="actt_6_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_6"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Detail of 2. Simple amount without detailed data. Normally, data of this kind comes after type 2. The customer may ask for a separate file containing the detailed data. In that case, one will speak of a ‘separate application’. The records in a separate application keep type 6.</field>
+            <field name="value">Détails de 2. Montant simple sans détails. Normalement, ces détails suivent le type 2. Le client peut choisir de recevoir ces détails dans un fichier distinct. On parle alors d'une &quot;application distincte&quot;. Les enregistrements dans une application distincte conservent le type 6.</field>
+        </record>
+        <record id="actt_7_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_7"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Detail of 2. Simple account with detailed data The records in a separate application keep type 7.</field>
+            <field name="value">Détails de 2. Montant simple avec détails. Les enregistrements dans une application distincte conservent le type 7.</field>
+        </record>
+        <record id="actt_9_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_9"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Detail of 7. The records in a separate application keep type 9.</field>
+            <field name="value">Détails de 7. Les enregistrements dans une application distincte conservent le type 9.</field>
+        </record>
+        <record id="actt_3_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_3"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Simple amount with detailed data; e.g. in case of charges for cross-border credit transfers.</field>
+            <field name="value">Montant simple avec détails; par ex. coûts sur virements étrangers.</field>
+        </record>
+        <record id="actt_8_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.type,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actt_8"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Detail of 3.</field>
+            <field name="value">Détails de 3.</field>
+        </record>
+
+    </data>
+</openerp>

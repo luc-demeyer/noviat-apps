@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- res.partner.title -->
+        <record id="rptn_nv_sa" model="res.partner.title">
+            <field name="name">nv/sa</field>
+            <field name="shortcut">nv/sa</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_bvba_sprl" model="res.partner.title">
+            <field name="name">bvba/sprl</field>
+            <field name="shortcut">bvba/sprl</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_vzw_asbl" model="res.partner.title">
+            <field name="name">vzw/asbl</field>
+            <field name="shortcut">vzw/asbl</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_cvba_scrl" model="res.partner.title">
+            <field name="name">cvba/scrl</field>
+            <field name="shortcut">cvba/scrl</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_vof_scn" model="res.partner.title">
+            <field name="name">vof/scn</field>
+            <field name="shortcut">vof/scn</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_bv" model="res.partner.title">
+            <field name="name">bv</field>
+            <field name="shortcut">bv</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_ag" model="res.partner.title">
+            <field name="name">ag</field>
+            <field name="shortcut">ag</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="rptn_inc" model="res.partner.title">
+            <field name="name">inc</field>
+            <field name="shortcut">inc</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="base.res_partner_title_pvt_ltd" model="res.partner.title">
+            <field name="name">corp</field>
+            <field name="shortcut">corp</field>
+            <field name="domain">partner</field>
+        </record>
+        <record id="base.res_partner_title_ltd" model="res.partner.title">
+            <field name="name">ltd</field>
+            <field name="shortcut">ltd</field>
+            <field name="domain">partner</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="rptn_nv_sa_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_nv_sa"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">nv/sa</field>
+            <field name="value">nv</field>
+        </record>
+        <record id="rptn_bvba_sprl_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_bvba_sprl"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">bvba/sprl</field>
+            <field name="value">bvba</field>
+        </record>
+        <record id="rptn_vzw_asbl_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_vzw_asbl"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">vzw/asbl</field>
+            <field name="value">vzw</field>
+        </record>
+        <record id="rptn_cvba_scrl_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_cvba_scrl"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">cvba/scrl</field>
+            <field name="value">cvba</field>
+        </record>
+        <record id="rptn_vof_scn_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_vof_scn"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">vof/scn</field>
+            <field name="value">vof</field>
+        </record>
+        <record id="rptn_bv_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_bv"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">bv</field>
+            <field name="value">bv</field>
+        </record>
+        <record id="rptn_ag_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_ag"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ag</field>
+            <field name="value">ag</field>
+        </record>
+        <record id="rptn_inc_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_inc"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">inc</field>
+            <field name="value">inc</field>
+        </record>
+        <record id="base.res_partner_title_pvt_ltd_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="base.res_partner_title_pvt_ltd"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">corp</field>
+            <field name="value">corp</field>
+        </record>
+        <record id="base.res_partner_title_ltd_nl_NL" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="base.res_partner_title_ltd"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">ltd</field>
+            <field name="value">ltd</field>
+        </record>
+        <record id="rptn_nv_sa_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_nv_sa"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">nv/sa</field>
+            <field name="value">sa</field>
+        </record>
+        <record id="rptn_bvba_sprl_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_bvba_sprl"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">bvba/sprl</field>
+            <field name="value">sprl</field>
+        </record>
+        <record id="rptn_vzw_asbl_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_vzw_asbl"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">vzw/asbl</field>
+            <field name="value">asbl</field>
+        </record>
+        <record id="rptn_cvba_scrl_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_cvba_scrl"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">cvba/scrl</field>
+            <field name="value">scrl</field>
+        </record>
+        <record id="rptn_vof_scn_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_vof_scn"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">vof/scn</field>
+            <field name="value">scn</field>
+        </record>
+        <record id="rptn_bv_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_bv"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">bv</field>
+            <field name="value">bv</field>
+        </record>
+        <record id="rptn_ag_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_ag"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ag</field>
+            <field name="value">ag</field>
+        </record>
+        <record id="rptn_inc_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="rptn_inc"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">inc</field>
+            <field name="value">inc</field>
+        </record>
+        <record id="base.res_partner_title_pvt_ltd_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="base.res_partner_title_pvt_ltd"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">corp</field>
+            <field name="value">corp</field>
+        </record>
+        <record id="base.res_partner_title_ltd_fr_FR" model="ir.translation">
+            <field name="name">res.partner.title,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="base.res_partner_title_ltd"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">ltd</field>
+            <field name="value">ltd</field>
+        </record>
+
+    </data>
+</openerp>

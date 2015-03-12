@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+      <!--Cash Flow Codes-->
+      <record id="cfc_company" model="account.cashflow.code">
+        <field name="name">My Company</field>
+        <field name="code">COMPANY</field>
+        <field name="type">view</field>
+        <field name="parent_sign">0</field>
+        <field name="sequence">0</field>
+      </record>
+      <record id="cfc_balance" model="account.cashflow.code">
+        <field name="name">Balance</field>
+        <field name="code">BAL</field>
+        <field name="type">view</field>
+        <field name="parent_sign">1</field>
+        <field name="parent_id" ref="cfc_company"/>        
+        <field name="sequence">1</field>
+      </record>
+      <record id="cfc_init" model="account.cashflow.code">
+        <field name="name">Initial Balance</field>
+        <field name="code">INIT</field>
+        <field name="type">init</field>
+        <field name="parent_sign">1</field>
+        <field name="parent_id" ref="cfc_balance"/>
+        <field name="sequence">10</field>
+      </record>
+      
+    </data>
+</openerp>

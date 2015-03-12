@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="view_nov_partner_ledger_fy_close" model="ir.ui.view">
+        <field name="name">Print Unpaid Payables/Receivables by Fiscal Year</field>
+        <field name="model">nov.partner.ledger.fy.close</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+          <form string="Print Open Receivables/Payables by Fiscal Year">
+            <field name="fiscalyear_id"/>
+            <field name="target_move"/>
+            <field name="result_selection"/>
+            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+            <separator colspan="4"/>
+            <group col="4" colspan="4">
+              <button icon="gtk-cancel" special="cancel" string="Cancel" colspan="2"/>
+              <button icon="gtk-print" name="print_report" string="Print" type="object" colspan="2" default_focus="1" />
+            </group>
+          </form>
+        </field>
+      </record>
+
+      <record id="action_nov_partner_ledger_fy_close" model="ir.actions.act_window">
+        <field name="name">Print Open Receivables/Payables by Fiscal Year</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">nov.partner.ledger.fy.close</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_nov_partner_ledger_fy_close"/>
+        <field name="target">new</field>
+      </record>
+
+	    <menuitem
+	        name="Print Open Receivables/Payables by Fiscal Year"
+	        parent="l10n_be.menu_finance_belgian_statement"
+	        action="action_nov_partner_ledger_fy_close"
+	        id="menu_nov_partner_ledger_fy_close"
+          icon="STOCK_PRINT"/>
+      
+    </data>
+</openerp>

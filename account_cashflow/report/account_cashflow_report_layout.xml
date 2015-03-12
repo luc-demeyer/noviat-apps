@@ -1,0 +1,242 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="0">
+
+      <!-- Webkit header record for the Cash Flow Report -->
+      <record id="ir_header_webkit_cashflow_report" model="ir.header_webkit">
+        <field name="name">Cash Flow Report</field>
+        <field name="orientation">Landscape</field>
+        <field name="format">A4</field>
+        <field name="css" >
+          <![CDATA[
+body {
+font-family:helvetica;
+font-size:10;;
+border:0;
+margin:0;
+}
+
+.report_title {
+text-align:center;
+font-size:12;
+font-weight:bold;
+}
+
+.list_table {
+text-align:center;
+border-collapse: collapse;
+}
+.list_table th {
+border-bottom:2px solid black;
+text-align:left;
+font-size:10;;
+font-weight:bold;
+vertical-align:top;
+}
+.list_table th.amount {
+text-align: right;
+}
+.list_table tr.normal{
+color:black;
+}
+.list_table tr.provision{
+color:magenta;
+}
+.list_table tr.view{
+color:blue;
+border-top: 1px solid lightGrey;
+border-bottom: 1px solid lightGrey;
+}
+.list_table tr.init{
+color:green;
+}
+.list_table td {
+text-align:left;
+font-size:10;;
+vertical-align:top;
+}
+.list_table td.amount {
+text-align: right;
+}
+          ]]>
+        </field>
+        <field name="html">
+          <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+      var vars = {};
+      var x = document.location.search.substring(1).split('&');
+      for (var i in x) { var z = x[i].split('=', 2); vars[z[0]] = unescape(z[1]); }
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+      for (var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+    </script>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+    <% setLang(lang) %>
+    <table style="border-bottom: 1px solid black; width: 100%">
+      <tr>
+	     <td style="text-align:left;font-size:10;;font-weight: bold;">
+          ${company.partner_id.name |entity}
+        </td>
+	    <td style="text-align:right;font-size:10;;">
+	      ${ formatLang(time.strftime("%Y-%m-%d"), date=True) }&nbsp;&nbsp;${ time.strftime("%H:%M") }&nbsp;&nbsp;-&nbsp;&nbsp;p. <span class="page">1</span> / <span class="topage">1</span>
+	    </td>
+      </tr>
+    </table>
+  </body>
+</html>          
+           ]]>
+        </field>
+        <field name="footer_html">
+          <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+      var vars = {};
+      var x = document.location.search.substring(1).split('&');
+      for (var i in x) { var z = x[i].split('=', 2); vars[z[0]] = unescape(z[1]); }
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+      for (var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+    </script>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+  </body>
+</html>
+          ]]>
+        </field>
+      </record>
+
+      <!-- Webkit header record for the Cash Flow Summary Report -->
+      <record id="ir_header_webkit_cashflow_summary_report" model="ir.header_webkit">
+        <field name="name">Cash Flow Summary Report</field>
+        <field name="orientation">Portrait</field>
+        <field name="format">A4</field>
+        <field name="css" >
+          <![CDATA[
+body {
+font-family:helvetica;
+font-size:12;;
+border:0;
+margin:0;
+}
+
+.report_title {
+text-align:center;
+font-size:14;
+font-weight:bold;
+}
+
+.list_table {
+text-align:center;
+border-collapse: collapse;
+}
+.list_table th {
+border-bottom:2px solid black;
+text-align:left;
+font-size:12;;
+font-weight:bold;
+vertical-align:top;
+}
+.list_table th.amount {
+text-align: right;
+}
+.list_table tr.normal{
+color:black;
+}
+.list_table tr.provision{
+color:magenta;
+}
+.list_table tr.view{
+color:blue;
+border-top: 1px solid lightGrey;
+border-bottom: 1px solid lightGrey;
+}
+.list_table tr.init{
+color:green;
+}
+.list_table td {
+text-align:left;
+font-size:12;;
+vertical-align:top;
+}
+.list_table td.amount {
+text-align: right;
+}
+          ]]>
+        </field>
+        <field name="html">
+          <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+      var vars = {};
+      var x = document.location.search.substring(1).split('&');
+      for (var i in x) { var z = x[i].split('=', 2); vars[z[0]] = unescape(z[1]); }
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+      for (var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+    </script>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+    <% setLang(lang) %>
+    <table style="border-bottom: 1px solid black; width: 100%">
+      <tr>
+	     <td style="text-align:left;font-size:12;;font-weight: bold;">
+          ${company.partner_id.name |entity}
+        </td>
+	    <td style="text-align:right;font-size:12;;">
+	      ${ formatLang(time.strftime("%Y-%m-%d"), date=True) }&nbsp;&nbsp;${ time.strftime("%H:%M") }&nbsp;&nbsp;-&nbsp;&nbsp;p. <span class="page">1</span> / <span class="topage">1</span>
+	    </td>
+      </tr>
+    </table>
+  </body>
+</html>          
+           ]]>
+        </field>
+        <field name="footer_html">
+          <![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+      var vars = {};
+      var x = document.location.search.substring(1).split('&');
+      for (var i in x) { var z = x[i].split('=', 2); vars[z[0]] = unescape(z[1]); }
+      var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+      for (var i in x) {
+      var y = document.getElementsByClassName(x[i]);
+      for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+    </script>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+  </body>
+</html>
+          ]]>
+        </field>
+      </record>
+
+
+    </data>
+  </openerp>
+  

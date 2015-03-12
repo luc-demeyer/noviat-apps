@@ -109,5 +109,9 @@
             <field name="note">l10n_be_coa_multilang account type</field>
         </record>
 
+        <!-- ir.translation -->
+
+        <!-- ir.translation -->
+
     </data>
 </openerp>

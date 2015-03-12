@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <!-- Recalculate Cash Flow Balances -->
+
+    <record id="view_calc_cashflow_balance" model="ir.ui.view">
+      <field name="name">calc.cashflow.balance.form</field>
+      <field name="model">calc.cashflow.balance</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Recalculate Cash Flow Balances">
+          <group colspan="4">
+            <field name="date_start"/>
+            <field name="date_stop"/>
+            <field name="company_id"/>
+          </group>
+          <separator string="" colspan="4"/>
+          <group colspan="4" col="6">
+            <label string ="" colspan="2"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+            <button icon="terp-gtk-go-back-rtl" string="Recalculate Balances" name="calc_cashflow_balance" type="object" />
+          </group>
+        </form>        
+      </field>
+    </record>
+    
+    <record id="action_calc_cashflow_balance" model="ir.actions.act_window">
+      <field name="name">Recalculate Cash Flow Balances</field>
+      <field name="res_model">calc.cashflow.balance</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_calc_cashflow_balance"/>
+      <field name="help">Recalculate Cash Flow Balances for the selected period.</field>
+      <field name="target">new</field>
+    </record>
+
+    <record model="ir.values" id="action_calc_cashflow_balance_values">
+      <field name="object" eval="1" />
+      <field name="name">Recalculate Cash Flow Balances</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_calc_cashflow_balance'))" />
+      <field name="model">account.cashflow.balance</field>
+    </record>
+            
+  </data> 
+</openerp>

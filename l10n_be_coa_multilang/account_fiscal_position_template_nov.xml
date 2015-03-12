@@ -10,16 +10,116 @@
         <record id="afptn_cocontractant" model="account.fiscal.position.template">
             <field name="name">National Regime - Cocontractant</field>
             <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
-            <field name="note">VAT subject to reverse charge.</field>
+            <field name="note">VAT to pay by co-contractor (royal decree n° 1 – art. 20)</field>
         </record>
         <record id="afptn_intracom" model="account.fiscal.position.template">
             <field name="name">Intra Community Regime</field>
             <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
-            <field name="note">Tax-free intra-Community supply / VAT subject to reverse charge.</field>
+            <field name="note">Transactions exempt from Belgian VAT, art 21, § 2 of Code VAT - Art. 44 Directive 2006/112/EG.</field>
         </record>
         <record id="afptn_extracom" model="account.fiscal.position.template">
             <field name="name">Extra Community Regime</field>
             <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="afptn_national_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_national"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">National Regime</field>
+            <field name="value">Nationaal regime</field>
+        </record>
+        <record id="afptn_cocontractant_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_cocontractant"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">National Regime - Cocontractant</field>
+            <field name="value">Nationaal regime - medecontractant</field>
+        </record>
+        <record id="afptn_intracom_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_intracom"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Intra Community Regime</field>
+            <field name="value">Intra-communautair regime</field>
+        </record>
+        <record id="afptn_extracom_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_extracom"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Extra Community Regime</field>
+            <field name="value">Extra-communautair regime</field>
+        </record>
+        <record id="afptn_national_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_national"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">National Regime</field>
+            <field name="value">Régime national</field>
+        </record>
+        <record id="afptn_cocontractant_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_cocontractant"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">National Regime - Cocontractant</field>
+            <field name="value">Régime national - cocontractant</field>
+        </record>
+        <record id="afptn_intracom_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_intracom"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Intra Community Regime</field>
+            <field name="value">Régime intra-communautaire</field>
+        </record>
+        <record id="afptn_extracom_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_extracom"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Extra Community Regime</field>
+            <field name="value">Régime extra-communautarie</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="afptn_cocontractant_note_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,note</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_cocontractant"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT to pay by co-contractor (royal decree n° 1 – art. 20)</field>
+            <field name="value">BTW te voldoen door medecontractant (KB nr1 - art 20)</field>
+        </record>
+        <record id="afptn_intracom_note_nl_NL" model="ir.translation">
+            <field name="name">account.fiscal.position.template,note</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_intracom"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Transactions exempt from Belgian VAT, art 21, § 2 of Code VAT - Art. 44 Directive 2006/112/EG.</field>
+            <field name="value">Verrichtingen niet onderworpen aan Belgische btw art.21, § 2 van het BTW Wetboek – Art.44 Richtlijn 2006/112/EG.</field>
+        </record>
+        <record id="afptn_cocontractant_note_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,note</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_cocontractant"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT to pay by co-contractor (royal decree n° 1 – art. 20)</field>
+            <field name="value">Taxe à acquitter par le co-contractant (art. 20 de l’arrêté royal n° 1 du Code de TVA)</field>
+        </record>
+        <record id="afptn_intracom_note_fr_FR" model="ir.translation">
+            <field name="name">account.fiscal.position.template,note</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="afptn_intracom"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Transactions exempt from Belgian VAT, art 21, § 2 of Code VAT - Art. 44 Directive 2006/112/EG.</field>
+            <field name="value">Opérations exemptées de la TVA belge, art 21, § 2 du Code TVA - Art. 44 Directive 2006/112/EG.</field>
         </record>
 
     </data>

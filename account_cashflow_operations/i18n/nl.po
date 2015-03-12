@@ -1,0 +1,366 @@
+# Dutch translation of OpenERP Server 6.0.
+# This file contains the translation of the following modules:
+#	* account_cashflow_operations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2011-12-30 11:47:55.467000\n"
+"PO-Revision-Date: 2011-12-30 11:47:55.467000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,description:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,name:0
+msgid "Reference"
+msgstr "Referentie"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,state:0
+msgid "State"
+msgstr "Status"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,state:0
+msgid "Draft"
+msgstr "Concept"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,state:0
+msgid "Confirmed"
+msgstr "Bevestigd"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,company_id:0
+msgid "Company"
+msgstr "Bedrijfsnaam"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date_start:0
+msgid "Start Date"
+msgstr "Aanvangsdatum"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date_stop:0
+msgid "Maturity Date"
+msgstr "Vervaldatum"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,days:0
+msgid "Interest Days"
+msgstr "Dagen interest"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,rate:0
+msgid "Interest Rate (%)"
+msgstr "Rentevoet (%)"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,interest_payment:0
+msgid "Interest Payment"
+msgstr "Betaling rente"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,interest_payment:0
+msgid "In Advance"
+msgstr "Vooraf"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,interest_payment:0
+msgid "On Maturity Date"
+msgstr "Op de vervaldatum"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,day_count_basis:0
+msgid "Day Count Basis"
+msgstr "Berekeningsbasis"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_base:0
+msgid "Transaction Amount"
+msgstr "Bedrag transactie"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_cost:0
+msgid "Transaction Costs"
+msgstr "Kosten"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,bank_id:0
+msgid "Bank Account"
+msgstr "Bankrekening"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_address_id:0
+msgid "Contact Address"
+msgstr "Contact adres"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_contact:0
+msgid "Contact Name"
+msgstr "Contact naam"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_lang:0
+msgid "Language"
+msgstr "Taal"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,subject:0
+msgid "Subject"
+msgstr "Onderwerp"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,intro:0
+msgid "Intro"
+msgstr "Intro"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,close:0
+msgid "Close"
+msgstr "Einde"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,journal_id:0
+msgid "Journal"
+msgstr "Dagboek"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_main:0
+msgid "Principal Amount Cash Flow Code"
+msgstr "Cash flow code transactie"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_interest:0
+msgid "Interest Cash Flow Code"
+msgstr "Cash flow code rente"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_cost:0
+msgid "Transaction Cost Cash Flow Code"
+msgstr "Cash flow code kosten"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_interest:0
+msgid "Interest Amount"
+msgstr "Bedrag rentelasten"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_end:0
+msgid "Maturity Date Amount"
+msgstr "Bedrag vervaldatum"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date:0
+msgid "Entry Date"
+msgstr "Datum ingave"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,user_id:0
+msgid "User"
+msgstr "Gebruiker"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,update_date:0
+msgid "Update Date"
+msgstr "Datum aanpassing"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,update_by:0
+msgid "Updated by"
+msgstr "Aangepast door"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_cash_operation
+msgid "Cash Management Operations"
+msgstr "Cash Management handelingen"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demands"
+msgstr "Aanvragen voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demand"
+msgstr "Aanvraag voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demand Fields"
+msgstr "Gegevens voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Cash Flow Management Fields"
+msgstr "Gegevens Cash Flow Management"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Confirmation Letter Fields"
+msgstr "Gegevens bevestigingsbrief"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Cancel"
+msgstr "Annuleer"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Confirm"
+msgstr "Bevestig"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Search Straight Loan Demands"
+msgstr "Zoek aanvraag voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Group By..."
+msgstr "Groepeer op ..."
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "State"
+msgstr "Status"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Company"
+msgstr "Bedrijfsnaam"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.act_window,name:account_cashflow.action_account_straight_loan_demand
+msgid "Straight Loan Demand"
+msgstr "Aanvraag voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_straight_loan_demand
+msgid "Straight Loan Demands"
+msgstr "Aanvragen voorschot op vaste termijn"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demands"
+msgstr "Aanvragen beleggingen"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demand"
+msgstr "Aanvraag belegging"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demand Fields"
+msgstr "Gegevens belegging"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Search Investment Demands"
+msgstr "Zoek aanvraag belegging"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.act_window,name:account_cashflow.action_account_invest_demand
+msgid "Investment Demand"
+msgstr "Aanvraag belegging"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_invest_demand
+msgid "Investment Demands"
+msgstr "Aanvragen beleggingen"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.report.xml,name:account_cashflow.straight_loan_demand_print
+msgid "Cofirmation Letter"
+msgstr "Bevestiginsbrief"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:10
+msgid "Tel"
+msgstr "Tel"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:11
+msgid "Fax"
+msgstr "Fax"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:12
+msgid "E-mail"
+msgstr "E-mail"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:13
+msgid "Subject"
+msgstr "Onderwerp"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:14
+msgid "Reference"
+msgstr "Referentie"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:15
+msgid "Start Date"
+msgstr "Aanvangsdatum"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:16
+msgid "Maturity Date"
+msgstr "Vervaldatum"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:17
+msgid "Transaction Amount"
+msgstr "Bedrag transactie"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:18
+msgid "Interest Rate"
+msgstr "Rentevoet"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:19
+msgid "% per year"
+msgstr "% per jaar"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:20
+msgid "Interest Payment"
+msgstr "Betaling rente"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:21
+msgid "Interest Amount"
+msgstr "Bedrag rentelasten"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:22
+msgid "Transaction Costs"
+msgstr "Kosten"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:23
+msgid "Bank Account"
+msgstr "Bankrekening"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:50
+msgid "Commercial in Confidence"
+msgstr "Vertrouwelijk"
+

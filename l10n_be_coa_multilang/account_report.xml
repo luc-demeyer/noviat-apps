@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+      <report
+        auto="False"
+        header="False"
+        id="nov_account_journal"
+        menu="False"
+        model="account.journal.period"
+        name="nov.account.journal.period.print"
+        rml="l10n_be_coa_multilang/report/nov_account_journal.rml"
+        string="Print Journal by Period"/>
+      
+      <report
+        auto="False"
+        header="False"
+        id="nov_account_journal_fiscalyear"
+        menu="False"
+        model="account.fiscalyear"
+        name="nov.account.journal.fiscalyear.print"
+        rml="l10n_be_coa_multilang/report/nov_account_journal_fiscalyear.rml"
+        string="Print Journal by Fiscal Year"/>
+      
+    </data>
+</openerp>

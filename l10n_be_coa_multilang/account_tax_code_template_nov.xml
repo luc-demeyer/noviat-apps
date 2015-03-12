@@ -11,14 +11,14 @@
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_II" model="account.tax.code.template">
-            <field name="name">Outgoing Operations</field>
+            <field name="name">Outgoing transactions</field>
             <field name="code">II</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_I"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIA" model="account.tax.code.template">
-            <field name="name">Operations subject to a special arrangement</field>
+            <field name="name">Case Code II. A</field>
             <field name="code">II. A</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -26,7 +26,7 @@
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_00" model="account.tax.code.template">
-            <field name="name">Operations subject to a special arrangement</field>
+            <field name="name">Case Code 00</field>
             <field name="code">00</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIA"/>
@@ -52,7 +52,7 @@ behalve de huidige beoogde handelingen zal dit rooster ook de door artikel 44 va
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIB" model="account.tax.code.template">
-            <field name="name">VAT due by the Declarant</field>
+            <field name="name">Case Code II. B</field>
             <field name="code">II. B</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -64,7 +64,7 @@ Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_01" model="account.tax.code.template">
-            <field name="name">Operations subject to 6% VAT</field>
+            <field name="name">Case Code 01</field>
             <field name="code">01</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIB"/>
@@ -72,7 +72,7 @@ Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_02" model="account.tax.code.template">
-            <field name="name">Operations subject to 12% VAT</field>
+            <field name="name">Case Code 02</field>
             <field name="code">02</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIB"/>
@@ -80,7 +80,7 @@ Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_03" model="account.tax.code.template">
-            <field name="name">Operations subject to 21% VAT</field>
+            <field name="name">Case Code 03</field>
             <field name="code">03</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIB"/>
@@ -88,7 +88,7 @@ Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIC" model="account.tax.code.template">
-            <field name="name">Foreign VAT due by the Cocontractant</field>
+            <field name="name">Case Code II. C</field>
             <field name="code">II. C</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -96,7 +96,7 @@ Rooster [03] : handelingen onderworpen aan het tarief van 21 pct.</field>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_44" model="account.tax.code.template">
-            <field name="name">Intra Community Services</field>
+            <field name="name">Case Code 44</field>
             <field name="code">44</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIC"/>
@@ -106,7 +106,7 @@ rooster [44] : nieuw rooster voor de maatstaf van heffing van de verrichte diens
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IID" model="account.tax.code.template">
-            <field name="name">VAT due by the Cocontractant</field>
+            <field name="name">Case Code II. D</field>
             <field name="code">II. D</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -114,7 +114,7 @@ rooster [44] : nieuw rooster voor de maatstaf van heffing van de verrichte diens
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_45" model="account.tax.code.template">
-            <field name="name">VAT due by the Cocontractant</field>
+            <field name="name">Case Code 45</field>
             <field name="code">45</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IID"/>
@@ -130,7 +130,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIE" model="account.tax.code.template">
-            <field name="name">VAT exempt Intra Community Supplies</field>
+            <field name="name">Case Code II. E</field>
             <field name="code">II. E</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -138,7 +138,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_46" model="account.tax.code.template">
-            <field name="name">VAT exempt Intra Community and ABC Supplies</field>
+            <field name="name">Case Code 46</field>
             <field name="code">46</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIE"/>
@@ -150,21 +150,21 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_46L" model="account.tax.code.template">
-            <field name="name">VAT exempt Intra Community Supplies of Goods</field>
+            <field name="name">Case Code 46L</field>
             <field name="code">46L</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_46"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_46T" model="account.tax.code.template">
-            <field name="name">VAT exempt Intra Community ABC Supplies</field>
+            <field name="name">Case Code 46T</field>
             <field name="code">46T</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_46"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIF" model="account.tax.code.template">
-            <field name="name">Other VAT exempt Operations</field>
+            <field name="name">Case Code II. F</field>
             <field name="code">II. F</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -172,7 +172,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_47" model="account.tax.code.template">
-            <field name="name">Other VAT exempt Operations</field>
+            <field name="name">Case Code 47</field>
             <field name="code">47</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIF"/>
@@ -188,7 +188,7 @@ Rooster [47] : maatstaf van heffing :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIG" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes and Negative Corrections</field>
+            <field name="name">Case Code II. G</field>
             <field name="code">II. G</field>
             <field name="sign">-1</field>
             <field name="parent_id" ref="atctn_II"/>
@@ -196,7 +196,7 @@ Rooster [47] : maatstaf van heffing :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_48" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes Operations Grid [44] and [46]</field>
+            <field name="name">Case Code 48</field>
             <field name="code">48</field>
             <field name="sign">-1</field>
             <field name="parent_id" ref="atctn_IIG"/>
@@ -210,28 +210,28 @@ Vanaf 1 jan 2010:
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_48s44" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes Operations Grid [44]</field>
+            <field name="name">Case Code 48s44</field>
             <field name="code">48s44</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_48"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_48s46L" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes Operations Grid [46L]</field>
+            <field name="name">Case Code 48s46L</field>
             <field name="code">48s46L</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_48"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_48s46T" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes Operations Grid [46T]</field>
+            <field name="name">Case Code 48s46T</field>
             <field name="code">48s46T</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_48"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_49" model="account.tax.code.template">
-            <field name="name">Issued Credit Notes Other Operations Section II</field>
+            <field name="name">Case Code 49</field>
             <field name="code">49</field>
             <field name="sign">-1</field>
             <field name="parent_id" ref="atctn_IIG"/>
@@ -241,14 +241,14 @@ Rooster [49] : bedrag (btw niet inbegrepen) van de uitgereikte creditnota’s en
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_III" model="account.tax.code.template">
-            <field name="name">Incoming Operations</field>
+            <field name="name">Incoming transactions</field>
             <field name="code">III</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_I"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIIA" model="account.tax.code.template">
-            <field name="name">Incoming Operations incl. Credit Notes and Corrections</field>
+            <field name="name">Case Code III. A</field>
             <field name="code">III. A</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_III"/>
@@ -262,7 +262,7 @@ In het geval de belastingplichtige een btw-eenheid betreft, bevat het bedrag van
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_81" model="account.tax.code.template">
-            <field name="name">Purchases of Goods, Raw Materials and Consumables</field>
+            <field name="name">Case Code 81</field>
             <field name="code">81</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIA"/>
@@ -272,7 +272,7 @@ Rooster [81] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van hande
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_82" model="account.tax.code.template">
-            <field name="name">Purchases of various Goods and Services</field>
+            <field name="name">Case Code 82</field>
             <field name="code">82</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIA"/>
@@ -282,7 +282,7 @@ Rooster [82] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van diver
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_83" model="account.tax.code.template">
-            <field name="name">Purchases of Assets</field>
+            <field name="name">Case Code 83</field>
             <field name="code">83</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIA"/>
@@ -292,7 +292,7 @@ Rooster [83] : bedrag (aftrekbare btw niet inbegrepen) van de aankopen van bedri
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIIB" model="account.tax.code.template">
-            <field name="name">Incoming Credit Notes and negative Corrections</field>
+            <field name="name">Case Code III. B</field>
             <field name="code">III. B</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_III"/>
@@ -304,7 +304,7 @@ Rooster [85] : bedrag (btw niet inbegrepen) van de ontvangen creditnota’s en n
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_84" model="account.tax.code.template">
-            <field name="name">Incoming Credit Notes Operations Grid [86] and [88]</field>
+            <field name="name">Case Code 84</field>
             <field name="code">84</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIB"/>
@@ -318,7 +318,7 @@ Vanaf 1 jan 2010:
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_85" model="account.tax.code.template">
-            <field name="name">Incoming Credit Notes other Operations</field>
+            <field name="name">Case Code 85</field>
             <field name="code">85</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIB"/>
@@ -328,7 +328,7 @@ Rooster [85] : bedrag (btw niet inbegrepen) van de ontvangen creditnota’s en n
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIIC" model="account.tax.code.template">
-            <field name="name">Intra Community Acquisitions and ABC Sales</field>
+            <field name="name">Case Code III. C</field>
             <field name="code">III. C</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_III"/>
@@ -346,7 +346,7 @@ De over deze handelingen verschuldigde belasting moet worden ingeschreven in roo
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_86" model="account.tax.code.template">
-            <field name="name">Intra Community and ABC Acquisitions</field>
+            <field name="name">Case Code 86</field>
             <field name="code">86</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIC"/>
@@ -364,7 +364,7 @@ De over deze handelingen verschuldigde belasting moet worden ingeschreven in roo
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIID" model="account.tax.code.template">
-            <field name="name">Other Incoming Operations with VAT due by the Declarant</field>
+            <field name="name">Case Code III. D</field>
             <field name="code">III. D</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_III"/>
@@ -384,7 +384,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_87" model="account.tax.code.template">
-            <field name="name">Other Incoming Operations</field>
+            <field name="name">Case Code 87</field>
             <field name="code">87</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIID"/>
@@ -404,7 +404,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IIIE" model="account.tax.code.template">
-            <field name="name">Intra Community Services</field>
+            <field name="name">Case Code III. E</field>
             <field name="code">III. E</field>
             <field name="sign">0</field>
             <field name="parent_id" ref="atctn_III"/>
@@ -412,7 +412,7 @@ Het betreft :
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_88" model="account.tax.code.template">
-            <field name="name">Intra Community Services</field>
+            <field name="name">Case Code 88</field>
             <field name="code">88</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IIIE"/>
@@ -449,7 +449,7 @@ Bij het invullen van de roosters [71] of [72] houdt de belastingplichtige in gee
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IVA" model="account.tax.code.template">
-            <field name="name">VAT on Operations Grids [01], [02], [03], [86], [87], [88]</field>
+            <field name="name">Case Code IV. A</field>
             <field name="code">IV. A</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_XX"/>
@@ -463,7 +463,7 @@ Rooster [56] : bedrag van de verschuldigde belasting op de handelingen vermeld i
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_54" model="account.tax.code.template">
-            <field name="name">VAT on Operations Grids [01], [02], [03]</field>
+            <field name="name">Case Code 54</field>
             <field name="code">54</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVA"/>
@@ -471,7 +471,7 @@ Rooster [56] : bedrag van de verschuldigde belasting op de handelingen vermeld i
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_55" model="account.tax.code.template">
-            <field name="name">VAT on Operations Grids [86] and  [88]</field>
+            <field name="name">Case Code 55</field>
             <field name="code">55</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVA"/>
@@ -483,7 +483,7 @@ Vanaf 1 jan 2010:
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_56" model="account.tax.code.template">
-            <field name="name">VAT on Operations Grid [87]</field>
+            <field name="name">Case Code 56</field>
             <field name="code">56</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVA"/>
@@ -491,7 +491,7 @@ Vanaf 1 jan 2010:
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IVB" model="account.tax.code.template">
-            <field name="name">VAT on Imports</field>
+            <field name="name">Case Code IV. B</field>
             <field name="code">IV. B</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_XX"/>
@@ -501,7 +501,7 @@ Rooster [57] : bedrag van de verschuldigde belasting op invoeren uit niet Lidsta
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_57" model="account.tax.code.template">
-            <field name="name">VAT on Imports</field>
+            <field name="name">Case Code 57</field>
             <field name="code">57</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVB"/>
@@ -511,7 +511,7 @@ Rooster [57] : bedrag van de verschuldigde belasting op invoeren uit niet Lidsta
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IVC" model="account.tax.code.template">
-            <field name="name">VAT adjustments in favor of the Tax Authority</field>
+            <field name="name">Case Code IV. C</field>
             <field name="code">IV. C</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_XX"/>
@@ -523,7 +523,7 @@ Het bedrag van het debetsaldo van de rekening-courant die de administratie voor 
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_61" model="account.tax.code.template">
-            <field name="name">VAT adjustments in favor of the Tax Authority</field>
+            <field name="name">Case Code 61</field>
             <field name="code">61</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVC"/>
@@ -535,7 +535,7 @@ Het bedrag van het debetsaldo van de rekening-courant die de administratie voor 
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_IVD" model="account.tax.code.template">
-            <field name="name">VAT Debt from Incoming Credit Notes</field>
+            <field name="name">Case Code IV. D</field>
             <field name="code">IV. D</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_XX"/>
@@ -545,7 +545,7 @@ Rooster [63] : bedrag van de terug te storten belasting ingevolge ontvangen cred
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_63" model="account.tax.code.template">
-            <field name="name">VAT Debt from Incoming Credit Notes</field>
+            <field name="name">Case Code 63</field>
             <field name="code">63</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_IVD"/>
@@ -563,7 +563,7 @@ Rooster [63] : bedrag van de terug te storten belasting ingevolge ontvangen cred
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_VA" model="account.tax.code.template">
-            <field name="name">Deductible VAT</field>
+            <field name="name">Deductable VAT</field>
             <field name="code">V. A</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_YY"/>
@@ -573,14 +573,14 @@ Rooster [59] : bedrag van de aftrekbare belasting met betrekking tot de inkomend
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_59" model="account.tax.code.template">
-            <field name="name">Deductible VAT</field>
+            <field name="name">Case Code 59</field>
             <field name="code">59</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_VA"/>
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_VB" model="account.tax.code.template">
-            <field name="name">VAT adjustments in favor of the Declarant</field>
+            <field name="name">Case Code V. B</field>
             <field name="code">V. B</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_YY"/>
@@ -593,7 +593,7 @@ Het bedrag van het creditsaldo van de rekening-courant die de administratie voor
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_62" model="account.tax.code.template">
-            <field name="name">VAT adjustments in favor of the Declarant</field>
+            <field name="name">Case Code 62</field>
             <field name="code">62</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_VB"/>
@@ -606,7 +606,7 @@ Het bedrag van het creditsaldo van de rekening-courant die de administratie voor
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_VC" model="account.tax.code.template">
-            <field name="name">Deductible VAT from Outgoing Credit Notes</field>
+            <field name="name">Case Code V. C</field>
             <field name="code">V. C</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_YY"/>
@@ -616,7 +616,7 @@ Rooster [64] : bedrag van de te recupereren belasting ingevolge uitgereikte cred
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_64" model="account.tax.code.template">
-            <field name="name">Deductible VAT from Outgoing Credit Notes</field>
+            <field name="name">Case Code 64</field>
             <field name="code">64</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_VC"/>
@@ -634,7 +634,7 @@ Rooster [64] : bedrag van de te recupereren belasting ingevolge uitgereikte cred
             <field name="notprintable" eval="0"/>
         </record>
         <record id="atctn_91" model="account.tax.code.template">
-            <field name="name">Advance for Operations from December 1 to 20</field>
+            <field name="name">Case Code 91</field>
             <field name="code">91</field>
             <field name="sign">1</field>
             <field name="parent_id" ref="atctn_VII"/>
@@ -659,6 +659,954 @@ a) ofwel is het bedrag van de opeisbare belasting voor de handelingen verricht t
 b) ofwel is het bedrag van de opeisbare belasting voor de handelingen verricht tijdens de periode van 1 tot en met 20 december van het lopende kalenderjaar kleiner of gelijk aan het bedrag van de belasting waarvoor de belastingplichtige zijn recht op aftrek kan uitoefenen voor diezelfde periode.
 -&gt; In rooster [91] wordt het cijfer “0,00” vermeld.</field>
             <field name="notprintable" eval="0"/>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="atctn_00_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_00"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 00</field>
+            <field name="value">Handelingen onderworpen aan een bijzondere regeling</field>
+        </record>
+        <record id="atctn_01_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_01"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 01</field>
+            <field name="value">Uitgaande handelingen aan 6% BTW</field>
+        </record>
+        <record id="atctn_02_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_02"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 02</field>
+            <field name="value">Uitgaande handelingen aan 12% BTW</field>
+        </record>
+        <record id="atctn_03_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_03"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 03</field>
+            <field name="value">Uitgaande handelingen aan 21% BTW</field>
+        </record>
+        <record id="atctn_44_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_44"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 44</field>
+            <field name="value">Vrijgestelde intracommunautaire leveringen van diensten</field>
+        </record>
+        <record id="atctn_45_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_45"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 45</field>
+            <field name="value">BTW verschuldigd door de medecontractant</field>
+        </record>
+        <record id="atctn_46_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 46</field>
+            <field name="value">Vrijgestelde intracommunautaire leveringen en ABC verkopen</field>
+        </record>
+        <record id="atctn_46L_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46L"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 46L</field>
+            <field name="value">Vrijgestelde intracommunautaire leveringen van goederen</field>
+        </record>
+        <record id="atctn_46T_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46T"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 46T</field>
+            <field name="value">ABC verkopen intracommunautair</field>
+        </record>
+        <record id="atctn_47_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_47"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 47</field>
+            <field name="value">Andere vrijgestelde handelingen</field>
+        </record>
+        <record id="atctn_48_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 48</field>
+            <field name="value">Uitgereikte creditnota's handelingen roosters [44] en [46]</field>
+        </record>
+        <record id="atctn_48s44_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s44"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 48s44</field>
+            <field name="value">Uitgereikte creditnota's handelingen rooster [44]</field>
+        </record>
+        <record id="atctn_48s46L_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s46L"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 48s46L</field>
+            <field name="value">Uitgereikte creditnota's handelingen rooster [46L]</field>
+        </record>
+        <record id="atctn_48s46T_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s46T"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 48s46T</field>
+            <field name="value">Uitgereikte creditnota's handelingen rooster [46T]</field>
+        </record>
+        <record id="atctn_49_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_49"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 49</field>
+            <field name="value">Uitgereikte creditnota’s andere handelingen van kader II</field>
+        </record>
+        <record id="atctn_54_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_54"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 54</field>
+            <field name="value">BTW op handelingen roosters [01], [02], [03]</field>
+        </record>
+        <record id="atctn_55_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_55"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 55</field>
+            <field name="value">BTW op handelingen in roosters [86] en [88]</field>
+        </record>
+        <record id="atctn_56_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_56"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 56</field>
+            <field name="value">BTW op handelingen in rooster [87]</field>
+        </record>
+        <record id="atctn_57_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_57"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 57</field>
+            <field name="value">BTW op invoeren met verlegging van heffing</field>
+        </record>
+        <record id="atctn_59_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_59"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 59</field>
+            <field name="value">Aftrekbare  BTW</field>
+        </record>
+        <record id="atctn_61_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_61"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 61</field>
+            <field name="value">Diverse BTW regularisaties in het voordeel van de Staat</field>
+        </record>
+        <record id="atctn_62_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_62"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 62</field>
+            <field name="value">Diverse BTW regularisaties in het voordeel van de aangever</field>
+        </record>
+        <record id="atctn_63_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_63"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 63</field>
+            <field name="value">Terug te storten BTW vermeld op ontvangen creditnota’s</field>
+        </record>
+        <record id="atctn_64_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_64"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 64</field>
+            <field name="value">Te recupereren BTW vermeld op uitgereikte creditnota’s</field>
+        </record>
+        <record id="atctn_81_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_81"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 81</field>
+            <field name="value">Aankopen van handelsgoederen, grond- en hulpstoffen</field>
+        </record>
+        <record id="atctn_82_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_82"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 82</field>
+            <field name="value">Aankopen van diverse goederen en diensten</field>
+        </record>
+        <record id="atctn_83_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_83"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 83</field>
+            <field name="value">Aankopen van bedrijfsmiddelen</field>
+        </record>
+        <record id="atctn_84_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_84"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 84</field>
+            <field name="value">Credit notas op de handelingen roosters [86] en [88]</field>
+        </record>
+        <record id="atctn_85_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_85"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 85</field>
+            <field name="value">Ontvangen creditnota’s andere handelingen</field>
+        </record>
+        <record id="atctn_86_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_86"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 86</field>
+            <field name="value">Intracommunautaire verwervingen en ABC-verkopen</field>
+        </record>
+        <record id="atctn_87_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_87"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 87</field>
+            <field name="value">Andere inkomende handelingen</field>
+        </record>
+        <record id="atctn_88_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_88"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 88</field>
+            <field name="value">Diensten ontvangen van intracom dienstverlener</field>
+        </record>
+        <record id="atctn_91_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_91"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code 91</field>
+            <field name="value">Voorschot voor handelingen van 1 tot 20 december</field>
+        </record>
+        <record id="atctn_I_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_I"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Belgian Chart of Taxes</field>
+            <field name="value">Schema Belgische BTW-aangifte</field>
+        </record>
+        <record id="atctn_II_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_II"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Outgoing transactions</field>
+            <field name="value">Uitgaande handelingen</field>
+        </record>
+        <record id="atctn_IIA_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIA"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. A</field>
+            <field name="value">Handelingen onderworpen aan een bijzondere regeling</field>
+        </record>
+        <record id="atctn_IIB_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIB"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. B</field>
+            <field name="value">BTW verschuldigd door de aangever</field>
+        </record>
+        <record id="atctn_IIC_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIC"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. C</field>
+            <field name="value">Buitenlandse BTW verschuldigd door de medecontractant</field>
+        </record>
+        <record id="atctn_IID_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IID"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. D</field>
+            <field name="value">BTW verschuldigd door de medecontractant</field>
+        </record>
+        <record id="atctn_IIE_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIE"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. E</field>
+            <field name="value">Vrijgestelde intracommunautaire leveringen</field>
+        </record>
+        <record id="atctn_IIF_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIF"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. F</field>
+            <field name="value">Andere vrijgestelde handelingen</field>
+        </record>
+        <record id="atctn_IIG_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIG"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code II. G</field>
+            <field name="value">Uitgereikte creditnota’s en de negatieve verbeteringen</field>
+        </record>
+        <record id="atctn_III_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_III"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Incoming transactions</field>
+            <field name="value">Inkomende handelingen</field>
+        </record>
+        <record id="atctn_IIIA_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIA"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code III. A</field>
+            <field name="value">Inkomende handelingen incl. creditnota's en verbeteringen</field>
+        </record>
+        <record id="atctn_IIIB_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIB"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code III. B</field>
+            <field name="value">Ontvangen creditnota’s en negatieve verbeteringen</field>
+        </record>
+        <record id="atctn_IIIC_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIC"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code III. C</field>
+            <field name="value">Intracommunautaire verwervingen en ABC-verkopen</field>
+        </record>
+        <record id="atctn_IIID_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIID"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code III. D</field>
+            <field name="value">Andere inkomende handelingen met BTW verschuldigd door aangever</field>
+        </record>
+        <record id="atctn_IIIE_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIE"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code III. E</field>
+            <field name="value">Intracommunautaire diensten met verlegging van heffing</field>
+        </record>
+        <record id="atctn_IVA_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVA"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code IV. A</field>
+            <field name="value">BTW op handelingen roosters  [01], [02], [03], [86] en [87]</field>
+        </record>
+        <record id="atctn_IVB_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVB"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code IV. B</field>
+            <field name="value">BTW op invoeren met verlegging van heffing</field>
+        </record>
+        <record id="atctn_IVC_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVC"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code IV. C</field>
+            <field name="value">Diverse BTW regularisaties in het voordeel van de Staat</field>
+        </record>
+        <record id="atctn_IVD_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVD"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code IV. D</field>
+            <field name="value">Terug te storten BTW vermeld op ontvangen creditnota’s</field>
+        </record>
+        <record id="atctn_VA_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VA"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Deductable VAT</field>
+            <field name="value">Aftrekbare BTW</field>
+        </record>
+        <record id="atctn_VB_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VB"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code V. B</field>
+            <field name="value">Diverse BTW regularisaties in het voordeel van de aangever</field>
+        </record>
+        <record id="atctn_VC_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VC"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Case Code V. C</field>
+            <field name="value">Te recupereren BTW vermeld op uitgereikte creditnota’s</field>
+        </record>
+        <record id="atctn_VI_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VI"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Balance (71-72)</field>
+            <field name="value">Saldo (71-72)</field>
+        </record>
+        <record id="atctn_VII_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VII"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Advance</field>
+            <field name="value">Voorschot</field>
+        </record>
+        <record id="atctn_XX_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_XX"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">To Pay - Total</field>
+            <field name="value">Te Betalen - Totaal</field>
+        </record>
+        <record id="atctn_YY_nl_NL" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_YY"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Deductible - Total</field>
+            <field name="value">Aftrekbaar - Totaal</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="atctn_00_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_00"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 00</field>
+            <field name="value">Opérations soumises à un régime particulier</field>
+        </record>
+        <record id="atctn_01_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_01"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 01</field>
+            <field name="value">Opérations avec TVA à 6%</field>
+        </record>
+        <record id="atctn_02_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_02"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 02</field>
+            <field name="value">Opérations avec TVA à 12%</field>
+        </record>
+        <record id="atctn_03_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_03"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 03</field>
+            <field name="value">Opérations avec TVA à 21%</field>
+        </record>
+        <record id="atctn_44_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_44"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 44</field>
+            <field name="value">Services intra-communautaires</field>
+        </record>
+        <record id="atctn_45_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_45"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 45</field>
+            <field name="value">Opérations avec TVA due par le cocontractant</field>
+        </record>
+        <record id="atctn_46_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 46</field>
+            <field name="value">Livraisons intra-communautaire exemptées</field>
+        </record>
+        <record id="atctn_46L_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46L"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 46L</field>
+            <field name="value">Livraisons biens intra-communautaire exemptées</field>
+        </record>
+        <record id="atctn_46T_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_46T"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 46T</field>
+            <field name="value">ABC intra-communautaires</field>
+        </record>
+        <record id="atctn_47_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_47"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 47</field>
+            <field name="value">Autres operations exemptées</field>
+        </record>
+        <record id="atctn_48_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 48</field>
+            <field name="value">Notes de crédit aux opérations grilles [44] et [46]</field>
+        </record>
+        <record id="atctn_48s44_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s44"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 48s44</field>
+            <field name="value">Notes de crédit aux opérations grille [44]</field>
+        </record>
+        <record id="atctn_48s46L_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s46L"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 48s46L</field>
+            <field name="value">Notes de crédit aux opérations grille [46L]</field>
+        </record>
+        <record id="atctn_48s46T_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_48s46T"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 48s46T</field>
+            <field name="value">Notes de crédit aux opérations grille [46T]</field>
+        </record>
+        <record id="atctn_49_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_49"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 49</field>
+            <field name="value">Notes de crédit aux opérations du point II</field>
+        </record>
+        <record id="atctn_54_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_54"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 54</field>
+            <field name="value">TVA sur opérations des grilles [01], [02], [03]</field>
+        </record>
+        <record id="atctn_55_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_55"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 55</field>
+            <field name="value">TVA sur opérations des grilles [86] et [88]</field>
+        </record>
+        <record id="atctn_56_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_56"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 56</field>
+            <field name="value">TVA sur opérations de la grille [87]</field>
+        </record>
+        <record id="atctn_57_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_57"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 57</field>
+            <field name="value">TVA relatives aux importations</field>
+        </record>
+        <record id="atctn_59_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_59"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 59</field>
+            <field name="value">TVA déductible</field>
+        </record>
+        <record id="atctn_61_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_61"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 61</field>
+            <field name="value">Diverses régularisations en faveur de l'Etat</field>
+        </record>
+        <record id="atctn_62_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_62"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 62</field>
+            <field name="value">Régularisations TVA en faveur du déclarant</field>
+        </record>
+        <record id="atctn_63_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_63"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 63</field>
+            <field name="value">TVA à reverser sur notes de crédit reçues</field>
+        </record>
+        <record id="atctn_64_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_64"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 64</field>
+            <field name="value">TVA à recuperer sur notes de crédit delivrées</field>
+        </record>
+        <record id="atctn_81_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_81"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 81</field>
+            <field name="value">Marchandises, matières premières et auxiliaires</field>
+        </record>
+        <record id="atctn_82_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_82"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 82</field>
+            <field name="value">Services et biens divers</field>
+        </record>
+        <record id="atctn_83_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_83"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 83</field>
+            <field name="value">Biens d'investissement</field>
+        </record>
+        <record id="atctn_84_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_84"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 84</field>
+            <field name="value">Notes de crédits sur opérations case [86] et [88]</field>
+        </record>
+        <record id="atctn_85_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_85"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 85</field>
+            <field name="value">Notes de crédits autres opérations</field>
+        </record>
+        <record id="atctn_86_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_86"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 86</field>
+            <field name="value">Acquisition intra-communautaires et ventes ABC</field>
+        </record>
+        <record id="atctn_87_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_87"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 87</field>
+            <field name="value">Autres opérations</field>
+        </record>
+        <record id="atctn_88_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_88"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 88</field>
+            <field name="value">Acquisition services intra-communautaires</field>
+        </record>
+        <record id="atctn_91_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_91"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code 91</field>
+            <field name="value">TVA due pour la période du 1er au 20 décembre</field>
+        </record>
+        <record id="atctn_I_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_I"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Belgian Chart of Taxes</field>
+            <field name="value">Plan de Taxes Belge</field>
+        </record>
+        <record id="atctn_II_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_II"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Outgoing transactions</field>
+            <field name="value">Opérations à la sortie</field>
+        </record>
+        <record id="atctn_IIA_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIA"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. A</field>
+            <field name="value">Opérations soumises à un régime particulier</field>
+        </record>
+        <record id="atctn_IIB_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIB"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. B</field>
+            <field name="value">TVA due par le déclarant</field>
+        </record>
+        <record id="atctn_IIC_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIC"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. C</field>
+            <field name="value">TVA étrangère due par le cocontractant</field>
+        </record>
+        <record id="atctn_IID_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IID"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. D</field>
+            <field name="value">Opérations avec TVA due par le cocontractant</field>
+        </record>
+        <record id="atctn_IIE_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIE"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. E</field>
+            <field name="value">Livraisons intra-communautaire exemptées</field>
+        </record>
+        <record id="atctn_IIF_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIF"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. F</field>
+            <field name="value">Autres opérations exemptées</field>
+        </record>
+        <record id="atctn_IIG_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIG"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code II. G</field>
+            <field name="value">Notes de crédit délivrées et corrections négatives</field>
+        </record>
+        <record id="atctn_III_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_III"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Incoming transactions</field>
+            <field name="value">Opérations a l'entrée</field>
+        </record>
+        <record id="atctn_IIIA_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIA"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code III. A</field>
+            <field name="value">Opérations à l'entrée y compris notes de crédit et corrections</field>
+        </record>
+        <record id="atctn_IIIB_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIB"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code III. B</field>
+            <field name="value">Notes de crédit reçues et corrections négatives</field>
+        </record>
+        <record id="atctn_IIIC_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIC"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code III. C</field>
+            <field name="value">Acquisition intra-communautaires et ventes ABC</field>
+        </record>
+        <record id="atctn_IIID_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIID"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code III. D</field>
+            <field name="value">Autres opérations à l'entrée avec TVA due par le déclarant</field>
+        </record>
+        <record id="atctn_IIIE_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IIIE"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code III. E</field>
+            <field name="value">Services intracommunautaires avec report de perception</field>
+        </record>
+        <record id="atctn_IVA_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVA"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code IV. A</field>
+            <field name="value">TVA aux opérations en grilles 01, 02, 03, 86 et 87</field>
+        </record>
+        <record id="atctn_IVB_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVB"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code IV. B</field>
+            <field name="value">TVA relatives aux importations</field>
+        </record>
+        <record id="atctn_IVC_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVC"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code IV. C</field>
+            <field name="value">Diverses régularisations en faveur de l'Etat</field>
+        </record>
+        <record id="atctn_IVD_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_IVD"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code IV. D</field>
+            <field name="value">TVA à reverser sur notes de crédit reçues</field>
+        </record>
+        <record id="atctn_VA_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VA"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Deductable VAT</field>
+            <field name="value">TVA déductible</field>
+        </record>
+        <record id="atctn_VB_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VB"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code V. B</field>
+            <field name="value">Régularisations TVA en faveur du déclarant</field>
+        </record>
+        <record id="atctn_VC_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VC"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Case Code V. C</field>
+            <field name="value">TVA à recuperer sur notes de crédit delivrées</field>
+        </record>
+        <record id="atctn_VI_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VI"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Balance (71-72)</field>
+            <field name="value">Solde (71-72)</field>
+        </record>
+        <record id="atctn_VII_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_VII"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Advance</field>
+            <field name="value">Acompte</field>
+        </record>
+        <record id="atctn_XX_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_XX"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">To Pay - Total</field>
+            <field name="value">A payer - Total</field>
+        </record>
+        <record id="atctn_YY_fr_FR" model="ir.translation">
+            <field name="name">account.tax.code.template,name</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="atctn_YY"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Deductible - Total</field>
+            <field name="value">A déduire - Total</field>
         </record>
 
     </data>

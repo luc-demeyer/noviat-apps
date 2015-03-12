@@ -1,0 +1,366 @@
+# French translation of OpenERP Server 6.0.
+# This file contains the translation of the following modules:
+#	* account_cashflow_operations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0\n"
+"Report-Msgid-Bugs-To: support@noviat.be\n"
+"POT-Creation-Date: 2011-12-30 11:47:55.477000\n"
+"PO-Revision-Date: 2011-12-30 11:47:55.477000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,name:0
+msgid "Reference"
+msgstr "Référence"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,state:0
+msgid "State"
+msgstr "État"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,company_id:0
+msgid "Company"
+msgstr "Nom de la société"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date_start:0
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date_stop:0
+msgid "Maturity Date"
+msgstr "Date d'échéance"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,days:0
+msgid "Interest Days"
+msgstr "Jours d'intérêts"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,rate:0
+msgid "Interest Rate (%)"
+msgstr "Taux d'intérêts (%)"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,interest_payment:0
+msgid "Interest Payment"
+msgstr "Paiement d'intérêts"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,interest_payment:0
+msgid "In Advance"
+msgstr "Précomptés"
+
+#. module: account_cashflow_operations
+#: selection:account.cash.operation,interest_payment:0
+msgid "On Maturity Date"
+msgstr "Post-comptés"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,day_count_basis:0
+msgid "Day Count Basis"
+msgstr "Base de calcul"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_base:0
+msgid "Transaction Amount"
+msgstr "Montant de la transaction"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_cost:0
+msgid "Transaction Costs"
+msgstr "Frais"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,bank_id:0
+msgid "Bank Account"
+msgstr "Compte bancaire"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_id:0
+msgid "Partner"
+msgstr "Partennaire"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_address_id:0
+msgid "Contact Address"
+msgstr "Addresse du contact"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_contact:0
+msgid "Contact Name"
+msgstr "Nom du contact"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,partner_lang:0
+msgid "Language"
+msgstr "Langue"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,subject:0
+msgid "Subject"
+msgstr "Objet"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,intro:0
+msgid "Intro"
+msgstr "Intro"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,close:0
+msgid "Close"
+msgstr "Fin"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_main:0
+msgid "Principal Amount Cash Flow Code"
+msgstr "Code flux montant principal"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_interest:0
+msgid "Interest Cash Flow Code"
+msgstr "Code flux intérêts"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,cfc_id_cost:0
+msgid "Transaction Cost Cash Flow Code"
+msgstr "Code flux frais"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_interest:0
+msgid "Interest Amount"
+msgstr "Montant des intérêts"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,amount_end:0
+msgid "Maturity Date Amount"
+msgstr "Montant date d'échéance"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,date:0
+msgid "Entry Date"
+msgstr "Date d'entrée"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,user_id:0
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,update_date:0
+msgid "Update Date"
+msgstr "Date mise à jour"
+
+#. module: account_cashflow_operations
+#: field:account.cash.operation,update_by:0
+msgid "Updated by"
+msgstr "Mise à jour par"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_cash_operation
+msgid "Cash Management Operations"
+msgstr "Opérations gestion de trésorerie"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demands"
+msgstr "Demandes avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demand"
+msgstr "Demande avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Straight Loan Demand Fields"
+msgstr "Données de l' avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Cash Flow Management Fields"
+msgstr "Données gestion de trésorerie"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Confirmation Letter Fields"
+msgstr "Données lettre de confirmation"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Confirm"
+msgstr "Confirmez"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Search Straight Loan Demands"
+msgstr "Chercher une demande avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Group By..."
+msgstr "Grouper par..."
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "State"
+msgstr "État"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Company"
+msgstr "Nom de la société"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.act_window,name:account_cashflow.action_account_straight_loan_demand
+msgid "Straight Loan Demand"
+msgstr "Demande avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_straight_loan_demand
+msgid "Straight Loan Demands"
+msgstr "Demandes avance à terme fixe"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demands"
+msgstr "Demandes de placements"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demand"
+msgstr "Demande de placement"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Investment Demand Fields"
+msgstr "Données du placement"
+
+#. module: account_cashflow_operations
+#: view:account.cash.operation:0
+msgid "Search Investment Demands"
+msgstr "Chercher une demande de placement"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.act_window,name:account_cashflow.action_account_invest_demand
+msgid "Investment Demand"
+msgstr "Demande de placement"
+
+#. module: account_cashflow_operations
+#: model:ir.ui.menu,name:account_cashflow.menu_account_invest_demand
+msgid "Investment Demands"
+msgstr "Demandes de placements"
+
+#. module: account_cashflow_operations
+#: model:ir.actions.report.xml,name:account_cashflow.straight_loan_demand_print
+msgid "Cofirmation Letter"
+msgstr "Lettre de confirmation"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:10
+msgid "Tel"
+msgstr "Tél"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:11
+msgid "Fax"
+msgstr "Fax"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:12
+msgid "E-mail"
+msgstr "E-mail"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:13
+msgid "Subject"
+msgstr "Objet"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:14
+msgid "Reference"
+msgstr "Référence"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:15
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:16
+msgid "Maturity Date"
+msgstr "Date d'échéance"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:17
+msgid "Transaction Amount"
+msgstr "Montant de la transaction"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:18
+msgid "Interest Rate"
+msgstr "Taux d'intérêts"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:19
+msgid "% per year"
+msgstr "% l'an"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:20
+msgid "Interest Payment"
+msgstr "Paiement d'intérêts"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:21
+msgid "Interest Amount"
+msgstr "Montant des intérêts"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:22
+msgid "Transaction Costs"
+msgstr "Frais"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:23
+msgid "Bank Account"
+msgstr "Compte bancaire"
+
+#. module: account_cashflow_operations
+#: report:report.cash.operation.letter.print:50
+msgid "Commercial in Confidence"
+msgstr "Confidentiel"
+

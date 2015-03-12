@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+    <!-- Set selected Cash Flow Opening Balances to Draft -->
+
+    <record id="view_cancel_cashflow_opening_balance" model="ir.ui.view">
+      <field name="name">cancel.cashflow.opening.balance.form</field>
+      <field name="model">cancel.cashflow.opening.balance</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Set selected Cash Flow Opening Balances to Draft">
+          <label string="" colspan="4"/>
+          <label colspan="4" string="Are you sure you want to set the selected Cash Flow Opening Balances to Draft ?"/>
+          <label string="" colspan="4"/>
+          <separator colspan="4"/>
+          <group>
+            <label string="" colspan="2"/>
+            <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+            <button icon="gtk-execute" string="Set to Draft" name="cancel_balances" type="object"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    
+    <record id="action_cancel_cashflow_opening_balance" model="ir.actions.act_window">
+      <field name="name">Set selected Cash Flow Opening Balances to Draft</field>
+      <field name="res_model">cancel.cashflow.opening.balance</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_cancel_cashflow_opening_balance"/>
+      <field name="help">Set selected Cash Flow Opening Balances to Draft.</field>
+      <field name="target">new</field>
+    </record>
+
+    <record model="ir.values" id="action_cancel_cashflow_opening_balance_values">
+      <field name="object" eval="1" />
+      <field name="name">Set selected Cash Flow Opening Balances to Draft</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' +str(ref('action_cancel_cashflow_opening_balance'))" />
+      <field name="model">account.cashflow.opening.balance</field>
+    </record>
+            
+  </data> 
+</openerp>

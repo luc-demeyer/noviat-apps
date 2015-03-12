@@ -1,0 +1,2172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- account.coda.trans.category -->
+        <record id="actrca_000" model="account.coda.trans.category">
+            <field name="category">000</field>
+            <field name="description">Net amount</field>
+        </record>
+        <record id="actrca_001" model="account.coda.trans.category">
+            <field name="category">001</field>
+            <field name="description">Interest received</field>
+        </record>
+        <record id="actrca_002" model="account.coda.trans.category">
+            <field name="category">002</field>
+            <field name="description">Interest paid</field>
+        </record>
+        <record id="actrca_003" model="account.coda.trans.category">
+            <field name="category">003</field>
+            <field name="description">Credit commission</field>
+        </record>
+        <record id="actrca_004" model="account.coda.trans.category">
+            <field name="category">004</field>
+            <field name="description">Postage</field>
+        </record>
+        <record id="actrca_005" model="account.coda.trans.category">
+            <field name="category">005</field>
+            <field name="description">Renting of letterbox</field>
+        </record>
+        <record id="actrca_006" model="account.coda.trans.category">
+            <field name="category">006</field>
+            <field name="description">Various fees/commissions</field>
+        </record>
+        <record id="actrca_007" model="account.coda.trans.category">
+            <field name="category">007</field>
+            <field name="description">Access right to database</field>
+        </record>
+        <record id="actrca_008" model="account.coda.trans.category">
+            <field name="category">008</field>
+            <field name="description">Information charges</field>
+        </record>
+        <record id="actrca_009" model="account.coda.trans.category">
+            <field name="category">009</field>
+            <field name="description">Travelling expenses</field>
+        </record>
+        <record id="actrca_010" model="account.coda.trans.category">
+            <field name="category">010</field>
+            <field name="description">Writ service fee</field>
+        </record>
+        <record id="actrca_011" model="account.coda.trans.category">
+            <field name="category">011</field>
+            <field name="description">VAT</field>
+        </record>
+        <record id="actrca_012" model="account.coda.trans.category">
+            <field name="category">012</field>
+            <field name="description">Exchange commission</field>
+        </record>
+        <record id="actrca_013" model="account.coda.trans.category">
+            <field name="category">013</field>
+            <field name="description">Payment commission</field>
+        </record>
+        <record id="actrca_014" model="account.coda.trans.category">
+            <field name="category">014</field>
+            <field name="description">Collection commission</field>
+        </record>
+        <record id="actrca_015" model="account.coda.trans.category">
+            <field name="category">015</field>
+            <field name="description">Correspondent charges</field>
+        </record>
+        <record id="actrca_016" model="account.coda.trans.category">
+            <field name="category">016</field>
+            <field name="description">BLIW/IBLC dues</field>
+        </record>
+        <record id="actrca_017" model="account.coda.trans.category">
+            <field name="category">017</field>
+            <field name="description">Research costs</field>
+        </record>
+        <record id="actrca_018" model="account.coda.trans.category">
+            <field name="category">018</field>
+            <field name="description">Tental guarantee charges</field>
+        </record>
+        <record id="actrca_019" model="account.coda.trans.category">
+            <field name="category">019</field>
+            <field name="description">Tax on physical delivery</field>
+        </record>
+        <record id="actrca_020" model="account.coda.trans.category">
+            <field name="category">020</field>
+            <field name="description">Costs of physical delivery</field>
+        </record>
+        <record id="actrca_021" model="account.coda.trans.category">
+            <field name="category">021</field>
+            <field name="description">Costs for drawing up a bank cheque</field>
+        </record>
+        <record id="actrca_022" model="account.coda.trans.category">
+            <field name="category">022</field>
+            <field name="description">Priority costs</field>
+        </record>
+        <record id="actrca_023" model="account.coda.trans.category">
+            <field name="category">023</field>
+            <field name="description">Exercising fee</field>
+        </record>
+        <record id="actrca_024" model="account.coda.trans.category">
+            <field name="category">024</field>
+            <field name="description">Growth premium</field>
+        </record>
+        <record id="actrca_025" model="account.coda.trans.category">
+            <field name="category">025</field>
+            <field name="description">Individual entry for exchange charges</field>
+        </record>
+        <record id="actrca_026" model="account.coda.trans.category">
+            <field name="category">026</field>
+            <field name="description">Handling commission</field>
+        </record>
+        <record id="actrca_027" model="account.coda.trans.category">
+            <field name="category">027</field>
+            <field name="description">Charges for unpaid bills</field>
+        </record>
+        <record id="actrca_028" model="account.coda.trans.category">
+            <field name="category">028</field>
+            <field name="description">Fidelity premium</field>
+        </record>
+        <record id="actrca_029" model="account.coda.trans.category">
+            <field name="category">029</field>
+            <field name="description">Protest charges</field>
+        </record>
+        <record id="actrca_030" model="account.coda.trans.category">
+            <field name="category">030</field>
+            <field name="description">Account insurance</field>
+        </record>
+        <record id="actrca_031" model="account.coda.trans.category">
+            <field name="category">031</field>
+            <field name="description">Charges foreign cheque</field>
+        </record>
+        <record id="actrca_032" model="account.coda.trans.category">
+            <field name="category">032</field>
+            <field name="description">Drawing up a circular cheque</field>
+        </record>
+        <record id="actrca_033" model="account.coda.trans.category">
+            <field name="category">033</field>
+            <field name="description">Charges for a foreign bill</field>
+        </record>
+        <record id="actrca_034" model="account.coda.trans.category">
+            <field name="category">034</field>
+            <field name="description">Reinvestment fee</field>
+        </record>
+        <record id="actrca_035" model="account.coda.trans.category">
+            <field name="category">035</field>
+            <field name="description">Charges foreign documentary bill</field>
+        </record>
+        <record id="actrca_036" model="account.coda.trans.category">
+            <field name="category">036</field>
+            <field name="description">Costs relating to a refused cheque</field>
+        </record>
+        <record id="actrca_037" model="account.coda.trans.category">
+            <field name="category">037</field>
+            <field name="description">Commission for handling charges</field>
+        </record>
+        <record id="actrca_039" model="account.coda.trans.category">
+            <field name="category">039</field>
+            <field name="description">Telecommunications</field>
+        </record>
+        <record id="actrca_041" model="account.coda.trans.category">
+            <field name="category">041</field>
+            <field name="description">Credit card costs</field>
+        </record>
+        <record id="actrca_042" model="account.coda.trans.category">
+            <field name="category">042</field>
+            <field name="description">Payment card costs</field>
+        </record>
+        <record id="actrca_043" model="account.coda.trans.category">
+            <field name="category">043</field>
+            <field name="description">Insurance costs</field>
+        </record>
+        <record id="actrca_045" model="account.coda.trans.category">
+            <field name="category">045</field>
+            <field name="description">Handling costs</field>
+        </record>
+        <record id="actrca_047" model="account.coda.trans.category">
+            <field name="category">047</field>
+            <field name="description">Charges extension bill</field>
+        </record>
+        <record id="actrca_049" model="account.coda.trans.category">
+            <field name="category">049</field>
+            <field name="description">Fiscal stamps/stamp duty</field>
+        </record>
+        <record id="actrca_050" model="account.coda.trans.category">
+            <field name="category">050</field>
+            <field name="description">Capital term investment</field>
+        </record>
+        <record id="actrca_051" model="account.coda.trans.category">
+            <field name="category">051</field>
+            <field name="description">Withholding tax</field>
+        </record>
+        <record id="actrca_052" model="account.coda.trans.category">
+            <field name="category">052</field>
+            <field name="description">Residence state tax</field>
+        </record>
+        <record id="actrca_053" model="account.coda.trans.category">
+            <field name="category">053</field>
+            <field name="description">Printing of forms</field>
+        </record>
+        <record id="actrca_055" model="account.coda.trans.category">
+            <field name="category">055</field>
+            <field name="description">Repayment loan or credit capital</field>
+        </record>
+        <record id="actrca_057" model="account.coda.trans.category">
+            <field name="category">057</field>
+            <field name="description">Interest subsidy</field>
+        </record>
+        <record id="actrca_058" model="account.coda.trans.category">
+            <field name="category">058</field>
+            <field name="description">Capital premium</field>
+        </record>
+        <record id="actrca_059" model="account.coda.trans.category">
+            <field name="category">059</field>
+            <field name="description">Default interest</field>
+        </record>
+        <record id="actrca_061" model="account.coda.trans.category">
+            <field name="category">061</field>
+            <field name="description">Charging fees for transactions</field>
+        </record>
+        <record id="actrca_063" model="account.coda.trans.category">
+            <field name="category">063</field>
+            <field name="description">Rounding differences</field>
+        </record>
+        <record id="actrca_065" model="account.coda.trans.category">
+            <field name="category">065</field>
+            <field name="description">Interest payment advice</field>
+        </record>
+        <record id="actrca_066" model="account.coda.trans.category">
+            <field name="category">066</field>
+            <field name="description">Fixed loan advance - reimbursement</field>
+        </record>
+        <record id="actrca_067" model="account.coda.trans.category">
+            <field name="category">067</field>
+            <field name="description">Fixed loan advance - extension</field>
+        </record>
+        <record id="actrca_068" model="account.coda.trans.category">
+            <field name="category">068</field>
+            <field name="description">Countervalue of an entry</field>
+        </record>
+        <record id="actrca_069" model="account.coda.trans.category">
+            <field name="category">069</field>
+            <field name="description">Forward arbitrage contracts : sum to be supplied by customer</field>
+        </record>
+        <record id="actrca_070" model="account.coda.trans.category">
+            <field name="category">070</field>
+            <field name="description">Forward arbitrage contracts : sum to be supplied by bank</field>
+        </record>
+        <record id="actrca_071" model="account.coda.trans.category">
+            <field name="category">071</field>
+            <field name="description">Fixed loan advance - availability</field>
+        </record>
+        <record id="actrca_072" model="account.coda.trans.category">
+            <field name="category">072</field>
+            <field name="description">Countervalue of commission to third party</field>
+        </record>
+        <record id="actrca_073" model="account.coda.trans.category">
+            <field name="category">073</field>
+            <field name="description">Costs of ATM abroad</field>
+        </record>
+        <record id="actrca_074" model="account.coda.trans.category">
+            <field name="category">074</field>
+            <field name="description">Mailing costs</field>
+        </record>
+        <record id="actrca_100" model="account.coda.trans.category">
+            <field name="category">100</field>
+            <field name="description">Gross amount</field>
+        </record>
+        <record id="actrca_200" model="account.coda.trans.category">
+            <field name="category">200</field>
+            <field name="description">Overall documentary credit charges</field>
+        </record>
+        <record id="actrca_201" model="account.coda.trans.category">
+            <field name="category">201</field>
+            <field name="description">Advice notice commission</field>
+        </record>
+        <record id="actrca_202" model="account.coda.trans.category">
+            <field name="category">202</field>
+            <field name="description">Advising commission | Additional advising commission</field>
+        </record>
+        <record id="actrca_203" model="account.coda.trans.category">
+            <field name="category">203</field>
+            <field name="description">Confirmation fee | Additional confirmation fee | Commitment fee | Flat fee | Confirmation reservation commission | Additional reservation commission</field>
+        </record>
+        <record id="actrca_204" model="account.coda.trans.category">
+            <field name="category">204</field>
+            <field name="description">Amendment fee</field>
+        </record>
+        <record id="actrca_205" model="account.coda.trans.category">
+            <field name="category">205</field>
+            <field name="description">Documentary payment commission | Document commission | Drawdown fee | Negotiation fee</field>
+        </record>
+        <record id="actrca_206" model="account.coda.trans.category">
+            <field name="category">206</field>
+            <field name="description">Surety fee/payment under reserve</field>
+        </record>
+        <record id="actrca_207" model="account.coda.trans.category">
+            <field name="category">207</field>
+            <field name="description">Non-conformity fee</field>
+        </record>
+        <record id="actrca_208" model="account.coda.trans.category">
+            <field name="category">208</field>
+            <field name="description">Commitment fee deferred payment</field>
+        </record>
+        <record id="actrca_209" model="account.coda.trans.category">
+            <field name="category">209</field>
+            <field name="description">Transfer commission</field>
+        </record>
+        <record id="actrca_210" model="account.coda.trans.category">
+            <field name="category">210</field>
+            <field name="description">Commitment fee</field>
+        </record>
+        <record id="actrca_211" model="account.coda.trans.category">
+            <field name="category">211</field>
+            <field name="description">Credit arrangement fee | Additional credit arrangement fee</field>
+        </record>
+        <record id="actrca_212" model="account.coda.trans.category">
+            <field name="category">212</field>
+            <field name="description">Warehousing fee</field>
+        </record>
+        <record id="actrca_213" model="account.coda.trans.category">
+            <field name="category">213</field>
+            <field name="description">Financing fee</field>
+        </record>
+        <record id="actrca_214" model="account.coda.trans.category">
+            <field name="category">214</field>
+            <field name="description">Issue commission (delivery order)</field>
+        </record>
+        <record id="actrca_400" model="account.coda.trans.category">
+            <field name="category">400</field>
+            <field name="description">Acceptance fee</field>
+        </record>
+        <record id="actrca_401" model="account.coda.trans.category">
+            <field name="category">401</field>
+            <field name="description">Visa charges</field>
+        </record>
+        <record id="actrca_402" model="account.coda.trans.category">
+            <field name="category">402</field>
+            <field name="description">Certification costs</field>
+        </record>
+        <record id="actrca_403" model="account.coda.trans.category">
+            <field name="category">403</field>
+            <field name="description">Minimum discount rate</field>
+        </record>
+        <record id="actrca_404" model="account.coda.trans.category">
+            <field name="category">404</field>
+            <field name="description">Discount commission</field>
+        </record>
+        <record id="actrca_405" model="account.coda.trans.category">
+            <field name="category">405</field>
+            <field name="description">Bill guarantee commission</field>
+        </record>
+        <record id="actrca_406" model="account.coda.trans.category">
+            <field name="category">406</field>
+            <field name="description">Collection charges</field>
+        </record>
+        <record id="actrca_407" model="account.coda.trans.category">
+            <field name="category">407</field>
+            <field name="description">Costs Article 45</field>
+        </record>
+        <record id="actrca_408" model="account.coda.trans.category">
+            <field name="category">408</field>
+            <field name="description">Cover commission</field>
+        </record>
+        <record id="actrca_409" model="account.coda.trans.category">
+            <field name="category">409</field>
+            <field name="description">Safe deposit charges</field>
+        </record>
+        <record id="actrca_410" model="account.coda.trans.category">
+            <field name="category">410</field>
+            <field name="description">Reclamation charges</field>
+        </record>
+        <record id="actrca_411" model="account.coda.trans.category">
+            <field name="category">411</field>
+            <field name="description">Fixed collection charge</field>
+        </record>
+        <record id="actrca_412" model="account.coda.trans.category">
+            <field name="category">412</field>
+            <field name="description">Advice of expiry charges</field>
+        </record>
+        <record id="actrca_413" model="account.coda.trans.category">
+            <field name="category">413</field>
+            <field name="description">Acceptance charges</field>
+        </record>
+        <record id="actrca_414" model="account.coda.trans.category">
+            <field name="category">414</field>
+            <field name="description">Regularisation charges</field>
+        </record>
+        <record id="actrca_415" model="account.coda.trans.category">
+            <field name="category">415</field>
+            <field name="description">Surety fee</field>
+        </record>
+        <record id="actrca_416" model="account.coda.trans.category">
+            <field name="category">416</field>
+            <field name="description">Charges for the deposit of security</field>
+        </record>
+        <record id="actrca_418" model="account.coda.trans.category">
+            <field name="category">418</field>
+            <field name="description">Endorsement commission</field>
+        </record>
+        <record id="actrca_419" model="account.coda.trans.category">
+            <field name="category">419</field>
+            <field name="description">Bank service fee</field>
+        </record>
+        <record id="actrca_420" model="account.coda.trans.category">
+            <field name="category">420</field>
+            <field name="description">Retention charges</field>
+        </record>
+        <record id="actrca_425" model="account.coda.trans.category">
+            <field name="category">425</field>
+            <field name="description">Foreign broker's commission</field>
+        </record>
+        <record id="actrca_426" model="account.coda.trans.category">
+            <field name="category">426</field>
+            <field name="description">Belgian broker's commission</field>
+        </record>
+        <record id="actrca_427" model="account.coda.trans.category">
+            <field name="category">427</field>
+            <field name="description">Belgian Stock Exchange tax</field>
+        </record>
+        <record id="actrca_428" model="account.coda.trans.category">
+            <field name="category">428</field>
+            <field name="description">Interest accrued</field>
+        </record>
+        <record id="actrca_429" model="account.coda.trans.category">
+            <field name="category">429</field>
+            <field name="description">Foreign Stock Exchange tax</field>
+        </record>
+        <record id="actrca_430" model="account.coda.trans.category">
+            <field name="category">430</field>
+            <field name="description">Recovery of foreign tax</field>
+        </record>
+        <record id="actrca_431" model="account.coda.trans.category">
+            <field name="category">431</field>
+            <field name="description">Delivery of a copy</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="actrca_000_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_000"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Net amount</field>
+            <field name="value">Netto bedrag</field>
+        </record>
+        <record id="actrca_001_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_001"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Interest received</field>
+            <field name="value">Ontvangen rente</field>
+        </record>
+        <record id="actrca_002_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_002"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Interest paid</field>
+            <field name="value">Betaalde rente</field>
+        </record>
+        <record id="actrca_003_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_003"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit commission</field>
+            <field name="value">Kredietprovisie</field>
+        </record>
+        <record id="actrca_004_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_004"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Postage</field>
+            <field name="value">Portokosten</field>
+        </record>
+        <record id="actrca_005_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_005"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Renting of letterbox</field>
+            <field name="value">Huur brievenbus</field>
+        </record>
+        <record id="actrca_006_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_006"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Various fees/commissions</field>
+            <field name="value">Diverse provisies/kosten</field>
+        </record>
+        <record id="actrca_007_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_007"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Access right to database</field>
+            <field name="value">Toegangsrecht tot databank</field>
+        </record>
+        <record id="actrca_008_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_008"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Information charges</field>
+            <field name="value">Kosten voor inlichtingen</field>
+        </record>
+        <record id="actrca_009_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_009"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Travelling expenses</field>
+            <field name="value">Reiskosten</field>
+        </record>
+        <record id="actrca_010_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_010"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Writ service fee</field>
+            <field name="value">Kosten deurwaarder</field>
+        </record>
+        <record id="actrca_011_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_011"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">VAT</field>
+            <field name="value">B.T.W.</field>
+        </record>
+        <record id="actrca_012_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_012"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Exchange commission</field>
+            <field name="value">Wisselprovisie</field>
+        </record>
+        <record id="actrca_013_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_013"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Payment commission</field>
+            <field name="value">Betalingsprovisie</field>
+        </record>
+        <record id="actrca_014_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_014"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Collection commission</field>
+            <field name="value">Incassoprovisie</field>
+        </record>
+        <record id="actrca_015_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_015"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Correspondent charges</field>
+            <field name="value">Kosten correspondent</field>
+        </record>
+        <record id="actrca_016_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_016"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">BLIW/IBLC dues</field>
+            <field name="value">Retributie B.L.I.W.</field>
+        </record>
+        <record id="actrca_017_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_017"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Research costs</field>
+            <field name="value">Studiekosten</field>
+        </record>
+        <record id="actrca_018_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_018"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Tental guarantee charges</field>
+            <field name="value">Kosten voor huurgarantie</field>
+        </record>
+        <record id="actrca_019_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_019"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Tax on physical delivery</field>
+            <field name="value">Belasting op materiële levering</field>
+        </record>
+        <record id="actrca_020_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_020"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Costs of physical delivery</field>
+            <field name="value">Kosten voor materiële levering</field>
+        </record>
+        <record id="actrca_021_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_021"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Costs for drawing up a bank cheque</field>
+            <field name="value">Kosten aanmaak bankcheque</field>
+        </record>
+        <record id="actrca_022_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_022"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Priority costs</field>
+            <field name="value">Prioriteitskosten</field>
+        </record>
+        <record id="actrca_023_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_023"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Exercising fee</field>
+            <field name="value">Uitoefenprovisie</field>
+        </record>
+        <record id="actrca_024_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_024"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Growth premium</field>
+            <field name="value">Aangroeipremie</field>
+        </record>
+        <record id="actrca_025_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_025"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Individual entry for exchange charges</field>
+            <field name="value">Indiv. boeking voor wisselkosten</field>
+        </record>
+        <record id="actrca_026_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_026"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Handling commission</field>
+            <field name="value">Behandelingscommissie</field>
+        </record>
+        <record id="actrca_027_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_027"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges for unpaid bills</field>
+            <field name="value">Kosten onbetaalde wissels</field>
+        </record>
+        <record id="actrca_028_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_028"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fidelity premium</field>
+            <field name="value">Getrouwheidspremie</field>
+        </record>
+        <record id="actrca_029_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_029"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Protest charges</field>
+            <field name="value">Protestkosten</field>
+        </record>
+        <record id="actrca_030_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_030"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Account insurance</field>
+            <field name="value">Rekeningverzekering</field>
+        </record>
+        <record id="actrca_031_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_031"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges foreign cheque</field>
+            <field name="value">Kosten cheque buitenland</field>
+        </record>
+        <record id="actrca_032_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_032"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Drawing up a circular cheque</field>
+            <field name="value">Aanmaak circulaire cheque</field>
+        </record>
+        <record id="actrca_033_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_033"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges for a foreign bill</field>
+            <field name="value">Kosten wissel buitenland</field>
+        </record>
+        <record id="actrca_034_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_034"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Reinvestment fee</field>
+            <field name="value">Herbeleggingsvergoeding</field>
+        </record>
+        <record id="actrca_035_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_035"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges foreign documentary bill</field>
+            <field name="value">Kosten docum. wissel buitenland</field>
+        </record>
+        <record id="actrca_036_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_036"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Costs relating to a refused cheque</field>
+            <field name="value">Kosten geweigerde cheque</field>
+        </record>
+        <record id="actrca_037_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_037"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Commission for handling charges</field>
+            <field name="value">Provisie voor dossierkosten</field>
+        </record>
+        <record id="actrca_039_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_039"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Telecommunications</field>
+            <field name="value">Telecommunicatie</field>
+        </record>
+        <record id="actrca_041_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_041"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit card costs</field>
+            <field name="value">Kosten kredietkaart</field>
+        </record>
+        <record id="actrca_042_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_042"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Payment card costs</field>
+            <field name="value">Kosten betaalkaart</field>
+        </record>
+        <record id="actrca_043_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_043"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Insurance costs</field>
+            <field name="value">Verzekeringskosten</field>
+        </record>
+        <record id="actrca_045_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_045"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Handling costs</field>
+            <field name="value">Dossierkosten</field>
+        </record>
+        <record id="actrca_047_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_047"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges extension bill</field>
+            <field name="value">Kosten verlenging wissel</field>
+        </record>
+        <record id="actrca_049_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_049"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fiscal stamps/stamp duty</field>
+            <field name="value">Fiscale zegels/zegelrecht</field>
+        </record>
+        <record id="actrca_050_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_050"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Capital term investment</field>
+            <field name="value">Kapitaal termijnbelegging</field>
+        </record>
+        <record id="actrca_051_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_051"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Withholding tax</field>
+            <field name="value">Roerende voorheffing</field>
+        </record>
+        <record id="actrca_052_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_052"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Residence state tax</field>
+            <field name="value">Woonstaatheffing</field>
+        </record>
+        <record id="actrca_053_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_053"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Printing of forms</field>
+            <field name="value">Aanmaak formulieren</field>
+        </record>
+        <record id="actrca_055_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_055"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Repayment loan or credit capital</field>
+            <field name="value">Afloss. kapitaal lening of krediet</field>
+        </record>
+        <record id="actrca_057_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_057"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Interest subsidy</field>
+            <field name="value">Rentesubsidie</field>
+        </record>
+        <record id="actrca_058_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_058"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Capital premium</field>
+            <field name="value">Kapitaalpremie</field>
+        </record>
+        <record id="actrca_059_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_059"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Default interest</field>
+            <field name="value">Verwijlintrest</field>
+        </record>
+        <record id="actrca_061_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_061"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charging fees for transactions</field>
+            <field name="value">Tarifering van verrichtingen</field>
+        </record>
+        <record id="actrca_063_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_063"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Rounding differences</field>
+            <field name="value">Afrondingsverschillen</field>
+        </record>
+        <record id="actrca_065_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_065"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Interest payment advice</field>
+            <field name="value">Bonificatiebericht</field>
+        </record>
+        <record id="actrca_066_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_066"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fixed loan advance - reimbursement</field>
+            <field name="value">Vast voorschot kredieten - terugbetaling</field>
+        </record>
+        <record id="actrca_067_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_067"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fixed loan advance - extension</field>
+            <field name="value">Vast voorschot kredieten - verlenging</field>
+        </record>
+        <record id="actrca_068_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_068"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Countervalue of an entry</field>
+            <field name="value">Tegenwaarde van een boeking</field>
+        </record>
+        <record id="actrca_069_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_069"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Forward arbitrage contracts : sum to be supplied by customer</field>
+            <field name="value">Termijncontracten arbitrage: te leveren som door cliënt</field>
+        </record>
+        <record id="actrca_070_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_070"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Forward arbitrage contracts : sum to be supplied by bank</field>
+            <field name="value">Termijncontracten arbitrage: te leveren som door bank</field>
+        </record>
+        <record id="actrca_071_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_071"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fixed loan advance - availability</field>
+            <field name="value">Vast voorschot kredieten - ter beschikking stelling</field>
+        </record>
+        <record id="actrca_072_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_072"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Countervalue of commission to third party</field>
+            <field name="value">Tegenwaarde commissie aan derde</field>
+        </record>
+        <record id="actrca_073_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_073"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Costs of ATM abroad</field>
+            <field name="value">Kosten buitenlandse geldautomaat</field>
+        </record>
+        <record id="actrca_074_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_074"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Mailing costs</field>
+            <field name="value">Koerierkosten</field>
+        </record>
+        <record id="actrca_100_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_100"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Gross amount</field>
+            <field name="value">Brutobedrag</field>
+        </record>
+        <record id="actrca_200_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_200"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Overall documentary credit charges</field>
+            <field name="value">Kosten docum. krediet globaal</field>
+        </record>
+        <record id="actrca_201_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_201"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Advice notice commission</field>
+            <field name="value">Opzeggingsprovisie</field>
+        </record>
+        <record id="actrca_202_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_202"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Advising commission | Additional advising commission</field>
+            <field name="value">Adviesprovisie | Aanvullende adviesprovisie</field>
+        </record>
+        <record id="actrca_203_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_203"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Confirmation fee | Additional confirmation fee | Commitment fee | Flat fee | Confirmation reservation commission | Additional reservation commission</field>
+            <field name="value">Confirmatieprovisie | Aanvullende confirmatieprovisie | Verbinternisprovisie | Flatprovisie | Confirmatiereserveringsprovisie | Aanvullende reserveringsprovisie</field>
+        </record>
+        <record id="actrca_204_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_204"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Amendment fee</field>
+            <field name="value">Wijzigingsprovisie</field>
+        </record>
+        <record id="actrca_205_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_205"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Documentary payment commission | Document commission | Drawdown fee | Negotiation fee</field>
+            <field name="value">Provisie voor documentaire betaling | Documentenprovisie | Opnemingsprovisie | Negotiëringsprovisie</field>
+        </record>
+        <record id="actrca_206_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_206"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Surety fee/payment under reserve</field>
+            <field name="value">Garantieprovisie/betaling onder voorbehoud</field>
+        </record>
+        <record id="actrca_207_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_207"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Non-conformity fee</field>
+            <field name="value">Provisie voor afwijkingen</field>
+        </record>
+        <record id="actrca_208_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_208"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Commitment fee deferred payment</field>
+            <field name="value">Verbintenisprovisie uitgestelde betaling</field>
+        </record>
+        <record id="actrca_209_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_209"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Transfer commission</field>
+            <field name="value">Transferprovisie</field>
+        </record>
+        <record id="actrca_210_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_210"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Commitment fee</field>
+            <field name="value">Bereidstellingsprovisie</field>
+        </record>
+        <record id="actrca_211_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_211"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Credit arrangement fee | Additional credit arrangement fee</field>
+            <field name="value">Kredietopeningsprovisie | Aanvullende kredietopeningsprovisie</field>
+        </record>
+        <record id="actrca_212_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_212"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Warehousing fee</field>
+            <field name="value">Opslagprovisie</field>
+        </record>
+        <record id="actrca_213_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_213"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Financing fee</field>
+            <field name="value">Financieringsprovisie</field>
+        </record>
+        <record id="actrca_214_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_214"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Issue commission (delivery order)</field>
+            <field name="value">Emissieprovisie (volgbriefje)</field>
+        </record>
+        <record id="actrca_400_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_400"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Acceptance fee</field>
+            <field name="value">Acceptprovisie</field>
+        </record>
+        <record id="actrca_401_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_401"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Visa charges</field>
+            <field name="value">Visumkosten</field>
+        </record>
+        <record id="actrca_402_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_402"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Certification costs</field>
+            <field name="value">Kosten certificatie</field>
+        </record>
+        <record id="actrca_403_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_403"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Minimum discount rate</field>
+            <field name="value">Minimum discontorecht</field>
+        </record>
+        <record id="actrca_404_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_404"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Discount commission</field>
+            <field name="value">Discontoprovisie</field>
+        </record>
+        <record id="actrca_405_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_405"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Bill guarantee commission</field>
+            <field name="value">Avalprovisie</field>
+        </record>
+        <record id="actrca_406_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_406"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Collection charges</field>
+            <field name="value">Incassokosten</field>
+        </record>
+        <record id="actrca_407_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_407"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Costs Article 45</field>
+            <field name="value">Kosten artikel 45</field>
+        </record>
+        <record id="actrca_408_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_408"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Cover commission</field>
+            <field name="value">Dekkingsprovisie</field>
+        </record>
+        <record id="actrca_409_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_409"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Safe deposit charges</field>
+            <field name="value">Kosten bewaring</field>
+        </record>
+        <record id="actrca_410_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_410"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Reclamation charges</field>
+            <field name="value">Terugvragingskosten</field>
+        </record>
+        <record id="actrca_411_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_411"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Fixed collection charge</field>
+            <field name="value">Vast incassorecht</field>
+        </record>
+        <record id="actrca_412_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_412"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Advice of expiry charges</field>
+            <field name="value">Kosten bericht van afloop</field>
+        </record>
+        <record id="actrca_413_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_413"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Acceptance charges</field>
+            <field name="value">Acceptkosten</field>
+        </record>
+        <record id="actrca_414_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_414"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Regularisation charges</field>
+            <field name="value">Regularisatiekosten</field>
+        </record>
+        <record id="actrca_415_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_415"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Surety fee</field>
+            <field name="value">Borgstellingsprovisie</field>
+        </record>
+        <record id="actrca_416_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_416"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Charges for the deposit of security</field>
+            <field name="value">Kosten voor neerlegging van borg</field>
+        </record>
+        <record id="actrca_418_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_418"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Endorsement commission</field>
+            <field name="value">Endosseringsprovisie</field>
+        </record>
+        <record id="actrca_419_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_419"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Bank service fee</field>
+            <field name="value">Tussenkomstprovisie</field>
+        </record>
+        <record id="actrca_420_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_420"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Retention charges</field>
+            <field name="value">Kosten voor inhouding</field>
+        </record>
+        <record id="actrca_425_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_425"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Foreign broker's commission</field>
+            <field name="value">Buitenlandse makelaarsprovisie</field>
+        </record>
+        <record id="actrca_426_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_426"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Belgian broker's commission</field>
+            <field name="value">Belgische makelaarsprovisie</field>
+        </record>
+        <record id="actrca_427_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_427"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Belgian Stock Exchange tax</field>
+            <field name="value">Belgische beursbelasting</field>
+        </record>
+        <record id="actrca_428_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_428"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Interest accrued</field>
+            <field name="value">Opgelopen renten</field>
+        </record>
+        <record id="actrca_429_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_429"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Foreign Stock Exchange tax</field>
+            <field name="value">Buitenlandse beursbelasting</field>
+        </record>
+        <record id="actrca_430_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_430"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Recovery of foreign tax</field>
+            <field name="value">Recuperatie buitenlandse belasting</field>
+        </record>
+        <record id="actrca_431_nl_NL" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_431"/>
+            <field name="lang">nl_NL</field>
+            <field name="src">Delivery of a copy</field>
+            <field name="value">Aflevering kopie</field>
+        </record>
+
+        <!-- ir.translation -->
+        <record id="actrca_000_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_000"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Net amount</field>
+            <field name="value">Montant net</field>
+        </record>
+        <record id="actrca_001_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_001"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Interest received</field>
+            <field name="value">Intérêts crédités</field>
+        </record>
+        <record id="actrca_002_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_002"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Interest paid</field>
+            <field name="value">Intérêts débités</field>
+        </record>
+        <record id="actrca_003_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_003"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit commission</field>
+            <field name="value">Commission de crédit</field>
+        </record>
+        <record id="actrca_004_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_004"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Postage</field>
+            <field name="value">Frais de port</field>
+        </record>
+        <record id="actrca_005_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_005"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Renting of letterbox</field>
+            <field name="value">Loyer boîte courrier</field>
+        </record>
+        <record id="actrca_006_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_006"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Various fees/commissions</field>
+            <field name="value">Commissions et frais divers</field>
+        </record>
+        <record id="actrca_007_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_007"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Access right to database</field>
+            <field name="value">Droit d'accès banque de données</field>
+        </record>
+        <record id="actrca_008_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_008"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Information charges</field>
+            <field name="value">Frais pour renseignements</field>
+        </record>
+        <record id="actrca_009_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_009"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Travelling expenses</field>
+            <field name="value">Frais de déplacement</field>
+        </record>
+        <record id="actrca_010_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_010"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Writ service fee</field>
+            <field name="value">Frais d'huissier</field>
+        </record>
+        <record id="actrca_011_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_011"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">VAT</field>
+            <field name="value">TVA</field>
+        </record>
+        <record id="actrca_012_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_012"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Exchange commission</field>
+            <field name="value">Commission de change</field>
+        </record>
+        <record id="actrca_013_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_013"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Payment commission</field>
+            <field name="value">Commission de paiement</field>
+        </record>
+        <record id="actrca_014_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_014"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Collection commission</field>
+            <field name="value">Commission d'encaissement</field>
+        </record>
+        <record id="actrca_015_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_015"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Correspondent charges</field>
+            <field name="value">Frais correspondant</field>
+        </record>
+        <record id="actrca_016_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_016"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">BLIW/IBLC dues</field>
+            <field name="value">Redevance I.B.L.C.</field>
+        </record>
+        <record id="actrca_017_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_017"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Research costs</field>
+            <field name="value">Frais d'étude</field>
+        </record>
+        <record id="actrca_018_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_018"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Tental guarantee charges</field>
+            <field name="value">Frais pour garantie locative</field>
+        </record>
+        <record id="actrca_019_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_019"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Tax on physical delivery</field>
+            <field name="value">Taxe livraison matérielle</field>
+        </record>
+        <record id="actrca_020_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_020"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Costs of physical delivery</field>
+            <field name="value">Coûts livraison matérielle</field>
+        </record>
+        <record id="actrca_021_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_021"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Costs for drawing up a bank cheque</field>
+            <field name="value">Frais confection chèque bancaire</field>
+        </record>
+        <record id="actrca_022_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_022"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Priority costs</field>
+            <field name="value">Frais de priorité</field>
+        </record>
+        <record id="actrca_023_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_023"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Exercising fee</field>
+            <field name="value">Commission d'exercice</field>
+        </record>
+        <record id="actrca_024_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_024"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Growth premium</field>
+            <field name="value">Prime de croissance</field>
+        </record>
+        <record id="actrca_025_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_025"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Individual entry for exchange charges</field>
+            <field name="value">Comptab. indiv. de frais de change</field>
+        </record>
+        <record id="actrca_026_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_026"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Handling commission</field>
+            <field name="value">Commission de manipulation</field>
+        </record>
+        <record id="actrca_027_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_027"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges for unpaid bills</field>
+            <field name="value">Frais traites impayées</field>
+        </record>
+        <record id="actrca_028_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_028"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fidelity premium</field>
+            <field name="value">Prime de fidélité</field>
+        </record>
+        <record id="actrca_029_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_029"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Protest charges</field>
+            <field name="value">Frais de protêt</field>
+        </record>
+        <record id="actrca_030_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_030"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Account insurance</field>
+            <field name="value">Assurance compte</field>
+        </record>
+        <record id="actrca_031_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_031"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges foreign cheque</field>
+            <field name="value">Frais chèque étranger</field>
+        </record>
+        <record id="actrca_032_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_032"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Drawing up a circular cheque</field>
+            <field name="value">Confection chèque circulaire</field>
+        </record>
+        <record id="actrca_033_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_033"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges for a foreign bill</field>
+            <field name="value">Frais effet étranger</field>
+        </record>
+        <record id="actrca_034_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_034"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Reinvestment fee</field>
+            <field name="value">Indemnité de remploi</field>
+        </record>
+        <record id="actrca_035_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_035"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges foreign documentary bill</field>
+            <field name="value">Frais effet documentaire étranger</field>
+        </record>
+        <record id="actrca_036_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_036"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Costs relating to a refused cheque</field>
+            <field name="value">Frais chèque refusé</field>
+        </record>
+        <record id="actrca_037_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_037"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Commission for handling charges</field>
+            <field name="value">Commission pour frais de dossier</field>
+        </record>
+        <record id="actrca_039_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_039"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Telecommunications</field>
+            <field name="value">Télécommunications</field>
+        </record>
+        <record id="actrca_041_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_041"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit card costs</field>
+            <field name="value">Frais carte de crédit</field>
+        </record>
+        <record id="actrca_042_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_042"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Payment card costs</field>
+            <field name="value">Frais carte de paiement</field>
+        </record>
+        <record id="actrca_043_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_043"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Insurance costs</field>
+            <field name="value">Frais d'assurance</field>
+        </record>
+        <record id="actrca_045_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_045"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Handling costs</field>
+            <field name="value">Frais de dossier</field>
+        </record>
+        <record id="actrca_047_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_047"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges extension bill</field>
+            <field name="value">Frais de prolongation d'un effet</field>
+        </record>
+        <record id="actrca_049_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_049"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fiscal stamps/stamp duty</field>
+            <field name="value">Timbres fiscaux/droit de timbre</field>
+        </record>
+        <record id="actrca_050_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_050"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Capital term investment</field>
+            <field name="value">Capital placement à terme</field>
+        </record>
+        <record id="actrca_051_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_051"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Withholding tax</field>
+            <field name="value">Précompte mobilier</field>
+        </record>
+        <record id="actrca_052_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_052"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Residence state tax</field>
+            <field name="value">Prélèvement (européen) pour l’Etat de résidence</field>
+        </record>
+        <record id="actrca_053_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_053"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Printing of forms</field>
+            <field name="value">Confection de formulaires</field>
+        </record>
+        <record id="actrca_055_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_055"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Repayment loan or credit capital</field>
+            <field name="value">Amortis. capital d'un prêt ou d'un crédit</field>
+        </record>
+        <record id="actrca_057_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_057"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Interest subsidy</field>
+            <field name="value">Subvention en intérêts</field>
+        </record>
+        <record id="actrca_058_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_058"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Capital premium</field>
+            <field name="value">Prime de capital</field>
+        </record>
+        <record id="actrca_059_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_059"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Default interest</field>
+            <field name="value">Intérêts moratoires</field>
+        </record>
+        <record id="actrca_061_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_061"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charging fees for transactions</field>
+            <field name="value">Tarification d'opérations</field>
+        </record>
+        <record id="actrca_063_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_063"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Rounding differences</field>
+            <field name="value">Différences d'arrondi</field>
+        </record>
+        <record id="actrca_065_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_065"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Interest payment advice</field>
+            <field name="value">Avis de bonification</field>
+        </record>
+        <record id="actrca_066_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_066"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fixed loan advance - reimbursement</field>
+            <field name="value">Acompte fixe crédits – remboursement</field>
+        </record>
+        <record id="actrca_067_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_067"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fixed loan advance - extension</field>
+            <field name="value">Acompte fixe crédits – prolongation</field>
+        </record>
+        <record id="actrca_068_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_068"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Countervalue of an entry</field>
+            <field name="value">Contre-valeur d'une écriture</field>
+        </record>
+        <record id="actrca_069_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_069"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Forward arbitrage contracts : sum to be supplied by customer</field>
+            <field name="value">Contrats à terme arbitrage : somme à payer par le client</field>
+        </record>
+        <record id="actrca_070_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_070"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Forward arbitrage contracts : sum to be supplied by bank</field>
+            <field name="value">Contrats à terme arbitrage : somme à payer par la banque</field>
+        </record>
+        <record id="actrca_071_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_071"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fixed loan advance - availability</field>
+            <field name="value">Acompte fixe crédits – mise à disposition</field>
+        </record>
+        <record id="actrca_072_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_072"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Countervalue of commission to third party</field>
+            <field name="value">Contre-valeur commissions à des tiers</field>
+        </record>
+        <record id="actrca_073_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_073"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Costs of ATM abroad</field>
+            <field name="value">Coûts guichets automatiques étrangers</field>
+        </record>
+        <record id="actrca_074_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_074"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Mailing costs</field>
+            <field name="value">Coûts de courrier</field>
+        </record>
+        <record id="actrca_100_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_100"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Gross amount</field>
+            <field name="value">Montant brut</field>
+        </record>
+        <record id="actrca_200_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_200"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Overall documentary credit charges</field>
+            <field name="value">Frais de crédit documentaire global</field>
+        </record>
+        <record id="actrca_201_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_201"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Advice notice commission</field>
+            <field name="value">Commission de préavis</field>
+        </record>
+        <record id="actrca_202_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_202"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Advising commission | Additional advising commission</field>
+            <field name="value">Commission de notification | Commission de notification additionnelle</field>
+        </record>
+        <record id="actrca_203_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_203"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Confirmation fee | Additional confirmation fee | Commitment fee | Flat fee | Confirmation reservation commission | Additional reservation commission</field>
+            <field name="value">Commission de confirmation | Commission de confirmation additionnelle | Commission d'engagement | Commission flat | Commission de réservation de confirmation | Commission de réservation additionnelle</field>
+        </record>
+        <record id="actrca_204_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_204"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Amendment fee</field>
+            <field name="value">Commission de modification</field>
+        </record>
+        <record id="actrca_205_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_205"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Documentary payment commission | Document commission | Drawdown fee | Negotiation fee</field>
+            <field name="value">Commission de paiement documentaire | Commission documentaire | Commission d'utilisation | Commission de négociation</field>
+        </record>
+        <record id="actrca_206_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_206"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Surety fee/payment under reserve</field>
+            <field name="value">Commission pour garanties/paiement sous réserve</field>
+        </record>
+        <record id="actrca_207_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_207"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Non-conformity fee</field>
+            <field name="value">Commission pour divergences</field>
+        </record>
+        <record id="actrca_208_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_208"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Commitment fee deferred payment</field>
+            <field name="value">Commission d'engagement paiement différé</field>
+        </record>
+        <record id="actrca_209_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_209"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Transfer commission</field>
+            <field name="value">Commission de transfert</field>
+        </record>
+        <record id="actrca_210_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_210"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Commitment fee</field>
+            <field name="value">Commission de mise à disposition</field>
+        </record>
+        <record id="actrca_211_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_211"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Credit arrangement fee | Additional credit arrangement fee</field>
+            <field name="value">Commission d'ouverture de crédit | Commission d'ouverture de crédit additionnelle</field>
+        </record>
+        <record id="actrca_212_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_212"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Warehousing fee</field>
+            <field name="value">Commission de d’entreposage</field>
+        </record>
+        <record id="actrca_213_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_213"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Financing fee</field>
+            <field name="value">Commission de financement</field>
+        </record>
+        <record id="actrca_214_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_214"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Issue commission (delivery order)</field>
+            <field name="value">Commission d'émission (laissez-suivre)</field>
+        </record>
+        <record id="actrca_400_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_400"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Acceptance fee</field>
+            <field name="value">Commission d'acceptation</field>
+        </record>
+        <record id="actrca_401_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_401"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Visa charges</field>
+            <field name="value">Frais de visa</field>
+        </record>
+        <record id="actrca_402_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_402"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Certification costs</field>
+            <field name="value">Frais de certification</field>
+        </record>
+        <record id="actrca_403_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_403"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Minimum discount rate</field>
+            <field name="value">Droit minimum d'escompte</field>
+        </record>
+        <record id="actrca_404_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_404"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Discount commission</field>
+            <field name="value">Commission d'escompte</field>
+        </record>
+        <record id="actrca_405_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_405"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Bill guarantee commission</field>
+            <field name="value">Commission d'aval</field>
+        </record>
+        <record id="actrca_406_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_406"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Collection charges</field>
+            <field name="value">Frais de recouvrement</field>
+        </record>
+        <record id="actrca_407_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_407"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Costs Article 45</field>
+            <field name="value">Frais d'article 45</field>
+        </record>
+        <record id="actrca_408_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_408"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Cover commission</field>
+            <field name="value">Commission de couverture</field>
+        </record>
+        <record id="actrca_409_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_409"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Safe deposit charges</field>
+            <field name="value">Frais de garde</field>
+        </record>
+        <record id="actrca_410_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_410"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Reclamation charges</field>
+            <field name="value">Frais de retour</field>
+        </record>
+        <record id="actrca_411_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_411"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Fixed collection charge</field>
+            <field name="value">Droit fixe d'encaissement</field>
+        </record>
+        <record id="actrca_412_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_412"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Advice of expiry charges</field>
+            <field name="value">Frais d'avis d'expiration</field>
+        </record>
+        <record id="actrca_413_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_413"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Acceptance charges</field>
+            <field name="value">Frais d'acceptation</field>
+        </record>
+        <record id="actrca_414_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_414"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Regularisation charges</field>
+            <field name="value">Frais de régularisation</field>
+        </record>
+        <record id="actrca_415_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_415"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Surety fee</field>
+            <field name="value">Commission de cautionnement</field>
+        </record>
+        <record id="actrca_416_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_416"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Charges for the deposit of security</field>
+            <field name="value">Frais de dépôt de caution</field>
+        </record>
+        <record id="actrca_418_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_418"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Endorsement commission</field>
+            <field name="value">Commission d'endossement</field>
+        </record>
+        <record id="actrca_419_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_419"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Bank service fee</field>
+            <field name="value">Commission d'intervention</field>
+        </record>
+        <record id="actrca_420_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_420"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Retention charges</field>
+            <field name="value">Frais de retenue</field>
+        </record>
+        <record id="actrca_425_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_425"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Foreign broker's commission</field>
+            <field name="value">Courtage étranger</field>
+        </record>
+        <record id="actrca_426_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_426"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Belgian broker's commission</field>
+            <field name="value">Courtage belge</field>
+        </record>
+        <record id="actrca_427_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_427"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Belgian Stock Exchange tax</field>
+            <field name="value">Taxe boursière belge</field>
+        </record>
+        <record id="actrca_428_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_428"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Interest accrued</field>
+            <field name="value">Intérêts courus</field>
+        </record>
+        <record id="actrca_429_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_429"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Foreign Stock Exchange tax</field>
+            <field name="value">Taxe boursière étrangère</field>
+        </record>
+        <record id="actrca_430_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_430"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Recovery of foreign tax</field>
+            <field name="value">Récupération taxe étrangère</field>
+        </record>
+        <record id="actrca_431_fr_FR" model="ir.translation">
+            <field name="name">account.coda.trans.category,description</field>
+            <field name="type">model</field>
+            <field name="res_id" ref="actrca_431"/>
+            <field name="lang">fr_FR</field>
+            <field name="src">Delivery of a copy</field>
+            <field name="value">Livraison copie</field>
+        </record>
+
+    </data>
+</openerp>

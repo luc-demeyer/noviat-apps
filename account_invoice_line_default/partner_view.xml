@@ -7,13 +7,15 @@
       <field name="name">res.partner.property.form.inherit</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="account.view_partner_property_form"/>
+      <field name="type">form</field>
       <field name="arch" type="xml">
-        <field name="property_account_receivable" position="after">
-          <field name="property_out_inv_acc"/>
-        </field>
-        <field name="property_account_payable" position="after">
-          <field name="property_in_inv_acc"/>
-        </field>
+        <page string="Accounting" position="after">
+          <page string="Accounting+">
+            <field name="property_in_inv_acc"/>
+            <newline/>
+            <field name="property_out_inv_acc"/>
+          </page>
+        </page>
       </field>
     </record>
 
