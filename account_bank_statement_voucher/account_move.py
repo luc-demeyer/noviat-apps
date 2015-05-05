@@ -142,7 +142,7 @@ class account_move_line(orm.Model):
         for move_line in self.browse(cr, uid, ids, context):
             st = move_line.statement_id
             if st and st.state == 'confirm':
-                if vals.keys() not in [['reconcile_id'],['reconcile_partial_id']]:
+                if vals.keys() not in [['reconcile_id'],['reconcile_partial_id'],['followup_date', 'followup_line_id']]:
                     raise orm.except_orm('Warning', _('Operation not allowed ! \
                         \nYou cannot modify an Accounting Entry that is linked to a Confirmed Bank Statement. \
                         \nStatement = %s\nMove = %s (id:%s)\nUpdate Values = %s') 
