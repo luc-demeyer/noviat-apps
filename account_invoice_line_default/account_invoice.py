@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2011-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -62,13 +62,14 @@ class account_invoice_line(models.Model):
             partner_id=False, fposition_id=False, price_unit=False,
             currency_id=False, company_id=None):
         res = super(account_invoice_line, self).product_id_change(
-            product, uom_id, qty, name, type,
-            partner_id, fposition_id, price_unit, currency_id,
-            company_id)
+            product, uom_id, qty=qty, name=name, type=type,
+            partner_id=partner_id, fposition_id=fposition_id,
+            price_unit=price_unit, currency_id=currency_id,
+            company_id=company_id)
         ctx = self._context
         if ctx.get('account_invoice_line_default'):
             vals = res['value']
-            if not res.get('account_id'):
+            if not vals.get('account_id'):
                 if ctx.get('inv_partner_id'):
                     partner = self.env['res.partner'].browse(
                         ctx['inv_partner_id'])
