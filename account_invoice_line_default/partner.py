@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -44,4 +44,3 @@ class res_partner(orm.Model):
             domain=[('type','<>','view'), ('type', '<>', 'closed')],
             help="Default Account on outgoing Invoices."),
     }
-

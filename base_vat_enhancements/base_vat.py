@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,6 @@
 from openerp.osv import orm
 from openerp.tools.translate import _
 from openerp.addons.base_vat.base_vat import _ref_vat
-import string
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -55,28 +54,33 @@ class res_partner(orm.Model):
         vat_country, vat_number = self._split_vat(vat)
         return check_func(cr, uid, vat_country, vat_number, context=context)
 
+    def _vat_check_errmsg(self, cr, uid, vat, partner_name, context=None):
+        vat_no = "'CC##' (CC=Country Code, ##=VAT Number)"
+        msg = _("VAT number validation for partner '%s' "
+                "with VAT number '%s' failed.") % (partner_name, vat)
+        msg += '\n'
+        vat_country, vat_number = self._split_vat(vat)
+        if vat_country.isalpha():
+            vat_no = _ref_vat[vat_country] \
+                if vat_country in _ref_vat else vat_no
+            check_vies = self.pool['res.users'].browse(
+                cr, uid, uid).company_id.vat_check_vies
+            if check_vies:
+                msg += _("The VAT number either failed the "
+                         "VIES VAT validation check or did "
+                         "not respect the expected format %s.") % vat_no
+                return msg
+        msg += _("This VAT number does not seem to be "
+                 "valid.\nNote: the expected format is %s") % vat_no
+        return msg
+
     def create(self, cr, uid, vals, context=None):
         """ add vat check to create """
         if vals.get('vat'):
             if not self._check_vat(cr, uid, vals['vat'], context):
-                msg = _("VAT number validation for partner '%s' "
-                        "with VAT number '%s' failed.") \
-                    % (vals.get('name', ''), vals['vat'])
-
-                def default_vat_check(cn, vn):
-                    # by default, a VAT number is valid if:
-                    #  it starts with 2 letters
-                    #  has more than 3 characters
-                    return cn[0] in string.ascii_lowercase and \
-                        cn[1] in string.ascii_lowercase
-
-                vat_country, vat_number = self._split_vat(vals['vat'])
-                vat_no = "'CC##' (CC=Country Code, ##=VAT Number)"
-                if default_vat_check(vat_country, vat_number):
-                    vat_no = _ref_vat[vat_country] if \
-                        vat_country in _ref_vat else vat_no
-                msg += '\n' + _("This VAT number does not seem to be valid."
-                                "\nNote: the expected format is %s") % vat_no
+                msg = self._vat_check_errmsg(
+                    cr, uid, vals['vat'], vals.get('name', ''),
+                    context=context)
                 raise orm.except_orm(_('Error'), msg)
             vals['vat'] = vals['vat'].replace(' ', '').upper()
         return super(res_partner, self).create(cr, uid, vals, context=context)
@@ -88,11 +92,9 @@ class res_partner(orm.Model):
         if ids and vals.get('vat'):
             if not self._check_vat(cr, uid, vals['vat'], context):
                 partner = self.browse(cr, uid, ids[0], context=context)
-                msg = _("VAT number validation for partner '%s' "
-                        "with VAT number '%s' failed.") \
-                    % (vals.get('name', partner.name), vals['vat'])
-                msg += self._construct_constraint_msg(
-                    cr, uid, [partner.id], context=context)
+                partner_name = vals.get('name') or partner.name
+                msg = self._vat_check_errmsg(
+                    cr, uid, vals['vat'], partner_name, context=context)
                 raise orm.except_orm(_('Error'), msg)
             vals['vat'] = vals['vat'].replace(' ', '').upper()
         return super(res_partner, self).write(
@@ -100,8 +102,9 @@ class res_partner(orm.Model):
 
     def button_check_vat(self, cr, uid, ids, context=None):
         if not self.check_vat(cr, uid, ids, context=context):
-            msg = self._construct_constraint_msg(
-                cr, uid, ids, context=context)
+            partner = self.browse(cr, uid, ids[0], context=context)
+            msg = self._vat_check_errmsg(
+                cr, uid, partner.vat, partner.name or "", context=context)
             raise orm.except_orm(_('Error'), msg)
         else:
             raise orm.except_orm(
@@ -113,8 +116,8 @@ class res_partner(orm.Model):
         """
         normalise vat argument before search
         """
-        for arg in args:
+        for i, arg in enumerate(args):
             if arg[0] == 'vat' and arg[2]:
-                arg = (arg[0], arg[1], arg[2].replace(' ', '').upper())
+                args[i] = (arg[0], arg[1], arg[2].replace(' ', '').upper())
         return super(res_partner, self).search(
             cr, uid, args, offset, limit, order, context=context, count=count)
