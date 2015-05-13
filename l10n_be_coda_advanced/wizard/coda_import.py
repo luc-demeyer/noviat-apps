@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -1263,9 +1263,6 @@ class account_coda_import(orm.TransientModel):
 
         elif line['type'] == 'communication':
 
-            line['note'] = _(
-                "Free Communication:\n %s") % (line['communication'])
-
             if coda_statement['type'] == 'info':
                 coda_st_line_obj.create(cr, uid, {
                     'sequence': line['sequence'],
@@ -1274,10 +1271,10 @@ class account_coda_import(orm.TransientModel):
                     'type': 'communication',
                     'date': coda_statement['date'],
                     'statement_id': coda_statement['coda_st_id'],
-                    'note': line['note'],
+                    'note': line['communication'],
                     })
             else:
-                coda_statement['coda_note'] += '\n' + line['note']
+                coda_statement['coda_note'] += '\n' + line['communication']
 
         coda_statement['glob_id_stack'] = glob_id_stack
         return create_bank_st_line
@@ -1647,7 +1644,7 @@ class account_coda_import(orm.TransientModel):
             if coda_statement['type'] == 'normal' \
                     and coda_statement['coda_note']:
                 bank_st_obj.write(
-                    cr, uid, coda_statement['bk_st_id'],
+                    cr, uid, coda_statement['bank_st_id'],
                     {'coda_note': coda_statement['coda_note']})
 
             # commit after each statement in the coda file
@@ -1953,9 +1950,12 @@ class account_coda_import(orm.TransientModel):
             partner_bank_ids2 = []
             for pb in partner_banks:
                 add_pb = True
+                pb_partner = pb.partner_id
+                if not pb_partner.is_company and not pb_partner.parent_id:
+                    add_pb = False
                 try:
-                    if pb.partner_id.company_id and (
-                            pb.partner_id.company_id.id
+                    if pb_partner.company_id and (
+                            pb_partner.company_id.id
                             != coda_statement['company_id']):
                         add_pb = False
                 except:
