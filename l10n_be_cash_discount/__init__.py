@@ -16,22 +16,9 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-{
-    'name': 'Journal Items Search Extension',
-    'version': '0.5',
-    'license': 'AGPL-3',
-    'author': 'Noviat',
-    'category': 'Accounting & Finance',
-    'depends': ['account'],
-    'data': [
-        'account_view.xml',
-        'views/account.xml',
-    ],
-    'qweb': [
-        'static/src/xml/account_move_line_search_extension.xml',
-    ],
-}
+from . import res_company
+from . import account_invoice

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="invoice_form_cd" model="ir.ui.view">
+        <field name="name">invoice.form.cd</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+          <data>
+            <field name="amount_total" position="after">
+              <field name="percent_cd"/>
+              <field name="amount_cd"/>
+            </field>
+            <field name="date_due" position="after">
+              <field name="date_cd"/>
+            </field>
+          </data>
+        </field>
+      </record>
+
+      <record id="supplier_invoice_form_cd" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.cd</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+          <data>
+            <field name="amount_total" position="after">
+              <field name="percent_cd"/>
+              <field name="amount_cd"/>
+            </field>
+          </data>
+        </field>
+      </record>
+            
+    </data>
+</openerp>

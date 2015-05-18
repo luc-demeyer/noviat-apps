@@ -16,22 +16,22 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
 {
-    'name': 'Journal Items Search Extension',
-    'version': '0.5',
+    'name': 'Belgian Cash Discount',
+    'version': '0.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
+    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
-    'depends': ['account'],
-    'data': [
-        'account_view.xml',
-        'views/account.xml',
+    'depends': [
+        'account',
     ],
-    'qweb': [
-        'static/src/xml/account_move_line_search_extension.xml',
+    'data': [
+        'company_view.xml',
+        'account_invoice_view.xml',
     ],
 }

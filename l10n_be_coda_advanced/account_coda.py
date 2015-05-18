@@ -35,7 +35,7 @@ class coda_bank_account(orm.Model):
         obj_cba = self.browse(cr, uid, ids[0], context=context)
         if (obj_cba.state == 'normal') and obj_cba.journal_id:
             if obj_cba.journal_id.currency and \
-                    (obj_cba.currency != obj_cba.journal_id.currency):
+                    (obj_cba.currency_id != obj_cba.journal_id.currency):
                 return False
             if not obj_cba.journal_id.currency and \
                     (obj_cba.currency_id != obj_cba.company_id.currency_id):

@@ -33,8 +33,8 @@ _logger = logging.getLogger(__name__)
 class bank_statement_balance_report(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
-        _logger.warn('set_context, objects = %s, data = %s, ids = %s',
-                     objects, data, ids)
+        # _logger.warn('set_context, objects = %s, data = %s, ids = %s',
+        #              objects, data, ids)
         data = objects[0]
         cr = data._cr
         uid = data._uid
