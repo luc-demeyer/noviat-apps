@@ -255,20 +255,7 @@ class partner_vat_list(orm.TransientModel):
 
         data_file = """<?xml version="1.0" encoding="ISO-8859-1"?>
 <ns2:ClientListingConsignment xmlns="http://www.minfin.fgov.be/InputCommon" xmlns:ns2="http://www.minfin.fgov.be/ClientListingConsignment" ClientListingsNbr="1">
-    <ns2:Representative>
-        <RepresentativeID identificationType="NVAT" issuedBy="%(issued_by)s">%(SenderId)s</RepresentativeID>
-        <Name>%(comp_name)s</Name>
-        <Street>%(street)s</Street>
-        <PostCode>%(zip)s</PostCode>
-        <City>%(city)s</City>"""
-        if annual_listing_data['country']:
-            data_file += "\n\t\t<CountryCode>%(country)s</CountryCode>"
-        data_file += """
-        <EmailAddress>%(email)s</EmailAddress>
-        <Phone>%(phone)s</Phone>
-    </ns2:Representative>"""
-        data_file = data_file % annual_listing_data
-
+        """
         data_comp = """
         <ns2:Declarant>
             <VATNumber>%(SenderId)s</VATNumber>

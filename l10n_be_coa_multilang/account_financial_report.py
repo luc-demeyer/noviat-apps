@@ -205,10 +205,10 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         upd_ctx = {'update_be_reportscheme': True}
         scheme_table = self.env['be.legal.financial.reportscheme'].search([])
         be_report_ids = [x.report_id.id for x in scheme_table]
-        accounts = self.env['account.account'].search(
+        accounts = self.env['account.account'].with_context(upd_ctx).search(
             ['|', ('type', '!=', 'view'), '&', ('type', '=', 'view'),
              ('centralized', '=', True)]
-            ).with_context(upd_ctx)
+            )
 
         # delete old reporting configuration
         account_ids = [x.id for x in accounts]

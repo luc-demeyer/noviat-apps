@@ -5,7 +5,7 @@
       <field name="name">Partner VAT Listing</field>
       <field name="model">partner.vat</field>
       <field name="arch" type="xml">
-        <form string="Partner VAT Listing" version="7.0">
+        <form string="Partner VAT Listing">
           <p class="oe_grey">
             This wizard will create an XML file for VAT details and total invoiced amounts per partner.
           </p>
@@ -38,7 +38,11 @@
       <field name="name">Vat Listing</field>
       <field name="model">partner.vat.list</field>
       <field name="arch" type="xml">
-        <form string="Annual Listing of VAT-Subjected Customers" version="7.0">
+        <form string="Annual Listing of VAT-Subjected Customers">
+          <header>
+            <button name="create_xml" string="Create XML" type="object" class="oe_highlight"/>
+            <button name="print_vatlist" string="Print" type="object" icon="gtk-print"/>
+          </header>
           <notebook colspan="4">
             <page string="Customer List">
               <separator string="Customers" colspan="4"/>
@@ -49,10 +53,6 @@
               <field name="comments" colspan="4" nolabel="1"/>
             </page>
           </notebook>
-          <footer>
-            <button name="create_xml" string="Create XML" type="object" class="oe_highlight"/>
-            <button name="print_vatlist" string="Print" type="object"  icon="gtk-print"/>
-          </footer>
         </form>
       </field>
     </record>
@@ -62,7 +62,7 @@
       <field name="model">partner.vat.list</field>
       <field name="priority" eval="1"/>
       <field name="arch" type="xml">
-        <form string="XML File has been Created." version="7.0">
+        <form string="XML File has been Created.">
           <header>
             <button name="print_vatlist" string="Print" type="object" class="oe_highlight"/>
             or
