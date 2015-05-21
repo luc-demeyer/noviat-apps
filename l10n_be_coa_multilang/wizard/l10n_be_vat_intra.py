@@ -245,18 +245,7 @@ class partner_vat_intra(orm.TransientModel):
         # Can't we do this by etree?
         data_head = """<?xml version="1.0" encoding="ISO-8859-1"?>
 <ns2:IntraConsignment xmlns="http://www.minfin.fgov.be/InputCommon" xmlns:ns2="http://www.minfin.fgov.be/IntraConsignment" IntraListingsNbr="1">
-    <ns2:Representative>
-        <RepresentativeID identificationType="NVAT" issuedBy="%(issued_by)s">%(company_vat)s</RepresentativeID>
-        <Name>%(company_name)s</Name>
-        <Street>%(street)s</Street>
-        <PostCode>%(post_code)s</PostCode>
-        <City>%(city)s</City>
-        <CountryCode>%(country)s</CountryCode>
-        <EmailAddress>%(email)s</EmailAddress>
-        <Phone>%(phone)s</Phone>
-    </ns2:Representative>""" % (xml_data)
-        #if xml_data['mand_id']:
-        #    data_head += '\n\t\t<ns2:RepresentativeReference>%(mand_id)s</ns2:RepresentativeReference>' % (xml_data)
+        """
         data_comp_period = '\n\t\t<ns2:Declarant>\n\t\t\t<VATNumber>%(vatnum)s</VATNumber>\n\t\t\t<Name>%(company_name)s</Name>\n\t\t\t<Street>%(street)s</Street>\n\t\t\t<PostCode>%(post_code)s</PostCode>\n\t\t\t<City>%(city)s</City>\n\t\t\t<CountryCode>%(country)s</CountryCode>\n\t\t\t<EmailAddress>%(email)s</EmailAddress>\n\t\t\t<Phone>%(phone)s</Phone>\n\t\t</ns2:Declarant>' % (xml_data)
 
         if xml_data['period_code']:
