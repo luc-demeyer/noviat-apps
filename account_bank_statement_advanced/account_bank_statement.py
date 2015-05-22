@@ -227,13 +227,6 @@ class account_bank_statement_line(models.Model):
     partner_id = fields.Many2one(
         domain=['|', ('parent_id', '=', False), ('is_company', '=', True)])
 
-
-    def reload_page(self):
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
-
     @api.multi
     def action_cancel(self):
         """
@@ -243,7 +236,7 @@ class account_bank_statement_line(models.Model):
             if line.account_id:
                 line.account_id = False
         self.cancel()
-        return self.reload_page()
+        return True
 
     @api.multi
     def action_process(self):
@@ -298,4 +291,6 @@ class account_bank_statement_line(models.Model):
             else:
                 seq = 0
             vals['sequence'] = seq + 1
+        if not vals.get('name'):
+            vals['name'] = '/'
         return super(account_bank_statement_line, self).create(vals)

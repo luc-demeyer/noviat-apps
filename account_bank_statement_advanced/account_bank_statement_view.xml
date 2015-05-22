@@ -43,6 +43,9 @@
           <xpath expr="//sheet" position="attributes">
             <attribute name="class">oe_form_sheet_full_screen</attribute>
           </xpath>
+          <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']" position="attributes">
+            <attribute name="options">{'reload_on_button': true}</attribute>
+          </xpath>
           <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
             <attribute name="colors">blue:move_state!='posted';</attribute>
             <attribute name="editable"/>

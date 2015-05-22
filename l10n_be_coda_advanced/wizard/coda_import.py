@@ -1301,7 +1301,7 @@ class account_coda_import(orm.TransientModel):
         if line.get('account_id'):
             st_line_vals['account_id'] = line['account_id']
         if line.get('bank_account_id'):
-             st_line_vals['bank_account_id'] = line['bank_account_id']
+            st_line_vals['bank_account_id'] = line['bank_account_id']
 
         return st_line_vals
 
@@ -1312,8 +1312,10 @@ class account_coda_import(orm.TransientModel):
 
         st_line_vals = self._prepare_st_line_vals(
             cr, uid, coda_statement, line, context=context)
-        st_line_id = absl_obj.create(cr, uid, st_line_vals, context=context)
-        line['st_line_id'] = st_line_id
+        if st_line_vals.get('amount'):
+            st_line_id = absl_obj.create(
+                cr, uid, st_line_vals, context=context)
+            line['st_line_id'] = st_line_id
 
     def _create_move_and_reconcile(self, cr, uid, coda_statement, line,
                                    context=None):
@@ -1360,7 +1362,6 @@ class account_coda_import(orm.TransientModel):
             err_string = _('\nUnknown Error : ') + str(e)
         if err_string:
             coda_statement['coda_parsing_note'] += err_string
-
 
     def coda_parsing(self, cr, uid, ids, context=None,
                      codafile=None, codafilename=None, period_id=None,
