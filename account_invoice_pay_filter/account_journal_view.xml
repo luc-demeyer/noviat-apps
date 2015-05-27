@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="view_account_journal_pay_filter">
+      <field name="name">Journal Payment Method Filter</field>
+      <field name="model">account.journal</field>
+      <field name="inherit_id" ref="account.view_account_journal_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook[last()]" position="inside">
+          <page string="Invoice Payment Methods" attrs="{'invisible': [('type', 'not in', ['bank', 'cash'])]}">
+            <group>
+              <group>
+                <field name="payment_method_out"/>
+                <field name="payment_date_out"/>
+              </group>
+              <group>
+                <field name="payment_method_in"/>
+                <field name="payment_date_in"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

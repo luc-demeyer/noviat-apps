@@ -27,14 +27,14 @@ from lxml import etree
 class account_invoice(models.Model):
     _inherit = 'account.invoice'
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
+    @api.model
+    def fields_view_get(self, view_id=None, view_type=False,
+                        toolbar=False, submenu=False):
         res = super(account_invoice, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type,
-            context=context, toolbar=toolbar, submenu=False)
-        if not context:
-            context = {}
-        if not context.get('account_invoice_line_default', False):
+            view_id=view_id, view_type=view_type,
+            toolbar=toolbar, submenu=submenu)
+        context = self._context
+        if not context.get('account_invoice_line_default'):
             if view_type == 'form':
                 view_obj = etree.XML(res['arch'])
                 invoice_line = view_obj.xpath("//field[@name='invoice_line']")

@@ -1816,7 +1816,7 @@ class account_coda_import(orm.TransientModel):
                 "'%s'::text AS free_comm_digits FROM account_invoice) sq " \
                 "WHERE state = 'open' AND reference_type = 'bba' " \
                 "AND free_comm_digits LIKE" \
-                " '%%'||regexp_replace(reference, '\\\D', '', 'g')||'%%'" \
+                " '%%'||regexp_replace(reference, '\D', '', 'g')||'%%'" \
                 % (free_comm_digits)
             if line['amount'] > 0:
                 select2 = " AND type IN ('out_invoice', 'in_refund')"
