@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Open Receivables/Payables XLS export',
-    'version': '0.1',
+    'version': '0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

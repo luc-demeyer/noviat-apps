@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -57,7 +57,8 @@ class partner_open_arap_print(report_sxw.rml_parse):
         period_code = period.code
         title_prefix = _('Period') + ' %s : ' % period_code
         title_short_prefix = period_code
-        digits = self.pool['decimal.precision'].precision_get(cr, uid, 'Account')
+        digits = self.pool['decimal.precision'].precision_get(
+            cr, uid, 'Account')
 
         # perform query on selected period as well as preceding periods.
         period_date_start = period.date_start
@@ -82,18 +83,25 @@ class partner_open_arap_print(report_sxw.rml_parse):
             'title': title_prefix + _('Open Payables'),
             'title_short': title_short_prefix + ', ' + _('AP')}
 
-        query_start = "SELECT l.move_id as m_id, l.id as l_id, " \
-            "l.date as l_date, " \
-            "m.name as move_name, m.date as m_date, " \
-            "a.id as a_id, a.code as a_code, a.type as a_type, " \
-            "j.id as j_id, j.code as j_code, j.type as j_type, " \
-            "p.id as p_id, p.name as p_name, p.ref as p_ref, " \
-            "l.name as l_name, " \
-            "l.debit, l.credit, ai.date_due, " \
-            "l.reconcile_id, r.name as r_name, " \
-            "l.reconcile_partial_id, rp.name as rp_name, " \
-            "ai.internal_number as inv_number, b.name as st_number, " \
-            "v.number as voucher_number " \
+        # CASE statement on due date since standard Odoo accounting
+        # allows to change the date_maturity in the accounting entries
+        # on confirmed invoices (when using the account_cancel module).
+        # The CASE statement gives accounting entries priority
+        # over the invoice field.
+        query_start = "SELECT l.move_id AS m_id, l.id AS l_id, " \
+            "l.date AS l_date, " \
+            "m.name AS move_name, m.date AS m_date, " \
+            "a.id AS a_id, a.code AS a_code, a.type AS a_type, " \
+            "j.id AS j_id, j.code AS j_code, j.type AS j_type, " \
+            "p.id AS p_id, p.name AS p_name, p.ref AS p_ref, " \
+            "l.name AS l_name, " \
+            "l.debit, l.credit, " \
+            "(CASE WHEN l.date_maturity IS NOT NULL THEN l.date_maturity " \
+            "ELSE ai.date_due END) AS date_due," \
+            "l.reconcile_id, r.name AS r_name, " \
+            "l.reconcile_partial_id, rp.name AS rp_name, " \
+            "ai.internal_number AS inv_number, b.name AS st_number, " \
+            "v.number AS voucher_number " \
             "FROM account_move_line l " \
             "INNER JOIN account_journal j ON l.journal_id = j.id " \
             "INNER JOIN account_move m ON l.move_id = m.id " \
@@ -235,17 +243,19 @@ class partner_open_arap_print(report_sxw.rml_parse):
             'reports': reports,
             })
         super(partner_open_arap_print, self).set_context(
-            objects, data, ids, report_type)
+            objects, data, ids, report_type=report_type)
 
-    def formatLang_zero2blank(self, value, digits=None, date=False, date_time=False,
-                   grouping=True, monetary=False, dp=False,
-                   currency_obj=False):
+    def formatLang_zero2blank(self, value, digits=None, date=False,
+                              date_time=False, grouping=True, monetary=False,
+                              dp=False, currency_obj=False):
         if isinstance(value, (float, int)) and not value:
             return ''
         else:
             return super(partner_open_arap_print, self).formatLang(
-                value, digits, date, date_time, grouping,
-                monetary, dp, currency_obj)
+                value, digits=digits, date=date, date_time=date_time,
+                grouping=grouping, monetary=monetary, dp=dp,
+                currency_obj=currency_obj)
+
 
 class wrapped_vat_declaration_print(orm.AbstractModel):
     _name = 'report.account_open_receivables_payables_xls.report_open_arap'
