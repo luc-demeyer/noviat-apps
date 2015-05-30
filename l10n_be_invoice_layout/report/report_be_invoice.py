@@ -42,11 +42,11 @@ class be_invoice(report_sxw.rml_parse):
         self.context = context
 
     def _format_vat(self, vat):
-        res = vat or ''
+        vat = vat or ''
         vat = vat.replace(' ', '').upper()
         if vat[0:2] == 'BE':
-            res = vat[0:2] + ' ' + '.'.join([vat[2:6], vat[6:9], vat[9:12]])
-        return res
+            vat = vat[0:2] + ' ' + '.'.join([vat[2:6], vat[6:9], vat[9:12]])
+        return vat
 
     def _get_company_data(self, invoice):
         cpy = invoice.company_id
@@ -54,7 +54,7 @@ class be_invoice(report_sxw.rml_parse):
         add_country = p.country_id != invoice.partner_id.country_id
         res = '<b>' + p.name
         if p.title:
-            res += p.title.name
+            res += ' ' + p.title.name
         res += '</b><br/>' + self._get_address(p, add_country)
         if p.vat:
             res += '<br/>' + self._format_vat(p.vat)
@@ -70,7 +70,7 @@ class be_invoice(report_sxw.rml_parse):
         add_country = p.country_id != invoice.partner_id.country_id
         res = '<b>' + p_cpy.name
         if p_cpy.title:
-            res += p_cpy.title.name
+            res += ' ' + p_cpy.title.name
         res += '</b>'
         if p.parent_id and not p.is_company:
             res += '<br/>' + _("Attn.") + ' '
