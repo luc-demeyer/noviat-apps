@@ -26,7 +26,7 @@
     'author': 'Noviat',
     'category': 'Accounting & Finance',
     'depends': [
-        'account_move_line_search_extension',
+        'account',
     ],
     'data': [
         'account_move_line_view.xml',
