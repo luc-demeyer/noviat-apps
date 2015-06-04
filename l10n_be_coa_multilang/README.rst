@@ -31,6 +31,12 @@ This module activates the following functionality:
         - Improved multi-company support via 'active' and 'company_id'
           fields on 'account.account.type'
 
+Installation guidelines
+=======================
+
+In order to have the XBRL codes in the NBB/BNB legal reports, a patch must be installed on your Odoo instance (cf. https://github.com/odoo/odoo/pull/6923).
+Install the diff file distributed with this module (cf. doc/account_financial_report.diff).
+
 Configuration
 =============
 

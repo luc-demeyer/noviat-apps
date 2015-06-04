@@ -65,100 +65,16 @@ class report_financial_parser(report_account_common):
             objects, data, ids, report_type)
 
     def get_lines(self, data):
-        """
-        Method copied from account module in order to add 'code' field to vals.
-        """
-        lines = []
-        account_obj = self.pool['account.account']
-        currency_obj = self.pool['res.currency']
-        finrep_obj = self.pool['account.financial.report']
-        cr = self.cr
-        uid = self.uid
-        ids2 = finrep_obj._get_children_by_order(
-            cr, uid, [data['form']['account_report_id'][0]],
-            context=data['form']['used_context'])
-        for report in finrep_obj.browse(
-                cr, uid, ids2, context=data['form']['used_context']):
-            name = report.name
-            code = report.code or ''
-            if code:
-                name += ' - (' + code + ')'
-            vals = {
-                'code': report.code,
-                'name': name,
-                'balance': report.balance * report.sign or 0.0,
-                'type': 'report',
-                'level': bool(report.style_overwrite) and
-                report.style_overwrite or report.level,
-                # used to underline the financial report balances
-                'account_type': report.type == 'sum' and 'view' or False,
-            }
-            if data['form']['debit_credit']:
-                vals['debit'] = report.debit
-                vals['credit'] = report.credit
-            if data['form']['enable_filter']:
-                vals['balance_cmp'] = finrep_obj.browse(
-                    cr, uid, report.id,
-                    context=data['form']['comparison_context']
-                    ).balance * report.sign or 0.0
-            lines.append(vals)
-            account_ids = []
-            if report.display_detail == 'no_detail':
-                # The rest of the loop is used to display the details of
-                # the financial report, so it's not needed here.
-                continue
-            if report.type == 'accounts' and report.account_ids:
-                account_ids = account_obj._get_children_and_consol(
-                    cr, uid, [x.id for x in report.account_ids])
-            elif report.type == 'account_type' and report.account_type_ids:
-                account_ids = account_obj.search(
-                    cr, uid,
-                    [('user_type', 'in',
-                      [x.id for x in report.account_type_ids])])
-            if account_ids:
-                for account in account_obj.browse(
-                        cr, uid, account_ids,
-                        context=data['form']['used_context']):
-                    # if there are accounts to display, we add them to the
-                    # lines with a level equals to their level in the COA + 1
-                    # (to avoid having them with a too low level that would
-                    # conflict with the level of data financial reports
-                    # for Assets, liabilities...)
-                    if report.display_detail == 'detail_flat' and \
-                            account.type == 'view':
-                        continue
-                    flag = False
-                    balance = account.balance != 0 and \
-                        account.balance * report.sign or account.balance
-                    # account.level + 1
-                    lvl = report.display_detail == 'detail_with_hierarchy' \
-                        and min(account.level + 1, 6) or 6
-                    vals = {
-                        'name': account.code + ' ' + account.name,
-                        'balance': balance,
-                        'type': 'account',
-                        'level': lvl,
-                        'account_type': account.type,
-                    }
-
-                    if data['form']['debit_credit']:
-                        vals['debit'] = account.debit
-                        vals['credit'] = account.credit
-                    if not currency_obj.is_zero(
-                            cr, uid, account.company_id.currency_id,
-                            vals['balance']):
-                        flag = True
-                    if data['form']['enable_filter']:
-                        vals['balance_cmp'] = account_obj.browse(
-                            cr, uid, account.id,
-                            context=data['form']['comparison_context']
-                            ).balance * report.sign or 0.0
-                        if not currency_obj.is_zero(
-                                cr, uid, account.company_id.currency_id,
-                                vals['balance_cmp']):
-                            flag = True
-                    if flag:
-                        lines.append(vals)
+        lines = super(report_financial_parser, self).get_lines(data)
+        for line in lines:
+            if line.get('report_id'):
+                # cf. https://github.com/odoo/odoo/pull/6923
+                report = self.pool['account.financial.report'].browse(
+                    self.cr, self.uid, line['report_id'],
+                    context=data['form']['used_context'])
+                code = report.code
+                if code:
+                    line['name'] += ' - (' + code + ')'
         return lines
 
 

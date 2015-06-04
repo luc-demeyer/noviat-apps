@@ -229,7 +229,7 @@ class partner_vat_intra(orm.TransientModel):
             xmldict['clientlist'].append({
                 'partner_name': record['partner_name'],
                 'seq': seq,
-                'vatnum': record['vat'],
+                'vatnum': record['vat'][2:],
                 'vat': record['vat'],
                 'country': record['vat'][:2],
                 'amount': '%.2f' % amt,  # used in xml
