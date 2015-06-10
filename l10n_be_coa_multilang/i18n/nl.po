@@ -2395,7 +2395,7 @@ msgid "Issued Capital"
 msgstr "Geplaatst kapitaal"
 
 #. module: l10n_be_coa_multilang
-#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221111
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221120
 msgid "Uncalled Capital"
 msgstr "Niet-opgevraagd kapitaal"
 
