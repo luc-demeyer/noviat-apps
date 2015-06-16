@@ -1480,7 +1480,7 @@ class account_coda_import(orm.TransientModel):
 
         if match:
             invoice = inv_obj.browse(cr, uid, inv_ids[0], context=context)
-            partner = invoice.partner_id
+            partner = invoice.partner_id.commercial_partner_id
             st_line['partner_id'] = partner.id
             st_line['account_id'] = invoice.account_id.id
             st_line['type'] = (invoice.account_id.type == 'receivable') and 'customer' or 'supplier'

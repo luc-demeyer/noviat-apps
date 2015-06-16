@@ -53,7 +53,7 @@ class account_coda_import(orm.TransientModel):
                 so_id = so_res[0][0]
                 match['sale_order_id'] = so_id
                 sale_order = so_obj.browse(cr, uid, so_id)
-                partner = sale_order.partner_id
+                partner = sale_order.partner_id.commercial_partner_id
                 st_line['partner_id'] = partner.id
                 st_line['account_id'] = partner.property_account_receivable.id
                 st_line['type'] = 'customer'
