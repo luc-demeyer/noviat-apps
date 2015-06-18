@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -27,10 +27,7 @@
     'author': 'Noviat',
     'category': 'Accounting & Finance',
     'complexity': 'normal',
-    'description': """
-This Module adds logic to match CODA transactions
-with the originating Sale Order.
-    """,
+    'summary': 'CODA Import - Sale Order Matching',
     'website': 'http://www.noviat.com',
     'depends': [
         'l10n_be_coda_advanced',

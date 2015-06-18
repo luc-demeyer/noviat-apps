@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -36,7 +36,7 @@ class res_partner_bank(models.Model):
             if bank.country == env.ref('base.be') and bank.bic and bank.code:
                 vals['state'] = 'iban'
                 vals['acc_number'] = \
-                    env['res.bank'].bban2iban(vals['acc_number'])
+                    env['res.bank'].bban2iban('be', vals['acc_number'])
         return super(res_partner_bank, self).create(cr, uid, vals, context)
 
 
@@ -48,7 +48,12 @@ class res_bank(models.Model):
         help="Country specific Bank Code")
 
     @api.model
-    def bban2iban(self, bban):
+    def bban2iban(self, country_code, bban):
+        # TODO: extend to other countries
+        if country_code not in ['be']:
+            raise Warning(
+                _("'%s': bban conversion no supported for country '%s' !")
+                % (bban, country_code))
         success = True
         nr = bban.replace('-', '').replace(' ', '')
         try:

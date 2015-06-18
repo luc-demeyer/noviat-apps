@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '0.3',
+    'version': '0.4',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -34,7 +34,6 @@
         'l10n_be_invoice_bba',
         'l10n_be_partner',
         'account_bank_statement_advanced',
-        'web_fix_binaryfile',  # fix onchange on binary fields
     ],
     'data': [
         'security/ir.model.access.csv',

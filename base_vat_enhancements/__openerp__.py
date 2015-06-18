@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2014 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,20 +21,12 @@
 ##############################################################################
 
 {
-    'name': 'base_vat module enhancements',
-    'version': '0.1',
+    'name': 'base_vat module performance enhancements',
+    'version': '0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
-    'description': """
-base_vat module enhancements
-============================
-
-- give feedback on successful vat check
-- normalize res.partner vat field in the database to improve search performance
-- normalize search argument when searching on VAT number
-- replace 'check_vat' constraint by check on vat field to improve performance
-    """,
+    'summary': 'base_vat module performance enhancements',
     'depends': ['base_vat'],
 }

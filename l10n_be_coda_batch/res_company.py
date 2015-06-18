@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,4 +20,17 @@
 #
 ##############################################################################
 
-from . import coda_import
+from openerp import models, fields, api
+
+
+class res_company(models.Model):
+    _inherit = 'res.company'
+
+    @api.model
+    def _default_batch_root(self):
+        return '/'.join(['/home/odoo/coda_batch_root', self._cr.dbname])
+
+    coda_batch_root = fields.Char(
+        string='CODA Batch Root',
+        default=_default_batch_root,
+        help="Root Directory for CODA Batch Folders.")

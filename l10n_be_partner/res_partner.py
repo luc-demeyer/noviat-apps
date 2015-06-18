@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from openerp.exceptions import ValidationError, Warning
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -76,15 +76,21 @@ class res_partner(models.Model):
     registry_authority = fields.Selection(
         _get_registry_authority, string='Registry Authority')
 
-    def _commercial_fields(self, cr, uid, context=None):
-        res = super(res_partner, self)._commercial_fields(
-            cr, uid, context=context)
-        return res + ['registry_number', 'registry_authority']
+    def _get_belgium(self):
+        be = self.env['res.country'].search(
+            [('code', '=', 'BE')])
+        if not be:
+            raise Warning(
+                "Configuration Error, Country BE has not been defined !")
+        return be
 
-    def create(self, cr, uid, vals, context=None):
+    @api.model
+    def create(self, vals):
+        # _logger.warn('create, self=%s, vals=%s', self, vals)
+        # update context to avoid useless _field_sync processing
+        ctx = dict(self._context, skip_kbo_bce=True)
         if vals.get('is_company'):
-            be_id = self.pool['res.country'].search(
-                cr, uid, [('code', '=', 'BE')])[0]
+            be = self._get_belgium()
             # handle vat number
             if vals.get('vat'):
                 vat = vals.get('vat')
@@ -99,39 +105,51 @@ class res_partner(models.Model):
                     if not vals.get('vat_subjected'):
                         vals['vat_subjected'] = True
                     # set country
-                    if vals.get('country_id') != be_id:
-                        vals['country_id'] = be_id
+                    if vals.get('country_id') != be.id:
+                        vals['country_id'] = be.id
             elif vals.get('registry_authority'):
                 if vals['registry_authority'] == 'kbo_bce':
-                    if vals.get('country_id') != be_id:
-                        vals['country_id'] = be_id
-        return super(res_partner, self).create(
-            cr, uid, vals, context=context)
+                    if vals.get('country_id') != be.id:
+                        vals['country_id'] = be.id
+        return super(res_partner, self.with_context(ctx)).create(vals)
 
-    def write(self, cr, uid, ids, vals, context=None):
-        # _logger.warn('%s, write, vals=%s', self._name, vals)
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        for partner in self.browse(cr, uid, ids, context):
+    @api.multi
+    def write(self, vals):
+        # _logger.warn('write, self=%s, vals=%s', self, vals)
+
+        if not self or self._context.get('skip_kbo_bce'):
+            return super(res_partner, self).write(vals)
+
+        check = False
+        if 'vat' in vals and vals['vat']:
+            check = True
+        if 'registry_number' in vals:
+            check = True
+        if not check:
+            return super(res_partner, self).write(vals)
+
+        be = self._get_belgium()
+        ctx = dict(self._context, skip_kbo_bce=True)
+
+        for partner in self:
             if not partner.is_company:
                 continue
             vat = vals.get('vat') or partner.vat
             rn = vals.get('registry_number') or partner.registry_number
             country_id = vals.get('country_id') or partner.country_id.id
-            be_id = self.pool['res.country'].search(
-                cr, uid, [('code', '=', 'BE')])[0]
             kbo_number = False
 
             # handle registry_number
-            if rn and (
-                    vat and vat[0:2].upper() == 'BE' or country_id == be_id):
+            if rn and (vat and vat[0:2].upper() == 'BE'
+                       or country_id == be.id):
                 kbo_number = True
                 vals['registry_number'] = self._format_registry_number(rn)
                 vals['registry_authority'] = 'kbo_bce'
                 if not vat:
                     vat_number = vals['registry_number'].replace('.', '')
-                    if self.vies_vat_check(cr, uid, 'BE', vat_number,
-                                           context=context):
+                    if self.vies_vat_check(
+                            self._cr, self._uid, 'BE', vat_number,
+                            context=self._context):
                         vals.update({
                             'vat': 'BE ' + vat_number,
                             'vat_subjected': True,
@@ -148,7 +166,7 @@ class res_partner(models.Model):
                 if not ('vat_subjected' in vals or partner.vat_subjected):
                     vals['vat_subjected'] = True
 
-            if kbo_number and country_id != be_id:
-                vals['country_id'] = be_id
+            if kbo_number and country_id != be.id:
+                vals['country_id'] = be.id
 
-        return super(res_partner, self).write(cr, uid, ids, vals, context)
+        return super(res_partner, self.with_context(ctx)).write(vals)

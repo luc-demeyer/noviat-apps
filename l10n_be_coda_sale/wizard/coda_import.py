@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -64,7 +64,7 @@ class account_coda_import(models.TransientModel):
                 so_id = so_res[0][0]
                 match['sale_order_id'] = so_id
                 sale_order = so_obj.browse(cr, uid, so_id)
-                partner = sale_order.partner_id
+                partner = sale_order.partner_id.commercial_partner_id
                 line['partner_id'] = partner.id
                 inv_ids = [x.id for x in sale_order.invoice_ids]
                 if inv_ids:

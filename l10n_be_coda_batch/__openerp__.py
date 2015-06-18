@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,4 +20,17 @@
 #
 ##############################################################################
 
-from . import coda_import
+{
+    'name': 'Belgium - CODA statements batch import',
+    'version': '3.0',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'category': 'Accounting & Finance',
+    'depends': ['l10n_be_coda_advanced'],
+    'data': [
+        'security/ir.model.access.csv',
+        'company_view.xml',
+        'account_coda_batch_view.xml',
+        'wizard/account_coda_batch_import_view.xml'
+    ],
+}

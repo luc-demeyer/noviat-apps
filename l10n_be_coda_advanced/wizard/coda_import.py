@@ -1371,13 +1371,16 @@ class account_coda_import(orm.TransientModel):
 
         if batch:
             self._batch = True
-            codafile = str(codafile)
-            codafilename = codafilename
+            recordlist = unicode(
+                codafile, 'windows-1252', 'strict').split('\n')
         else:
             self._batch = False
             data = self.browse(cr, uid, ids)[0]
             codafile = data.coda_data
             codafilename = data.coda_fname
+            recordlist = unicode(
+                base64.decodestring(codafile),
+                'windows-1252', 'strict').split('\n')
             period_id = data.period_id and data.period_id.id or False
         self._coda_id = context.get('coda_id')
 
@@ -1427,9 +1430,6 @@ class account_coda_import(orm.TransientModel):
         self._error_log = ''
         self._coda_import_note = ''
         coda_statements = []
-        recordlist = unicode(
-            base64.decodestring(codafile),
-            'windows-1252', 'strict').split('\n')
 
         # parse lines in coda file and store result in coda_statements list
         coda_statement = {}
@@ -1438,7 +1438,7 @@ class account_coda_import(orm.TransientModel):
 
             skip = coda_statement.get('skip')
             if not line:
-                pass
+                continue
             elif line[0] == '0':
                 # start of a new statement within the CODA file
                 coda_statement = {}
@@ -1450,19 +1450,11 @@ class account_coda_import(orm.TransientModel):
                     context=context)
 
                 if not self._coda_id:
-                    coda_id = coda_obj.search(
+                    coda_ids = self.pool['account.coda'].search(
                         cr, uid,
                         [('name', '=', codafilename),
                          ('coda_creation_date', '=', coda_statement['date'])])
-                    if coda_id:
-                        err_string = _(
-                            "\nCODA File with Filename '%s' and Creation Date"
-                            " '%s' has already been imported !") % (
-                                codafilename, coda_statement['date'])
-                        err_code = 'W0001'
-                        if batch:
-                            return err_code, err_string
-                        raise orm.except_orm(_('Warning !'), err_string)
+                    self._coda_id = coda_ids and coda_ids[0] or None
 
             elif line[0] == '1':
                 coda_parsing_note = self._coda_record_1(
@@ -1506,6 +1498,8 @@ class account_coda_import(orm.TransientModel):
         if not self._coda_id:
             err_string = ''
             try:
+                if self._batch:
+                    codafile = base64.encodestring(codafile)
                 coda_id = coda_obj.create(cr, uid, {
                     'name': codafilename,
                     'coda_data': codafile,
@@ -1892,7 +1886,7 @@ class account_coda_import(orm.TransientModel):
 
         if match:
             invoice = inv_obj.browse(cr, uid, inv_ids[0], context=context)
-            partner = invoice.partner_id
+            partner = invoice.partner_id.commercial_partner_id
             line['partner_id'] = partner.id
             iml_ids = move_line_obj.search(
                 cr, uid,

@@ -27,5 +27,5 @@ class account_bank_statement(models.Model):
     _inherit = 'account.bank.statement'
 
     coda_id = fields.Many2one(
-        'account.coda', string='CODA Data File', ondelete='cascade')
+        'account.coda', string='CODA Data File')
     coda_note = fields.Text('CODA Notes')
