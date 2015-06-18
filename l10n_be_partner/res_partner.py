@@ -162,7 +162,7 @@ class res_partner(models.Model):
                 rn = vat[2:]
                 vals['registry_authority'] = 'kbo_bce'
                 vals['registry_number'] = self._format_registry_number(rn)
-                # update vat_subjected flaf
+                # update vat_subjected flag
                 if not ('vat_subjected' in vals or partner.vat_subjected):
                     vals['vat_subjected'] = True
 

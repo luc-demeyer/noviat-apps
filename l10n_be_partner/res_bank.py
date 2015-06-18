@@ -52,7 +52,7 @@ class res_bank(models.Model):
         # TODO: extend to other countries
         if country_code not in ['be']:
             raise Warning(
-                _("'%s': bban conversion no supported for country '%s' !")
+                _("'%s': bban conversion not supported for country '%s' !")
                 % (bban, country_code))
         success = True
         nr = bban.replace('-', '').replace(' ', '')
