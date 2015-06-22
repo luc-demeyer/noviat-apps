@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 from openerp.osv import fields, orm
 
 
-class res_partner(orm.Model):  
+class res_partner(orm.Model):
     _inherit = 'res.partner'
 
     _columns = {
@@ -33,7 +33,7 @@ class res_partner(orm.Model):
             relation='account.account',
             string='Incoming Invoice Account',
             view_load=True,
-            domain=[('type','<>','view'), ('type', '<>', 'closed')],
+            domain=[('type', '!=', 'view'), ('type', '!=', 'closed')],
             help="Default Account on incoming Invoices."),
         'property_out_inv_acc': fields.property(
             'account.account',
@@ -41,6 +41,6 @@ class res_partner(orm.Model):
             relation='account.account',
             string='Outgoing Invoice Account',
             view_load=True,
-            domain=[('type','<>','view'), ('type', '<>', 'closed')],
+            domain=[('type', '!=', 'view'), ('type', '!=', 'closed')],
             help="Default Account on outgoing Invoices."),
     }

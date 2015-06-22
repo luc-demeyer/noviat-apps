@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,20 +22,23 @@
 
 {
     'name': 'Account Invoice Line Defaults',
-    'version': '0.3',
+    'version': '0.4',
     'license': 'AGPL-3',
     'author': 'Noviat',
-    'category' : 'Generic Modules/Accounting',
-    'description': """   
-This module facilitates the encoding of Invoices lines: 
+    'category': 'Accounting & Finance',
+    'description': """
+This module facilitates the encoding of Invoices lines:
 
-- The 'Account' field is initialised from the default invoice account fields on the partner records.
-- The 'Description' field is moved to the main page of the Supplier Invoice form and the Invoice Line descriptions are initialised from the Invoice Description field.
+- The 'Account' field is initialised from the default invoice account fields
+  on the partner records.
+- The 'Description' field is moved to the main page
+  of the Supplier Invoice form and the Invoice Line descriptions
+  are initialised from the Invoice Description field.
 
     """,
     'depends': ['account'],
     'data': [
-        'partner_view.xml',                    
+        'partner_view.xml',
         'account_invoice_view.xml',
     ],
 }

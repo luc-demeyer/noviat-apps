@@ -8,16 +8,13 @@
       <field name="inherit_id" ref="account.invoice_supplier_form"/>
       <field name="arch" type="xml">
         <data>
+          <xpath expr="//page[@string='Other Info']//field[@name='name']" position="replace"/>
           <field name="origin" position="before">
             <field name="name"/>
           </field>
-          <xpath expr="//notebook/page[@string='Other Info']//field[@name='name']" position="replace"/>
         </data>
       </field>
     </record>
 
   </data>
 </openerp>
-
-
-
