@@ -22,6 +22,7 @@
 
 from openerp.report import report_sxw
 from openerp import models, _
+from openerp.tools.translate import translate
 from openerp.exceptions import except_orm
 
 
@@ -38,8 +39,16 @@ class be_invoice(report_sxw.rml_parse):
             'payment_methods': self._payment_methods,
             'bank_account': self._invoice_bank_account,
             'tax_lines': self._tax_lines,
+            '_': self._,
         })
+        itn = __name__.split('openerp.')[1]
+        self._ir_translation_name = itn.replace('.', '/') + '.py'
         self.context = context
+
+    def _(self, src, type='code'):
+        lang = self.localcontext.get('lang', 'en_US')
+        return translate(self.cr, self._ir_translation_name,
+                         type, lang, src) or src
 
     def _format_vat(self, vat):
         vat = vat or ''
@@ -73,7 +82,7 @@ class be_invoice(report_sxw.rml_parse):
             res += ' ' + p_cpy.title.name
         res += '</b>'
         if p.parent_id and not p.is_company:
-            res += '<br/>' + _("Attn.") + ' '
+            res += '<br/>' + self._("Attn.") + ' '
             if p.title:
                 res += p.title.name + ' '
             res += p.name

@@ -6,6 +6,9 @@
       <t t-call="l10n_be_invoice_layout.report_be_invoice_layout">
         <div class="page">
 
+          <!-- setLang to translate strings in parser code -->
+          <t t-esc="setLang(o.partner_id.lang)"/>
+
           <t t-set="p" t-value="o.partner_id"/>
           <t t-set="p_cpy" t-value="p.commercial_partner_id"/>
 
