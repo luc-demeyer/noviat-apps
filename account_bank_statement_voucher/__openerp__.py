@@ -21,14 +21,14 @@
 ##############################################################################
 
 {
-    'name': 'account_bank_statement/account_voucher usability improvements',
-    'version': '0.2',
+    'name': 'Bank Statement Usability improvements',
+    'version': '0.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
     'description': """
-Bank Statement usability improvements
+Bank Statement Usability improvements
 =====================================
 
 Usability improvements when using account_voucher in combination with bank_statement processing:

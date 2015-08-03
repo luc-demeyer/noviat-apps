@@ -20,4 +20,29 @@
 #
 ##############################################################################
 
-from . import bank_statement_balance_report
+{
+    'name': 'Bank Statement Usability improvements when using Analytic Plans',
+    'version': '0.1',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'website': 'http://www.noviat.com',
+    'category': 'Accounting & Finance',
+    'description': """
+Bank Statement Uusability improvements
+======================================
+
+Install this module when using Analytic Plans (module account_analytic_plans)
+in combination with the account_bank_statement_voucher module.
+
+    """,
+    'depends': [
+        'account_bank_statement_voucher',
+        'account_analytic_plans',
+    ],
+    'data': [
+        'account_bank_statement_view.xml',
+        'account_move_view.xml',
+    ],
+    'active': False,
+    'installable': True,
+    }

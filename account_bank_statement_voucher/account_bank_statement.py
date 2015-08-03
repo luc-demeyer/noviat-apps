@@ -152,10 +152,12 @@ class account_bank_statement_line(orm.Model):
                 amount, company_currency_id, context=context_create_move)
             account_move_line_obj.create(cr, uid, counterpart_move_vals, context=context_create_move)
 
+        """
         for line in account_move_line_obj.browse(cr, uid, 
             [x.id for x in account_move_obj.browse(cr, uid, move_id, context=context).line_id], context=context):
             if line.state != 'valid':
                 raise orm.except_orm(_('Error !'), _('Journal Item "%s" is not valid') % line.name)
+        """
 
         return move_id
 

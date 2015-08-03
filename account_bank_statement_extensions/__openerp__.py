@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Bank Statement extensions to support e-banking',
-    'version': '2.2',
+    'version': '2.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Generic Modules/Accounting',

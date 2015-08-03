@@ -95,6 +95,7 @@
                 <field name="journal_id" invisible="1"/>
                 <field name="debit" sum="Total debit"/>
                 <field name="credit" sum="Total credit"/>
+                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                 <field name="reconcile_partial_id"/>
                 <field name="reconcile_id"/>
                 <field name="state"/>

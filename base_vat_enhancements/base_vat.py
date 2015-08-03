@@ -101,6 +101,11 @@ class res_partner(orm.Model):
             cr, uid, ids, vals, context=context)
 
     def button_check_vat(self, cr, uid, ids, context=None):
+        """
+        We replace the button_check_vat method without 'super'.
+        As a consequence 'button_check_vat' inheritance in
+        community modules may not be taken into account.
+        """
         if not self.check_vat(cr, uid, ids, context=context):
             partner = self.browse(cr, uid, ids[0], context=context)
             msg = self._vat_check_errmsg(
