@@ -35,7 +35,7 @@ class account_bank_statement_line(models.Model):
         absl_id = super(account_bank_statement_line, self).create(
             cr, uid, vals, context=context)
         if pl_id:
-            self.pool.get('payment.line').write(
+            self.pool['payment.line'].write(
                 cr, uid, [pl_id],
                 {'bank_statement_line_id': absl_id}, context=context)
         return absl_id

@@ -12,6 +12,10 @@ Other features:
 - Support for customer invoices as well as supplier credit notes.
 - Invoices with the 'Supplier Direct Debit' flag set will be excluded
   from the 'Select Invoices to Pay' filter
+- The 'Supplier Invoice Number' field is automatically copied
+  to the Communication (for type 'Free Communication')
+  so that the Supplier Invoicing Number will be used by default as the payment communication
+  when sending Payment Orders to the bank.
 
 Features targeted for the Belgian market (cf. febelfin guidelines):
 

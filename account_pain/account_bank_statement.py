@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -28,8 +28,8 @@ class account_bank_statement_line(models.Model):
 
     def create(self, cr, uid, vals, context=None):
         pl_id = False
-        if 'payment_reference' in vals:
-            pl_ids = self.pool.get('payment.line').search(
+        if vals.get('payment_reference'):
+            pl_ids = self.pool['payment.line'].search(
                 cr, uid, [('name', '=', vals['payment_reference'])],
                 context=context)
             if len(pl_ids) == 1:
@@ -37,7 +37,7 @@ class account_bank_statement_line(models.Model):
         absl_id = super(account_bank_statement_line, self).create(
             cr, uid, vals, context=context)
         if pl_id:
-            self.pool.get('payment.line').write(
+            self.pool['payment.line'].write(
                 cr, uid, [pl_id],
                 {'bank_statement_line_id': absl_id}, context=context)
         return absl_id

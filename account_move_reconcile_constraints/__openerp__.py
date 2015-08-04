@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
 #    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
 #
@@ -20,10 +20,11 @@
 #
 ##############################################################################
 
-from . import partner
-from . import account_payment
-from . import account_move_line
-from . import account_bank_statement
-from . import res_partner_bank
-from . import account_invoice
-from . import wizard
+{
+    'name': 'Account Move Reconcile constraints',
+    'version': '0.1',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'category': 'Accounting & Finance',
+    'depends': ['account'],
+}
