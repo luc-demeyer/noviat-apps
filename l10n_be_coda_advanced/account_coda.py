@@ -482,9 +482,7 @@ class coda_bank_statement_line(orm.Model):
         'date': fields.date('Entry Date', required=True),
         'val_date': fields.date('Valuta Date'),
         'type': fields.selection([
-            ('supplier', 'Supplier'),
-            ('customer', 'Customer'),
-            ('general', 'General'),
+            ('regular', 'Regular'),
             ('globalisation', 'Globalisation'),
             ('information', 'Information'),
             ('communication', 'Free Communication'),
