@@ -52,8 +52,8 @@
       <field name="model">account.account</field>
       <field name="inherit_id" ref="account.view_account_list"/>
       <field name="arch" type="xml">
-        <field name="user_type" position="replace">
-          <field name="user_type"/>
+        <field name="user_type" position="attributes">
+          <attribute name="invisible">0</attribute>
         </field>
       </field>
     </record>

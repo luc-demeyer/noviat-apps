@@ -62,7 +62,7 @@
                     <span t-esc="l['vat']"/>
                   </td>
                   <td class="text-center">
-                    <span t-esc="l['code']"/>
+                    <span t-esc="l['intra_code']"/>
                   </td>
                   <td class="text-right">
                     <span t-esc="formatLang(l['amt'], currency_obj=res_company.currency_id)"/>

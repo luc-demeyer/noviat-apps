@@ -192,40 +192,45 @@ class partner_vat_intra(orm.TransientModel):
             })
 
         codes = ('44', '46L', '46T', '48s44', '48s46L', '48s46T')
-        cr.execute("""SELECT p.name AS partner_name, l.partner_id AS partner_id, coalesce(p.vat,'') AS vat,
-                      (CASE WHEN t.code = '48s44' THEN '44'
-                            WHEN t.code = '48s46L' THEN '46L'
-                            WHEN t.code = '48s46T' THEN '46T'
-                       ELSE t.code END) AS intra_code,
-                      SUM(CASE WHEN t.code IN ('48s44','48s46L','48s46T') THEN -l.tax_amount ELSE l.tax_amount END) AS amount
-                      FROM account_move_line l
-                      LEFT JOIN account_tax_code t ON (l.tax_code_id = t.id)
-                      LEFT JOIN res_partner p ON (l.partner_id = p.id)
-                      WHERE t.code IN %s
-                       AND l.period_id IN %s
-                       AND t.company_id = %s
-                       AND (l.debit+l.credit) != 0
-                      GROUP BY p.name, l.partner_id, p.vat, intra_code""",
+        cr.execute(
+            """
+            SELECT COALESCE(REPLACE(p.vat, ' ',''),'') AS vat,
+              (CASE WHEN t.code IN ('44', '48s44') THEN 'S'
+                    WHEN t.code IN ('46L', '48s46L') THEN 'L'
+                    WHEN t.code IN ('46T', '48s46T') THEN 'T'
+                    ELSE t.code END) AS intra_code,
+              SUM(CASE WHEN t.code IN ('48s44','48s46L','48s46T') 
+                       THEN -l.tax_amount 
+                       ELSE l.tax_amount END) AS amount,
+              l.partner_id AS partner_id, p.name AS partner_name
+              FROM account_move_line l
+                INNER JOIN account_tax_code t ON (l.tax_code_id = t.id)
+                LEFT JOIN res_partner p ON (l.partner_id = p.id)
+                WHERE t.code IN %s
+                  AND l.period_id IN %s
+                  AND t.company_id = %s
+                  AND (l.debit + l.credit) != 0
+                GROUP BY vat, intra_code, partner_id, partner_name
+                ORDER BY vat, intra_code, partner_name, partner_id
+            """,
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
-        records = []
-        for record in cr.dictfetchall():
-            record['vat'] = record['vat'].replace(' ', '').upper()
-            records.append(record)
-        records.sort(key=operator.itemgetter('vat'))
+        records = cr.dictfetchall()
         if not records:
-            raise orm.except_orm(_('No Data Available'), _('No intracom transactions found for the selected period(s) !'))
+            raise orm.except_orm(
+                _('No Data Available'),
+                _('No intracom transactions found for the selected period(s) !'))
 
         p_count = 0
-        previous_vat = False
+        previous_vat = previous_code = False
         for record in records:
             if not record['vat']:
                 p_count += 1
-            if record['vat'] != previous_vat:
+            if record['vat'] != previous_vat or record['intra_code'] != previous_code:
                 seq += 1
             previous_vat = record['vat']
+            previous_code = record['intra_code']
             amt = record['amount'] or 0.0
             amount_sum += amt
-            intra_code = record['intra_code'] == '44' and 'S' or (record['intra_code'] == '46L' and 'L' or (record['intra_code'] == '46T' and 'T' or ''))
             xmldict['clientlist'].append({
                 'partner_name': record['partner_name'],
                 'seq': seq,
@@ -235,7 +240,6 @@ class partner_vat_intra(orm.TransientModel):
                 'amount': '%.2f' % amt,  # used in xml
                 'amt': amt,  # used in pdf
                 'intra_code': record['intra_code'],
-                'code': intra_code
             })
 
         xmldict.update({
@@ -255,7 +259,7 @@ class partner_vat_intra(orm.TransientModel):
         xml_data = self._get_datas(cr, uid, ids, context=context)
         data_file = ''
 
-        # Can't we do this by etree?
+        # TODO: change code to use etree + add schema verification
         data_head = """<?xml version="1.0" encoding="ISO-8859-1"?>
 <ns2:IntraConsignment xmlns="http://www.minfin.fgov.be/InputCommon" xmlns:ns2="http://www.minfin.fgov.be/IntraConsignment" IntraListingsNbr="1">
         """
@@ -302,7 +306,8 @@ class partner_vat_intra(orm.TransientModel):
         client_datas = []
         previous_record = {}
         for record in records:
-            if record['vat'] == previous_record.get('vat') and record['code'] == previous_record.get('code'):
+            if record['vat'] == previous_record.get('vat') \
+                    and record['intra_code'] == previous_record.get('intra_code'):
                 client_datas.pop()
                 record['amt'] += previous_record['amt']
                 record['amount'] = '%.2f' % record['amt']
@@ -313,10 +318,13 @@ class partner_vat_intra(orm.TransientModel):
         data_clientinfo = ''
         for client_data in client_datas:
             if not client_data['vatnum']:
-                raise orm.except_orm(_('Insufficient Data!'), _('No vat number defined for %s.') % client_data['partner_name'])
+                raise orm.except_orm(
+                    _('Insufficient Data!'),
+                    _('No vat number defined for %s.')
+                    % client_data['partner_name'])
             data_clientinfo += '\n\t\t<ns2:IntraClient SequenceNumber="%(seq)s">' \
                 '\n\t\t\t<ns2:CompanyVATNumber issuedBy="%(country)s">%(vatnum)s</ns2:CompanyVATNumber>' \
-                '\n\t\t\t<ns2:Code>%(code)s</ns2:Code>' \
+                '\n\t\t\t<ns2:Code>%(intra_code)s</ns2:Code>' \
                 '\n\t\t\t<ns2:Amount>%(amount)s</ns2:Amount>' \
                 '\n\t\t</ns2:IntraClient>' \
                 % (client_data)
