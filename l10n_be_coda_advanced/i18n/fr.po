@@ -1,13 +1,13 @@
-# French translation of OpenERP Server 7.0.
+# French translation of Odoo 8.0.
 # This file contains the translation of the following modules:
 #	* l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2014-10-13 19:57:27.467000\n"
-"PO-Revision-Date: 2014-10-13 19:57:27.467000\n"
+"POT-Creation-Date: 2015-08-13 11:52:03.041000\n"
+"PO-Revision-Date: 2015-08-13 11:52:03.041000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,16 @@ msgstr "Fichier CODA"
 #: view:account.coda:0
 msgid "Additional Information"
 msgstr "Informations additionelles"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "Bank Statements"
+msgstr "Relevés"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "CODA Statements"
+msgstr "Relevés de compte CODA"
 
 #. module: l10n_be_coda_advanced
 #: field:account.coda,coda_creation_date:0
@@ -103,76 +113,6 @@ msgstr "Type de communication structurée"
 #: field:account.coda.comm.type,description:0
 msgid "Description"
 msgstr "Description"
-
-#. module: l10n_be_coda_advanced
-#: field:account.coda.import:0
-msgid "Log"
-msgstr "Log"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Import CODA File"
-msgstr "Importer le fichier CODA"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Select Details"
-msgstr "Sélectionnez les détailles"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Select your file :"
-msgstr "Sélectionnez votre fichier:"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Import CODA File"
-msgstr "Importer le fichier CODA"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Cancel"
-msgstr "Annuler"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Import"
-msgstr "Importer"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Results :"
-msgstr "Résultat :"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "Close"
-msgstr "Clôturer"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "View Bank Statement(s)"
-msgstr "Voir les relevés de compte"
-
-#. module: l10n_be_coda_advanced
-#: view:account.coda.import:0
-msgid "View CODA Bank Statement(s)"
-msgstr "Voir les relevés CODA"
-
-#. module: l10n_be_coda_advanced
-#: field:account.coda.import,coda_data:0
-msgid "CODA File"
-msgstr "Fichier CODA"
-
-#. module: l10n_be_coda_advanced
-#: field:account.coda.import,coda_fname:0
-msgid "CODA Filename"
-msgstr "Nom du fichier CODA"
-
-#. module: l10n_be_coda_advanced
-#: field:account.coda.import,coda_fname_dummy:0
-msgid "CODA Filename"
-msgstr "Nom du fichier CODA"
 
 #. module: l10n_be_coda_advanced
 #: view:account.coda.trans.category:0
@@ -248,611 +188,6 @@ msgstr "Description"
 #: field:account.coda.trans.type,type:0
 msgid "Transaction Type"
 msgstr "Opérations CODA - Type"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:10
-msgid "Bank Statements"
-msgstr "Relevés"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:11
-msgid "CODA Bank Statements"
-msgstr "Relevés de compte CODA"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:13
-msgid "The CODA File has been processed by"
-msgstr "Le fichier CODA est traité par"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:14
-msgid "Number of statements processed"
-msgstr "Nombre de relevés traités"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:14
-msgid "Number of errors"
-msgstr "Nombre d'erreurs"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:15
-msgid "\n\nBank Journal: %s\nCODA Version: %s\nCODA Sequence Number: %s\nPaper Statement Sequence Number: %s\nBank Account: %s\nAccount Holder Name: %s\nDate: %s, Starting Balance:  %.2f, Ending Balance: %.2f%s"
-msgstr "\n\nJournal financier: %s\nVersion CODA: %s\nNuméro de séquence du CODA: %s\nNuméro de séquence de l'extrait de compte papier: %s\nCompte bancaire: %s\nNom du titulaire du compte: %s\nDate: %s, Ancien solde:  %.2f, Nouveau solde: %.2f%s"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:16
-msgid "Transaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nCommunication: %s"
-msgstr "Type de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nCommunication: %s"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:17
-msgid "Partner Name: %s \nPartner Account Number: %s\nTransaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nPayment Reference: %s\nCommunication: %s"
-msgstr "Nom du partennaire: %s \nNuméro de compte en banque du partennaire: %s\nType de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nRéférence paiement: %s\nCommunication: %s"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:18
-msgid "Free Communication:\n %s"
-msgstr "Message Libre:\n %s"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:20
-msgid "Payment with ISO 11649 structured format communication"
-msgstr "Paiement avec ISO 11649 communication structurée"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:21
-msgid "Payment with a structured format communication applying the ISO standard 11649"
-msgstr "Communication structurée d’un paiement conforme au standard ISO 11649"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:23
-msgid "Number (e.g. of the cheque, of the card, etc.)"
-msgstr "numéro (par ex. du chèque, de la carte, etc.)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:26
-msgid "Gross amount in the currency of the account"
-msgstr "Montant brut dans la devise du compte"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:27
-msgid "Gross amount in the original currency"
-msgstr "Montant brut dans la devise initiale"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:28
-msgid "Rate"
-msgstr "Cours de change"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:29
-msgid "Currency"
-msgstr "Devise"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:30
-msgid "Structured format communication"
-msgstr "Communication structurée"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:31
-msgid "Country code of the principal"
-msgstr "Code-pays du donneur d'ordre"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:32
-msgid "Equivalent in EUR"
-msgstr "Contre-valeur en EUR"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:34
-msgid "VAT, withholding tax on income, commission, etc."
-msgstr "TVA, précompte mobilier, commission, etc."
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:35
-msgid "Equivalent in the currency of the account"
-msgstr "Contre-valeur dans la devise du compte"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:36
-msgid "Amount on which % is calculated"
-msgstr "Montant sur lequel le % est appliqué"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:37
-msgid "Percent"
-msgstr "Taux"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:38
-msgid "Minimum applicable"
-msgstr "Minimum applicable"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:39
-msgid "Minimum not applicable"
-msgstr "Minimum non applicable"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:41
-msgid "Direct debit – DOM’80"
-msgstr "Domiciliations – DOM'80"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:42
-msgid "Direct Debit Number"
-msgstr "Numéro domiciliation"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:43
-msgid "Central (Pivot) Date"
-msgstr "Date pivot"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:44
-msgid "Communication Zone"
-msgstr "Zone de communication"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:45
-msgid "Paid or reason for refusal"
-msgstr "Payé ou motif du refus"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:46
-msgid "Creditor's Number"
-msgstr "Numéro du créancier"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:47
-msgid "paid"
-msgstr "payé"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:48
-msgid "direct debit cancelled or nonexistent"
-msgstr "domiciliation révoquée ou inexistante"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:49
-msgid "refusal - other reason"
-msgstr "refus - autre raison"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:50
-msgid "payer disagrees"
-msgstr "payeur pas d'accord"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:51
-msgid "direct debit number linked to another identification number of the creditor"
-msgstr "numéro de domiciliation lié à un autre numéro d'identification créancier"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:53
-msgid "Closing"
-msgstr "Clôture"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:54
-msgid "Closing, period from %s to %s"
-msgstr "Clôture, période du %s à %s"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:55
-msgid "Interest rates, calculation basis"
-msgstr "Chiffres taux, base de calcul"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:56
-msgid "Interest"
-msgstr "Taux"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:58
-msgid "ATM/POS debit"
-msgstr "Débit ATM/POS"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:59
-msgid "Card Number"
-msgstr "Numéro de la carte"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:60
-msgid "Card Scheme"
-msgstr "Schéma de carte"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:61
-msgid "Terminal Number"
-msgstr "Numéro du terminal"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:62
-msgid "First Transaction Sequence Number"
-msgstr "Numéro de séquence première opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:63
-msgid "Last Transaction Sequence Number"
-msgstr "Numéro de séquence dernière opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:64
-msgid "Transaction Sequence Number"
-msgstr "Numéro de séquence opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:65
-msgid "Date of first transaction"
-msgstr "Date première opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:66
-msgid "Date of last transaction"
-msgstr "Date dernière opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:67
-msgid "Time"
-msgstr "Temps de l'opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:68
-msgid "Transaction Type"
-msgstr "Type d'opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:69
-msgid "Terminal Identification"
-msgstr "Identification du terminal"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:70
-msgid "Original Amount"
-msgstr "Montant initial"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:71
-msgid "Volume"
-msgstr "Volume"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:72
-msgid "Product Code"
-msgstr "Code produit"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:73
-msgid "Unit Price"
-msgstr "Prix unitaire"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:74
-msgid "Private"
-msgstr "Privé"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:75
-msgid "Other"
-msgstr "Autres"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:77
-msgid "Withdrawal"
-msgstr "Retrait"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:78
-msgid "Proton loading"
-msgstr "Chargement Proton"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:79
-msgid "Reimbursement Proton balance"
-msgstr "Restitution solde Proton"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:80
-msgid "Reversal of purchases"
-msgstr "Contre-passation achats"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:81
-msgid "Distribution sector"
-msgstr "Secteur de distribution"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:82
-msgid "Teledata"
-msgstr "Teledata"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:83
-msgid "Fuel"
-msgstr "Énergie"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:85
-msgid "POS credit - globalisation"
-msgstr "Crédit POS – globalisation"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:86
-msgid "POS credit - individual transaction"
-msgstr "Crédit POS – opération individuelle"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:87
-msgid "POS Number"
-msgstr "Numéro POS"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:88
-msgid "Period Number"
-msgstr "Numéro de la période"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:89
-msgid "Transaction Reference"
-msgstr "Référence de l'opération"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:91
-msgid "guarantee without fixed term"
-msgstr "cautionnement sans échéance fixe"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:92
-msgid "Starting Date"
-msgstr "Date de prise d'effet"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:93
-msgid "Maturity Date"
-msgstr "Date d'échéance"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:94
-msgid "Basic Amount"
-msgstr "Montant de base"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:95
-msgid "Percentage"
-msgstr "Pourcentage"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:96
-msgid "Term in days"
-msgstr "Durée en jours"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:97
-msgid "Guarantee Number"
-msgstr "Numéro de cautionnement"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:99
-msgid "Settlement credit cards"
-msgstr "Décompte cartes de crédit"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:100
-msgid "Issuing Institution"
-msgstr "Établissement émetteur"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:101
-msgid "Invoice Number"
-msgstr "Numéro de facture"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:102
-msgid "Identification Number"
-msgstr "Numéro d'identification"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:103
-msgid "Date"
-msgstr "Date"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:105
-msgid "Credit"
-msgstr "Crédit"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:106
-msgid "Credit Account Number"
-msgstr "Numéro de compte du crédit"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:107
-msgid "Old Balance"
-msgstr "Ancien solde"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:108
-msgid "New Balance"
-msgstr "Nouveau solde"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:109
-msgid "Amount"
-msgstr "Montant"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:110
-msgid "End Date"
-msgstr "Échéance"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:111
-msgid "Nominal Interest Rate or Rate of Charge"
-msgstr "Taux d'intérêt nominal ou taux de chargement"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:112
-msgid "European direct debit (SEPA)"
-msgstr "Domiciliation européenne (direct debit SEPA)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:113
-msgid "Settlement Date"
-msgstr "Date de décompte"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:114
-msgid "Direct Debit Type"
-msgstr "Type de domiciliation"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:115
-msgid "Direct Debit Scheme"
-msgstr "Plan de domiciliation"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:116
-msgid "Creditor's Identification Code"
-msgstr "Code créancier"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:117
-msgid "Mandate Reference"
-msgstr "Mandat référence"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:118
-msgid "Communication"
-msgstr "Communication"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:119
-msgid "R transaction Type"
-msgstr "Type de transaction R"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:120
-msgid "Reason"
-msgstr "Raison"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:121
-msgid "unspecified"
-msgstr "non précisé"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:122
-msgid "recurrent"
-msgstr "récurrent"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:123
-msgid "one-off"
-msgstr "one-off"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:124
-msgid "1-st (recurrent)"
-msgstr "1-st (recurrent)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:125
-msgid "last (recurrent)"
-msgstr "last (recurrent)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:126
-msgid "technical problem"
-msgstr "problème technique"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:127
-msgid "refusal - reason not specified"
-msgstr "refus - raison non précisé"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:128
-msgid "debtor disagrees"
-msgstr "débiteur pas d'accord"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:129
-msgid "debtor's account problem"
-msgstr "problème du compte débiteur"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:130
-msgid "reject"
-msgstr "inexécutable (reject)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:131
-msgid "return"
-msgstr "impayé (return)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:132
-msgid "refund"
-msgstr "rembousement (refund)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:133
-msgid "reversal"
-msgstr "rectification (reversal)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:134
-msgid "cancellation"
-msgstr "annulation (cancellation)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:135
-msgid "Name"
-msgstr "Nom"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:136
-msgid "Street"
-msgstr "Rue"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:137
-msgid "Locality"
-msgstr "Localité"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:138
-msgid "Identification Code"
-msgstr "Code d’identification"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:139
-msgid "Description of the detail"
-msgstr "Libellé du détail"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:140
-msgid "Category"
-msgstr "Rubrique"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:141
-msgid "Number of notes/coins"
-msgstr "Nombre de billets/pièces"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:142
-msgid "Note/coin denomination"
-msgstr "Dénomination du billet/pièce"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/account_coda_import.py:143
-msgid "Total amount"
-msgstr "Montant total"
 
 #. module: l10n_be_coda_advanced
 #: view:coda.bank.account:0
@@ -1160,112 +495,777 @@ msgid "Communication"
 msgstr "Communication"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.act_account_bank_statement_goto_coda_bank_statement
-msgid "CODA Bank Statement"
-msgstr "Relevé de compte CODA"
+#: field:account.coda.import:0
+msgid "Log"
+msgstr "Log"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.act_coda_bank_statement_goto_account_bank_statement
-msgid "Bank Statement"
-msgstr "Relevé de compte"
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.act_coda_bank_statement_goto_account_coda
+#: view:account.coda.import:0
+msgid "Select Details"
+msgstr "Sélectionnez les détailles"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Select your file :"
+msgstr "Sélectionnez votre fichier:"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Import"
+msgstr "Importer"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Results :"
+msgstr "Résultat :"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Close"
+msgstr "Clôturer"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "View Bank Statement(s)"
+msgstr "Voir les relevés de compte"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "View CODA Bank Statement(s)"
+msgstr "Voir les relevés CODA"
+
+#. module: l10n_be_coda_advanced
+#: field:account.coda.import,coda_data:0
+msgid "CODA File"
+msgstr "Fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: field:account.coda.import,coda_fname:0
+msgid "CODA Filename"
+msgstr "Nom du fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: field:account.coda.import,coda_fname_dummy:0
+msgid "CODA Filename"
+msgstr "Nom du fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:10
+msgid "Bank Statements"
+msgstr "Relevés"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:11
+msgid "CODA Bank Statements"
+msgstr "Relevés de compte CODA"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:13
+msgid "The CODA File has been processed by"
+msgstr "Le fichier CODA est traité par"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+msgid "Number of statements processed"
+msgstr "Nombre de relevés traités"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:15
+msgid "\n\nBank Journal: %s\nCODA Version: %s\nCODA Sequence Number: %s\nPaper Statement Sequence Number: %s\nBank Account: %s\nAccount Holder Name: %s\nDate: %s, Starting Balance:  %.2f, Ending Balance: %.2f%s"
+msgstr "\n\nJournal financier: %s\nVersion CODA: %s\nNuméro de séquence du CODA: %s\nNuméro de séquence de l'extrait de compte papier: %s\nCompte bancaire: %s\nNom du titulaire du compte: %s\nDate: %s, Ancien solde:  %.2f, Nouveau solde: %.2f%s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:16
+msgid "Transaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nCommunication: %s"
+msgstr "Type de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nCommunication: %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:17
+msgid "Partner Name: %s \nPartner Account Number: %s\nTransaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nPayment Reference: %s\nCommunication: %s"
+msgstr "Nom du partennaire: %s \nNuméro de compte en banque du partennaire: %s\nType de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nRéférence paiement: %s\nCommunication: %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:18
+msgid "Free Communication:\n %s"
+msgstr "Message Libre:\n %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:20
+msgid "Payment with ISO 11649 structured format communication"
+msgstr "Paiement avec ISO 11649 communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:21
+msgid "Payment with a structured format communication applying the ISO standard 11649"
+msgstr "Communication structurée d’un paiement conforme au standard ISO 11649"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:23
+msgid "Number (e.g. of the cheque, of the card, etc.)"
+msgstr "numéro (par ex. du chèque, de la carte, etc.)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:26
+msgid "Gross amount in the currency of the account"
+msgstr "Montant brut dans la devise du compte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:27
+msgid "Gross amount in the original currency"
+msgstr "Montant brut dans la devise initiale"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:28
+msgid "Rate"
+msgstr "Cours de change"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:29
+msgid "Currency"
+msgstr "Devise"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:30
+msgid "Structured format communication"
+msgstr "Communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:31
+msgid "Country code of the principal"
+msgstr "Code-pays du donneur d'ordre"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:32
+msgid "Equivalent in EUR"
+msgstr "Contre-valeur en EUR"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:34
+msgid "VAT, withholding tax on income, commission, etc."
+msgstr "TVA, précompte mobilier, commission, etc."
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:35
+msgid "Equivalent in the currency of the account"
+msgstr "Contre-valeur dans la devise du compte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:36
+msgid "Amount on which % is calculated"
+msgstr "Montant sur lequel le % est appliqué"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:37
+msgid "Percent"
+msgstr "Taux"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:38
+msgid "Minimum applicable"
+msgstr "Minimum applicable"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:39
+msgid "Minimum not applicable"
+msgstr "Minimum non applicable"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:41
+msgid "Direct debit – DOM’80"
+msgstr "Domiciliations – DOM'80"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:42
+msgid "Direct Debit Number"
+msgstr "Numéro domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:43
+msgid "Central (Pivot) Date"
+msgstr "Date pivot"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:44
+msgid "Communication Zone"
+msgstr "Zone de communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:45
+msgid "Paid or reason for refusal"
+msgstr "Payé ou motif du refus"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:46
+msgid "Creditor's Number"
+msgstr "Numéro du créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:47
+msgid "paid"
+msgstr "payé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:48
+msgid "direct debit cancelled or nonexistent"
+msgstr "domiciliation révoquée ou inexistante"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:49
+msgid "refusal - other reason"
+msgstr "refus - autre raison"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:50
+msgid "payer disagrees"
+msgstr "payeur pas d'accord"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:51
+msgid "direct debit number linked to another identification number of the creditor"
+msgstr "numéro de domiciliation lié à un autre numéro d'identification créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:53
+msgid "Closing"
+msgstr "Clôture"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:54
+msgid "Closing, period from %s to %s"
+msgstr "Clôture, période du %s à %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:55
+msgid "Interest rates, calculation basis"
+msgstr "Chiffres taux, base de calcul"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:56
+msgid "Interest"
+msgstr "Taux"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:58
+msgid "ATM/POS debit"
+msgstr "Débit ATM/POS"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:59
+msgid "Card Number"
+msgstr "Numéro de la carte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:60
+msgid "Card Scheme"
+msgstr "Schéma de carte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:61
+msgid "Terminal Number"
+msgstr "Numéro du terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:62
+msgid "First Transaction Sequence Number"
+msgstr "Numéro de séquence première opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:63
+msgid "Last Transaction Sequence Number"
+msgstr "Numéro de séquence dernière opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:64
+msgid "Transaction Sequence Number"
+msgstr "Numéro de séquence opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:65
+msgid "Date of first transaction"
+msgstr "Date première opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:66
+msgid "Date of last transaction"
+msgstr "Date dernière opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:67
+msgid "Time"
+msgstr "Temps de l'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:68
+msgid "Transaction Type"
+msgstr "Type d'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:69
+msgid "Terminal Identification"
+msgstr "Identification du terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:70
+msgid "Original Amount"
+msgstr "Montant initial"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:71
+msgid "Volume"
+msgstr "Volume"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:72
+msgid "Product Code"
+msgstr "Code produit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:73
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:74
+msgid "Private"
+msgstr "Privé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:75
+msgid "Other"
+msgstr "Autres"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:77
+msgid "Withdrawal"
+msgstr "Retrait"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:78
+msgid "Proton loading"
+msgstr "Chargement Proton"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:79
+msgid "Reimbursement Proton balance"
+msgstr "Restitution solde Proton"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:80
+msgid "Reversal of purchases"
+msgstr "Contre-passation achats"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:81
+msgid "Distribution sector"
+msgstr "Secteur de distribution"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:82
+msgid "Teledata"
+msgstr "Teledata"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:83
+msgid "Fuel"
+msgstr "Énergie"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:85
+msgid "POS credit - globalisation"
+msgstr "Crédit POS – globalisation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:86
+msgid "POS credit - individual transaction"
+msgstr "Crédit POS – opération individuelle"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:87
+msgid "POS Number"
+msgstr "Numéro POS"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:88
+msgid "Period Number"
+msgstr "Numéro de la période"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:89
+msgid "Transaction Reference"
+msgstr "Référence de l'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:91
+msgid "guarantee without fixed term"
+msgstr "cautionnement sans échéance fixe"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:92
+msgid "Starting Date"
+msgstr "Date de prise d'effet"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:93
+msgid "Maturity Date"
+msgstr "Date d'échéance"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:94
+msgid "Basic Amount"
+msgstr "Montant de base"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:95
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:96
+msgid "Term in days"
+msgstr "Durée en jours"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:97
+msgid "Guarantee Number"
+msgstr "Numéro de cautionnement"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:99
+msgid "Settlement credit cards"
+msgstr "Décompte cartes de crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:100
+msgid "Issuing Institution"
+msgstr "Établissement émetteur"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:101
+msgid "Invoice Number"
+msgstr "Numéro de facture"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:102
+msgid "Identification Number"
+msgstr "Numéro d'identification"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:103
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:105
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:106
+msgid "Credit Account Number"
+msgstr "Numéro de compte du crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:107
+msgid "Old Balance"
+msgstr "Ancien solde"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:108
+msgid "New Balance"
+msgstr "Nouveau solde"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:109
+msgid "Amount"
+msgstr "Montant"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:110
+msgid "End Date"
+msgstr "Échéance"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:111
+msgid "Nominal Interest Rate or Rate of Charge"
+msgstr "Taux d'intérêt nominal ou taux de chargement"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:112
+msgid "European direct debit (SEPA)"
+msgstr "Domiciliation européenne (direct debit SEPA)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:113
+msgid "Settlement Date"
+msgstr "Date de décompte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:114
+msgid "Direct Debit Type"
+msgstr "Type de domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:115
+msgid "Direct Debit Scheme"
+msgstr "Plan de domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:116
+msgid "Creditor's Identification Code"
+msgstr "Code créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:117
+msgid "Mandate Reference"
+msgstr "Mandat référence"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:118
+msgid "Communication"
+msgstr "Communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:119
+msgid "R transaction Type"
+msgstr "Type de transaction R"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:120
+msgid "Reason"
+msgstr "Raison"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:121
+msgid "unspecified"
+msgstr "non précisé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:122
+msgid "recurrent"
+msgstr "récurrent"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:123
+msgid "one-off"
+msgstr "one-off"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:124
+msgid "1-st (recurrent)"
+msgstr "1-st (recurrent)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:125
+msgid "last (recurrent)"
+msgstr "last (recurrent)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:126
+msgid "technical problem"
+msgstr "problème technique"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:127
+msgid "refusal - reason not specified"
+msgstr "refus - raison non précisé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:128
+msgid "debtor disagrees"
+msgstr "débiteur pas d'accord"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:129
+msgid "debtor's account problem"
+msgstr "problème du compte débiteur"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:130
+msgid "reject"
+msgstr "inexécutable (reject)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:131
+msgid "return"
+msgstr "impayé (return)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:132
+msgid "refund"
+msgstr "rembousement (refund)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:133
+msgid "reversal"
+msgstr "rectification (reversal)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:134
+msgid "cancellation"
+msgstr "annulation (cancellation)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:135
+msgid "Name"
+msgstr "Nom"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:136
+msgid "Street"
+msgstr "Rue"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:137
+msgid "Locality"
+msgstr "Localité"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:138
+msgid "Identification Code"
+msgstr "Code d’identification"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:139
+msgid "Description of the detail"
+msgstr "Libellé du détail"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:140
+msgid "Category"
+msgstr "Rubrique"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:141
+msgid "Number of notes/coins"
+msgstr "Nombre de billets/pièces"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:142
+msgid "Note/coin denomination"
+msgstr "Dénomination du billet/pièce"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:143
+msgid "Total amount"
+msgstr "Montant total"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_statement_action_goto_account_coda
 msgid "CODA Data File"
 msgstr "Fichier CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_coda_bank_account_form
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_account_action
 msgid "CODA Bank Account Configuration"
 msgstr "Configuration compte bancaire CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_account_coda_comm_type_form
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_comm_type_action
 msgid "CODA Structured Communication Types"
 msgstr "Opérations CODA - Communications structurées"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_account_coda_trans_category_form
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_category_action
 msgid "CODA Transaction Categories"
 msgstr "Opérations CODA - Rubriques"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_account_coda_trans_code_form
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_code_action
 msgid "CODA Transaction Codes"
 msgstr "Opérations CODA - Codes"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_account_coda_trans_type_form
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_type_action
 msgid "CODA Transaction Types"
 msgstr "Opérations CODA - Types"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_coda_bank_statements
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_statement_action
 msgid "CODA Bank Statements"
 msgstr "Relevés CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.act_window,name:l10n_be_coda_advanced.action_imported_coda_files
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_action
 msgid "Imported CODA Files"
 msgstr "Fichiers CODA importés"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.wizard,name:l10n_be_coda_advanced.wizard_account_coda_import_1
+#: model:ir.actions.wizard,name:l10n_be_coda_advanced.account_coda_import_action_cbs
 msgid "Import CODA File"
 msgstr "Importer le fichier CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.actions.wizard,name:l10n_be_coda_advanced.wizard_account_coda_import_2
+#: model:ir.actions.wizard,name:l10n_be_coda_advanced.wizard_account_coda_action_ac
 msgid "Import CODA File"
 msgstr "Importer le fichier CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_account_coda
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_coda_processing
 msgid "CODA Processing"
 msgstr "Traitement CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_account_coda_import
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_import_menu
 msgid "Import CODA Files"
 msgstr "Importer les fichiers CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_action_coda_bank_account_form
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.coda_bank_account_menu
 msgid "CODA Bank Account Configuration"
 msgstr "Configuration compte bancaire CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_action_account_coda_comm_type_form
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_comm_type_menu
 msgid "CODA Structured Communication Types"
 msgstr "Opérations CODA - Communications structurées"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_action_account_coda_trans_category_form
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_category_menu
 msgid "CODA Transaction Categories"
 msgstr "Opérations CODA - Rubriques"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_action_account_coda_trans_code_form
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_code_menu
 msgid "CODA Transaction Codes"
 msgstr "Opérations CODA - Codes"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_action_account_coda_trans_type_form
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_type_menu
 msgid "CODA Transaction Types"
 msgstr "Opérations CODA - Types"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_coda_bank_statements
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.coda_bank_statement_menu
 msgid "CODA Bank Statements"
 msgstr "Relevés CODA"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_imported_coda_files
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_menu
 msgid "Imported CODA Files"
 msgstr "Fichiers CODA importés"
 
 #. module: l10n_be_coda_advanced
-#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_manage_coda
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_coda_configuration
 msgid "CODA Configuration"
 msgstr "Configuration CODA"
 

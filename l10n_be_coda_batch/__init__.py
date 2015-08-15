@@ -20,6 +20,5 @@
 #
 ##############################################################################
 
-from . import res_company
-from . import account_coda_batch
+from . import models
 from . import wizard

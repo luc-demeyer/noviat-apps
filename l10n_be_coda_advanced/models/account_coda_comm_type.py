@@ -20,4 +20,31 @@
 #
 ##############################################################################
 
-from . import coda_import
+from openerp import models, fields, api
+
+
+class AccountCodaCommType(models.Model):
+    _name = 'account.coda.comm.type'
+    _description = 'CODA structured communication type'
+    _rec_name = "display_name"
+
+    code = fields.Char(
+        string='Structured Communication Type', size=3, required=True)
+    description = fields.Char(string='Description', translate=True)
+    display_name = fields.Char(
+        compute='_compute_display_name', string="Display Name", readonly=True)
+
+    @api.one
+    @api.depends('code', 'description')
+    def _compute_display_name(self):
+        display_name = self.code
+        if self.description:
+            display_name += ' ' + self.description
+        self.display_name = len(display_name) > 55 \
+            and display_name[:55] + '...' \
+            or display_name
+
+    _sql_constraints = [
+        ('code_uniq', 'unique (code)',
+         "The Structured Communication Code must be unique !")
+        ]

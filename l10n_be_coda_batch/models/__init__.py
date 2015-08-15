@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,15 +20,5 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-
-
-class coda_bank_account(models.Model):
-    _inherit = 'coda.bank.account'
-
-    find_payment = fields.Boolean(
-        string='Lookup Payment Reference', default=True,
-        help="Invoice lookup and reconciliation via "
-             "the SEPA EndToEndReference."
-             "\nInstall the 'account_pain' module if you want "
-             "to take advantage of this feature.")
+from . import account_coda_batch_log
+from . import res_company

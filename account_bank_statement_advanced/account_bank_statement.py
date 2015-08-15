@@ -93,6 +93,24 @@ class account_bank_statement(models.Model):
     fiscalyear_id = fields.Many2one(
         string='Fiscal Year', related='period_id.fiscalyear_id',
         store=True, readonly=True)
+    all_lines_reconciled = fields.Boolean(compute='_all_lines_reconciled')
+
+    @api.one
+    @api.depends('line_ids')
+    def _all_lines_reconciled(self):
+        """
+        Replacement of this method without inherit.
+
+        Standard account module logic:
+
+        all([line.journal_entry_id.id or line.account_id.id
+             for line in statement.line_ids])
+        """
+        self.all_lines_reconciled = True
+        for line in self.line_ids:
+            if line.amount and not line.journal_entry_id:
+                self.all_lines_reconciled = False
+                break
 
     def init(self, cr):
         cr.execute("""
@@ -103,15 +121,6 @@ class account_bank_statement(models.Model):
       account_bank_statement(name, journal_id, fiscalyear_id, company_id)
       WHERE name !='/';
         """)
-
-    @api.multi
-    def button_cancel(self):
-        """
-        Replace the account module button_cancel to allow
-        cancel statements while preserving associated moves.
-        """
-        self.state = 'draft'
-        return True
 
     @api.multi
     def write(self, vals):
@@ -125,6 +134,15 @@ class account_bank_statement(models.Model):
         to override the write method
         """
         return super(models.Model, self).write(vals)
+
+    @api.multi
+    def button_cancel(self):
+        """
+        Replace the account module button_cancel to allow
+        cancel statements while preserving associated moves.
+        """
+        self.state = 'draft'
+        return True
 
 
 class account_bank_statement_line(models.Model):

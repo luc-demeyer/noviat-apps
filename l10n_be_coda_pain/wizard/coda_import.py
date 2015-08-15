@@ -21,31 +21,28 @@
 ##############################################################################
 
 from openerp import models, _
-from openerp.exceptions import except_orm
+from openerp.exceptions import Warning
 
 
-class account_coda_import(models.TransientModel):
+class AccountCodaImport(models.TransientModel):
     _inherit = 'account.coda.import'
 
-    def _match_payment_reference(self, cr, uid, coda_statement, line,
-                                 coda_parsing_note, context=None):
+    def _match_payment_reference(self, coda_statement, line,
+                                 coda_parsing_note):
         """
         check payment reference in bank statement line
         against payment order lines
         """
-        payment_line_obj = self.pool['payment.line']
         cba = coda_statement['coda_bank_params']
-        find_payment = cba['find_payment']
         payment_reference = line['payment_reference']
         match = {}
 
-        if payment_reference and find_payment and line['amount'] < 0:
-            payline_ids = payment_line_obj.search(
-                cr, uid, [('name', '=', payment_reference)])
-            if payline_ids:
-                if len(payline_ids) == 1:
-                    payline = payment_line_obj.browse(
-                        cr, uid, payline_ids[0], context=context)
+        if payment_reference and cba.find_payment and line['amount'] < 0:
+            paylines = self.env['payment.line'].search(
+                [('name', '=', payment_reference)])
+            if paylines:
+                if len(paylines) == 1:
+                    payline = paylines[0]
                     match['payment_line_id'] = payline.id
                     line['payment_line_id'] = payline.id
                     line['partner_id'] = payline.partner_id.id
@@ -62,6 +59,6 @@ class account_coda_import(models.TransientModel):
                     err_code = 'R2007'
                     if self._batch:
                         return (err_code, err_string)
-                    raise except_orm(_('Error!'), err_string)
+                    raise Warning(_('Error!'), err_string)
 
         return coda_parsing_note, match

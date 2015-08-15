@@ -22,7 +22,7 @@
 
 {
     'name': 'CODA Import - Sale Order Matching',
-    'version': '0.1',
+    'version': '0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
@@ -34,6 +34,7 @@
         'sale',
     ],
     'data': [
-        'account_coda_view.xml',
+        'views/coda_bank_account.xml',
     ],
+    'installable': True,
 }

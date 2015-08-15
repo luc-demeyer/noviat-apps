@@ -23,7 +23,7 @@
 from openerp import models, fields, api
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
 
     @api.model

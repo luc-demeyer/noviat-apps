@@ -20,5 +20,5 @@
 #
 ##############################################################################
 
-from . import account_coda
+from . import models
 from . import wizard

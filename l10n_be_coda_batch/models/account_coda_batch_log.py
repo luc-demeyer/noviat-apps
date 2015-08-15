@@ -24,7 +24,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
 
-class account_coda_batch_log(models.Model):
+class AccountCodaBatchLog(models.Model):
     _name = 'account.coda.batch.log'
     _description = 'Object to store CODA Batch Import Logs'
     _order = 'name desc'
@@ -57,16 +57,25 @@ class account_coda_batch_log(models.Model):
          'This folder has already been processed !')
     ]
 
-    @api.one
+    @api.multi
+    def unlink(self):
+        for log in self:
+            if log.state != 'draft':
+                raise Warning(
+                    _("Only log objects in state 'draft' can be deleted !"))
+        return super(AccountCodaBatchLog, self).unlink()
+
+    @api.multi
     def button_cancel(self):
         self.state = 'draft'
 
-    @api.one
+    @api.multi
     def button_done(self):
         self.state = 'done'
 
-    @api.one
+    @api.multi
     def button_import(self):
+        self.ensure_one()
         ctx = self._context.copy()
         ctx.update({
             'active_model': 'account.coda.batch.log',
@@ -76,16 +85,8 @@ class account_coda_batch_log(models.Model):
         self.env['account.coda.batch.import'].with_context(
             ctx).coda_batch_import()
 
-    @api.multi
-    def unlink(self):
-        for log in self:
-            if log.state != 'draft':
-                raise Warning(
-                    _("Only log objects in state 'draft' can be deleted !"))
-        return super(account_coda_batch_log, self).unlink()
 
-
-class coda_batch_log_item(models.Model):
+class CodaBatchLogItem(models.Model):
     _name = 'coda.batch.log.item'
     _description = 'Object to store CODA Batch Import Log Items'
     _order = 'date desc'

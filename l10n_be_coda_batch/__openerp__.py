@@ -22,15 +22,18 @@
 
 {
     'name': 'Belgium - CODA statements batch import',
-    'version': '3.0',
+    'version': '3.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
+    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
+    'summary': 'CODA statements batch import',
     'depends': ['l10n_be_coda_advanced'],
     'data': [
         'security/ir.model.access.csv',
-        'company_view.xml',
-        'account_coda_batch_view.xml',
+        'views/account_coda_batch_log.xml',
+        'views/res_company.xml',
         'wizard/account_coda_batch_import_view.xml'
     ],
+    'installable': True,
 }

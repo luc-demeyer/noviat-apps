@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,8 @@
 #
 ##############################################################################
 
-from openerp.addons.base_iban.base_iban import _ref_iban, _format_iban
 import time
+from openerp.addons.base_iban.base_iban import _ref_iban, _format_iban
 
 
 def calc_iban_checksum(country, bban):

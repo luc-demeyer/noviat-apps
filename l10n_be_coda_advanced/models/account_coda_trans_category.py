@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,21 +19,28 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'CODA Import - ISO 20022 Payment Order Matching',
-    'version': '0.3',
-    'license': 'AGPL-3',
-    'author': 'Noviat',
-    'website': 'http://www.noviat.com',
-    'category': 'Accounting & Finance',
-    'complexity': 'normal',
-    'summary': 'CODA Import - ISO 20022 Payment Order Matching',
-    'depends': [
-        'l10n_be_coda_advanced',
-        'account_pain',
-    ],
-    'data': [
-        'views/coda_bank_account.xml',
-    ],
-    'installable': True,
-}
+
+
+from openerp import models, fields, api
+
+
+class AccountCodaTransCategory(models.Model):
+    _name = 'account.coda.trans.category'
+    _description = 'CODA transaction category'
+    _rec_name = "display_name"
+
+    category = fields.Char(
+        string='Transaction Category', size=3, required=True)
+    description = fields.Char(string='Description', translate=True)
+    display_name = fields.Char(
+        compute='_compute_display_name', string="Display Name", readonly=True)
+
+    @api.one
+    @api.depends('category', 'description')
+    def _compute_display_name(self):
+        display_name = self.category
+        if self.description:
+            display_name += ' ' + self.description
+        self.display_name = len(display_name) > 55 \
+            and display_name[:55] + '...' \
+            or display_name

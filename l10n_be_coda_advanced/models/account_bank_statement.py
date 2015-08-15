@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,21 +19,13 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'CODA Import - ISO 20022 Payment Order Matching',
-    'version': '0.3',
-    'license': 'AGPL-3',
-    'author': 'Noviat',
-    'website': 'http://www.noviat.com',
-    'category': 'Accounting & Finance',
-    'complexity': 'normal',
-    'summary': 'CODA Import - ISO 20022 Payment Order Matching',
-    'depends': [
-        'l10n_be_coda_advanced',
-        'account_pain',
-    ],
-    'data': [
-        'views/coda_bank_account.xml',
-    ],
-    'installable': True,
-}
+
+from openerp import models, fields
+
+
+class AccountBankStatement(models.Model):
+    _inherit = 'account.bank.statement'
+
+    coda_id = fields.Many2one(
+        'account.coda', string='CODA Data File')
+    coda_note = fields.Text('CODA Notes')

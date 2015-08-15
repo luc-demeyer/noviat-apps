@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record model="ir.ui.view" id="view_company_form_coda_batch">
+    <record id="res_company_view_form" model="ir.ui.view">
       <field name="name">res.company.form.coda_batch</field>
       <field name="inherit_id" ref="base.view_company_form"/>
       <field name="model">res.company</field>

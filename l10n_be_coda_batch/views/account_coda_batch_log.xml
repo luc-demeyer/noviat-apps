@@ -2,8 +2,8 @@
 <openerp>
   <data>
 
-    <record id="view_account_coda_batch_search" model="ir.ui.view">
-      <field name="name">account.coda.batch.search</field>
+    <record id="account_coda_batch_log_view_search" model="ir.ui.view">
+      <field name="name">account.coda.batch.log.search</field>
       <field name="model">account.coda.batch.log</field>
       <field name="arch" type="xml">
         <search string="Search CODA Batch Import Log Files">
@@ -24,8 +24,8 @@
       </field>
     </record>
 
-    <record model="ir.ui.view" id="view_account_coda_batch_tree">
-      <field name="name">account.coda.batch.tree</field>
+    <record id="account_coda_batch_log_view_tree" model="ir.ui.view">
+      <field name="name">account.coda.batch.log.tree</field>
       <field name="model">account.coda.batch.log</field>
       <field name="arch" type="xml">
         <tree string="CODA Batch Import Logs" create="false">
@@ -39,8 +39,8 @@
       </field>
     </record>
 
-    <record model="ir.ui.view" id="view_account_coda_batch_form">
-      <field name="name">account.coda.batch.form</field>
+    <record id="account_coda_batch_log_view_form" model="ir.ui.view">
+      <field name="name">account.coda.batch.log.form</field>
       <field name="model">account.coda.batch.log</field>
       <field name="arch" type="xml">
         <form string="CODA Batch Import Log" create="false">
@@ -88,17 +88,20 @@
       </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_account_coda_batch">
+    <record id="account_coda_batch_log_action" model="ir.actions.act_window">
       <field name="name">CODA Batch Import Logs</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">account.coda.batch.log</field>
       <field name="view_type">form</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="view_account_coda_batch_tree"/>
-      <field name="search_view_id" ref="view_account_coda_batch_search"/>
+      <field name="view_id" ref="account_coda_batch_log_view_tree"/>
+      <field name="search_view_id" ref="account_coda_batch_log_view_search"/>
     </record>
 
-    <menuitem name="CODA Batch Import Logs" parent="l10n_be_coda_advanced.menu_account_coda" id="menu_account_coda_batch" action="action_account_coda_batch" sequence="51"/>
+    <menuitem id="account_coda_batch_log_menu"
+              name="CODA Batch Import Logs"
+              parent="l10n_be_coda_advanced.menu_coda_processing"
+              action="account_coda_batch_log_action" sequence="51"/>
 
   </data>
 </openerp>

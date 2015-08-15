@@ -21,18 +21,16 @@
 ##############################################################################
 
 from openerp import models
-import logging
-_logger = logging.getLogger(__name__)
 
 
-class account_coda_import(models.TransientModel):
+class AccountCodaImport(models.TransientModel):
     _inherit = 'account.coda.import'
 
-    def _get_sale_order(self, cr, uid, coda_statement, line,
-                        coda_parsing_note, context=None):
+    def _get_sale_order(self, coda_statement, line, coda_parsing_note):
         """
         check matching Sales Order number in free form communication
         """
+        cba = coda_statement['coda_bank_params']
         free_comm = repl_special(line['communication'].strip())
         select = \
             "SELECT id FROM (SELECT id, name, '%s'::text AS free_comm, " \
@@ -40,30 +38,24 @@ class account_coda_import(models.TransientModel):
             "FROM sale_order WHERE state not in ('cancel', 'done') " \
             "AND company_id = %s) sq " \
             "WHERE free_comm ILIKE '%%'||name_match||'%%'" \
-            % (free_comm, coda_statement['company_id'])
-        cr.execute(select)
-        res = cr.fetchall()
+            % (free_comm, cba.company_id.id)
+        self._cr.execute(select)
+        res = self._cr.fetchall()
         return coda_parsing_note, res
 
-    def _match_sale_order(self, cr, uid, coda_statement, line,
-                          coda_parsing_note, context=None):
+    def _match_sale_order(self, coda_statement, line, coda_parsing_note):
 
-        so_obj = self.pool['sale.order']
-        inv_obj = self.pool['account.invoice']
-        aml_obj = self.pool['account.move.line']
         cba = coda_statement['coda_bank_params']
-        find_so_number = cba['find_so_number']
         match = {}
 
-        if line['communication'] and find_so_number \
+        if line['communication'] and cba.find_so_number \
                 and line['amount'] > 0:
             so_res = self._get_sale_order(
-                cr, uid, coda_statement, line, coda_parsing_note,
-                context=context)
+                coda_statement, line, coda_parsing_note)
             if so_res and len(so_res) == 1:
                 so_id = so_res[0][0]
                 match['sale_order_id'] = so_id
-                sale_order = so_obj.browse(cr, uid, so_id)
+                sale_order = self.env['sale.order'].browse(so_id)
                 partner = sale_order.partner_id.commercial_partner_id
                 line['partner_id'] = partner.id
                 inv_ids = [x.id for x in sale_order.invoice_ids]
@@ -74,24 +66,23 @@ class account_coda_import(models.TransientModel):
                     else:
                         amount_rounded = amount_fmt \
                             % round(-line['amount'], 2)
-                    cr.execute(
+                    self._cr.execute(
                         "SELECT id FROM account_invoice "
                         "WHERE state = 'open' AND amount_total = %s "
                         "AND id in %s",
                         (amount_rounded, tuple(inv_ids)))
-                    res = cr.fetchall()
+                    res = self._cr.fetchall()
                     if res:
                         inv_ids = [x[0] for x in res]
                         if len(inv_ids) == 1:
-                            invoice = inv_obj.browse(
-                                cr, uid, inv_ids[0], context=context)
-                            iml_ids = aml_obj.search(
-                                cr, uid,
+                            invoice = self.env['account.invoice'].browse(
+                                inv_ids[0])
+                            imls = self.env['account.move.line'].search(
                                 [('move_id', '=', invoice.move_id.id),
                                  ('reconcile_id', '=', False),
                                  ('account_id', '=', invoice.account_id.id)])
-                            if iml_ids:
-                                line['reconcile'] = iml_ids[0]
+                            if imls:
+                                line['reconcile'] = imls[0].id
 
         return coda_parsing_note, match
 

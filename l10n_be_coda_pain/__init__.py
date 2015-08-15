@@ -20,6 +20,5 @@
 #
 ##############################################################################
 
-from . import account_coda
-from . import account_bank_statement
+from . import models
 from . import wizard

@@ -47,17 +47,17 @@
             <attribute name="options">{'reload_on_button': true}</attribute>
           </xpath>
           <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
-            <attribute name="colors">blue:move_state!='posted';</attribute>
+            <attribute name="colors">blue:amount and move_state != 'posted';</attribute>
             <attribute name="editable"/>
           </xpath>
           <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='date']" position="after">
             <field name="val_date"/>
           </xpath>
           <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="after">
-            <field name="globalisation_id" string="Glob. Id" invisible="1"/>
             <field name="reconcile_get"/>
             <field name="move_get"/>
             <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
+            <field name="globalisation_id" string="Glob. Id"/>
             <field name="state" invisible="1"/>
             <field name="move_state" invisible="1"/>
           </xpath>
@@ -70,7 +70,7 @@
                 <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
                 <button name="action_cancel" attrs="{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}" string="Cancel" type="object" icon="gtk-cancel"/>
               </header>
-              <group col="4" attrs="{'readonly':[('state','=','confirm')]}">
+              <group col="4" attrs="{'readonly':[('state', '=', 'confirm')]}">
                 <field name="date"/>
                 <field name="val_date"/>
                 <field name="name"/>
@@ -79,13 +79,19 @@
                 <field name="bank_account_id"/>
                 <newline/>
                 <field name="amount"/>
+                <newline/>
+                <field name="amount_currency" groups="base.group_multi_currency" attrs="{'readonly' : [('journal_entry_id', '!=', False)] }"/>
+                <field name="currency_id" groups="base.group_multi_currency" attrs="{'readonly' : [('journal_entry_id', '!=', False)] }"/>
+                <newline/>
                 <field name="globalisation_id" readonly="1"/>
+                <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
                 <field name="state" invisible="1"/>
                 <field name="move_state" invisible="1"/>
                 <newline/>
                 <field name="reconcile_get"/>
                 <field name="move_get"/>
                 <field name="sequence" attrs="{'readonly':[('move_state', '!=', False)]}"/>
+                <field name="journal_entry_id" invisible="1"/>
               </group>
               <separator string="Notes"/>
               <field colspan="2" name="note" nolabel="1"/>
@@ -113,7 +119,7 @@
       <field name="name">bank.statement.line.list</field>
       <field name="model">account.bank.statement.line</field>
       <field name="arch" type="xml">
-        <tree editable="bottom" string="Statement Lines" create="false" delete="false" colors="blue:move_state != 'posted';">
+        <tree editable="bottom" string="Statement Lines" create="false" delete="false" colors="blue:amount and move_state != 'posted';">
           <field name="sequence" readonly="1" invisible="1"/>
           <field name="journal_id" readonly="1" invisible="1"/>
           <field name="journal_code" readonly="1"/>
@@ -159,6 +165,7 @@
               <field name="bank_account_id"/>
               <field name="amount" readonly="1"/>
               <field name="globalisation_id"/>
+              <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
               <field name="state" invisible="1"/>
               <field name="move_state" invisible="1"/>
               <newline/>

@@ -3,7 +3,7 @@
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '0.5',
+    'version': '0.6',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -38,13 +38,20 @@
     'data': [
         'security/ir.model.access.csv',
         'security/account_security.xml',
-        'account_coda_trans_type.xml',
-        'account_coda_trans_code.xml',
-        'account_coda_trans_category.xml',
-        'account_coda_comm_type.xml',
-        'account_bank_statement_view.xml',
-        'account_coda_view.xml',
-        'account_bank_statement_view.xml',
-        'wizard/account_coda_wizard.xml',
+        'data/account_coda_trans_type.xml',
+        'data/account_coda_trans_code.xml',
+        'data/account_coda_trans_category.xml',
+        'data/account_coda_comm_type.xml',
+        'views/account_bank_statement.xml',
+        'views/account_coda.xml',
+        'views/account_coda_comm_type.xml',
+        'views/account_coda_trans_category.xml',
+        'views/account_coda_trans_code.xml',
+        'views/account_coda_trans_type.xml',
+        'views/coda_bank_account.xml',
+        'views/coda_bank_statement.xml',
+        'views/menuitem.xml',
+        'wizard/coda_import_wizard.xml',
         ],
+    'installable': True,
 }

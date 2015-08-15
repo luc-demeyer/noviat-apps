@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Advanced Bank Statement',
-    'version': '0.7',
+    'version': '0.8',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
@@ -37,11 +37,12 @@
         'security/ir.model.access.csv',
         'security/account_security.xml',
         'data/data.xml',
-        'account_bank_statement_view.xml',
-        'account_move_view.xml',
-        'wizard/bank_statement_balance_print.xml',
-        'report/reports.xml',
+        'views/account_bank_statement_view.xml',
+        'views/account_move_view.xml',
         'views/report_layout.xml',
         'views/report_statement_balances.xml',
-    ],
+        'views/account.xml',
+        'wizard/bank_statement_balance_print.xml',
+        'report/reports.xml',
+        ],
 }

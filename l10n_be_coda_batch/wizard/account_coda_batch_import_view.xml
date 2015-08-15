@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record id="account_coda_batch_import_view" model="ir.ui.view">
+    <record id="account_coda_batch_import_view_form" model="ir.ui.view">
       <field name="name">CODA Batch Import</field>
       <field name="model">account.coda.batch.import</field>
       <field name="priority">1</field>
@@ -24,7 +24,7 @@
       </field>
     </record>
 
-    <record id="account_coda_batch_import_result_view" model="ir.ui.view">
+    <record id="account_coda_batch_import_view_form_result" model="ir.ui.view">
       <field name="name">CODA Batch Import</field>
       <field name="model">account.coda.batch.import</field>
       <field name="priority">2</field>
@@ -41,24 +41,31 @@
       </field>
     </record>
 
-    <record id="action_account_coda_batch_import" model="ir.actions.act_window">
+    <record id="account_coda_batch_import_action" model="ir.actions.act_window">
       <field name="name">CODA Batch Import</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">account.coda.batch.import</field>
       <field name="view_type">form</field>
       <field name="view_mode">form</field>
       <field name="target">new</field>
-      <field name="view_id" ref="account_coda_batch_import_view"/>
+      <field name="view_id" ref="account_coda_batch_import_view_form"/>
     </record>
 
-    <menuitem name="Batch Import CODA Files" parent="l10n_be_coda_advanced.menu_account_coda" id="menu_account_coda_batch_import" action="action_account_coda_batch_import" sequence="50"/>
+    <menuitem  id="account_coda_batch_import_menu"
+               name="Batch Import CODA Files"
+               parent="l10n_be_coda_advanced.menu_coda_processing"
+               action="account_coda_batch_import_action"
+               sequence="50"/>
 
-    <act_window name="Batch Import CODA Files"
-      res_model="account.coda.batch.import"
-      src_model="account.coda.batch.log"
-      view_type="form" view_mode="form" target="new"
-      key2="client_action_multi" multi="True"
-      id="action_multi_account_coda_batch_import"/>
+    <act_window id="account_coda_batch_import_action_multi"
+                name="Batch Import CODA Files"
+                res_model="account.coda.batch.import"
+                src_model="account.coda.batch.log"
+                view_type="form"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi"
+                multi="True"/>
 
   </data>
 </openerp>

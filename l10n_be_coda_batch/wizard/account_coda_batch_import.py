@@ -20,17 +20,30 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
-import time
-import os
 import logging
 _logger = logging.getLogger(__name__)
+import os
+import time
+
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 
 
-class account_coda_batch_import(models.TransientModel):
+class AccountCodaBatchImport(models.TransientModel):
     _name = 'account.coda.batch.import'
     _description = 'CODA Batch Import'
+
+    directory = fields.Selection(
+        '_get_directory',
+        'CODA Batch Import Folder', required=True,
+        default=lambda self: self._default_directory(),
+        help='Folder containing the CODA Files for the batch import.')
+    note = fields.Text(string='Batch Import Log', readonly=True)
+
+    @api.model
+    def _default_directory(self):
+        res = self._get_directory()
+        return res[0]
 
     @api.model
     def _get_directory(self):
@@ -52,17 +65,10 @@ class account_coda_batch_import(models.TransientModel):
                     selection.append((folder, folder))
         return selection or [('none', _('None'))]
 
-    @api.model
-    def _get_default_directory(self):
-        res = self._get_directory()
-        return res[0]
-
-    directory = fields.Selection(
-        '_get_directory',
-        'CODA Batch Import Folder', required=True,
-        default=_get_default_directory,
-        help='Folder containing the CODA Files for the batch import.')
-    note = fields.Text(string='Batch Import Log', readonly=True)
+    @api.onchange('directory')
+    def _onchange_directory(self):
+        if self.directory == 'none':
+            self.note = _("No unprocessed Batch Import Folders found !")
 
     @api.model
     def view_init(self, fields_list):
@@ -79,18 +85,13 @@ class account_coda_batch_import(models.TransientModel):
                   "\nPath %s does not exist.")
                 % path)
 
-    @api.onchange('directory')
-    def _onchange_directory(self):
-        if self.directory == 'none':
-            self.note = _("No unprocessed Batch Import Folders found !")
-
     @api.multi
     def coda_batch_import(self):
         ctx = self._context.copy()
         restart = ctx.get('coda_batch_restart')
         batch_obj = self.env['account.coda.batch.log']
         log_obj = self.env['coda.batch.log.item']
-        coda_import_wiz = self.pool['account.coda.import']
+        coda_import_wiz = self.env['account.coda.import']
 
         note = False
         if restart:
@@ -125,9 +126,9 @@ class account_coda_batch_import(models.TransientModel):
         # process CODA files
         for coda_file in coda_files:
             time_start = time.time()
-            res = coda_import_wiz.coda_parsing(
-                self._cr, self._uid, [], context=ctx,
-                batch=True, codafile=coda_file[1], codafilename=coda_file[2])
+            res = coda_import_wiz._coda_parsing(
+                codafile=coda_file[1], codafilename=coda_file[2],
+                period_id=None, batch=True)
             file_import_time = time.time() - time_start
             _logger.warn(
                 'File %s processing time = %.3f seconds',
@@ -168,8 +169,9 @@ class account_coda_batch_import(models.TransientModel):
         if restart:
             return True
         else:
+            module = __name__.split('addons.')[1].split('.')[0]
             result_view = self.env.ref(
-                'l10n_be_coda_batch.account_coda_batch_import_result_view')
+                '%s.account_coda_batch_import_view_form_result' % module)
 
             note = note or ""
             self.note = log_header + note + log_footer
@@ -185,13 +187,14 @@ class account_coda_batch_import(models.TransientModel):
                 'type': 'ir.actions.act_window',
             }
 
-    @api.one
+    @api.multi
     def action_open_log(self):
+        self.ensure_one
         return {
-            'domain': "[('id','=', %d)]" % self._context.get('batch_id'),
             'name': _('CODA Batch Import Log'),
+            'res_id': self._context.get('batch_id'),
             'view_type': 'form',
-            'view_mode': 'tree,form',
+            'view_mode': 'form',
             'res_model': 'account.coda.batch.log',
             'view_id': False,
             'type': 'ir.actions.act_window',
