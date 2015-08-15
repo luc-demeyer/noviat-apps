@@ -33,9 +33,9 @@
               <thead>
                 <tr>
                   <th width="5%">Nr</th>
-                  <th width="53%">Partner</th>
                   <th width="16%">VAT Number</th>
                   <th width="10%" class="text-center">Code</th>
+                  <th width="53%">Partner</th>
                   <th width="16%" class="text-right">Amount</th>
                 </tr>
               </thead>
@@ -56,13 +56,13 @@
                     <span t-esc="l['seq']"/>
                   </td>
                   <td>
-                    <span t-esc="l['partner_name']"/>
-                  </td>
-                  <td>
                     <span t-esc="l['vat']"/>
                   </td>
                   <td class="text-center">
                     <span t-esc="l['intra_code']"/>
+                  </td>
+                  <td>
+                    <span t-esc="l['partner_name']"/>
                   </td>
                   <td class="text-right">
                     <span t-esc="formatLang(l['amt'], currency_obj=res_company.currency_id)"/>
@@ -70,7 +70,7 @@
                 </tr>
               </tbody>
             </table>
-            
+
           </div>
         </t>
       </t>

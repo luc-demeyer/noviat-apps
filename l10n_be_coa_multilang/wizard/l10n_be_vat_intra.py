@@ -199,10 +199,10 @@ class partner_vat_intra(orm.TransientModel):
                     WHEN t.code IN ('46L', '48s46L') THEN 'L'
                     WHEN t.code IN ('46T', '48s46T') THEN 'T'
                     ELSE t.code END) AS intra_code,
+              p.name AS partner_name, l.partner_id AS partner_id,
               SUM(CASE WHEN t.code IN ('48s44','48s46L','48s46T') 
                        THEN -l.tax_amount 
-                       ELSE l.tax_amount END) AS amount,
-              l.partner_id AS partner_id, p.name AS partner_name
+                       ELSE l.tax_amount END) AS amount
               FROM account_move_line l
                 INNER JOIN account_tax_code t ON (l.tax_code_id = t.id)
                 LEFT JOIN res_partner p ON (l.partner_id = p.id)
@@ -210,7 +210,7 @@ class partner_vat_intra(orm.TransientModel):
                   AND l.period_id IN %s
                   AND t.company_id = %s
                   AND (l.debit + l.credit) != 0
-                GROUP BY vat, intra_code, partner_id, partner_name
+                GROUP BY vat, intra_code, partner_name, partner_id
                 ORDER BY vat, intra_code, partner_name, partner_id
             """,
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
