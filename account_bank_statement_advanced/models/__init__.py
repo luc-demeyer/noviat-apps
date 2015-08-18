@@ -20,6 +20,6 @@
 #
 ##############################################################################
 
-from . import models
-from . import report
-from . import wizard
+from . import account_bank_statement
+from . import account_move
+from . import res_partner_bank

@@ -2474,43 +2474,8 @@ class AccountCodaImport(models.TransientModel):
                     + ': %.2f' % unit_price
 
         elif comm_type == '114':
-            card_schemes = {
-                '1': 'Bancontact/Mister Cash',
-                '2': 'Maestro',
-                '3': _('Private'),
-                '5': 'TINA',
-                '9': _('Other')}
-            trans_types = {
-                '1': _('Withdrawal'),
-                '7': _('Distribution sector'),
-                '8': _('Teledata'),
-                '9': _('Fuel')}
-            st_line_name = _('POS credit - individual transaction')
-            card_scheme = card_schemes.get(comm[0], '')
-            pos_number = comm[1:7].strip()
-            period_number = comm[7:10].strip()
-            sequence_number = comm[10:16].strip()
-            trans_date = str2date(comm[16:22])
-            trans_hour = str2time(comm[22:26])
-            trans_type = trans_types.get(comm[26], '')
-            terminal_name = comm[27:43].strip()
-            terminal_city = comm[43:53].strip()
-            trans_reference = comm[53:69].strip()
-            st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-                + _('Card Scheme') + ': %s' % card_scheme
-            st_line_comm += INDENT + _('POS Number') + ': %s' % pos_number
-            st_line_comm += INDENT + _('Period Number') \
-                + ': %s' % period_number
-            st_line_comm += INDENT + _('Transaction Sequence Number') \
-                + ': %s' % sequence_number
-            st_line_comm += INDENT + _('Time') \
-                + ': %s' % trans_date + ' ' + trans_hour
-            st_line_comm += INDENT + _('Transaction Type') \
-                + ': %s' % trans_type
-            st_line_comm += INDENT + _('Terminal Identification') \
-                + ': %s' % terminal_name + ', ' + terminal_city
-            st_line_comm += INDENT + _('Transaction Reference') \
-                + ': %s' % trans_reference
+            st_line_name, st_line_comm = self._parse_comm_move_114(
+                coda_statement, line)
 
         elif comm_type == '123':
             starting_date = str2date(comm[0:6])
@@ -2688,6 +2653,57 @@ class AccountCodaImport(models.TransientModel):
         if amount_eur:
             st_line_comm += INDENT + _('Equivalent in EUR') \
                 + ': %.2f' % amount_eur
+        st_line_comm += '\n'
+
+        return st_line_name, st_line_comm
+
+    def _parse_comm_move_114(self, coda_statement, line):
+
+        comm = st_line_comm = line['communication']
+        card_schemes = {
+            '1': 'Bancontact/Mister Cash',
+            '2': 'Maestro',
+            '3': _('Private'),
+            '5': 'TINA',
+            '9': _('Other')}
+        trans_types = {
+            '1': _('Withdrawal'),
+            '7': _('Distribution sector'),
+            '8': _('Teledata'),
+            '9': _('Fuel')}
+        st_line_name = _('POS credit - individual transaction')
+        card_scheme = card_schemes.get(comm[0], '')
+        pos_number = comm[1:7].strip()
+        period_number = comm[7:10].strip()
+        sequence_number = comm[10:16].strip()
+        trans_date = str2date(comm[16:22])
+        trans_hour = str2time(comm[22:26])
+        trans_type = trans_types.get(comm[26], '')
+        terminal_name = comm[27:43].strip()
+        terminal_city = comm[43:53].strip()
+        trans_reference = comm[53:69].strip()
+        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
+            + _('Card Scheme') + ': %s' % card_scheme
+        if pos_number:
+            st_line_comm += INDENT + _('POS Number') + ': %s' % pos_number
+        if period_number:
+            st_line_comm += INDENT + _('Period Number') \
+                + ': %s' % period_number
+        if sequence_number:
+            st_line_comm += INDENT + _('Transaction Sequence Number') \
+                + ': %s' % sequence_number
+        if trans_hour:
+            st_line_comm += INDENT + _('Time') \
+                + ': %s' % trans_date + ' ' + trans_hour
+        if trans_type:
+            st_line_comm += INDENT + _('Transaction Type') \
+                + ': %s' % trans_type
+        if terminal_city:
+            st_line_comm += INDENT + _('Terminal Identification') \
+                + ': %s' % terminal_name + ', ' + terminal_city
+        if trans_reference:
+            st_line_comm += INDENT + _('Transaction Reference') \
+                + ': %s' % trans_reference
         st_line_comm += '\n'
 
         return st_line_name, st_line_comm

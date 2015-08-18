@@ -41,7 +41,9 @@
                 <field name="name"/>
                 <field name="debit"/>
                 <field name="credit"/>
-                <field name="analytic_account_id" domain="[('parent_id','!=',False)]" groups="analytic.group_analytic_accounting"/>
+                <field name="analytic_account_id"
+                       domain="[('type','in',('normal','contract'), ('company_id', '=', parent.company_id), ('state', 'not in', ('close', 'cancelled'))]"
+                       groups="analytic.group_analytic_accounting"/>
                 <field name="reconcile_id"/>
                 <field name="reconcile_partial_id"/>
                 <field name="tax_code_id"/>

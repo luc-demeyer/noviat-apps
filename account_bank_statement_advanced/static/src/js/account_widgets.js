@@ -29,11 +29,11 @@ openerp.account_bank_statement_advanced = function (instance) {
             var self = this;
 
             /*
-            function copied from standard addons with addition of ['amount', '!=', 0.0] to filter
+            function copied from standard addons with replacement of ['account_id', '=', false] by ['amount', '!=', 0.0] to filter
             TODO : make PR to standard addons
             */
-            var lines_filter = [['journal_entry_id', '=', false], ['account_id', '=', false]];
-            lines_filter.push(['amount', '!=', 0.0]); // FIX
+            var lines_filter = [['journal_entry_id', '=', false], ['amount', '!=', 0.0]];
+            //var lines_filter = [['journal_entry_id', '=', false], ['account_id', '=', false]];
             if (self.statement_ids && self.statement_ids.length > 0) {
                 lines_filter.push(['statement_id', 'in', self.statement_ids]);
             };
