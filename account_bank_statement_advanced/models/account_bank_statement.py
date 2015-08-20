@@ -202,8 +202,8 @@ class AccountBankStatementLine(models.Model):
         string='Reconciled', compute='_compute_reconcile_get', readonly=True)
     move_get = fields.Char(
         string='Move', compute='_compute_move_get', readonly=True)
-    move_state = fields.Char(
-        string='Move State', compute='_compute_move_state', readonly=True)
+    move_state = fields.Selection(
+        string='Move State', related='journal_entry_id.state', readonly=True)
 
     # update existing fields
     date = fields.Date(string='Entry Date')
@@ -211,6 +211,7 @@ class AccountBankStatementLine(models.Model):
         domain=['|', ('parent_id', '=', False), ('is_company', '=', True)])
 
     @api.one
+    @api.depends('journal_entry_id')
     def _compute_reconcile_get(self):
         res = '-'
         move = self.journal_entry_id
@@ -228,6 +229,7 @@ class AccountBankStatementLine(models.Model):
         self.reconcile_get = res
 
     @api.one
+    @api.depends('journal_entry_id.state')
     def _compute_move_get(self):
         res = '-'
         move = self.journal_entry_id
@@ -237,14 +239,6 @@ class AccountBankStatementLine(models.Model):
             result_list = field_dict['state']['selection']
             res = filter(lambda x: x[0] == move.state, result_list)[0][1]
         self.move_get = res
-
-    @api.one
-    def _compute_move_state(self):
-        res = False
-        move = self.journal_entry_id
-        if move:
-            res = move.state
-        self.move_state = res
 
     @api.multi
     def action_cancel(self):

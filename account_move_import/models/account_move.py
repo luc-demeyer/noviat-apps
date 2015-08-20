@@ -20,4 +20,22 @@
 #
 ##############################################################################
 
-from . import import_move_line_wizard
+from openerp import models, api, _
+
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
+
+    @api.multi
+    def import_lines(self):
+        self.ensure_one()
+        view = self.env.ref('account_move_import.aml_import_view_form')
+        return {
+            'name': _('Import File'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'aml.import',
+            'view_id': view.id,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }

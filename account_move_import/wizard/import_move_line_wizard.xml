@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
-   
-    <record id="aml_import_view" model="ir.ui.view">
+  <data>
+
+    <record id="aml_import_view_form" model="ir.ui.view">
       <field name="name">aml.import.form</field>
       <field name="model">aml.import</field>
       <field name="priority">1</field>
@@ -11,6 +11,7 @@
           <group col="4">
             <separator string="Select your file :" colspan="4"/>
             <field name="aml_data" filename="aml_fname"/>
+            <field name="aml_fname" readonly="1"/>
             <newline/>
             <field name="csv_separator"/>
             <field name="decimal_separator"/>
@@ -24,13 +25,13 @@
       </field>
     </record>
 
-    <record id="aml_import_result_view" model="ir.ui.view">
-      <field name="name">aml.import.result.form</field>
+    <record id="aml_import_view_form_result" model="ir.ui.view">
+      <field name="name">aml.import.form.result</field>
       <field name="model">aml.import</field>
       <field name="priority">2</field>
       <field name="arch" type="xml">
         <form string="Import File">
-          <separator colspan="4" string="Results :" />
+          <separator colspan="4" string="Results :"/>
           <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
           <footer>
             <button string="Close" class="oe_link" special="cancel"/>
@@ -38,6 +39,6 @@
         </form>
       </field>
     </record>
-    
-  </data> 
+
+  </data>
 </openerp>

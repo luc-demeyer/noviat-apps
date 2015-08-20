@@ -1242,8 +1242,6 @@ class AccountCodaImport(models.TransientModel):
             'statement_id': coda_statement['bank_st_id'],
             'note': line['note']}
 
-        if line.get('account_id'):
-            st_line_vals['account_id'] = line['account_id']
         if line.get('bank_account_id'):
             st_line_vals['bank_account_id'] = line['bank_account_id']
         if line.get('currency_id'):

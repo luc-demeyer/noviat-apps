@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,14 +22,19 @@
 
 {
     'name': 'Account Move Import',
-    'version': '0.1',
+    'version': '0.3',
     'license': 'AGPL-3',
-    'author': 'Noviat',
+    'author': 'Noviat, Odoo Community Association (OCA)',
+    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
     'summary': 'Import Accounting Entries',
     'depends': ['account'],
     'data': [
-        'account_move_view.xml',
+        'views/account_move.xml',
         'wizard/import_move_line_wizard.xml',
     ],
+    'demo': [
+        'demo/account_move.xml',
+    ],
+    'installable': True,
 }
