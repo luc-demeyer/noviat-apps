@@ -49,8 +49,8 @@ class AccountCodaBatchImport(models.TransientModel):
     def _get_directory(self):
         company = self.env.user.company_id
         coda_batch_root = company.coda_batch_root
-        folder_start = len(coda_batch_root)
         path = os.path.normpath(coda_batch_root)
+        folder_start = len(path)
 
         self._cr.execute(
             "SELECT directory FROM account_coda_batch_log "

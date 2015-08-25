@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - CODA statements batch import',
-    'version': '3.1',
+    'version': '3.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

@@ -53,7 +53,7 @@ class AccountCodaBatchLog(models.Model):
         default=lambda self: self.env.user.company_id)
 
     _sql_constraints = [
-        ('dir_uniq', 'unique (directory_id)',
+        ('dir_uniq', 'unique (directory)',
          'This folder has already been processed !')
     ]
 
