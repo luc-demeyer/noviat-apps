@@ -30,7 +30,7 @@ class res_partner_bank(models.Model):
     _inherit = 'res.partner.bank'
 
     def create(self, cr, uid, vals, context=None):
-        if vals['state'] != 'iban':
+        if vals.get('state') != 'iban':
             env = api.Environment(cr, uid, context)
             bank = env['res.bank'].browse(vals.get('bank'))
             if bank.country == env.ref('base.be') and bank.bic and bank.code:
