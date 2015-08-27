@@ -22,7 +22,7 @@
 
 {
     'name': 'Bank Statement Usability improvements when using Analytic Plans',
-    'version': '0.1',
+    'version': '0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
