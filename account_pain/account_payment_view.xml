@@ -7,22 +7,14 @@
       <field name="model">payment.line</field>
       <field name="arch" type="xml">
         <search string="Search Payment Lines">
-          <group>
-            <field name="order_id"/>
-            <field name="ml_inv_ref"/>
-            <field name="ml_maturity_date"/>
-            <field name="partner_id" select="1"/>
-            <field name="communication"/>
-            <field name="amount_currency"/>
-            <field name="bank_id" domain="[('partner_id', '=', partner_id)]"/>
-            <field name="move_line_id" on_change="onchange_move_line(move_line_id,parent.mode)"/>
-            <field name="create_date"/>
-            <field name="name"/>
-          </group>
-          <newline/>
-          <group expand="0" string="Group By...">
-            <filter string="Payment Mode" context="{'group_by': 'bank_id'}" icon="terp-dolar"/>
-          </group>
+          <field name="communication"/>
+          <field name="move_line_id"/>
+          <field name="partner_id"/>
+          <field name="amount_currency"/>
+          <field name="ml_maturity_date"/>
+          <field name="order_id"/>
+          <field name="create_date"/>
+          <field name="name"/>
         </search>
       </field>
     </record>
