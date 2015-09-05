@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Structured Communication',
-    'version': '1.5',
+    'version': '1.6',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category' : 'Localization',

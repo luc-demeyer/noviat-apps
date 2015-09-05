@@ -55,10 +55,18 @@ class account_invoice(osv.osv):
             if mod == int(bbacomm[-2:]):
                 return True
         return False
-    
-    def duplicate_bba(self, cr, uid, inv_type, reference, partner):
-        """ overwrite this method to customise the handling of duplicate BBA communications """
-        error = False
+
+    def duplicate_bba(self, cr, uid, ids, inv_type, reference, partner):
+        """ 
+        overwrite this method to customise the handling of duplicate BBA communications
+
+        raise osv.except_osv(
+            _('Warning!'),
+            _('The BBA Structured Communication has already been used!'
+              '\nPlease use a unique BBA Structured Communication.'))
+        """
+        if isinstance(ids, (int, long)):
+            ids = [ids]
         reference_type = 'bba'
         if inv_type == 'out_invoice':
                 if partner.out_inv_comm_algorithm == 'random':
@@ -67,10 +75,6 @@ class account_invoice(osv.osv):
                 else:
                     # replace duplicate BBA Comms created manually or by OpenERP applications (e.g. Sales Order Refund/Modify)  
                     reference = self.generate_bbacomm(cr, uid, [], inv_type, reference_type, partner.id, False)['value']['reference']
-        if error:
-            raise osv.except_osv(_('Warning!'),
-                _('The BBA Structured Communication has already been used!' \
-                  '\nPlease use a unique BBA Structured Communication.'))
         return reference_type, reference
 
     def _check_communication(self, cr, uid, ids):
@@ -78,7 +82,7 @@ class account_invoice(osv.osv):
             if inv.reference_type == 'bba':
                 return self.check_bbacomm(inv.reference)
         return True
-    
+
     def onchange_partner_id(self, cr, uid, ids, type, partner_id,
             date_invoice=False, payment_term=False, partner_bank_id=False, company_id=False):       
         result = super(account_invoice, self).onchange_partner_id(cr, uid, ids, type, partner_id,
@@ -225,7 +229,7 @@ class account_invoice(osv.osv):
             new_ids.append(self.create(cr, uid, invoice))
 
         return new_ids
-    
+
     def create(self, cr, uid, vals, context=None):
         partner_id = vals.get('partner_id')
         if not partner_id:
@@ -245,11 +249,11 @@ class account_invoice(osv.osv):
         elif not reference_type:
             reference_type = 'none'
 
-        if reference_type == 'bba':               
+        if reference_type == 'bba':
             if not reference:
                 raise osv.except_osv(_('Warning!'),
                     _('Empty BBA Structured Communication!' \
-                      '\nPlease fill in a BBA Structured Communication.'))       
+                      '\nPlease fill in a BBA Structured Communication.'))
             if self.check_bbacomm(reference):
                 reference = re.sub('\D', '', reference)
                 reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
@@ -258,34 +262,40 @@ class account_invoice(osv.osv):
                         [('type', '=', 'out_invoice'), ('state', '!=', 'draft'),
                          ('reference_type', '=', 'bba'), ('reference', '=', reference)])
                     if same_ids:
-                        reference_type, reference = self.duplicate_bba(cr, uid, inv_type, reference, partner)
-        vals.update({'reference_type': reference_type, 'reference': reference})        
-        return super(account_invoice, self).create(cr, uid, vals, context=context)     
+                        reference_type, reference = self.duplicate_bba(cr, uid, [], inv_type, reference, partner)
+        vals.update({'reference_type': reference_type, 'reference': reference})
+        return super(account_invoice, self).create(cr, uid, vals, context=context)
 
     def write(self, cr, uid, ids, vals, context={}):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        for inv in self.browse(cr, uid, ids, context):    
-            if vals.has_key('reference_type'):
+        for inv in self.browse(cr, uid, ids, context):
+            if 'reference_type' in vals:
                 reference_type = vals['reference_type']
-            else:    
+            else:
                 reference_type = inv.reference_type or ''
-            if reference_type == 'bba':               
-                if vals.has_key('reference'):
+            if reference_type == 'bba':
+                if 'reference' in vals:
                     bbacomm = vals['reference']
                 else:
                     bbacomm = inv.reference or ''
                 if self.check_bbacomm(bbacomm):
                     reference = re.sub('\D', '', bbacomm)
-                    vals['reference'] = reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'    
-                    if inv.type == 'out_invoice':
-                        same_ids = self.search(cr, uid, 
-                            [('id', '!=', inv.id), ('type', '=', 'out_invoice'), ('state', '!=', 'draft'),
-                             ('reference_type', '=', 'bba'), ('reference', '=', reference)])
+                    vals['reference'] = reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
+                    # perform dup handling for draft outgoing invoices
+                    if inv.type == 'out_invoice' and inv.state == 'draft':
+                        same_ids = self.search(
+                            cr, uid,
+                            [('id', '!=', inv.id),
+                             ('type', '=', 'out_invoice'),
+                             ('state', '!=', 'draft'),
+                             ('reference_type', '=', 'bba'),
+                             ('reference', '=', reference)])
                         if same_ids:
-                            reference_type, reference = self.duplicate_bba(cr, uid, inv.type, reference, inv.partner_id)
+                            reference_type, reference = self.duplicate_bba(cr, uid, ids, inv.type, reference, inv.partner_id)
                             vals.update({'reference_type': reference_type, 'reference': reference})        
-        return super(account_invoice, self).write(cr, uid, ids, vals, context)    
+            super(account_invoice, self).write(cr, uid, [inv.id], vals, context)
+        return True
 
     _columns = {
         'reference': fields.char('Communication', size=64, help="The partner reference of this invoice."),
