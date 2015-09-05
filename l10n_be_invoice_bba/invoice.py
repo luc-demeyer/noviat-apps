@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2011-now Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -59,7 +59,7 @@ class account_invoice(models.Model):
 
     def duplicate_bba(self, partner, reference):
         """
-        overwrite this method to customise the handling of
+        overwrite this method to customize the handling of
         duplicate BBA communications
         """
         if partner.out_inv_comm_algorithm == 'random':
@@ -78,7 +78,8 @@ class account_invoice(models.Model):
              ('reference', '=', reference)])
         if dups:
             raise Warning(
-                _("The BBA Structured Communication has already been used!"
+                _("The BBA Structured Communication "
+                  "has already been used!"
                   "\nPlease use a unique BBA Structured Communication."))
         return reference
 
@@ -241,8 +242,9 @@ class account_invoice(models.Model):
         else:
             inv_type = self._context.get('type', 'out_invoice')
             vals['type'] = inv_type
-        reference_type = vals.get('reference_type') or \
-            partner.out_inv_comm_type
+        reference_type = vals.get('reference_type')
+        if not reference_type and inv_type == 'out_invoice':
+            reference_type = partner.out_inv_comm_type
         reference = vals.get('reference')
 
         if reference_type == 'bba':
@@ -283,7 +285,7 @@ class account_invoice(models.Model):
                     bbacomm = inv.reference or ''
                 if self.check_bbacomm(bbacomm):
                     reference = self.format_bbacomm(bbacomm)
-                    if inv.type == 'out_invoice':
+                    if inv.type == 'out_invoice' and inv.state == 'draft':
                         dups = self.search(
                             [('id', '!=', inv.id),
                              ('type', '=', 'out_invoice'),
@@ -295,7 +297,8 @@ class account_invoice(models.Model):
                             reference = self.duplicate_bba(
                                 partner, reference)
                     vals['reference'] = reference
-        return super(account_invoice, self).write(vals)
+            super (account_invoice, self).write(vals)
+        return True
 
     @api.one
     @api.returns('self', lambda value: value.id)
