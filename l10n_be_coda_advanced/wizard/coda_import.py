@@ -86,9 +86,6 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nCODA V%s statements are not supported, "
                 "please contact your bank !") % coda_version
-            err_code = 'R0001'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         coda_statement['coda_version'] = coda_version
         coda_statement['coda_statement_lines'] = {}
@@ -117,9 +114,6 @@ class AccountCodaImport(models.TransientModel):
         elif line[1] == '1':  # foreign bank account BBAN structure
             err_string = _("\nForeign bank accounts with "
                            "BBAN structure are not supported !")
-            err_code = 'R1001'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         elif line[1] == '2':  # Belgian bank account IBAN structure
             coda_statement['acc_number'] = line[5:21]
@@ -127,15 +121,9 @@ class AccountCodaImport(models.TransientModel):
         elif line[1] == '3':  # foreign bank account IBAN structure
             err_string = _("\nForeign bank accounts with "
                            "IBAN structure are not supported !")
-            err_code = 'R1002'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         else:
             err_string = _("\nUnsupported bank account structure !")
-            err_code = 'R1003'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         coda_statement['description'] = line[90:125].strip()
 
@@ -188,9 +176,6 @@ class AccountCodaImport(models.TransientModel):
                       ) % (coda_statement['acc_number'],
                            coda_statement['currency'],
                            coda_statement['description'])
-                err_code = 'R1004'
-                if self._batch:
-                    return err_code, err_string
                 raise Warning(_('Data Error !'), err_string)
         bal_start = list2float(line[43:58])  # old balance data
         if line[42] == '1':  # 1= Debit
@@ -274,9 +259,6 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nMovement data records of type 2.%s are not supported !"
                 ) % line[1]
-            err_code = 'R2001'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
 
         return coda_parsing_note, st_line_seq
@@ -355,9 +337,6 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Type : %s !"
                 ) % st_line['trans_type']
-            err_code = 'R2101'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         st_line['trans_type_id'] = trans_type[0].id
         st_line['trans_type_desc'] = trans_type[0].description
@@ -390,9 +369,6 @@ class AccountCodaImport(models.TransientModel):
                 # support > 9999 detail lines
                 err_string = _(
                     '\nTransaction Detail Limit reached !')
-                err_code = 'R2102'
-                if self._batch:
-                    return err_code, err_string
                 raise Warning(_('Data Error !'), err_string)
             elif st_line['ref_move_detail'] != '0000':
                 if glob_lvl_stack[-1] == 0 \
@@ -431,9 +407,6 @@ class AccountCodaImport(models.TransientModel):
                 "\nThe File contains an invalid "
                 "CODA Transaction Family : %s !"
                 ) % st_line['trans_family']
-            err_code = 'R2103'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         trans_family = trans_family[0]
         st_line['trans_family_id'] = trans_family.id
@@ -475,9 +448,6 @@ class AccountCodaImport(models.TransientModel):
                     "\nThe File contains an invalid "
                     "Structured Communication Type : %s !"
                     ) % st_line['struct_comm_type']
-                err_code = 'R2104'
-                if self._batch:
-                    return err_code, err_string
                 raise Warning(_('Data Error !'), err_string)
             st_line['struct_comm_type_id'] = comm_type[0].id
             st_line['struct_comm_type_desc'] = comm_type[0].description
@@ -550,9 +520,6 @@ class AccountCodaImport(models.TransientModel):
                 "\nCODA parsing error on movement data record 2.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
-            err_code = 'R2201'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Error !'), err_string)
         st_line['name'] += line[10:63]
         st_line['communication'] += line[10:63]
@@ -570,9 +537,6 @@ class AccountCodaImport(models.TransientModel):
                 "\nCODA parsing error on movement data record 2.3, seq nr %s!"
                 "'\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
-            err_code = 'R2301'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Error !'), err_string)
 
         if coda_statement['coda_version'] == '1':
@@ -640,10 +604,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.1, seq nr %s !"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
-            err_code = 'R3101'
-            if self._batch:
-                return err_code, err_string
-            raise Warning(_('Data Error !'), err_string)
+            raise Warning(_('Error !'), err_string)
         info_line['main_move_sequence'] = mm_seq
         # positions 32-38 : transaction code
         info_line['trans_type'] = line[31]
@@ -654,9 +615,6 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Type : %s !"
                 ) % info_line['trans_type']
-            err_code = 'R3102'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         info_line['trans_type_desc'] = trans_type[0].description
         info_line['trans_family'] = line[32:34]
@@ -668,9 +626,6 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Family : %s !"
                 ) % info_line['trans_family']
-            err_code = 'R3103'
-            if self._batch:
-                return err_code, err_string
             raise Warning(_('Data Error !'), err_string)
         trans_family = trans_family[0]
         info_line['trans_family_desc'] = trans_family.description
@@ -706,9 +661,6 @@ class AccountCodaImport(models.TransientModel):
                     "\nThe File contains an invalid "
                     "Structured Communication Type : %s !"
                     ) % info_line['struct_comm_type']
-                err_code = 'R3104'
-                if self._batch:
-                    return err_code, err_string
                 raise Warning(_('Data Error !'), err_string)
             info_line['struct_comm_type_desc'] = comm_type[0].description
             info_line['communication'] = info_line['name'] = line[43:113]
@@ -730,10 +682,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
-            err_code = 'R3201'
-            if self._batch:
-                return err_code, err_string
-            raise Warning(_('Data Error !'), err_string)
+            raise Warning(_('Error !'), err_string)
         st_line['name'] += line[10:115]
         st_line['communication'] += line[10:115]
 
@@ -749,10 +698,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.3, seq nr %s !"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
-            err_code = 'R3301'
-            if self._batch:
-                return err_code, err_string
-            raise Warning(_('Data Error !'), err_string)
+            raise Warning(_('Error !'), err_string)
         st_line['name'] += line[10:100]
         st_line['communication'] += line[10:100]
 
@@ -805,6 +751,7 @@ class AccountCodaImport(models.TransientModel):
         if line[41] == '1':    # 1=Debit
             bal_end = - bal_end
         coda_statement['balance_end_real'] = bal_end
+
         if not period_id:
             if coda_statement['new_balance_date']:
                 periods = self.env['account.period'].search(
@@ -819,18 +766,26 @@ class AccountCodaImport(models.TransientModel):
                      ('special', '=', False),
                      ('company_id', '=', cba.company_id.id)])
             period_id = periods and periods[0].id
-        if not period_id:
-            if coda_statement['type'] == 'normal':
+        if coda_statement['type'] == 'normal':
+            if not period_id:
                 err_string = _(
                     "\nThe CODA Statement New Balance date doesn't fall "
                     "within a defined Accounting Period !"
                     "\nPlease create the Accounting Period for date %s."
                     ) % coda_statement['new_balance_date']
-                err_code = 'R8001'
-                if self._batch:
-                    return err_code, err_string
                 raise Warning(_('Data Error !'), err_string)
+            else:
+                period = self.env['account.period'].browse(period_id)
+                if period.state == 'done':
+                    err_string = _(
+                        "\nYou cannot load the CODA Statement "
+                        "in a closed Accounting Period !"
+                        "\nPlease select another Accounting Period or "
+                        "reopen period %s."
+                        ) % period.code
+                    raise Warning(err_string)
         coda_statement['period_id'] = period_id
+
         # update coda_statement['name'] with data from 8 record
         if cba.coda_st_naming:
             coda_statement['name'] = cba.coda_st_naming % {
@@ -982,6 +937,14 @@ class AccountCodaImport(models.TransientModel):
             ctx = dict(self._context, force_company=cba.company_id.id)
             st = self.env['account.bank.statement'].with_context(ctx)
             bank_st = st.create(st_vals)
+        except Warning, e:
+            self._cr.rollback()
+            self._nb_err += 1
+            self._err_string += _('\nError ! ') + str(e)
+            tb = ''.join(format_exception(*exc_info()))
+            _logger.error(
+                "Application Error while processing Statement %s\n%s",
+                coda_statement.get('name', '/'), tb)
         except orm.except_orm, e:
             self._cr.rollback()
             self._nb_err += 1
@@ -1417,9 +1380,6 @@ class AccountCodaImport(models.TransientModel):
                 self._cr.rollback()
                 err_string = _('\nUnknown Error : ') + str(e)
             if err_string:
-                err_code = 'G0001'
-                if self._batch:
-                    return (err_code, err_string)
                 raise Warning(_('CODA Import failed !'), err_string)
 
         self._nb_err = 0
@@ -1565,9 +1525,6 @@ class AccountCodaImport(models.TransientModel):
             if self._batch:
                 return None
         else:
-            if self._batch:
-                err_code = 'G0002'
-                return (err_code, self._err_string)
             raise Warning(
                 _("CODA Import failed !"), self._err_string)
 
@@ -1598,12 +1555,7 @@ class AccountCodaImport(models.TransientModel):
     def _match_and_reconcile(self, coda_statement, line, coda_parsing_note):
         """
         Matching and Reconciliation logic.
-
         Returns: coda_parsing_note
-
-        Remark:
-        Don't use 'raise' when the CODA is processed in batch mode,
-        but check if self._batch is True
         """
 
         # match on payment reference
@@ -1981,7 +1933,8 @@ class AccountCodaImport(models.TransientModel):
                     match['transfer_account'] = True
             elif cba.find_partner:
                 partner_banks = self.env['res.partner.bank'].search(
-                    [('acc_number', '=', cp_number)])
+                    [('acc_number', '=', cp_number),
+                     ('partner_id.active', '=', True)])
         if not match and cba.find_partner and partner_banks:
             # filter out partners that belong to other companies
             # TODO :

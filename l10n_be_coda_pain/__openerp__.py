@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'CODA Import - ISO 20022 Payment Order Matching',
-    'version': '0.3',
+    'version': '0.4',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

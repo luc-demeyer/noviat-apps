@@ -24,6 +24,8 @@ import logging
 _logger = logging.getLogger(__name__)
 import os
 import time
+from sys import exc_info
+from traceback import format_exception
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
@@ -126,27 +128,28 @@ class AccountCodaBatchImport(models.TransientModel):
         # process CODA files
         for coda_file in coda_files:
             time_start = time.time()
-            res = coda_import_wiz._coda_parsing(
-                codafile=coda_file[1], codafilename=coda_file[2],
-                period_id=None, batch=True)
+            try:
+                coda_import_wiz._coda_parsing(
+                    codafile=coda_file[1], codafilename=coda_file[2],
+                    period_id=None, batch=True)
+                self._log_note += _(
+                    "\n\nCODA File '%s' has been imported."
+                    ) % coda_file[2]
+            except Warning, e:
+                self._nb_err += 1
+                self._err_log += _(
+                    "\n\nError while processing CODA File '%s' :\n%s"
+                    ) % (coda_file[2], ''.join(e.args))
+            except:
+                self._nb_err += 1
+                tb = ''.join(format_exception(*exc_info()))
+                self._err_log += _(
+                    "\n\nError while processing CODA File '%s' :\n%s"
+                    ) % (coda_file[2], tb)
             file_import_time = time.time() - time_start
             _logger.warn(
                 'File %s processing time = %.3f seconds',
                 coda_file[2], file_import_time)
-            if res:
-                if res[0][0] == 'W':
-                    self._err_log += _(
-                        "\n\nWarning while processing CODA File '%s' :"
-                        ) % coda_file[2] + res[1]
-                else:
-                    self._nb_err += 1
-                    self._err_log += _(
-                        "\n\nError while processing CODA File '%s' :"
-                        ) % coda_file[2] + res[1]
-            else:
-                self._log_note += _(
-                    "\n\nCODA File '%s' has been imported."
-                    ) % coda_file[2]
 
         if self._nb_err:
             log_state = 'error'

@@ -56,9 +56,6 @@ class AccountCodaImport(models.TransientModel):
                         "\nPlease check your Payment Gateway configuration "
                         "or contact your Odoo support channel."
                         ) % line[2:10]
-                    err_code = 'R2007'
-                    if self._batch:
-                        return (err_code, err_string)
                     raise Warning(_('Error!'), err_string)
 
         return coda_parsing_note, match
