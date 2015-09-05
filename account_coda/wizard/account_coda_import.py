@@ -1293,7 +1293,7 @@ class account_coda_import(orm.TransientModel):
             select = "SELECT id FROM (SELECT id, type, state, amount_total, number, reference_type, reference, " \
                      "'%s'::text AS free_comm_digits FROM account_invoice) sq " \
                      "WHERE state = 'open' AND reference_type = 'bba' " \
-                     "AND free_comm_digits LIKE '%%'||regexp_replace(reference, '\\\D', '', 'g')||'%%'" \
+                     "AND free_comm_digits LIKE '%%'||regexp_replace(reference, '\D', '', 'g')||'%%'" \
                      % (free_comm_digits)
             if st_line['amount'] > 0:
                 select2 = " AND type IN ('out_invoice', 'in_refund')"
@@ -1378,7 +1378,7 @@ class account_coda_import(orm.TransientModel):
         return st_line, coda_parsing_note, match
 
     def _match_counterparty(self, cr, uid, st_line, coda_parsing_note, coda_statement, context=None):
-        
+
         coda_bank_params = coda_statement['coda_bank_params']
         transfer_acc = coda_bank_params['transfer_account'][0]
         find_partner = coda_bank_params['find_partner']
@@ -1395,7 +1395,10 @@ class account_coda_import(orm.TransientModel):
                     st_line['account_id'] = transfer_acc
                     match['transfer_account'] = True
             elif find_partner:
-                partner_bank_ids = partner_bank_obj.search(cr,uid,[('acc_number','=', counterparty_number)])
+                partner_bank_ids = partner_bank_obj.search(
+                    cr,uid,
+                    [('acc_number', '=', counterparty_number),
+                     ('partner_id.active', '=', True)])
         if not match and find_partner and partner_bank_ids:
             partner_banks = partner_bank_obj.browse(cr, uid, partner_bank_ids, context=context)
             # filter out partners that belong to other companies
