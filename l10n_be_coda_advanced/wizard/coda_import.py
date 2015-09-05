@@ -1271,7 +1271,7 @@ class AccountCodaImport(models.TransientModel):
         return self._coda_parsing()
 
     def _coda_parsing(self, codafile=None, codafilename=None, period_id=None,
-                     batch=False):
+                      batch=False):
 
         if batch:
             self._batch = True

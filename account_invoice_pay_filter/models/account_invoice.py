@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,6 +21,7 @@
 ##############################################################################
 
 from openerp import models, _
+from openerp.exceptions import Warning
 
 
 class account_invoice(models.Model):
@@ -37,23 +38,31 @@ class account_invoice(models.Model):
         if inv.type in ('in_invoice', 'out_refund'):
             domain = [('payment_method_out', '=', True)]
             aj_ids = aj_obj.search(cr, uid, domain, context=context)
-            default_journal = aj_obj.browse(
-                cr, uid, aj_ids[0], context=context)
-            if default_journal.payment_date_out == 'invoice_date':
-                res['context'].update({
-                    'default_period_id': inv.period_id.id,
-                    'default_date': inv.date_invoice,
-                    })
+            if aj_ids:
+                default_journal = aj_obj.browse(
+                    cr, uid, aj_ids[0], context=context)
+                if default_journal.payment_date_out == 'invoice_date':
+                    res['context'].update({
+                        'default_period_id': inv.period_id.id,
+                        'default_date': inv.date_invoice,
+                        })
         else:
             domain = [('payment_method_in', '=', True)]
             aj_ids = aj_obj.search(cr, uid, domain, context=context)
-            default_journal = aj_obj.browse(
-                cr, uid, aj_ids[0], context=context)
-            if default_journal.payment_date_in == 'invoice_date':
-                res['context'].update({
-                    'default_period_id': inv.period_id.id,
-                    'default_date': inv.date_invoice,
-                    })
+            if aj_ids:
+                default_journal = aj_obj.browse(
+                    cr, uid, aj_ids[0], context=context)
+                if default_journal.payment_date_in == 'invoice_date':
+                    res['context'].update({
+                        'default_period_id': inv.period_id.id,
+                        'default_date': inv.date_invoice,
+                        })
+
+        if not aj_ids:
+            raise Warning(
+                _("No Payment Methods defined for "
+                  "the 'Register Payment' function"))
+
         res['name'] = _("Register Payment")
         res['context'].update({
             'payment_journal_ids': aj_ids,

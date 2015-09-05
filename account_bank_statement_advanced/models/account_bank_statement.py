@@ -26,7 +26,7 @@ _logger = logging.getLogger(__name__)
 
 from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import except_orm, Warning
+from openerp.exceptions import Warning
 
 
 class AccountBankStatementLineGlobal(models.Model):
