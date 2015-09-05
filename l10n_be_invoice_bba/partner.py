@@ -32,14 +32,16 @@ class res_partner(orm.Model):
         res = self.pool.get('account.invoice')._get_reference_type(cr, uid, context=context)
         return res
 
+    def _get_out_inv_comm_algorithm(self, cr, uid, context=None):
+        return [('random', 'Random'),
+                ('date', 'Date'),
+                ('partner_ref', 'Customer Reference')]
+
     _columns = {
         'out_inv_comm_type': fields.selection(_get_comm_type, 'Communication Type', change_default=True,
             help='Select Default Communication Type for Outgoing Invoices.'),
-        'out_inv_comm_algorithm': fields.selection([
-            ('random', 'Random'),
-            ('date', 'Date'),
-            ('partner_ref', 'Customer Reference'),
-            ], 'Communication Algorithm',
+        'out_inv_comm_algorithm': fields.selection(
+            _get_out_inv_comm_algorithm, 'Communication Algorithm',
             help='Select Algorithm to generate the Structured Communication on Outgoing Invoices.'),
     }
 

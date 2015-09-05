@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,25 @@
 #
 ##############################################################################
 
-from . import unreconcile_statement_entries
-from . import account_voucher_create
-from . import account_move_create
-from . import update_partner_record
-from . import account_statement_from_invoice
+{
+    'name': 'Bank Statement Usability improvements when using Payment Orders',
+    'version': '0.1',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'website': 'http://www.noviat.com',
+    'category': 'Accounting & Finance',
+    'description': """
+Bank Statement Uusability improvements
+======================================
+
+Install this module when using Payment Orders (module account_payment)
+in combination with the account_bank_statement_voucher module.
+
+    """,
+    'depends': [
+        'account_bank_statement_voucher',
+        'account_payment',
+    ],
+    'active': False,
+    'installable': True,
+    }

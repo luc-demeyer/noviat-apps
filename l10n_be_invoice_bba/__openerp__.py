@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Invoices with Structured Communication',
-    'version': '1.7',
+    'version': '1.8',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

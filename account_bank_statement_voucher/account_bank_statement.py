@@ -38,10 +38,10 @@ class account_bank_statement_line(orm.Model):
             if st_line.voucher_id:
                 if st_line.voucher_id.state == 'posted':
                     if st_line.voucher_id.paid:
-                        res[st_line.id] = '%.2f' %st_line.amount                        
+                        res[st_line.id] = '%.2f' %st_line.amount
                     else:
-                        reconciles = filter(lambda x: x.reconcile_id, st_line.voucher_id.move_ids)  
-                        rec_partials = filter(lambda x: x.reconcile_partial_id, st_line.voucher_id.move_ids)  
+                        reconciles = filter(lambda x: x.reconcile_id, st_line.voucher_id.move_ids)
+                        rec_partials = filter(lambda x: x.reconcile_partial_id, st_line.voucher_id.move_ids)
                         rec_total = reduce(lambda y,t: (t.credit or 0.0) - (t.debit or 0.0) + y, reconciles + rec_partials, 0.0)
                         res[st_line.id] = '%.2f' %rec_total
                         if rec_total != st_line.amount or rec_partials:
@@ -192,8 +192,11 @@ class account_bank_statement_line(orm.Model):
                 and not context.get('update_partner_record') == 'done' and st_line.account_id.type in ['receivable', 'payable']:
                 counterparty_number = st_line.counterparty_number
                 partner = st_line.partner_id
-                partner_bank_ids = partner_bank_obj.search(cr,uid,
-                    [('acc_number','=', counterparty_number), ('partner_id','=', partner.id)], order='id')
+                partner_bank_ids = partner_bank_obj.search(
+                    cr,uid,
+                    [('acc_number','=', counterparty_number),
+                     ('partner_id','=', partner.id)],
+                    order='id')
                 partner_banks = partner_bank_obj.browse(cr, uid, partner_bank_ids, context=context)
                 if len(partner_bank_ids) != 1:
                     ctx = context.copy()

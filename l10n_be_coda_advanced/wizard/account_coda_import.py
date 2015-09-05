@@ -1519,7 +1519,10 @@ class account_coda_import(orm.TransientModel):
                     st_line['account_id'] = transfer_acc
                     match['transfer_account'] = True
             elif find_partner:
-                partner_bank_ids = partner_bank_obj.search(cr,uid,[('acc_number','=', counterparty_number)])
+                partner_bank_ids = partner_bank_obj.search(
+                    cr,uid,
+                    [('acc_number','=', counterparty_number),
+                     ('partner_id.active', '=', True)])
 
         if not match and find_partner and partner_bank_ids:
             partner_banks = partner_bank_obj.browse(cr, uid, partner_bank_ids, context=context)

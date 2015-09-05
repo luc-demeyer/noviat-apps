@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2014 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,4 @@
 #
 ##############################################################################
 
-from . import unreconcile_statement_entries
-from . import account_voucher_create
-from . import account_move_create
-from . import update_partner_record
-from . import account_statement_from_invoice
+from . import account_payment_populate_statement

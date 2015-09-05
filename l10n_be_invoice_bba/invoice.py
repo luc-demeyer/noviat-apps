@@ -233,7 +233,7 @@ class account_invoice(orm.Model):
                 if self.check_bbacomm(bbacomm):
                     reference = re.sub('\D', '', bbacomm)
                     vals['reference'] = reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
-                    if inv.type == 'out_invoice':
+                    if inv.type == 'out_invoice' and inv.state == 'draft':
                         same_ids = self.search(cr, uid,
                             [('id', '!=', inv.id), ('type', '=', 'out_invoice'), ('state', '!=', 'draft'),
                              ('reference_type', '=', 'bba'), ('reference', '=', reference)])
