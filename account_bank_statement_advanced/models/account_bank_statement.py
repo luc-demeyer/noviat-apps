@@ -123,19 +123,6 @@ class AccountBankStatement(models.Model):
         """)
 
     @api.multi
-    def write(self, vals):
-        """
-        Bypass statement line resequencing since replaced by sequencing
-        via statement line create method.
-
-        TODO:
-        create PR to include this logic in the official addons since the
-        logic in this module may break community modules that need
-        to override the write method
-        """
-        return super(models.Model, self).write(vals)
-
-    @api.multi
     def button_cancel(self):
         """
         Replace the account module button_cancel to allow
@@ -291,20 +278,25 @@ class AccountBankStatementLine(models.Model):
 
     @api.model
     def create(self, vals):
-        if not vals.get('statement_id'):
-            raise except_orm(
-                _('Error !'),
-                _("Please recalculate the statement balance first "
-                  "via the 'Compute' button"))
+        """
+        This method can be dropped after acceptance by Odoo of
+        - PR 8397
+        - PR 8396
+        Until these Pull Requests have been merged you should install the
+        account_bank_statement.diff patch shipped with this module
+        (cf. doc directory)
+        """
+        # cf. https://github.com/odoo/odoo/pull/8397
         if not vals.get('sequence'):
             lines = self.search(
-                [('statement_id', '=', vals['statement_id'])],
+                [('statement_id', '=', vals.get('statement_id'))],
                 order='sequence desc', limit=1)
             if lines:
                 seq = lines[0].sequence
             else:
                 seq = 0
             vals['sequence'] = seq + 1
+        # cf. https://github.com/odoo/odoo/pull/8396
         if not vals.get('name'):
             vals['name'] = '/'
         return super(AccountBankStatementLine, self).create(vals)

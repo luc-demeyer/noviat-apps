@@ -1,3 +1,6 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+    :alt: License
+
 Advanced Bank Statement
 =======================
 
@@ -17,3 +20,15 @@ This module adds:
 - performance improvements for digital import of bank statement
 - search on res.partner.bank enhanced to ignore spaces and '-' characters
 - return IBAN if search initiated with BBAN (currently only for Belgium)
+
+Installation guidelines
+=======================
+
+This module requires that your Odoo instance runs a version that includes the
+following Pull Requests:
+
+- https://github.com/odoo/odoo/pull/8396
+- https://github.com/odoo/odoo/pull/8397
+
+You should install the patch distributed with this module if this is not the case:
+doc/account_bank_statement.diff

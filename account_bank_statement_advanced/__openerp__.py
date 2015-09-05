@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Advanced Bank Statement',
-    'version': '0.9',
+    'version': '1.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
