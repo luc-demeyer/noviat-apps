@@ -196,10 +196,12 @@ class partner_vat_intra(orm.TransientModel):
                        AND (l.debit+l.credit) != 0
                       GROUP BY p.name, l.partner_id, p.vat, intra_code""", 
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
-        
-        rows = cr.dictfetchall()       
+        rows = cr.dictfetchall()
+        rows = filter(lambda x: x['amount'] != 0, rows)
         if not rows:
-            raise orm.except_orm(_('No Data Available'), _('No intracom transactions found for the selected period(s) !'))           
+            raise orm.except_orm(
+                _('No Data Available'),
+                _('No intracom transactions found for the selected period(s) !'))
 
         p_count = 0
         for row in rows:
