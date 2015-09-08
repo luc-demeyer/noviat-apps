@@ -215,6 +215,7 @@ class partner_vat_intra(orm.TransientModel):
             """,
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
         records = cr.dictfetchall()
+        records = filter(lambda x: x['amount'] != 0, records)
         if not records:
             raise orm.except_orm(
                 _('No Data Available'),
