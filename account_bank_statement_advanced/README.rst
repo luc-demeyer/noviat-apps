@@ -31,4 +31,5 @@ following Pull Requests:
 - https://github.com/odoo/odoo/pull/8397
 
 You should install the patch distributed with this module if this is not the case:
-doc/account_bank_statement.diff
+doc/account_bank_statement.diff (Odoo V8 distribution >= 2015-09-04)
+doc/account_bank_statement-deprecated.diff (Odoo V8 distribution < 2015-09-04)
