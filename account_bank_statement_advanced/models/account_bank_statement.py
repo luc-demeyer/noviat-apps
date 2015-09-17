@@ -39,8 +39,7 @@ class AccountBankStatementLineGlobal(models.Model):
         help="Originator to Beneficiary Information")
     code = fields.Char(
         string='Code', required=True,
-        default=lambda self: self.env['ir.sequence'].get(
-            'account.bank.statement.line.global'))
+        default=lambda self: self._default_code())
     parent_id = fields.Many2one(
         'account.bank.statement.line.global',
         string='Parent Code', ondelete='cascade')
@@ -63,10 +62,29 @@ class AccountBankStatementLineGlobal(models.Model):
     bank_statement_line_ids = fields.One2many(
         'account.bank.statement.line', 'globalisation_id',
         string='Bank Statement Lines')
+    company_id = fields.Many2one(
+        'res.company', string='Company', readonly=True,
+        default=lambda self: self._default_company())
 
     _sql_constraints = [
-        ('code_uniq', 'unique (code)', 'The code must be unique !'),
-    ]
+        ('code_uniq',
+         'unique (code, company_id)',
+         'The code must be unique !')]
+
+    @api.model
+    def _default_code(self):
+        res = self.env['ir.sequence'].next_by_code(
+            'statement.line.global')
+        return res
+
+    @api.model
+    def _default_company(self):
+        c_id = self._context.get('force_company')
+        if c_id:
+            res = self.env['res.company'].browse(c_id)
+        else:
+            res = self.env.user.company_id
+        return res
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
@@ -269,12 +287,31 @@ class AccountBankStatementLine(models.Model):
 
     @api.multi
     def unlink(self):
+
         if self._context.get('block_statement_line_delete', False):
             raise Warning(
                 _("Delete operation not allowed ! "
                   "Please go to the associated bank statement in order to "
                   "delete and/or modify this bank statement line"))
-        return super(AccountBankStatementLine, self).unlink()
+
+        # remove orphaned global lines
+        self._cr.execute(
+            "SELECT DISTINCT globalisation_id "
+            "FROM account_bank_statement_line "
+            "WHERE id IN %s AND globalisation_id IS NOT NULL", (self._ids,))
+        g_ids = [x[0] for x in self._cr.fetchall()]
+        res = super(AccountBankStatementLine, self).unlink()
+        if g_ids:
+            self._cr.execute(
+                "SELECT DISTINCT globalisation_id "
+                "FROM account_bank_statement_line "
+                "WHERE globalisation_id IN %s", (tuple(g_ids),))
+            g_ids2 = [x[0] for x in self._cr.fetchall()]
+            todelete = [x for x in g_ids if x not in g_ids2]
+            if todelete:
+                self.pool['account.bank.statement.line.global'].unlink(
+                    self._cr, self._uid, todelete, self._context)
+        return res
 
     @api.model
     def create(self, vals):

@@ -1012,7 +1012,8 @@ class AccountCodaImport(models.TransientModel):
                     coda_statement['glob_id_stack'].pop()
                 else:
                     glob_name = line['name'].strip() or '/'
-                    glob_code = self.env['ir.sequence'].get(
+                    seq_mod = self.env['ir.sequence'].with_context(ctx)
+                    glob_code = seq_mod.next_by_code(
                         'statement.line.global')
                     glob_mod = self.env[
                         'account.bank.statement.line.global'
