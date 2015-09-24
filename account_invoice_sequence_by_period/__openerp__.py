@@ -22,7 +22,7 @@
 
 {
     'name': 'Assign Invoice Numbers by Period',
-    'version': '0.2',
+    'version': '0.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

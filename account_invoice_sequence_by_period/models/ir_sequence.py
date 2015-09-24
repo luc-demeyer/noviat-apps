@@ -78,5 +78,5 @@ class IrSequence(models.Model):
             res = cr.fetchone()
             if res:
                 return super(IrSequence, self)._next(
-                    cr, uid, [res[0]], context)
-        return super(IrSequence, self)._next(cr, uid, ids, context)
+                    cr, uid, [res[0]], context=context)
+        return super(IrSequence, self)._next(cr, uid, ids, context=context)
