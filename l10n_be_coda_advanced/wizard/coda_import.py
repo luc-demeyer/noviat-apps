@@ -1189,6 +1189,7 @@ class AccountCodaImport(models.TransientModel):
         return coda_parsing_note
 
     def _prepare_st_line_vals(self, coda_statement, line):
+        cba = coda_statement['coda_bank_params']
 
         st_line_vals = {
             'ref': line['ref'],
@@ -1208,7 +1209,9 @@ class AccountCodaImport(models.TransientModel):
 
         if line.get('bank_account_id'):
             st_line_vals['bank_account_id'] = line['bank_account_id']
-        if line.get('currency_id'):
+
+        if line.get('currency_id') \
+                and line['currency_id'] != cba.company_id.currency_id.id:
             st_line_vals['currency_id'] = line['currency_id']
             st_line_vals['amount_currency'] = line['amount_currency']
 
