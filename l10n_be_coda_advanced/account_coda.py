@@ -426,8 +426,16 @@ class coda_account_mapping_rule(orm.Model):
         'freecomm': fields.char('Free Communication', size=128),
         'structcomm': fields.char('Structured Communication', size=128),
         # results
-        'account_id': fields.many2one('account.account', 'Account', ondelete='cascade', required=True, domain=[('type', '!=', 'view')]),
-        'tax_code_id': fields.many2one('account.tax.code', 'Tax Case', ondelete='cascade'),
+        'account_id': fields.many2one(
+            'account.account', 'Account', ondelete='cascade', required=True,
+            domain=[('type', '!=', 'view')]),
+        'tax_code_id': fields.many2one(
+            'account.tax.code', 'Tax Case', ondelete='cascade'),
+        'analytic_account_id': fields.many2one(
+           'account.analytic.account', 'Analytic Account',
+           ondelete='set null',
+           domain=[('type', '!=', 'view'),
+                   ('state', 'not in', ('close', 'cancelled'))]),
         'action': fields.selection([
             ('none', 'None'),
             ('move_draft', 'Draft Move'),
@@ -439,28 +447,66 @@ class coda_account_mapping_rule(orm.Model):
         'action': 'none',
     }
 
-    def rule_get(self, cr, uid, coda_bank_account_id, trans_type_id=None, trans_family_id=None,
-            trans_code_id=None, trans_category_id=None, struct_comm_type_id=None, partner_id=None,
-            freecomm=None, structcomm=None, context=None):
-        cr.execute('SELECT trans_type_id, trans_family_id, trans_code_id, trans_category_id, ' \
+
+    def _rule_select_extra(self, cr, uid,
+                              coda_bank_account_id, context=None):
+        """
+        Use this method to customize the mapping rule engine.
+        Cf. l10n_be_coda_analytic_plan module for an example.
+        """
+        return ''
+
+    def _rule_result_extra(self, cr, uid,
+                              coda_bank_account_id, context=None):
+        """
+        Use this method to customize the mapping rule engine.
+        Cf. l10n_be_coda_analytic_plan module for an example.
+        """
+        return []
+
+    def rule_get(self, cr, uid, coda_bank_account_id,
+                 trans_type_id=None, trans_family_id=None,
+                 trans_code_id=None, trans_category_id=None,
+                 struct_comm_type_id=None, partner_id=None,
+                 freecomm=None, structcomm=None, context=None):
+        select = \
+            'SELECT trans_type_id, trans_family_id, trans_code_id, ' \
+            'trans_category_id, ' \
             'struct_comm_type_id, partner_id, freecomm, structcomm, ' \
-            'account_id, tax_code_id, action ' \
-            'FROM coda_account_mapping_rule ' \
-            'WHERE active = TRUE AND coda_bank_account_id = %s ' \
-            'ORDER BY sequence' % coda_bank_account_id
-        )
-        rules = cr.fetchall()
-        condition = '(not rule[0] or (trans_type_id == rule[0])) and (not rule[1] or (trans_family_id == rule[1])) ' \
-            'and (not rule[2] or (trans_code_id == rule[2])) and (not rule[3] or (trans_category_id == rule[3])) ' \
-            'and (not rule[4] or (struct_comm_type_id == rule[4])) and (not rule[5] or (partner_id == rule[5])) ' \
-            'and (not rule[6] or (rule[6].lower() in (freecomm and freecomm.lower() or ""))) ' \
-            'and (not rule[7] or (rule[7] in (structcomm or ""))) '
-        account_id = tax_code_id = action = None
+            'account_id, tax_code_id, analytic_account_id, '
+        select += self._rule_select_extra(
+            cr, uid, coda_bank_account_id, context=context) + 'action '
+        select += \
+            "FROM coda_account_mapping_rule " \
+            "WHERE active = TRUE AND coda_bank_account_id = %s " \
+            "ORDER BY sequence" % coda_bank_account_id
+        cr.execute(select)
+        rules = cr.dictfetchall()
+        condition = \
+            "(not rule['trans_type_id'] or " \
+            "(trans_type_id == rule['trans_type_id'])) and " \
+            "(not rule['trans_family_id'] or " \
+            "(trans_family_id == rule['trans_family_id'])) " \
+            "and (not rule['trans_code_id'] or " \
+            "(trans_code_id == rule['trans_code_id'])) and " \
+            "(not rule['trans_category_id'] or " \
+            "(trans_category_id == rule['trans_category_id'])) " \
+            "and (not rule['struct_comm_type_id'] or " \
+            "(struct_comm_type_id == rule['struct_comm_type_id'])) and " \
+            "(not rule['partner_id'] or " \
+            "(partner_id == rule['partner_id'])) " \
+            "and (not rule['freecomm'] or (rule['freecomm'].lower() in " \
+            "(freecomm and freecomm.lower() or ''))) " \
+            "and (not rule['structcomm'] or " \
+            "(rule['structcomm'] in (structcomm or ''))) "
+        result_fields = [
+            'account_id', 'tax_code_id', 'analytic_account_id', 'action']
+        result_fields += self._rule_result_extra(
+            cr, uid, coda_bank_account_id, context=context)
+        res = {}
         for rule in rules:
             if eval(condition):
-                account_id, tax_code_id, action = rule[8:11]
+                for f in result_fields:
+                    res[f] = rule[f]
                 break
-        return account_id, tax_code_id, action
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        return res

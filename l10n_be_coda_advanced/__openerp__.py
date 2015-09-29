@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '0.5',
+    'version': '0.7',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',

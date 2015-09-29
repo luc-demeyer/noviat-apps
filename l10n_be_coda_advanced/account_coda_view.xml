@@ -50,7 +50,7 @@
         <form string="CODA Bank Account Configuration" version="7.0">
           <group col="4">
             <field name="name" select="1" colspan="4"/>
-            <field name="bank_id" domain="[('partner_id.ref_companies', 'in', [company_id])]"/>
+            <field name="bank_id" domain="[('company_id', '=', company_id)]"/>
             <field name="description1"/>
             <field name="currency"/>
             <field name="description2"/>
@@ -105,6 +105,7 @@
                     <separator string="Result" colspan="6"/>
                     <field name="account_id"/>
                     <field name="tax_code_id"/>
+                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                     <field name="action"/>
                   </group>
                 </form>

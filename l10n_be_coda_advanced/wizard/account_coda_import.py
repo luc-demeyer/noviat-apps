@@ -1099,10 +1099,9 @@ class account_coda_import(orm.TransientModel):
                                             'context': context,
                                         }
                                         rule = account_mapping_obj.rule_get(cr, uid, **kwargs)
-                                        if rule[0]:
-                                            line['account_id'] = rule[0]
-                                            line['tax_code_id'] = rule[1]
-                                            line['action'] = rule[2]
+                                        if rule:
+                                            for k in rule:
+                                                line[k] = rule[k]
 
                                     st_line_vals_in = {
                                            'ref': line['ref'],
