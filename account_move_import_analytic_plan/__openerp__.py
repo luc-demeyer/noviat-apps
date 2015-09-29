@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
 #    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
@@ -20,4 +20,30 @@
 #
 ##############################################################################
 
-from . import import_move_line_wizard
+{
+    'name': 'Accounting Entries Import when using Analytic Plans',
+    'version': '0.1',
+    'license': 'AGPL-3',
+    'author': 'Noviat',
+    'website': 'http://www.noviat.com',
+    'category': 'Accounting & Finance',
+    'complexity': 'normal',    
+    'description': """
+Install this module when using Analytic Plans (module account_analytic_plans)
+in combination with the account_move_import module.
+
+This module adds support for the following field in the input csv:
+
+- Analytic Distribution (or analytic_distribution)
+
+  Lookup logic : exact match on code,
+  if not found exact match on name.
+
+    """,
+    'depends': [
+        'account_move_import',
+        'account_analytic_plans',
+    ],
+    'installable': True,
+    'auto_install': True,
+    }

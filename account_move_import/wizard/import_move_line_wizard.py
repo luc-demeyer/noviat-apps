@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,242 +20,565 @@
 #
 ##############################################################################
 
-#import time
-import base64, StringIO, csv
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
+import base64
+import csv
+from datetime import datetime
+from sys import exc_info
+from traceback import format_exception
+
 from openerp.osv import orm, fields
-from openerp.addons.decimal_precision import decimal_precision as dp
 from openerp.tools.translate import _
+from openerp.exceptions import Warning
+
 import logging
 _logger = logging.getLogger(__name__)
 
-header_fields = ['account', 'debit', 'credit', 'name', 'partner', 'date_maturity',
-    'amount_currency', 'currency', 'tax_code', 'tax_amount', 'analytic_account']
 
-class aml_import(orm.TransientModel):
+class AccountMoveLineImport(orm.TransientModel):
     _name = 'aml.import'
     _description = 'Import account move lines'
+
     _columns = {
         'aml_data': fields.binary('File', required=True),
-        'aml_fname': fields.char('Filename', size=128, required=True),
-        'csv_separator': fields.selection([(',',','),(';',';')], 'CSV Separator', required=True),
-        'decimal_separator': fields.selection([('.','.'),(',',',')], 'Decimal Separator', required=True),
-        'note':fields.text('Log'),
+        'aml_fname': fields.char('Filename'),
+        'csv_separator': fields.selection(
+            [(',', ' . (comma)'), (';', ', (semicolon)')],
+            'CSV Separator', required=True),
+        'decimal_separator': fields.selection(
+            [('.', ' . (dot)'), (',', ', (comma)')],
+            'Decimal Separator', required=True),
+        'codepage': fields.char(
+            'Code Page',
+            help="Code Page of the system that has generated the csv file."
+                 "\nE.g. Windows-1252, utf-8"),
+        'note': fields.text('Log'),
     }
+
     _defaults = {
-        'aml_fname': '',
+        'codepage':
+            lambda self, cr, uid, context: self._default_codepage(
+                cr, uid, context=context),
+        'csv_separator':
+            lambda self, cr, uid, context: self._default_csv_separator(
+                cr, uid, context=context),
+        'decimal_separator':
+            lambda self, cr, uid, context: self._default_decimal_separator(
+                cr, uid, context=context),
     }
+
+    def _default_codepage(self, cr, uid, context=None):
+        return 'Windows-1252'
+
+    def _default_csv_separator(self, cr, uid, context=None):
+        return ';'
+
+    def _default_decimal_separator(self, cr, uid, context=None):
+        return ','
+
+    def _remove_leading_lines(self, lines, context=None):
+        """ remove leading blank or comment lines """
+        input = StringIO.StringIO(lines)
+        header = False
+        while not header:
+            ln = input.next()
+            if not ln or ln and ln[0] in [self._csv_separator, '#']:
+                continue
+            else:
+                header = ln.lower()
+        if not header:
+            raise Warning(
+                _("No header line found in the input file !"))
+        output = input.read()
+        return output, header
+
+    def _compute_lines(self, cr, uid, aml_data, context=None):
+        lines_in = base64.decodestring(aml_data)
+        lines, header = self._remove_leading_lines(
+            lines_in, context=context)
+        try:
+            dialect = csv.Sniffer().sniff(
+                lines[:128], delimiters=';,')
+        except:
+            """
+            csv.Sniffer is not always reliable
+            in the detection of the delimiter
+            """
+            dialect = csv.Sniffer().sniff(
+                '"header 1";"header 2";\r\n')
+        dialect.delimiter = str(self._csv_separator)
+        return lines, header, dialect
+
+    def _input_fields(self):
+        """
+        Extend this dictionary if you want to add support for
+        fields requiring pre-processing before being added to
+        the move line values dict.
+        """
+        res = {
+            'account': {'method': self._handle_account},
+            'account_id': {'required': True},
+            'debit': {'method': self._handle_debit, 'required': True},
+            'credit': {'method': self._handle_credit, 'required': True},
+            'partner': {'method': self._handle_partner},
+            'product': {'method': self._handle_product},
+            'date_maturity': {'method': self._handle_date_maturity},
+            'due date': {'method': self._handle_date_maturity},
+            'currency': {'method': self._handle_currency},
+            'tax account': {'method': self._handle_tax_code},
+            'tax_code': {'method': self._handle_tax_code},
+            'analytic account': {'method': self._handle_analytic_account},
+        }
+        return res
+
+    def _get_orm_fields(self, cr, uid, context=None):
+        aml_obj = self.pool['account.move.line']
+        orm_fields = aml_obj.fields_get(cr, uid, context=context)
+        blacklist = orm.MAGIC_COLUMNS + [aml_obj.CONCURRENCY_CHECK_FIELD]
+        self._orm_fields = {
+            f: orm_fields[f] for f in orm_fields
+            if f not in blacklist
+            and not orm_fields[f].get('depends')}
+
+    def _process_header(self, cr, uid, header_fields, context=None):
+
+        self._field_methods = self._input_fields()
+        self._skip_fields = []
+
+        # header fields after blank column are considered as comments
+        column_cnt = 0
+        for cnt in range(len(header_fields)):
+            if header_fields[cnt] == '':
+                column_cnt = cnt
+                break
+            elif cnt == len(header_fields) - 1:
+                column_cnt = cnt + 1
+                break
+        header_fields = header_fields[:column_cnt]
+
+        # check for duplicate header fields
+        header_fields2 = []
+        for hf in header_fields:
+            if hf in header_fields2:
+                raise Warning(_(
+                    "Duplicate header field '%s' found !"
+                    "\nPlease correct the input file.")
+                    % hf)
+            else:
+                header_fields2.append(hf)
+
+        for i, hf in enumerate(header_fields):
+
+            if hf in self._field_methods:
+                continue
+
+            if hf not in self._orm_fields \
+                    and hf not in [self._orm_fields[f]['string'].lower()
+                                   for f in self._orm_fields]:
+                _logger.error(
+                    _("%s, undefined field '%s' found "
+                      "while importing move lines"),
+                    self._name, hf)
+                self._skip_fields.append(hf)
+                continue
+
+            field_def = self._orm_fields.get(hf)
+            if not field_def:
+                for f in self._orm_fields:
+                    if self._orm_fields[f]['string'].lower() == hf:
+                        orm_field = f
+                        field_def = self._orm_fields.get(f)
+                        break
+            else:
+                orm_field = hf
+            field_type = field_def['type']
+
+            if field_type in ['char', 'text']:
+                self._field_methods[hf] = {
+                    'method': self._handle_orm_char,
+                    'orm_field': orm_field,
+                    }
+            elif field_type == 'integer':
+                self._field_methods[hf] = {
+                    'method': self._handle_orm_integer,
+                    'orm_field': orm_field,
+                    }
+            elif field_type == 'float':
+                self._field_methods[hf] = {
+                    'method': self._handle_orm_float,
+                    'orm_field': orm_field,
+                    }
+            elif field_type == 'many2one':
+                self._field_methods[hf] = {
+                    'method': self._handle_orm_many2one,
+                    'orm_field': orm_field,
+                    }
+            else:
+                _logger.error(
+                    _("%s, the import of ORM fields of type '%s' "
+                      "is not supported"),
+                    self._name, hf, field_type)
+                self._skip_fields.append(hf)
+
+        return header_fields
+
+    def _log_line_error(self, line, msg):
+        data = self._csv_separator.join(
+            [line[hf] for hf in self._header_fields])
+        self._err_log += _(
+            "Error when processing line '%s'") % data + ':\n' + msg + '\n\n'
+
+    def _handle_orm_char(self, cr, uid, field, line, move, aml_vals,
+                         orm_field=False, context=None):
+        orm_field = orm_field or field
+        if not aml_vals.get(orm_field):
+            aml_vals[orm_field] = line[field]
+
+    def _handle_orm_integer(self, cr, uid, field, line, move, aml_vals,
+                            orm_field=False, context=None):
+        orm_field = orm_field or field
+        if not aml_vals.get(orm_field):
+            val = str2int(
+                line[field], self._decimal_separator)
+            if val is False:
+                msg = _(
+                    "Incorrect value '%s' "
+                    "for field '%s' of type Integer !"
+                    ) % (line[field], field)
+                self._log_line_error(line, msg)
+            else:
+                aml_vals[orm_field] = val
+
+    def _handle_orm_float(self, cr, uid, field, line, move, aml_vals,
+                          orm_field=False, context=None):
+        orm_field = orm_field or field
+        if not aml_vals.get(orm_field):
+            aml_vals[orm_field] = str2float(
+                line[field], self._decimal_separator)
+
+            val = str2float(
+                line[field], self._decimal_separator)
+            if val is False:
+                msg = _(
+                    "Incorrect value '%s' "
+                    "for field '%s' of type Numeric !"
+                    ) % (line[field], field)
+                self._log_line_error(line, msg)
+            else:
+                aml_vals[orm_field] = val
+
+    def _handle_orm_many2one(self, cr, uid, field, line, move, aml_vals,
+                             orm_field=False, context=None):
+        orm_field = orm_field or field
+        if not aml_vals.get(orm_field):
+            val = str2int(
+                line[field], self._decimal_separator)
+            if val is False:
+                msg = _(
+                    "Incorrect value '%s' "
+                    "for field '%s' of type Many2One !"
+                    "\nYou should specify the database key "
+                    "or contact your IT department "
+                    "to add support for this field."
+                    ) % (line[field], field)
+                self._log_line_error(line, msg)
+            else:
+                aml_vals[orm_field] = val
+
+    def _handle_account(self, cr, uid,
+                        field, line, move, aml_vals, context=None):
+        if not aml_vals.get('account_id'):
+            code = line[field]
+            if code in self._accounts_dict:
+                aml_vals['account_id'] = self._accounts_dict[code]
+            else:
+                msg = _("Account with code '%s' not found !") % code
+                self._log_line_error(line, msg)
+
+    def _handle_debit(self, cr, uid,
+                      field, line, move, aml_vals, context=None):
+        if 'debit' not in aml_vals:
+            debit = str2float(line[field], self._decimal_separator)
+            aml_vals['debit'] = debit
+            self._sum_debit += debit
+
+    def _handle_credit(self, cr, uid,
+                       field, line, move, aml_vals, context=None):
+        if 'credit' not in aml_vals:
+            credit = str2float(line[field], self._decimal_separator)
+            aml_vals['credit'] = credit
+            self._sum_credit += credit
+
+    def _handle_partner(self, cr, uid,
+                        field, line, move, aml_vals, context=None):
+        if not aml_vals.get('partner_id'):
+            input = line[field]
+            part_obj = self.pool['res.partner']
+            dom = ['|', ('parent_id', '=', False), ('is_company', '=', True)]
+            dom_ref = dom + [('ref', '=', input)]
+            partner_ids = part_obj.search(cr, uid, dom_ref, context=context)
+            if not partner_ids:
+                dom_name = dom + [('name', '=', input)]
+                partner_ids = part_obj.search(
+                    cr, uid, dom_name, context=context)
+            if not partner_ids:
+                msg = _("Partner '%s' not found !") % input
+                self._log_line_error(line, msg)
+                return
+            elif len(partner_ids) > 1:
+                msg = _("Multiple partners with Reference "
+                        "or Name '%s' found !") % input
+                self._log_line_error(line, msg)
+                return
+            else:
+                aml_vals['partner_id'] = partner_ids[0]
+
+    def _handle_product(self, cr, uid,
+                        field, line, move, aml_vals, context=None):
+        if not aml_vals.get('product_id'):
+            input = line[field]
+            prod_obj = self.pool['product.product']
+            product_ids = prod_obj.search(
+                cr, uid, [('default_code', '=', input)], context=context)
+            if not product_ids:
+                product_ids = prod_obj.search(
+                    cr, uid, [('name', '=', input)], context=context)
+            if not product_ids:
+                msg = _("Product '%s' not found !") % input
+                self._log_line_error(line, msg)
+                return
+            elif len(product_ids) > 1:
+                msg = _("Multiple products with Internal Reference "
+                        "or Name '%s' found !") % input
+                self._log_line_error(line, msg)
+                return
+            else:
+                aml_vals['product_id'] = product_ids[0]
+
+    def _handle_date_maturity(self, cr, uid,
+                              field, line, move, aml_vals, context=None):
+        if not aml_vals.get('date_maturity'):
+            due = line[field]
+            try:
+                datetime.strptime(due, '%Y-%m-%d')
+                aml_vals['date_maturity'] = due
+            except:
+                msg = _("Incorrect data format for field '%s' "
+                        "with value '%s', "
+                        " should be YYYY-MM-DD") % (field, due)
+                self._log_line_error(line, msg)
+
+    def _handle_currency(self, cr, uid,
+                         field, line, move, aml_vals, context=None):
+        if not aml_vals.get('currency_id'):
+            name = line[field]
+            curr_ids = self.pool['res.currency'].search(
+                cr, uid, [('name', '=ilike', name)], context=context)
+            if curr_ids:
+                aml_vals['currency_id'] = curr_ids[0]
+            else:
+                msg = _("Currency '%s' not found !") % name
+                self._log_line_error(line, msg)
+
+    def _handle_tax_code(self, cr, uid,
+                         field, line, move, aml_vals, context=None):
+        if not aml_vals.get('tax_code_id'):
+            input = line[field]
+            tc_obj = self.pool['account.tax.code']
+            tc_ids = tc_obj.search(
+                cr, uid, [('code', '=', input)], context=context)
+            if not tc_ids:
+                tc_ids = tc_obj.search(
+                    cr, uid, [('name', '=', input)], context=context)
+            if not tc_ids:
+                msg = _("%s '%s' not found !") % (field, input)
+                self._log_line_error(line, msg)
+                return
+            elif len(tc_ids) > 1:
+                msg = _("Multiple %s entries with Code "
+                        "or Name '%s' found !") % (field, input)
+                self._log_line_error(line, msg)
+                return
+            else:
+                aml_vals['tax_code_id'] = tc_ids[0]
+
+    def _handle_analytic_account(self, cr, uid,
+                                 field, line, move, aml_vals, context=None):
+        if not aml_vals.get('analytic_account_id'):
+            ana_obj = self.pool['account.analytic.account']
+            input = line[field]
+            domain = [('type', '!=', 'view'),
+                      ('company_id', '=', move.company_id.id),
+                      ('state', 'not in', ['close', 'cancelled'])]
+            analytic_account_ids = ana_obj.search(
+                cr, uid, domain + [('code', '=', input)], context=context)
+            if len(analytic_account_ids) == 1:
+                aml_vals['analytic_account_id'] = analytic_account_ids[0]
+            else:
+                analytic_account_ids = ana_obj.search(
+                    cr, uid, domain + [('name', '=', input)], context=context)
+                if len(analytic_account_ids) == 1:
+                    aml_vals['analytic_account_id'] = analytic_account_ids[0]
+            if not analytic_account_ids:
+                msg = _("Invalid Analytic Account '%s' !") % input
+                self._log_line_error(line, msg)
+            elif len(analytic_account_ids) > 1:
+                msg = _("Multiple Analytic Accounts found "
+                        "that match with '%s' !") % input
+                self._log_line_error(line, msg)
+
+    def _process_line_vals(self, cr, uid,
+                           line, move, aml_vals, context=None):
+        """
+        Use this method if you want to check/modify the
+        line input values dict before calling the move write() method
+        """
+        if 'name' not in aml_vals:
+            aml_vals['name'] = '/'
+
+        if 'debit' not in aml_vals:
+            aml_vals['debit'] = 0.0
+
+        if 'credit' not in aml_vals:
+            aml_vals['credit'] = 0.0
+
+        all_fields = self._field_methods
+        required_fields = [x for x in all_fields
+                           if all_fields[x].get('required')]
+        for rf in required_fields:
+            if rf not in aml_vals:
+                msg = _("The '%s' field is a required field "
+                        "that must be correctly set.") % rf
+                self._log_line_error(line, msg)
+
+    def _process_vals(self, cr, uid, move, vals, context=None):
+        """
+        Use this method if you want to check/modify the
+        input values dict before calling the move write() method
+        """
+        dp = self.pool['decimal.precision'].precision_get(cr, uid, 'Account')
+        if round(self._sum_debit, dp) != round(self._sum_credit, dp):
+            self._err_log += '\n' + _(
+                "Error in CSV file, Total Debit (%s) is "
+                "different from Total Credit (%s) !"
+                ) % (self._sum_debit, self._sum_credit) + '\n'
+        return vals
 
     def aml_import(self, cr, uid, ids, context=None):
 
         account_obj = self.pool.get('account.account')
         move_obj = self.pool.get('account.move')
-        partner_obj = self.pool.get('res.partner')
-        curr_obj = self.pool.get('res.currency')
-        tax_code_obj = self.pool.get('account.tax.code')
-        analytic_obj = self.pool.get('account.analytic.account')
-        mod_obj = self.pool.get('ir.model.data')
-        dp = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
 
-        company_id = context['company_id']
-        move_id = context['move_id']
-        account_ids = account_obj.search(cr, uid, [('type', '!=', 'view'),('company_id', '=', company_id)])
-        accounts = account_obj.read(cr, uid, account_ids, ['code', 'name'])
+        wiz = self.browse(cr, uid, ids[0], context=context)
+        self._csv_separator = wiz.csv_separator
+        self._decimal_separator = wiz.decimal_separator
+        self._err_log = ''
 
-        result_view = mod_obj.get_object_reference(cr, uid, 'account_move_import', 'aml_import_result_view')
-        digits = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
-        data = self.browse(cr,uid,ids)[0]
-        aml_file = data.aml_data
-        aml_filename = data.aml_fname
-        csv_separator = str(data.csv_separator)
-        decimal_separator = data.decimal_separator
+        move = move_obj.browse(
+            cr, uid, context['active_id'], context=context)
+        account_ids = account_obj.search(
+            cr, uid,
+            [('type', 'not in', ['view', 'consolidation', 'closed']),
+             ('company_id', '=', move.company_id.id)],
+            context=context)
+        accounts = account_obj.browse(
+            cr, uid, account_ids, context=context)
+        self._accounts_dict = {a.code: a.id for a in accounts}
+        self._sum_debit = self._sum_credit = 0.0
+        self._get_orm_fields(cr, uid, context=context)
+        lines, header, dialect = self._compute_lines(
+            cr, uid, wiz.aml_data, context=context)
 
-        err_log = ''
-        header_line = False
+        header_fields = csv.reader(
+            StringIO.StringIO(header), dialect=dialect).next()
+        self._header_fields = self._process_header(
+            cr, uid, header_fields, context=context)
+        reader = csv.DictReader(
+            StringIO.StringIO(lines), fieldnames=self._header_fields,
+            dialect=dialect)
 
-        lines = base64.decodestring(aml_file)
-        reader = csv.reader(StringIO.StringIO(lines), delimiter=csv_separator)
-        sum_debit = sum_credit = 0.0
-        amls = []
+        inv_lines = []
+        for line in reader:
 
-        for ln in reader:
+            aml_vals = {}
 
-            if not ln or ln and ln[0] and ln[0][0] in ['', '#']:
-                continue
+            for i, hf in enumerate(self._header_fields):
+                if i == 0 and line[hf] and line[hf][0] == '#':
+                    # lines starting with # are considered as comment lines
+                    break
+                if hf in self._skip_fields:
+                    continue
+                if line[hf] == '':
+                    continue
 
-            # process header line
-            if not header_line:
-                if ln[0].strip().lower() not in header_fields:
-                    raise orm.except_orm(_('Error :'), _("Error while processing the header line %s. \n\nPlease check your CSV separator as well as the column header fields") %ln)
+                try:
+                    line[hf] = line[hf].decode(wiz.codepage).strip()
+                except:
+                    tb = ''.join(format_exception(*exc_info()))
+                    raise Warning(
+                        _("Wrong Code Page"),
+                        _("Error while processing line '%s' :\n%s")
+                        % (line, tb))
+
+                if self._field_methods[hf].get('orm_field'):
+                    self._field_methods[hf]['method'](
+                        cr, uid, hf, line, move, aml_vals,
+                        orm_field=self._field_methods[hf]['orm_field'],
+                        context=context)
                 else:
-                    header_line = True
-                    # locate first column with empty header
-                    column_cnt = 0
-                    account_i = debit_i = credit_i = name_i = partner_i = date_maturity_i = amount_currency_i = currency_i = tax_code_i = tax_amount_i = analytic_i = None
-                    for cnt in range(len(ln)):
-                        if ln[cnt] == '':
-                            column_cnt = cnt
-                            break
-                        elif cnt == len(ln)-1:
-                            column_cnt = cnt + 1
-                            break
-                    for i in range(column_cnt):
-                        # header fields
-                        header_field = ln[i].strip().lower()
-                        if header_field not in header_fields:
-                            err_log += '\n' + _("Invalid CSV File, Header Field '%s' is not supported !") %ln[i]
-                        # required header fields : account, debit, credit
-                        elif header_field == 'account':
-                            account_i = i
-                        elif header_field == 'debit':
-                            debit_i = i
-                        elif header_field == 'credit':
-                            credit_i = i
-                        # optional header fields
-                        elif header_field == 'name':
-                            name_i = i
-                        elif header_field == 'partner':
-                            partner_i = i
-                        elif header_field == 'date_maturity':
-                            date_maturity_i = i
-                        elif header_field == 'amount_currency':
-                            amount_currency_i = i
-                        elif header_field == 'currency':
-                            currency_i = i
-                        elif header_field == 'tax_code':
-                            tax_code_i = i
-                        elif header_field == 'tax_amount':
-                            tax_amount_i = i
-                        elif header_field == 'analytic_account':
-                            analytic_i = i
-                    for f in [(account_i, 'account'), (debit_i, 'debit'), (credit_i, 'credit')]:
-                        if not isinstance(f[0], int):
-                            err_log += '\n' + _("Invalid CSV File, Header Field '%s' is missing !") %f[1]
+                    self._field_methods[hf]['method'](
+                        cr, uid, hf, line, move, aml_vals, context=context)
 
-            # process data lines
-            else:
-                if ln and ln[0] and ln[0][0] not in ['#','']:
+            if aml_vals:
+                self._process_line_vals(
+                    cr, uid, line, move, aml_vals, context=context)
+                inv_lines.append(aml_vals)
 
-                    aml_vals = {}
+        vals = [(0, 0, l) for l in inv_lines]
+        vals = self._process_vals(cr, uid, move, vals, context=context)
 
-                    # lookup account
-                    account_id = False
-                    for account in accounts:
-                        if ln[account_i] == account['code']:
-                            account_id = account['id']
-                            break
-                    if not account_id:
-                        err_log += '\n' + _("Error when processing line '%s', account with code '%s' not found !") %(ln, ln[account_i])
-                    aml_vals['account_id'] = account_id
-
-                    # debit/credit
-                    try:
-                        aml_vals['debit'] = round(str2float(ln[debit_i], decimal_separator), dp)
-                        sum_debit += aml_vals['debit']
-                    except:
-                        err_log += '\n' + _("Error when processing line '%s', invalid debit value '%s' !") %(ln, ln[debit_i])
-                    try:
-                        aml_vals['credit'] = round(str2float(ln[credit_i], decimal_separator), dp)
-                        sum_credit += aml_vals['credit']
-                    except:
-                        err_log += '\n' + _("Error when processing line '%s', invalid credit value '%s' !") %(ln, ln[credit_i])
-
-                    # name
-                    aml_vals['name'] = isinstance(name_i, int) and ln[name_i] or '/'
-
-                    # lookup partner
-                    if isinstance(partner_i, int) and ln[partner_i]:
-                        partner_ids = partner_obj.search(cr, uid, [('ref', '=', ln[partner_i])])
-                        if not partner_ids:
-                            partner_ids = partner_obj.search(cr, uid, [('name', '=', ln[partner_i])])
-                        if not partner_ids:
-                            err_log += '\n' + _("Error when processing line '%s', partner '%s' not found !") %(ln, ln[partner_i])
-                        elif len(partner_ids) > 1:
-                            err_log += '\n' + _("Error when processing line '%s', multiple partners with reference or name '%s' found !") %(ln, ln[partner_i])
-                        else:
-                            aml_vals['partner_id'] = partner_ids[0]
-
-                    # due_date
-                    if isinstance(date_maturity_i, int) and ln[date_maturity_i]:
-                        aml_vals['date_maturity'] = ln[date_maturity_i]
-
-                    amls.append((0,0,aml_vals))
-
-                    # amount_currency
-                    if isinstance(amount_currency_i, int) and ln[amount_currency_i]:
-                        aml_vals['amount_currency'] = round(str2float(ln[amount_currency_i], decimal_separator), dp)
-
-                    # lookup currency
-                    if isinstance(currency_i, int) and ln[currency_i]:
-                        curr_ids = curr_obj.search(cr, uid, [('name', '=', ln[currency_i])])
-                        if not curr_ids:
-                            err_log += '\n' + _("Error when processing line '%s', currency '%s' not found !") %(ln, ln[currency_i])
-                        else:
-                            aml_vals['currency_id'] = curr_ids[0]
-
-                    # lookup tax_code
-                    if isinstance(tax_code_i, int) and ln[tax_code_i]:
-                        tax_code_ids = tax_code_obj.search(cr, uid, [('code', '=', ln[tax_code_i])])
-                        if not tax_code_ids:
-                            tax_code_ids = tax_code_obj.search(cr, uid, [('name', '=', ln[tax_code_i])])
-                        if not tax_code_ids:
-                            err_log += '\n' + _("Error when processing line '%s', tax code '%s' not found !") %(ln, ln[tax_code_i])
-                        else:
-                            aml_vals['tax_code_id'] = tax_code_ids[0]
-
-                    # tax_amount
-                    if isinstance(tax_amount_i, int) and ln[tax_amount_i]:
-                        aml_vals['tax_amount'] = round(str2float(ln[tax_amount_i], decimal_separator), dp)
-
-                    # lookup analytic_account
-                    if isinstance(analytic_i, int) and ln[analytic_i]:
-                        name_result = code_result = 0
-                        # 1 = search result None
-                        # 2 = search result Multiple
-                        analytic_ids = analytic_obj.search(cr, uid, [('name', '=', ln[analytic_i])])
-                        if len(analytic_ids) == 1:
-                            aml_vals['analytic_account_id'] = analytic_ids[0]
-                        else:
-                            name_result = not analytic_ids and 1 or 2
-                            analytic_ids = analytic_obj.search(cr, uid, [('code', '=', ln[analytic_i])])
-                            if len(analytic_ids) == 1:
-                                aml_vals['analytic_account_id'] = analytic_ids[0]
-                            else:
-                                code_result = not analytic_ids and 1 or 2
-                        if not aml_vals.get('analytic_account_id'):
-                            if name_result == 1 and code_result == 1:
-                                err_log += '\n' + _("Error when processing line '%s', analytic account '%s' not found !") %(ln, ln[analytic_i])
-                            else:
-                                err_log += '\n' + _("Error when processing line '%s', multiple analytic accounts found that match with '%s' !") %(ln, ln[analytic_i])
-
-        if round(sum_debit, dp) != round(sum_credit, dp):
-            err_log += '\n' + _("Error in CSV file, Total Debit (%s) is different from Total Credit (%s) !") %(sum_debit, sum_credit)
-
-        #_logger.warn('aml_import, amls=%s', amls)
-
-        if err_log:
-            self.write(cr, uid, ids[0], {'note': err_log})
+        if self._err_log:
+            wiz.write({'note': self._err_log})
+            mod_obj = self.pool['ir.model.data']
+            result_view = mod_obj.get_object_reference(
+                cr, uid, 'account_move_import', 'aml_import_view_form_result')
             return {
-                'name': _('Import File result'),
+                'name': _("Import File result"),
                 'res_id': ids[0],
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'aml.import',
-                'view_id': [result_view[1]],
+                'view_id': result_view[1],
                 'target': 'new',
                 'type': 'ir.actions.act_window',
             }
         else:
-            move_date = move_obj.read(cr, uid, move_id, ['date'])['date']  # rewrite date to trigger store 
-            move_obj.write(cr, uid, [move_id], {'line_id': amls, 'date': move_date})
+            move.write({'line_id': vals})
             return {'type': 'ir.actions.act_window_close'}
+
 
 def str2float(amount, decimal_separator):
     if not amount:
         return 0.0
-    else:
+    try:
         if decimal_separator == '.':
-            return float(amount.replace(',',''))
+            return float(amount.replace(',', ''))
         else:
-            return float(amount.replace('.','').replace(',','.'))
+            return float(amount.replace('.', '').replace(',', '.'))
+    except:
+        return False
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+def str2int(amount, decimal_separator):
+    if not amount:
+        return 0
+    try:
+        if decimal_separator == '.':
+            return int(amount.replace(',', ''))
+        else:
+            return int(amount.replace('.', '').replace(',', '.'))
+    except:
+        return False

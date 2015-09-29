@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import import_move_line_wizard
+from . import test_import_move_line

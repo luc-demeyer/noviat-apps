@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,15 @@ from openerp.tools.translate import _
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class account_move(orm.Model):
     _inherit = 'account.move'
 
     def import_lines(self, cr, uid, ids, context=None):
-        mod_obj = self.pool.get('ir.model.data')
-        wiz_view = mod_obj.get_object_reference(cr, uid, 'account_move_import', 'aml_import_view')
+        mod_obj = self.pool['ir.model.data']
+        wiz_view = mod_obj.get_object_reference(
+            cr, uid, 'account_move_import', 'aml_import_view_form')
         for move in self.browse(cr, uid, ids, context=context):
-            if move.line_id:
-                raise orm.except_orm(_('Unsupported Function :'),
-                    _("Import not allowed when there are already account move lines. \nPlease remove these first."))
             ctx = {
                 'company_id': move.company_id.id,
                 'move_id': move.id,
@@ -44,11 +43,10 @@ class account_move(orm.Model):
                 'view_type': 'form',
                 'view_mode': 'form',
                 'res_model': 'aml.import',
-                'view_id': [wiz_view[1]],
+                'view_id': wiz_view[1],
                 'nodestroy': True,
                 'target': 'new',
                 'type': 'ir.actions.act_window',
                 'context': ctx,
             }
             return act_import
-

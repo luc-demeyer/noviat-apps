@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Odoo, Open Source Management Solution
+#    OpenERP, Open Source Management Solution
 #
 #    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import import_move_line_wizard
+from . import wizard
