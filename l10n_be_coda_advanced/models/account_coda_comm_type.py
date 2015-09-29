@@ -44,6 +44,17 @@ class AccountCodaCommType(models.Model):
             and display_name[:55] + '...' \
             or display_name
 
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        recs = self.browse()
+        if name:
+            recs = self.search([('code', 'like', name)] + args, limit=limit)
+        if not recs:
+            recs = self.search(
+                [('description', operator, name)] + args, limit=limit)
+        return [(r.id, r.display_name) for r in recs]
+
     _sql_constraints = [
         ('code_uniq', 'unique (code)',
          "The Structured Communication Code must be unique !")

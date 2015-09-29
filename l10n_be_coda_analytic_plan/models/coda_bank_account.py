@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,32 +19,18 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Advanced Bank Statement',
-    'version': '1.1',
-    'license': 'AGPL-3',
-    'author': 'Noviat',
-    'category': 'Accounting & Finance',
-    'summary': 'Advanced Bank Statement',
-    'depends': [
-        'account',
-        'account_cancel',
-        'base_iban',
-        'web_sheet_full_width_selective',
-    ],
-    'conflicts': ['account_bank_statement_extensions'],
-    'data': [
-        'security/ir.model.access.csv',
-        'security/account_security.xml',
-        'data/data.xml',
-        'views/account_bank_statement_view.xml',
-        'views/account_move_view.xml',
-        'views/report_layout.xml',
-        'views/report_statement_balances.xml',
-        'views/account.xml',
-        'wizard/bank_statement_balance_print.xml',
-        'report/reports.xml',
-        ],
-    'installable': True,
-    'auto_install': False,
-}
+
+from openerp import models, fields
+
+
+class CodaAccountMappingRule(models.Model):
+    _inherit = 'coda.account.mapping.rule'
+
+    analytics_id = fields.Many2one(
+        'account.analytic.plan.instance', string='Analytic Distribution')
+
+    def _rule_select_extra(self, coda_bank_account_id):
+        return ', analytics_id'
+
+    def _rule_result_extra(self, coda_bank_account_id):
+        return ['analytics_id']

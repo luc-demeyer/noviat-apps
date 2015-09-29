@@ -299,6 +299,9 @@ class AccountCodaImport(models.TransientModel):
         st_line['ref_move_detail'] = line[6:10]
 
         main_move_stack = coda_statement['main_move_stack']
+        previous_main_move = main_move_stack and main_move_stack[-1] or False
+        main_move_stack_pop = True
+
         if main_move_stack \
                 and st_line['ref_move'] != main_move_stack[-1]['ref_move']:
             # initialise main_move_stack
@@ -307,17 +310,15 @@ class AccountCodaImport(models.TransientModel):
             # or moves (in case of multiple levels)
             # plus the previous transaction move.
             main_move_stack = []
+            main_move_stack_pop = False
             coda_statement['main_move_stack'] = main_move_stack
             # initialise globalisation stack
             coda_statement['glob_lvl_stack'] = [0]
 
-        previous_main_move = main_move_stack and main_move_stack[-1] or False
-        main_move_stack_pop = True
-
         if main_move_stack:
             if main_move_stack[-1]['type'] == 'globalisation':
                 st_line['glob_sequence'] = main_move_stack[-1]['sequence']
-            else:
+            elif main_move_stack[-1].get('glob_sequence'):
                 st_line['glob_sequence'] = main_move_stack[-1]['glob_sequence']
 
         glob_lvl_stack = coda_statement['glob_lvl_stack']
@@ -363,7 +364,8 @@ class AccountCodaImport(models.TransientModel):
         # without the globalisation level flag.
         # This is e.g. used by Europabank to give the details of
         # Card Payments.
-        if previous_main_move:
+        if previous_main_move and \
+                st_line['ref_move'] == previous_main_move['ref_move']:
             if st_line['ref_move_detail'] == '9999':
                 # Current CODA parsing logic doesn't
                 # support > 9999 detail lines
@@ -1126,10 +1128,8 @@ class AccountCodaImport(models.TransientModel):
                             rule = self.env[
                                 'coda.account.mapping.rule'].rule_get(**kwargs)
                             if rule:
-                                line['account_id'] = rule['account_id']
-                                line['tax_code_id'] = rule['tax_code_id']
-                                line['analytic_account_id'] = \
-                                    rule['analytic_account_id']
+                                for k in rule:
+                                    line[k] = rule[k]
 
                         return coda_parsing_note
 
@@ -1225,7 +1225,7 @@ class AccountCodaImport(models.TransientModel):
         st_line = stl.create(st_line_vals)
         line['st_line_id'] = st_line.id
 
-    def _create_move_and_reconcile(self, coda_statement, line):
+    def _prepare_mv_line_dict(self, coda_statement, line):
 
         mv_line_dict = {}
 
@@ -1255,6 +1255,12 @@ class AccountCodaImport(models.TransientModel):
             if line.get('analytic_account_id'):
                 mv_line_dict['analytic_account_id'] = \
                     line['analytic_account_id']
+
+        return mv_line_dict
+
+    def _create_move_and_reconcile(self, coda_statement, line):
+
+        mv_line_dict = self._prepare_mv_line_dict(coda_statement, line)
 
         try:
             err_string = ''

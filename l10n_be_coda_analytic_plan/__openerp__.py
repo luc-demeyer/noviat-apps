@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,32 +19,23 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'name': 'Advanced Bank Statement',
-    'version': '1.1',
+    'name': 'CODA Import when using Analytic Plans',
+    'version': '0.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
+    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
-    'summary': 'Advanced Bank Statement',
+    'complexity': 'normal',
+    'summary': 'CODA Import when using Analytic Plans',
     'depends': [
-        'account',
-        'account_cancel',
-        'base_iban',
-        'web_sheet_full_width_selective',
+        'l10n_be_coda_advanced',
+        'account_analytic_plans',
     ],
-    'conflicts': ['account_bank_statement_extensions'],
     'data': [
-        'security/ir.model.access.csv',
-        'security/account_security.xml',
-        'data/data.xml',
-        'views/account_bank_statement_view.xml',
-        'views/account_move_view.xml',
-        'views/report_layout.xml',
-        'views/report_statement_balances.xml',
-        'views/account.xml',
-        'wizard/bank_statement_balance_print.xml',
-        'report/reports.xml',
-        ],
+        'views/coda_bank_account.xml',
+    ],
     'installable': True,
-    'auto_install': False,
+    'auto_install': True,
 }
