@@ -138,10 +138,10 @@ class AccountMoveLineImport(orm.TransientModel):
         aml_obj = self.pool['account.move.line']
         orm_fields = aml_obj.fields_get(cr, uid, context=context)
         blacklist = orm.MAGIC_COLUMNS + [aml_obj.CONCURRENCY_CHECK_FIELD]
-        self._orm_fields = {
-            f: orm_fields[f] for f in orm_fields
-            if f not in blacklist
-            and not orm_fields[f].get('depends')}
+        self._orm_fields = {}
+        for f in orm_fields:
+            if f not in blacklist and not orm_fields[f].get('depends'):
+                self._orm_fields[f] = orm_fields[f]
 
     def _process_header(self, cr, uid, header_fields, context=None):
 
