@@ -37,19 +37,21 @@ class AccountMoveLineImport(orm.TransientModel):
         if not aml_vals.get('analytics_id'):
             plan_inst_obj = self.pool['account.analytic.plan.instance']
             input = line[field]
-            plan_inst_ids = plan_inst_obj.search(
-                cr, uid, [('code', '=', input)], context=context)
-            if len(plan_inst_ids) == 1:
-                aml_vals['analytics_id'] = plan_inst_ids[0]
-            else:
+            dom1 = [('code', '=', input)]
+            dom2 = [('name', '=', input)]
+            ctx = context and context.copy() or {}
+            ctx['journal_id'] = move.journal_id.id
+            for dom in [dom1, dom2]:
                 plan_inst_ids = plan_inst_obj.search(
-                    cr, uid, [('name', '=', input)], context=context)
+                    cr, uid, dom, context=ctx)
                 if len(plan_inst_ids) == 1:
                     aml_vals['analytics_id'] = plan_inst_ids[0]
+                    break
+                elif len(plan_inst_ids) > 1:
+                    msg = _("Multiple Analytic Distributions found "
+                            "that match with '%s' !") % input
+                    self._log_line_error(line, msg)
+                    break
             if not plan_inst_ids:
                 msg = _("Invalid Analytic Distribution '%s' !") % input
-                self._log_line_error(line, msg)
-            elif len(plan_inst_ids) > 1:
-                msg = _("Multiple Analytic Distributions found "
-                        "that match with '%s' !") % input
                 self._log_line_error(line, msg)

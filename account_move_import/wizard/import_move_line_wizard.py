@@ -486,7 +486,9 @@ class AccountMoveLineImport(orm.TransientModel):
             context=context)
         accounts = account_obj.browse(
             cr, uid, account_ids, context=context)
-        self._accounts_dict = {a.code: a.id for a in accounts}
+        self._accounts_dict = {}
+        for a in accounts:
+            self._accounts_dict[a.code] = a.id
         self._sum_debit = self._sum_credit = 0.0
         self._get_orm_fields(cr, uid, context=context)
         lines, header, dialect = self._compute_lines(

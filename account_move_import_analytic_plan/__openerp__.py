@@ -27,7 +27,7 @@
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
-    'complexity': 'normal',    
+    'complexity': 'normal',
     'description': """
 Install this module when using Analytic Plans (module account_analytic_plans)
 in combination with the account_move_import module.
