@@ -297,7 +297,7 @@ class account_invoice(models.Model):
                             reference = self.duplicate_bba(
                                 partner, reference)
                     vals['reference'] = reference
-            super (account_invoice, self).write(vals)
+            super(account_invoice, self).write(vals)
         return True
 
     @api.one
