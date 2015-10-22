@@ -31,8 +31,9 @@ class account_move(orm.Model):
 
     def import_lines(self, cr, uid, ids, context=None):
         mod_obj = self.pool['ir.model.data']
+        module = __name__.split('addons.')[1].split('.')[0]
         wiz_view = mod_obj.get_object_reference(
-            cr, uid, 'account_move_import', 'aml_import_view_form')
+            cr, uid, module, 'aml_import_view_form')
         for move in self.browse(cr, uid, ids, context=context):
             ctx = {
                 'company_id': move.company_id.id,

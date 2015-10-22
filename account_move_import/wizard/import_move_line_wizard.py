@@ -103,10 +103,8 @@ class AccountMoveLineImport(orm.TransientModel):
             dialect = csv.Sniffer().sniff(
                 lines[:128], delimiters=';,')
         except:
-            """
-            csv.Sniffer is not always reliable
-            in the detection of the delimiter
-            """
+            # csv.Sniffer is not always reliable
+            # in the detection of the delimiter
             dialect = csv.Sniffer().sniff(
                 '"header 1";"header 2";\r\n')
         dialect.delimiter = str(self._csv_separator)
@@ -469,8 +467,8 @@ class AccountMoveLineImport(orm.TransientModel):
 
     def aml_import(self, cr, uid, ids, context=None):
 
-        account_obj = self.pool.get('account.account')
-        move_obj = self.pool.get('account.move')
+        account_obj = self.pool['account.account']
+        move_obj = self.pool['account.move']
 
         wiz = self.browse(cr, uid, ids[0], context=context)
         self._csv_separator = wiz.csv_separator
@@ -502,20 +500,13 @@ class AccountMoveLineImport(orm.TransientModel):
             StringIO.StringIO(lines), fieldnames=self._header_fields,
             dialect=dialect)
 
-        inv_lines = []
+        move_lines = []
         for line in reader:
 
             aml_vals = {}
 
+            # step 1: handle codepage
             for i, hf in enumerate(self._header_fields):
-                if i == 0 and line[hf] and line[hf][0] == '#':
-                    # lines starting with # are considered as comment lines
-                    break
-                if hf in self._skip_fields:
-                    continue
-                if line[hf] == '':
-                    continue
-
                 try:
                     line[hf] = line[hf].decode(wiz.codepage).strip()
                 except:
@@ -524,6 +515,16 @@ class AccountMoveLineImport(orm.TransientModel):
                         _("Wrong Code Page"),
                         _("Error while processing line '%s' :\n%s")
                         % (line, tb))
+
+            # step 2: process input fields
+            for i, hf in enumerate(self._header_fields):
+                if i == 0 and line[hf] and line[hf][0] == '#':
+                    # lines starting with # are considered as comment lines
+                    break
+                if hf in self._skip_fields:
+                    continue
+                if line[hf] == '':
+                    continue
 
                 if self._field_methods[hf].get('orm_field'):
                     self._field_methods[hf]['method'](
@@ -537,16 +538,17 @@ class AccountMoveLineImport(orm.TransientModel):
             if aml_vals:
                 self._process_line_vals(
                     cr, uid, line, move, aml_vals, context=context)
-                inv_lines.append(aml_vals)
+                move_lines.append(aml_vals)
 
-        vals = [(0, 0, l) for l in inv_lines]
+        vals = [(0, 0, l) for l in move_lines]
         vals = self._process_vals(cr, uid, move, vals, context=context)
 
         if self._err_log:
             wiz.write({'note': self._err_log})
             mod_obj = self.pool['ir.model.data']
+            module = __name__.split('addons.')[1].split('.')[0]
             result_view = mod_obj.get_object_reference(
-                cr, uid, 'account_move_import', 'aml_import_view_form_result')
+                cr, uid, module, 'aml_import_view_form_result')
             return {
                 'name': _("Import File result"),
                 'res_id': ids[0],
