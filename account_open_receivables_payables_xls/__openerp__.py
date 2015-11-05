@@ -22,7 +22,7 @@
 
 {
     'name': 'Open Receivables/Payables XLS export',
-    'version': '0.2',
+    'version': '8.0.2.0.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

@@ -38,22 +38,20 @@ class partner_open_arap_print_xls(partner_open_arap_print):
     def __init__(self, cr, uid, name, context):
         super(partner_open_arap_print_xls, self).__init__(
             cr, uid, name, context=context)
-        partner_obj = self.pool.get('res.partner')
+        p_obj = self.pool['res.partner']
         self.context = context
-        wl_overview = partner_obj._report_xls_arap_overview_fields(
-            cr, uid, context)
-        tmpl_upd_overview = partner_obj._report_xls_arap_overview_template(
-            cr, uid, context)
-        wl_details = partner_obj._report_xls_arap_details_fields(
-            cr, uid, context)
-        tmpl_upd_details = partner_obj._report_xls_arap_overview_template(
-            cr, uid, context)
+        wl_ov = p_obj._xls_arap_overview_fields(cr, uid, context)
+        tmpl_upd_ov = p_obj._xls_arap_overview_template(cr, uid, context)
+        wl_ar_details = p_obj._xls_ar_details_fields(cr, uid, context)
+        wl_ap_details = p_obj._xls_ap_details_fields(cr, uid, context)
+        tmpl_upd_details = p_obj._xls_arap_details_template(cr, uid, context)
         self.localcontext.update({
             'datetime': datetime,
-            'wanted_list_overview': wl_overview,
-            'template_update_overview': tmpl_upd_overview,
-            'wanted_list_details': wl_details,
-            'template_update_details': tmpl_upd_details,
+            'wanted_list_overview': wl_ov,
+            'template_updates_overview': tmpl_upd_ov,
+            'wanted_list_ar_details': wl_ar_details,
+            'wanted_list_ap_details': wl_ap_details,
+            'template_updates_details': tmpl_upd_details,
             '_': self._,
         })
 
@@ -109,7 +107,7 @@ class partner_open_arap_xls(report_xls):
             rt_cell_format + _xs['right'],
             num_format_str=report_xls.decimal_format)
 
-        # XLS Template
+        # XLS Template - overview
         self.col_specs_template_overview = {
             'partner': {
                 'header': [1, 44, 'text', _render("_('Partner')")],
@@ -151,12 +149,19 @@ class partner_open_arap_xls(report_xls):
                     _render("bal_formula"), self.rt_cell_style_decimal]},
         }
 
-        # XLS Template
+        # XLS Template - details - common
         self.col_specs_template_details = {
             'document': {
                 'header1': [1, 20, 'text', _render("_('Document')")],
                 'header2': [1, 0, 'text', _render("p['p_name'] or 'n/a'")],
                 'lines': [1, 0, 'text', _render("l['docname']")],
+                'totals1': [1, 0, 'text', None],
+                'totals2': [1, 0, 'text', None]},
+            'sup_inv_nr': {
+                'header1':
+                    [1, 20, 'text', _render("_('Supplier Invoice No')")],
+                'header2': [1, 0, 'text', None],
+                'lines': [1, 0, 'text', _render("l['sup_inv_nr'] or ''")],
                 'totals1': [1, 0, 'text', None],
                 'totals2': [1, 0, 'text', None]},
             'date': {
@@ -261,17 +266,18 @@ class partner_open_arap_xls(report_xls):
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
 
-        wanted_list_overview = _p.wanted_list_overview
-        wanted_list_details = _p.wanted_list_details
-        self.col_specs_template_overview.update(_p.template_update_overview)
-        self.col_specs_template_details.update(_p.template_update_details)
+        wl_overview = _p.wanted_list_overview
+        wl_ar_details = _p.wanted_list_ar_details
+        wl_ap_details = _p.wanted_list_ap_details
+        self.col_specs_template_overview.update(_p.template_updates_overview)
+        self.col_specs_template_details.update(_p.template_updates_details)
         _ = _p._
+
         # TODO : adapt to allow rendering space extensions by inherited module
         # add objects to the render space for use in custom reports
-        partner_obj = self.pool.get('res.partner')  # noqa: disable F841, report_xls namespace trick
-        address_obj = self.pool.get('res.partner.address')  # noqa: disable F841, report_xls namespace trick
+        partner_obj = self.pool['res.partner']  # noqa: disable F841, report_xls namespace trick
 
-        for wl in [wanted_list_overview, wanted_list_details]:
+        for i, wl in enumerate([wl_overview, wl_ar_details, wl_ap_details]):
             debit_pos = 'debit' in wl and wl.index('debit')
             credit_pos = 'credit' in wl and wl.index('credit')
             if not (credit_pos and debit_pos) and 'balance' in wl:
@@ -280,6 +286,15 @@ class partner_open_arap_xls(report_xls):
                     _("The 'Balance' field is a calculated XLS field "
                       "requiring the presence of "
                       "the 'Debit' and 'Credit' fields !"))
+            if i == 0:
+                debit_pos_o = debit_pos
+                credit_pos_o = credit_pos
+            elif i == 1:
+                debit_pos_ar = debit_pos
+                credit_pos_ar = credit_pos
+            else:
+                debit_pos_ap = debit_pos
+                credit_pos_ap = credit_pos
 
         for r in _p.reports:
             title_short = r['title_short'].replace('/', '-')
@@ -292,6 +307,14 @@ class partner_open_arap_xls(report_xls):
                 ws.fit_width_to_pages = 1
             row_pos_o = 0
             row_pos_d = 0
+            if r['type'] == 'receivable':
+                wanted_list_details = wl_ar_details
+                debit_pos_d = debit_pos_ar
+                credit_pos_d = credit_pos_ar
+            else:
+                wanted_list_details = wl_ap_details
+                debit_pos_d = debit_pos_ap
+                credit_pos_d = credit_pos_ap
 
             # set print header/footer
             for ws in [ws_o, ws_d]:
@@ -326,7 +349,7 @@ class partner_open_arap_xls(report_xls):
                 lambda x: self.render(
                     x, self.col_specs_template_overview, 'header',
                     render_space={'_': _p._}),
-                wanted_list_overview)
+                wl_overview)
             row_data = self.xls_row_template(
                 c_specs_o, [x[0] for x in c_specs_o])
             row_pos_o = self.xls_write_row(
@@ -351,13 +374,13 @@ class partner_open_arap_xls(report_xls):
 
             for p in r['partners']:
 
-                debit_cell_o = rowcol_to_cell(row_pos_o, 2)
-                credit_cell_o = rowcol_to_cell(row_pos_o, 3)
+                debit_cell_o = rowcol_to_cell(row_pos_o, debit_pos_o)
+                credit_cell_o = rowcol_to_cell(row_pos_o, credit_pos_o)
                 bal_formula_o = debit_cell_o + '-' + credit_cell_o  # noqa: disable F841, report_xls namespace trick
                 c_specs_o = map(
                     lambda x: self.render(
                         x, self.col_specs_template_overview, 'lines'),
-                    wanted_list_overview)
+                    wl_overview)
                 row_data = self.xls_row_template(
                     c_specs_o, [x[0] for x in c_specs_o])
                 row_pos_o = self.xls_write_row(
@@ -365,18 +388,19 @@ class partner_open_arap_xls(report_xls):
 
                 row_pos_d += 1
 
-                debit_cell_d = rowcol_to_cell(row_pos_d, 6)
-                credit_cell_d = rowcol_to_cell(row_pos_d, 7)
+                debit_cell_d = rowcol_to_cell(row_pos_d, debit_pos_d)
+                credit_cell_d = rowcol_to_cell(row_pos_d, credit_pos_d)
                 partner_debit_cells.append(debit_cell_d)
                 partner_credit_cells.append(credit_cell_d)
+
                 bal_formula_d = debit_cell_d + '-' + credit_cell_d  # noqa: disable F841, report_xls namespace trick
 
                 line_cnt = len(p['lines'])
-                debit_start = rowcol_to_cell(row_pos_d + 1, 6)
-                debit_stop = rowcol_to_cell(row_pos_d + line_cnt, 6)
+                debit_start = rowcol_to_cell(row_pos_d+1, debit_pos_d)
+                debit_stop = rowcol_to_cell(row_pos_d+line_cnt, debit_pos_d)
                 debit_formula = 'SUM(%s:%s)' % (debit_start, debit_stop)
-                credit_start = rowcol_to_cell(row_pos_d + 1, 7)
-                credit_stop = rowcol_to_cell(row_pos_d + line_cnt, 7)
+                credit_start = rowcol_to_cell(row_pos_d+1, credit_pos_d)
+                credit_stop = rowcol_to_cell(row_pos_d+line_cnt, credit_pos_d)
                 credit_formula = 'SUM(%s:%s)' % (credit_start, credit_stop)
                 c_specs_d = map(
                     lambda x: self.render(
@@ -389,8 +413,8 @@ class partner_open_arap_xls(report_xls):
 
                 for l in p['lines']:
 
-                    debit_cell = rowcol_to_cell(row_pos_d, 6)
-                    credit_cell = rowcol_to_cell(row_pos_d, 7)
+                    debit_cell = rowcol_to_cell(row_pos_d, debit_pos_d)
+                    credit_cell = rowcol_to_cell(row_pos_d, credit_pos_d)
                     bal_formula = debit_cell + '-' + credit_cell
                     c_specs_d = map(
                         lambda x: self.render(
@@ -404,19 +428,19 @@ class partner_open_arap_xls(report_xls):
 
             # Totals
             p_cnt = len(r['partners'])
-            debit_start = rowcol_to_cell(row_pos_o - p_cnt, 2)
-            debit_stop = rowcol_to_cell(row_pos_o - 1, 2)
+            debit_start = rowcol_to_cell(row_pos_o - p_cnt, debit_pos_o)
+            debit_stop = rowcol_to_cell(row_pos_o - 1, debit_pos_o)
             debit_formula = 'SUM(%s:%s)' % (debit_start, debit_stop)
-            credit_start = rowcol_to_cell(row_pos_o - p_cnt, 3)
-            credit_stop = rowcol_to_cell(row_pos_o - 1, 3)
+            credit_start = rowcol_to_cell(row_pos_o - p_cnt, credit_pos_o)
+            credit_stop = rowcol_to_cell(row_pos_o - 1, credit_pos_o)
             credit_formula = 'SUM(%s:%s)' % (credit_start, credit_stop)
-            debit_cell = rowcol_to_cell(row_pos_o, 2)
-            credit_cell = rowcol_to_cell(row_pos_o, 3)
+            debit_cell = rowcol_to_cell(row_pos_o, debit_pos_o)
+            credit_cell = rowcol_to_cell(row_pos_o, credit_pos_o)
             bal_formula = debit_cell + '-' + credit_cell
             c_specs_o = map(
                 lambda x: self.render(
                     x, self.col_specs_template_overview, 'totals'),
-                wanted_list_overview)
+                wl_overview)
             row_data = self.xls_row_template(
                 c_specs_o, [x[0] for x in c_specs_o])
             row_pos_o = self.xls_write_row(
@@ -433,8 +457,8 @@ class partner_open_arap_xls(report_xls):
             row_pos_d = self.xls_write_row(
                 ws_d, row_pos_d, row_data, row_style=self.rt_cell_style_right)
 
-            debit_cell = rowcol_to_cell(row_pos_d, 6)
-            credit_cell = rowcol_to_cell(row_pos_d, 7)
+            debit_cell = rowcol_to_cell(row_pos_d, debit_pos_d)
+            credit_cell = rowcol_to_cell(row_pos_d, credit_pos_d)
             bal_formula = debit_cell + '-' + credit_cell  # noqa: disable F841, report_xls namespace trick
             debit_formula = '+'.join(partner_debit_cells)  # noqa: disable F841, report_xls namespace trick
             credit_formula = '+'.join(partner_credit_cells)  # noqa: disable F841, report_xls namespace trick

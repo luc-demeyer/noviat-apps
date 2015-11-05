@@ -48,6 +48,7 @@ class partner_open_arap_print(report_sxw.rml_parse):
         context = self.context
 
         period_obj = self.pool['account.period']
+        partner_obj = self.pool['res.partner']
 
         posted = (data['target_move'] == 'posted') and True or False
         result_selection = data['result_selection']
@@ -83,6 +84,9 @@ class partner_open_arap_print(report_sxw.rml_parse):
             'title': title_prefix + _('Open Payables'),
             'title_short': title_short_prefix + ', ' + _('AP')}
 
+        select_extra, join_extra, where_extra = \
+            partner_obj._xls_query_extra(cr, uid, context=context)
+
         # CASE statement on due date since standard Odoo accounting
         # allows to change the date_maturity in the accounting entries
         # on confirmed invoices (when using the account_cancel module).
@@ -101,7 +105,8 @@ class partner_open_arap_print(report_sxw.rml_parse):
             "l.reconcile_id, r.name AS r_name, " \
             "l.reconcile_partial_id, rp.name AS rp_name, " \
             "ai.internal_number AS inv_number, b.name AS st_number, " \
-            "v.number AS voucher_number " \
+            "ai.supplier_invoice_number as sup_inv_nr, " \
+            "v.number AS voucher_number " + select_extra + \
             "FROM account_move_line l " \
             "INNER JOIN account_journal j ON l.journal_id = j.id " \
             "INNER JOIN account_move m ON l.move_id = m.id " \
@@ -115,7 +120,8 @@ class partner_open_arap_print(report_sxw.rml_parse):
             "LEFT OUTER JOIN account_move_reconcile r " \
             "ON l.reconcile_id = r.id " \
             "LEFT OUTER JOIN account_move_reconcile rp " \
-            "ON l.reconcile_partial_id = rp.id "
+            "ON l.reconcile_partial_id = rp.id " \
+            + join_extra
 
         if posted:
             move_selection = "AND m.state = 'posted' "
@@ -142,6 +148,7 @@ class partner_open_arap_print(report_sxw.rml_parse):
             'AND a.type = %s ' + move_selection + \
             'AND (l.reconcile_id IS NULL ' + (subquery or '') + ') ' \
             'AND (l.debit+l.credit) != 0 ' \
+            + where_extra + \
             'ORDER BY a_code, p_name, p_id, l_date'
 
         if result_selection == 'customer':
