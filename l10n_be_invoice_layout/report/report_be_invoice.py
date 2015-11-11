@@ -86,7 +86,7 @@ class be_invoice(report_sxw.rml_parse):
             if p.title:
                 res += p.title.name + ' '
             res += p.name
-        res += '<br/>' + self._get_address(p_cpy, add_country)
+        res += '<br/>' + self._get_address(p, add_country)
         return res
 
     def _get_address(self, p, add_country=False):
