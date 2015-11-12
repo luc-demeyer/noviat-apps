@@ -205,7 +205,15 @@ class wizard_multi_charts_accounts(models.TransientModel):
 
         if wiz.multilang_coa:
             to_install = env['ir.module.module'].search(
-                [('name', '=', 'l10n_account_translate')])[0]
+                [('name', '=', 'l10n_account_translate')])
+            if not to_install:
+                raise Warning(
+                    _("Module 'l10n_account_translate' is not available "
+                      "in the addons path. "
+                      "\nPlease download this module from 'apps.odoo.com'.")
+                    )
+            else:
+                to_install = to_install[0]
             if to_install.state != 'installed':
                 self.pool['ir.module.module'].button_immediate_install(
                     cr, uid, [to_install.id],
