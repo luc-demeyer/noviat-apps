@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="account_invoice_line_action_report_xls" model="ir.actions.report.xml">
+      <field name="name">Export Selected Lines</field>
+      <field name="model">account.invoice.line</field>
+      <field name="type">ir.actions.report.xml</field>
+      <field name="report_name">invoice.line.xls</field>
+      <field name="report_type">xls</field>
+      <field name="auto" eval="False"/>
+    </record>
+
+    <record id="account_invoice_line_action_report_xls_values" model="ir.values">
+      <field name="name">Export Selected Lines</field>
+      <field name="model">account.invoice.line</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.report.xml,' +str(ref('account_invoice_line_action_report_xls'))"/>
+    </record>
+    
+  </data>
+</openerp>

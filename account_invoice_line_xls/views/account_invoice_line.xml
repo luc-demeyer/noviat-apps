@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="account_invoice_line_view_tree" model="ir.ui.view">
+      <field name="name">account.invoice.line.list</field>
+      <field name="model">account.invoice.line</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <tree string="Invoice Line" create="false" delete="false" edit="false">
+          <field name="invoice_number"/>
+          <field name="invoice_type"/>
+          <field name="invoice_partner_id"/>
+          <field name="invoice_state"/>
+          <field name="invoice_journal_id" groups="account.group_account_user"/>
+          <field name="invoice_date"/>
+          <field name="account_id" groups="account.group_account_user"/>
+          <field name="product_id"/>
+          <field name="name"/>
+          <field name="quantity"/>
+          <field name="uos_id" invisible="1"/>
+          <field name="price_unit"/>
+          <field name="discount" groups="sale.group_discount_per_so_line"/>
+          <field name="price_subtotal" sum="Total Amount"/>
+          <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="account_invoice_line_view_form" model="ir.ui.view">
+      <field name="name">account.invoice.line.form</field>
+      <field name="model">account.invoice.line</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <form string="Invoice Line" create="false" delete="false" edit="false">
+          <separator string="Invoice Fields"/>
+          <group name="invoice_fields" colspan="4">
+            <group name="invoice_fields_1">
+              <field name="invoice_number"/>
+              <field name="invoice_partner_id"/>
+              <field name="invoice_state"/>
+            </group>
+            <group name="invoice_fields_2">
+              <field name="invoice_type"/>
+              <field name="invoice_date"/>
+              <field name="invoice_journal_id" groups="account.group_account_user"/>
+            </group>
+          </group>
+          <separator string="Invoice Line Fields"/>
+          <group name="invoice_line_fields" colspan="4" col="4">
+            <field name="product_id"/>
+            <field name="name"/>
+            <newline/>
+            <label for="quantity"/>
+            <div>
+              <field name="quantity" class="oe_inline"/>
+              <field name="uos_id" class="oe_inline" groups="product.group_uom"/>
+            </div>
+            <field name="price_unit"/>
+            <field name="discount" groups="sale.group_discount_per_so_line"/>
+            <field name="price_subtotal"/>
+            <newline/>
+            <field name="account_id" groups="account.group_account_user"/>
+            <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+            <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+            <newline/>
+            <field name="invoice_line_tax_id" widget="many2many_tags"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record id="account_invoice_line_view_search" model="ir.ui.view">
+      <field name="name">account.invoice.line.filter</field>
+      <field name="model">account.invoice.line</field>
+      <field name="priority">20</field>
+      <field name="arch" type="xml">
+        <search string="Search Invoice Lines">
+          <field name="invoice_number"/>
+          <field name="invoice_journal_id" widget="selection"
+                 groups="account.group_account_user"
+                 domain="[('type','in', ['sale', 'sale_refund', 'purchase', 'purchase_refund'])]"/>
+          <field name="invoice_partner_id"/>
+          <field name="invoice_date"/>
+          <field name="account_id" groups="account.group_account_user"/>
+          <field name="account_analytic_id" groups="account.group_analytic_accounting"/>
+          <separator/>
+          <field name="product_id"/>
+          <field name="name"/>
+          <field name="quantity"/>
+          <field name="uos_id"/>
+          <field name="price_unit"/>
+          <separator/>
+          <filter name="out_invoice" string="Customer Invoice" domain="[('invoice_type','=','out_invoice')]"/>
+          <filter name="out_refund" string="Customer Refund" domain="[('invoice_type','=','out_refund')]"/>
+          <filter name="in_invoice" string="Supplier Invoice" domain="[('invoice_type','=','in_invoice')]"/>
+          <filter name="in_refund" string="Supplier Refund" domain="[('invoice_type','=','in_refund')]"/>
+          <group expand="0" string="Group By">
+            <filter string="Product" context="{'group_by':'product_id'}"/>
+            <filter string="Fin.Account" context="{'group_by':'account_id'}" groups="account.group_account_user"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="account_invoice_line_view_action" model="ir.actions.act_window">
+      <field name="name">Invoice Lines</field>
+      <field name="res_model">account.invoice.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="account_invoice_line_view_search"/>
+    </record>
+
+    <record id="account_invoice_line_view_action_tree" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="account_invoice_line_view_tree"/>
+      <field name="act_window_id" ref="account_invoice_line_view_action"/>
+    </record>
+
+    <record id="account_invoice_line_view_action_form" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="account_invoice_line_view_form"/>
+      <field name="act_window_id" ref="account_invoice_line_view_action"/>
+    </record>
+
+    <menuitem id="account_invoice_line_view_menu"
+              name="Invoice Lines"
+              parent="account.menu_finance_reporting"
+              action="account_invoice_line_view_action"
+              sequence="900"/>
+
+  </data>
+</openerp>
