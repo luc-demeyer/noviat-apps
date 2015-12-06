@@ -45,7 +45,6 @@
     <record model="ir.ui.view" id="view_move_line_tree_account_pain">
       <field name="name">account.pain.move.line.tree</field>
       <field name="model">account.move.line</field>
-      <field name="priority" eval="2"/>
       <field name="arch" type="xml">
         <tree string="Account Entry Line">
           <field name="partner_id"/>

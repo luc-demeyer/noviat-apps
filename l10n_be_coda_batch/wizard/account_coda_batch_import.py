@@ -111,7 +111,7 @@ class AccountCodaBatchImport(models.TransientModel):
         path = os.path.normpath(coda_batch_root + '/' + directory)
         files = os.listdir(path)
         log_date = time.strftime('%Y-%m-%d %H:%M:%S')
-        log_header = _('>>> Import by %s. Results:') % self.env.user
+        log_header = _('>>> Import by %s. Results:') % self.env.user.name
         log_footer = _('\n\nNumber of files : %s\n\n') % str(len(files))
         self._log_note = ''
         self._nb_err = 0

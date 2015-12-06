@@ -20,5 +20,9 @@
 #
 ##############################################################################
 
-from . import models
-from . import wizard
+from . import account_bank_statement
+from . import account_invoice
+from . import account_move_line
+from . import account_payment
+from . import res_partner_bank
+from . import res_partner

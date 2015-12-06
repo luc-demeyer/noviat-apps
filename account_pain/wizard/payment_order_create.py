@@ -37,7 +37,7 @@ class payment_order_create(orm.TransientModel):
 
     def journal_domain(self, cr, uid, context=None):
         """
-        Override this method in order to customise the journals to search on.
+        Use this method to customise the journals to search on.
         By default we exclude financial journals to filter out
         unreconciled advanced payments from customers.
         """
@@ -49,11 +49,11 @@ class payment_order_create(orm.TransientModel):
 
     def search_entries(self, cr, uid, ids, context=None):
         """
-        Override the search_entries & fields_view_get methods of
-        the account_payment payment.order.create object
+        Replacement (without super !) of the search_entries method of
+        the account_payment payment.order.create object.
         """
-        line_obj = self.pool.get('account.move.line')
-        mod_obj = self.pool.get('ir.model.data')
+        line_obj = self.pool['account.move.line']
+        mod_obj = self.pool['ir.model.data']
         if context is None:
             context = {}
         data = self.read(cr, uid, ids, [], context=context)[0]
@@ -66,7 +66,7 @@ class payment_order_create(orm.TransientModel):
         domain += ['|',
                    ('date_maturity', '<=', search_due_date),
                    ('date_maturity', '=', False)]
-        journal_domain = self.journal_domain(cr, uid)
+        journal_domain = self.journal_domain(cr, uid, context=context)
         domain += journal_domain
         line_ids = line_obj.search(cr, uid, domain, context=context)
         line_ids2 = []
@@ -94,6 +94,8 @@ class payment_order_create(orm.TransientModel):
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
         """
+        Replacement (without super !) of the fields_view_get method of
+        the account_payment payment.order.create object in order to
         add context to 'entries' field for use in account.move.line
         """
         res = super(payment_order_create, self).fields_view_get(
@@ -114,7 +116,8 @@ class payment_order_create(orm.TransientModel):
 
     def create_payment(self, cr, uid, ids, context=None):
         """
-        This method replaces the original one for multi-currency purposes
+        Replacement (without super !) of the original one
+        for multi-currency purposes
         """
         order_obj = self.pool.get('payment.order')
         line_obj = self.pool.get('account.move.line')

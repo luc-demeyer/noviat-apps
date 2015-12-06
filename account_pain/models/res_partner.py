@@ -20,24 +20,13 @@
 #
 ##############################################################################
 
-from openerp import models
+from openerp import models, fields
 
 
-class account_bank_statement_line(models.Model):
-    _inherit = 'account.bank.statement.line'
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
 
-    def create(self, cr, uid, vals, context=None):
-        pl_id = False
-        if vals.get('payment_reference'):
-            pl_ids = self.pool['payment.line'].search(
-                cr, uid, [('name', '=', vals['payment_reference'])],
-                context=context)
-            if len(pl_ids) == 1:
-                pl_id = pl_ids[0]
-        absl_id = super(account_bank_statement_line, self).create(
-            cr, uid, vals, context=context)
-        if pl_id:
-            self.pool['payment.line'].write(
-                cr, uid, [pl_id],
-                {'bank_statement_line_id': absl_id}, context=context)
-        return absl_id
+    supplier_direct_debit = fields.Boolean(
+        string='Supplier Direct Debit',
+        help="The 'Supplier Direct Debit' flag will be set "
+             "by default on Supplier Invoices.")

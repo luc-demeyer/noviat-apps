@@ -59,9 +59,9 @@ class account_move_line(orm.Model):
     def _to_pay_search(self, cr, uid, obj, name, args, context=None):
         if not args:
             return []
-        line_obj = self.pool.get('account.move.line')
+        line_obj = self.pool['account.move.line']
         query = line_obj._query_get(cr, uid, context={'all_fiscalyear': True})
-        query += 'AND l.blocked = False '  # fix Noviat
+        query += 'AND l.blocked = False '
         where = ' and '.join(
             map(lambda x: """
                 (SELECT
@@ -73,7 +73,7 @@ class account_move_line(orm.Model):
                 INNER JOIN payment_order po ON (pl.order_id = po.id)
                 WHERE move_line_id = l.id
                 AND po.state != 'cancel'
-                AND pl.bank_statement_line_id IS NULL /* fix Noviat */
+                AND pl.bank_statement_line_id IS NULL
                 ) %(operator)s %%s """ % {'operator': x[1]},
                 args))
         sql_args = tuple(map(itemgetter(2), args))

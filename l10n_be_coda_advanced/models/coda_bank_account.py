@@ -217,14 +217,17 @@ class CodaAccountMappingRule(models.Model):
         domain=[('type', '=', 'code')])
     trans_category_id = fields.Many2one(
         'account.coda.trans.category', string='Transaction Category')
-    struct_comm_type_id = fields.Many2one(
-        'account.coda.comm.type', string='Structured Communication Type')
     partner_id = fields.Many2one(
         'res.partner', string='Partner', ondelete='cascade',
-        domain=['|', ('parent_id', '=', False), ('is_company', '=', True)]
-        )
+        domain=['|', ('parent_id', '=', False), ('is_company', '=', True)])
     freecomm = fields.Char(string='Free Communication', size=128)
+    struct_comm_type_id = fields.Many2one(
+        'account.coda.comm.type', string='Structured Communication Type')
     structcomm = fields.Char(string='Structured Communication', size=128)
+    payment_reference = fields.Char(
+        string='Payment Reference', size=35,
+        help="Payment Reference. For SEPA (SCT or SDD) transactions, "
+             "the EndToEndReference is recorded in this field.")
     # results
     account_id = fields.Many2one(
         'account.account', string='Account', ondelete='cascade',
@@ -256,13 +259,13 @@ class CodaAccountMappingRule(models.Model):
                  trans_type_id=None, trans_family_id=None,
                  trans_code_id=None, trans_category_id=None,
                  struct_comm_type_id=None, partner_id=None,
-                 freecomm=None, structcomm=None):
+                 freecomm=None, structcomm=None, payment_reference=None):
 
         select = \
             'SELECT trans_type_id, trans_family_id, trans_code_id, ' \
             'trans_category_id, ' \
             'struct_comm_type_id, partner_id, freecomm, structcomm, ' \
-            'account_id, tax_code_id, analytic_account_id'
+            'account_id, tax_code_id, analytic_account_id, payment_reference'
         select += self._rule_select_extra(coda_bank_account_id) + ' '
         select += \
             "FROM coda_account_mapping_rule " \
@@ -286,7 +289,9 @@ class CodaAccountMappingRule(models.Model):
             "and (not rule['freecomm'] or (rule['freecomm'].lower() in " \
             "(freecomm and freecomm.lower() or ''))) " \
             "and (not rule['structcomm'] or " \
-            "(rule['structcomm'] in (structcomm or ''))) "
+            "(rule['structcomm'] in (structcomm or ''))) " \
+            "and (not rule['payment_reference'] or " \
+            "(rule['payment_reference'] in (payment_reference or ''))) "
         result_fields = [
             'account_id', 'tax_code_id', 'analytic_account_id']
         result_fields += self._rule_result_extra(coda_bank_account_id)

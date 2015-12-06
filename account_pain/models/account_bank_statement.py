@@ -20,15 +20,22 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, api
 
 
-class res_partner(orm.Model):
-    _inherit = 'res.partner'
+class AccountBankStatementLine(models.Model):
+    _inherit = 'account.bank.statement.line'
 
-    _columns = {
-        'supplier_direct_debit': fields.boolean(
-            'Supplier Direct Debit',
-            help="The 'Supplier Direct Debit' flag will be set "
-                 "by default on Supplier Invoices."),
-    }
+    @api.model
+    @api.returns('self', lambda value: value.id)
+    def create(self, vals):
+        pl = False
+        if vals.get('payment_reference'):
+            pls = self.env['payment.line'].search(
+                [('name', '=', vals['payment_reference'])])
+            if len(pls) == 1:
+                pl = pls[0]
+        absl = super(AccountBankStatementLine, self).create(vals)
+        if pl:
+            pl.write({'bank_statement_line_id': absl.id})
+        return absl

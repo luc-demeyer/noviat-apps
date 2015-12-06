@@ -22,7 +22,7 @@
 
 {
     'name': 'ISO 20022 XML payments',
-    'version': '0.7',
+    'version': '8.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -34,10 +34,10 @@
         'account_payment'
     ],
     'data': [
-        'account_pain_wizard.xml',
-        'account_payment_view.xml',
-        'account_invoice_view.xml',
-        'partner_view.xml',
-        'res_partner_bank_view.xml',
-    ],
+        'views/account_payment.xml',
+        'views/account_invoice.xml',
+        'views/res_partner.xml',
+        'views/res_partner_bank.xml',
+        'wizard/account_pain_wizard.xml',
+        ],
 }

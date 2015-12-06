@@ -20,22 +20,18 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class res_partner_bank(orm.Model):
+class ResPartnerBank(models.Model):
     _inherit = "res.partner.bank"
 
-    _columns = {
-        'charge_bearer': fields.selection([
-            ('CRED', 'Borne By Creditor'),
-            ('DEBT', 'Borne By Debtor'),
-            ('SHAR', 'Shared'),
-            ('SLEV', 'Following Service Level'),
-            ], 'Charge Bearer',
-            help="Specifies which party/parties will bear the charges linked "
-                 "to the processing of the payment transaction.")
-    }
-    _defaults = {
-        'charge_bearer': 'SLEV',
-    }
+    charge_bearer = fields.Selection(
+        selection=[('CRED', 'Borne By Creditor'),
+                   ('DEBT', 'Borne By Debtor'),
+                   ('SHAR', 'Shared'),
+                   ('SLEV', 'Following Service Level')],
+        string='Charge Bearer',
+        default='SLEV',
+        help="Specifies which party/parties will bear the charges linked "
+             "to the processing of the payment transaction.")
