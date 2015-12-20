@@ -24,7 +24,7 @@
     'name': 'Account Move Import',
     'version': '8.0.0.4.1',
     'license': 'AGPL-3',
-    'author': 'Noviat, Odoo Community Association (OCA)',
+    'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
     'summary': 'Import Accounting Entries',

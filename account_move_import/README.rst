@@ -15,8 +15,6 @@ Before starting the import a number of sanity checks are performed such as:
 If no issues are found the entry lines will be loaded.
 The resulting Journal Entry will be in draft mode to allow a final check before posting the entry.
 
-The CSV file must have a header line with the following fields:
-
 Usage
 =====
 
@@ -98,6 +96,7 @@ Unicode input is not supported. Also, there are some issues regarding ASCII NUL 
 Accordingly, all input should be UTF-8 or printable ASCII.
 Results are unpredictable when this is not the case.
 
+
 Credits
 =======
 
@@ -105,22 +104,3 @@ Author
 ------
 
 * Luc De Meyer, Noviat <info@noviat.com>
-
-Contributors
-------------
-
-* Graeme Gellatly
-* Charbel Jacquin
-
-Maintainer
-----------
-
-.. image:: http://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: http://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
