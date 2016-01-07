@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -23,11 +23,20 @@
 from openerp import models, fields, api
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     """
     add field to indicate default 'Communication Type' on customer invoices
     """
     _inherit = 'res.partner'
+
+    out_inv_comm_type = fields.Selection(
+        '_get_comm_type', string='Communication Type',
+        change_default=True, default='none',
+        help='Select Default Communication Type for Outgoing Invoices.')
+    out_inv_comm_algorithm = fields.Selection(
+        '_get_out_inv_comm_algorithm', string='Communication Algorithm',
+        help="Select Algorithm to generate the "
+             "Structured Communication on Outgoing Invoices.")
 
     @api.model
     def _get_comm_type(self):
@@ -40,18 +49,9 @@ class res_partner(models.Model):
                 ('date', 'Date'),
                 ('partner_ref', 'Customer Reference')]
 
-    out_inv_comm_type = fields.Selection(
-        '_get_comm_type', string='Communication Type',
-        change_default=True, default='none',
-        help='Select Default Communication Type for Outgoing Invoices.')
-    out_inv_comm_algorithm = fields.Selection(
-        '_get_out_inv_comm_algorithm', string='Communication Algorithm',
-        help="Select Algorithm to generate the "
-             "Structured Communication on Outgoing Invoices.")
-
     @api.model
     def _commercial_fields(self):
-        return super(res_partner, self)._commercial_fields() + \
+        return super(ResPartner, self)._commercial_fields() + \
             ['out_inv_comm_type', 'out_inv_comm_algorithm']
 
     @api.onchange('supplier')
@@ -59,4 +59,4 @@ class res_partner(models.Model):
         """ don't set 'bba' for suppliers """
         if self.supplier and not self.customer:
             if self.out_inv_comm_type == 'bba':
-                 self.out_inv_comm_type = 'none'
+                self.out_inv_comm_type = 'none'

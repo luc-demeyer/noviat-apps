@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -29,8 +29,11 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
+
+    reference = fields.Char(string='Communication')
+    reference_type = fields.Selection(string='Communication Type')
 
     @api.model
     def _get_reference_type(self):
@@ -38,7 +41,7 @@ class account_invoice(models.Model):
         Add BBA Structured Communication Type and change labels
         from 'reference' into 'communication'
         """
-        res = super(account_invoice, self)._get_reference_type()
+        res = super(AccountInvoice, self)._get_reference_type()
         res[[i for i, x in enumerate(res) if x[0] == 'none'][0]] = \
             ('none', _('Free Communication'))
         res.append(('bba', _('BBA Structured Communication')))
@@ -94,7 +97,7 @@ class account_invoice(models.Model):
     def onchange_partner_id(self, type, partner_id, date_invoice=False,
                             payment_term=False, partner_bank_id=False,
                             company_id=False):
-        result = super(account_invoice, self).onchange_partner_id(
+        result = super(AccountInvoice, self).onchange_partner_id(
             type, partner_id, date_invoice, payment_term, partner_bank_id,
             company_id)
         reference = False
@@ -223,7 +226,7 @@ class account_invoice(models.Model):
     @api.model
     def _prepare_refund(self, invoice, date=None, period_id=None,
                         description=None, journal_id=None):
-        res = super(account_invoice, self)._prepare_refund(
+        res = super(AccountInvoice, self)._prepare_refund(
             invoice, date, period_id, description, journal_id)
         res['reference_type'] = self.reference_type
         return res
@@ -269,35 +272,37 @@ class account_invoice(models.Model):
             vals.update({
                 'reference_type': reference_type,
                 'reference': reference})
-        return super(account_invoice, self).create(vals)
+        return super(AccountInvoice, self).create(vals)
 
     @api.multi
     def write(self, vals):
         for inv in self:
-            if 'reference_type' in vals:
-                reference_type = vals['reference_type']
-            else:
-                reference_type = inv.reference_type
-            if reference_type == 'bba':
-                if 'reference' in vals:
-                    bbacomm = vals['reference']
+            if inv.state == 'draft':
+                if 'reference_type' in vals:
+                    reference_type = vals['reference_type']
                 else:
-                    bbacomm = inv.reference or ''
-                if self.check_bbacomm(bbacomm):
-                    reference = self.format_bbacomm(bbacomm)
-                    if inv.type == 'out_invoice' and inv.state == 'draft':
-                        dups = self.search(
-                            [('id', '!=', inv.id),
-                             ('type', '=', 'out_invoice'),
-                             ('state', '!=', 'draft'),
-                             ('reference_type', '=', 'bba'),
-                             ('reference', '=', reference)])
-                        if dups:
-                            partner = inv.partner_id.commercial_partner_id
-                            reference = self.duplicate_bba(
-                                partner, reference)
-                    vals['reference'] = reference
-            super(account_invoice, self).write(vals)
+                    reference_type = inv.reference_type
+                if reference_type == 'bba':
+                    if 'reference' in vals:
+                        bbacomm = vals['reference']
+                    else:
+                        bbacomm = inv.reference or ''
+                    if self.check_bbacomm(bbacomm):
+                        reference = self.format_bbacomm(bbacomm)
+                        if inv.type == 'out_invoice':
+                            dups = self.search(
+                                [('id', '!=', inv.id),
+                                 ('type', '=', 'out_invoice'),
+                                 ('state', '!=', 'draft'),
+                                 ('reference_type', '=', 'bba'),
+                                 ('reference', '=', reference)])
+                            if dups:
+                                partner = inv.partner_id.commercial_partner_id
+                                reference = self.duplicate_bba(
+                                    partner, reference)
+                        if reference != inv.reference:
+                            vals['reference'] = reference
+            super(AccountInvoice, self).write(vals)
         return True
 
     @api.one
@@ -310,7 +315,4 @@ class account_invoice(models.Model):
             if reference_type == 'bba':
                 partner = self.partner_id.commercial_partner_id
                 default['reference'] = self.generate_bbacomm(partner)
-        return super(account_invoice, self).copy(default)
-
-    reference = fields.Char(string='Communication')
-    reference_type = fields.Selection(string='Communication Type')
+        return super(AccountInvoice, self).copy(default)

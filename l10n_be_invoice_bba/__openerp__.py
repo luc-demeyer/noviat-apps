@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Invoices with Structured Communication',
-    'version': '1.9',
+    'version': '8.0.2.0.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -32,10 +32,11 @@
         'account',
     ],
     'data': [
-        'partner_view.xml',
-        'account_invoice_view.xml',
+        'views/account_invoice.xml',
+        'views/res_partner.xml',
     ],
     'images': [
         'images/invoice.jpg',
     ],
+    'installable': True,
 }
