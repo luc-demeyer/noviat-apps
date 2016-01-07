@@ -65,8 +65,6 @@ class account_invoice(osv.osv):
             _('The BBA Structured Communication has already been used!'
               '\nPlease use a unique BBA Structured Communication.'))
         """
-        if isinstance(ids, (int, long)):
-            ids = [ids]
         reference_type = 'bba'
         if inv_type == 'out_invoice':
                 if partner.out_inv_comm_algorithm == 'random':
@@ -270,30 +268,33 @@ class account_invoice(osv.osv):
         if isinstance(ids, (int, long)):
             ids = [ids]
         for inv in self.browse(cr, uid, ids, context):
-            if 'reference_type' in vals:
-                reference_type = vals['reference_type']
-            else:
-                reference_type = inv.reference_type or ''
-            if reference_type == 'bba':
-                if 'reference' in vals:
-                    bbacomm = vals['reference']
+            if inv.state == 'draft':
+                if 'reference_type' in vals:
+                    reference_type = vals['reference_type']
                 else:
-                    bbacomm = inv.reference or ''
-                if self.check_bbacomm(bbacomm):
-                    reference = re.sub('\D', '', bbacomm)
-                    vals['reference'] = reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
-                    # perform dup handling for draft outgoing invoices
-                    if inv.type == 'out_invoice' and inv.state == 'draft':
-                        same_ids = self.search(
-                            cr, uid,
-                            [('id', '!=', inv.id),
-                             ('type', '=', 'out_invoice'),
-                             ('state', '!=', 'draft'),
-                             ('reference_type', '=', 'bba'),
-                             ('reference', '=', reference)])
-                        if same_ids:
-                            reference_type, reference = self.duplicate_bba(cr, uid, ids, inv.type, reference, inv.partner_id)
-                            vals.update({'reference_type': reference_type, 'reference': reference})        
+                    reference_type = inv.reference_type or ''
+                if reference_type == 'bba':
+                    if 'reference' in vals:
+                        bbacomm = vals['reference']
+                    else:
+                        bbacomm = inv.reference or ''
+                    if self.check_bbacomm(bbacomm):
+                        reference = re.sub('\D', '', bbacomm)
+                        reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
+                        if reference != inv.reference:
+                            vals['reference'] = reference
+                        # perform dup handling for draft outgoing invoices
+                        if inv.type == 'out_invoice':
+                            same_ids = self.search(
+                                cr, uid,
+                                [('id', '!=', inv.id),
+                                 ('type', '=', 'out_invoice'),
+                                 ('state', '!=', 'draft'),
+                                 ('reference_type', '=', 'bba'),
+                                 ('reference', '=', reference)])
+                            if same_ids:
+                                reference_type, reference = self.duplicate_bba(cr, uid, [], inv.type, reference, inv.partner_id)
+                                vals.update({'reference_type': reference_type, 'reference': reference})
             super(account_invoice, self).write(cr, uid, [inv.id], vals, context)
         return True
 

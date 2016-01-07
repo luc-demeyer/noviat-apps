@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Structured Communication',
-    'version': '1.6',
+    'version': '1.7',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category' : 'Localization',
@@ -49,12 +49,8 @@ A 'random' Structured Communication will generated if no algorithm is specified 
     'init_xml': [],
     'update_xml' : [
         'partner_view.xml',
-        'account_invoice_view.xml',        
+        'account_invoice_view.xml',
     ],
     'auto_install': False,
     'installable': True,
-    'certificate': '00137058831885',
     }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
