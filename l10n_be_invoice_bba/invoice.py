@@ -221,26 +221,30 @@ class account_invoice(orm.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         for inv in self.browse(cr, uid, ids, context):
-            if 'reference_type' in vals:
-                reference_type = vals['reference_type']
-            else:
-                reference_type = inv.reference_type or ''
-            if reference_type == 'bba':
-                if 'reference' in vals:
-                    bbacomm = vals['reference']
+            if inv.state == 'draft':
+                if 'reference_type' in vals:
+                    reference_type = vals['reference_type']
                 else:
-                    bbacomm = inv.reference or ''
-                if self.check_bbacomm(bbacomm):
-                    reference = re.sub('\D', '', bbacomm)
-                    vals['reference'] = reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
-                    if inv.type == 'out_invoice' and inv.state == 'draft':
-                        same_ids = self.search(cr, uid,
-                            [('id', '!=', inv.id), ('type', '=', 'out_invoice'), ('state', '!=', 'draft'),
-                             ('reference_type', '=', 'bba'), ('reference', '=', reference)])
-                        if same_ids:
-                            partner = inv.partner_id.commercial_partner_id  # replace by the partner for which the accounting entries will be created
-                            reference_type, reference = self.duplicate_bba(cr, uid, inv.type, reference, partner)
-                            vals.update({'reference_type': reference_type, 'reference': reference})
+                    reference_type = inv.reference_type or ''
+                if reference_type == 'bba':
+                    if 'reference' in vals:
+                        bbacomm = vals['reference']
+                    else:
+                        bbacomm = inv.reference or ''
+                    if self.check_bbacomm(bbacomm):
+                        reference = re.sub('\D', '', bbacomm)
+                        reference = '+++' + reference[0:3] + '/' + reference[3:7] + '/' + reference[7:] + '+++'
+                        if reference != inv.reference:
+                            vals['reference'] = reference
+                        # perform dup handling for outgoing invoices
+                        if inv.type == 'out_invoice':
+                            same_ids = self.search(cr, uid,
+                                [('id', '!=', inv.id), ('type', '=', 'out_invoice'), ('state', '!=', 'draft'),
+                                 ('reference_type', '=', 'bba'), ('reference', '=', reference)])
+                            if same_ids:
+                                partner = inv.partner_id.commercial_partner_id  # replace by the partner for which the accounting entries will be created
+                                reference_type, reference = self.duplicate_bba(cr, uid, inv.type, reference, partner)
+                                vals.update({'reference_type': reference_type, 'reference': reference})
         return super(account_invoice, self).write(cr, uid, ids, vals, context)
 
     def copy(self, cr, uid, id, default=None, context=None):
