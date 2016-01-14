@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -295,11 +295,14 @@ class AccountBankStatementLine(models.Model):
                   "delete and/or modify this bank statement line"))
 
         # remove orphaned global lines
-        self._cr.execute(
-            "SELECT DISTINCT globalisation_id "
-            "FROM account_bank_statement_line "
-            "WHERE id IN %s AND globalisation_id IS NOT NULL", (self._ids,))
-        g_ids = [x[0] for x in self._cr.fetchall()]
+        if self._ids:
+            self._cr.execute(
+                "SELECT DISTINCT globalisation_id "
+                "FROM account_bank_statement_line "
+                "WHERE id IN %s AND globalisation_id IS NOT NULL", (self._ids,))
+            g_ids = [x[0] for x in self._cr.fetchall()]
+        else:
+            g_ids = False
         res = super(AccountBankStatementLine, self).unlink()
         if g_ids:
             self._cr.execute(
