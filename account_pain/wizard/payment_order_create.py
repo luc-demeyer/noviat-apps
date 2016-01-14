@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2010-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -114,14 +114,38 @@ class payment_order_create(orm.TransientModel):
             res['arch'] = etree.tostring(doc)
         return res
 
+    def _prepare_payline_vals(self, cr, uid, ids,
+                              payment, move_line, line2bank, context=None):
+        company_currency = payment.mode.company_id.currency_id
+        if payment.date_prefered == "now":
+            # no payment date => immediate payment
+            date_to_pay = False
+        elif payment.date_prefered == 'due':
+            date_to_pay = move_line.date_maturity
+        elif payment.date_prefered == 'fixed':
+            date_to_pay = payment.date_scheduled
+        partner_id = move_line.partner_id \
+            and move_line.partner_id.id or False
+        pl_vals = {
+            'move_line_id': move_line.id,
+            'amount_currency': move_line.amount_to_pay,
+            'bank_id': line2bank.get(move_line.id),
+            'order_id': payment.id,
+            'partner_id': partner_id,
+            'communication': move_line.ref or '/',
+            'date': date_to_pay,
+            'currency': move_line.currency_id.id or company_currency.id,
+            }
+        return pl_vals
+
     def create_payment(self, cr, uid, ids, context=None):
         """
         Replacement (without super !) of the original one
         for multi-currency purposes
         """
         order_obj = self.pool.get('payment.order')
-        line_obj = self.pool.get('account.move.line')
-        payment_obj = self.pool.get('payment.line')
+        move_line_obj = self.pool.get('account.move.line')
+        payline_obj = self.pool.get('payment.line')
         if context is None:
             context = {}
         data = self.browse(cr, uid, ids, context=context)[0]
@@ -132,29 +156,12 @@ class payment_order_create(orm.TransientModel):
         payment = order_obj.browse(
             cr, uid, context['active_id'], context=context)
         t = payment.mode.type == 'iso20022' and payment.mode.id or None
-        line2bank = line_obj.line2bank(cr, uid, line_ids, t, context)
-
-        company_currency = payment.mode.company_id.currency_id
+        line2bank = move_line_obj.line2bank(cr, uid, line_ids, t, context)
 
         # Finally populate the current payment with new lines:
-        for line in line_obj.browse(cr, uid, line_ids, context=context):
-            if payment.date_prefered == "now":
-                # no payment date => immediate payment
-                date_to_pay = False
-            elif payment.date_prefered == 'due':
-                date_to_pay = line.date_maturity
-            elif payment.date_prefered == 'fixed':
-                date_to_pay = payment.date_scheduled
-
-            payment_obj.create(
-                cr, uid,
-                {'move_line_id': line.id,
-                 'amount_currency': line.amount_to_pay,
-                 'bank_id': line2bank.get(line.id),
-                 'order_id': payment.id,
-                 'partner_id': line.partner_id and line.partner_id.id or False,
-                 'communication': line.ref or '/',
-                 'date': date_to_pay,
-                 'currency': line.currency_id.id or company_currency.id},
-                context=context)
+        for aml in move_line_obj.browse(cr, uid, line_ids, context=context):
+            payline_vals = self._prepare_payline_vals(
+                cr, uid, ids, payment, aml, line2bank, context=context)
+            payline_obj.create(
+                cr, uid, payline_vals, context=context)
         return {'type': 'ir.actions.act_window_close'}
