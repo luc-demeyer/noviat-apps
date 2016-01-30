@@ -120,7 +120,7 @@ class partner_vat_intra(orm.TransientModel):
         company_vat = data_company.partner_id.vat
         if not company_vat:
             raise orm.except_orm(_('insufficient data!'), _('No VAT number associated with your company.'))
-        company_vat = company_vat.replace(' ', '').upper()
+        company_vat = company_vat.replace(' ', '').replace('.', '').upper()
         issued_by = company_vat[:2]
 
         if wiz_data.period_code and len(wiz_data.period_code) != 6:

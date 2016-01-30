@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,11 +20,5 @@
 #
 ##############################################################################
 
-from . import wizard_multi_charts_accounts
-from . import res_config
-from . import account
-from . import account_fix
-from . import account_tax_fix
-from . import account_financial_report
-from . import partner
+from . import models
 from . import wizard

@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '1.6',
+    'version': '8.0.1.7.3',
     'license': 'AGPL-3',
     'author': "Noviat, Odoo Community Association (OCA)",
     'website': 'http://www.noviat.com',
@@ -36,32 +36,32 @@
     'data': [
         'security/account_security.xml',
         'security/ir.model.access.csv',
-        'account_view.xml',
-        'res_config_view.xml',
-        'account_menuitem.xml',
-        'account_account_type_nov.xml',
-        'account_account_template_nov.xml',
-        'account_tax_code_template_nov.xml',
-        'account_chart_template_nov.xml',
-        'account_tax_template_nov.xml',
-        'account_fiscal_position_template_nov.xml',
-        'account_fiscal_position_tax_template_nov.xml',
-        'account_fiscal_position_account_template_nov.xml',
-        'l10n_be_sequence.xml',
-        'wizard_multi_charts_accounts.xml',
-        'account_financial_report.xml',
-        'be_legal_financial_reportscheme.xml',
-        'account_financial_report_view.xml',
-        'update_be_reportscheme.xml',
-        'wizard/reports.xml',
-        'wizard/l10n_be_vat_declaration_view.xml',
-        'wizard/l10n_be_vat_intra_view.xml',
-        'wizard/l10n_be_partner_vat_listing.xml',
+        'data/account_account_type_nov.xml',
+        'data/account_account_template_nov.xml',
+        'data/account_tax_code_template_nov.xml',
+        'data/account_chart_template_nov.xml',
+        'data/account_tax_template_nov.xml',
+        'data/account_fiscal_position_template_nov.xml',
+        'data/account_fiscal_position_tax_template_nov.xml',
+        'data/account_fiscal_position_account_template_nov.xml',
+        'data/account_financial_report.xml',
+        'data/be_legal_financial_reportscheme.xml',
+        'data/l10n_be_sequence.xml',
+        'views/account_menuitem.xml',
+        'views/account_view.xml',
+        'views/account_financial_report_view.xml',
+        'views/res_config_view.xml',
         'views/l10n_be_layouts.xml',
         'views/report_financial.xml',
         'views/report_l10nbevatdeclaration.xml',
         'views/report_l10nbevatlisting.xml',
         'views/report_l10nbevatintra.xml',
+        'wizard/wizard_multi_charts_accounts.xml',
+        'wizard/update_be_reportscheme.xml',
+        'wizard/reports.xml',
+        'wizard/l10n_be_vat_declaration_view.xml',
+        'wizard/l10n_be_vat_intra_view.xml',
+        'wizard/l10n_be_partner_vat_listing.xml',
     ],
     'installable': True,
 }

@@ -101,7 +101,7 @@ class partner_vat(orm.TransientModel):
             (codes, tuple(partner_ids), tuple(period_ids), tuple(partner_ids), tuple(period_ids)))
         records = []
         for record in cr.dictfetchall():
-            record['vat'] = record['vat'].replace(' ', '').upper()
+            record['vat'] = record['vat'].replace(' ', '').replace('.', '').upper()
             if record['turnover'] >= data['limit_amount']:
                 records.append(record)
         records.sort(key=operator.itemgetter('vat'))
@@ -179,7 +179,7 @@ class partner_vat_list(orm.TransientModel):
                 seq += 1
             sum_tax += line['vat_amount']
             sum_turnover += line['turnover']
-            vat = line['vat'].replace(' ', '').upper()
+            vat = line['vat'].replace(' ', '').replace('.', '').upper()
             amount_data = {
                 'seq': str(seq),
                 'vat': vat,
@@ -207,7 +207,7 @@ class partner_vat_list(orm.TransientModel):
         if not company_vat:
             raise orm.except_orm(_('Insufficient Data!'), _('No VAT number associated with the company.'))
 
-        company_vat = company_vat.replace(' ', '').upper()
+        company_vat = company_vat.replace(' ', '').replace('.', '').upper()
         SenderId = company_vat[2:]
         issued_by = company_vat[:2]
         seq_declarantnum = obj_sequence.get(cr, uid, 'declarantseq')
