@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '8.0.1.1.0',
+    'version': '8.0.1.2.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -54,5 +54,4 @@
         'wizard/coda_import_wizard.xml',
         ],
     'installable': True,
-    'auto_install': True,
 }

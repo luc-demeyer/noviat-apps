@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -1473,8 +1473,9 @@ class AccountCodaImport(models.TransientModel):
                             + ') - ' + coda_statement['description'])
                     coda_statement['coda_parsing_note'] += '\n' + err_string
 
-                # calculate balance_end
-                bank_st.button_dummy()
+                # trigger calculate balance_end
+                bank_st.write(
+                    {'balance_start': coda_statement['balance_start']})
                 journal_name = cba.journal_id.name
 
             else:  # type 'info'
@@ -2143,6 +2144,7 @@ class AccountCodaImport(models.TransientModel):
 
         feedback = False
         country_code = iban[:2]
+        bank = self.env['res.bank']
         country = self.env['res.country'].search(
             [('code', '=', country_code)])
         if not country:
@@ -2288,13 +2290,14 @@ class AccountCodaImport(models.TransientModel):
         comm = st_line_comm = line['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type, self._comm_types)[0].description
-        amount_currency_account = list2float(comm[0:15])
-        amount_currency_original = list2float(comm[15:30])
+        sign = line['amount'] < 0 and -1 or 1
+        amount_currency_account = sign * list2float(comm[0:15])
+        amount_currency_original = sign * list2float(comm[15:30])
         rate = number2float(comm[30:42], 8)
         currency = comm[42:45].strip()
         struct_format_comm = comm[45:57].strip()
         country_code = comm[57:59].strip()
-        amount_eur = list2float(comm[59:74])
+        amount_eur = sign * list2float(comm[59:74])
         st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
             "Gross amount in the currency of the account"
             ) + ': %.2f' % amount_currency_account
@@ -2769,7 +2772,7 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm = '\n' + INDENT + st_line_name + INDENT \
             + _('Description of the detail') + ': %s' % comm[0:30].strip()
         st_line_comm += INDENT + _('Amount') \
-            + ': %s%s' % (amount_sign, amount)
+            + ': %s' % amount
         st_line_comm += INDENT + _('Category') \
             + ': %s' % comm[49:52].strip()
         return st_line_name, st_line_comm

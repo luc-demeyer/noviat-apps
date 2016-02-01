@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -201,7 +201,7 @@ class CodaAccountMappingRule(models.Model):
     coda_bank_account_id = fields.Many2one(
         'coda.bank.account', string='CODA Bank Account', ondelete='cascade')
     sequence = fields.Integer(
-        string='Sequence',
+        string='Sequence', default=10,
         help='Determines the order of the rules to assign accounts')
     name = fields.Char(string='Rule Name', required=True)
     active = fields.Boolean(
