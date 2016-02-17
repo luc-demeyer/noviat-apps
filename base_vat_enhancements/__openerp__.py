@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,11 +22,12 @@
 
 {
     'name': 'base_vat module performance enhancements',
-    'version': '0.2',
+    'version': '8.0.0.0.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
     'summary': 'base_vat module performance enhancements',
     'depends': ['base_vat'],
+    'installable': True,
 }

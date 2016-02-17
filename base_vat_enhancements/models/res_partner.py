@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,28 +21,31 @@
 ##############################################################################
 
 from openerp import models, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from openerp.addons.base_vat.base_vat import _ref_vat
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def _auto_init(self, cr, context=None):
         """ normalise all vat fields in the database """
-        cr.execute("UPDATE res_partner SET vat=upper(replace(vat, ' ', ''))")
-        return super(res_partner, self)._auto_init(cr, context=context)
+        cr.execute(
+            "UPDATE res_partner "
+            "SET vat = upper(replace(replace(vat, ' ', ''), '.', ''))")
+        return super(ResPartner, self)._auto_init(cr, context=context)
 
     def __init__(self, pool, cr):
         """ remove check_vat constraint """
-        super(res_partner, self).__init__(pool, cr)
+        super(ResPartner, self).__init__(pool, cr)
         for i, tup in enumerate(self._constraints):
             if hasattr(tup[0], '__name__') and tup[0].__name__ == 'check_vat':
                 del self._constraints[i]
 
     def _check_vat(self, vat):
+        vat = vat.replace(' ', '').replace('.', '').upper()
         if not vat:
             return True
         online = False
@@ -82,9 +85,10 @@ class res_partner(models.Model):
             if not self._check_vat(vals['vat']):
                 msg = self._vat_check_errmsg(
                     vals['vat'], vals.get('name', ''))
-                raise Warning(msg)
-            vals['vat'] = vals['vat'].replace(' ', '').upper()
-        return super(res_partner, self).create(vals)
+                raise UserError(msg)
+            vals['vat'] = vals['vat'].\
+                replace(' ', '').replace('.', '').upper()
+        return super(ResPartner, self).create(vals)
 
     @api.multi
     def write(self, vals):
@@ -95,9 +99,10 @@ class res_partner(models.Model):
                         {'simple_vat_check': True})._check_vat(vals['vat']):
                     partner_name = vals.get('name') or partner.name
                     msg = self._vat_check_errmsg(vals['vat'], partner_name)
-                    raise Warning(msg)
-                vals['vat'] = vals['vat'].replace(' ', '').upper()
-        return super(res_partner, self).write(vals)
+                    raise UserError(msg)
+                vals['vat'] = vals['vat'].\
+                    replace(' ', '').replace('.', '').upper()
+        return super(ResPartner, self).write(vals)
 
     @api.multi
     def button_check_vat(self):
@@ -105,9 +110,9 @@ class res_partner(models.Model):
         if not self.check_vat():
             msg = self._vat_check_errmsg(
                 self.vat, self.name or "")
-            raise Warning(msg)
+            raise UserError(msg)
         else:
-            raise Warning(_('VAT Number Check OK'))
+            raise UserError(_('VAT Number Check OK'))
 
     def search(self, cr, uid, args, offset=0,
                limit=None, order=None, context=None, count=False):
@@ -116,6 +121,7 @@ class res_partner(models.Model):
         """
         for i, arg in enumerate(args):
             if arg[0] == 'vat' and arg[2]:
-                args[i] = (arg[0], arg[1], arg[2].replace(' ', '').upper())
-        return super(res_partner, self).search(
+                args[i] = (arg[0], arg[1],
+                           arg[2].replace(' ', '').replace('.', '').upper())
+        return super(ResPartner, self).search(
             cr, uid, args, offset, limit, order, context=context, count=count)

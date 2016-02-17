@@ -91,6 +91,7 @@ class AccountCodaImport(models.TransientModel):
         coda_statement['coda_statement_lines'] = {}
         coda_statement['date'] = str2date(line[5:11])
         coda_statement['coda_creation_date'] = str2date(line[5:11])
+        coda_statement['bic'] = line[60:71].strip()
         coda_statement['separate_application'] = line[83:88]
         coda_statement['first_transaction_date'] = False
         coda_statement['state'] = 'draft'
@@ -112,16 +113,14 @@ class AccountCodaImport(models.TransientModel):
             coda_statement['acc_number'] = line[5:17]
             coda_statement['currency'] = line[18:21]
         elif line[1] == '1':  # foreign bank account BBAN structure
-            err_string = _("\nForeign bank accounts with "
-                           "BBAN structure are not supported !")
-            raise Warning(_('Data Error !'), err_string)
+            coda_statement['acc_number'] = line[5:39].strip()
+            coda_statement['currency'] = line[39:42]
         elif line[1] == '2':  # Belgian bank account IBAN structure
             coda_statement['acc_number'] = line[5:21]
             coda_statement['currency'] = line[39:42]
         elif line[1] == '3':  # foreign bank account IBAN structure
-            err_string = _("\nForeign bank accounts with "
-                           "IBAN structure are not supported !")
-            raise Warning(_('Data Error !'), err_string)
+            coda_statement['acc_number'] = line[5:39].strip()
+            coda_statement['currency'] = line[39:42]
         else:
             err_string = _("\nUnsupported bank account structure !")
             raise Warning(_('Data Error !'), err_string)
