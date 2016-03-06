@@ -20,4 +20,4 @@
 #
 ##############################################################################
 
-from . import report_be_invoice
+from . import account_invoice

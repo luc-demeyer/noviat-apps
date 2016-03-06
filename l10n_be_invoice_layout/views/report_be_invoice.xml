@@ -56,8 +56,8 @@
             </div>
             <div class="col-xs-2" t-if="p_cpy.vat">
               <strong>
-                <span t-if="o.type[0] == 'o'">Customer VAT:</span>
-                <span t-if="o.type[0] != 'o'">Supplier VAT:</span>
+                <span t-if="o.type[0] == 'o'">Customer VAT nr:</span>
+                <span t-if="o.type[0] != 'o'">Supplier VAT nr:</span>
               </strong>
               <p t-esc="format_vat(p_cpy.vat)"/>
             </div>

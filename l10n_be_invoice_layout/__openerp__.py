@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2015 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgian Invoice Layout',
-    'version': '0.2',
+    'version': '8.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -33,7 +33,7 @@
         'l10n_be_partner',
     ],
     'data': [
-        'account_report.xml',
+        'report/account_report.xml',
         'views/report_be_invoice.xml',
         'views/report_be_invoice_style.xml',
         'views/report_be_invoice_layout.xml',
