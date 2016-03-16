@@ -37,7 +37,9 @@
                 <field name="date"/>
                 <field name="statement_id" readonly="1" invisible="1"/>
                 <field name="partner_id"/>
-                <field name="account_id"/>
+                <field name="account_id"
+                       options="{'no_open': True}"
+                       domain="[('company_id', '=', parent.company_id), ('type', 'not in', ['view', 'consolidation', 'closed'])]"/>
                 <field name="name"/>
                 <field name="debit"/>
                 <field name="credit"/>

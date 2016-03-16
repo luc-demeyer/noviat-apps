@@ -20,13 +20,14 @@
 #
 ##############################################################################
 
-import pickle
 import logging
-_logger = logging.getLogger(__name__)
+import pickle
 
-from openerp import models, fields, api, _
+from openerp import api, fields, models, _
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountBankStatementLineGlobal(models.Model):
@@ -245,6 +246,15 @@ class AccountBankStatementLine(models.Model):
             res = filter(lambda x: x[0] == move.state, result_list)[0][1]
         self.move_get = res
 
+    @api.onchange('currency_id', 'val_date', 'date')
+    def _onchange_currency_id(self):
+        if self.currency_id:
+            self.amount_currency = self.statement_id.currency.with_context(
+                date=self.val_date or self.date).compute(
+                self.amount, self.currency_id)
+        if not self.currency_id:
+            self.amount_currency = 0.0
+
     @api.multi
     def action_cancel(self):
         """
@@ -289,7 +299,7 @@ class AccountBankStatementLine(models.Model):
     def unlink(self):
 
         if self._context.get('block_statement_line_delete', False):
-            raise Warning(
+            raise UserError(
                 _("Delete operation not allowed ! "
                   "Please go to the associated bank statement in order to "
                   "delete and/or modify this bank statement line"))
@@ -299,7 +309,8 @@ class AccountBankStatementLine(models.Model):
             self._cr.execute(
                 "SELECT DISTINCT globalisation_id "
                 "FROM account_bank_statement_line "
-                "WHERE id IN %s AND globalisation_id IS NOT NULL", (self._ids,))
+                "WHERE id IN %s AND globalisation_id IS NOT NULL",
+                (self._ids,))
             g_ids = [x[0] for x in self._cr.fetchall()]
         else:
             g_ids = False

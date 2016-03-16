@@ -61,6 +61,7 @@ class payment_order_create(orm.TransientModel):
         # Search for move line to pay:
         domain = [('reconcile_id', '=', False),
                   ('partner_id', '!=', False),
+                  ('move_id.state', '=', 'posted'),
                   ('account_id.type', 'in', ['payable', 'receivable']),
                   ('amount_to_pay', '>', 0)]
         domain += ['|',

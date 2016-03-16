@@ -22,7 +22,7 @@
 
 {
     'name': 'ISO 20022 XML payments',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

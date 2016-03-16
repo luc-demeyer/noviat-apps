@@ -1190,7 +1190,6 @@ class AccountCodaImport(models.TransientModel):
         return coda_parsing_note
 
     def _prepare_st_line_vals(self, coda_statement, line):
-        cba = coda_statement['coda_bank_params']
 
         st_line_vals = {
             'ref': line['ref'],
@@ -1210,11 +1209,6 @@ class AccountCodaImport(models.TransientModel):
 
         if line.get('bank_account_id'):
             st_line_vals['bank_account_id'] = line['bank_account_id']
-
-        if line.get('currency_id') \
-                and line['currency_id'] != cba.company_id.currency_id.id:
-            st_line_vals['currency_id'] = line['currency_id']
-            st_line_vals['amount_currency'] = line['amount_currency']
 
         return st_line_vals
 
@@ -2284,12 +2278,12 @@ class AccountCodaImport(models.TransientModel):
         return st_line_name, st_line_comm
 
     def _parse_comm_move_105(self, coda_statement, line):
-        cba = coda_statement['coda_bank_params']
         comm_type = line['struct_comm_type']
         comm = st_line_comm = line['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type, self._comm_types)[0].description
-        sign = line['amount'] < 0 and -1 or 1
+        amount = line.get('amount', 0.0)
+        sign = amount < 0 and -1 or 1
         amount_currency_account = sign * list2float(comm[0:15])
         amount_currency_original = sign * list2float(comm[15:30])
         rate = number2float(comm[30:42], 8)
@@ -2308,13 +2302,6 @@ class AccountCodaImport(models.TransientModel):
             st_line_comm += INDENT + _('Rate') + ': %.4f' % rate
         if currency:
             st_line_comm += INDENT + _('Currency') + ': %s' % currency
-            currencies = self.env['res.currency'].search(
-                [('name', '=', currency),
-                 '|', ('company_id', '=', cba.company_id.id),
-                 ('company_id', '=', False)])
-            if currencies:
-                line['currency_id'] = currencies[0].id
-                line['amount_currency'] = amount_currency_original
         if struct_format_comm:
             st_line_comm += INDENT + _('Structured format communication') \
                 + ': %s' % struct_format_comm
@@ -2763,7 +2750,7 @@ class AccountCodaImport(models.TransientModel):
         comm_type = line['struct_comm_type']
         comm = line['communication']
         amount_sign = comm[48]
-        amount = (comm[48] == '1' and '-' or '') \
+        amount = (amount_sign == '1' and '-' or '') \
             + ('%.2f' % list2float(comm[33:48])) + ' ' + comm[30:33]
         st_line_name = filter(
             lambda x: x.code == comm_type,

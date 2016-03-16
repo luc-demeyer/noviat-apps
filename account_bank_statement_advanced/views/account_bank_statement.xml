@@ -71,31 +71,45 @@
                 <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
                 <button name="action_cancel" attrs="{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}" string="Cancel" type="object" icon="gtk-cancel"/>
               </header>
-              <group col="4" attrs="{'readonly':[('state', '=', 'confirm')]}">
-                <field name="date"/>
-                <field name="val_date"/>
-                <field name="name"/>
-                <field name="ref"/>
-                <field name="partner_id"/>
-                <field name="bank_account_id"/>
-                <newline/>
-                <field name="amount"/>
-                <newline/>
-                <field name="amount_currency" groups="base.group_multi_currency" attrs="{'readonly' : [('journal_entry_id', '!=', False)] }"/>
-                <field name="currency_id" groups="base.group_multi_currency" attrs="{'readonly' : [('journal_entry_id', '!=', False)] }"/>
-                <newline/>
-                <field name="globalisation_id" readonly="1"/>
-                <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
+              <group name="invisible">
                 <field name="state" invisible="1"/>
                 <field name="move_state" invisible="1"/>
-                <newline/>
-                <field name="reconcile_get"/>
-                <field name="move_get"/>
-                <field name="sequence" attrs="{'readonly':[('move_state', '!=', False)]}"/>
                 <field name="journal_entry_id" invisible="1"/>
               </group>
-              <separator string="Notes"/>
-              <field colspan="2" name="note" nolabel="1"/>
+              <group name="line" attrs="{'readonly': [('state', '=', 'confirm')]}">
+                <group name="g1">
+                  <field name="date"/>
+                  <field name="name"/>
+                  <field name="partner_id"/>
+                </group>
+                <group name="g2">
+                  <field name="val_date"/>
+                  <field name="ref"/>
+                  <field name="bank_account_id"/>
+                </group>
+                <newline/>
+                <group name="g3">
+                  <field name="amount"/>
+                  <field name="currency_id" groups="base.group_multi_currency"
+                         attrs="{'readonly': [('journal_entry_id', '!=', False)]}"/>
+                  <field name="amount_currency" groups="base.group_multi_currency"
+                         attrs="{'readonly': [('journal_entry_id', '!=', False)], 'invisible': [('currency_id', '=', False)]}"/>
+                </group>
+                <group name="g4">
+                  <field name="globalisation_id" readonly="1"/>
+                  <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
+                </group>
+                <newline/>
+                <group name="g5">
+                  <field name="reconcile_get"/>
+                  <field name="sequence" attrs="{'readonly': [('move_state', '!=', False)]}"/>
+                </group>
+                <group name="g6">
+                  <field name="move_get"/>
+                </group>
+                <separator string="Notes"/>
+                <field colspan="2" name="note" nolabel="1"/>
+              </group>
             </form>
           </xpath>
         </data>
