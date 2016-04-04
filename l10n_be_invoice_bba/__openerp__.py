@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Odoo, Open Source Management Solution
@@ -22,7 +22,7 @@
 
 {
     'name': 'Belgium - Invoices with Structured Communication',
-    'version': '8.0.2.0.0',
+    'version': '8.0.2.1.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
