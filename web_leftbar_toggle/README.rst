@@ -9,7 +9,5 @@ Toggle left panel in Odoo 8 and add a widget button in menubar
 Credits
 =======
 
-Author
-------
+* Nicolas Bessi, Camptocamp <nicolas.bessi@camptocamp.com>
 * Thomas Fossoul, Noviat <thomas.fossoul@noviat.com>
-
