@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -80,7 +80,8 @@ class account_move_line(orm.Model):
             val['tax_amount'] = False
         return {'value': val}
 
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form', context=None, toolbar=False, submenu=False):
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                        context=None, toolbar=False, submenu=False):
         #_logger.warn('fields_view_get, context = %s, view_type= %s', context, view_type)
         mod_obj = self.pool.get('ir.model.data')
         if context is None:
@@ -94,9 +95,12 @@ class account_move_line(orm.Model):
                 model_data_ids = mod_obj.search(cr, uid,[('model', '=', 'ir.ui.view'), ('module', '=', 'account_bank_statement_voucher'), ('name', '=', 'view_move_line_reconcile_search')], context=context)
                 view_id = mod_obj.read(cr, uid, model_data_ids, fields=['res_id'], context=context)[0]['res_id']        
                 context.update({'view_mode':'search'})
-        return super(account_move_line, self).fields_view_get(cr, uid, view_id, view_type, context=context, toolbar=toolbar, submenu=submenu)
+        return super(account_move_line, self).fields_view_get(
+            cr, uid, view_id=view_id, view_type=view_type,
+            context=context, toolbar=toolbar, submenu=submenu)
 
-    def search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False):
+    def search(self, cr, uid, args, offset=0, limit=None, order=None,
+               context=None, count=False):
         #_logger.warn('%s, search, args=%s, context=%s', self._name, args, context)
         if context is None: context = {}
         if context.get('act_window_from_bank_statement'):
@@ -119,7 +123,9 @@ class account_move_line(orm.Model):
                     args[pos] = ('id', 'in', out_ids)
                 pos += 1
         #_logger.warn('%s, search, exit args=%s', self._name, args)
-        return super(account_move_line, self).search(cr, uid, args, offset, limit, order, context, count)
+        return super(account_move_line, self).search(
+            cr, uid, args, offset=offset, limit=limit, order=order,
+            context=context, count=count)
 
     def unlink(self, cr, uid, ids, context=None, check=True):
         for move_line in self.browse(cr, uid, ids, context):
@@ -127,7 +133,8 @@ class account_move_line(orm.Model):
             if st and st.state == 'confirm':
                 raise orm.except_orm('Warning', _('Operation not allowed ! \
                     \nYou cannot delete an Accounting Entry that is linked to a Confirmed Bank Statement.'))
-        return super(account_move_line, self).unlink(cr, uid, ids, context=context, check=check)
+        return super(account_move_line, self).unlink(
+            cr, uid, ids, context=context, check=check)
 
     def create(self, cr, uid, vals, context=None, check=True):
         #_logger.warn('%s, create, vals=%s, context=%s', self._name, vals, context)
@@ -135,16 +142,24 @@ class account_move_line(orm.Model):
         if context.get('act_window_from_bank_statement'):
             if not vals.get('statement_id'):
                 vals['statement_id'] = context['statement_id']
-        return super(account_move_line, self).create(cr, uid, vals, context, check)
+        return super(account_move_line, self).create(
+            cr, uid, vals, context=context, check=check)
 
-    def write(self, cr, uid, ids, vals, context=None, check=True, update_check=True):
+    def write(self, cr, uid, ids, vals,
+              context=None, check=True, update_check=True):
         #_logger.warn('write, vals = %s', vals)
         for move_line in self.browse(cr, uid, ids, context):
             st = move_line.statement_id
             if st and st.state == 'confirm':
-                if vals.keys() not in [['reconcile_id'],['reconcile_partial_id'],['followup_date', 'followup_line_id']]:
+                if vals.keys() not in [
+                        ['reconcile_id'], ['reconcile_partial_id'],
+                        ['followup_date', 'followup_line_id'],
+                        ['state']  # bypass for opening balance with AR/AP 'unreconcile' iso 'balance'
+                        ]:
                     raise orm.except_orm('Warning', _('Operation not allowed ! \
                         \nYou cannot modify an Accounting Entry that is linked to a Confirmed Bank Statement. \
                         \nStatement = %s\nMove = %s (id:%s)\nUpdate Values = %s') 
                         %(st.name, move_line.move_id.name, move_line.move_id.id, vals))
-        return super(account_move_line, self).write(cr, uid, ids, vals, context, check, update_check)
+        return super(account_move_line, self).write(
+            cr, uid, ids, vals, context=context, check=check,
+            update_check=update_check)
