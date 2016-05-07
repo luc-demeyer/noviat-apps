@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-      <record id="invoice_form_cd" model="ir.ui.view">
+      <record id="invoice_form" model="ir.ui.view">
         <field name="name">invoice.form.cd</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
@@ -19,7 +19,7 @@
         </field>
       </record>
 
-      <record id="supplier_invoice_form_cd" model="ir.ui.view">
+      <record id="invoice_supplier_form" model="ir.ui.view">
         <field name="name">account.invoice.supplier.form.cd</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_supplier_form"/>

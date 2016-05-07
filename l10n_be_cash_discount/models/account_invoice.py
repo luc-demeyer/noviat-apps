@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Odoo, Open Source Management Solution
 #
-#    Copyright (c) 2013-2015 Noviat nv/sa (www.noviat.com).
+#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -12,20 +12,19 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
-import openerp.addons.decimal_precision as dp
 import time
 from datetime import datetime, timedelta
-import logging
-_logger = logging.getLogger(__name__)
+
+from openerp import api, fields, models, _
+import openerp.addons.decimal_precision as dp
 
 BaseTaxCodesIn = ['81', '82', '83', '84', '85', '86', '87', '88']
 BaseTaxCodesOut = ['00', '01', '02', '03', '44', '45', '46', '46L', '46T',
@@ -33,7 +32,7 @@ BaseTaxCodesOut = ['00', '01', '02', '03', '44', '45', '46', '46L', '46T',
 BaseTaxCodes = BaseTaxCodesIn + BaseTaxCodesOut
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.one
@@ -62,7 +61,7 @@ class account_invoice(models.Model):
 
     @api.multi
     def action_date_assign(self):
-        super(account_invoice, self).action_date_assign()
+        super(AccountInvoice, self).action_date_assign()
         for inv in self:
             if inv.type == 'out_invoice' and inv.percent_cd:
                 if not inv.date_cd:
@@ -80,7 +79,7 @@ class account_invoice(models.Model):
     @api.multi
     def onchange_payment_term_date_invoice(
             self, payment_term_id, date_invoice):
-        res = super(account_invoice, self).onchange_payment_term_date_invoice(
+        res = super(AccountInvoice, self).onchange_payment_term_date_invoice(
             payment_term_id, date_invoice)
         reset_date_cd = {'date_cd': False}
         if not res.get('value'):
@@ -105,14 +104,13 @@ class account_invoice(models.Model):
                 cd_vals = {
                     'name': _('Cash Discount'),
                     'account_id': cd_account_id,
-                    'debit': 0.0,
-                    'credit': 0.0,
                     'partner_id': invoice.partner_id.id,
                     # no foreign currency support since
                     # extra Cash Discount line
                     #  only applies to Belgian transactions
                     'currency_id': False,
                 }
+                amount_cd = 0.0
                 for line in move_lines:
                     vals = line[2]
                     if vals['tax_code_id'] in [x.id for x in tax_codes]:
@@ -121,49 +119,26 @@ class account_invoice(models.Model):
                         if vals.get('debit'):
                             debit = round(vals['debit'], 2)
                             vals['debit'] = round(debit * multiplier, 2)
-                            cd_vals['debit'] += debit - vals['debit']
+                            amount_cd += debit - vals['debit']
                         if vals.get('credit'):
                             credit = round(vals['credit'], 2)
                             vals['credit'] = round(credit * multiplier, 2)
-                            cd_vals['credit'] += credit - vals['credit']
+                            amount_cd -= credit - vals['credit']
                         vals['tax_amount'] = vals.get('tax_amount') \
                             and vals['tax_amount'] * multiplier
                 if cd_line:
+                    if amount_cd > 0:
+                        cd_vals['debit'] = amount_cd
+                    else:
+                        cd_vals['credit'] = -amount_cd
                     move_lines.append((0, 0, cd_vals))
         return move_lines
 
     @api.model
     def _prepare_refund(self, invoice, date=None, period_id=None,
                         description=None, journal_id=None):
-        res = super(account_invoice, self)._prepare_refund(
+        res = super(AccountInvoice, self)._prepare_refund(
             invoice, date, period_id, description, journal_id)
         res['reference_type'] = self.reference_type
         res['percent_cd'] = self.percent_cd
         return res
-
-
-class account_invoice_tax(models.Model):
-    _inherit = 'account.invoice.tax'
-
-    # change compute method according to belgian regulation for Cash Discount
-    def compute(self, invoice):
-        tax_grouped = super(account_invoice_tax, self).compute(invoice)
-        # _logger.warn('tax_grouped=%s', tax_grouped)
-        if invoice.company_id.country_id.code == 'BE':
-            tax_codes = self.env['account.tax.code'].search(
-                [('code', 'in', BaseTaxCodes)])
-            atc_ids = [x.id for x in tax_codes]
-            pct = invoice.percent_cd
-            if pct:
-                multiplier = 1 - pct / 100
-                for k in tax_grouped.keys():
-                    if k[1] in atc_ids:
-                        tax_grouped[k].update({
-                            'base': multiplier * tax_grouped[k]['base'],
-                            'amount': multiplier * tax_grouped[k]['amount'],
-                            'base_amount':
-                                multiplier * tax_grouped[k]['base_amount'],
-                            'tax_amount':
-                                multiplier * tax_grouped[k]['tax_amount'],
-                            })
-        return tax_grouped
