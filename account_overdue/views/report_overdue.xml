@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <template id="report_overdue_document">
+      <t t-call="account_overdue.report_overdue_layout">
+        <div class="page">
+
+          <div class="act_as_row_no_border">
+            <div class="window_envelope_address_company">
+              <span t-raw="get_company_data()"/>
+            </div>
+            <div class="window_envelope_address_invoice">
+              <div class="window_envelope_address_company">
+                <span t-raw="get_partner_data(o)"/>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <br/>
+          <p>
+            <span t-raw="message(o)"/>
+          </p>
+
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Inv. no</th>
+                <th>Mat. Date</th>
+                <th class="text-right">Amount</th>
+                <th class="text-right">Paid</th>
+                <th class="text-right">Open</th>
+                <th class="text-center">Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr t-foreach="getLines(o)['lines']" t-as="l">
+                <td>
+                  <span t-esc="formatLang(l['date'],date=True)"/>
+                </td>
+                <td>
+                  <span t-esc="l['invoice_number']"/>
+                </td>
+                <td>
+                  <span t-esc="formatLang(l['date_maturity'],date=True)"/>
+                </td>
+                <td class="text-right">
+                  <span t-esc="l['amount']"
+                        t-esc-options='{"widget": "monetary", "display_currency": "l[&apos;currency&apos;]"}'/>
+                </td>
+                <td class="text-right">
+                  <span t-esc="l['amount_paid']"
+                        t-esc-options='{"widget": "monetary", "display_currency": "l[&apos;currency&apos;]"}'/>
+                </td>
+                <td class="text-right">
+                  <span t-esc="l['amount_residual']"
+                        t-esc-options='{"widget": "monetary", "display_currency": "l[&apos;currency&apos;]"}'/>
+                </td>
+                <td class="text-center">
+                  <span t-esc="l['od_days']"/>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr t-foreach="getLines(o)['totals']" t-as="t">
+                <td>&amp;nbsp;</td>
+                <td>&amp;nbsp;</td>
+                <span t-if="len(getLines(o)['totals'])==1">
+                  <td style="border-top:1px solid">
+                    <strong>Total</strong>
+                  </td>
+                </span>
+                <span t-if="not len(getLines(o)['totals'])==1">
+                  <td class="text-right" style="border-top:1px solid">
+                    <strong>
+                      <span>Total</span>
+                      <span t-esc="t['currency'].symbol"/>
+                    </strong>
+                  </td>
+                </span>
+                <td class="text-right" style="border-top:1px solid">
+                  <strong>
+                    <span t-esc="t['total_amount']"
+                          t-esc-options='{"widget": "monetary", "display_currency": "t[&apos;currency&apos;]"}'/>
+                  </strong>
+                </td>
+                <td class="text-right" style="border-top:1px solid">
+                  <strong>
+                    <span t-esc="t['total_paid']"
+                          t-esc-options='{"widget": "monetary", "display_currency": "t[&apos;currency&apos;]"}'/>
+                  </strong>
+                </td>
+                <td class="text-right" style="border-top:1px solid">
+                  <strong>
+                    <span t-esc="t['total_residual']"
+                          t-esc-options='{"widget": "monetary", "display_currency": "t[&apos;currency&apos;]"}'/>
+                  </strong>
+                </td>
+                <td>&amp;nbsp;</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <p>
+            <strong>
+              <span>Total amount overdue</span>
+              <span>:&amp;nbsp;</span>
+              <span t-esc="' + '.join([formatLang(x['total_overdue'], monetary=True, currency_obj=x['currency']) for x in filter(lambda x: x['total_overdue'], getLines(o)['totals'])])"/>
+            </strong>
+          </p>
+
+          <p style="page-break-after:always"></p>
+
+        </div>
+      </t>
+    </template>
+
+    <template id="report_overdue">
+      <t t-call="report.html_container">
+        <t t-foreach="objects" t-as="o">
+          <t t-raw="translate_doc(o.id, o._name, 'lang', 'account_overdue.report_overdue_document')"/>
+        </t>
+      </t>
+    </template>
+
+  </data>
+</openerp>

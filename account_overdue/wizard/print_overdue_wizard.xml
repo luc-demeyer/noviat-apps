@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="overdue_payment_wizard_view" model="ir.ui.view">
+      <field name="name">Print Overdue Payments</field>
+      <field name="model">overdue.payment.wizard</field>
+      <field name="type">form</field>
+      <field name="priority">1</field>
+      <field name="arch" type="xml">
+        <form string="Print Overdue Payments">
+          <group col="2" colspan="4">
+            <separator string="Print Overdue Payments Selection Criteria :" colspan="4"/>
+            <field name="partner_select"/>
+            <field name="account_select"/>
+          </group>
+          <footer>
+            <button name="overdue_payment_print" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+            or
+            <button string="Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_overdue_payment_wizard" model="ir.actions.act_window">
+      <field name="name">Print Overdue Payments</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">overdue.payment.wizard</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="multi" eval="0"/>
+      <field name="target">new</field>
+      <field name="view_id" ref="overdue_payment_wizard_view"/>
+    </record>
+
+    <record id="overdue_payment_ir_value" model="ir.values">
+      <field name="key2">client_print_multi</field>
+      <field name="model">res.partner</field>
+      <field name="name">Print Overdue Payments</field>
+      <field eval="'ir.actions.act_window,%d'%action_overdue_payment_wizard" name="value"/>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <template id="report_overdue_style">
+      .window_envelope_address_company {
+      vertical-align: top;
+      width: 359px;
+      display: table-cell;
+      }
+      .window_envelope_address_invoice {
+      vertical-align: top;
+      width: 611px;
+      display: table-cell;
+      padding-top: 60px;
+      padding-right: 15px;
+      padding-bottom: 60px;
+      padding-left: 60px;
+      border: 1px solid lightGrey;
+      }
+      .act_as_table {
+      display: table;
+      }
+      .act_as_row_no_border  {
+      display: table-row;
+      }
+      .act_as_row  {
+      display: table-row;
+      border-bottom: 1px solid lightGrey;
+      }
+      .act_as_cell {
+      display: table-cell;
+      text-align: left;
+      }
+    </template>
+
+    <template id="minimal_layout_inherit" inherit_id="report.minimal_layout">
+      <xpath expr="//head" position="inside">
+        <style type="text/css">
+          <t t-call="account_overdue.report_overdue_style"/>
+        </style>
+      </xpath>
+    </template>
+
+  </data>
+</openerp>
