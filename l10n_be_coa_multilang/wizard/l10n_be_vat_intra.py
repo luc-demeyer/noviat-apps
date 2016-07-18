@@ -210,7 +210,7 @@ class partner_vat_intra(orm.TransientModel):
                   AND l.period_id IN %s
                   AND t.company_id = %s
                   AND (l.debit + l.credit) != 0
-                GROUP BY vat, intra_code, partner_name, partner_id
+                GROUP BY p.vat, intra_code, p.name, l.partner_id
                 ORDER BY vat, intra_code, partner_name, partner_id
             """,
             (codes, tuple([p.id for p in wiz_data.period_ids]), data_company.id))
