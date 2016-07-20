@@ -54,9 +54,9 @@ class AccountMoveLine(models.Model):
                     'view_move_line_reconcile_search').id
                 ctx.update({'view_mode': 'search'})
         return super(
-            AccountMoveLine, self.with_context(ctx)).fields_view_get(
-                view_id=view_id, view_type=view_type,
-                toolbar=toolbar, submenu=submenu)
+            AccountMoveLine, self.with_context(ctx)
+            ).fields_view_get(view_id=view_id, view_type=view_type,
+                              toolbar=toolbar, submenu=submenu)
 
     @api.multi
     def unlink(self, **kwargs):
@@ -74,15 +74,15 @@ class AccountMoveLine(models.Model):
         for move_line in self:
             st = move_line.statement_id
             if st and st.state == 'confirm':
-                if vals.keys() not in [
-                        ['reconcile_id'], ['reconcile_partial_id']]:
-                    raise UserError(
-                        _("Operation not allowed ! "
-                          "\nYou cannot modify an Accounting Entry "
-                          "that is linked to a Confirmed Bank Statement. "
-                          "\nStatement = %s"
-                          "\nMove = %s (id:%s)\nUpdate Values = %s")
-                        % (st.name, move_line.move_id.name,
-                           move_line.move_id.id, vals))
+                for k in vals:
+                    if k not in ['reconcile_id', 'reconcile_partial_id']:
+                        raise UserError(
+                            _("Operation not allowed ! "
+                              "\nYou cannot modify an Accounting Entry "
+                              "that is linked to a Confirmed Bank Statement. "
+                              "\nStatement = %s"
+                              "\nMove = %s (id:%s)\nUpdate Values = %s")
+                            % (st.name, move_line.move_id.name,
+                               move_line.move_id.id, vals))
         return super(AccountMoveLine, self).write(
             vals, **kwargs)

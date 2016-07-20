@@ -50,4 +50,19 @@ openerp.account_bank_statement_advanced = function (instance) {
 
     });
 
+    instance.web.account.bankStatementReconciliationLine.include({
+
+        createFormWidgets: function() {
+            /*
+            The standard bank statements allows to select only partners for which the
+            customer or supplier flag is set. 
+            We remove this limitation so that we can reconcile with all open entries.
+            */
+            this._super.apply(this, arguments);
+            this['change_partner_field'].field.domain = [['parent_id','=',false]];
+            this['change_partner_field'].field_manager.do_show();
+        },
+
+    });
+
 };
