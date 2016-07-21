@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
+from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 import logging
 _logger = logging.getLogger(__name__)
@@ -162,7 +162,6 @@ class wizard_multi_charts_accounts(models.TransientModel):
         context = self._context.copy()
         cr = self._cr
         uid = self._uid
-        env_no_ctx = self.with_context({}).env
         if context.get('next_action') == 'account.action_wizard_multi_chart':
             del context['next_action']
             del context['company_id']
@@ -181,12 +180,10 @@ class wizard_multi_charts_accounts(models.TransientModel):
                       "in the addons path. "
                       "\nPlease download this module from 'apps.odoo.com'.")
                     )
-            else:
-                to_install = to_install[0]
             if to_install.state != 'installed':
-                self.pool['ir.module.module'].button_immediate_install(
-                    cr, uid, [to_install.id],
-                    context=context)
+                to_install.button_immediate_install()
+
+        env_no_ctx = api.Environment(cr, uid, {})
 
         # Update company country, this is required for auto-configuration
         # of the legal financial reportscheme.
