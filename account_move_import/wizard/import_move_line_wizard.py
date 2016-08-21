@@ -49,10 +49,10 @@ class AccountMoveLineImport(models.TransientModel):
     dialect = fields.Binary(
         compute='_compute_dialect', string='Dialect', required=True)
     csv_separator = fields.Selection(
-        [(',', ' . (comma)'), (';', ', (semicolon)')],
+        [(',', ', (comma)'), (';', '; (semicolon)')],
         string='CSV Separator', required=True)
     decimal_separator = fields.Selection(
-        [('.', ' . (dot)'), (',', ', (comma)')],
+        [('.', '. (dot)'), (',', ', (comma)')],
         string='Decimal Separator',
         default='.', required=True)
     codepage = fields.Char(
