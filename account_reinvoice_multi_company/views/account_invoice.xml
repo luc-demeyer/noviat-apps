@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="invoice_tree" model="ir.ui.view">
+      <field name="name">account.invoice.tree</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_tree"/>
+      <field name="arch" type="xml">
+        <field name="company_id" position="after">
+          <field name="intercompany_invoice" invisible="1"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+      <field name="name">account.invoice.select</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+      <field name="arch" type="xml">
+        <filter name="unpaid" position="after">
+          <separator/>
+          <filter name="intercompany_invoice" string="Intercompany"
+                  domain="[('intercompany_invoice', '=', True)]"
+                  help="Intercompany Invoices"/>
+        </filter>
+      </field>
+    </record>
+
+    <record id="invoice_form" model="ir.ui.view">
+      <field name="name">account.invoice.form</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="arch" type="xml">
+        <field name="move_id" position="after">
+          <field name="intercompany_invoice" invisible="1"/>
+          <field name="intercompany_invoice_ref"
+                 attrs="{'invisible': [('intercompany_invoice', '=', False)]}"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="invoice_supplier_form" model="ir.ui.view">
+      <field name="name">account.invoice.supplier.form</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+      <field name="arch" type="xml">
+        <field name="move_id" position="after">
+          <field name="intercompany_invoice" invisible="1"/>
+          <field name="intercompany_invoice_ref"
+                 attrs="{'invisible': [('intercompany_invoice', '=', False)]}"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

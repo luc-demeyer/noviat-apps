@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_reinvoice_key_read,Read access on Reinvoice Keys,model_account_reinvoice_key,account.group_account_user,1,0,0,0
+access_account_reinvoice_key_full,Full access on Reinvoice Keys,model_account_reinvoice_key,account.group_account_manager,1,1,1,1
+access_account_reinvoice_key_instance_read,Read access on Reinvoice Key Instances,model_account_reinvoice_key_instance,account.group_account_user,1,0,0,0
+access_account_reinvoice_key_instance_full,Full access on Reinvoice Key Instances,model_account_reinvoice_key_instance,account.group_account_manager,1,1,1,1
+access_account_reinvoice_distribution_read,Read access on Reinvoice Distributions,model_account_reinvoice_distribution,account.group_account_user,1,0,0,0
+access_account_reinvoice_distribution_full,Full access on Reinvoice Distributions,model_account_reinvoice_distribution,account.group_account_manager,1,1,1,1
+access_account_reinvoice_distribution_instance_read,Read access on Reinvoice Distribution Lines,model_account_reinvoice_distribution_line,account.group_account_user,1,0,0,0
+access_account_reinvoice_distribution_instance_full,Full access on Reinvoice Distribution Lines,model_account_reinvoice_distribution_line,account.group_account_manager,1,1,1,1
+access_account_reinvoice_line_full,Full access on Reinvoice Lines,model_account_reinvoice_line,account.group_account_invoice,1,1,1,1

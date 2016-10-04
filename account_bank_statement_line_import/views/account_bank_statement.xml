@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_bank_statement_form" model="ir.ui.view">
+      <field name="name">account.bank.statement.form.import</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//button[@string='Import Invoice']" position="after">
+            <button class="oe_inline oe_stat_button oe_right"
+                    name="import_lines" type="object" string="Import Lines"
+                    help="Import Statement Lines from csv File"
+                    attrs="{'invisible':[('state', '=', 'confirm')]}"
+                    groups="account.group_account_manager"
+                    icon="fa-pencil-square-o" widget="statinfo"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,172 @@
+# French translation of Odoo 8.0.
+# This file contains the translation of the following modules:
+#    * account_reinvoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2016-01-15 11:52:03.041000\n"
+"PO-Revision-Date: 2016-01-15 11:52:03.041000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_reinvoice
+#: model:ir.ui.menu,name:account_reinvoice.menu_reinvoice_configuration
+msgid "Reinvoicing Configuration"
+msgstr "Configuration refacturation"
+
+#. module: account_reinvoice
+#: model:ir.ui.menu,name:account_reinvoice.account_reinvoice_key_menu
+#: model:ir.actions.act_window,name:account_reinvoice.account_reinvoice_key_action
+msgid "Reinvoice Keys"
+msgstr "Clés de refacturation"
+
+#. module: account_reinvoice
+#: model:ir.ui.menu,name:account_reinvoice.account_reinvoice_distribution_menu
+#: model:ir.actions.act_window,name:account_reinvoice.account_reinvoice_distribution_action
+msgid "Reinvoice Distributions"
+msgstr "Distributions de refacturation"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.distribution:account_reinvoice.account_reinvoice_distribution_view_search
+#: view:account.reinvoice.distribution:account_reinvoice.account_reinvoice_distribution_view_tree
+#: view:account.reinvoice.distribution:account_reinvoice.account_reinvoice_distribution_view_form
+#: field:account.reinvoice.distribution.line,distribution_id:0
+msgid "Reinvoice Distribution"
+msgstr "Distribution de refacturation"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.distribution:account_reinvoice.account_reinvoice_distribution_view_form
+msgid "Distribution Lines"
+msgstr "Distribution"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution,distribution_line_ids:0
+msgid "Reinvoice Distribution Lines"
+msgstr "Lignes de la distribution de refacturation"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution.line,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution.line,partner_id:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.distribution.line,rate:0
+msgid "Rate (%)"
+msgstr "Pourcentage"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_search
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_tree
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_form
+#: field:account.move.line,reinvoice_key_id:0
+#: field:account.invoice.line,reinvoice_key_id:0
+msgid "Reinvoice Key"
+msgstr "Clé de refacturation"
+
+#. module: account_reinvoice
+#. openerp-web
+#: code:addons/account_reinvoice/static/src/js/account_reinvoice.js:10
+#, python-format
+msgid "Reinvoice Key"
+msgstr "Clé de refacturation"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_form
+#: field:account.reinvoice.key,key_instance_ids:0
+msgid "Key Instances"
+msgstr "Instances de clé"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: account_reinvoice
+#: view:account.reinvoice.key:account_reinvoice.account_reinvoice_key_view_form
+msgid "Set to Draft"
+msgstr "Mettre à l'état \"Brouillon\""
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key.instance,state:0
+msgid "Status"
+msgstr "Statut"
+
+#. module: account_reinvoice
+#: selection:account.reinvoice.key.instance,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: account_reinvoice
+#: selection:account.reinvoice.key.instance,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key.instance,date_start:0
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key.instance,date_stop:0
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: account_reinvoice
+#: field:account.reinvoice.key.instance,distribution:0
+msgid "Distribution"
+msgstr "Distribution"
+
+#. module: account_reinvoice
+#: model:res.groups,name:account_reinvoice.group_account_reinvoice
+msgid "Accounting / Reinvoicing"
+msgstr "Comptabilité / Refacturation"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+  <data>
+
+    <record id="view_category_property_form" model="ir.ui.view">
+      <field name="name">product.category.form.inherit</field>
+      <field name="model">product.category</field>
+      <field name="inherit_id" ref="account.view_category_property_form"/>
+      <field name="arch" type="xml">
+        <field name="property_account_expense_categ" position="after">
+          <field name="accrued_expense_in_account_id"/>
+          <field name="accrued_expense_out_account_id"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

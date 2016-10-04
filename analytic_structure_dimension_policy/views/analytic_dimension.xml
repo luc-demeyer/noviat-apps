@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_analytic_dimension" model="ir.ui.view">
+      <field name="name">analytic.dimension.form.policy</field>
+      <field name="model">analytic.dimension</field>
+      <field name="inherit_id" ref="analytic_structure.view_analytic_dimension"/>
+      <field name="arch" type="xml">
+        <xpath expr="//h1" position="after">
+          <group>
+            <field name="enforce_account_type_policy"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

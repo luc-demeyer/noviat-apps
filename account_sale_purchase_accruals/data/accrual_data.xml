@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record id="accrual_journal_sequence" model="ir.sequence">
+      <field name="name">Accrual Journal sequence</field>
+      <field eval="6" name="padding"/>
+    </record>
+
+    <record id="accrual_journal" model="account.journal">
+      <field name="name">Accrual Journal</field>
+      <field name="code">ACCRU</field>
+      <field name="type">general</field>
+      <field name="sequence_id" ref="accrual_journal_sequence"/>
+      <field name="user_id" ref="base.user_root"/>
+    </record>
+
+    <record id="base.main_company" model="res.company">
+      <field name="accrual_journal_id" ref="accrual_journal"/>
+    </record>
+
+  </data>
+</openerp>
