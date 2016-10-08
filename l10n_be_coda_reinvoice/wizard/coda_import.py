@@ -29,8 +29,7 @@ class AccountCodaImport(models.TransientModel):
     def _prepare_mv_line_dict(self, coda_statement, line):
         mv_line_dict = super(AccountCodaImport, self)._prepare_mv_line_dict(
             coda_statement, line)
-        if line.get('reinvoice_key_id'):
-            mv_line_dict['reinvoice_key_id'] = line['reinvoice_key_id']
-        if line.get('product_id'):
-            mv_line_dict['product_id'] = line['product_id']
+        for f in ['product_id', 'reinvoice_key_id']:
+            if line.get(f):
+                mv_line_dict[f] = line[f]
         return mv_line_dict

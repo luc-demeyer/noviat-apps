@@ -34,7 +34,11 @@ class CodaAccountMappingRule(models.Model):
         string='Reinvoice Key', index=True)
 
     def _rule_select_extra(self, coda_bank_account_id):
-        return ', product_id, reinvoice_key_id'
+        res = super(CodaAccountMappingRule, self)._rule_select_extra(
+            coda_bank_account_id)
+        return res + ', product_id, reinvoice_key_id'
 
     def _rule_result_extra(self, coda_bank_account_id):
-        return ['product_id', 'reinvoice_key_id']
+        res = super(CodaAccountMappingRule, self)._rule_result_extra(
+            coda_bank_account_id)
+        return res + ['product_id', 'reinvoice_key_id']

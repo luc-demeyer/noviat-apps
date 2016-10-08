@@ -9,6 +9,7 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <field name="analytic_account_id" position="after">
+          <newline/>
           <field name="product_id"/>
           <field name="reinvoice_key_id"
                  domain="[('company_id', 'in', [parent.company_id, False])]"/>
