@@ -44,11 +44,11 @@ class AccountReinvoiceWizard(models.TransientModel):
         domain=[('state', '=', 'draft'), ('special', '=', False)])
     journal_id = fields.Many2one(
         comodel_name='account.journal', string='Sales Journal',
-        default=lambda self: self.default_journal_id(),
+        default=lambda self: self._default_journal_id(),
         domain=[('type', '=', 'sale')], required=True)
     refund_journal_id = fields.Many2one(
         comodel_name='account.journal', string='Sales Refund Journal',
-        default=lambda self: self.default_refund_journal_id(),
+        default=lambda self: self._default_refund_journal_id(),
         domain=[('type', '=', 'sale_refund')], required=True)
     income_account_id = fields.Many2one(
         comodel_name='account.account', string='Default Income Account',
@@ -69,7 +69,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             'account.reinvoice.wizard'))
 
     @api.model
-    def default_journal_id(self):
+    def _default_journal_id(self):
         company_id = self.env['res.company']._company_default_get(
             'account.reinvoice.wizard')
         domain = [
@@ -82,7 +82,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             return False
 
     @api.model
-    def default_refund_journal_id(self):
+    def _default_refund_journal_id(self):
         company_id = self.env['res.company']._company_default_get(
             'account.reinvoice.wizard')
         domain = [
