@@ -138,7 +138,8 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     expense_account = fpos.map_account(expense_account)
 
                 amount = product._get_expense_accrual_amount(
-                    pol.product_qty, procurement_action='buy')
+                    pol.product_qty, procurement_action='buy',
+                    company_id=self.company_id.id)
 
                 if not amount:
                     raise UserError(

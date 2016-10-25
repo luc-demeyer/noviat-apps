@@ -13,6 +13,7 @@
         </field>
         <field name="journal_id" position="attributes">
           <attribute name="invisible"/>
+          <attribute name="domain">[('type', '=', 'purchase')]</attribute>
           <attribute name="groups">account.group_account_manager</attribute>
         </field>
       </field>

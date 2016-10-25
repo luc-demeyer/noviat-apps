@@ -114,7 +114,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                 if fpos:
                     expense_account = fpos.map_account(expense_account)
                 amount = product._get_expense_accrual_amount(
-                    ail.quantity, procurement_action)
+                    ail.quantity, procurement_action,
+                    company_id=self.company_id.id)
                 if self.type == 'out_refund':
                     amount = -amount
                 if not amount:

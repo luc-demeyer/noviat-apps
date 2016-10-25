@@ -26,11 +26,12 @@ from openerp import models
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    def _get_expense_accrual_amount(self, qty, procurement_action='buy'):
+    def _get_expense_accrual_amount(self, qty, procurement_action='buy',
+                                    company_id=None):
         amount = 0.0
         if procurement_action == 'buy':
             dom = [('product_tmpl_id', '=', self.product_tmpl_id.id),
-                   ('company_id', '=', self.company_id.id)]
+                   ('company_id', '=', company_id)]
             main_supplier = self.env['product.supplierinfo'].search(
                 dom, limit=1)
             if main_supplier:
