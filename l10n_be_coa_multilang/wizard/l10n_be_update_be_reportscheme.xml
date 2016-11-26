@@ -5,7 +5,7 @@
 
     <!-- Update entries in Belgium Legal NBB/BNB reportscheme. -->
 
-    <record id="update_be_reportscheme_view" model="ir.ui.view">
+    <record id="l10n_be_update_be_reportscheme_view_form" model="ir.ui.view">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="model">l10n_be.update_be_reportscheme</field>
       <field name="priority">1</field>
@@ -23,7 +23,7 @@
       </field>
     </record>
 
-    <record id="update_be_reportscheme_result_view" model="ir.ui.view">
+    <record id="l10n_be_update_be_reportscheme_view_form_result" model="ir.ui.view">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="model">l10n_be.update_be_reportscheme</field>
       <field name="priority">2</field>
@@ -45,22 +45,22 @@
       </field>
     </record>
 
-    <record id="update_be_reportscheme_action" model="ir.actions.act_window">
+    <record id="l10n_be_update_be_reportscheme_action" model="ir.actions.act_window">
       <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">l10n_be.update_be_reportscheme</field>
       <field name="view_type">form</field>
       <field name="view_mode">form</field>
       <field name="target">new</field>
-      <field name="view_id" ref="update_be_reportscheme_view"/>
+      <field name="view_id" ref="l10n_be_update_be_reportscheme_view_form"/>
     </record>
 
   </data>
 
   <data noupdate="1">
-    <record id="update_be_reportscheme_todo" model="ir.actions.todo">
+    <record id="l10n_be_update_be_reportscheme_todo" model="ir.actions.todo">
       <field name="name">Belgian BNB/NBB reportscheme Configuration</field>
-      <field name="action_id" ref="update_be_reportscheme_action"/>
+      <field name="action_id" ref="l10n_be_update_be_reportscheme_action"/>
       <field name="type">manual</field>
       <field name="state">done</field>
     </record>

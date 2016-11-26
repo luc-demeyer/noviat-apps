@@ -1,28 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2016 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '8.0.1.7.5',
+    'version': '8.0.1.8.0',
     'license': 'AGPL-3',
     'author': "Noviat, Odoo Community Association (OCA)",
     'website': 'http://www.noviat.com',
@@ -57,7 +38,7 @@
         'views/report_l10nbevatlisting.xml',
         'views/report_l10nbevatintra.xml',
         'wizard/wizard_multi_charts_accounts.xml',
-        'wizard/update_be_reportscheme.xml',
+        'wizard/l10n_be_update_be_reportscheme.xml',
         'wizard/reports.xml',
         'wizard/l10n_be_vat_declaration_view.xml',
         'wizard/l10n_be_vat_intra_view.xml',

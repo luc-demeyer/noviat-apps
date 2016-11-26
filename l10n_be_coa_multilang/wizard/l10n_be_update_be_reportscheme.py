@@ -1,27 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2009-2016 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -96,7 +78,7 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
                 lambda x: account.code[
                     0:len(x.account_group)] == x.account_group)
             if len(be_report_entries) > 1:
-                raise except_orm(
+                raise UserError(
                     _("Configuration Error !"),
                     _("Configuration Error in the "
                       "Belgian Legal Financial Report Scheme."))
@@ -106,24 +88,25 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
 
         return note
 
-    def update_be_reportscheme(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
-        self.env = api.Environment(cr, uid, context)
+    @api.multi
+    def update_be_reportscheme(self):
+        self.ensure_one()
         note = self._update_be_reportscheme()
+        module = __name__.split('addons.')[1].split('.')[0]
         if note:
-            self.write(cr, uid, ids[0], {'note': note})
-            view = self.env.ref(
-                'l10n_be_coa_multilang.update_be_reportscheme_result_view')
+            self.note = note
+            result_view = self.env.ref(
+                '%s.%s_view_form_result' % (module, self._table))
             return {
                 'name': _('Results'),
-                'res_id': ids[0],
+                'res_id': self.id,
                 'view_type': 'form',
                 'view_mode': 'form',
-                'res_model': 'l10n_be.update_be_reportscheme',
-                'view_id': False,
+                'res_model': self._name,
                 'target': 'new',
-                'views': [(view.id, 'form')],
+                'view_id': result_view.id,
                 'type': 'ir.actions.act_window'}
         else:
+            todo = self.env.ref('%s.%s_todo' % (module, self._table))
+            todo.state = 'done'
             return {'type': 'ir.actions.act_window_close'}

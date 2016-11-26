@@ -1,47 +1,35 @@
 # -*- coding: utf-8 -*-
 # noqa: skip pep8 control until this wizard is rewritten.
 # flake8: noqa
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    Adapted by Noviat to
-#     - enforce correct vat number
-#     - support negative balance
-#     - assign amount of tax code 71-72 correclty to grid 71 or 72
-#     - support Noviat tax code scheme
-#     - support multiple accounting periods per VAT declaration
-#     - add print button
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+# Copyright 2009-2016 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
 from datetime import datetime
+
 from openerp.osv.fields import datetime as datetime_field
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.report import report_sxw
+
 import logging
 _logger = logging.getLogger(__name__)
 
 
 class l10n_be_vat_declaration(orm.TransientModel):
-    """ Periodical VAT Declaration """
+    """
+    Periodical VAT Declaration
+
+    Original work by Odoo.
+    Adapted by Noviat to
+    - enforce correct vat number
+    - support negative balance
+    - assign amount of tax code 71-72 correclty to grid 71 or 72
+    - support Noviat tax code scheme
+    - support multiple accounting periods per VAT declaration
+    - add print button
+    """
     _name = "l10n_be.vat.declaration"
     _description = "Periodical VAT Declaration"
 
