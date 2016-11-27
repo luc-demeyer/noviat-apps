@@ -1,6 +1,6 @@
 # French translation of Odoo 8.0.
 # This file contains the translation of the following modules:
-#	* l10n_be_coda_advanced
+#    * l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""

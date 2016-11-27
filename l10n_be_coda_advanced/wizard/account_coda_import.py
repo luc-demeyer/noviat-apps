@@ -1,41 +1,21 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2016 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
+import logging
 import re
 import time
-
 from sys import exc_info
 from traceback import format_exception
 
-import logging
-_logger = logging.getLogger(__name__)
-
 from openerp.osv import orm
-from openerp import models, fields, api, _
+from openerp import api, fields, models, _
 from openerp.exceptions import Warning
 from openerp.addons.l10n_be_coda_advanced.wizard.coda_helpers import \
     calc_iban_checksum, check_bban, check_iban, get_iban_and_bban, \
     repl_special, str2date, str2time, list2float, number2float
+
+_logger = logging.getLogger(__name__)
 
 INDENT = '\n' + 8*' '
 ST_LINE_NAME_FAMILIES = ['13', '35', '41', '80']
@@ -285,7 +265,7 @@ class AccountCodaImport(models.TransientModel):
         st_line['partner_id'] = False
         st_line['account_id'] = False
         st_line['tax_case_id'] = False
-        st_line['counterparty_name'] = ''
+        st_line['partner_name'] = ''
         st_line['counterparty_bic'] = ''
         st_line['counterparty_number'] = ''
         st_line['counterparty_currency'] = ''
@@ -556,7 +536,7 @@ class AccountCodaImport(models.TransientModel):
             st_line['communication'] += line[82:125]
         st_line['counterparty_number'] = counterparty_number
         st_line['counterparty_currency'] = counterparty_currency
-        st_line['counterparty_name'] = counterparty_name
+        st_line['partner_name'] = counterparty_name
 
         return coda_parsing_note
 
@@ -1040,7 +1020,7 @@ class AccountCodaImport(models.TransientModel):
                 '\nStructured Communication Type: %s - %s'
                 '\nPayment Reference: %s'
                 '\nCommunication: %s'
-                ) % (line['counterparty_name'],
+                ) % (line['partner_name'],
                      line['counterparty_number'],
                      line['trans_type'],
                      line['trans_type_desc'],
@@ -1198,7 +1178,7 @@ class AccountCodaImport(models.TransientModel):
             'date': line['entry_date'],
             'amount': line['amount'],
             'partner_id': line['partner_id'],
-            'counterparty_name': line['counterparty_name'],
+            'partner_name': line['partner_name'],
             'counterparty_bic': line['counterparty_bic'],
             'counterparty_number': line['counterparty_number'],
             'counterparty_currency': line['counterparty_currency'],
@@ -1398,6 +1378,18 @@ class AccountCodaImport(models.TransientModel):
             cba = coda_statement['coda_bank_params']
             self._coda_statement_hook(coda_statement)
             discard = self._check_duplicate(coda_statement)
+            lines = coda_statement['coda_statement_lines']
+
+            if not lines:
+                err_string = _(
+                    "\nThe CODA File contains empty CODA Statement %s "
+                    "for Bank Account %s !") % (
+                        coda_statement['coda_seq_number'],
+                        coda_statement['acc_number']
+                        + ' (' + coda_statement['currency']
+                        + ') - ' + coda_statement['description'])
+                self._coda_import_note += '\n' + err_string
+                break
 
             if coda_statement['type'] == 'info':
                 coda_st = self._create_info_statement(coda_statement)
@@ -1417,7 +1409,6 @@ class AccountCodaImport(models.TransientModel):
             coda_statement['reconcile_ids'] = []
             coda_statement['glob_id_stack'] = []
 
-            lines = coda_statement['coda_statement_lines']
             coda_parsing_note = coda_statement['coda_parsing_note']
 
             for x in lines:
@@ -1459,7 +1450,7 @@ class AccountCodaImport(models.TransientModel):
                          - coda_statement['balance_end_real'], 2):
                     err_string = _(
                         "\nIncorrect ending Balance in CODA Statement %s "
-                        "for Bank Account %s!") % (
+                        "for Bank Account %s !") % (
                             coda_statement['coda_seq_number'],
                             coda_statement['acc_number']
                             + ' (' + coda_statement['currency']
@@ -1847,18 +1838,29 @@ class AccountCodaImport(models.TransientModel):
         open Payables/Receivables encoded manually or imported from
         an external accounting package
         (hence not generated from an Odoo invoice).
-
         """
         search_field = 'name'
-        search_input = repl_special(line['communication'].strip())
+        search_input = line['communication'].strip()
         return search_field, search_input
 
-    def _match_aml_arap_domain(self, coda_statement, line):
-
+    def _match_aml_arap_refine(self, coda_statement, line,
+                               coda_parsing_note, matches):
+        """
+        Refine matching logic by parsing the 'search_field'.
+        """
         search_field, search_input = self._match_aml_arap_domain_field(
             coda_statement, line)
-        domain = [(search_field, '=', search_input),
-                  ('reconcile_id', '=', False),
+        refined = []
+        for aml in matches:
+            aml_lookup_field = getattr(aml, search_field)
+            if line['struct_comm_bba']:
+                aml_lookup_field = re.sub('\D', '', aml_lookup_field)
+            if search_input in aml_lookup_field:
+                refined.append(aml)
+        return refined
+
+    def _match_aml_arap_domain(self, coda_statement, line):
+        domain = [('reconcile_id', '=', False),
                   ('state', '=', 'valid'),
                   ('account_id.type', 'in', ['payable', 'receivable']),
                   ('partner_id', '!=', False)]
@@ -1887,6 +1889,9 @@ class AccountCodaImport(models.TransientModel):
                     amt = sign * aml.amount_residual_currency
                     if cur.is_zero(amt - line['amount']):
                         matches.append(aml)
+
+        matches = self._match_aml_arap_refine(
+            coda_statement, line, coda_parsing_note, matches)
 
         if len(matches) == 1:
             aml = matches[0]
@@ -1978,7 +1983,7 @@ class AccountCodaImport(models.TransientModel):
                     "\n    Bank Statement '%%(name)s' line '%s':"
                     "\n        The bank account '%s' is "
                     "not defined for the partner '%s' !"
-                    ) % (line['ref'], cp_number, line['counterparty_name'])
+                    ) % (line['ref'], cp_number, line['partner_name'])
             else:
                 coda_parsing_note += _(
                     "\n    Bank Statement '%%(name)s' line '%s':"
@@ -2028,7 +2033,7 @@ class AccountCodaImport(models.TransientModel):
             if not partner_banks:
                 feedback = self.update_partner_bank(
                     line['counterparty_bic'], line['counterparty_number'],
-                    line['partner_id'], line['counterparty_name'])
+                    line['partner_id'], line['partner_name'])
                 if feedback:
                     coda_parsing_note += _(
                         "\n    Bank Statement '%%(name)s' line '%s':"
@@ -2201,7 +2206,7 @@ class AccountCodaImport(models.TransientModel):
         bank_name = bank and bank.name or False
         return bank_id, bic, bank_name, feedback
 
-    def update_partner_bank(self, bic, iban, partner_id, counterparty_name):
+    def update_partner_bank(self, bic, iban, partner_id, partner_name):
 
         bank_id = False
         feedback = False
@@ -2221,7 +2226,7 @@ class AccountCodaImport(models.TransientModel):
         if bank_id:
             self.env['res.partner.bank'].create({
                 'partner_id': partner_id,
-                'name': counterparty_name,
+                'name': partner_name,
                 'bank': bank_id,
                 'state': 'iban',
                 'bank_bic': bic,

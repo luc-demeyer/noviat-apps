@@ -13,7 +13,7 @@
             <field name="coda_data" filename="coda_fname"/>
             <field name="coda_fname" invisible="1"/>
             <field name="coda_fname_dummy"/>
-            <field name="period_id"/>
+            <field name="period_id" options="{'no_create': True}"/>
           </group>
           <footer>
             <button name="coda_parsing" string="Import" type="object" class="oe_highlight"/>
@@ -30,7 +30,7 @@
       <field name="arch" type="xml">
         <form string="Process CODA File">
           <group>
-            <field name="period_id"/>
+            <field name="period_id" options="{'no_create': True}"/>
           </group>
           <footer>
             <button name="coda_parsing" string="Process" type="object" class="oe_highlight"/>

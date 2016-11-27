@@ -48,9 +48,6 @@ class AccountBankStatementLine(models.Model):
     globalisation_amount = fields.Float(
         related='globalisation_id.amount',
         string='Glob. Amount', readonly=True)
-    counterparty_name = fields.Char(
-        string='Counterparty Name',
-        states={'confirm': [('readonly', True)]})
     counterparty_bic = fields.Char(
         string='Counterparty BIC', size=11,
         states={'confirm': [('readonly', True)]})

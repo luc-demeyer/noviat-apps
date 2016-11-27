@@ -140,11 +140,6 @@ msgid "Counterparty Currency"
 msgstr "Munteenheid tegenpartij"
 
 #. module: account_bank_statement_advanced
-#: field:account.bank.statement.line,counterparty_name:0
-msgid "Counterparty Name"
-msgstr "Naam tegenpartij"
-
-#. module: account_bank_statement_advanced
 #: field:account.bank.statement.line,counterparty_number:0
 msgid "Counterparty Number"
 msgstr "Nummer tegenpartij"

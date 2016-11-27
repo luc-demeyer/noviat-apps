@@ -1,6 +1,6 @@
 # Dutch translation of Odoo 8.0.
 # This file contains the translation of the following modules:
-#	* l10n_be_coda_advanced
+#    * l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""
@@ -232,7 +232,7 @@ msgstr "Omschrijving van de rekening"
 #. module: l10n_be_coda_advanced
 #: field:coda.bank.account,description2:0
 msgid "Secondary Account Description"
-msgstr "Alernatieve omschrijving van de rekening"
+msgstr "Alternatieve omschrijving van de rekening"
 
 #. module: l10n_be_coda_advanced
 #: field:coda.bank.account,journal:0
