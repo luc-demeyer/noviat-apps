@@ -78,7 +78,8 @@ class account_account(models.Model):
             company_obj = self.pool.get('res.company')
             company_ids = company_obj.search(cr, uid, [])
             for company_id in company_ids:
-                company = company_obj.browse(cr, uid, company_id)
+                company = company_obj.browse(
+                    cr, uid, company_id, context=context)
                 if company.country_id.code in self._be_scheme_countries:
                     be_scheme_company_ids.append(company_id)
             args += [('company_id', 'in', be_scheme_company_ids)]
@@ -95,7 +96,7 @@ class account_account(models.Model):
             ['account_group', 'report_id'],
             context=context)
         acc_code = vals['code']
-        account = self.browse(cr, uid, acc_id)
+        account = self.browse(cr, uid, acc_id, context=context)
         if account.type not in ['view', 'consolidation'] and \
                 account.company_id.country_id.code in \
                 self._be_scheme_countries:
@@ -131,7 +132,7 @@ class account_account(models.Model):
             acc_code = vals.get('code')
             acc_type = vals.get('type')
             centralized = vals.get('centralized')
-            for account in self.browse(cr, uid, ids):
+            for account in self.browse(cr, uid, ids, context=context):
                 updated = False
                 if account.company_id.country_id.code in \
                         self._be_scheme_countries:
