@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="item_sale_order_1" model="product.pricelist.item">
+            <field name="price_version_id" ref="version_sale_order_1"/>
+            <field name="base" eval="-1"/>
+            <field name="base_pricelist_id" ref="product.list0"/>
+            <field name="sequence">1000</field>
+            <field name="name">Default Line</field>
+        </record>
+
+        <record id="item_sale_order_line_1" model="product.pricelist.item">
+            <field name="price_version_id" ref="version_sale_order_line_1"/>
+            <field name="base" eval="-1"/>
+            <field name="base_pricelist_id" ref="product.list0"/>
+            <field name="sequence">1000</field>
+            <field name="name">Default Line</field>
+        </record>
+    </data>
+</openerp>
