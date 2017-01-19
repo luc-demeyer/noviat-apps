@@ -88,7 +88,7 @@ class l10n_be_vat_declaration(orm.TransientModel):
             '54', '55', '56', '57', '59', '61', '62', '63', '64', '71',
             '72', '81', '82', '83', '84', '85', '86', '87', '88', '91',
         ]
-        data_tax = self.browse(cr, uid, ids[0])
+        data_tax = self.browse(cr, uid, ids[0], context=context)
 
         if data_tax.tax_code_id:
             obj_company = data_tax.tax_code_id.company_id

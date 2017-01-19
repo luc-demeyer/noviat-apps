@@ -23,7 +23,7 @@ class account_config_settings(models.TransientModel):
             context = {}
         env = api.Environment(cr, uid, context)
         ctx = context.copy()
-        wiz = self.browse(cr, uid, ids[0])
+        wiz = self.browse(cr, uid, ids[0], context=context)
         if wiz.chart_template_id and wiz.chart_template_id.multilang_be:
             ctx.update({
                 'company_id': wiz.company_id.id,
