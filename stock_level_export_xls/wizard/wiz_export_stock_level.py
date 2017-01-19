@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
@@ -109,6 +90,7 @@ class WizExportStockLevel(models.TransientModel):
         if not warehouses:
             warehouses = self.env['stock.warehouse'].search(
                 [('company_id', '=', self.company_id.id)])
+        warehouse_ids = warehouses._ids
         domain = self._xls_export_domain()
         products = self.env['product.product'].search(domain)
         if not products:
@@ -128,6 +110,13 @@ class WizExportStockLevel(models.TransientModel):
                     _("No Data Available."),
                     _("\nNo physical stock locations defined "
                       "for your selection !"))
+            warehouse_id = self.env['stock.location'].get_warehouse(
+                self.location_id)
+            if not warehouse_id:
+                raise UserError(
+                    _("No Warehouse defined for the selected "
+                      "Stock Location "))
+            warehouse_ids = [warehouse_id]
         else:
             location_ids = []
 
@@ -138,7 +127,7 @@ class WizExportStockLevel(models.TransientModel):
                 and False or self.stock_level_date,
             'product_ids': products._ids,
             'category_id': self.categ_id.id,
-            'warehouse_ids': warehouses._ids,
+            'warehouse_ids': warehouse_ids,
             'location_ids': location_ids,
             'product_select': self.product_select,
             'import_compatible': self.import_compatible,

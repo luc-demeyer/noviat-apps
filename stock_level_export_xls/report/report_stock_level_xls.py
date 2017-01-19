@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 import logging
 import xlwt
@@ -212,7 +193,8 @@ class StockLevelXls(report_xls):
 
         wanted_list = _p.wanted_list
         if data['import_compatible']:
-            for x in ['location', 'location_id', 'product_id', 'product_uom_id']:
+            for x in ['location', 'location_id',
+                      'product_id', 'product_uom_id']:
                 if x not in wanted_list:
                     wanted_list.append(x)
         _ = _p._

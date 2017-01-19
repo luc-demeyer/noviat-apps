@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat.
+# Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import base64
 import logging
@@ -1204,15 +1204,6 @@ class AccountCodaImport(models.TransientModel):
 
         mv_line_dict = {}
 
-        # the process_reconciliation method takes assumes that the
-        # input mv_line_dict 'debit'/'credit' contains the amount
-        # in bank statement line currency and will handle the currency
-        # conversions
-        if line['amount'] > 0:
-            mv_line_dict['credit'] = line['amount']
-        else:
-            mv_line_dict['debit'] = -line['amount']
-
         if line.get('reconcile'):
             cp_aml_id = line['reconcile']
             # Check if the same counterparty entry hasn't been processed
@@ -1221,6 +1212,8 @@ class AccountCodaImport(models.TransientModel):
             if cp_aml_id not in coda_statement['reconcile_ids']:
                 coda_statement['reconcile_ids'].append(cp_aml_id)
                 mv_line_dict['counterpart_move_line_id'] = cp_aml_id
+            else:
+                return {}
 
         elif line.get('account_id'):
             mv_line_dict['account_id'] = line['account_id']
@@ -1231,25 +1224,34 @@ class AccountCodaImport(models.TransientModel):
                 mv_line_dict['analytic_account_id'] = \
                     line['analytic_account_id']
 
+        # the process_reconciliation method takes assumes that the
+        # input mv_line_dict 'debit'/'credit' contains the amount
+        # in bank statement line currency and will handle the currency
+        # conversions
+        if line['amount'] > 0:
+            mv_line_dict['credit'] = line['amount']
+        else:
+            mv_line_dict['debit'] = -line['amount']
+
         return mv_line_dict
 
     def _create_move_and_reconcile(self, coda_statement, line):
 
         mv_line_dict = self._prepare_mv_line_dict(coda_statement, line)
-
-        try:
-            err_string = ''
-            absl = self.env['account.bank.statement.line'].browse(
-                line['st_line_id'])
-            absl.process_reconciliation([mv_line_dict])
-        except orm.except_orm, e:
-            err_string = _('\nApplication Error : ') + str(e)
-        except Exception, e:
-            err_string = _('\nSystem Error : ') + str(e)
-        except:
-            err_string = _('\nUnknown Error : ') + str(e)
-        if err_string:
-            coda_statement['coda_parsing_note'] += err_string
+        if mv_line_dict:
+            try:
+                err_string = ''
+                absl = self.env['account.bank.statement.line'].browse(
+                    line['st_line_id'])
+                absl.process_reconciliation([mv_line_dict])
+            except orm.except_orm, e:
+                err_string = _('\nApplication Error : ') + str(e)
+            except Exception, e:
+                err_string = _('\nSystem Error : ') + str(e)
+            except:
+                err_string = _('\nUnknown Error : ') + str(e)
+            if err_string:
+                coda_statement['coda_parsing_note'] += err_string
 
     @api.multi
     def coda_parsing(self):
