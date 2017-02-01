@@ -74,7 +74,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
         """
         partner = self.partner_id.commercial_partner_id
         fpos = partner.property_account_position
-        cur = self.with_context(date=self.date_order).currency_id
+        cur = self.with_context(date=fields.Date.today()).currency_id
         cpy_cur = self.company_id.currency_id
         s_aml_vals = []
         s_po_accruals = {}
