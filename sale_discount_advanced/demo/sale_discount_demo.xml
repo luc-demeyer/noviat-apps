@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="sale_discount_on_sale_order" model="sale.discount">
+            <field name="name">Bulk Discount (on sales order)</field>
+            <field name="discount_base">sale_order</field>
+            <field name="start_date">2016-01-01</field>
+            <field name="end_date">2017-01-01</field>
+            <field name="pricelist_ids" eval="[(6,0,[ref('pricelist_discount_on_sale_order')])]"/>
+        </record>
+
+        <record id="sale_discount_on_sale_order_line" model="sale.discount">
+            <field name="name">Bulk Discount (on sales order line)</field>
+            <field name="discount_base">sale_line</field>
+            <field name="start_date">2016-01-01</field>
+            <field name="end_date">2017-01-01</field>
+            <field name="pricelist_ids" eval="[(6,0,[ref('pricelist_discount_on_sale_order_line')])]"/>
+            <field name="excluded_product_ids" eval="[(6,0,[ref('product.product_product_consultant')])]"/>
+            <field name="excluded_product_category_ids" eval="[(6,0,[ref('product.apple')])]"/>
+        </record>
+    </data>
+</openerp>

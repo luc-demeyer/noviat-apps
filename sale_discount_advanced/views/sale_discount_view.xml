@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="sale_discount_view_form" model="ir.ui.view">
+      <field name="name">SaleDiscountViewForm</field>
+      <field name="model">sale.discount</field>
+      <field name="arch" type="xml">
+        <form string="Discounts">
+          <group col="4">
+            <field name="name"/>
+            <field name="active"/>
+            <newline/>
+            <field name="start_date"/>
+            <field name="end_date"/>
+            <field name="discount_base"/>
+            <field name="sequence"/>
+          </group>
+          <notebook>
+            <page string="Rules" name="rules">
+              <field name="rule_ids" nolabel="1" colspan="4">
+                <tree name="discount_rules" string="Discount Rules">
+                  <field name="sequence" invisible="1" widget="handle"/>
+                  <field name="discount_type"/>
+                  <field name="discount"/>
+                  <field name="min_base"/>
+                  <field name="max_base"/>
+                </tree>
+                <form name="Discount Rule">
+                  <group>
+                    <field name="discount_type"/>
+                    <field name="discount"/>
+                    <field name="min_base"/>
+                    <field name="max_base"/>
+                    <field name="sequence"/>
+                  </group>
+                </form>
+              </field>
+            </page>
+            <page string="Pricelists" name="pricelists">
+              <field name="pricelist_ids" nolabel="1" colspan="4"/>
+            </page>
+            <page string="Excluded Products &amp; Categories" name="productsAndCategories">
+              <label for="excluded_product_ids"/>
+              <field name="excluded_product_ids">
+                <tree>
+                  <field name="name"/>
+                  <field name="ean13"/>
+                  <field name="categ_id"/>
+                </tree>
+              </field>
+              <label for="excluded_product_category_ids"/>
+              <field name="excluded_product_category_ids">
+                <tree>
+                  <field name="name"/>
+                  <field name="complete_name"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </form>
+      </field>
+    </record>
+
+    <record id="sale_discount_view_tree" model="ir.ui.view">
+      <field name="name">SaleDiscountViewTree</field>
+      <field name="model">sale.discount</field>
+      <field name="arch" type="xml">
+        <tree string="Sale Discounts">
+          <field name="sequence" widget="handle"/>
+          <field name="name"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="sale_discount_action" model="ir.actions.act_window">
+      <field name="name">Sale Discounts</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.discount</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="sale_discount_menu"
+              name="Discounts"
+              parent="base.menu_base_config"
+              action="sale_discount_action"
+        />
+
+  </data>
+</openerp>

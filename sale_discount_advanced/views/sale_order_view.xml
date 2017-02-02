@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="view_order_form" model="ir.ui.view">
+      <field name="name">ViewOrderFormSaleDiscount</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='pricelist_id']" position="after">
+          <field name="discount_amount"/>
+          <field name="discount_base_amount"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='discount']" position="before">
+          <field name="sale_discount_ids" widget="many2many_tags" options="{'no_create': True}"/>
+        </xpath>
+        <xpath expr="//tree/field[@name='discount']" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </xpath>
+        <xpath expr="//form//field[@name='price_unit']" position="after">
+          <field name="sale_discount_ids" widget="many2many_tags" options="{'no_create': True}"/>
+        </xpath>
+        <xpath expr="//form//field[@name='discount']" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

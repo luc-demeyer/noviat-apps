@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="version_sale_order_1" model="product.pricelist.version">
+            <field name="pricelist_id" ref="pricelist_discount_on_sale_order"/>
+            <field name="name">Discount On Sale Order Version 1</field>
+        </record>
+        <record id="version_sale_order_line_1" model="product.pricelist.version">
+            <field name="pricelist_id" ref="pricelist_discount_on_sale_order_line"/>
+            <field name="name">Discount On Sale Order Line Version 1</field>
+        </record>
+    </data>
+</openerp>
