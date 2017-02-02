@@ -1,29 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-import logging
-_logger = logging.getLogger(__name__)
-
-from openerp import models, api
+# Copyright 2009-2017 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from openerp import api, models
 
 
 class ResPartnerBank(models.Model):
@@ -77,7 +55,6 @@ class ResPartnerBank(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        #  _logger.warn('%s, search, args=%s', self._name, args)
         for i, arg in enumerate(args):
             if arg[0] == 'acc_number' and \
                     arg[1] in ['=', '=like', '=ilike', 'like', 'ilike']:
@@ -88,6 +65,5 @@ class ResPartnerBank(models.Model):
                 if res:
                     rpb_ids = [x[0] for x in res]
                     args[i] = ['id', 'in', rpb_ids]
-        #  _logger.warn('%s, search, args=%s', self._name, args)
         return super(ResPartnerBank, self).search(
-            args, offset, limit, order, count=count)
+            args, offset=offset, limit=limit, order=order, count=count)

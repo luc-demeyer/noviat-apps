@@ -1,40 +1,17 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 from openerp.osv.fields import datetime as datetime_field
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.report import report_sxw
 from openerp import models, _
-from openerp.exceptions import Warning
-import logging
-_logger = logging.getLogger(__name__)
+from openerp.exceptions import Warning as UserError
 
 
 class bank_statement_balance_report(report_sxw.rml_parse):
 
     def set_context(self, objects, data, ids, report_type=None):
-        # _logger.warn('set_context, objects = %s, data = %s, ids = %s',
-        #              objects, data, ids)
         data = objects[0]
         cr = data._cr
         uid = data._uid
@@ -42,7 +19,7 @@ class bank_statement_balance_report(report_sxw.rml_parse):
         date_balance = data['date_balance']
         journal_ids = [x.id for x in data['journal_ids']]
         if not journal_ids:
-            raise Warning(_('No Financial Journals selected!'))
+            raise UserError(_('No Financial Journals selected!'))
         cr.execute(
             "SELECT s.name AS s_name, s.date AS s_date, j.code AS j_code, "
             "s.balance_end_real AS s_balance, "
