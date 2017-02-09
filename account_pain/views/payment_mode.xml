@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_payment_mode_search" model="ir.ui.view">
+      <field name="name">payment.mode.search.inherit</field>
+      <field name="model">payment.mode</field>
+      <field name="inherit_id" ref="account_payment.view_payment_mode_search"/>
+      <field name="arch" type="xml">
+        <field name="journal" position="after">
+          <field name="type"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_payment_mode_tree" model="ir.ui.view">
+      <field name="name">payment.mode.tree.inherit</field>
+      <field name="model">payment.mode</field>
+      <field name="inherit_id" ref="account_payment.view_payment_mode_tree"/>
+      <field name="arch" type="xml">
+        <field name="journal" position="after">
+          <field name="type"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_payment_mode_form" model="ir.ui.view">
+      <field name="name">payment.mode.form.inherit</field>
+      <field name="model">payment.mode</field>
+      <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+      <field name="arch" type="xml">
+        <field name="journal" position="after">
+          <field name="type"/>
+        </field>
+        <field name="bank_id" position="attributes">
+          <attribute name="attrs">{'required':[('type','=','iso20022')]}</attribute>
+        </field>
+        <field name="bank_id" position="after">
+          <field name="initgpty_id" attrs="{'invisible':[('type','!=','iso20022')]}"/>
+          <field name="initgpty_issr" attrs="{'invisible':[('type','!=','iso20022')]}"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

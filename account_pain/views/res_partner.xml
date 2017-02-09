@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="view_partner_property_form_supplier_direct_debit" model="ir.ui.view">
+        <record id="view_partner_property_form" model="ir.ui.view">
             <field name="name">res.partner.property.form.supplier.direct.debit</field>
             <field name="model">res.partner</field>
             <field name="type">form</field>

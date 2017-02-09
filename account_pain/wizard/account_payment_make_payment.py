@@ -1,38 +1,20 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
-from openerp.tools.translate import _
-from openerp.osv import fields, orm
+# Copyright 2009-2017 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import re
 import time
 import base64
 from StringIO import StringIO
 from lxml import etree
-from openerp import tools
+
+from openerp import models, tools, _
+from openerp.exceptions import Warning as UserError
+
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class account_payment_make_payment(orm.TransientModel):
+class account_payment_make_payment(models.TransientModel):
     _inherit = 'account.payment.make.payment'
 
     def launch_wizard(self, cr, uid, ids, context=None):
@@ -66,12 +48,13 @@ class account_payment_make_payment(orm.TransientModel):
 
         # generate ISO 20022 XML
         data = self.generate_pain(cr, uid, context)
-        apc_id = self.pool.get('account.pain.create').create(cr, uid, data)
-        obj_model = self.pool.get('ir.model.data')
+        apc_id = self.pool['account.pain.create'].create(cr, uid, data)
+        obj_model = self.pool['ir.model.data']
         model_data_ids = obj_model.search(
             cr, uid,
             [('model', '=', 'ir.ui.view'),
-             ('name', '=', 'account_pain_save_view')])
+             ('module', '=', 'account_pain'),
+             ('name', '=', 'account_pain_create_view_form')])
         resource_id = obj_model.read(
             cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']
         return {
@@ -112,12 +95,12 @@ class account_payment_make_payment(orm.TransientModel):
         company = self.pool.get('res.users').browse(cr, uid, uid).company_id
         if not (payment_mode.bank_id.bank_bic
                 or payment_mode.bank_id.bank.bic):
-            raise orm.except_orm(
+            raise UserError(
                 _('Configuration Error!'),
                 _("Please fill in the BIC code of the Bank "
                   "Debtor Account for this Payment Order!"))
         if not payment.line_ids:
-            raise orm.except_orm(
+            raise UserError(
                 _('Data Error!'),
                 _("Your Payment Order does not contain "
                   "payment instructions!"))
@@ -156,13 +139,13 @@ class account_payment_make_payment(orm.TransientModel):
         for line in payment.line_ids:
 
             if not line.amount:
-                raise orm.except_orm(
+                raise UserError(
                     _('Payment Instruction Error!'),
                     _('Payment Instruction Error in Payment Line %s.\n'
                       'Please fill in the transaction amount!'
                       ) % line.name)
             if not (line.bank_id and line.bank_id.acc_number):
-                raise orm.except_orm(
+                raise UserError(
                     _('Payment Instruction Error!'),
                     _("Unsupported Payment Instruction in Payment Line %s.\n"
                       "Please fill in the bank account number of the "
@@ -182,7 +165,7 @@ class account_payment_make_payment(orm.TransientModel):
                 else:
                     execution_date = line.date
             else:
-                raise orm.except_orm(
+                raise UserError(
                     _('Unsupported Payment Order Option!'),
                     _("Please ensure that the 'Preferred date' is equal "
                       "to 'Due date', 'Directly' or 'Fixed date'!"))
@@ -242,7 +225,7 @@ class account_payment_make_payment(orm.TransientModel):
                 # payments without BIC
                 if line.bank_id.iban[0:2].upper() not in ['BE']:
                     if not (line.bank_id.bank_bic or line.bank_id.bank.bic):
-                        raise orm.except_orm(
+                        raise UserError(
                             _('Configuration Error!'),
                             _("Unsupported Payment Instruction "
                               "in Payment Line %s.\n"
@@ -283,7 +266,7 @@ class account_payment_make_payment(orm.TransientModel):
                         Issr.text = 'BBA'
                         comm = self.format_comm(line.communication)
                         if not comm:
-                            raise orm.except_orm(
+                            raise UserError(
                                 _('Payment Instruction Error!'),
                                 _("Unsupported Structured Communication "
                                   "in Payment Line %s.\n"
@@ -294,7 +277,7 @@ class account_payment_make_payment(orm.TransientModel):
                         Ref = etree.SubElement(CdtrRefInf, 'Ref')
                         Ref.text = comm
                     else:
-                        raise orm.except_orm(
+                        raise UserError(
                             _('Configuration Error!'),
                             _("Unsupported Communication Type "
                               "in Payment Line %s.\n"
@@ -322,7 +305,7 @@ class account_payment_make_payment(orm.TransientModel):
                 'The generated XML file does not fit the required schema !')
             _logger.error(tools.ustr(xmlschema.error_log.last_error))
             error = xmlschema.error_log[0]
-            raise orm.except_orm(
+            raise UserError(
                 _('The generated XML file does not fit the required schema !'
                   ), error.message)
 
@@ -333,16 +316,3 @@ class account_payment_make_payment(orm.TransientModel):
             'pain_data': pain_data,
             'pain_fname': pain_fname,
             'note': note}
-
-
-class account_pain_create(orm.TransientModel):
-    _name = 'account.pain.create'
-    _description = 'ISO 20022 payment file'
-
-    _columns = {
-        'pain_data': fields.binary(
-            'Payment File', required=True, readonly=True),
-        'pain_fname': fields.char(
-            'Filename', size=128, required=True),
-        'note': fields.text('Remarks'),
-    }

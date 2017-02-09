@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record id="supplier_invoice_form_inherit" model="ir.ui.view">
+    <record id="invoice_supplier_form" model="ir.ui.view">
       <field name="name">account.invoice.supplier.form.inherit</field>
       <field name="model">account.invoice</field>
       <field name="type">form</field>
@@ -15,6 +15,14 @@
         </data>
       </field>
     </record>
+
+    <act_window name="Payment Lines"
+                id="act_account_invoice_2_payment_line"
+                src_model="account.invoice"
+                res_model="payment.line"
+                domain="[('move_line_id.move_id.id', '=', move_id)]"
+                view_type="form"
+                context="{'payment_line_readonly':1, 'move_id': move_id}"/>
 
   </data>
 </openerp>

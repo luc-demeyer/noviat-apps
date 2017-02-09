@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2017 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.osv import fields, orm
 from operator import itemgetter
 import logging
@@ -91,6 +72,26 @@ class account_move_line(orm.Model):
             return [('id', '=', '0')]
         return [('id', 'in', map(lambda x:x[0], res))]
 
+    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
+                        context=None, toolbar=False, submenu=False):
+        if view_type == 'tree':
+            mod_obj = self.pool.get('ir.model.data')
+            if context is None:
+                context = {}
+            if context.get('account_payment', False):
+                tree = 'account_move_line_view_tree_account_pain'
+                model_data_ids = mod_obj.search(
+                    cr, uid,
+                    [('model', '=', 'ir.ui.view'),
+                     ('name', '=', tree)],
+                    context=context)
+                view_id = mod_obj.read(
+                    cr, uid, model_data_ids, fields=['res_id'],
+                    context=context)[0]['res_id']
+        return super(account_move_line, self).fields_view_get(
+            cr, uid, view_id, view_type, context=context, toolbar=toolbar,
+            submenu=submenu)
+
     _columns = {
         'amount_to_pay': fields.function(
             _amount_to_pay, method=True,
@@ -100,22 +101,3 @@ class account_move_line(orm.Model):
             relation='account.invoice',
             string='Supplier Direct Debit', readonly=True),
     }
-
-    def fields_view_get(self, cr, uid, view_id=None, view_type='form',
-                        context=None, toolbar=False, submenu=False):
-        if view_type == 'tree':
-            mod_obj = self.pool.get('ir.model.data')
-            if context is None:
-                context = {}
-            if context.get('account_payment', False):
-                model_data_ids = mod_obj.search(
-                    cr, uid,
-                    [('model', '=', 'ir.ui.view'),
-                     ('name', '=', 'view_move_line_tree_account_pain')],
-                    context=context)
-                view_id = mod_obj.read(
-                    cr, uid, model_data_ids, fields=['res_id'],
-                    context=context)[0]['res_id']
-        return super(account_move_line, self).fields_view_get(
-            cr, uid, view_id, view_type, context=context, toolbar=toolbar,
-            submenu=submenu)

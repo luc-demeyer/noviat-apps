@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="payment_line_view_search" model="ir.ui.view">
+      <field name="name">payment.line.tree.search</field>
+      <field name="model">payment.line</field>
+      <field name="arch" type="xml">
+        <search string="Search Payment Lines">
+          <field name="communication"/>
+          <field name="move_line_id"/>
+          <field name="partner_id"/>
+          <field name="amount_currency"/>
+          <field name="ml_maturity_date"/>
+          <field name="order_id"/>
+          <field name="create_date"/>
+          <field name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="payment_line_action" model="ir.actions.act_window">
+      <field name="name">Payment Lines</field>
+      <field name="res_model">payment.line</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="payment_line_view_search"/>
+      <field name="view_id" ref="account_payment.view_payment_line_tree"/>
+      <field name="context">{'payment_line_readonly':1}</field>
+    </record>
+    
+    <menuitem id="payment_line_menu"
+              action="payment_line_action" 
+              parent="account_payment.menu_main_payment"
+              sequence="4"/>
+
+  </data>
+</openerp>

@@ -2,10 +2,9 @@
 <openerp>
 	<data>
 
-    <record id="account_pain_save_view" model="ir.ui.view">
+    <record id="account_pain_create_view_form" model="ir.ui.view">
       <field name="name">ISO 20022 payment file</field>
       <field name="model">account.pain.create</field>
-      <field name="priority">1</field>
       <field name="arch" type="xml">
         <form string="The ISO 20022 payment file has been created">
           <p>Click on link below to download the XML File</p>
@@ -22,13 +21,13 @@
       </field>
     </record>
     
-    <record id="action_account_pain_create" model="ir.actions.act_window">
+    <record id="account_pain_create_action" model="ir.actions.act_window">
       <field name="name">The ISO 20022 payment file has been created</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">account.pain.create</field>
       <field name="view_type">form</field>
       <field name="view_mode">form</field>
-      <field name="view_id" ref="account_pain_save_view"/>
+      <field name="view_id" ref="account_pain_create_view_form"/>
       <field name="target">new</field>
     </record>
 
