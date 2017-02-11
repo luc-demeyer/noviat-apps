@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '8.0.1.3.1',
+    'version': '8.0.1.3.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -16,6 +16,7 @@
         'l10n_be_partner',
         'account_bank_statement_advanced',
     ],
+    'conflicts': ['l10n_be_coda'],
     'data': [
         'security/ir.model.access.csv',
         'security/account_security.xml',

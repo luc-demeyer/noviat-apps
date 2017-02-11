@@ -134,7 +134,10 @@
       <field name="name">bank.statement.line.list</field>
       <field name="model">account.bank.statement.line</field>
       <field name="arch" type="xml">
-        <tree editable="bottom" string="Statement Lines" create="false" delete="false" colors="blue:amount and move_state != 'posted';">
+        <tree string="Statement Lines" create="false" delete="false"
+              default_order="statement_date desc, sequence, id"
+              colors="blue:amount and move_state != 'posted';">
+          <field name="statement_date" readonly="1"/>
           <field name="sequence" readonly="1" invisible="1"/>
           <field name="journal_id" readonly="1" invisible="1"/>
           <field name="journal_code" readonly="1"/>

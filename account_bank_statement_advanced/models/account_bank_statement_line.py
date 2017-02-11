@@ -14,6 +14,9 @@ class AccountBankStatementLine(models.Model):
     state = fields.Selection(
         related='statement_id.state', string='Statement State',
         readonly=True, store=True)
+    statement_date = fields.Date(
+        related='statement_id.date', string='Statement Date',
+        readonly=True, store=True)
     val_date = fields.Date(
         string='Value Date',  # nl: valuta datum
         states={'confirm': [('readonly', True)]})
@@ -60,7 +63,7 @@ class AccountBankStatementLine(models.Model):
     reconcile_get = fields.Char(
         string='Reconciled', compute='_compute_reconcile_get', readonly=True)
     move_get = fields.Char(
-        string='Move', compute='_compute_move_get', readonly=True)
+        string='Move', compute='_compute_move_get', readonly=True, store=True)
     move_state = fields.Selection(
         string='Move State', related='journal_entry_id.state', readonly=True)
 

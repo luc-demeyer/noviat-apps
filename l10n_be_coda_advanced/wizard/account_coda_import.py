@@ -1913,6 +1913,10 @@ class AccountCodaImport(models.TransientModel):
 
         if cba.find_account_move_line:
 
+            # exclude non-partner related transactions (e.g. bank costs)
+            if not line['counterparty_number']:
+                return coda_parsing_note, match
+
             # match on open receivables/payables
             coda_parsing_note, match = self._match_aml_arap(
                 coda_statement, line, coda_parsing_note)
