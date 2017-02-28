@@ -1,27 +1,8 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#
-#    Copyright (c) 2011-2015 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-_logger = logging.getLogger(__name__)
 import os
 import time
 from sys import exc_info
@@ -29,6 +10,8 @@ from traceback import format_exception
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
+
+_logger = logging.getLogger(__name__)
 
 
 class AccountCodaBatchImport(models.TransientModel):
@@ -41,6 +24,8 @@ class AccountCodaBatchImport(models.TransientModel):
         default=lambda self: self._default_directory(),
         help='Folder containing the CODA Files for the batch import.')
     note = fields.Text(string='Batch Import Log', readonly=True)
+    reconcile = fields.Boolean(
+        help="Launch Automatic Reconcile after CODA import.", default=True)
 
     @api.model
     def _default_directory(self):
@@ -129,9 +114,16 @@ class AccountCodaBatchImport(models.TransientModel):
         for coda_file in coda_files:
             time_start = time.time()
             try:
-                coda_import_wiz._coda_parsing(
+                statements = coda_import_wiz._coda_parsing(
                     codafile=coda_file[1], codafilename=coda_file[2],
                     period_id=None, batch=True)
+                if self._context.get('automatic_reconcile'):
+                    reconcile_note = ''
+                    for statement in statements:
+                        reconcile_note = coda_import_wiz._automatic_reconcile(
+                            statement, reconcile_note=reconcile_note)
+                    if reconcile_note:
+                        self._log_note += reconcile_note
                 self._log_note += _(
                     "\n\nCODA File '%s' has been imported."
                     ) % coda_file[2]

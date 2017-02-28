@@ -56,6 +56,7 @@
               <field name="directory"/>
               <field name="date"/>
               <field name="user_id"/>
+              <field name="reconcile"/>
               <field name="company_id" widget="selection" groups="base.group_multi_company"/>
             </group>
             <notebook colspan="4">

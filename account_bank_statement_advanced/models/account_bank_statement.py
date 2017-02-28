@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp import api, fields, models
+
+from openerp import api, fields, models, _
 
 
 class AccountBankStatement(models.Model):
@@ -29,16 +30,6 @@ class AccountBankStatement(models.Model):
                 self.all_lines_reconciled = False
                 break
 
-    def init(self, cr):
-        cr.execute("""
-    ALTER TABLE account_bank_statement
-      DROP CONSTRAINT IF EXISTS account_bank_statement_name_uniq;
-    DROP INDEX IF EXISTS account_bank_statement_name_non_slash_uniq;
-    CREATE UNIQUE INDEX account_bank_statement_name_non_slash_uniq ON
-      account_bank_statement(name, journal_id, fiscalyear_id, company_id)
-      WHERE name !='/';
-        """)
-
     @api.multi
     def button_cancel(self):
         """
@@ -47,3 +38,35 @@ class AccountBankStatement(models.Model):
         """
         self.state = 'draft'
         return True
+
+    @api.multi
+    def automatic_reconcile(self):
+        reconcile_note = ''
+        for st in self:
+            reconcile_note = self._automatic_reconcile(
+                reconcile_note=reconcile_note)
+        if reconcile_note:
+            module = __name__.split('addons.')[1].split('.')[0]
+            result_view = self.env.ref(
+                '%s.bank_statement_automatic_reconcile_result_view_form'
+                % module)
+            return {
+                'name': _("Automatic Reconcile remarks:"),
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'bank.statement.automatic.reconcile.result.view',
+                'view_id': result_view.id,
+                'target': 'new',
+                'context': dict(self._context, note=reconcile_note),
+                'type': 'ir.actions.act_window',
+                }
+        else:
+            return True
+
+    def _automatic_reconcile(self, reconcile_note):
+        """
+        placeholder for modules that implement automatic reconciliation, e.g.
+        - l10n_be_coda_advanced
+        """
+        self.ensure_one()
+        return reconcile_note

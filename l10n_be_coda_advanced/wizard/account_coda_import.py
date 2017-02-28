@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import base64
+import json
 import logging
 import re
 import time
@@ -46,6 +48,8 @@ class AccountCodaImport(models.TransientModel):
         'account.period', string='Force Period',
         domain=[('state', '=', 'draft'), ('special', '=', False)],
         help="Keep empty to use the period of the bank statement date.")
+    reconcile = fields.Boolean(
+        help="Launch Automatic Reconcile after CODA import.", default=True)
     note = fields.Text(string='Log')
 
     @api.onchange('coda_data')
@@ -68,7 +72,7 @@ class AccountCodaImport(models.TransientModel):
                 "please contact your bank !") % coda_version
             raise Warning(_('Data Error !'), err_string)
         coda_statement['coda_version'] = coda_version
-        coda_statement['coda_statement_lines'] = {}
+        coda_statement['coda_transactions'] = {}
         coda_statement['date'] = str2date(line[5:11])
         coda_statement['coda_creation_date'] = str2date(line[5:11])
         coda_statement['bic'] = line[60:71].strip()
@@ -219,19 +223,19 @@ class AccountCodaImport(models.TransientModel):
         return coda_parsing_note
 
     def _coda_record_2(self, coda_statement, line, coda_parsing_note,
-                       st_line_seq):
+                       transaction_seq):
 
         if line[1] == '1':
-            coda_parsing_note, st_line_seq = self._coda_record_21(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+            coda_parsing_note, transaction_seq = self._coda_record_21(
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
         elif line[1] == '2':
             coda_parsing_note = self._coda_record_22(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
         elif line[1] == '3':
             coda_parsing_note = self._coda_record_23(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
         else:
             # movement data record 2.x (x <> 1,2,3)
@@ -240,49 +244,45 @@ class AccountCodaImport(models.TransientModel):
                 ) % line[1]
             raise Warning(_('Data Error !'), err_string)
 
-        return coda_parsing_note, st_line_seq
+        return coda_parsing_note, transaction_seq
 
     def _coda_record_21(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
         # list of lines parsed already
-        coda_statement_lines = coda_statement['coda_statement_lines']
+        coda_transactions = coda_statement['coda_transactions']
 
-        st_line = {}
-        st_line_seq = st_line_seq + 1
-        st_line['sequence'] = st_line_seq
-        st_line['type'] = 'regular'
-        st_line['reconcile'] = False
-        st_line['trans_family'] = False
-        st_line['struct_comm_type'] = ''
-        st_line['struct_comm_type_id'] = False
-        st_line['struct_comm_type_desc'] = ''
-        st_line['struct_comm_bba'] = ''
-        st_line['communication'] = ''
-        st_line['payment_reference'] = ''
-        st_line['creditor_reference_type'] = ''
-        st_line['creditor_reference'] = ''
-        st_line['partner_id'] = False
-        st_line['account_id'] = False
-        st_line['tax_case_id'] = False
-        st_line['partner_name'] = ''
-        st_line['counterparty_bic'] = ''
-        st_line['counterparty_number'] = ''
-        st_line['counterparty_currency'] = ''
-        st_line['glob_lvl_flag'] = False
-        st_line['globalisation_amount'] = False
-        st_line['amount'] = 0.0
+        transaction = {}
+        transaction_seq = transaction_seq + 1
+        transaction['sequence'] = transaction_seq
+        transaction['type'] = 'regular'
+        transaction['trans_family'] = False
+        transaction['struct_comm_type'] = ''
+        transaction['struct_comm_type_id'] = False
+        transaction['struct_comm_type_desc'] = ''
+        transaction['struct_comm_bba'] = ''
+        transaction['communication'] = ''
+        transaction['payment_reference'] = ''
+        transaction['creditor_reference_type'] = ''
+        transaction['creditor_reference'] = ''
+        transaction['partner_name'] = ''
+        transaction['counterparty_bic'] = ''
+        transaction['counterparty_number'] = ''
+        transaction['counterparty_currency'] = ''
+        transaction['glob_lvl_flag'] = False
+        transaction['globalisation_amount'] = False
+        transaction['amount'] = 0.0
 
-        st_line['ref'] = line[2:10]
-        st_line['ref_move'] = line[2:6]
-        st_line['ref_move_detail'] = line[6:10]
+        transaction['ref'] = line[2:10]
+        transaction['ref_move'] = line[2:6]
+        transaction['ref_move_detail'] = line[6:10]
 
         main_move_stack = coda_statement['main_move_stack']
         previous_main_move = main_move_stack and main_move_stack[-1] or False
         main_move_stack_pop = True
 
         if main_move_stack \
-                and st_line['ref_move'] != main_move_stack[-1]['ref_move']:
+                and transaction['ref_move'] != main_move_stack[-1]['ref_move']:
             # initialise main_move_stack
             # used to link 2.1 detail records to 2.1 main record
             # The main_move_stack contains the globalisation level move
@@ -296,46 +296,47 @@ class AccountCodaImport(models.TransientModel):
 
         if main_move_stack:
             if main_move_stack[-1]['type'] == 'globalisation':
-                st_line['glob_sequence'] = main_move_stack[-1]['sequence']
+                transaction['glob_sequence'] = main_move_stack[-1]['sequence']
             elif main_move_stack[-1].get('glob_sequence'):
-                st_line['glob_sequence'] = main_move_stack[-1]['glob_sequence']
+                transaction['glob_sequence'] = \
+                    main_move_stack[-1]['glob_sequence']
 
         glob_lvl_stack = coda_statement['glob_lvl_stack']
         glob_lvl_stack_pop = False
         glob_lvl_stack_append = False
 
-        st_line['trans_ref'] = line[10:31]
-        st_line_amt = list2float(line[32:47])
+        transaction['trans_ref'] = line[10:31]
+        transaction_amt = list2float(line[32:47])
         if line[31] == '1':    # 1=debit
-            st_line_amt = - st_line_amt
+            transaction_amt = -transaction_amt
 
-        st_line['trans_type'] = line[53]
+        transaction['trans_type'] = line[53]
         trans_type = filter(
-            lambda x: st_line['trans_type'] == x.type,
+            lambda x: transaction['trans_type'] == x.type,
             self._trans_types)
         if not trans_type:
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Type : %s !"
-                ) % st_line['trans_type']
+                ) % transaction['trans_type']
             raise Warning(_('Data Error !'), err_string)
-        st_line['trans_type_id'] = trans_type[0].id
-        st_line['trans_type_desc'] = trans_type[0].description
+        transaction['trans_type_id'] = trans_type[0].id
+        transaction['trans_type_desc'] = trans_type[0].description
 
         # processing of amount depending on globalisation
         glob_lvl_flag = int(line[124])
-        st_line['glob_lvl_flag'] = glob_lvl_flag
+        transaction['glob_lvl_flag'] = glob_lvl_flag
         if glob_lvl_flag > 0:
             if glob_lvl_stack and glob_lvl_stack[-1] == glob_lvl_flag:
-                st_line['amount'] = st_line_amt
+                transaction['amount'] = transaction_amt
                 glob_lvl_stack_pop = True
             else:
-                st_line['type'] = 'globalisation'
-                st_line['amount'] = 0.0
-                st_line['globalisation_amount'] = st_line_amt
+                transaction['type'] = 'globalisation'
+                transaction['amount'] = 0.0
+                transaction['globalisation_amount'] = transaction_amt
                 main_move_stack_pop = False
                 glob_lvl_stack_append = True
         else:
-            st_line['amount'] = st_line_amt
+            transaction['amount'] = transaction_amt
             if previous_main_move and previous_main_move['glob_lvl_flag'] > 0:
                 main_move_stack_pop = False
 
@@ -344,14 +345,14 @@ class AccountCodaImport(models.TransientModel):
         # This is e.g. used by Europabank to give the details of
         # Card Payments.
         if previous_main_move and \
-                st_line['ref_move'] == previous_main_move['ref_move']:
-            if st_line['ref_move_detail'] == '9999':
+                transaction['ref_move'] == previous_main_move['ref_move']:
+            if transaction['ref_move_detail'] == '9999':
                 # Current CODA parsing logic doesn't
                 # support > 9999 detail lines
                 err_string = _(
                     '\nTransaction Detail Limit reached !')
                 raise Warning(_('Data Error !'), err_string)
-            elif st_line['ref_move_detail'] != '0000':
+            elif transaction['ref_move_detail'] != '0000':
                 if glob_lvl_stack[-1] == 0 \
                         and previous_main_move['type'] != 'globalisation':
                     # promote associated move record
@@ -359,7 +360,7 @@ class AccountCodaImport(models.TransientModel):
                     glob_lvl_flag = 1
                     glob_lvl_stack_append = True
                     k = previous_main_move['sequence']
-                    to_promote = coda_statement_lines[k]
+                    to_promote = coda_transactions[k]
                     if not previous_main_move.get('detail_cnt'):
                         to_promote.update({
                             'type': 'globalisation',
@@ -376,81 +377,82 @@ class AccountCodaImport(models.TransientModel):
                     previous_main_move['detail_cnt'] += 1
 
         # positions 48-53 : Value date or 000000 if not known (DDMMYY)
-        st_line['val_date'] = str2date(line[47:53])
+        transaction['val_date'] = str2date(line[47:53])
         # positions 54-61 : transaction code
-        st_line['trans_family'] = line[54:56]
+        transaction['trans_family'] = line[54:56]
         trans_family = filter(
             lambda x: (x.type == 'family') and (
-                x.code == st_line['trans_family']),
+                x.code == transaction['trans_family']),
             self._trans_codes)
         if not trans_family:
             err_string = _(
                 "\nThe File contains an invalid "
                 "CODA Transaction Family : %s !"
-                ) % st_line['trans_family']
+                ) % transaction['trans_family']
             raise Warning(_('Data Error !'), err_string)
         trans_family = trans_family[0]
-        st_line['trans_family_id'] = trans_family.id
-        st_line['trans_family_desc'] = trans_family.description
-        st_line['trans_code'] = line[56:58]
+        transaction['trans_family_id'] = trans_family.id
+        transaction['trans_family_desc'] = trans_family.description
+        transaction['trans_code'] = line[56:58]
         trans_code = filter(
             lambda x:
-            (x.type == 'code') and (x.code == st_line['trans_code'])
+            (x.type == 'code') and (x.code == transaction['trans_code'])
             and (trans_family.id == x.parent_id.id),
             self._trans_codes)
         if trans_code:
-            st_line['trans_code_id'] = trans_code[0].id
-            st_line['trans_code_desc'] = trans_code[0].description
+            transaction['trans_code_id'] = trans_code[0].id
+            transaction['trans_code_desc'] = trans_code[0].description
         else:
-            st_line['trans_code_id'] = None
-            st_line['trans_code_desc'] = _(
+            transaction['trans_code_id'] = None
+            transaction['trans_code_desc'] = _(
                 "Transaction Code unknown, "
                 "please consult your bank.")
-        st_line['trans_category'] = line[58:61]
+        transaction['trans_category'] = line[58:61]
         trans_category = filter(
-            lambda x: st_line['trans_category'] == x.category,
+            lambda x: transaction['trans_category'] == x.category,
             self._trans_categs)
         if trans_category:
-            st_line['trans_category_id'] = trans_category[0].id
-            st_line['trans_category_desc'] = trans_category[0].description
+            transaction['trans_category_id'] = trans_category[0].id
+            transaction['trans_category_desc'] = trans_category[0].description
         else:
-            st_line['trans_category_id'] = None
-            st_line['trans_category_desc'] = _(
+            transaction['trans_category_id'] = None
+            transaction['trans_category_desc'] = _(
                 "Transaction Category unknown, "
                 "please consult your bank.")
         # positions 61-115 : communication
         if line[61] == '1':
-            st_line['struct_comm_type'] = line[62:65]
+            transaction['struct_comm_type'] = line[62:65]
             comm_type = filter(
-                lambda x: x.code == st_line['struct_comm_type'],
+                lambda x: x.code == transaction['struct_comm_type'],
                 self._comm_types)
             if not comm_type:
                 err_string = _(
                     "\nThe File contains an invalid "
                     "Structured Communication Type : %s !"
-                    ) % st_line['struct_comm_type']
+                    ) % transaction['struct_comm_type']
                 raise Warning(_('Data Error !'), err_string)
-            st_line['struct_comm_type_id'] = comm_type[0].id
-            st_line['struct_comm_type_desc'] = comm_type[0].description
-            st_line['communication'] = st_line['name'] = line[65:115]
-            if st_line['struct_comm_type'] in ['101', '102']:
+            transaction['struct_comm_type_id'] = comm_type[0].id
+            transaction['struct_comm_type_desc'] = comm_type[0].description
+            transaction['communication'] = transaction['name'] = line[65:115]
+            if transaction['struct_comm_type'] in ['101', '102']:
                 bbacomm = line[65:77]
-                st_line['struct_comm_bba'] = st_line['name'] = \
+                transaction['struct_comm_bba'] = transaction['name'] = \
                     '+++' + bbacomm[0:3] + '/' + bbacomm[3:7] + \
                     '/' + bbacomm[7:] + '+++'
                 # SEPA SCT <CdtrRefInf> type
-                st_line['creditor_reference_type'] = 'BBA'
+                transaction['creditor_reference_type'] = 'BBA'
                 # SEPA SCT <CdtrRefInf> reference
-                st_line['creditor_reference'] = bbacomm
+                transaction['creditor_reference'] = bbacomm
         else:
-            st_line['communication'] = st_line['name'] = line[62:115]
-        st_line['entry_date'] = str2date(line[115:121])
-        if st_line['sequence'] == 1:
-            coda_statement['first_transaction_date'] = st_line['entry_date']
+            transaction['communication'] = transaction['name'] = line[62:115]
+        transaction['entry_date'] = str2date(line[115:121])
+        if transaction['sequence'] == 1:
+            coda_statement['first_transaction_date'] = \
+                transaction['entry_date']
         # positions 122-124 not processed
 
         # store transaction
-        coda_statement_lines[st_line_seq] = st_line
+        coda_transactions[transaction_seq] = transaction
 
         if previous_main_move:
 
@@ -459,7 +461,7 @@ class AccountCodaImport(models.TransientModel):
                 # add closing globalisation level on previous detail record
                 # in order to correctly close moves that have been
                 # 'promoted' to globalisation
-                closeglobalise = coda_statement_lines[st_line_seq-1]
+                closeglobalise = coda_transactions[transaction_seq-1]
                 closeglobalise.update({
                     'glob_lvl_flag': previous_main_move['glob_lvl_flag']})
             else:
@@ -473,7 +475,7 @@ class AccountCodaImport(models.TransientModel):
                     # demote record with globalisation code from
                     # 'globalisation' to 'regular' when no detail records
                     k = previous_main_move['sequence']
-                    to_demote = coda_statement_lines[k]
+                    to_demote = coda_transactions[k]
                     to_demote.update({
                         'type': 'regular',
                         'glob_lvl_flag': 0,
@@ -484,36 +486,36 @@ class AccountCodaImport(models.TransientModel):
             if main_move_stack_pop:
                 main_move_stack.pop()
 
-        main_move_stack.append(st_line)
+        main_move_stack.append(transaction)
         if glob_lvl_stack_append:
             glob_lvl_stack.append(glob_lvl_flag)
         if glob_lvl_stack_pop:
             glob_lvl_stack.pop()
 
-        return coda_parsing_note, st_line_seq
+        return coda_parsing_note, transaction_seq
 
     def _coda_record_22(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
-        st_line = coda_statement['coda_statement_lines'][st_line_seq]
-        if st_line['ref'][0:4] != line[2:6]:
+        transaction = coda_statement['coda_transactions'][transaction_seq]
+        if transaction['ref'][0:4] != line[2:6]:
             err_string = _(
                 "\nCODA parsing error on movement data record 2.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
             raise Warning(_('Error !'), err_string)
-        st_line['name'] += line[10:63]
-        st_line['communication'] += line[10:63]
-        st_line['payment_reference'] = line[63:98].strip()
-        st_line['counterparty_bic'] = line[98:109].strip()
+        transaction['name'] += line[10:63]
+        transaction['communication'] += line[10:63]
+        transaction['payment_reference'] = line[63:98].strip()
+        transaction['counterparty_bic'] = line[98:109].strip()
 
         return coda_parsing_note
 
     def _coda_record_23(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
-        st_line = coda_statement['coda_statement_lines'][st_line_seq]
-        if st_line['ref'][0:4] != line[2:6]:
+        transaction = coda_statement['coda_transactions'][transaction_seq]
+        if transaction['ref'][0:4] != line[2:6]:
             err_string = _(
                 "\nCODA parsing error on movement data record 2.3, seq nr %s!"
                 "'\nPlease report this issue via your Odoo support channel."
@@ -532,42 +534,42 @@ class AccountCodaImport(models.TransientModel):
                 counterparty_number = line[10:44].strip()
                 counterparty_currency = line[44:47].strip()
             counterparty_name = line[47:82].strip()
-            st_line['name'] += line[82:125]
-            st_line['communication'] += line[82:125]
-        st_line['counterparty_number'] = counterparty_number
-        st_line['counterparty_currency'] = counterparty_currency
-        st_line['partner_name'] = counterparty_name
+            transaction['name'] += line[82:125]
+            transaction['communication'] += line[82:125]
+        transaction['counterparty_number'] = counterparty_number
+        transaction['counterparty_currency'] = counterparty_currency
+        transaction['partner_name'] = counterparty_name
 
         return coda_parsing_note
 
     def _coda_record_3(self, coda_statement, line, coda_parsing_note,
-                       st_line_seq):
+                       transaction_seq):
 
         if line[1] == '1':
-            coda_parsing_note, st_line_seq = self._coda_record_31(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+            coda_parsing_note, transaction_seq = self._coda_record_31(
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
         elif line[1] == '2':
             coda_parsing_note = self._coda_record_32(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
         elif line[1] == '3':
             coda_parsing_note = self._coda_record_33(
-                coda_statement, line, coda_parsing_note, st_line_seq)
+                coda_statement, line, coda_parsing_note, transaction_seq)
 
-        return coda_parsing_note, st_line_seq
+        return coda_parsing_note, transaction_seq
 
     def _coda_record_31(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
         # list of lines parsed already
-        st_line = coda_statement['coda_statement_lines'][st_line_seq]
+        transaction = coda_statement['coda_transactions'][transaction_seq]
 
         info_line = {}
-        info_line['entry_date'] = st_line['entry_date']
+        info_line['entry_date'] = transaction['entry_date']
         info_line['type'] = 'information'
-        st_line_seq = st_line_seq + 1
-        info_line['sequence'] = st_line_seq
+        transaction_seq = transaction_seq + 1
+        info_line['sequence'] = transaction_seq
         info_line['struct_comm_type'] = ''
         info_line['struct_comm_type_desc'] = ''
         info_line['communication'] = ''
@@ -578,7 +580,7 @@ class AccountCodaImport(models.TransientModel):
         # get key of associated transaction record
         mm_seq = coda_statement['main_move_stack'][-1]['sequence']
         trans_check = \
-            coda_statement['coda_statement_lines'][mm_seq]['trans_ref']
+            coda_statement['coda_transactions'][mm_seq]['trans_ref']
         if info_line['trans_ref'] != trans_check:
             err_string = _(
                 "\nCODA parsing error on "
@@ -650,68 +652,68 @@ class AccountCodaImport(models.TransientModel):
         # positions 114-128 not processed
 
         # store transaction
-        coda_statement['coda_statement_lines'][st_line_seq] = info_line
-        return coda_parsing_note, st_line_seq
+        coda_statement['coda_transactions'][transaction_seq] = info_line
+        return coda_parsing_note, transaction_seq
 
     def _coda_record_32(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
-        st_line = coda_statement['coda_statement_lines'][st_line_seq]
-        if st_line['ref_move'] != line[2:6]:
+        transaction = coda_statement['coda_transactions'][transaction_seq]
+        if transaction['ref_move'] != line[2:6]:
             err_string = _(
                 "\nCODA parsing error on "
                 "information data record 3.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
-                ) % line[2:10]
+                ) % transaction['ref']
             raise Warning(_('Error !'), err_string)
-        st_line['name'] += line[10:115]
-        st_line['communication'] += line[10:115]
+        transaction['name'] += line[10:115]
+        transaction['communication'] += line[10:115]
 
         return coda_parsing_note
 
     def _coda_record_33(self, coda_statement, line, coda_parsing_note,
-                        st_line_seq):
+                        transaction_seq):
 
-        st_line = coda_statement['coda_statement_lines'][st_line_seq]
-        if st_line['ref_move'] != line[2:6]:
+        transaction = coda_statement['coda_transactions'][transaction_seq]
+        if transaction['ref_move'] != line[2:6]:
             err_string = _(
                 "\nCODA parsing error on "
                 "information data record 3.3, seq nr %s !"
                 "\nPlease report this issue via your Odoo support channel."
                 ) % line[2:10]
             raise Warning(_('Error !'), err_string)
-        st_line['name'] += line[10:100]
-        st_line['communication'] += line[10:100]
+        transaction['name'] += line[10:100]
+        transaction['communication'] += line[10:100]
 
         return coda_parsing_note
 
     def _coda_record_4(self, coda_statement, line, coda_parsing_note,
-                       st_line_seq):
+                       transaction_seq):
 
         comm_line = {}
         comm_line['type'] = 'communication'
-        st_line_seq = st_line_seq + 1
-        comm_line['sequence'] = st_line_seq
+        transaction_seq = transaction_seq + 1
+        comm_line['sequence'] = transaction_seq
         comm_line['ref'] = line[2:10]
         comm_line['communication'] = comm_line['name'] = line[32:112]
-        coda_statement['coda_statement_lines'][st_line_seq] = comm_line
+        coda_statement['coda_transactions'][transaction_seq] = comm_line
 
-        return coda_parsing_note, st_line_seq
+        return coda_parsing_note, transaction_seq
 
     def _coda_record_8(self, coda_statement, line, coda_parsing_note,
-                       st_line_seq, period_id):
+                       transaction_seq, period_id):
 
         cba = coda_statement['coda_bank_params']
         # get list of lines parsed already
-        coda_statement_lines = coda_statement['coda_statement_lines']
+        coda_transactions = coda_statement['coda_transactions']
 
         last_transaction = coda_statement['main_move_stack'][-1]
         if last_transaction['type'] == 'globalisation' \
                 and not last_transaction.get('detail_cnt'):
             # demote record with globalisation code from
             # 'globalisation' to 'regular' when no detail records
-            main_st_line_seq = last_transaction['sequence']
-            to_demote = coda_statement_lines[main_st_line_seq]
+            main_transaction_seq = last_transaction['sequence']
+            to_demote = coda_transactions[main_transaction_seq]
             to_demote.update({
                 'type': 'regular',
                 'glob_lvl_flag': 0,
@@ -723,7 +725,7 @@ class AccountCodaImport(models.TransientModel):
             # to globalisation
             if last_transaction.get('detail_cnt') \
                     and last_transaction.get('promoted'):
-                closeglobalise = coda_statement_lines[st_line_seq - 1]
+                closeglobalise = coda_transactions[transaction_seq - 1]
                 closeglobalise.update({
                     'glob_lvl_flag': last_transaction['glob_lvl_flag']})
         coda_statement['paper_nb_seq_number'] = line[1:4]
@@ -912,12 +914,14 @@ class AccountCodaImport(models.TransientModel):
             'balance_end_real': coda_statement['balance_end_real'],
             'state': 'draft',
             'company_id': cba.company_id.id,
+            'coda_bank_account_id': cba.id,
         }
 
         try:
-            ctx = dict(self._context, force_company=cba.company_id.id)
-            st = self.env['account.bank.statement'].with_context(ctx)
-            bank_st = st.create(st_vals)
+            with self._cr.savepoint():
+                ctx = dict(self._context, force_company=cba.company_id.id)
+                st = self.env['account.bank.statement'].with_context(ctx)
+                bank_st = st.create(st_vals)
         except Warning, e:
             self._cr.rollback()
             self._nb_err += 1
@@ -953,46 +957,47 @@ class AccountCodaImport(models.TransientModel):
 
         return bank_st
 
-    def _prepare_statement_line(self, coda_statement, line, coda_parsing_note):
+    def _prepare_statement_line(self, coda_statement, transaction,
+                                coda_parsing_note):
 
         cba = coda_statement['coda_bank_params']
         ctx = dict(self._context, force_company=cba.company_id.id)
         coda_st_line = self.env['coda.bank.statement.line'].with_context(ctx)
 
-        if not line['type'] == 'communication':
-            if line['trans_family'] in ST_LINE_NAME_FAMILIES:
-                line['name'] = self._get_st_line_name(line)
-            if line['type'] == 'information':
-                if line['struct_comm_type'] in PARSE_COMMS_INFO:
-                    line['name'], line['communication'] = \
-                        self._parse_comm_info(coda_statement, line)
-                elif line['struct_comm_type'] in PARSE_COMMS_MOVE:
-                    line['name'], line['communication'] = \
-                        self._parse_comm_move(coda_statement, line)
-            elif line['struct_comm_type'] in PARSE_COMMS_MOVE:
-                    line['name'], line['communication'] = \
-                        self._parse_comm_move(coda_statement, line)
+        if not transaction['type'] == 'communication':
+            if transaction['trans_family'] in ST_LINE_NAME_FAMILIES:
+                transaction['name'] = self._get_st_line_name(transaction)
+            if transaction['type'] == 'information':
+                if transaction['struct_comm_type'] in PARSE_COMMS_INFO:
+                    transaction['name'], transaction['communication'] = \
+                        self._parse_comm_info(coda_statement, transaction)
+                elif transaction['struct_comm_type'] in PARSE_COMMS_MOVE:
+                    transaction['name'], transaction['communication'] = \
+                        self._parse_comm_move(coda_statement, transaction)
+            elif transaction['struct_comm_type'] in PARSE_COMMS_MOVE:
+                    transaction['name'], transaction['communication'] = \
+                        self._parse_comm_move(coda_statement, transaction)
 
-        line['name'] = line['name'].strip()
+        transaction['name'] = transaction['name'].strip()
 
-        # handling transactional records, line['type'] in
+        # handling transactional records, transaction['type'] in
         # ['globalisation', 'regular']
 
-        if line['type'] in ['globalisation', 'regular']:
+        if transaction['type'] in ['globalisation', 'regular']:
 
-            if line['ref_move_detail'] == '0000':
+            if transaction['ref_move_detail'] == '0000':
                 # initialise stack with tuples
                 # (glob_lvl_flag, glob_code, glob_id, glob_name)
                 coda_statement['glob_id_stack'] = [(0, '', 0, '')]
 
-            glob_lvl_flag = line['glob_lvl_flag']
+            glob_lvl_flag = transaction['glob_lvl_flag']
             if glob_lvl_flag:
                 if coda_statement['glob_id_stack'][-1][0] == glob_lvl_flag:
-                    line['globalisation_id'] = \
+                    transaction['globalisation_id'] = \
                         coda_statement['glob_id_stack'][-1][2]
                     coda_statement['glob_id_stack'].pop()
                 else:
-                    glob_name = line['name'].strip() or '/'
+                    glob_name = transaction['name'].strip() or '/'
                     seq_mod = self.env['ir.sequence'].with_context(ctx)
                     glob_code = seq_mod.next_by_code(
                         'statement.line.global')
@@ -1004,14 +1009,14 @@ class AccountCodaImport(models.TransientModel):
                         'name': glob_name,
                         'type': 'coda',
                         'parent_id': coda_statement['glob_id_stack'][-1][2],
-                        'amount': line['globalisation_amount'],
-                        'payment_reference': line['payment_reference']
+                        'amount': transaction['globalisation_amount'],
+                        'payment_reference': transaction['payment_reference']
                     })
-                    line['globalisation_id'] = glob_line.id
+                    transaction['globalisation_id'] = glob_line.id
                     coda_statement['glob_id_stack'].append(
                         (glob_lvl_flag, glob_code, glob_line.id, glob_name))
 
-            line['note'] = _(
+            transaction['note'] = _(
                 'Partner Name: %s \nPartner Account Number: %s'
                 '\nTransaction Type: %s - %s'
                 '\nTransaction Family: %s - %s'
@@ -1020,107 +1025,82 @@ class AccountCodaImport(models.TransientModel):
                 '\nStructured Communication Type: %s - %s'
                 '\nPayment Reference: %s'
                 '\nCommunication: %s'
-                ) % (line['partner_name'],
-                     line['counterparty_number'],
-                     line['trans_type'],
-                     line['trans_type_desc'],
-                     line['trans_family'],
-                     line['trans_family_desc'],
-                     line['trans_code'],
-                     line['trans_code_desc'],
-                     line['trans_category'],
-                     line['trans_category_desc'],
-                     line['struct_comm_type'],
-                     line['struct_comm_type_desc'],
-                     line['payment_reference'],
-                     line['communication'])
+                ) % (transaction['partner_name'],
+                     transaction['counterparty_number'],
+                     transaction['trans_type'],
+                     transaction['trans_type_desc'],
+                     transaction['trans_family'],
+                     transaction['trans_family_desc'],
+                     transaction['trans_code'],
+                     transaction['trans_code_desc'],
+                     transaction['trans_category'],
+                     transaction['trans_category_desc'],
+                     transaction['struct_comm_type'],
+                     transaction['struct_comm_type_desc'],
+                     transaction['payment_reference'],
+                     transaction['communication'])
 
-            if line['type'] == 'globalisation' \
+            if transaction['type'] == 'globalisation' \
                     and coda_statement['type'] == 'info':
 
                 coda_st_line.create({
-                    'sequence': line['sequence'],
-                    'ref': line['ref'],
-                    'name': line['name'] or '/',
-                    'type': line['type'],
-                    'val_date': line['val_date'],
-                    'date': line['entry_date'],
-                    'globalisation_level': line['glob_lvl_flag'],
-                    'globalisation_amount': line['globalisation_amount'],
-                    'globalisation_id': line['globalisation_id'],
+                    'sequence': transaction['sequence'],
+                    'ref': transaction['ref'],
+                    'name': transaction['name'] or '/',
+                    'type': transaction['type'],
+                    'val_date': transaction['val_date'],
+                    'date': transaction['entry_date'],
+                    'globalisation_level': transaction['glob_lvl_flag'],
+                    'globalisation_amount':
+                        transaction['globalisation_amount'],
+                    'globalisation_id': transaction['globalisation_id'],
                     'statement_id': coda_statement['coda_st_id'],
-                    'note': line['note'],
+                    'note': transaction['note'],
                     })
 
-            else:  # line['type'] = 'regular'
+            else:  # transaction['type'] = 'regular'
 
                 if glob_lvl_flag == 0:
-                    line['globalisation_id'] = \
+                    transaction['globalisation_id'] = \
                         coda_statement['glob_id_stack'][-1][2]
 
                 if coda_statement['type'] == 'info':
                     coda_st_line.create({
-                        'sequence': line['sequence'],
-                        'ref': line['ref'],
-                        'name': line['name'] or '/',
-                        'type': line['type'],
-                        'val_date': line['val_date'],
-                        'date': line['entry_date'],
-                        'amount': line['amount'],
-                        'globalisation_level': line['glob_lvl_flag'],
-                        'globalisation_id': line['globalisation_id'],
+                        'sequence': transaction['sequence'],
+                        'ref': transaction['ref'],
+                        'name': transaction['name'] or '/',
+                        'type': transaction['type'],
+                        'val_date': transaction['val_date'],
+                        'date': transaction['entry_date'],
+                        'amount': transaction['amount'],
+                        'globalisation_level': transaction['glob_lvl_flag'],
+                        'globalisation_id': transaction['globalisation_id'],
                         'statement_id': coda_statement['coda_st_id'],
-                        'note': line['note'],
+                        'note': transaction['note'],
                         })
 
                 if coda_statement['type'] == 'normal':
 
-                    line['create_bank_st_line'] = True
-                    if line['amount'] != 0.0:
-                        if not line['name']:
-                            if line['globalisation_id']:
-                                line['name'] = \
+                    transaction['create_bank_st_line'] = True
+                    if transaction['amount'] != 0.0:
+                        if not transaction['name']:
+                            if transaction['globalisation_id']:
+                                transaction['name'] = \
                                     coda_statement['glob_id_stack'][-1][3] \
                                     or '/'
                             else:
-                                line['name'] = '/'
-
-                        # override default account mapping by mappings
-                        # defined in rules engine
-                        if not line['reconcile'] \
-                                and cba.account_mapping_ids:
-                            kwargs = {
-                                'coda_bank_account_id': cba.id,
-                                'trans_type_id': line['trans_type_id'],
-                                'trans_family_id': line['trans_family_id'],
-                                'trans_code_id': line['trans_code_id'],
-                                'trans_category_id':
-                                    line['trans_category_id'],
-                                'struct_comm_type_id':
-                                    line['struct_comm_type_id'],
-                                'partner_id': line['partner_id'],
-                                'freecomm': line['communication']
-                                    if not line['struct_comm_type'] else None,
-                                'structcomm': line['communication']
-                                    if line['struct_comm_type'] else None,
-                                'payment_reference': line['payment_reference']
-                                    if line['payment_reference'] else None,
-                            }
-                            rule = self.env[
-                                'coda.account.mapping.rule'].rule_get(**kwargs)
-                            if rule:
-                                for k in rule:
-                                    line[k] = rule[k]
+                                transaction['name'] = '/'
 
                         return coda_parsing_note
 
         # handling non-transactional records:
-        # line['type'] in ['information', 'communication']
+        # transaction['type'] in ['information', 'communication']
 
-        elif line['type'] == 'information':
+        elif transaction['type'] == 'information':
 
-            line['globalisation_id'] = coda_statement['glob_id_stack'][-1][2]
-            line['note'] = _(
+            transaction['globalisation_id'] = \
+                coda_statement['glob_id_stack'][-1][2]
+            transaction['note'] = _(
                 'Transaction Type' ': %s - %s'
                 '\nTransaction Family: %s - %s'
                 '\nTransaction Code: %s - %s'
@@ -1128,130 +1108,131 @@ class AccountCodaImport(models.TransientModel):
                 '\nStructured Communication Type: %s - %s'
                 '\nCommunication: %s'
                 ) % (
-                line['trans_type'], line['trans_type_desc'],
-                line['trans_family'], line['trans_family_desc'],
-                line['trans_code'], line['trans_code_desc'],
-                line['trans_category'], line['trans_category_desc'],
-                line['struct_comm_type'], line['struct_comm_type_desc'],
-                line['communication'])
+                transaction['trans_type'], transaction['trans_type_desc'],
+                transaction['trans_family'], transaction['trans_family_desc'],
+                transaction['trans_code'], transaction['trans_code_desc'],
+                transaction['trans_category'],
+                transaction['trans_category_desc'],
+                transaction['struct_comm_type'],
+                transaction['struct_comm_type_desc'],
+                transaction['communication'])
 
             if coda_statement['type'] == 'info':
                 coda_st_line.create({
-                    'sequence': line['sequence'],
-                    'ref': line['ref'],
-                    'name': line['name'].strip() or '/',
+                    'sequence': transaction['sequence'],
+                    'ref': transaction['ref'],
+                    'name': transaction['name'].strip() or '/',
                     'type': 'information',
-                    'date': line['entry_date'],
+                    'date': transaction['entry_date'],
                     'statement_id': coda_statement['coda_st_id'],
-                    'note': line['note'],
+                    'note': transaction['note'],
                     })
             else:
-                # update statement line values generated from the
+                # update transaction values generated from the
                 # 2.x move record
-                mm_seq = line['main_move_sequence']
-                coda_statement['coda_statement_lines'][mm_seq]['note'] += \
-                    '\n' + line['communication']
+                mm_seq = transaction['main_move_sequence']
+                coda_statement['coda_transactions'][mm_seq]['note'] += \
+                    '\n' + transaction['communication']
 
-        elif line['type'] == 'communication':
+        elif transaction['type'] == 'communication':
 
             if coda_statement['type'] == 'info':
                 coda_st_line.create({
-                    'sequence': line['sequence'],
-                    'ref': line['ref'],
-                    'name': line['name'].strip() or '/',
+                    'sequence': transaction['sequence'],
+                    'ref': transaction['ref'],
+                    'name': transaction['name'].strip() or '/',
                     'type': 'communication',
                     'date': coda_statement['date'],
                     'statement_id': coda_statement['coda_st_id'],
-                    'note': line['communication'],
+                    'note': transaction['communication'],
                     })
             else:
-                coda_statement['coda_note'] += '\n' + line['communication']
+                coda_statement['coda_note'] += \
+                    '\n' + transaction['communication']
 
         return coda_parsing_note
 
-    def _prepare_st_line_vals(self, coda_statement, line):
+    def _prepare_st_line_vals(self, coda_statement, transaction):
 
         st_line_vals = {
-            'ref': line['ref'],
-            'name': line['name'],
-            'val_date': line['val_date'],
-            'date': line['entry_date'],
-            'amount': line['amount'],
-            'partner_id': line['partner_id'],
-            'partner_name': line['partner_name'],
-            'counterparty_bic': line['counterparty_bic'],
-            'counterparty_number': line['counterparty_number'],
-            'counterparty_currency': line['counterparty_currency'],
-            'globalisation_id': line['globalisation_id'],
-            'payment_reference': line['payment_reference'],
+            'ref': transaction['ref'],
+            'name': transaction['name'],
+            'val_date': transaction['val_date'],
+            'date': transaction['entry_date'],
+            'amount': transaction['amount'],
+            'partner_name': transaction['partner_name'],
+            'counterparty_bic': transaction['counterparty_bic'],
+            'counterparty_number': transaction['counterparty_number'],
+            'counterparty_currency': transaction['counterparty_currency'],
+            'globalisation_id': transaction['globalisation_id'],
+            'payment_reference': transaction['payment_reference'],
             'statement_id': coda_statement['bank_st_id'],
-            'note': line['note']}
+            'note': transaction['note'],
+            'coda_transaction_dict': json.dumps(transaction)}
 
-        if line.get('bank_account_id'):
-            st_line_vals['bank_account_id'] = line['bank_account_id']
+        if transaction.get('bank_account_id'):
+            st_line_vals['bank_account_id'] = transaction['bank_account_id']
 
         return st_line_vals
 
-    def _create_bank_statement_line(self, coda_statement, line):
-        st_line_vals = self._prepare_st_line_vals(coda_statement, line)
+    def _create_bank_statement_line(self, coda_statement, transaction):
+        st_line_vals = self._prepare_st_line_vals(coda_statement, transaction)
         cba = coda_statement['coda_bank_params']
         ctx = dict(self._context, force_company=cba.company_id.id)
         stl = self.env['account.bank.statement.line'].with_context(ctx)
         st_line = stl.create(st_line_vals)
-        line['st_line_id'] = st_line.id
+        transaction['st_line_id'] = st_line.id
 
-    def _prepare_mv_line_dict(self, coda_statement, line):
-
-        mv_line_dict = {}
-
-        if line.get('reconcile'):
-            cp_aml_id = line['reconcile']
-            # Check if the same counterparty entry hasn't been processed
-            # already. This happens when the same invoice is paid several
-            # times in the same bank statement.
-            if cp_aml_id not in coda_statement['reconcile_ids']:
-                coda_statement['reconcile_ids'].append(cp_aml_id)
-                mv_line_dict['counterpart_move_line_id'] = cp_aml_id
-            else:
-                return {}
-
-        elif line.get('account_id'):
-            mv_line_dict['account_id'] = line['account_id']
-            if line.get('tax_code_id'):
-                mv_line_dict['tax_code_id'] = line['tax_code_id']
-                mv_line_dict['tax_amount'] = abs(line['amount'])
-            if line.get('analytic_account_id'):
-                mv_line_dict['analytic_account_id'] = \
-                    line['analytic_account_id']
-
-        # the process_reconciliation method takes assumes that the
-        # input mv_line_dict 'debit'/'credit' contains the amount
-        # in bank statement line currency and will handle the currency
-        # conversions
-        if line['amount'] > 0:
-            mv_line_dict['credit'] = line['amount']
+    def _normal2info(self, coda_statement):
+        """
+        Call this method in the '_coda_statement_hook' if you do not
+        want to create a bank statement for CODA files without transactions.
+        """
+        normal2info = False
+        transactions = coda_statement['coda_transactions']
+        if not coda_statement['first_transaction_date']:
+            normal2info = True
         else:
-            mv_line_dict['debit'] = -line['amount']
+            transaction_vals = [x for x in transactions.itervalues()]
+            transactions = filter(
+                lambda x: (x['type'] in ['globalisation', 'regular'])
+                and x['amount'],
+                transaction_vals)
+            if not transactions:
+                # don't create a bank statement for CODA files
+                # without transactions
+                normal2info = True
+        if normal2info:
+            coda_statement['type'] = 'info'
+            coda_statement['coda_parsing_note'] += _(
+                "\n\nThe CODA Statement %s does not contain transactions, "
+                "hence no Bank Statement has been created."
+                "\nSelect the 'CODA Bank Statement' "
+                "to check the contents of %s."
+                ) % (coda_statement['name'], coda_statement['name'])
 
-        return mv_line_dict
+    def _coda_statement_init_hook(self, coda_statement):
+        """
+        Use this method to take customer specific actions
+        once a specific statement has been identified in a coda file.
+        """
 
-    def _create_move_and_reconcile(self, coda_statement, line):
+    def _coda_statement_hook(self, coda_statement):
+        """
+        Use this method to take customer specific actions
+        after the creation of the 'coda_statement' dict by the parsing engine.
 
-        mv_line_dict = self._prepare_mv_line_dict(coda_statement, line)
-        if mv_line_dict:
-            try:
-                err_string = ''
-                absl = self.env['account.bank.statement.line'].browse(
-                    line['st_line_id'])
-                absl.process_reconciliation([mv_line_dict])
-            except orm.except_orm, e:
-                err_string = _('\nApplication Error : ') + str(e)
-            except Exception, e:
-                err_string = _('\nSystem Error : ') + str(e)
-            except:
-                err_string = _('\nUnknown Error : ') + str(e)
-            if err_string:
-                coda_statement['coda_parsing_note'] += err_string
+        e.g. Do not generate statements without transactions:
+        self._normal2info(coda_statement)
+        """
+
+    def _coda_transaction_hook(self, coda_statement, transaction):
+        """
+        Use this method to adapt the transaction created by the
+        CODA parsing to customer specific needs.
+        """
+        transaction_copy = transaction.copy()
+        return [transaction_copy]
 
     @api.multi
     def coda_parsing(self):
@@ -1345,26 +1326,23 @@ class AccountCodaImport(models.TransientModel):
         if not self._coda_id:
             err_string = ''
             try:
-                if self._batch:
-                    codafile = base64.encodestring(codafile)
-                coda = self.env['account.coda'].create({
-                    'name': codafilename,
-                    'coda_data': codafile,
-                    'coda_creation_date': coda_statement['date'],
-                    'date': fields.Date.context_today(self),
-                    'user_id': self._uid,
-                    })
-                self._coda_id = coda.id
-                self._cr.commit()
-
+                with self._cr.savepoint():
+                    if self._batch:
+                        codafile = base64.encodestring(codafile)
+                    coda = self.env['account.coda'].create({
+                        'name': codafilename,
+                        'coda_data': codafile,
+                        'coda_creation_date': coda_statement['date'],
+                        'date': fields.Date.context_today(self),
+                        'user_id': self._uid,
+                        })
+                    self._coda_id = coda.id
             except orm.except_orm, e:
-                self._cr.rollback()
                 err_string = _('\nApplication Error : ') + str(e)
             except Exception, e:
-                self._cr.rollback()
                 err_string = _('\nSystem Error : ') + str(e)
             except:
-                self._cr.rollback()
+                e = exc_info()[0]
                 err_string = _('\nUnknown Error : ') + str(e)
             if err_string:
                 raise Warning(_('CODA Import failed !'), err_string)
@@ -1372,7 +1350,7 @@ class AccountCodaImport(models.TransientModel):
         self._nb_err = 0
         self._err_string = ''
         coda_st_ids = []
-        bank_st_ids = []
+        bank_statements = self.env['account.bank.statement']
 
         for coda_statement in coda_statements:
 
@@ -1380,9 +1358,9 @@ class AccountCodaImport(models.TransientModel):
             cba = coda_statement['coda_bank_params']
             self._coda_statement_hook(coda_statement)
             discard = self._check_duplicate(coda_statement)
-            lines = coda_statement['coda_statement_lines']
+            transactions = coda_statement['coda_transactions']
 
-            if not lines:
+            if not transactions:
                 err_string = _(
                     "\nThe CODA File contains empty CODA Statement %s "
                     "for Bank Account %s !") % (
@@ -1401,52 +1379,42 @@ class AccountCodaImport(models.TransientModel):
             elif not discard:
                 bank_st = self._create_bank_statement(coda_statement)
                 if bank_st:
-                    bank_st_ids.append(bank_st.id)
+                    bank_statements += bank_st
                     coda_statement['bank_st_id'] = bank_st.id
                 else:
                     break
 
             # prepare bank statement line values and merge
             # information records into the statement line
-            coda_statement['reconcile_ids'] = []
             coda_statement['glob_id_stack'] = []
 
             coda_parsing_note = coda_statement['coda_parsing_note']
 
-            for x in lines:
-                line = lines[x]
-                if coda_statement['type'] == 'normal' \
-                        and line['type'] == 'regular' and line['amount']:
-                    coda_parsing_note = self._match_and_reconcile(
-                        coda_statement, line, coda_parsing_note)
-                    if cba.update_partner:
-                        coda_parsing_note = self._update_partner_bank(
-                            coda_statement, line, coda_parsing_note)
+            for x in transactions:
+                transaction = transactions[x]
                 coda_parsing_note = self._prepare_statement_line(
-                    coda_statement, line, coda_parsing_note)
+                    coda_statement, transaction, coda_parsing_note)
 
-            bank_st_lines = []
-            for x in lines:
-                line = lines[x]
-                if line.get('create_bank_st_line'):
-                    res_line_hook = self._coda_st_line_hook(
-                        coda_statement, line)
-                    if res_line_hook:
-                        bank_st_lines += res_line_hook
+            bank_st_transactions = []
+            for x in transactions:
+                transaction = transactions[x]
+                if transaction.get('create_bank_st_line'):
+                    res_transaction_hook = self._coda_transaction_hook(
+                        coda_statement, transaction)
+                    if res_transaction_hook:
+                        bank_st_transactions += res_transaction_hook
 
-            # creation of bank statement lines, account moves
+            # creation of bank statement lines
             if coda_statement['type'] == 'normal':
-                # resequence since _st_line_hook may add/remove lines
-                st_line_seq = 0
+                # resequence since _coda_transaction_hook may add/remove lines
+                transaction_seq = 0
                 st_balance_end = round(coda_statement['balance_start'], 2)
-                for st_line in bank_st_lines:
-                    st_line_seq += 1
-                    st_line['sequence'] = st_line_seq
-                    st_balance_end += round(st_line['amount'], 2)
-                    self._create_bank_statement_line(coda_statement, st_line)
-                    if st_line.get('reconcile') or st_line.get('account_id'):
-                        self._create_move_and_reconcile(
-                            coda_statement, st_line)
+                for transaction in bank_st_transactions:
+                    transaction_seq += 1
+                    transaction['sequence'] = transaction_seq
+                    st_balance_end += round(transaction['amount'], 2)
+                    self._create_bank_statement_line(
+                        coda_statement, transaction)
 
                 if round(st_balance_end
                          - coda_statement['balance_end_real'], 2):
@@ -1522,17 +1490,25 @@ class AccountCodaImport(models.TransientModel):
             coda.write({'note': old_note + note, 'state': 'done'})
             self._cr.commit()
             if self._batch:
-                return None
+                return bank_statements
         else:
             raise Warning(
                 _("CODA Import failed !"), self._err_string)
+
+        if self.reconcile:
+            reconcile_note = ''
+            for st in bank_statements:
+                reconcile_note = st._automatic_reconcile(reconcile_note)
+            if reconcile_note:
+                note += '\n\n'
+                note += _("Automatic Reconcile remarks:") + reconcile_note
 
         self.note = note
 
         ctx = self._context.copy()
         ctx.update({
             'coda_id': self._coda_id,
-            'bk_st_ids': bank_st_ids,
+            'bk_st_ids': bank_statements.ids,
             'coda_st_ids': coda_st_ids,
             })
         module = __name__.split('addons.')[1].split('.')[0]
@@ -1551,75 +1527,147 @@ class AccountCodaImport(models.TransientModel):
             'type': 'ir.actions.act_window',
         }
 
-    def _match_and_reconcile(self, coda_statement, line, coda_parsing_note):
+    def _automatic_reconcile(self, statement, reconcile_note=None):
+        reconcile_note = reconcile_note or ''
+        cba = statement.coda_bank_account_id
+        if cba:
+
+            # TODO: move self._company_bank_accounts setting to common
+            # code block for use by parsing & reconcile
+            company_banks = self.env['res.partner.bank'].search(
+                [('company_id', '=', cba.company_id.id)])
+            company_bank_accounts = [b.acc_number for b in company_banks]
+            self._company_bank_accounts = [
+                x.replace(' ', '')
+                for x in company_bank_accounts]
+
+            for st_line in statement.line_ids:
+                if st_line.amount and not st_line.journal_entry_id:
+                    transaction = json.loads(st_line.coda_transaction_dict)
+                    if transaction:
+                        try:
+                            with self._cr.savepoint():
+                                reconcile_note = self._st_line_reconcile(
+                                    st_line, cba, transaction, reconcile_note)
+                        except:
+                            e = exc_info()[0]
+                            reconcile_note += '\n\n' + _(
+                                "Error while processing statement line "
+                                "with ref '%s': %s"
+                                ) % (transaction['ref'], e)
+        return reconcile_note
+
+    def _st_line_reconcile(self, st_line, cba, transaction, reconcile_note):
+
+        reconcile_note = self._match_and_reconcile(
+            st_line, cba, transaction, reconcile_note)
+        if cba.update_partner:
+            reconcile_note = self._update_partner_bank(
+                st_line, cba, transaction, reconcile_note)
+
+        # override default account mapping by mappings
+        # defined in rules engine
+        if not transaction.get('reconcile_id') \
+                or transaction.get('account_id'):
+            if cba.account_mapping_ids:
+                kwargs = {
+                    'coda_bank_account_id': cba.id,
+                    'trans_type_id': transaction['trans_type_id'],
+                    'trans_family_id': transaction['trans_family_id'],
+                    'trans_code_id': transaction['trans_code_id'],
+                    'trans_category_id':
+                        transaction['trans_category_id'],
+                    'struct_comm_type_id':
+                        transaction['struct_comm_type_id'],
+                    'partner_id': transaction.get('partner_id'),
+                    'freecomm': transaction['communication']
+                        if not transaction['struct_comm_type'] else None,
+                    'structcomm': transaction['communication']
+                        if transaction['struct_comm_type'] else None,
+                    'payment_reference': transaction['payment_reference']
+                        if transaction['payment_reference'] else None,
+                }
+                rule = self.env[
+                    'coda.account.mapping.rule'].rule_get(**kwargs)
+                if rule:
+                    for k in rule:
+                        transaction[k] = rule[k]
+
+        if transaction.get('reconcile_id') or transaction.get('account_id'):
+            reconcile_note = self._create_move_and_reconcile(
+                st_line, cba, transaction, reconcile_note)
+
+        if transaction.get('partner_id'):
+            st_line.write({'partner_id': transaction['partner_id']})
+
+        return reconcile_note
+
+    def _match_and_reconcile(self, st_line, cba, transaction, reconcile_note):
         """
         Matching and Reconciliation logic.
-        Returns: coda_parsing_note
+        Returns: reconcile_note
         """
-
         # match on payment reference
-        coda_parsing_note, match = self._match_payment_reference(
-            coda_statement, line, coda_parsing_note)
+        reconcile_note, match = self._match_payment_reference(
+            st_line, cba, transaction, reconcile_note)
         if match:
-            return coda_parsing_note
+            return reconcile_note
 
         # match on invoice
-        coda_parsing_note, match = self._match_invoice(
-            coda_statement, line, coda_parsing_note)
+        reconcile_note, match = self._match_invoice(
+            st_line, cba, transaction, reconcile_note)
         if match:
-            return coda_parsing_note
+            return reconcile_note
 
         # match on sale order
-        coda_parsing_note, match = self._match_sale_order(
-            coda_statement, line, coda_parsing_note)
+        reconcile_note, match = self._match_sale_order(
+            st_line, cba, transaction, reconcile_note)
         if match:
-            return coda_parsing_note
+            return reconcile_note
 
         # match on open accounting entries
-        coda_parsing_note, match = self._match_account_move_line(
-            coda_statement, line, coda_parsing_note)
+        reconcile_note, match = self._match_account_move_line(
+            st_line, cba, transaction, reconcile_note)
         if match:
-            return coda_parsing_note
+            return reconcile_note
 
         # check if internal_transfer or find partner via counterparty_number
         # when previous lookup steps fail
-        coda_parsing_note, match = self._match_counterparty(
-            coda_statement, line, coda_parsing_note)
+        reconcile_note, match = self._match_counterparty(
+            st_line, cba, transaction, reconcile_note)
         if match:
-            return coda_parsing_note
+            return reconcile_note
 
-        return coda_parsing_note
+        return reconcile_note
 
-    def _match_payment_reference(self, coda_statement, line,
-                                 coda_parsing_note):
+    def _match_payment_reference(self, st_line, cba, transaction,
+                                 reconcile_note):
         """
         placeholder for ISO 20022 Payment Order matching,
         cf. module l10n_be_coda_pain
         """
-        return coda_parsing_note, {}
+        return reconcile_note, {}
 
-    def _match_sale_order(self, coda_statement, line, coda_parsing_note):
+    def _match_sale_order(self, st_line, cba, transaction, reconcile_note):
         """
         placeholder for sale order matching, cf. module l10n_be_coda_sale
         """
-        return coda_parsing_note, {}
+        return reconcile_note, {}
 
-    def _match_invoice_number(self, coda_statement, line, coda_parsing_note,
-                              free_comm):
+    def _match_invoice_number(self, st_Line, cba, transaction,
+                              reconcile_note, free_comm):
         """
         check matching invoice number in free form communication
         combined with matching amount
         """
-
-        cba = coda_statement['coda_bank_params']
         inv_ids = False
         amount_fmt = '%.2f'
-        if line['amount'] > 0:
+        if transaction['amount'] > 0:
             amount_rounded = \
-                amount_fmt % round(line['amount'], 2)
+                amount_fmt % round(transaction['amount'], 2)
         else:
             amount_rounded = \
-                amount_fmt % round(-line['amount'], 2)
+                amount_fmt % round(-transaction['amount'], 2)
 
         select = \
             "SELECT id FROM " \
@@ -1631,7 +1679,7 @@ class AccountCodaImport(models.TransientModel):
             % (free_comm, cba.company_id.id, amount_rounded)
 
         # 'out_invoice', 'in_refund'
-        if line['amount'] > 0:
+        if transaction['amount'] > 0:
             select2 = " AND type = 'out_invoice' AND " \
                 "free_comm ilike '%'||number||'%'"
             self._cr.execute(select + select2)
@@ -1664,36 +1712,35 @@ class AccountCodaImport(models.TransientModel):
 
         return inv_ids
 
-    def _match_invoice(self, coda_statement, line, coda_parsing_note):
+    def _match_invoice(self, st_line, cba, transaction, reconcile_note):
 
-        cba = coda_statement['coda_bank_params']
         match = {}
 
         # check bba scor in bank statement line against open invoices
-        if line['struct_comm_bba'] and cba.find_bbacom:
-            if line['amount'] > 0:
+        if transaction['struct_comm_bba'] and cba.find_bbacom:
+            if transaction['amount'] > 0:
                 domain = [('type', 'in', ['out_invoice', 'in_refund'])]
             else:
                 domain = [('type', 'in', ['in_invoice', 'out_refund'])]
             domain += [('state', '=', 'open'),
-                       ('reference', '=', line['struct_comm_bba']),
+                       ('reference', '=', transaction['struct_comm_bba']),
                        ('reference_type', '=', 'bba')]
             invoices = self.env['account.invoice'].search(domain)
             if not invoices:
-                coda_parsing_note += _(
+                reconcile_note += _(
                     "\n    Bank Statement '%%(name)s' line '%s':"
                     "\n        There is no invoice matching the "
                     "Structured Communication '%s' !"
-                    ) % (line['ref'], line['struct_comm_bba'])
+                    ) % (transaction['ref'], transaction['struct_comm_bba'])
             elif len(invoices) == 1:
                 match['invoice_id'] = invoices[0].id
             elif len(invoices) > 1:
-                coda_parsing_note += _(
+                reconcile_note += _(
                     "\n    Bank Statement '%%(name)s' line '%s':"
                     "\n        There are multiple invoices matching the "
                     "Structured Communication '%s' !"
                     "\n        A manual reconciliation is required."
-                    ) % (line['ref'], line['struct_comm_bba'])
+                    ) % (transaction['ref'], transaction['struct_comm_bba'])
 
         # use free comm in bank statement line
         # for lookup against open invoices
@@ -1701,7 +1748,7 @@ class AccountCodaImport(models.TransientModel):
             # extract possible bba scor from free form communication
             # and try to find matching invoice
             free_comm_digits = re.sub(
-                '\D', '', line['communication'] or '')
+                '\D', '', transaction['communication'] or '')
             select = \
                 "SELECT id FROM " \
                 "(SELECT id, type, state, amount_total, number, " \
@@ -1711,7 +1758,7 @@ class AccountCodaImport(models.TransientModel):
                 "AND free_comm_digits LIKE" \
                 " '%%'||regexp_replace(reference, '\D', '', 'g')||'%%'" \
                 % (free_comm_digits)
-            if line['amount'] > 0:
+            if transaction['amount'] > 0:
                 select2 = " AND type IN ('out_invoice', 'in_refund')"
             else:
                 select2 = " AND type IN ('in_invoice', 'out_refund')"
@@ -1722,70 +1769,74 @@ class AccountCodaImport(models.TransientModel):
                 if len(inv_ids) == 1:
                     match['invoice_id'] = inv_ids[0]
 
-        if not match and line['communication'] and cba.find_inv_number:
+        if not match and transaction['communication'] and cba.find_inv_number:
 
             # check matching invoice number in free form communication
-            free_comm = repl_special(line['communication'].strip())
+            free_comm = repl_special(transaction['communication'].strip())
             inv_ids = self._match_invoice_number(
-                coda_statement, line, coda_parsing_note, free_comm)
+                st_line, cba, transaction, reconcile_note, free_comm)
             if not inv_ids:
                 # check matching invoice number in free form communication
                 # of upper globalisation level line
-                g_seq = line.get('glob_sequence')
+                g_seq = transaction.get('glob_sequence')
                 if g_seq:
-                    upper_line = coda_statement['coda_statement_lines'][g_seq]
+                    upper_line = st_line.search(
+                        [('statement_id', '=', st_line.statement_id.id),
+                         ('sequence', '=', g_seq)])
+                    upper_transaction = json.loads(
+                        upper_line.coda_transaction_dict)
                     free_comm = repl_special(
-                        upper_line['communication'].strip())
+                        upper_transaction['communication'].strip())
                     inv_ids = self._match_invoice_number(
-                        coda_statement, line, coda_parsing_note, free_comm)
+                        st_line, cba, transaction, reconcile_note, free_comm)
 
             if inv_ids:
                 if len(inv_ids) == 1:
                     match['invoice_id'] = inv_ids[0]
                 elif len(inv_ids) > 1:
-                    coda_parsing_note += _(
+                    reconcile_note += _(
                         "\n    Bank Statement '%%(name)s' line '%s':"
                         "\n        There are multiple invoices matching the "
                         "Invoice Amount and Reference."
                         "\n        A manual reconciliation is required."
-                        ) % (line['ref'])
+                        ) % (transaction['ref'])
 
         if match:
             invoice = self.env['account.invoice'].browse(match['invoice_id'])
             partner = invoice.partner_id.commercial_partner_id
-            line['partner_id'] = partner.id
+            transaction['partner_id'] = partner.id
             imls = self.env['account.move.line'].search(
                 [('move_id', '=', invoice.move_id.id),
                  ('reconcile_id', '=', False),
                  ('account_id', '=', invoice.account_id.id)])
             if imls:
-                line['reconcile'] = imls[0].id
+                transaction['reconcile_id'] = imls[0].id
             else:
                 err_string = _(
                     "\nThe CODA parsing detected a database inconsistency "
                     "while processing movement data record 2.3, seq nr %s !"
                     "'\nPlease report this issue via your "
                     "Odoo support channel."
-                    ) % line['ref']
+                    ) % transaction['ref']
                 err_code = 'M0001'
                 if self.batch:
                     return (err_code, err_string)
                 raise Warning(_('Error !'), err_string)
 
-        return coda_parsing_note, match
+        return reconcile_note, match
 
-    def _match_aml_other_domain_field(self, coda_statement, line):
+    def _match_aml_other_domain_field(self, st_line, cba, transaction):
         """
         Customise search input data and field.
         """
         search_field = 'ref'
-        search_input = repl_special(line['communication'].strip())
+        search_input = repl_special(transaction['communication'].strip())
         return search_field, search_input
 
-    def _match_aml_other_domain(self, coda_statement, line):
+    def _match_aml_other_domain(self, st_line, cba, transaction):
 
         search_field, search_input = self._match_aml_other_domain_field(
-            coda_statement, line)
+            st_line, cba, transaction)
         domain = [(search_field, '=', search_input),
                   ('reconcile_id', '=', False),
                   ('state', '=', 'valid'),
@@ -1793,15 +1844,14 @@ class AccountCodaImport(models.TransientModel):
                   ('account_id.type', 'not in', ['payable', 'receivable'])]
         return domain
 
-    def _match_aml_other(self, coda_statement, line, coda_parsing_note):
+    def _match_aml_other(self, st_line, cba, transaction, reconcile_note):
         """
         check matching with non payable/receivable open accounting entries.
         """
-        cba = coda_statement['coda_bank_params']
         cur = cba.currency_id
         match = {}
 
-        domain = self._match_aml_other_domain(coda_statement, line)
+        domain = self._match_aml_other_domain(st_line, cba, transaction)
         amls = self.env['account.move.line'].search(domain)
 
         matches = []
@@ -1809,23 +1859,23 @@ class AccountCodaImport(models.TransientModel):
             sign = (aml.debit - aml.credit) > 0 and 1 or -1
             if cur.name == 'EUR':
                 amt = sign * aml.amount_residual
-                if cur.is_zero(amt - line['amount']):
+                if cur.is_zero(amt - transaction['amount']):
                     matches.append(aml)
             else:
                 if aml.currency_id == cur:
                     amt = sign * aml.amount_residual_currency
-                    if cur.is_zero(amt - line['amount']):
+                    if cur.is_zero(amt - transaction['amount']):
                         matches.append(aml)
 
         if len(matches) == 1:
             aml = matches[0]
             match['move_line_id'] = aml.id
-            line['partner_id'] = aml.partner_id.id
-            line['reconcile'] = aml.id
+            transaction['partner_id'] = aml.partner_id.id
+            transaction['reconcile_id'] = aml.id
 
-        return coda_parsing_note, match
+        return reconcile_note, match
 
-    def _match_aml_arap_domain_field(self, coda_statement, line):
+    def _match_aml_arap_domain_field(self, st_line, cba, transaction):
         """
         Customise search input data and field.
 
@@ -1842,41 +1892,40 @@ class AccountCodaImport(models.TransientModel):
         (hence not generated from an Odoo invoice).
         """
         search_field = 'name'
-        search_input = line['communication'].strip()
+        search_input = transaction['communication'].strip()
         return search_field, search_input
 
-    def _match_aml_arap_refine(self, coda_statement, line,
+    def _match_aml_arap_refine(self, st_line, cba, transaction,
                                coda_parsing_note, matches):
         """
         Refine matching logic by parsing the 'search_field'.
         """
         search_field, search_input = self._match_aml_arap_domain_field(
-            coda_statement, line)
+            st_line, cba, transaction)
         refined = []
         for aml in matches:
             aml_lookup_field = getattr(aml, search_field)
-            if line['struct_comm_bba']:
+            if transaction['struct_comm_bba']:
                 aml_lookup_field = re.sub('\D', '', aml_lookup_field)
             if search_input in aml_lookup_field:
                 refined.append(aml)
         return refined
 
-    def _match_aml_arap_domain(self, coda_statement, line):
+    def _match_aml_arap_domain(self, st_line, cba, transaction):
         domain = [('reconcile_id', '=', False),
                   ('state', '=', 'valid'),
                   ('account_id.type', 'in', ['payable', 'receivable']),
                   ('partner_id', '!=', False)]
         return domain
 
-    def _match_aml_arap(self, coda_statement, line, coda_parsing_note):
+    def _match_aml_arap(self, st_line, cba, transaction, reconcile_note):
         """
         check match with open payables/receivables.
         """
-        cba = coda_statement['coda_bank_params']
         cur = cba.currency_id
         match = {}
 
-        domain = self._match_aml_arap_domain(coda_statement, line)
+        domain = self._match_aml_arap_domain(st_line, cba, transaction)
         amls = self.env['account.move.line'].search(domain)
 
         matches = []
@@ -1884,59 +1933,57 @@ class AccountCodaImport(models.TransientModel):
             sign = (aml.debit - aml.credit) > 0 and 1 or -1
             if cur.name == 'EUR':
                 amt = sign * aml.amount_residual
-                if cur.is_zero(amt - line['amount']):
+                if cur.is_zero(amt - transaction['amount']):
                     matches.append(aml)
             else:
                 if aml.currency_id == cur:
                     amt = sign * aml.amount_residual_currency
-                    if cur.is_zero(amt - line['amount']):
+                    if cur.is_zero(amt - transaction['amount']):
                         matches.append(aml)
 
         matches = self._match_aml_arap_refine(
-            coda_statement, line, coda_parsing_note, matches)
+            st_line, cba, transaction, reconcile_note, matches)
 
         if len(matches) == 1:
             aml = matches[0]
             match['move_line_id'] = aml.id
-            line['partner_id'] = aml.partner_id.id
-            line['reconcile'] = aml.id
+            transaction['partner_id'] = aml.partner_id.id
+            transaction['reconcile_id'] = aml.id
 
-        return coda_parsing_note, match
+        return reconcile_note, match
 
-    def _match_account_move_line(self, coda_statement, line,
-                                 coda_parsing_note):
+    def _match_account_move_line(self, st_line, cba, transaction,
+                                 reconcile_note):
         """
         Match against open acounting entries.
         """
-        cba = coda_statement['coda_bank_params']
         match = {}
 
         if cba.find_account_move_line:
 
             # exclude non-partner related transactions (e.g. bank costs)
-            if not line['counterparty_number']:
-                return coda_parsing_note, match
+            if not transaction['counterparty_number']:
+                return reconcile_note, match
 
             # match on open receivables/payables
-            coda_parsing_note, match = self._match_aml_arap(
-                coda_statement, line, coda_parsing_note)
+            reconcile_note, match = self._match_aml_arap(
+                st_line, cba, transaction, reconcile_note)
             if match:
-                return coda_parsing_note, match
+                return reconcile_note, match
 
             # match on other open entries
-            coda_parsing_note, match = self._match_aml_other(
-                coda_statement, line, coda_parsing_note)
+            reconcile_note, match = self._match_aml_other(
+                st_line, cba, transaction, reconcile_note)
             if match:
-                return coda_parsing_note, match
+                return reconcile_note, match
 
-        return coda_parsing_note, match
+        return reconcile_note, match
 
-    def _match_counterparty(self, coda_statement, line, coda_parsing_note):
+    def _match_counterparty(self, st_line, cba, transaction, reconcile_note):
 
-        cba = coda_statement['coda_bank_params']
         match = {}
         partner_banks = False
-        cp_number = line['counterparty_number']
+        cp_number = transaction['counterparty_number']
         if cp_number:
             transfer_accounts = filter(
                 lambda x: cp_number in x,
@@ -1944,9 +1991,8 @@ class AccountCodaImport(models.TransientModel):
             if transfer_accounts:
                 # exclude transactions from
                 # counterparty_number = bank account number of this statement
-                if cp_number not in get_iban_and_bban(
-                        coda_statement['acc_number']):
-                    line['account_id'] = cba.transfer_account.id
+                if cp_number not in get_iban_and_bban(cba.bank_id.acc_number):
+                    transaction['account_id'] = cba.transfer_account.id
                     match['transfer_account'] = True
             elif cba.find_partner:
                 partner_banks = self.env['res.partner.bank'].search(
@@ -1972,36 +2018,39 @@ class AccountCodaImport(models.TransientModel):
                 if add_pb:
                     partner_banks_2.append(pb)
             if len(partner_banks_2) > 1:
-                coda_parsing_note += _(
-                    "\n    Bank Statement '%%(name)s' line '%s':"
+                reconcile_note += _(
+                    "\n    Bank Statement '%s' line '%s':"
                     "\n        No partner record assigned: "
                     "There are multiple partners with the same "
                     "Bank Account Number '%s'!"
-                    ) % (line['ref'], cp_number)
+                    ) % (st_line.statement_id.name,
+                         transaction['ref'], cp_number)
             elif len(partner_banks_2) == 1:
                 partner_bank = partner_banks_2[0]
-                line['bank_account_id'] = partner_bank.id
-                line['partner_id'] = partner_bank.partner_id.id
-                match['partner_id'] = line['partner_id']
+                transaction['bank_account_id'] = partner_bank.id
+                transaction['partner_id'] = partner_bank.partner_id.id
+                match['partner_id'] = transaction['partner_id']
         elif not match and cba.find_partner:
             if cp_number:
-                coda_parsing_note += _(
-                    "\n    Bank Statement '%%(name)s' line '%s':"
+                reconcile_note += _(
+                    "\n    Bank Statement '%s' line '%s':"
                     "\n        The bank account '%s' is "
                     "not defined for the partner '%s' !"
-                    ) % (line['ref'], cp_number, line['partner_name'])
+                    ) % (st_line.statement_id.name,
+                         transaction['ref'], cp_number,
+                         transaction['partner_name'])
             else:
-                coda_parsing_note += _(
-                    "\n    Bank Statement '%%(name)s' line '%s':"
+                reconcile_note += _(
+                    "\n    Bank Statement '%s' line '%s':"
                     "\n        No matching partner record found !"
                     "\n        Please adjust the corresponding entry "
                     "manually in the generated Bank Statement."
-                    ) % (line['ref'])
+                    ) % (st_line.statement_id.name, transaction['ref'])
 
-        return coda_parsing_note, match
+        return reconcile_note, match
 
-    def _unlink_duplicate_partner_banks(self, coda_statement, line,
-                                        coda_parsing_note, partner_banks):
+    def _unlink_duplicate_partner_banks(self, st_line, cba, transaction,
+                                        reconcile_note, partner_banks):
         """
         Clean up partner bank duplicates, keep most recently created.
         This logic may conflict with factoring.
@@ -2010,93 +2059,87 @@ class AccountCodaImport(models.TransientModel):
         """
         partner_bank_dups = partner_banks[:-1]
         partner = partner_banks[0].partner_id
-        coda_parsing_note += _(
+        reconcile_note += _(
             "\n    Bank Statement '%%(name)s' line '%s':"
             "\n        Duplicate Bank Account(s) with account number '%s' "
             "for partner '%s' (id:%s) have been removed."
-            ) % (line['ref'],
+            ) % (transaction['ref'],
                  partner_banks[0].acc_number,
                  partner.name,
                  partner.id)
         partner_bank_dups.unlink()
-        return coda_parsing_note
+        return reconcile_note
 
-    def _update_partner_bank(self, coda_statement, line, coda_parsing_note):
+    def _update_partner_bank(self, st_line, cba, transaction, reconcile_note):
         """ add bank account to partner record """
-        cba = coda_statement['coda_bank_params']
 
-        if line['partner_id'] and line['counterparty_number'] \
-                and line['account_id'] != cba.transfer_account.id:
+        if transaction.get('partner_id') \
+                and transaction['counterparty_number'] \
+                and transaction.get('account_id') != cba.transfer_account.id:
             partner_banks = self.env['res.partner.bank'].search(
-                [('acc_number', '=', line['counterparty_number']),
-                 ('partner_id', '=', line['partner_id']),
+                [('acc_number', '=', transaction['counterparty_number']),
+                 ('partner_id', '=', transaction['partner_id']),
                  ('company_id', '=', False)],
                 order='id')
             if len(partner_banks) > 1:
-                coda_parsing_note = self._unlink_duplicate_partner_banks(
-                    coda_statement, line, coda_parsing_note, partner_banks)
+                reconcile_note = self._unlink_duplicate_partner_banks(
+                    st_line, cba, transaction, reconcile_note, partner_banks)
 
             if not partner_banks:
                 feedback = self.update_partner_bank(
-                    line['counterparty_bic'], line['counterparty_number'],
-                    line['partner_id'], line['partner_name'])
+                    transaction['counterparty_bic'],
+                    transaction['counterparty_number'],
+                    transaction['partner_id'], transaction['partner_name'])
                 if feedback:
-                    coda_parsing_note += _(
+                    reconcile_note += _(
                         "\n    Bank Statement '%%(name)s' line '%s':"
-                        ) % line['ref'] + feedback
+                        ) % transaction['ref'] + feedback
 
-        return coda_parsing_note
+        return reconcile_note
 
-    def _normal2info(self, coda_statement):
-        """
-        Call this method in the '_coda_statement_hook' if you do not
-        want to create a bank statement for CODA files without transactions.
-        """
-        normal2info = False
-        lines = coda_statement['coda_statement_lines']
-        if not coda_statement['first_transaction_date']:
-            normal2info = True
+    def _prepare_mv_line_dict(self, st_line, cba, transaction):
+
+        mv_line_dict = {}
+
+        if transaction.get('reconcile_id'):
+            mv_line_dict['counterpart_move_line_id'] = \
+                transaction['reconcile_id']
+
+        if transaction.get('account_id'):
+            mv_line_dict['account_id'] = transaction['account_id']
+            if transaction.get('tax_code_id'):
+                mv_line_dict['tax_code_id'] = transaction['tax_code_id']
+                mv_line_dict['tax_amount'] = abs(transaction['amount'])
+            if transaction.get('analytic_account_id'):
+                mv_line_dict['analytic_account_id'] = \
+                    transaction['analytic_account_id']
+
+        # the process_reconciliation method takes assumes that the
+        # input mv_line_dict 'debit'/'credit' contains the amount
+        # in bank statement line currency and will handle the currency
+        # conversions
+        if transaction['amount'] > 0:
+            mv_line_dict['credit'] = transaction['amount']
         else:
-            line_vals = [x for x in lines.itervalues()]
-            transactions = filter(
-                lambda x: (x['type'] in ['globalisation', 'regular'])
-                and x['amount'],
-                line_vals)
-            if not transactions:
-                # don't create a bank statement for CODA files
-                # without transactions
-                normal2info = True
-        if normal2info:
-            coda_statement['type'] = 'info'
-            coda_statement['coda_parsing_note'] += _(
-                "\n\nThe CODA Statement %s does not contain transactions, "
-                "hence no Bank Statement has been created."
-                "\nSelect the 'CODA Bank Statement' "
-                "to check the contents of %s."
-                ) % (coda_statement['name'], coda_statement['name'])
+            mv_line_dict['debit'] = -transaction['amount']
 
-    def _coda_statement_init_hook(self, coda_statement):
-        """
-        Use this method to take customer specific actions
-        once a specific statement has been identified in a coda file.
-        """
+        return mv_line_dict
 
-    def _coda_statement_hook(self, coda_statement):
-        """
-        Use this method to take customer specific actions
-        after the creation of the 'coda_statement' dict by the parsing engine.
+    def _create_move_and_reconcile(self, st_line, cba, transaction,
+                                   reconcile_note):
 
-        e.g. Do not generate statements without transactions:
-        self._normal2info(coda_statement)
-        """
-
-    def _coda_st_line_hook(self, coda_statement, line):
-        """
-        Use this method to adapt the statement line created by the
-        CODA parsing to customer specific needs.
-        """
-        st_line = line.copy()
-        return [st_line]
+        mv_line_dict = self._prepare_mv_line_dict(st_line, cba, transaction)
+        if mv_line_dict:
+            try:
+                st_line.process_reconciliation([mv_line_dict])
+            except orm.except_orm, e:
+                reconcile_note += _('\nApplication Error : ') + str(e)
+            except Exception, e:
+                reconcile_note += _('\nSystem Error : ') + str(e)
+            except:
+                e = exc_info()[0]
+                reconcile_note += _('\nUnknown Error : ') + str(e)
+        return reconcile_note
 
     @api.multi
     def action_open_coda_statements(self):
@@ -2124,23 +2167,26 @@ class AccountCodaImport(models.TransientModel):
         self.ensure_one()
         return {'type': 'ir.actions.act_window_close'}
 
-    def _get_st_line_name(self, line):
-        st_line_name = line['name']
+    def _get_st_line_name(self, transaction):
+        st_line_name = transaction['name']
 
-        if line['trans_family'] == '35' \
-                and line['trans_code'] in ['01', '37']:
+        if transaction['trans_family'] == '35' \
+                and transaction['trans_code'] in ['01', '37']:
             st_line_name = ', '.join(
                 [_('Closing'),
-                 line['trans_code_desc'], line['trans_category_desc']])
+                 transaction['trans_code_desc'],
+                 transaction['trans_category_desc']])
 
-        if line['trans_family'] in ['13', '41']:
+        if transaction['trans_family'] in ['13', '41']:
             st_line_name = ', '.join(
-                [line['trans_family_desc'],
-                 line['trans_code_desc'], line['trans_category_desc']])
+                [transaction['trans_family_desc'],
+                 transaction['trans_code_desc'],
+                 transaction['trans_category_desc']])
 
-        if line['trans_family'] in ['80']:
+        if transaction['trans_family'] in ['80']:
             st_line_name = ', '.join(
-                [line['trans_code_desc'], line['trans_category_desc']])
+                [transaction['trans_code_desc'],
+                 transaction['trans_category_desc']])
 
         return st_line_name
 
@@ -2241,24 +2287,25 @@ class AccountCodaImport(models.TransientModel):
                 })
         return feedback
 
-    def _parse_comm_move(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
+    def _parse_comm_move(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
         method_name = '_parse_comm_move_' + comm_type
         if method_name in dir(self):
             method_instance = getattr(self, method_name)
-            st_line_name, st_line_comm = method_instance(coda_statement, line)
+            st_line_name, st_line_comm = method_instance(
+                coda_statement, transaction)
         else:  # To DO :'115', '121', '122', '126'
             _logger.warn(
                 "The parsing of Structured Commmunication Type %s "
                 "has not yet been implemented. "
                 "Please contact Noviat (info@noviat.com) for more information"
                 " about the development roadmap", comm_type)
-            st_line_name = line['name']
-            st_line_comm = line['communication']
+            st_line_name = transaction['name']
+            st_line_comm = transaction['communication']
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_100(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_100(self, coda_statement, transaction):
+        comm = transaction['communication']
         st_line_name = _(
             "Payment with ISO 11649 structured format communication")
         st_line_comm = '\n' + INDENT + _(
@@ -2270,30 +2317,31 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += INDENT + comm
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_101(self, coda_statement, line):
-        comm = st_line_comm = line['communication']
+    def _parse_comm_move_101(self, coda_statement, transaction):
+        comm = st_line_comm = transaction['communication']
         st_line_name = st_line_comm = \
             '+++' + comm[0:3] + '/' + comm[3:7] + '/' + comm[7:12] + '+++'
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_102(self, coda_statement, line):
-        comm = st_line_comm = line['communication']
+    def _parse_comm_move_102(self, coda_statement, transaction):
+        comm = st_line_comm = transaction['communication']
         st_line_name = st_line_comm = \
             '+++' + comm[0:3] + '/' + comm[3:7] + '/' + comm[7:12] + '+++'
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_103(self, coda_statement, line):
-        comm = line['communication']
-        st_line_name = ', '.join([line['trans_family_desc'], _('Number')])
+    def _parse_comm_move_103(self, coda_statement, transaction):
+        comm = transaction['communication']
+        st_line_name = ', '.join(
+            [transaction['trans_family_desc'], _('Number')])
         st_line_comm = comm
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_105(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = st_line_comm = line['communication']
+    def _parse_comm_move_105(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = st_line_comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type, self._comm_types)[0].description
-        amount = line.get('amount', 0.0)
+        amount = transaction.get('amount', 0.0)
         sign = amount < 0 and -1 or 1
         amount_currency_account = sign * list2float(comm[0:15])
         amount_currency_original = sign * list2float(comm[15:30])
@@ -2325,8 +2373,8 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += '\n'
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_106(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_106(self, coda_statement, transaction):
+        comm = transaction['communication']
         st_line_name = _(
             "VAT, withholding tax on income, commission, etc.")
         st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
@@ -2345,8 +2393,8 @@ class AccountCodaImport(models.TransientModel):
             + ': %.2f' % list2float(comm[43:58])
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_107(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_107(self, coda_statement, transaction):
+        comm = transaction['communication']
         paid_refusals = {
             '0': _('paid'),
             '1': _('direct debit cancelled or nonexistent'),
@@ -2372,8 +2420,8 @@ class AccountCodaImport(models.TransientModel):
             + ': %s' % creditor_number
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_108(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_108(self, coda_statement, transaction):
+        comm = transaction['communication']
         st_line_name = _(
             'Closing, period from %s to %s'
             ) % (str2date(comm[42:48]), str2date(comm[48:54]))
@@ -2389,8 +2437,8 @@ class AccountCodaImport(models.TransientModel):
                 + ': %.2f' % list2float(comm[30:42])
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_111(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_111(self, coda_statement, transaction):
+        comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
             '2': _('Private'),
@@ -2433,8 +2481,8 @@ class AccountCodaImport(models.TransientModel):
             ': %s' % terminal_name + ', ' + terminal_city
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_113(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_113(self, coda_statement, transaction):
+        comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
             '2': 'Maestro',
@@ -2507,8 +2555,8 @@ class AccountCodaImport(models.TransientModel):
                 + ': %.2f' % unit_price
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_114(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_114(self, coda_statement, transaction):
+        comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
             '2': 'Maestro',
@@ -2556,9 +2604,9 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += '\n'
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_123(self, coda_statement, line):
-        comm = line['communication']
-        st_line_name = line['name']
+    def _parse_comm_move_123(self, coda_statement, transaction):
+        comm = transaction['communication']
+        st_line_name = transaction['name']
         starting_date = str2date(comm[0:6])
         maturity_date = comm[6:12] == '999999' \
             and _('guarantee without fixed term') or str2date(comm[0:6])
@@ -2582,8 +2630,8 @@ class AccountCodaImport(models.TransientModel):
             'Guarantee Number') + ': %s' % guarantee_number
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_124(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_124(self, coda_statement, transaction):
+        comm = transaction['communication']
         card_issuers = {
             '1': 'Mastercard',
             '2': 'Visa',
@@ -2607,10 +2655,10 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += INDENT + _('Date') + ': %s' % date
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_125(self, coda_statement, line):
-        comm = line['communication']
-        st_line_name = line['name']
-        if line['trans_family'] not in ST_LINE_NAME_FAMILIES:
+    def _parse_comm_move_125(self, coda_statement, transaction):
+        comm = transaction['communication']
+        st_line_name = transaction['name']
+        if transaction['trans_family'] not in ST_LINE_NAME_FAMILIES:
             st_line_name = _('Credit')
         credit_account = comm[0:27].strip()
         if check_bban('BE', credit_account):
@@ -2640,8 +2688,8 @@ class AccountCodaImport(models.TransientModel):
             'Transaction Reference') + ': %s' % trans_reference
         return st_line_name, st_line_comm
 
-    def _parse_comm_move_127(self, coda_statement, line):
-        comm = line['communication']
+    def _parse_comm_move_127(self, coda_statement, transaction):
+        comm = transaction['communication']
         direct_debit_types = {
             '0': _('unspecified'),
             '1': _('recurrent'),
@@ -2692,25 +2740,26 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += INDENT + _('Reason') + ': %s' % reason
         return st_line_name, st_line_comm
 
-    def _parse_comm_info(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
+    def _parse_comm_info(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
         method_name = '_parse_comm_info_' + comm_type
         if method_name in dir(self):
             method_instance = getattr(self, method_name)
-            st_line_name, st_line_comm = method_instance(coda_statement, line)
+            st_line_name, st_line_comm = method_instance(
+                coda_statement, transaction)
         else:  # To DO : 010, 011
             _logger.warn(
                 "The parsing of Structured Commmunication Type %s "
                 "has not yet been implemented. "
                 "Please contact Noviat (info@noviat.com) for "
                 "more information about the development roadmap", comm_type)
-            st_line_name = line['name']
-            st_line_comm = line['communication']
+            st_line_name = transaction['name']
+            st_line_comm = transaction['communication']
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_001(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_001(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
@@ -2730,36 +2779,36 @@ class AccountCodaImport(models.TransientModel):
         st_line_comm += '\n'
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_002(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_002(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
         st_line_comm = comm.strip()
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_004(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_004(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
         st_line_comm = comm.strip()
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_005(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_005(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
         st_line_comm = comm.strip()
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_006(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_006(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         amount_sign = comm[48]
         amount = (amount_sign == '1' and '-' or '') \
             + ('%.2f' % list2float(comm[33:48])) + ' ' + comm[30:33]
@@ -2774,9 +2823,9 @@ class AccountCodaImport(models.TransientModel):
             + ': %s' % comm[49:52].strip()
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_007(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_007(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
@@ -2788,9 +2837,9 @@ class AccountCodaImport(models.TransientModel):
             + ': %.2f' % list2float(comm[13:28])
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_008(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_008(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
@@ -2800,9 +2849,9 @@ class AccountCodaImport(models.TransientModel):
             + ': %s' % comm[70:105].strip()
         return st_line_name, st_line_comm
 
-    def _parse_comm_info_009(self, coda_statement, line):
-        comm_type = line['struct_comm_type']
-        comm = line['communication']
+    def _parse_comm_info_009(self, coda_statement, transaction):
+        comm_type = transaction['struct_comm_type']
+        comm = transaction['communication']
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
