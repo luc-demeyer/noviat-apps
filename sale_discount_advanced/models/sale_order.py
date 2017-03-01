@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2015 ICTSTUDIO (<http://www.ictstudio.eu>).
-#    Copyright (C) 2012-2016 Noviat nv/sa (www.noviat.com).
-#    Copyright (C) 2016 Onestein (http://www.onestein.eu).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright (C) 2015 ICTSTUDIO (<http://www.ictstudio.eu>).
+# Copyright (C) 2016-2017 Noviat nv/sa (www.noviat.com).
+# Copyright (C) 2016 Onestein (http://www.onestein.eu/).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
 
@@ -62,6 +46,8 @@ class SaleOrder(models.Model):
                     vals.update(sale_discount_ids=[(6, 0, disc_ids)])
                     line_update = True
         if line_update:
+            if 'value' not in res:
+                res['value'] = {}
             res['value']['order_line'] = order_lines
         return res
 
