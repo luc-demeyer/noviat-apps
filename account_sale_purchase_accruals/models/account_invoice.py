@@ -196,7 +196,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                         return
                 amls = accruals.mapped('line_id')
                 for aml in amls:
-                    if aml.account_id == accrual_account:
+                    if aml.account_id == accrual_account \
+                            and aml.product_id == product:
                         accrual_lines[product.id] += aml
         if accrual_lines:
             self._reconcile_accrued_expense_lines(accrual_lines)
