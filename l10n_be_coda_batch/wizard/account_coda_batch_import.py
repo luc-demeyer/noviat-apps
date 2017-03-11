@@ -117,7 +117,7 @@ class AccountCodaBatchImport(models.TransientModel):
                 statements = coda_import_wiz._coda_parsing(
                     codafile=coda_file[1], codafilename=coda_file[2],
                     period_id=None, batch=True)
-                if self._context.get('automatic_reconcile'):
+                if self.reconcile or self._context.get('automatic_reconcile'):
                     reconcile_note = ''
                     for statement in statements:
                         reconcile_note = coda_import_wiz._automatic_reconcile(
