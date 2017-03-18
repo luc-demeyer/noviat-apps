@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat
+# Copyright 2009-2017 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
@@ -364,8 +365,9 @@ class wizard_multi_charts_accounts(models.TransientModel):
         note = upd_wiz._update_be_reportscheme()
         if note:
             wiz = upd_wiz.create({'note': note})
-            view = self.env.ref(
-                'l10n_be_coa_multilang.update_be_reportscheme_result_view')
+            module = __name__.split('addons.')[1].split('.')[0]
+            result_view = 'l10n_be_update_be_reportscheme_view_form_result'
+            view = self.env.ref('%s.%s' % (module, result_view))
             return {
                 'name': _('Results'),
                 'res_id': wiz.id,
