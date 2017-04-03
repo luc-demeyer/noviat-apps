@@ -87,7 +87,7 @@ class CodaBankAccount(models.Model):
              "Bank Transaction amounts.")
     find_account_move_line = fields.Boolean(
         string='Lookup Accounting Entries',
-        default=True,
+        default=False,   # default = False since this lookup may burn resources
         help="Find matching accounting entry when previous lookups "
              "(payment order, invoice, sales order) have failed."
              "\nThis allows e.g. to match with manually encoded "

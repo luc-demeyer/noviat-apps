@@ -1154,6 +1154,11 @@ class AccountCodaImport(models.TransientModel):
 
     def _prepare_st_line_vals(self, coda_statement, transaction):
 
+        g_seq = transaction.get('glob_sequence')
+        if g_seq:
+            transaction['upper_transaction'] = \
+                coda_statement['coda_transactions'][g_seq]
+
         st_line_vals = {
             'ref': transaction['ref'],
             'name': transaction['name'],
@@ -1778,15 +1783,10 @@ class AccountCodaImport(models.TransientModel):
             if not inv_ids:
                 # check matching invoice number in free form communication
                 # of upper globalisation level line
-                g_seq = transaction.get('glob_sequence')
-                if g_seq:
-                    upper_line = st_line.search(
-                        [('statement_id', '=', st_line.statement_id.id),
-                         ('sequence', '=', g_seq)])
-                    upper_transaction = json.loads(
-                        upper_line.coda_transaction_dict)
+                if transaction.get('upper_transaction'):
                     free_comm = repl_special(
-                        upper_transaction['communication'].strip())
+                        transaction['upper_transaction']['communication']
+                        .strip())
                     inv_ids = self._match_invoice_number(
                         st_line, cba, transaction, reconcile_note, free_comm)
 
@@ -1920,10 +1920,21 @@ class AccountCodaImport(models.TransientModel):
 
     def _match_aml_arap(self, st_line, cba, transaction, reconcile_note):
         """
-        check match with open payables/receivables.
+        Check match with open payables/receivables.
+        This matching logic can be very resource intensive for databases with
+        a large number of unreconciled transactions.
+        As a consequence this logic is by default disabled when creating a new
+        'CODA Bank Account'.
         """
         cur = cba.currency_id
+        cpy_cur = cba.company_id.currency_id
         match = {}
+
+        search_field, search_input = self._match_aml_arap_domain_field(
+            st_line, cba, transaction)
+        if not search_field or not search_input:
+            # skip resource intensive mathcing logic
+            return reconcile_note, match
 
         domain = self._match_aml_arap_domain(st_line, cba, transaction)
         amls = self.env['account.move.line'].search(domain)
@@ -1931,7 +1942,7 @@ class AccountCodaImport(models.TransientModel):
         matches = []
         for aml in amls:
             sign = (aml.debit - aml.credit) > 0 and 1 or -1
-            if cur.name == 'EUR':
+            if cur == cpy_cur:
                 amt = sign * aml.amount_residual
                 if cur.is_zero(amt - transaction['amount']):
                     matches.append(aml)

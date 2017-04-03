@@ -63,6 +63,11 @@ Reconciliation logic
     6) If no matching accounting entry is found via the originating business transactions
        (Payment Order, Invoice, Sales Order) a lookup is performed directly on
        the accounting entries.
+       Reconciliation will take place when all of the following
+       conditions are met:
+
+       - exact match of transaction amount
+       - the payment communication needs to be a subset of the accounting entry 'name' field
 
     7) When the previous steps do not result in a match, the transaction counterparty
        is located via the Bank Account Number configured on the OpenERP Customer
