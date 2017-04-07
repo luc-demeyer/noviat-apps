@@ -79,7 +79,16 @@ openerp.account_analytic_dimension_policy = function (instance) {
             if (balanceChangedFlag) {
                 this.balanceChanged();      
             } else {
-                this.$(".button_ok").text("OK").removeClass("oe_highlight").attr("disabled", "disabled");
+                if(this.st_line.has_no_partner)
+                {
+                    this.$(".button_ok").text("OK").removeClass("oe_highlight").attr("disabled", "disabled");
+                }
+                else
+                {
+                    this.$(".button_ok")
+                        .text(_t("Keep open"))
+                        .prop('disabled', false);
+                }
             };
         },
 
