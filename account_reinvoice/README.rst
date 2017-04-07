@@ -8,8 +8,8 @@ Account Reinvoice
 
 Module for automatic intercompany reinvoicing.
 
-Usage
-=====
+Configuration
+=============
 
 Reinvoice Keys and Distributions
 --------------------------------
@@ -37,6 +37,13 @@ In case of a multi-company setup (cf. module account_reinvoice_multi_company), t
 will also be copied to the corresponding incoming invoice (if allowed by security settings).
 In this case, the product record accounting properties will be used to determine general accounts and
 taxes on those incoming invoices and hence allows fully automated end-to-end intercompany invoicing.
+
+Journal Mapping
+---------------
+
+Go to **Accounting > Configuration > Miscellaneous > Reinvoice Configuration > Journal Mapping**
+
+Use this menu entry to configure the mapping between Incoming and Outgoing Journals.
 
 Access Rights
 =============

@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2016 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp import api, fields, models, _
 from openerp.exceptions import ValidationError
 
@@ -94,6 +75,16 @@ class AccountReinvoiceWizard(models.TransientModel):
         else:
             return False
 
+    @api.onchange('journal_in_ids')
+    def _onchange_journal_in_ids(self):
+        if self.journal_in_ids:
+            mapping = self.env['account.reinvoice.journal.mapping'].search(
+                [('company_id', '=', self.company_id.id),
+                 ('journal_in_ids', 'in', self.journal_in_ids._ids)])
+            if mapping and len(mapping) == 1:
+                self.journal_id = mapping.journal_id
+                self.refund_journal_id = mapping.refund_journal_id
+
     @api.one
     @api.constrains('date_from', 'date_to')
     def _check_dates(self):
@@ -158,6 +149,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             'type': journal.type == 'sale' and 'out_invoice'
             or 'out_refund',
             'account_id': partner.property_account_receivable.id,
+            'company_id': self.company_id.id,
             }
         return inv_vals
 
@@ -265,6 +257,7 @@ class AccountReinvoiceWizard(models.TransientModel):
 
     def _reinvoice_aml_domain(self):
         domain = [
+            ('company_id', '=', self.company_id.id),
             ('reinvoice_line_ids', '=', False),
             ('move_id.state', '=', 'posted')]
         if self.date_from:
