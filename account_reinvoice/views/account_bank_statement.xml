@@ -2,10 +2,10 @@
 <openerp>
   <data>
 
-    <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
-      <xpath expr="." position="inside">
+    <template id="assets_backend" name="account assets" inherit_id="account.assets_backend">
+      <script src="/account/static/src/js/account_widgets.js" position="after">
         <script type="text/javascript" src="/account_reinvoice/static/src/js/account_reinvoice.js"></script>
-      </xpath>
+      </script>
     </template>
 
   </data>

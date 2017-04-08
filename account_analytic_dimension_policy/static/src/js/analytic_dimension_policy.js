@@ -1,24 +1,7 @@
 /*
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2017 Noviat
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 */
 openerp.account_analytic_dimension_policy = function (instance) {
     var _t = instance.web._t;
@@ -79,7 +62,16 @@ openerp.account_analytic_dimension_policy = function (instance) {
             if (balanceChangedFlag) {
                 this.balanceChanged();      
             } else {
-                this.$(".button_ok").text("OK").removeClass("oe_highlight").attr("disabled", "disabled");
+                if(this.st_line.has_no_partner)
+                {
+                    this.$(".button_ok").text("OK").removeClass("oe_highlight").attr("disabled", "disabled");
+                }
+                else
+                {
+                    this.$(".button_ok")
+                        .text(_t("Keep open"))
+                        .prop('disabled', false);
+                }
             };
         },
 
