@@ -125,7 +125,7 @@ class AccountCodaBatchImport(models.TransientModel):
                     if reconcile_note:
                         self._log_note += reconcile_note
                 self._log_note += _(
-                    "\n\nCODA File '%s' has been imported."
+                    "\n\nCODA File '%s' has been imported.\n"
                     ) % coda_file[2]
             except Warning, e:
                 self._nb_err += 1
@@ -169,7 +169,7 @@ class AccountCodaBatchImport(models.TransientModel):
                 '%s.account_coda_batch_import_view_form_result' % module)
 
             note = note or ""
-            self.note = log_header + note + log_footer
+            self.note = log_header + '\n' + note + log_footer
             return {
                 'name': _('CODA Batch Import result'),
                 'res_id': self.id,

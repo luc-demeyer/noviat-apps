@@ -923,7 +923,6 @@ class AccountCodaImport(models.TransientModel):
                 st = self.env['account.bank.statement'].with_context(ctx)
                 bank_st = st.create(st_vals)
         except Warning, e:
-            self._cr.rollback()
             self._nb_err += 1
             self._err_string += _('\nError ! ') + str(e)
             tb = ''.join(format_exception(*exc_info()))
@@ -931,7 +930,6 @@ class AccountCodaImport(models.TransientModel):
                 "Application Error while processing Statement %s\n%s",
                 coda_statement.get('name', '/'), tb)
         except orm.except_orm, e:
-            self._cr.rollback()
             self._nb_err += 1
             self._err_string += _('\nError ! ') + str(e)
             tb = ''.join(format_exception(*exc_info()))
@@ -939,7 +937,6 @@ class AccountCodaImport(models.TransientModel):
                 "Application Error while processing Statement %s\n%s",
                 coda_statement.get('name', '/'), tb)
         except Exception, e:
-            self._cr.rollback()
             self._nb_err += 1
             self._err_string += _('\nSystem Error : ') + str(e)
             tb = ''.join(format_exception(*exc_info()))
@@ -947,7 +944,6 @@ class AccountCodaImport(models.TransientModel):
                 "System Error while processing Statement %s\n%s",
                 coda_statement.get('name',  '/'), tb)
         except:
-            self._cr.rollback()
             self._nb_err += 1
             self._err_string = _('\nUnknown Error')
             tb = ''.join(format_exception(*exc_info()))
@@ -1279,6 +1275,10 @@ class AccountCodaImport(models.TransientModel):
             skip = coda_statement.get('skip')
             if not line:
                 continue
+            if line[0] != '0' and not coda_statement:
+                    raise Warning(_(
+                        "CODA Import Failed."
+                        "\nIncorrect input file format"))
             elif line[0] == '0':
                 # start of a new statement within the CODA file
                 coda_statement = {}
@@ -1474,9 +1474,6 @@ class AccountCodaImport(models.TransientModel):
                     and coda_statement['coda_note']:
                 bank_st.write({'coda_note': coda_statement['coda_note']})
 
-            # commit after each statement in the coda file
-            self._cr.commit()
-
         # end 'for coda_statement in coda_statements'
 
         coda_note_header = '>>> ' + time.strftime('%Y-%m-%d %H:%M:%S') + ' '
@@ -1493,7 +1490,6 @@ class AccountCodaImport(models.TransientModel):
             note = coda_note_header + self._coda_import_note \
                 + coda_note_footer
             coda.write({'note': old_note + note, 'state': 'done'})
-            self._cr.commit()
             if self._batch:
                 return bank_statements
         else:
@@ -1995,21 +1991,26 @@ class AccountCodaImport(models.TransientModel):
         match = {}
         partner_banks = False
         cp_number = transaction['counterparty_number']
-        if cp_number:
-            transfer_accounts = filter(
-                lambda x: cp_number in x,
-                self._company_bank_accounts)
-            if transfer_accounts:
-                # exclude transactions from
-                # counterparty_number = bank account number of this statement
-                if cp_number not in get_iban_and_bban(cba.bank_id.acc_number):
-                    transaction['account_id'] = cba.transfer_account.id
-                    match['transfer_account'] = True
-            elif cba.find_partner:
-                partner_banks = self.env['res.partner.bank'].search(
-                    [('acc_number', '=', cp_number),
-                     ('partner_id.active', '=', True)])
-        if not match and cba.find_partner and partner_banks:
+        if not cp_number:
+            return reconcile_note, match
+
+        transfer_accounts = filter(
+            lambda x: cp_number in x,
+            self._company_bank_accounts)
+        if transfer_accounts:
+            # exclude transactions from
+            # counterparty_number = bank account number of this statement
+            if cp_number not in get_iban_and_bban(cba.bank_id.acc_number):
+                transaction['account_id'] = cba.transfer_account.id
+                match['transfer_account'] = True
+
+        if match or not cba.find_partner:
+            return reconcile_note, match
+
+        partner_banks = self.env['res.partner.bank'].search(
+            [('acc_number', '=', cp_number),
+             ('partner_id.active', '=', True)])
+        if partner_banks:
             # filter out partners that belong to other companies
             # TODO :
             # adapt this logic to cope with
@@ -2041,22 +2042,14 @@ class AccountCodaImport(models.TransientModel):
                 transaction['bank_account_id'] = partner_bank.id
                 transaction['partner_id'] = partner_bank.partner_id.id
                 match['partner_id'] = transaction['partner_id']
-        elif not match and cba.find_partner:
-            if cp_number:
-                reconcile_note += _(
-                    "\n    Bank Statement '%s' line '%s':"
-                    "\n        The bank account '%s' is "
-                    "not defined for the partner '%s' !"
-                    ) % (st_line.statement_id.name,
-                         transaction['ref'], cp_number,
-                         transaction['partner_name'])
-            else:
-                reconcile_note += _(
-                    "\n    Bank Statement '%s' line '%s':"
-                    "\n        No matching partner record found !"
-                    "\n        Please adjust the corresponding entry "
-                    "manually in the generated Bank Statement."
-                    ) % (st_line.statement_id.name, transaction['ref'])
+        else:
+            reconcile_note += _(
+                "\n    Bank Statement '%s' line '%s':"
+                "\n        The bank account '%s' is "
+                "not defined for the partner '%s' !"
+                ) % (st_line.statement_id.name,
+                     transaction['ref'], cp_number,
+                     transaction['partner_name'])
 
         return reconcile_note, match
 
