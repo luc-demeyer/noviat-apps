@@ -1,28 +1,10 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#
-#    Copyright (c) 2014-2015 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Belgium - Partner Model customisations',
-    'version': '0.2',
+    'name': 'Belgium - Partner Model customizations',
+    'version': '8.0.1.1.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Localization',
@@ -33,8 +15,12 @@
     ],
     'data': [
         'data/be_base_data.xml',
-        'data/be_banks.xml',  # TODO: add update service
-        'res_bank_view.xml',
-        'res_partner_view.xml',
+        'data/be_banks.xml',
+        'views/res_bank.xml',
+        'views/res_partner.xml',
     ],
+    'demo': [
+        'demo/res_partner.xml',
+    ],
+    'installable': True,
 }

@@ -1,8 +1,8 @@
 <openerp>
   <data>
 
-    <record id="regnr_partner_form_inherit" model="ir.ui.view">
-      <field name="name">regnr.res.partner.form.inherit</field>
+    <record id="view_partner_property_form" model="ir.ui.view">
+      <field name="name">res.partner.form.regnr</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="account.view_partner_property_form"/>
       <field name="arch" type="xml">

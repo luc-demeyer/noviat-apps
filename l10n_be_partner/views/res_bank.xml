@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record id="view_bank_search" model="ir.ui.view">
+    <record id="res_bank_view_search" model="ir.ui.view">
       <field name="name">res.bank.search</field>
       <field name="model">res.bank</field>
       <field name="arch" type="xml">
@@ -14,11 +14,10 @@
       </field>
     </record>
 
-    <record id="view_res_bank_form_add_code" model="ir.ui.view">
+    <record id="view_res_bank_form" model="ir.ui.view">
       <field name="name">res.bank.form.add.code</field>
       <field name="model">res.bank</field>
       <field name="inherit_id" ref="base.view_res_bank_form"/>
-      <field name="type">form</field>
       <field name="arch" type="xml">
         <field name="active" position="after">
           <field name="code" select="1"/>
@@ -26,11 +25,10 @@
       </field>
     </record>
 
-    <record id="view_res_bank_tree_add_code" model="ir.ui.view">
+    <record id="view_res_bank_tree" model="ir.ui.view">
       <field name="name">res.bank.tree.add.code</field>
       <field name="model">res.bank</field>
       <field name="inherit_id" ref="base.view_res_bank_tree"/>
-      <field name="type">form</field>
       <field name="arch" type="xml">
         <field name="country" position="after">
           <field name="code"/>

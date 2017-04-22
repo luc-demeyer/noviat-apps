@@ -40,31 +40,6 @@ msgid "vof/scn"
 msgstr "vof"
 
 #. module: l10n_be_partner
-#: model:res.partner.title,name:l10n_be_partner.rptn_bv
-msgid "bv"
-msgstr "bv"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,name:l10n_be_partner.rptn_ag
-msgid "ag"
-msgstr "ag"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,name:l10n_be_partner.rptn_inc
-msgid "inc"
-msgstr "inc"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,name:base.res_partner_title_pvt_ltd
-msgid "corp"
-msgstr "corp"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,name:base.res_partner_title_ltd
-msgid "ltd"
-msgstr "ltd"
-
-#. module: l10n_be_partner
 #: model:res.partner.title,shortcut:0
 msgid "nv/sa"
 msgstr "nv"
@@ -88,29 +63,3 @@ msgstr "cvba"
 #: model:res.partner.title,shortcut:0
 msgid "vof/scn"
 msgstr "vof"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,shortcut:0
-msgid "bv"
-msgstr "bv"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,shortcut:0
-msgid "ag"
-msgstr "ag"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,shortcut:0
-msgid "inc"
-msgstr "inc"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,shortcut:0
-msgid "corp"
-msgstr "corp"
-
-#. module: l10n_be_partner
-#: model:res.partner.title,shortcut:0
-msgid "ltd"
-msgstr "ltd"
-

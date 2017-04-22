@@ -28,31 +28,6 @@
       <field name="shortcut">vof/scn</field>
       <field name="domain">partner</field>
     </record>
-    <record id="rptn_bv" model="res.partner.title">
-      <field name="name">bv</field>
-      <field name="shortcut">bv</field>
-      <field name="domain">partner</field>
-    </record>
-    <record id="rptn_ag" model="res.partner.title">
-      <field name="name">ag</field>
-      <field name="shortcut">ag</field>
-      <field name="domain">partner</field>
-    </record>
-    <record id="rptn_inc" model="res.partner.title">
-      <field name="name">inc</field>
-      <field name="shortcut">inc</field>
-      <field name="domain">partner</field>
-    </record>
-    <record id="base.res_partner_title_pvt_ltd" model="res.partner.title">
-      <field name="name">corp</field>
-      <field name="shortcut">corp</field>
-      <field name="domain">partner</field>
-    </record>
-    <record id="base.res_partner_title_ltd" model="res.partner.title">
-      <field name="name">ltd</field>
-      <field name="shortcut">ltd</field>
-      <field name="domain">partner</field>
-    </record>
 
   </data>
 </openerp>
