@@ -6,7 +6,7 @@ from openerp import models, fields, api, _
 from openerp import tools
 import csv
 
-CN_file_year = '2016'
+CN_file_year = '2017'
 CN_file_delimiter = ';'
 
 
