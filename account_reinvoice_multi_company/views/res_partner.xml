@@ -16,7 +16,7 @@
             <group>
               <field name="intercompany_invoice"/>
               <field name="intercompany_invoice_user_id"
-                     attrs="{'required': [('company_partner_flag', '=', True)]}"/>
+                     attrs="{'required': [('intercompany_invoice', '=', True)]}"/>
             </group>
           </page>
         </page>

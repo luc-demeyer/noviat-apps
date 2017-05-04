@@ -1,25 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
+# Copyright 2009-2016 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 from sys import exc_info
 from traceback import format_exception
@@ -188,7 +169,19 @@ class AccountInvoice(models.Model):
                     ) % (inv_type, target_company.name)
             err_msg = self._intercompany_invoice_error(out_invoice, err)
             raise UserError(err_msg)
-        return journals[0]
+        journal = journals[0]
+        mapping = self.env[
+            'account.reinvoice.journal.mapping.multi.company'].sudo().search(
+            [('company_id', '=', out_invoice.company_id.id)])
+        mapping = mapping.filtered(
+            lambda r: out_invoice.journal_id.id in r.journal_out_ids._ids)
+        if mapping and len(mapping) == 1:
+            if j_type == 'purchase':
+                journal_id = mapping.target_journal.id
+            else:
+                journal_id = mapping.target_refund_journal.id
+            journal = self.env['account.journal'].browse(journal_id)
+        return journal
 
     def _prepare_intercompany_invoice_vals(self, out_invoice,
                                            target_company, target_user):

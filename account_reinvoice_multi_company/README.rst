@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+===============================
 Account Reinvoice Multi-Company
 ===============================
 
@@ -8,8 +13,8 @@ Customer Invoices/Refunds to Companies in the same database will be
 automatically converted into Supplier Invoices/Refunds in the target company
 when validating the outgoing Invoices/Refunds.
 
-Usage
-=====
+Configuration
+=============
 
 Company settings
 ----------------
@@ -40,3 +45,11 @@ Products must be specified on all lines of the outgoing intercompany invoices.
 These products must be shared between the Companies.
 
 The product record accounting properties will be used for the incoming invoice line general account and taxes.
+
+Journal Mapping
+---------------
+
+Go to **Accounting > Configuration > Miscellaneous > Reinvoice Configuration > Journal Mapping multi-company**
+
+Use this menu entry to configure the mapping between the Outgoing Sales/Sales Refund Journals and the
+incoming Purchase/Purchase Refund Journals in the target company.
