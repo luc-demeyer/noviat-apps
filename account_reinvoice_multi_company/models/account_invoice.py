@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat.
+# Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 from sys import exc_info
 from traceback import format_exception
@@ -39,7 +40,7 @@ class AccountInvoice(models.Model):
     @api.one
     def _compute_intercompany_invoice_ref(self):
         if self.intercompany_invoice_id:
-            ico_inv = self._get_intercompany_invoice()
+            ico_inv = self.sudo()._get_intercompany_invoice()
             if ico_inv:
                 state_selection = self.fields_get(
                     allfields='state')['state']['selection']
@@ -86,16 +87,7 @@ class AccountInvoice(models.Model):
     def _get_intercompany_invoice(self):
         ico_inv = False
         if self.intercompany_invoice_id:
-            ico_partner = self.partner_id
-            target_user = ico_partner.intercompany_invoice_user_id
-            if target_user:
-                ico_inv = self.sudo(target_user).browse(
-                    self.intercompany_invoice_id)
-            else:
-                raise UserError(_(
-                    "Intercompany Invoicing Configuration Error."
-                    "\nMissing 'Intercompany Invoice User'"
-                    "for '%s'.") % ico_partner.name)
+            ico_inv = self.browse(self.intercompany_invoice_id)
         return ico_inv
 
     def _intercompany_invoice_error(self, out_invoice, err):
@@ -190,7 +182,7 @@ class AccountInvoice(models.Model):
             inv_type = 'in_invoice'
         else:
             inv_type = 'in_refund'
-        target_journal = self.sudo(target_user).\
+        target_journal = self.env['account.invoice'].sudo(target_user).\
             _get_intercompany_invoice_journal(out_invoice,
                                               target_company, inv_type)
         target_partner = out_invoice.company_id.partner_id.sudo(target_user)
@@ -201,9 +193,11 @@ class AccountInvoice(models.Model):
             'date_invoice': out_invoice.date_invoice,
             'intercompany_invoice_id': out_invoice.id,
             'partner_id': target_partner.id,
+            'user_id': target_user.id,
             'journal_id': target_journal.id,
             'type': inv_type,
             'account_id': account.id,
+            'company_id': target_company.id,
             }
         if fpos:
             inv_vals['fiscal_position'] = fpos.id
@@ -233,7 +227,8 @@ class AccountInvoice(models.Model):
             ic_inv_vals, err = self._prepare_intercompany_invoice_vals(
                 out_invoice, target_company, target_user)
             if not err:
-                ic_invoice = self.sudo(target_user).create(ic_inv_vals)
+                ic_invoice = self.env['account.invoice'].sudo().create(
+                    ic_inv_vals)
                 ic_invoice.button_reset_taxes()
                 self.write({'intercompany_invoice_id': ic_invoice.id})
             else:

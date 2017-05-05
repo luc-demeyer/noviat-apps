@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat.
+# Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': 'Account Reinvoice Multi-Company',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.2.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
