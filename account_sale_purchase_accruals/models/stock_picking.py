@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import api, fields, models
 from openerp.addons.account_sale_purchase_accruals.models.common_accrual \
     import CommonAccrual
@@ -49,7 +50,8 @@ class StockPicking(models.Model, CommonAccrual):
             if accrual_account == sp_aml.account_id:
                 accrual_lines[product.id] = sp_aml
                 for inv_aml in inv_amls:
-                    if inv_aml.account_id == accrual_account:
+                    if inv_aml.account_id == accrual_account \
+                            and inv_aml.product_id == product:
                         accrual_lines[product.id] += inv_aml
         if accrual_lines:
             self._reconcile_accrued_expense_lines(accrual_lines)

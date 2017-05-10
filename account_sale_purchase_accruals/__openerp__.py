@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': 'Account Sale Purchase Accruals',
-    'version': '8.0.1.0.5',
+    'version': '8.0.1.0.9',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',

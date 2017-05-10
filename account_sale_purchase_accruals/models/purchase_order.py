@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 
 from openerp import api, fields, models, _
@@ -120,7 +121,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
 
                 amount = product._get_expense_accrual_amount(
                     pol.product_qty, procurement_action='buy',
-                    company_id=self.company_id.id)
+                    company=self.company_id)
 
                 if not amount:
                     raise UserError(
