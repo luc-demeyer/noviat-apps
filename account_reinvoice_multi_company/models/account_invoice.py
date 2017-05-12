@@ -104,45 +104,42 @@ class AccountInvoice(models.Model):
         curr = target_company.currency_id
         err = False
         product = line.product_id
-        try:
-            p_change = self.env['account.invoice.line'].sudo(target_user).\
-                product_id_change(
+        inv_line_vals = {
+            'product_id': product.id,
+            'name': line.name,
+            'quantity': line.quantity,
+            'price_unit': line.price_unit,
+            }
+        if product:
+            try:
+                p_change = self.env['account.invoice.line'].sudo(target_user).\
+                    product_id_change(
                     product.id, line.uos_id.id, line.quantity, line.name,
                     inv_type, partner_id=target_partner.id,
                     fposition_id=target_partner.property_account_position.id,
                     price_unit=line.price_unit, currency_id=curr.id,
                     company_id=target_company.id)
 
-        except AccessError, e:
-            err = ', '.join([e.name, e.value])
-            pref = "%s (id:%s)" % (product.name, product.id)
-            err += '\n\n'
-            err += _("Please ensure that Product '%s' is available for users "
-                     "in Company '%s'.") % (pref, target_company.name)
-            err_msg = self._intercompany_invoice_error(out_invoice, err)
-            raise UserError(err_msg)
+            except AccessError, e:
+                err = ', '.join([e.name, e.value])
+                pref = "%s (id:%s)" % (product.name, product.id)
+                err += '\n\n'
+                err += _("Please ensure that Product '%s' "
+                         "is available for users in Company '%s'."
+                         ) % (pref, target_company.name)
+                err_msg = self._intercompany_invoice_error(out_invoice, err)
+                raise UserError(err_msg)
 
-        except:
-            err = _("Unknown Error")
-            tb = ''.join(format_exception(*exc_info()))
-            err += '\n\n' + tb
-            err_msg = self._intercompany_invoice_error(out_invoice, err)
-            raise UserError(err_msg)
+            except:
+                err = _("Unknown Error")
+                tb = ''.join(format_exception(*exc_info()))
+                err += '\n\n' + tb
+                err_msg = self._intercompany_invoice_error(out_invoice, err)
+                raise UserError(err_msg)
 
-        inv_line_vals = p_change['value']
-        inv_line_vals.update({
-            'product_id': product.id,
-            'name': line.name,
-            'invoice_line_tax_id':
-                [(6, 0, inv_line_vals['invoice_line_tax_id'])]
-            })
-        if 'account_id' not in inv_line_vals:
-            pref = "%s (id:%s)" % (product.name, product.id)
-            err = _("Please ensure that Product '%s' is defined with an "
-                    "Income Account in Company '%s'."
-                    ) % (pref, target_company.name)
-            err_msg = self._intercompany_invoice_error(out_invoice, err)
-            raise UserError(err_msg)
+            inv_line_vals.update(p_change['value'])
+            inv_line_vals['invoice_line_tax_id'] = [
+                (6, 0, inv_line_vals['invoice_line_tax_id'])]
         return inv_line_vals
 
     def _get_intercompany_invoice_journal(self, out_invoice,
@@ -205,9 +202,6 @@ class AccountInvoice(models.Model):
             inv_vals['fiscal_position'] = fpos.id
         line_vals = []
         for line in out_invoice.invoice_line:
-            if not line.product_id:
-                err = "Missing Product on Invoice Line."
-                break
             line_vals.append(self._prepare_intercompany_invoice_line_vals(
                 out_invoice, line, target_company, target_user,
                 target_partner, inv_type))

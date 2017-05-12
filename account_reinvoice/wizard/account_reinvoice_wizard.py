@@ -137,7 +137,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             or self.income_account_id
         if account:
             account = fpos.map_account(account)
-        line_vals['account_id'] = account.id
+            line_vals['account_id'] = account.id
         taxes = product.taxes_id or account.tax_ids
         fp_taxes = fpos.map_tax(taxes)
         line_vals['invoice_line_tax_id'] = [(6, 0, fp_taxes.ids)]
