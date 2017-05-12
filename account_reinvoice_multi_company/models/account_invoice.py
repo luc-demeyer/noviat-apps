@@ -65,7 +65,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).action_cancel()
         for inv in self:
             if inv.type in ('out_invoice', 'out_refund'):
-                ico_inv = inv._get_intercompany_invoice()
+                ico_inv = inv.sudo()._get_intercompany_invoice()
                 if ico_inv and ico_inv.state != 'cancel':
                     raise UserError(_(
                         "You can only cancel an intercompany invoice "
@@ -161,10 +161,10 @@ class AccountInvoice(models.Model):
                     ) % (inv_type, target_company.name)
             err_msg = self._intercompany_invoice_error(out_invoice, err)
             raise UserError(err_msg)
-        journal = journals[0]
         mapping = self.env[
             'account.reinvoice.journal.mapping.multi.company'].sudo().search(
-            [('company_id', '=', out_invoice.company_id.id)])
+            [('company_id', '=', out_invoice.company_id.id),
+             ('target_company', '=', str(target_company.id))])
         mapping = mapping.filtered(
             lambda r: out_invoice.journal_id.id in r.journal_out_ids._ids)
         if mapping and len(mapping) == 1:
@@ -173,6 +173,8 @@ class AccountInvoice(models.Model):
             else:
                 journal_id = mapping.target_refund_journal.id
             journal = self.env['account.journal'].browse(journal_id)
+        else:
+            journal = journals[0]
         return journal
 
     def _prepare_intercompany_invoice_vals(self, out_invoice,
