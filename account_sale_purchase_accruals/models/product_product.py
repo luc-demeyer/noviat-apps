@@ -9,7 +9,8 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     def _get_purchase_pricelist_amount(self, qty, company=None):
-        amount = 0.0
+        amount = amount_cur = 0.0
+        cur = self.env['res.currency']
         dom = [('product_tmpl_id', '=', self.product_tmpl_id.id),
                ('company_id', '=', company.id)]
         main_supplier = self.env['product.supplierinfo'].search(
@@ -23,14 +24,18 @@ class ProductProduct(models.Model):
                 if price_get:
                     amount = price_get[pricelist.id] * qty
                     if pricelist.currency_id != company.currency_id:
+                        cur = pricelist.currency_id
+                        amount_cur = amount
                         amount = pricelist.currency_id.compute(
                             amount, company.currency_id)
-        return amount
+        return amount, amount_cur, cur
 
     def _get_expense_accrual_amount(self, qty, procurement_action='buy',
                                     company=None):
+        amount = amount_cur = 0.0
+        cur = self.env['res.currency']
         if procurement_action == 'buy':
-            amount = self._get_purchase_pricelist_amount(
+            amount, amount_cur, cur = self._get_purchase_pricelist_amount(
                 qty, company=company)
             if not amount:
                 amount = self.standard_price * qty
@@ -38,6 +43,6 @@ class ProductProduct(models.Model):
             # stockable products
             amount = self.standard_price * qty
             if not amount:
-                amount = self._get_purchase_pricelist_amount(
+                amount, amount_cur, cur = self._get_purchase_pricelist_amount(
                     qty, company=company)
-        return amount
+        return amount, amount_cur, cur

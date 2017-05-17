@@ -99,11 +99,12 @@ class AccountInvoice(models.Model, CommonAccrual):
                 fpos = partner.property_account_position
                 if fpos:
                     expense_account = fpos.map_account(expense_account)
-                amount = product._get_expense_accrual_amount(
+                amount, amount_cur, cur = product._get_expense_accrual_amount(
                     ail.quantity, procurement_action,
                     company=self.company_id)
                 if self.type == 'out_refund':
                     amount = -amount
+                    amount_cur = -amount_cur
                 if not amount:
                     _logger.error(
                         _("No 'Cost' defined for product '%s'")
@@ -133,6 +134,11 @@ class AccountInvoice(models.Model, CommonAccrual):
                     'name': ail.name,
                     'entry_type': 'accrual',
                     }
+                if cur:
+                    accrual_vals.update({
+                        'amount_currency': -amount_cur,
+                        'currency_id': cur.id,
+                        })
                 aml_vals.append(accrual_vals)
 
         if aml_vals:

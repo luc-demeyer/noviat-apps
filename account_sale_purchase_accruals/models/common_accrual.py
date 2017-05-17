@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 
 from openerp import fields, _
@@ -97,10 +98,39 @@ class CommonAccrual(object):
             to_reconcile = accrual_lines[p_id]
             if len(to_reconcile) < 2:
                 continue
-            check = 0.0
+            check = check_cur = 0.0
+            currencies = self.env['res.currency']
             for l in to_reconcile:
+                if l.currency_id:
+                    currencies |= l.currency_id
+                    check_cur += l.amount_currency
                 check += l.debit - l.credit
-            if self.company_id.currency_id.is_zero(check):
+            if len(currencies) > 1:
+                to_correct[p_id] = (accrual_lines[p_id], check)
+                _logger.error(_(
+                    "%s, accrual reconcile failed for "
+                    "account.move.line ids %s, "
+                    "foreign currencies inconsistent"),
+                    self.name, [x.id for x in to_reconcile]
+                    )
+            elif len(currencies) == 1:
+                if currencies.is_zero(check_cur):
+                    ctx = dict(self._context,
+                               account_period_prefer_normal=True)
+                    period = self.env[
+                        'account.period'].with_context(ctx).find()
+                    to_reconcile.reconcile(
+                        writeoff_journal_id=to_reconcile[0].journal_id.id,
+                        writeoff_period_id=period.id)
+                else:
+                    to_correct[p_id] = (accrual_lines[p_id], check)
+                    _logger.error(_(
+                        "%s, accrual reconcile failed for "
+                        "account.move.line ids %s, "
+                        "sum(amount_currency != 0.0"),
+                        self.name, [x.id for x in to_reconcile]
+                        )
+            elif self.company_id.currency_id.is_zero(check):
                 to_reconcile.reconcile()
             else:
                 to_correct[p_id] = (accrual_lines[p_id], check)

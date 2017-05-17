@@ -119,7 +119,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                 if fpos:
                     expense_account = fpos.map_account(expense_account)
 
-                amount = product._get_expense_accrual_amount(
+                amount, amount_cur, cur = product._get_expense_accrual_amount(
                     pol.product_qty, procurement_action='buy',
                     company=self.company_id)
 
@@ -155,6 +155,11 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'entry_type': 'accrual',
                     }
+                if cur:
+                    accrual_vals.update({
+                        'amount_currency': amount_cur,
+                        'currency_id': cur.id,
+                        })
                 s_aml_vals.append(accrual_vals)
 
                 # prepare p_accrual_move
@@ -164,7 +169,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     raise UserError(
                         _("No price defined for order line '%s'")
                         % pol.name)
-                if cur != cpy_cur:
+                if cur:
                     amt_cpy_cur = cur.compute(amount, cpy_cur)
                 else:
                     amt_cpy_cur = amount
@@ -182,7 +187,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'analytic_account_id': pol.account_analytic_id.id,
                     'entry_type': 'expense',
                     }
-                if cur != cpy_cur:
+                if cur:
                     expense_vals.update({
                         'currency_id': cur.id,
                         'amount_currency': amount,
@@ -199,7 +204,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'entry_type': 'accrual',
                     }
-                if cur != cpy_cur:
+                if cur:
                     accrual_vals.update({
                         'currency_id': cur.id,
                         'amount_currency': -amount,
