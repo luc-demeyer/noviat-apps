@@ -1,0 +1,12 @@
+Sequence;Description;Product;Quantity;Account;Unit Price;;Total;Disc %
+1;;Service;10;;5000,00;;50000;
+2;;Service;2;;2000,00;;4000;
+3;Discount;;1;600000;-1620,00;;-1620;3,00%
+;;;;;;;;
+#Total;;;;;;;52380;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;

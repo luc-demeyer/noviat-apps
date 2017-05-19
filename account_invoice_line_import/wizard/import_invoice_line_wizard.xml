@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="ail_import_view_form" model="ir.ui.view">
+      <field name="name">ail.import.form</field>
+      <field name="model">ail.import</field>
+      <field name="priority">1</field>
+      <field name="arch" type="xml">
+        <form string="Import File">
+          <group col="4">
+            <separator string="Select your file :" colspan="4"/>
+            <field name="ail_data" filename="ail_fname"/>
+            <field name="ail_fname" readonly="1"/>
+            <newline/>
+            <field name="csv_separator"/>
+            <field name="decimal_separator"/>
+            <field name="codepage"/>
+          </group>
+          <footer>
+            <button name="ail_import" string="_Import" type="object" class="oe_highlight"/>
+            or
+            <button string="Cancel" class="oe_link" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="ail_import_view_form_result" model="ir.ui.view">
+      <field name="name">ail.import.result.form</field>
+      <field name="model">ail.import</field>
+      <field name="priority">2</field>
+      <field name="arch" type="xml">
+        <form string="Import File">
+          <separator colspan="4" string="Results :"/>
+          <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
+          <footer>
+            <button string="Close" class="oe_link" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>
