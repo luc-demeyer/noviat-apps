@@ -80,7 +80,7 @@ class AccountReinvoiceWizard(models.TransientModel):
         if self.journal_in_ids:
             mapping = self.env['account.reinvoice.journal.mapping'].search(
                 [('company_id', '=', self.company_id.id),
-                 ('journal_in_ids', 'in', self.journal_in_ids._ids)])
+                 ('journal_in_ids', 'in', self.journal_in_ids.ids)])
             if mapping and len(mapping) == 1:
                 self.journal_id = mapping.journal_id
                 self.refund_journal_id = mapping.refund_journal_id

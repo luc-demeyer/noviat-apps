@@ -102,7 +102,7 @@ class AccountInvoice(models.Model):
             target_partner, inv_type):
         # only company currency supported at this point in time
         curr = target_company.currency_id
-        err = False
+        err = ''
         product = line.product_id
         inv_line_vals = {
             'product_id': product.id,
@@ -127,20 +127,34 @@ class AccountInvoice(models.Model):
                 err += _("Please ensure that Product '%s' "
                          "is available for users in Company '%s'."
                          ) % (pref, target_company.name)
-                err_msg = self._intercompany_invoice_error(out_invoice, err)
-                raise UserError(err_msg)
+                err = self._intercompany_invoice_error(out_invoice, err)
 
             except:
                 err = _("Unknown Error")
                 tb = ''.join(format_exception(*exc_info()))
                 err += '\n\n' + tb
-                err_msg = self._intercompany_invoice_error(out_invoice, err)
-                raise UserError(err_msg)
+                err = self._intercompany_invoice_error(out_invoice, err)
 
-            inv_line_vals.update(p_change['value'])
-            inv_line_vals['invoice_line_tax_id'] = [
-                (6, 0, inv_line_vals['invoice_line_tax_id'])]
-        return inv_line_vals
+            if not err:
+                inv_line_vals.update(p_change['value'])
+                inv_line_vals['invoice_line_tax_id'] = [
+                    (6, 0, inv_line_vals['invoice_line_tax_id'])]
+        else:
+            # if no product -> get default account.
+            acc = self.env['account.invoice.line']._default_account()
+            if not acc:
+                acc = self.env['ir.property'].get(
+                    'property_account_expense_categ', 'product.category')
+            if not acc:
+                err = _(
+                    "Creation of invoice line in target company failed."
+                    "\nPlease use shared product records on outgoing "
+                    "invoice lines. As an alternative you can define a "
+                    "default expense account by defining a generic "
+                    "'property_account_expense_categ' in the target company.")
+            else:
+                inv_line_vals['account_id'] = acc.id
+        return inv_line_vals, err
 
     def _get_intercompany_invoice_journal(self, out_invoice,
                                           target_company, inv_type):
@@ -176,7 +190,7 @@ class AccountInvoice(models.Model):
 
     def _prepare_intercompany_invoice_vals(self, out_invoice,
                                            target_company, target_user):
-        err = False
+        err = ''
         if out_invoice.type == 'out_invoice':
             inv_type = 'in_invoice'
         else:
@@ -202,9 +216,15 @@ class AccountInvoice(models.Model):
             inv_vals['fiscal_position'] = fpos.id
         line_vals = []
         for line in out_invoice.invoice_line:
-            line_vals.append(self._prepare_intercompany_invoice_line_vals(
+            tline, tline_err = self._prepare_intercompany_invoice_line_vals(
                 out_invoice, line, target_company, target_user,
-                target_partner, inv_type))
+                target_partner, inv_type)
+            if tline_err:
+                if err:
+                    err += '\n\n'
+                err += tline_err
+            else:
+                line_vals.append(tline)
         inv_vals['invoice_line'] = [(0, 0, x) for x in line_vals]
         return inv_vals, err
 
@@ -220,11 +240,13 @@ class AccountInvoice(models.Model):
                     "Configuration Error : "
                     "\nIntercompany User '%s' should belong to Company '%s'.")
                     % (tu_sudo.name, target_company.name))
-            ic_inv_vals, err = self._prepare_intercompany_invoice_vals(
+            ctx = dict(self._context, force_company=target_company.id)
+            ic_inv_vals, err = self.with_context(ctx).sudo()\
+                ._prepare_intercompany_invoice_vals(
                 out_invoice, target_company, target_user)
             if not err:
-                ic_invoice = self.env['account.invoice'].sudo().create(
-                    ic_inv_vals)
+                ic_invoice = self.env['account.invoice'].with_context(ctx)\
+                    .sudo().create(ic_inv_vals)
                 ic_invoice.button_reset_taxes()
                 self.write({'intercompany_invoice_id': ic_invoice.id})
             else:
