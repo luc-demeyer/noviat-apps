@@ -21,8 +21,8 @@
 ##############################################################################
 
 import logging
-
-from openerp import api, fields, models
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -70,6 +70,14 @@ class SaleDiscount(models.Model):
         string='Excluded Products',
         help="These products will by default be excluded "
              "from this discount.")
+
+    @api.multi
+    def unlink(self):
+        if any(self.env['sale.order.line'].search(
+                [('sale_discount_ids', 'in', self.ids)], limit=1)):
+            raise UserError(_(
+                'You cannot delete a discount which is used in a Sale Order!'))
+        return super(SaleDiscount, self).unlink()
 
     @api.model
     def _default_active(self):

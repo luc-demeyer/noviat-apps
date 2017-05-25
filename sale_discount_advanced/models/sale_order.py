@@ -24,7 +24,9 @@ class SaleOrder(models.Model):
         digits=dp.get_precision('Account'),
         string='Base Amount before Discount',
         readonly=True,
-        store=True)
+        store=True,
+        help="Sum of the totals of all Order Lines before discount."
+             "\nAlso lines without discount are included in this total.")
 
     @api.multi
     def onchange_pricelist_id(self, pricelist_id, order_lines):

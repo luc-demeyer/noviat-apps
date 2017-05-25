@@ -37,7 +37,6 @@ class SaleOrderLine(models.Model):
         column2='discount_id',
         string='Discount(s)'
     )
-    disocunt = fields.Float(readonly=True)
 
     def product_id_change(
             self, cr, uid, ids, pricelist_id, product_id, qty=0,
