@@ -2,7 +2,8 @@
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models
+from openerp import models, _
+from openerp.exceptions import except_orm, Warning as UserError
 
 
 class ProductProduct(models.Model):
@@ -19,8 +20,15 @@ class ProductProduct(models.Model):
             supplier = main_supplier.name
             pricelist = supplier.property_product_pricelist_purchase
             if pricelist:
-                price_get = pricelist.price_get(
-                    self.id, qty, partner=main_supplier.id)
+                try:
+                    price_get = pricelist.price_get(
+                        self.id, qty, partner=main_supplier.id)
+                except except_orm, e:
+                    msg = _(
+                        "Error during pricelist price_get for product '%s'."
+                        ) % self.name
+                    msg += '\n\n' + e.value
+                    raise UserError(msg)
                 if price_get:
                     amount = price_get[pricelist.id] * qty
                     if pricelist.currency_id != company.currency_id:
