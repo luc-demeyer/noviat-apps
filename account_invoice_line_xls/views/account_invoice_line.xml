@@ -10,7 +10,7 @@
         <tree string="Invoice Line" create="false" delete="false" edit="false">
           <field name="invoice_number"/>
           <field name="invoice_type"/>
-          <field name="invoice_partner_id"/>
+          <field name="partner_id"/>
           <field name="invoice_state"/>
           <field name="invoice_journal_id" groups="account.group_account_user"/>
           <field name="invoice_date"/>
@@ -36,8 +36,8 @@
           <separator string="Invoice Fields"/>
           <group name="invoice_fields" colspan="4">
             <group name="invoice_fields_1">
-              <field name="invoice_number"/>
-              <field name="invoice_partner_id"/>
+              <field name="invoice_id"/>
+              <field name="partner_id"/>
               <field name="invoice_state"/>
             </group>
             <group name="invoice_fields_2">
@@ -80,7 +80,7 @@
           <field name="invoice_journal_id" widget="selection"
                  groups="account.group_account_user"
                  domain="[('type','in', ['sale', 'sale_refund', 'purchase', 'purchase_refund'])]"/>
-          <field name="invoice_partner_id"/>
+          <field name="partner_id"/>
           <field name="invoice_date"/>
           <field name="account_id" groups="account.group_account_user"/>
           <field name="account_analytic_id" groups="account.group_analytic_accounting"/>

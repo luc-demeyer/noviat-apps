@@ -1,24 +1,6 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2015 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import xlwt
 from datetime import datetime
@@ -110,7 +92,7 @@ class invoice_line_xls(report_xls):
             'partner': {
                 'header': [1, 36, 'text', _render("_('Partner')")],
                 'lines': [1, 0, 'text',
-                          _render("line.invoice_partner_id.name or ''")],
+                          _render("line.partner_id.name or ''")],
                 'totals': [1, 0, 'text', None]},
             'partner_ref': {
                 'header': [1, 36, 'text', _render("_('Partner Reference')")],
@@ -122,8 +104,11 @@ class invoice_line_xls(report_xls):
             'date': {
                 'header': [1, 14, 'text', _render("_('Invoice Date')")],
                 'lines':
-                    [1, 0, 'date', _render(
-                        "datetime.strptime(line.invoice_date,'%Y-%m-%d')"),
+                    [1, 0, _render("line.invoice_date and 'date' or 'text'"),
+                     _render(
+                        "line.invoice_date "
+                        "and datetime.strptime(line.invoice_date,'%Y-%m-%d') "
+                        "or None"),
                      None, self.ail_cell_style_date],
                 'totals': [1, 0, 'text', None]},
             'account': {
@@ -196,10 +181,6 @@ class invoice_line_xls(report_xls):
                 'lines':
                     [1, 0, 'text',
                      _render("line.account_analytic_id.code or ''")],
-                'totals': [1, 0, 'text', None]},
-            'note': {
-                'header': [1, 42, 'text', _render("_('Notes')")],
-                'lines': [1, 0, 'text', _render("line.note or ''")],
                 'totals': [1, 0, 'text', None]},
         }
 
