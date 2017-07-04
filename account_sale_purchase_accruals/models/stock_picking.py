@@ -48,11 +48,14 @@ class StockPicking(models.Model, CommonAccrual):
                 accrual_account = \
                     product.recursive_property_stock_account_input
             if accrual_account == sp_aml.account_id:
-                accrual_lines[product.id] = sp_aml
+                if product.id not in accrual_lines:
+                    accrual_lines[product.id] = self.env['account.move.line']
+                accrual_lines[product.id] |= sp_aml
                 for inv_aml in inv_amls:
                     if inv_aml.account_id == accrual_account \
                             and inv_aml.product_id == product:
-                        accrual_lines[product.id] += inv_aml
+                        accrual_lines[product.id] |= inv_aml
+
         if accrual_lines:
             self._reconcile_accrued_expense_lines(accrual_lines)
 

@@ -146,11 +146,11 @@ class AccountInvoice(models.Model, CommonAccrual):
             self.write({'accrual_move_id': am_id})
 
         # reconcile with Stock Valuation or PO accruals
-        accruals = False
+        accruals = self.env['account.move']
         if stock_pickings:
-            accruals = stock_pickings.mapped('valuation_move_ids')
+            accruals |= stock_pickings.mapped('valuation_move_ids')
         if purchase_orders:
-            accruals = purchase_orders.mapped('s_accrual_move_id')
+            accruals |= purchase_orders.mapped('s_accrual_move_id')
         if accruals:
             amls = accruals.mapped('line_id')
             for aml in amls:
