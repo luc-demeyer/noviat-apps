@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <menuitem id="ebics_processing_menu" name="EBICS Processing" parent="account.menu_finance_bank_and_cash" sequence="40"/>
+
+  </data>
+</openerp>

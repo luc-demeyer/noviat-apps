@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record id="ebics_ff_cfonb120" model="ebics.file.format">
+      <field name="name">camt.xxx.cfonb120.stm</field>
+      <field name="type">fdl</field>
+      <field name="description">Bank Statement in Format cfonb120</field>
+      <field name="suffix">cfonb120.dat</field>
+    </record>
+
+  </data>
+</openerp>
