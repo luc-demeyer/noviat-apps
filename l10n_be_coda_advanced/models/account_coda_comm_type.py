@@ -39,4 +39,4 @@ class AccountCodaCommType(models.Model):
     _sql_constraints = [
         ('code_uniq', 'unique (code)',
          "The Structured Communication Code must be unique !")
-        ]
+    ]

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat.
+# Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import api, fields, models, _
 
 
@@ -57,7 +58,7 @@ class AccountCoda(models.Model):
         wiz_vals = {
             'coda_data': self.coda_data,
             'coda_fname': self.name,
-            }
+        }
         wizard = self.env['account.coda.import'].create(wiz_vals)
         module = __name__.split('addons.')[1].split('.')[0]
         wiz_view = self.env.ref(
@@ -72,4 +73,4 @@ class AccountCoda(models.Model):
             'target': 'new',
             'context': dict(self._context, coda_id=self.id),
             'type': 'ir.actions.act_window',
-            }
+        }

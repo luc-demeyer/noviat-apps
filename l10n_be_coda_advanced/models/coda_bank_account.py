@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2016 Noviat.
+# Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import api, fields, models, _
 from openerp.exceptions import ValidationError
 
@@ -170,7 +171,7 @@ class CodaBankAccount(models.Model):
             'description1': (self.description1 or '') + ' (copy)',
             'description2': (self.description2 or '') + ' (copy)',
             'state': self.state,
-            })
+        })
         return super(CodaBankAccount, self).copy(default)
 
 

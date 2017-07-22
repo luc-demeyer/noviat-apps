@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '8.0.2.0.4',
+    'version': '8.0.2.0.5',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -35,6 +35,6 @@
         'views/coda_bank_statement.xml',
         'views/menuitem.xml',
         'wizard/account_coda_import.xml',
-        ],
+    ],
     'installable': True,
 }

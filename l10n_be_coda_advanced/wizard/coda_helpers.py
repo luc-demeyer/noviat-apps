@@ -45,7 +45,7 @@ def check_iban(iban):
     iban2 = ""
     for char in iban:
         if char.isalpha():
-            iban2 += str(ord(char)-87)
+            iban2 += str(ord(char) - 87)
         else:
             iban2 += char
     # iban is correct if modulo 97 == 1
