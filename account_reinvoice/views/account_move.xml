@@ -11,8 +11,10 @@
           <field name="product_id" groups="account_reinvoice.group_account_reinvoice"/>
           <field name="reinvoice_key_id" groups="account_reinvoice.group_account_reinvoice"/>
         </xpath>
-        <xpath expr="//notebook//field[@name='line_id']/tree/field[@name='analytic_account_id']" position="before">
+        <xpath expr="//notebook//field[@name='line_id']/tree/field[@name='account_id']" position="before">
           <field name="product_id" groups="account_reinvoice.group_account_reinvoice"/>
+        </xpath>
+        <xpath expr="//notebook//field[@name='line_id']/tree/field[@name='analytic_account_id']" position="before">
           <field name="reinvoice_key_id" groups="account_reinvoice.group_account_reinvoice"/>
         </xpath>
       </field>

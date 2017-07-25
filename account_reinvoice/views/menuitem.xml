@@ -27,10 +27,5 @@
               parent="account_reinvoice.menu_reinvoice_configuration"
               sequence="20"/>
 
-    <menuitem id="account_reinvoice_wizard_menu"
-              name="Manual Reinvoice"
-              parent="menu_reinvoice_processing"
-              action="account_reinvoice_wizard_action" sequence="10"/>
-
   </data>
 </openerp>

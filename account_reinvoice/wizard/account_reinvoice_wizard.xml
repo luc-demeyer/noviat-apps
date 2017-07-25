@@ -81,5 +81,11 @@
       <field name="target">new</field>
     </record>
 
+    <menuitem id="account_reinvoice_wizard_menu"
+              name="Manual Reinvoice"
+              action="account_reinvoice_wizard_action"
+              parent="menu_reinvoice_processing"
+              sequence="10"/>
+
   </data>
 </openerp>
