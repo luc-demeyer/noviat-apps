@@ -23,6 +23,7 @@ class ResPartner(models.Model):
     intercompany_invoice_user_id = fields.Many2one(
         comodel_name='res.users',
         string='Intercompany Invoice User',
+        _prefetch=False,
         help="This user will be used "
              "to create/read/modify intercompany invoices in "
              "the Company associated with this partner.")

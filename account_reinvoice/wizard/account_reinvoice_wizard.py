@@ -100,7 +100,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             'product_id': arl.product_id.id or False,
             'partner_id': arl.partner_id.id or False,
             'journal_out_id': arl.journal_out_id.id or False,
-            }
+        }
         return hc_field_dict
 
     def _hashcode_field_list(self):
@@ -125,7 +125,7 @@ class AccountReinvoiceWizard(models.TransientModel):
             'product_id': arl.product_id.id,
             'price_unit': sign * arl.amount,
             'reinvoice_line_ids': [(6, 0, [arl.id])]
-            }
+        }
         return inv_line_vals
 
     def _finalize_out_invoice_line_vals(self, line_vals, partner, journal):
@@ -146,11 +146,13 @@ class AccountReinvoiceWizard(models.TransientModel):
         inv_vals = {
             'partner_id': partner.id,
             'journal_id': journal.id,
-            'type': journal.type == 'sale' and 'out_invoice'
-            or 'out_refund',
+            # only company currency supported at this point in time
+            'currency_id': journal.company_id.currency_id.id,
+            'type': journal.type == 'sale' and 'out_invoice' or
+                'out_refund',
             'account_id': partner.property_account_receivable.id,
             'company_id': self.company_id.id,
-            }
+        }
         return inv_vals
 
     def _finalize_out_invoice_vals(self, inv_vals):

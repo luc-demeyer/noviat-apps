@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Reinvoice',
-    'version': '8.0.1.0.4',
+    'version': '8.0.1.0.5',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -28,6 +28,6 @@
         'views/account_reinvoice_line.xml',
         'views/menuitem.xml',
         'wizard/account_reinvoice_wizard.xml',
-        ],
+    ],
     'installable': True,
 }

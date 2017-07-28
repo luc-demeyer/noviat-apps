@@ -55,8 +55,8 @@ class AccountReinvoiceLine(models.Model):
                 out_invoices += out_invoice
         if out_invoices:
             inv_list = [
-                ((x.type == 'out_invoice' and _("Invoice") or _("Refund"))
-                 + " " + (x.number or ''),
+                ((x.type == 'out_invoice' and _("Invoice") or _("Refund")
+                  ) + " " + (x.number or ''),
                  x.id)
                 for x in out_invoices]
             inv_list = ', '.join([

@@ -29,7 +29,7 @@ class AccountReinvoiceDistribution(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique(name, company_id)',
          'The Reinvoice Distribution must be unique per Company!'),
-        ]
+    ]
 
     def init(self, cr):
         cr.execute("""

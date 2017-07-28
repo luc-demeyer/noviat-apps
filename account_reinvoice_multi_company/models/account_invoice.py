@@ -106,10 +106,9 @@ class AccountInvoice(models.Model):
         product = line.product_id
         inv_line_vals = {
             'product_id': product.id,
-            'name': line.name,
             'quantity': line.quantity,
             'price_unit': line.price_unit,
-            }
+        }
         if product:
             try:
                 p_change = self.env['account.invoice.line'].sudo(target_user).\
@@ -154,6 +153,7 @@ class AccountInvoice(models.Model):
                     "'property_account_expense_categ' in the target company.")
             else:
                 inv_line_vals['account_id'] = acc.id
+        inv_line_vals['name'] = line.name
         return inv_line_vals, err
 
     def _get_intercompany_invoice_journal(self, out_invoice,
@@ -198,6 +198,22 @@ class AccountInvoice(models.Model):
         target_journal = self.env['account.invoice'].sudo(target_user).\
             _get_intercompany_invoice_journal(out_invoice,
                                               target_company, inv_type)
+        target_currency = self.env['res.currency'].sudo(target_user).search(
+            [('name', '=', out_invoice.currency_id.name),
+             '|', ('company_id', '=', target_company.id),
+             ('company_id', '=', False)])
+        if not target_currency:
+            raise UserError(_(
+                "Currency error: \n"
+                "Currency '%s' in not defined in Company '%s'.")
+                % (out_invoice.currency_id.name, target_company.name))
+        if len(target_currency) > 1:
+            raise UserError(_(
+                "Currency error: \n"
+                "Currency '%s' defined multiple times in Company '%s' "
+                "for user '%s")
+                % (out_invoice.currency_id.name, target_company.name,
+                   target_user.name))
         target_partner = out_invoice.company_id.partner_id.sudo(target_user)
         account = target_partner.property_account_payable
         fpos = target_partner.property_account_position
@@ -211,7 +227,8 @@ class AccountInvoice(models.Model):
             'type': inv_type,
             'account_id': account.id,
             'company_id': target_company.id,
-            }
+            'currency_id': target_currency.id,
+        }
         if fpos:
             inv_vals['fiscal_position'] = fpos.id
         line_vals = []
@@ -246,7 +263,7 @@ class AccountInvoice(models.Model):
                 out_invoice, target_company, target_user)
             if not err:
                 ic_invoice = self.env['account.invoice'].with_context(ctx)\
-                    .sudo().create(ic_inv_vals)
+                    .sudo(target_user).create(ic_inv_vals)
                 ic_invoice.button_reset_taxes()
                 self.write({'intercompany_invoice_id': ic_invoice.id})
             else:

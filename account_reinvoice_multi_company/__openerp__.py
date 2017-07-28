@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Reinvoice Multi-Company',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -20,6 +20,6 @@
         'views/account_invoice.xml',
         'views/account_reinvoice_journal_mapping_multi_company.xml',
         'views/res_partner.xml',
-        ],
+    ],
     'installable': True,
 }

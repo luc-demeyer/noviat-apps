@@ -42,18 +42,18 @@ class AccountMoveLine(models.Model):
                     'view_mode': 'tree,form',
                     'views': [(tree.id, 'tree'), (form.id, 'form')],
                     'domain': [('id', 'in', arl_ids)],
-                    })
+                })
             else:
                 action.update({
                     'name': _('Reinvoice Line'),
                     'view_mode': 'form',
                     'view_id': form.id,
                     'res_id': arl_ids[0],
-                    })
+                })
             action.update({
                 'context': self._context,
                 'view_type': 'form',
                 'res_model': 'account.reinvoice.line',
                 'type': 'ir.actions.act_window',
-                })
+            })
         return action
