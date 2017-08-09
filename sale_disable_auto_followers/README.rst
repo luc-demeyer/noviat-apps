@@ -1,0 +1,10 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+=======================================================
+Disable Automatic Followers on Sale Orders and Invoices
+=======================================================
+
+This module prevents the automatic addition of followers on Sale Orders and Invoices.
+
