@@ -1,24 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
 from datetime import datetime
@@ -57,7 +39,7 @@ class ResPartner(models.Model):
         for partner in partners:
 
             self._cr.execute(
-                "SELECT l.id, a.type, "
+                "SELECT l.id, a.type, a.code, "
                 "l.debit, l.credit, l.reconcile_partial_id, "
                 "(CASE WHEN l.date_maturity IS NOT NULL THEN l.date_maturity "
                 "ELSE ai.date_due END) AS date_maturity "
@@ -80,14 +62,16 @@ class ResPartner(models.Model):
             lines = filter(lambda x: x['id'] not in remove_ids, all_lines)
 
             receivables = payables = []
+            ar_filter = self._ar_filter()
+            ap_filter = self._ap_filter()
             if account_select == 'receivable':
                 receivables = filter(
-                    lambda x: x['type'] == 'receivable', lines)
+                    ar_filter, lines)
             if account_select == 'all':
                 receivables = filter(
-                    lambda x: x['type'] == 'receivable', lines)
+                    ar_filter, lines)
                 payables = filter(
-                    lambda x: x['type'] == 'payable', lines)
+                    ap_filter, lines)
                 # remove payables which have been partially
                 # reconciled with receivables
                 ar_rec_partial_ids = [
@@ -99,8 +83,8 @@ class ResPartner(models.Model):
 
             # remove the partners with no entries beyond the maturity date
             overdues = filter(
-                lambda x: x['date_maturity']
-                and x['date_maturity'] <= report_date,
+                lambda x: x['date_maturity'] and
+                x['date_maturity'] <= report_date,
                 receivables + payables)
             if not overdues:
                 continue
@@ -115,6 +99,12 @@ class ResPartner(models.Model):
                 overdue_partners += partner
 
         return overdue_partners, open_moves
+
+    def _ar_filter(self):
+        return lambda x: x['type'] == 'receivable'
+
+    def _ap_filter(self):
+        return lambda x: x['type'] == 'payable'
 
     def search(self, cr, uid, args, offset=0, limit=None, order=None,
                context=None, count=False):

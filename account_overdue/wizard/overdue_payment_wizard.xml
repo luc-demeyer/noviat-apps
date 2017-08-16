@@ -2,7 +2,7 @@
 <openerp>
   <data>
 
-    <record id="overdue_payment_wizard_view" model="ir.ui.view">
+    <record id="overdue_payment_wizard_view_form" model="ir.ui.view">
       <field name="name">Print Overdue Payments</field>
       <field name="model">overdue.payment.wizard</field>
       <field name="type">form</field>
@@ -23,7 +23,7 @@
       </field>
     </record>
 
-    <record id="action_overdue_payment_wizard" model="ir.actions.act_window">
+    <record id="overdue_payment_wizard_action" model="ir.actions.act_window">
       <field name="name">Print Overdue Payments</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">overdue.payment.wizard</field>
@@ -38,7 +38,7 @@
       <field name="key2">client_print_multi</field>
       <field name="model">res.partner</field>
       <field name="name">Print Overdue Payments</field>
-      <field eval="'ir.actions.act_window,%d'%action_overdue_payment_wizard" name="value"/>
+      <field eval="'ir.actions.act_window,%d'%overdue_payment_wizard_action" name="value"/>
     </record>
 
   </data>

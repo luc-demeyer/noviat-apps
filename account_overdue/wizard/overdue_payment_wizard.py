@@ -1,31 +1,14 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Odoo, Open Source Management Solution
-#
-#    Copyright (c) 2009-2016 Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2009-2017 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
 from datetime import datetime
 
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 
-class overdue_payment_wizard(models.TransientModel):
+
+class OverduePaymentWizard(models.TransientModel):
     _name = 'overdue.payment.wizard'
     _description = 'Print Overdue Payments'
 
@@ -43,8 +26,8 @@ class overdue_payment_wizard(models.TransientModel):
 
     partner_select = fields.Selection([
         ('all', 'All Customers'),
-        ('select', 'Selected Customers'),
-        ], string='Partners', required=True,
+        ('select', 'Selected Customers')],
+        string='Partners', required=True,
         default=lambda self: self._default_partner_select())
     account_select = fields.Selection([
         ('receivable', 'Receivable Accounts'),
@@ -82,7 +65,7 @@ class overdue_payment_wizard(models.TransientModel):
         overdue_partners, open_moves = partner_mod._get_overdue_partners(
             report_date, company_id, partner_ids, account_select)
         if not overdue_partners:
-            raise Warning(
+            raise UserError(
                 _('No Data Available'),
                 _('No records found for your selection!'))
 
