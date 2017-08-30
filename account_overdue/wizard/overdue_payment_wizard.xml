@@ -31,7 +31,7 @@
       <field name="view_mode">form</field>
       <field name="multi" eval="0"/>
       <field name="target">new</field>
-      <field name="view_id" ref="overdue_payment_wizard_view"/>
+      <field name="view_id" ref="overdue_payment_wizard_view_form"/>
     </record>
 
     <record id="overdue_payment_ir_value" model="ir.values">
