@@ -648,7 +648,11 @@ class AccountCodaImport(models.TransientModel):
             info_line['struct_comm_type_desc'] = comm_type[0].description
             info_line['communication'] = info_line['name'] = line[43:113]
         else:
-            info_line['communication'] = info_line['name'] = line[40:113]
+            name = _("Extra information")
+            info = line[40:113]
+            info_line['name'] = name + ': ' + info
+            info_line['communication'] = INDENT + name + ':'
+            info_line['communication'] += INDENT + info
         # positions 114-128 not processed
 
         # store transaction
@@ -2302,7 +2306,7 @@ class AccountCodaImport(models.TransientModel):
             method_instance = getattr(self, method_name)
             st_line_name, st_line_comm = method_instance(
                 coda_statement, transaction)
-        else:  # To DO :'115', '121', '122', '126'
+        else:  # To DO : '121', '122', '126'
             _logger.warn(
                 "The parsing of Structured Commmunication Type %s "
                 "has not yet been implemented. "
@@ -2597,19 +2601,84 @@ class AccountCodaImport(models.TransientModel):
         if sequence_number:
             st_line_comm += INDENT + _('Transaction Sequence Number') \
                 + ': %s' % sequence_number
-        if trans_hour:
+        if trans_date or trans_hour:
             st_line_comm += INDENT + _('Time') \
                 + ': %s' % trans_date + ' ' + trans_hour
         if trans_type:
             st_line_comm += INDENT + _('Transaction Type') \
                 + ': %s' % trans_type
-        if terminal_city:
+        if terminal_name or terminal_city:
             st_line_comm += INDENT + _('Terminal Identification') \
                 + ': %s' % terminal_name + ', ' + terminal_city
         if trans_reference:
             st_line_comm += INDENT + _('Transaction Reference') \
                 + ': %s' % trans_reference
-        st_line_comm += '\n'
+        return st_line_name, st_line_comm
+
+    def _parse_comm_move_115(self, coda_statement, transaction):
+        comm = transaction['communication']
+        st_line_name = _('Terminal cash deposit')
+        card_schemes = {
+            '2': _('Private'),
+            '9': _('Other')}
+        card_number = comm[:16].strip()
+        card_scheme = card_schemes.get(comm[16], '')
+        terminal_number = comm[17:23].strip()
+        sequence_number = comm[23:29].strip()
+        payment_day = comm[29:35].strip()
+        payment_hour = comm[35:39].strip()
+        validation_date = comm[39:45].strip()
+        validation_sequence_number = comm[45:51].strip()
+        amount = list2float(comm[51:66])
+        conformity_code = comm[66].strip()
+        terminal_name = comm[67:83].strip()
+        terminal_city = comm[83:93].strip()
+        message = comm[93:105].strip()
+        td = {}
+        st_line_comm = '\n' + INDENT + st_line_name
+        if card_number:
+            td['card_number'] = card_number
+            st_line_comm += INDENT + _('Card Number') + ': %s' % card_number
+        if card_scheme:
+            td['card_scheme'] = card_scheme
+            st_line_comm += INDENT + _('Card Scheme') + ': %s' % card_scheme
+        if terminal_number:
+            td['terminal_number'] = terminal_number
+            st_line_comm += INDENT + _('Terminal Number') \
+                + ': %s' % terminal_number
+        if sequence_number:
+            td['sequence_number'] = sequence_number
+            st_line_comm += INDENT + _('Transaction Sequence Number') \
+                + ': %s' % sequence_number
+        if payment_day or payment_hour:
+            td['payment_day'] = payment_day
+            td['payment_hour'] = payment_hour
+            st_line_comm += INDENT + _('Time') \
+                + ': %s' % payment_day + ' ' + payment_hour
+        if validation_date:
+            td['validation_date'] = validation_date
+            st_line_comm += INDENT + _('Validation Date') \
+                + ': %s' % validation_date
+        if validation_sequence_number:
+            td['validation_sequence_number'] = validation_sequence_number
+            st_line_comm += INDENT + _('Validation Sequence Number') \
+                + ': %s' % validation_sequence_number
+        td['amount'] = amount
+        st_line_comm += INDENT + _('Amount (given by the customer)') \
+            + ': %.2f' % amount
+        if conformity_code:
+            td['conformity_code'] = conformity_code
+            st_line_comm += INDENT + _('Conformity Code') \
+                + ': %s' % conformity_code
+        if terminal_name or terminal_city:
+            td['terminal_name'] = terminal_name
+            td['terminal_city'] = terminal_city
+            st_line_comm += INDENT + _('Terminal Identification') \
+                + ': %s' % terminal_name + ', ' + terminal_city
+        if message:
+            td['message'] = message
+            st_line_comm += INDENT + _('Message') + ': %s' % message
+        transaction['struct_comm_115'] = td
         return st_line_name, st_line_comm
 
     def _parse_comm_move_123(self, coda_statement, transaction):
@@ -2762,7 +2831,8 @@ class AccountCodaImport(models.TransientModel):
                 "Please contact Noviat (info@noviat.com) for "
                 "more information about the development roadmap", comm_type)
             st_line_name = transaction['name']
-            st_line_comm = transaction['communication']
+            st_line_comm = '\n' + INDENT + st_line_name
+            st_line_comm += '\n' + INDENT + transaction['communication']
         return st_line_name, st_line_comm
 
     def _parse_comm_info_001(self, coda_statement, transaction):
@@ -2771,7 +2841,7 @@ class AccountCodaImport(models.TransientModel):
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
-        st_line_comm = '\n' + INDENT + st_line_name
+        st_line_comm = INDENT + st_line_name + ':'
         val = comm[0:70].strip()
         if val:
             st_line_comm += INDENT + _('Name') + ': %s' % val
@@ -2784,7 +2854,6 @@ class AccountCodaImport(models.TransientModel):
         val = comm[140:175].strip()
         if val:
             st_line_comm += INDENT + _('Identification Code') + ': %s' % val
-        st_line_comm += '\n'
         return st_line_name, st_line_comm
 
     def _parse_comm_info_002(self, coda_statement, transaction):
@@ -2823,8 +2892,9 @@ class AccountCodaImport(models.TransientModel):
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Description of the detail') + ': %s' % comm[0:30].strip()
+        st_line_comm = INDENT + st_line_name + ':'
+        st_line_comm += INDENT + _('Description of the detail') \
+            + ': %s' % comm[0:30].strip()
         st_line_comm += INDENT + _('Amount') \
             + ': %s' % amount
         st_line_comm += INDENT + _('Category') \
@@ -2837,8 +2907,9 @@ class AccountCodaImport(models.TransientModel):
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Number of notes/coins') + ': %s' % comm[0:7]
+        st_line_comm = INDENT + st_line_name + ':'
+        st_line_comm += INDENT + _('Number of notes/coins') \
+            + ': %s' % comm[0:7]
         st_line_comm += INDENT + _('Note/coin denomination') \
             + ': %s' % comm[7:13]
         st_line_comm += INDENT + _('Total amount') \
@@ -2851,8 +2922,8 @@ class AccountCodaImport(models.TransientModel):
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _('Name') \
-            + ': %s' % comm[0:70].strip()
+        st_line_comm = INDENT + st_line_name + ':'
+        st_line_comm += INDENT + _('Name') + ': %s' % comm[0:70].strip()
         st_line_comm += INDENT + _('Identification Code') \
             + ': %s' % comm[70:105].strip()
         return st_line_name, st_line_comm
@@ -2863,8 +2934,8 @@ class AccountCodaImport(models.TransientModel):
         st_line_name = filter(
             lambda x: x.code == comm_type,
             self._comm_types)[0].description
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _('Name') \
-            + ': %s' % comm[0:70].strip()
+        st_line_comm = INDENT + st_line_name + ':'
+        st_line_comm += INDENT + _('Name') + ': %s' % comm[0:70].strip()
         st_line_comm += INDENT + _('Identification Code') \
             + ': %s' % comm[70:105].strip()
         return st_line_name, st_line_comm

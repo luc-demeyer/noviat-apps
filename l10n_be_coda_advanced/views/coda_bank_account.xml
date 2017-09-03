@@ -84,7 +84,7 @@
                   <field name="trans_category_id"/>
                   <field name="partner_id"/>
                   <field name="struct_comm_type_id"/>
-                   <field name="account_id"/>
+                  <field name="account_id"/>
                 </tree>
                 <form string="Account Mapping Rules">
                   <group col="4">
@@ -96,7 +96,8 @@
                     <field name="trans_family_id"/>
                     <field name="trans_code_id" domain="[('parent_id', '=', trans_family_id)]"/>
                     <field name="trans_category_id"/>
-                    <field name="partner_id"/>
+                    <field name="partner_id"
+                           domain="['|', ('parent_id', '=', False), ('is_company' ,'=', True)]"/>
                     <field name="freecomm"/>
                     <field name="struct_comm_type_id"/>
                     <field name="structcomm"/>

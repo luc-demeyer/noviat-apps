@@ -1,13 +1,13 @@
 # French translation of Odoo 8.0.
 # This file contains the translation of the following modules:
-#    * l10n_be_coda_advanced
+#	* l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2015-08-13 11:52:03.041000\n"
-"PO-Revision-Date: 2015-08-13 11:52:03.041000\n"
+"POT-Creation-Date: 2017-09-03 10:57:16.716000\n"
+"PO-Revision-Date: 2017-09-03 10:57:16.716000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -575,6 +575,11 @@ msgid "CODA Bank Statements"
 msgstr "Relevés de compte CODA"
 
 #. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:12
+msgid "Extra information"
+msgstr "Information additionelle"
+
+#. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:13
 msgid "The CODA File has been processed by"
 msgstr "Le fichier CODA est traité par"
@@ -916,256 +921,286 @@ msgstr "Référence de l'opération"
 
 #. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:91
+msgid "Terminal cash deposit"
+msgstr "Versement au terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:92
+msgid "Validation Date"
+msgstr "Date de validation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:93
+msgid "Validation Sequence Number"
+msgstr "Numéro de séquence de la validation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:94
+msgid "Amount (given by the customer)"
+msgstr "Montant initial"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:95
+msgid "Conformity Code"
+msgstr "Code de conformité"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:96
+msgid "Message"
+msgstr "Communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:98
 msgid "guarantee without fixed term"
 msgstr "cautionnement sans échéance fixe"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:92
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:99
 msgid "Starting Date"
 msgstr "Date de prise d'effet"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:93
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:100
 msgid "Maturity Date"
 msgstr "Date d'échéance"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:94
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:101
 msgid "Basic Amount"
 msgstr "Montant de base"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:95
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:102
 msgid "Percentage"
 msgstr "Pourcentage"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:96
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:103
 msgid "Term in days"
 msgstr "Durée en jours"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:97
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:104
 msgid "Guarantee Number"
 msgstr "Numéro de cautionnement"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:99
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:106
 msgid "Settlement credit cards"
 msgstr "Décompte cartes de crédit"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:100
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:107
 msgid "Issuing Institution"
 msgstr "Établissement émetteur"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:101
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:108
 msgid "Invoice Number"
 msgstr "Numéro de facture"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:102
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:109
 msgid "Identification Number"
 msgstr "Numéro d'identification"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:103
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:110
 msgid "Date"
 msgstr "Date"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:105
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:112
 msgid "Credit"
 msgstr "Crédit"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:106
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:113
 msgid "Credit Account Number"
 msgstr "Numéro de compte du crédit"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:107
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:114
 msgid "Old Balance"
 msgstr "Ancien solde"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:108
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:115
 msgid "New Balance"
 msgstr "Nouveau solde"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:109
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:116
 msgid "Amount"
 msgstr "Montant"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:110
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:117
 msgid "End Date"
 msgstr "Échéance"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:111
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:118
 msgid "Nominal Interest Rate or Rate of Charge"
 msgstr "Taux d'intérêt nominal ou taux de chargement"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:112
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:120
 msgid "European direct debit (SEPA)"
 msgstr "Domiciliation européenne (direct debit SEPA)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:113
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:121
 msgid "Settlement Date"
 msgstr "Date de décompte"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:114
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:122
 msgid "Direct Debit Type"
 msgstr "Type de domiciliation"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:115
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:123
 msgid "Direct Debit Scheme"
 msgstr "Plan de domiciliation"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:116
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:124
 msgid "Creditor's Identification Code"
 msgstr "Code créancier"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:117
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:125
 msgid "Mandate Reference"
 msgstr "Mandat référence"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:118
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:126
 msgid "Communication"
 msgstr "Communication"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:119
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:127
 msgid "R transaction Type"
 msgstr "Type de transaction R"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:120
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:128
 msgid "Reason"
 msgstr "Raison"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:121
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:129
 msgid "unspecified"
 msgstr "non précisé"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:122
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:130
 msgid "recurrent"
 msgstr "récurrent"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:123
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:131
 msgid "one-off"
 msgstr "one-off"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:124
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:132
 msgid "1-st (recurrent)"
 msgstr "1-st (recurrent)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:125
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:133
 msgid "last (recurrent)"
 msgstr "last (recurrent)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:126
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:134
 msgid "technical problem"
 msgstr "problème technique"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:127
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:135
 msgid "refusal - reason not specified"
 msgstr "refus - raison non précisé"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:128
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:136
 msgid "debtor disagrees"
 msgstr "débiteur pas d'accord"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:129
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:137
 msgid "debtor's account problem"
 msgstr "problème du compte débiteur"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:130
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:138
 msgid "reject"
 msgstr "inexécutable (reject)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:131
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:139
 msgid "return"
 msgstr "impayé (return)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:132
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:140
 msgid "refund"
 msgstr "rembousement (refund)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:133
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:141
 msgid "reversal"
 msgstr "rectification (reversal)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:134
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:142
 msgid "cancellation"
 msgstr "annulation (cancellation)"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:135
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:144
 msgid "Name"
 msgstr "Nom"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:136
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:145
 msgid "Street"
 msgstr "Rue"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:137
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:146
 msgid "Locality"
 msgstr "Localité"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:138
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:147
 msgid "Identification Code"
 msgstr "Code d’identification"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:139
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:149
 msgid "Description of the detail"
 msgstr "Libellé du détail"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:140
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:150
 msgid "Category"
 msgstr "Rubrique"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:141
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:152
 msgid "Number of notes/coins"
 msgstr "Nombre de billets/pièces"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:142
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:153
 msgid "Note/coin denomination"
 msgstr "Dénomination du billet/pièce"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:143
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:154
 msgid "Total amount"
 msgstr "Montant total"
 
