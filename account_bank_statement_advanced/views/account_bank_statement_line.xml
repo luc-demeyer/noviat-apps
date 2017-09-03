@@ -23,11 +23,10 @@
           <field name="globalisation_id" string="Glob. Id" attrs="{'readonly':[('state','=','confirm')]}"/>
           <field name="globalisation_amount" string="Glob. Am."/>
           <field name="reconcile_get"/>
-          <field name="move_get"/>
+          <field name="move_state"/>
           <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
           <button name="cancel" attrs="{'invisible': [('move_state', '=', False)]}" string="Cancel" type="object" icon="gtk-cancel"/>
           <field name="state" invisible="1"/>
-          <field name="move_state" invisible="1"/>
         </tree>
       </field>
     </record>
@@ -57,10 +56,9 @@
               <field name="globalisation_id"/>
               <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
               <field name="state" invisible="1"/>
-              <field name="move_state" invisible="1"/>
               <newline/>
               <field name="reconcile_get"/>
-              <field name="move_get"/>
+              <field name="move_state" invisible="1"/>
               <field name="sequence" attrs="{'readonly':[('move_state', '!=', False)]}"/>
             </group>
             <separator string="Notes"/>

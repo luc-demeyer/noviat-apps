@@ -59,7 +59,7 @@ class AccountBankStatement(models.Model):
                 'target': 'new',
                 'context': dict(self._context, note=reconcile_note),
                 'type': 'ir.actions.act_window',
-                }
+            }
         else:
             return True
 

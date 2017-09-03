@@ -26,8 +26,8 @@ class AccountBankStatementLineGlobal(models.Model):
     type = fields.Selection([
         ('iso20022', 'ISO 20022'),
         ('coda', 'CODA'),
-        ('manual', 'Manual'),
-        ], string='Type', required=True)
+        ('manual', 'Manual')],
+        string='Type', required=True)
     amount = fields.Float(
         string='Amount',
         digits_compute=dp.get_precision('Account'))
@@ -77,7 +77,7 @@ class AccountBankStatementLineGlobal(models.Model):
                 operand1, operand2 = name.split(' ', 1)
                 recs = self.search([
                     ('code', '=like', operand1), ('name', operator, operand2)
-                    ] + args, limit=limit)
+                ] + args, limit=limit)
         else:
             recs = self.browse()
         return recs.name_get()

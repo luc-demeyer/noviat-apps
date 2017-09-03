@@ -4,7 +4,7 @@
 
 {
     'name': 'Advanced Bank Statement',
-    'version': '8.0.2.0.0',
+    'version': '8.0.2.1.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -15,7 +15,7 @@
         'account_cancel',
         'base_iban',
         'web_sheet_full_width_selective',
-        ],
+    ],
     'conflicts': ['account_bank_statement_extensions'],
     'data': [
         'security/ir.model.access.csv',
@@ -31,6 +31,6 @@
         'wizard/bank_statement_balance_print.xml',
         'wizard/bank_statement_automatic_reconcile_result_view.xml',
         'report/reports.xml',
-        ],
+    ],
     'installable': True,
 }

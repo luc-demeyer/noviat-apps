@@ -32,11 +32,10 @@
         </xpath>
         <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="after">
           <field name="reconcile_get"/>
-          <field name="move_get"/>
+          <field name="move_state"/>
           <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
           <field name="globalisation_id" string="Glob. Id"/>
           <field name="state" invisible="1"/>
-          <field name="move_state" invisible="1"/>
         </xpath>
         <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="attributes">
           <attribute name="invisible">1</attribute>
@@ -49,7 +48,6 @@
             </header>
             <group name="invisible">
               <field name="state" invisible="1"/>
-              <field name="move_state" invisible="1"/>
               <field name="journal_entry_id" invisible="1"/>
             </group>
             <group name="line" attrs="{'readonly': [('state', '=', 'confirm')]}">
@@ -81,7 +79,7 @@
                 <field name="sequence" attrs="{'readonly': [('move_state', '!=', False)]}"/>
               </group>
               <group name="g6">
-                <field name="move_get"/>
+                <field name="move_state"/>
               </group>
               <separator string="Notes"/>
               <field colspan="2" name="note" nolabel="1"/>
