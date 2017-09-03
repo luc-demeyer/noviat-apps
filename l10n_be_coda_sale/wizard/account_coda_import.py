@@ -30,7 +30,7 @@ class AccountCodaImport(models.TransientModel):
 
         if transaction['communication'] and cba.find_so_number \
                 and transaction['amount'] > 0:
-            so_res = self._get_sale_order(
+            reconcile_note, so_res = self._get_sale_order(
                 st_line, cba, transaction, reconcile_note)
             if so_res and len(so_res) == 1:
                 so_id = so_res[0][0]

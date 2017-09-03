@@ -4,7 +4,7 @@
 
 {
     'name': 'CODA Import - Sale Order Matching',
-    'version': '8.0.2.0.1',
+    'version': '8.0.2.0.2',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
