@@ -2,10 +2,10 @@
 <openerp>
   <data>
 
-    <record id="view_bank_statement_form" model="ir.ui.view">
-      <field name="name">view.bank.statement.form.advanded</field>
+    <record id="bank_statement_cancel_form_inherit" model="ir.ui.view">
+      <field name="name">view.bank.statement.form.advanced</field>
       <field name="model">account.bank.statement</field>
-      <field name="inherit_id" ref="account.view_bank_statement_form"/>
+      <field name="inherit_id" ref="account_cancel.bank_statement_cancel_form_inherit"/>
       <field name="arch" type="xml">
         <!-- 
         placeholder for modules that implement automatic reconciliation, e.g.
@@ -17,6 +17,7 @@
         <button name="%(account.action_bank_reconcile_bank_statements)d" position="attributes">
           <attribute name="string">Manual Reconcile</attribute>
         </button>
+
         <xpath expr="//sheet" position="attributes">
           <attribute name="class">oe_form_sheet_full_screen</attribute>
         </xpath>
@@ -40,6 +41,14 @@
         <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='bank_account_id']" position="attributes">
           <attribute name="invisible">1</attribute>
         </xpath>
+
+        <!-- change behaviour of statement line cancel button introduced by account_cancel module -->
+        <button name="cancel" position="attributes">
+          <attribute name="name">action_cancel</attribute>
+          <attribute name="icon">gtk-cancel</attribute>
+          <attribute name="attrs">{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}</attribute>
+        </button>
+
         <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="after">
           <form string="Statement Line" create="false" delete="false">
             <header>
@@ -86,19 +95,6 @@
             </group>
           </form>
         </xpath>
-      </field>
-    </record>
-
-    <record id="bank_statement_cancel_form_inherit" model="ir.ui.view">
-      <field name="name">absa.bank.statement.cancel.form.inherit</field>
-      <field name="model">account.bank.statement</field>
-      <field name="inherit_id" ref="account_cancel.bank_statement_cancel_form_inherit"/>
-      <field name="arch" type="xml">
-        <button name="cancel" position="attributes">
-          <attribute name="name">action_cancel</attribute>
-          <attribute name="icon">gtk-cancel</attribute>
-          <attribute name="attrs">{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}</attribute>
-        </button>
       </field>
     </record>
 

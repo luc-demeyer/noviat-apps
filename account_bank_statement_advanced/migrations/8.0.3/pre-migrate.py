@@ -6,16 +6,18 @@
 def migrate(cr, version):
 
     module = 'account_bank_statement_advanced'
-    view = 'absa_bank_statement_cancel_form_inherit'
-    cr.execute(
-        "SELECT res_id from ir_model_data "
-        "WHERE module = %s "
-        "AND name = %s",
-        (module, view))
-    res = cr.fetchone()
-    if res:
+    views = ['absa_bank_statement_cancel_form_inherit',
+             'view_bank_statement_form_advanced']
+    for view in views:
         cr.execute(
-            "DELETE from ir_ui_view WHERE id = %s" % res[0])
+            "SELECT res_id from ir_model_data "
+            "WHERE module = %s "
+            "AND name = %s",
+            (module, view))
+        res = cr.fetchone()
+        if res:
+            cr.execute(
+                "DELETE from ir_ui_view WHERE id = %s" % res[0])
 
     cr.execute(
         "ALTER TABLE account_bank_statement "

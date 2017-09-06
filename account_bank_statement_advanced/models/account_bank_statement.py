@@ -2,6 +2,8 @@
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from lxml import etree
+
 from openerp import api, fields, models, _
 
 
@@ -29,6 +31,25 @@ class AccountBankStatement(models.Model):
             if line.amount and not line.journal_entry_id:
                 self.all_lines_reconciled = False
                 break
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type=False,
+                        toolbar=False, submenu=False):
+        """
+        Hide 'Reset to New' button.
+        We use fields_view_get in stead of xml inherit since older
+        databases may have been migrated without the view that
+        adds the 'button_draft' button.
+        """
+        res = super(AccountBankStatement, self).fields_view_get(
+            view_id=view_id, view_type=view_type,
+            toolbar=toolbar, submenu=submenu)
+        if view_type == 'form':
+            form = etree.XML(res['arch'])
+            for node in form.xpath("//button[@name='button_draft']"):
+                node.set('modifiers', '{"invisible": true}')
+            res['arch'] = etree.tostring(form)
+        return res
 
     @api.multi
     def button_cancel(self):
