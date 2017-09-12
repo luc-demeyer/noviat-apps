@@ -4,6 +4,8 @@
 
 
 def migrate(cr, version):
+    if not version:
+        return
 
     module = 'account_bank_statement_advanced'
     views = ['absa_bank_statement_cancel_form_inherit',
