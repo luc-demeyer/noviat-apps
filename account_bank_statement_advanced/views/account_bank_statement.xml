@@ -44,7 +44,6 @@
 
         <!-- change behaviour of statement line cancel button introduced by account_cancel module -->
         <button name="cancel" position="attributes">
-          <attribute name="name">action_cancel</attribute>
           <attribute name="icon">gtk-cancel</attribute>
           <attribute name="attrs">{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}</attribute>
         </button>
@@ -53,7 +52,7 @@
           <form string="Statement Line" create="false" delete="false">
             <header>
               <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
-              <button name="action_cancel" attrs="{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}" string="Cancel" type="object" icon="gtk-cancel"/>
+              <button name="cancel" attrs="{'invisible': ['|', ('move_state', '=', False), ('state', '=', 'confirm')]}" string="Cancel" type="object" icon="gtk-cancel"/>
             </header>
             <group name="invisible">
               <field name="state" invisible="1"/>

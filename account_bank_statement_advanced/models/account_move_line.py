@@ -20,26 +20,6 @@ class AccountMoveLine(models.Model):
         else:
             self.tax_amount = False
 
-    @api.model
-    def fields_view_get(self, view_id=None, view_type='form',
-                        toolbar=False, submenu=False):
-        ctx = self._context.copy()
-        if ctx.get('act_window_from_bank_statement'):
-            if view_type == 'tree':
-                view_id = self.env.ref(
-                    'account_bank_statement_advanced.'
-                    'view_move_line_reconcile_tree').id
-                ctx.update({'view_mode': 'tree'})
-            elif view_type == 'search':
-                view_id = self.env.ref(
-                    'account_bank_statement_advanced.'
-                    'view_move_line_reconcile_search').id
-                ctx.update({'view_mode': 'search'})
-        return super(
-            AccountMoveLine, self.with_context(ctx)
-        ).fields_view_get(view_id=view_id, view_type=view_type,
-                          toolbar=toolbar, submenu=submenu)
-
     @api.multi
     def unlink(self, **kwargs):
         for move_line in self:

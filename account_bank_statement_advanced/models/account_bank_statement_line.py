@@ -99,14 +99,14 @@ class AccountBankStatementLine(models.Model):
             self.amount_currency = 0.0
 
     @api.multi
-    def action_cancel(self):
+    def cancel(self):
         """
         remove the account_id from the line for manual reconciliation
         """
         for line in self:
             if line.account_id:
                 line.account_id = False
-        self.cancel()
+        super(AccountBankStatementLine, self).cancel()
         return True
 
     @api.multi
