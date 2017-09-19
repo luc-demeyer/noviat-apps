@@ -2,34 +2,39 @@
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+"""
+import logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='[%(asctime)s] %(levelname)s - %(name)s: %(message)s')
+"""
+
 import base64
 import logging
 import os
 from sys import exc_info
+from traceback import format_exception
 
+import fintech
 from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
     EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
 
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
+fintech.cryptolib = 'cryptography'
 _logger = logging.getLogger(__name__)
 
-"""
-TODO:
-add support for H003, cf. fintech doc:
 
-To support EBICS protocol version H003 you must generate
-the required order ids by yourself.
-Therefore you have to subclass EbicsBank as follows:
-
-class MyBank(EbicsBank):
+class EbicsBank(EbicsBank):
 
     def _next_order_id(self, partnerid):
-        # Generate an order id uniquely for each partner id
-        # Must be a string between 'A000' and 'ZZZZ'
-        return generate_order_id(partnerid)
-"""
+        """
+        EBICS protocol version H003 requires generation of the OrderID.
+        The OrderID must be a string between 'A000' and 'ZZZZ' and
+        unique for each partner id.
+        """
+        return hasattr(self, '_order_number') and self._order_number or 'A000'
 
 
 class EbicsXfer(models.TransientModel):
@@ -45,11 +50,28 @@ class EbicsXfer(models.TransientModel):
         string='EBICS Passphrase')
     date_from = fields.Date()
     date_to = fields.Date()
+    upload_data = fields.Binary(string='File to Upload')
+    upload_fname = fields.Char(
+        string='Upload Filename', default='')
+    upload_fname_dummy = fields.Char(
+        related='upload_fname', string='Upload Filename', readonly=True)
     format_id = fields.Many2one(
         comodel_name='ebics.file.format',
         string='EBICS File Format',
-        help="Select EBICS File Format to download."
+        help="Select EBICS File Format to upload/download."
              "\nLeave blank to download all available files.")
+    order_type = fields.Selection(
+        selection=lambda self: self._selection_order_type(),
+        string='Order Type',
+        help="For most banks is France you should use the "
+             "format neutral Order Types 'FUL' for upload "
+             "and 'FDL' for download.")
+    test_mode = fields.Boolean(
+        string='Test Mode',
+        help="Select this option to test if the syntax of "
+             "the upload file is correct."
+             "\nThis option is only available for "
+             "Order Type 'FUL'.")
     note = fields.Text(string='EBICS file transfer Log', readonly=True)
 
     @api.model
@@ -62,6 +84,10 @@ class EbicsXfer(models.TransientModel):
         else:
             return cfg_mod
 
+    @api.model
+    def _selection_order_type(self):
+        return self.env['ebics.file.format']._selection_order_type()
+
     @api.onchange('ebics_config_id')
     def _onchange_ebics_config_id(self):
         if self._context.get('ebics_download'):
@@ -70,15 +96,84 @@ class EbicsXfer(models.TransientModel):
             if len(download_formats) == 1:
                 self.format_id = download_formats
 
+    @api.onchange('upload_data')
+    def _onchange_upload_data(self):
+        self.upload_fname_dummy = self.upload_fname
+        self._detect_upload_format()
+        upload_formats = self.format_id \
+            or self.ebics_config_id.ebics_file_format_ids.filtered(
+                lambda r: r.type == 'up')
+        if len(upload_formats) == 1:
+            self.format_id = upload_formats
+
+    @api.onchange('format_id')
+    def _onchange_format_id(self):
+        self.order_type = self.format_id.order_type
+
     @api.multi
     def ebics_upload(self):
         self.ensure_one()
         self.note = ''
         client = self._setup_client()
-        raise UserError(_(
-            "The EBICS Upload functionality is not "
-            "available in this version of the "
-            "'account_ebics' module."))
+        upload_data = base64.decodestring(self.upload_data)
+        format = self.format_id
+        try:
+            order_type = format.order_type or 'FUL'
+            if order_type == 'FUL':
+                kwargs = {}
+                bank = self.ebics_config_id.bank_id.bank
+                if bank.country:
+                    kwargs['country'] = bank.country.code
+                if self.test_mode:
+                    kwargs['TEST'] = 'TRUE'
+                OrderID = client.FUL(format.name, upload_data, **kwargs)
+            elif order_type == 'CCT':
+                OrderID = client.CCT(upload_data)
+            self.note += '\n'
+            self.note += _(
+                "EBICS File has been uploaded (OrderID %s)."
+            ) % OrderID
+            if self.ebics_config_id.ebics_version == 'H003':
+                self.ebics_config_id._update_order_number(OrderID)
+        except EbicsFunctionalError:
+            e = exc_info()
+            self.note += '\n'
+            self.note += _("EBICS Functional Error:")
+            self.note += '\n'
+            self.note += '%s (code: %s)' % (e[1].message, e[1].code)
+        except EbicsTechnicalError:
+            e = exc_info()
+            self.note += '\n'
+            self.note += _("EBICS Technical Error:")
+            self.note += '\n'
+            self.note += '%s (code: %s)' % (e[1].message, e[1].code)
+        except EbicsVerificationError:
+            self.note += '\n'
+            self.note += _("EBICS Verification Error:")
+            self.note += '\n'
+            self.note += _("The EBICS response could not be verified.")
+        except:
+            e = exc_info()
+            self.note += '\n'
+            self.note += _("Unknown Error")
+            tb = ''.join(format_exception(*exc_info()))
+            self.note += '\n%s' % tb
+
+        ctx = self._context.copy()
+        module = __name__.split('addons.')[1].split('.')[0]
+        result_view = self.env.ref(
+            '%s.ebics_xfer_view_form_result' % module)
+        return {
+            'name': _('EBICS file transfer result'),
+            'res_id': self.id,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'ebics.xfer',
+            'view_id': result_view.id,
+            'target': 'new',
+            'context': ctx,
+            'type': 'ir.actions.act_window',
+        }
 
     @api.multi
     def ebics_download(self):
@@ -87,9 +182,10 @@ class EbicsXfer(models.TransientModel):
         client = self._setup_client()
         download_formats = self.format_id \
             or self.ebics_config_id.ebics_file_format_ids.filtered(
-                lambda r: r.type == 'fdl')
+                lambda r: r.type == 'down')
         ebics_files = self.env['ebics.file']
         for df in download_formats:
+            success = False
             try:
                 data = client.FDL(
                     filetype=df.name, start=self.date_from or None,
@@ -99,6 +195,7 @@ class EbicsXfer(models.TransientModel):
                 self.note += _(
                     "EBICS File '%s' is available for further processing."
                 ) % ebics_files[-1].name
+                success = True
             except EbicsFunctionalError:
                 e = exc_info()
                 self.note += '\n'
@@ -116,6 +213,17 @@ class EbicsXfer(models.TransientModel):
                 self.note += _("EBICS Verification Error:")
                 self.note += '\n'
                 self.note += _("The EBICS response could not be verified.")
+            except:
+                e = exc_info()
+                self.note += '\n'
+                self.note += _("Unknown Error")
+                tb = ''.join(format_exception(*exc_info()))
+                self.note += '\n%s' % tb
+            else:
+                # mark received data so that it is not included in further
+                # downloads
+                trans_id = client.last_trans_id
+                client.confirm_download(trans_id=trans_id, success=success)
 
         ctx = self._context.copy()
         ctx['ebics_file_ids'] = ebics_files._ids
@@ -154,16 +262,24 @@ class EbicsXfer(models.TransientModel):
         keyring = EbicsKeyRing(
             keys=self.ebics_config_id.ebics_keys,
             passphrase=passphrase)
+
         bank = EbicsBank(
             keyring=keyring,
             hostid=self.ebics_config_id.ebics_host,
             url=self.ebics_config_id.ebics_url)
+        if self.ebics_config_id.ebics_version == 'H003':
+            bank._order_number = self.ebics_config_id._get_order_number()
+
         user = EbicsUser(
             keyring=keyring,
             partnerid=self.ebics_config_id.ebics_partner,
             userid=self.ebics_config_id.ebics_user)
+        if self.ebics_config_id.signature_class == 'T':
+            user.manual_approval = True
+
         client = EbicsClient(
             bank, user, version=self.ebics_config_id.ebics_version)
+
         return client
 
     def _get_passphrase(self):
@@ -258,6 +374,29 @@ class EbicsXfer(models.TransientModel):
                 "\nPlease check this file and rename in case there is "
                 "no risk on duplicate transactions.")
                 % fn)
+
+    def _detect_upload_format(self):
+        """
+        Use this method in order to automatically detect and set the
+        EBICS upload file format.
+        """
+        pass
+
+    def _update_order_number(self, OrderID):
+        o_list = list(OrderID)
+        for i, c in enumerate(reversed(o_list), start=1):
+            if c == '9':
+                o_list[-i] = 'A'
+                break
+            if c == 'Z':
+                continue
+            else:
+                o_list[-i] = chr(ord(c) + 1)
+                break
+        next = ''.join(o_list)
+        if next == 'ZZZZ':
+            next = 'A000'
+        self.ebics_config_id.order_number = next
 
     def _insert_line_terminator(self, data_in, line_len):
         data_out = ''

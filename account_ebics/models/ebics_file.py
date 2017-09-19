@@ -173,7 +173,8 @@ class EbicsFile(models.Model):
                 parts = []
                 for k in ['type', 'message', 'details']:
                     if notif.get(k):
-                        parts.append()
+                        msg = '%s: %s' % (k, notif[k])
+                        parts.append(msg)
                 self.note_process += '\n'.join(parts)
                 self.note_process += '\n'
             self.note_process += '\n'

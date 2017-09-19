@@ -39,7 +39,10 @@
             <field name="ebics_partner"/>
             <field name="ebics_user"/>
             <field name="ebics_version"/>
+            <field name="signature_class"/>
             <field name="ebics_files"/>
+            <field name="order_number"
+                   attrs="{'invisible': [('ebics_version', '=', 'H004')]}"/>
             <field name="active"/>
             <field name="company_id" widget='selection' groups="base.group_multi_company"/>
           </group>
@@ -105,10 +108,10 @@
 
     <menuitem id="ebics_config_menu"
               name="EBICS Configuration"
-              parent="account.menu_configuration_misc"
+              parent="ebics_menu"
               action="ebics_config_action"
               groups="account_ebics.group_ebics_manager"
-              sequence="100"/>
+              sequence="10"/>
 
   </data>
 </openerp>

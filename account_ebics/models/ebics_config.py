@@ -6,38 +6,35 @@
 """
 import logging
 logging.basicConfig(
-     level = logging.DEBUG,
-     format = " %(levelname)s %(name)s: %(message)s",
-)
+    level=logging.DEBUG,
+    format='[%(asctime)s] %(levelname)s - %(name)s: %(message)s')
 """
 
 import base64
+import logging
+import re
 import os
 from sys import exc_info
-
-import fintech
-fintech.register()
-fintech.cryptolib = 'cryptography'
-from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
-    EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
-
 from urllib2 import URLError
+import fintech
+from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient
 
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
+fintech.cryptolib = 'cryptography'
+_logger = logging.getLogger(__name__)
+
 
 class EbicsBank(EbicsBank):
-    """
-    EBICS protocol version H003 requires generation of the order ids.
-    """
 
     def _next_order_id(self, partnerid):
-        # Generate an order id uniquely for each partner id
-        # Must be a string between 'A000' and 'ZZZZ'
-        # TODO: implement generate_order_id
-        # return generate_order_id(partnerid)
-        return "A000"
+        """
+        EBICS protocol version H003 requires generation of the OrderID.
+        The OrderID must be a string between 'A000' and 'ZZZZ' and
+        unique for each partner id.
+        """
+        return hasattr(self, '_order_number') and self._order_number or 'A000'
 
 
 class EbicsConfig(models.Model):
@@ -97,6 +94,15 @@ class EbicsConfig(models.Model):
              "The technical subscriber serves only for the data exchange "
              "between customer and financial institution. "
              "The human user also can authorise orders.")
+    # Currently only a singe signature class per user is supported
+    # Classes A and B are not yet supported.
+    signature_class = fields.Selection(
+        selection=[('E', 'Single signature'),
+                   ('T', 'Transport signature')],
+        string='Signature Class',
+        required=True, default='T',
+        readonly=True, states={'draft': [('readonly', False)]}
+    )
     ebics_files = fields.Char(
         string='EBICS Files Root', required=True,
         readonly=True, states={'draft': [('readonly', False)]},
@@ -169,7 +175,6 @@ class EbicsConfig(models.Model):
         string='Email Address',
         readonly=True, states={'draft': [('readonly', False)]},
     )
-
     ebics_file_format_ids = fields.Many2many(
         comodel_name='ebics.file.format',
         column1='config_id', column2='format_id',
@@ -184,6 +189,11 @@ class EbicsConfig(models.Model):
         string='State',
         default='draft',
         required=True, readonly=True)
+    order_number = fields.Char(
+        size=4, readonly=True, states={'draft': [('readonly', False)]},
+        help="Specify the number for the next order."
+             "\nThis number should match the following pattern : "
+             "[A-Z]{1}[A-Z0-9]{3}")
     active = fields.Boolean(
         string='Active', default=True)
     company_id = fields.Many2one(
@@ -200,6 +210,24 @@ class EbicsConfig(models.Model):
         return '/'.join(['/etc/odoo/ebics_keys',
                          self._cr.dbname,
                          'mykeys'])
+
+    @api.multi
+    @api.constrains('order_number')
+    def _check_order_number(self):
+        for cfg in self:
+            nbr = cfg.order_number
+            ok = True
+            if nbr:
+                if len(nbr) != 4:
+                    ok = False
+                else:
+                    pattern = re.compile("[A-Z]{1}[A-Z0-9]{3}")
+                    if not pattern.match(nbr):
+                        ok = False
+            if not ok:
+                raise UserError(_(
+                    "Order Number should comply with the following pattern:"
+                    "\n[A-Z]{1}[A-Z0-9]{3}"))
 
     @api.multi
     def unlink(self):
@@ -263,7 +291,13 @@ class EbicsConfig(models.Model):
 
         # Send the public electronic signature key to the bank.
         try:
+            if self.ebics_version == 'H003':
+                bank._order_number = self._get_order_number()
             OrderID = client.INI()
+            _logger.info(
+                '%s, EBICS HIA command, OrderID=%s', self._name, OrderID)
+            if self.ebics_version == 'H003':
+                self._update_order_number(OrderID)
         except URLError:
             e = exc_info()
             raise UserError(_(
@@ -271,7 +305,12 @@ class EbicsConfig(models.Model):
                 % (self.ebics_url, e[1].reason.strerror))
 
         # Send the public authentication and encryption keys to the bank.
+        if self.ebics_version == 'H003':
+            bank._order_number = self._get_order_number()
         OrderID = client.HIA()
+        _logger.info('%s, EBICS HIA command, OrderID=%s', self._name, OrderID)
+        if self.ebics_version == 'H003':
+            self._update_order_number(OrderID)
 
         # Create an INI-letter which must be printed and sent to the bank.
         lang = self.env.user.lang[:2]
@@ -363,3 +402,22 @@ class EbicsConfig(models.Model):
             keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
         bank.activate_keys()
         return self.write({'state': 'active'})
+
+    def _get_order_number(self):
+        return self.order_number
+
+    def _update_order_number(self, OrderID):
+        o_list = list(OrderID)
+        for i, c in enumerate(reversed(o_list), start=1):
+            if c == '9':
+                o_list[-i] = 'A'
+                break
+            if c == 'Z':
+                continue
+            else:
+                o_list[-i] = chr(ord(c) + 1)
+                break
+        next = ''.join(o_list)
+        if next == 'ZZZZ':
+            next = 'A000'
+        self.order_number = next

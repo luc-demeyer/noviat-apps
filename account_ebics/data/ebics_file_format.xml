@@ -2,12 +2,24 @@
 <openerp>
   <data noupdate="1">
 
+   <!-- French Formats -->
     <record id="ebics_ff_cfonb120" model="ebics.file.format">
       <field name="name">camt.xxx.cfonb120.stm</field>
-      <field name="type">fdl</field>
+      <field name="type">down</field>
+      <field name="order_type">FDL</field>
       <field name="description">Bank Statement in Format cfonb120</field>
       <field name="suffix">cfonb120.dat</field>
     </record>
+
+    <record id="ebics_ff_pain00100102" model="ebics.file.format">
+      <field name="name">pain.001.001.02.sct</field>
+      <field name="type">up</field>
+      <field name="order_type">FDL</field>
+      <field name="description">Payment Order in Format pain.001.001.02</field>
+      <field name="suffix">xml</field>
+    </record>
+
+    <!-- TODO: German Formats -->
 
   </data>
 </openerp>
