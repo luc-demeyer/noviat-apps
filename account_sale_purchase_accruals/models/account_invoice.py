@@ -120,7 +120,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                     'name': ail.name,
                     'analytic_account_id': ail.account_analytic_id.id,
                     'entry_type': 'expense',
-                    }
+                }
                 aml_vals.append(expense_vals)
 
                 accrual_vals = {
@@ -133,12 +133,12 @@ class AccountInvoice(models.Model, CommonAccrual):
                         procurement_action == 'move' and partner.id or False,
                     'name': ail.name,
                     'entry_type': 'accrual',
-                    }
+                }
                 if cur:
                     accrual_vals.update({
                         'amount_currency': -amount_cur,
                         'currency_id': cur.id,
-                        })
+                    })
                 aml_vals.append(accrual_vals)
 
         if aml_vals:
@@ -180,7 +180,7 @@ class AccountInvoice(models.Model, CommonAccrual):
 
     def _supplier_invoice_reconcile_accruals(self):
         """
-        Reconcile the accruel entries of the
+        Reconcile the accrual entries of the
         Purchase Invoice with it's counterpart created during the
         Purchase Order Confirmation or Incoming Picking.
         """

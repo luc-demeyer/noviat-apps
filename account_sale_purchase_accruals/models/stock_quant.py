@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import api, models
 
 
@@ -17,8 +18,9 @@ class StockQuant(models.Model):
         debit = debit_line_vals['debit']
         credit = credit_line_vals['credit']
         if not (debit or credit):
-            cost, cost_cur, cur = move.product_id._get_purchase_pricelist_amount(
-                qty, company=move.company_id)
+            cost, cost_cur, cur = \
+                move.product_id._get_purchase_pricelist_amount(
+                    qty, company=move.company_id)
             if cost > 0:
                 debit_line_vals['debit'] = cost
                 credit_line_vals['credit'] = cost

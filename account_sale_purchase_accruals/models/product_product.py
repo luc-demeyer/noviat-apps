@@ -26,7 +26,7 @@ class ProductProduct(models.Model):
                 except except_orm, e:
                     msg = _(
                         "Error during pricelist price_get for product '%s'."
-                        ) % self.name
+                    ) % self.name
                     msg += '\n\n' + e.value
                     raise UserError(msg)
                 if price_get:

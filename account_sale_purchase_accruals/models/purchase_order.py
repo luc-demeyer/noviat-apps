@@ -142,7 +142,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'analytic_account_id': pol.account_analytic_id.id,
                     'entry_type': 'expense',
-                    }
+                }
                 s_aml_vals.append(expense_vals)
 
                 accrual_vals = {
@@ -154,12 +154,12 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'partner_id': False,
                     'name': pol.name,
                     'entry_type': 'accrual',
-                    }
+                }
                 if cur:
                     accrual_vals.update({
                         'amount_currency': amount_cur,
                         'currency_id': cur.id,
-                        })
+                    })
                 s_aml_vals.append(accrual_vals)
 
                 # prepare p_accrual_move
@@ -186,12 +186,12 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'analytic_account_id': pol.account_analytic_id.id,
                     'entry_type': 'expense',
-                    }
+                }
                 if cur:
                     expense_vals.update({
                         'currency_id': cur.id,
                         'amount_currency': amount,
-                        })
+                    })
                 p_aml_vals.append(expense_vals)
 
                 accrual_vals = {
@@ -203,12 +203,12 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'partner_id': partner.id,
                     'name': pol.name,
                     'entry_type': 'accrual',
-                    }
+                }
                 if cur:
                     accrual_vals.update({
                         'currency_id': cur.id,
                         'amount_currency': -amount,
-                        })
+                    })
                 p_aml_vals.append(accrual_vals)
 
         if s_aml_vals:
