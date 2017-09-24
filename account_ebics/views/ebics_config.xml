@@ -64,7 +64,7 @@
               </header>
               <group col="4" name="ebics_key">
                 <field name="ebics_keys"/>
-                <field name="ebics_passphrase"/>
+                <field name="ebics_passphrase" password="True"/>
                 <field name="ebics_key_version"/>
                 <field name="ebics_key_bitlength"/>
               </group>

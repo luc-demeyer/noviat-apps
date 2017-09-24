@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class EbicsFile(models.Model):
     _name = 'ebics.file'
     _description = 'Object to store EBICS Data Files'
-    _order = 'download_date desc'
+    _order = 'date desc'
 
     name = fields.Char(string='Filename')
     data = fields.Binary(string='File', readonly=True)
@@ -21,15 +21,18 @@ class EbicsFile(models.Model):
         comodel_name='ebics.file.format',
         string='EBICS File Formats',
         readonly=True)
+    type = fields.Selection(
+        related='format_id.type',
+        readonly=True)
     date_from = fields.Date(
         readonly=True,
         help="'Date From' as entered in the download wizard.")
     date_to = fields.Date(
         readonly=True,
         help="'Date To' as entered in the download wizard.")
-    download_date = fields.Datetime(
-        string='Download Date',
-        required=True, readonly=True)
+    date = fields.Datetime(
+        required=True, readonly=True,
+        help='File Upload/Download date')
     bank_statement_ids = fields.One2many(
         comodel_name='account.bank.statement',
         inverse_name='ebics_file_id',
@@ -83,6 +86,10 @@ class EbicsFile(models.Model):
     @api.multi
     def set_to_draft(self):
         return self.write({'state': 'draft'})
+
+    @api.multi
+    def set_to_done(self):
+        return self.write({'state': 'done'})
 
     @api.multi
     def process(self):

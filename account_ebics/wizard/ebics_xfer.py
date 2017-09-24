@@ -135,6 +135,21 @@ class EbicsXfer(models.TransientModel):
             ) % OrderID
             if self.ebics_config_id.ebics_version == 'H003':
                 self.ebics_config_id._update_order_number(OrderID)
+            ef_note = _("EBICS OrderID: %s") % OrderID
+            if self._context.get('origin'):
+                ef_note += '\n' + _("Origin: %s") % self._context['origin']
+            ef_vals = {
+                'name': self.upload_fname,
+                'data': self.upload_data,
+                'date': fields.Datetime.now(),
+                'format_id': self.format_id.id,
+                'state': 'done',
+                'user_id': self._uid,
+                'note': ef_note,
+            }
+            self._update_ef_vals(ef_vals)
+            self.env['ebics.file'].create(ef_vals)
+
         except EbicsFunctionalError:
             e = exc_info()
             self.note += '\n'
@@ -252,7 +267,7 @@ class EbicsXfer(models.TransientModel):
         self.ensure_one()
         module = __name__.split('addons.')[1].split('.')[0]
         act = self.env['ir.actions.act_window'].for_xml_id(
-            module, 'ebics_file_action')
+            module, 'ebics_file_action_download')
         act['domain'] = [('id', 'in', self._context['ebics_file_ids'])]
         return act
 
@@ -313,6 +328,12 @@ class EbicsXfer(models.TransientModel):
         }
         return res
 
+    def _update_ef_vals(self, ef_vals):
+        """
+        Adapt this method to customize the EBICS File values.
+        """
+        pass
+
     def _handle_download_data(self, data, file_format):
         """
         Write the data as received over the EBICS connection
@@ -350,16 +371,17 @@ class EbicsXfer(models.TransientModel):
         fn = '.'.join([base_fn, file_format.suffix])
         self._check_duplicate_ebics_file(fn)
         data = base64.encodestring(data)
-        ebics_file = self.env['ebics.file'].create({
+        ef_vals = {
             'name': fn,
             'data': data,
-            'download_date': fields.Datetime.now(),
+            'date': fields.Datetime.now(),
             'date_from': self.date_from,
             'date_to': self.date_from,
             'format_id': file_format.id,
             'user_id': self._uid,
-        })
-
+        }
+        self._update_ef_vals(ef_vals)
+        ebics_file = self.env['ebics.file'].create(ef_vals)
         return ebics_file
 
     def _check_duplicate_ebics_file(self, fn):
