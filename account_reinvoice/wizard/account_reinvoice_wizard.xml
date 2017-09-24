@@ -66,6 +66,7 @@
                     string="View Refund(s)"
                     class="oe_highlight"
                     invisible="not context.get('out_refund_ids')"/>
+            or
             <button string="Close" class="oe_link" special="cancel"/>
           </footer>
         </form>

@@ -87,7 +87,7 @@ class AccountInvoice(models.Model):
     def _get_intercompany_invoice(self):
         ico_inv = False
         if self.intercompany_invoice_id:
-            ico_inv = self.browse(self.intercompany_invoice_id)
+            ico_inv = self.sudo().browse(self.intercompany_invoice_id)
         return ico_inv
 
     def _intercompany_invoice_error(self, out_invoice, err):
@@ -257,7 +257,9 @@ class AccountInvoice(models.Model):
                     "Configuration Error : "
                     "\nIntercompany User '%s' should belong to Company '%s'.")
                     % (tu_sudo.name, target_company.name))
-            ctx = dict(self._context, force_company=target_company.id)
+            ctx = dict(self._context,
+                       force_company=target_company.id,
+                       intercompany_invoice=True)
             ic_inv_vals, err = self.with_context(ctx).sudo()\
                 ._prepare_intercompany_invoice_vals(
                 out_invoice, target_company, target_user)

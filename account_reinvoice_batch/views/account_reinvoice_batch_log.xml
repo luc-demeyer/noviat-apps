@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<openerp>
+  <data>
+
+    <record id="account_reinvoice_batch_log_view_search" model="ir.ui.view">
+      <field name="name">account.reinvoice.batch.log.search</field>
+      <field name="model">account.reinvoice.batch.log</field>
+      <field name="arch" type="xml">
+        <search string="Search Reinvoice Service Log Files">
+          <group col="10" colspan="4">
+            <field name="name"/>
+            <field name="state"/>
+            <field name="user_id" widget="selection"/>
+          </group>
+          <newline/>
+          <group expand="0" string="Group By...">
+            <filter string="State" context="{'group_by':'state'}"/>
+            <filter string="User" context="{'group_by':'user_id'}"/>
+            <separator orientation="vertical"/>
+            <filter string="Company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="account_reinvoice_batch_log_view_tree" model="ir.ui.view">
+      <field name="name">account.reinvoice.batch.log.tree</field>
+      <field name="model">account.reinvoice.batch.log</field>
+      <field name="arch" type="xml">
+        <tree string="Reinvoice Service Logs" create="false">
+          <field name="date"/>
+          <field name="name"/>
+          <field name="user_id"/>
+          <field name="state"/>
+          <field name="inv_count"/>
+          <field name="error_count"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="account_reinvoice_batch_log_view_form" model="ir.ui.view">
+      <field name="name">account.reinvoice.batch.log.form</field>
+      <field name="model">account.reinvoice.batch.log</field>
+      <field name="arch" type="xml">
+        <form string="Reinvoice Service Log" create="false">
+          <header>
+            <button name="button_done" states="draft,error" string="Mark Done" type="object" groups="account.group_account_manager"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,error,done" statusbar_colors="{'error':'red'}"/>
+          </header>
+          <sheet>
+            <group colspan="4" col="4">
+              <field name="name"/>
+              <field name="date"/>
+              <field name="inv_count"/>
+              <field name="error_count"/>
+              <field name="user_id"/>
+              <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+            </group>
+            <notebook colspan="4">
+              <page string="Notes" name="note">
+                <field name="note"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="account_reinvoice_batch_log_action" model="ir.actions.act_window">
+      <field name="name">Reinvoice Service Logs</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">account.reinvoice.batch.log</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="account_reinvoice_batch_log_view_tree"/>
+      <field name="search_view_id" ref="account_reinvoice_batch_log_view_search"/>
+    </record>
+
+    <menuitem id="account_reinvoice_batch_log_menu"
+              name="Reinvoice Service Logs"
+              parent="account_reinvoice.menu_reinvoice_processing"
+              action="account_reinvoice_batch_log_action" sequence="51"/>
+
+  </data>
+</openerp>

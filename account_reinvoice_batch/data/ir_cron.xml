@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+  <data noupdate="1">
+    <record id="account_reinvoice_batch_cron" model="ir.cron">
+      <field name="name">Reinvoice Service</field>
+      <field name="active" eval="True"/>
+      <field name="user_id" ref="base.user_root"/>
+      <field name="interval_number">1</field>
+      <field name="interval_type">days</field>
+      <field name="numbercall">-1</field>
+      <field name="doall" eval="False"/>
+      <field name="model">account.reinvoice.wizard</field>
+      <field name="function" eval="'_reinvoice_service'" />
+      <field name="args" eval="'(None, )'"/>
+    </record>
+  </data>
+
+</openerp>

@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Reinvoice',
-    'version': '8.0.1.0.5',
+    'version': '8.0.1.1.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
