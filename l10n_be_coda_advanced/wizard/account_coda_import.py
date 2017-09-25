@@ -2014,8 +2014,8 @@ class AccountCodaImport(models.TransientModel):
             return reconcile_note, match
 
         partner_banks = self.env['res.partner.bank'].search(
-            [('acc_number', '=', cp_number),
-             ('partner_id.active', '=', True)])
+            [('acc_number', '=', cp_number)])
+        partner_banks = partner_banks.filtered(lambda r: r.partner_id.active)
         if partner_banks:
             # filter out partners that belong to other companies
             # TODO :
@@ -2025,7 +2025,7 @@ class AccountCodaImport(models.TransientModel):
             for pb in partner_banks:
                 add_pb = True
                 pb_partner = pb.partner_id
-                if not pb_partner.is_company and not pb_partner.parent_id:
+                if not pb_partner.is_company and pb_partner.parent_id:
                     add_pb = False
                 try:
                     if pb_partner.company_id and (
