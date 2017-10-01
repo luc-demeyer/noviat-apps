@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+   :target: https://www.gnu.org/licenses/agpl
+   :alt: License: AGPL-3
 
 ==============================
 Upload Payment Order via EBICS

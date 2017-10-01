@@ -20,4 +20,5 @@
         'wizard/ebics_xfer.xml',
     ],
     'installable': True,
+    'application': True,
 }

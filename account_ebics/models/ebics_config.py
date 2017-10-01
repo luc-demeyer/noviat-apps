@@ -80,7 +80,7 @@ class EbicsConfig(models.Model):
              "that concludes a contract with the bank. "
              "\nIn this contract it will be agreed which order types "
              "(file formats) are used, which accounts are concerned, "
-             "which of the customer’s users (subscribers) "
+             "which of the customer's users (subscribers) "
              "communicate with the EBICS bank server and the authorisations "
              "that these users will possess. "
              "\nIt is identified by the PartnerID.")
@@ -252,6 +252,7 @@ class EbicsConfig(models.Model):
         Create new keys and certificates for this user
         """
         self.ensure_one()
+        self._check_ebics_files()
         if self.state != 'draft':
             raise UserError(
                 _("Set state to 'draft' before Bank Key (re)initialisation."))
@@ -264,13 +265,7 @@ class EbicsConfig(models.Model):
             keyring=keyring, partnerid=self.ebics_partner,
             userid=self.ebics_user)
 
-        dirname = os.path.dirname(self.ebics_keys)
-        if not os.path.exists(dirname):
-            raise UserError(_(
-                "EBICS Keys Directory '%s' is not available."
-                "Please contact your system administrator.")
-                % dirname)
-
+        self._check_ebics_keys()
         user.create_keys(
             keyversion=self.ebics_key_version,
             bitlength=self.ebics_key_bitlength)
@@ -357,6 +352,7 @@ class EbicsConfig(models.Model):
         must be downloaded and checked for consistency.
         """
         self.ensure_one()
+        self._check_ebics_files()
         if self.state != 'get_bank_keys':
             raise UserError(
                 _("Set state to 'Get Keys from Bank'."))
@@ -421,3 +417,20 @@ class EbicsConfig(models.Model):
         if next == 'ZZZZ':
             next = 'A000'
         self.order_number = next
+
+    def _check_ebics_keys(self):
+        if self.ebics_keys:
+            dirname = os.path.dirname(self.ebics_keys)
+            if not os.path.exists(dirname):
+                raise UserError(_(
+                    "EBICS Keys Directory '%s' is not available."
+                    "\nPlease contact your system administrator.")
+                    % dirname)
+
+    def _check_ebics_files(self):
+        dirname = self.ebics_files or ''
+        if not os.path.exists(dirname):
+            raise UserError(_(
+                "EBICS Files Root Directory %s is not available."
+                "\nPlease contact your system administrator.")
+                % dirname)

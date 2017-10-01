@@ -78,13 +78,13 @@
               </group>
               <group col="4" name="dn">
                 <label string="Distinguished Name attributes used to create self-signed X.509 certificates:" colspan="4"/>
-                <group name="dn_l">
+                <group name="dn_l" colspan="2">
                   <field name="ebics_key_x509_dn_cn"/>
                   <field name="ebics_key_x509_dn_o"/>
                   <field name="ebics_key_x509_dn_l"/>
                   <field name="ebics_key_x509_dn_c"/>
                 </group>
-                <group name="dn_r">
+                <group name="dn_r" colspan="2">
                   <field name="ebics_key_x509_dn_e"/>
                   <field name="ebics_key_x509_dn_ou"/>
                   <field name="ebics_key_x509_dn_st"/>
