@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
   <data noupdate="1">
 
    <!-- French Formats -->
@@ -14,7 +14,7 @@
     <record id="ebics_ff_pain00100102" model="ebics.file.format">
       <field name="name">pain.001.001.02.sct</field>
       <field name="type">up</field>
-      <field name="order_type">FDL</field>
+      <field name="order_type">FUL</field>
       <field name="description">Payment Order in Format pain.001.001.02</field>
       <field name="suffix">xml</field>
     </record>
@@ -22,4 +22,4 @@
     <!-- TODO: German Formats -->
 
   </data>
-</openerp>
+</odoo>

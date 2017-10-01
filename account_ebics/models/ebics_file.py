@@ -4,8 +4,8 @@
 
 import logging
 
-from openerp import api, fields, models, _
-from openerp.exceptions import Warning as UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ class EbicsFile(models.Model):
         default=lambda self: self._default_company_id())
 
     _sql_constraints = [
-        ('name_company_uniq', 'unique (name, company_id)',
+        ('name_company_uniq', 'unique (name, company_id, format_id)',
          'This File has already been imported !')
     ]
 
@@ -133,10 +133,12 @@ class EbicsFile(models.Model):
         return res
 
     def _check_import_module(self, module):
-        mod = self.env['ir.module.module'].search([('name', '=', module)])
+        mod = self.env['ir.module.module'].search(
+            [('name', '=', module),
+             ('state', '=', 'installed')])
         if not mod:
             raise UserError(_(
-                "The module to process the '%s' format is not been installed "
+                "The module to process the '%s' format is not installed "
                 "on your system. "
                 "\nPlease install module '%s'")
                 % (self.format_id.name, module))
@@ -173,8 +175,8 @@ class EbicsFile(models.Model):
         notifications = []
         statement_ids = []
         if res.get('context'):
-            notifications = res['context'].get('notifications')
-            statement_ids = res['context'].get('statement_ids')
+            notifications = res['context'].get('notifications', [])
+            statement_ids = res['context'].get('statement_ids', [])
         if notifications:
             for notif in notifications:
                 parts = []

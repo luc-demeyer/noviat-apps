@@ -7,7 +7,7 @@ import logging
 from sys import exc_info
 from traceback import format_exception
 
-from openerp.tools import config
+from odoo.tools import config
 
 fintech.cryptolib = 'cryptography'
 _logger = logging.getLogger(__name__)
