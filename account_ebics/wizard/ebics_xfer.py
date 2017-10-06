@@ -24,7 +24,6 @@ except ImportError:
     EbicsBank = object
     logging.debug('Failed to import fintech')
 
-
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
@@ -243,6 +242,11 @@ class EbicsXfer(models.TransientModel):
                     self.note += _("EBICS Verification Error:")
                     self.note += '\n'
                     self.note += _("The EBICS response could not be verified.")
+                except UserError, e:
+                    self.note += '\n'
+                    self.note += _("Warning:")
+                    self.note += '\n'
+                    self.note += e.message
                 except:
                     self.note += '\n'
                     self.note += _("Unknown Error")
