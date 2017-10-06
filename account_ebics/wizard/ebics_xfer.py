@@ -15,14 +15,18 @@ import os
 from sys import exc_info
 from traceback import format_exception
 
-import fintech
-from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
-    EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
+try:
+    import fintech
+    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
+        EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
+    fintech.cryptolib = 'cryptography'
+except ImportError:
+    EbicsBank = object
+    logging.debug('Failed to import fintech')
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-fintech.cryptolib = 'cryptography'
 _logger = logging.getLogger(__name__)
 
 
@@ -238,6 +242,11 @@ class EbicsXfer(models.TransientModel):
                     self.note += _("EBICS Verification Error:")
                     self.note += '\n'
                     self.note += _("The EBICS response could not be verified.")
+                except UserError, e:
+                    self.note += '\n'
+                    self.note += _("Warning:")
+                    self.note += '\n'
+                    self.note += e.message
                 except:
                     self.note += '\n'
                     self.note += _("Unknown Error")
@@ -355,10 +364,10 @@ class EbicsXfer(models.TransientModel):
                 fn, self.format_id)
             if dups:
                 n = 1
-                fn = '_'.join[(fn, str(n))]
+                fn = '_'.join([fn, str(n)])
                 while self._check_duplicate_ebics_file(fn, self.format_id):
                     n += 1
-                    fn = '_'.join[(fn, str(n))]
+                    fn = '_'.join([fn, str(n)])
                 ef_vals['name'] = fn
 
     def _handle_download_data(self, data, file_format):

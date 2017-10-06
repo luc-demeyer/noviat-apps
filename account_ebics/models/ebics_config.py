@@ -2,7 +2,6 @@
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 """
 import logging
 logging.basicConfig(
@@ -16,13 +15,17 @@ import re
 import os
 from sys import exc_info
 from urllib2 import URLError
-import fintech
-from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient
+try:
+    import fintech
+    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient
+    fintech.cryptolib = 'cryptography'
+except ImportError:
+    EbicsBank = object
+    logging.debug('Failed to import fintech')
 
 from odoo import api, fields, models, _
-from openerp.exceptions import UserError
+from odoo.exceptions import UserError
 
-fintech.cryptolib = 'cryptography'
 _logger = logging.getLogger(__name__)
 
 
