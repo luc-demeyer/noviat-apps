@@ -364,10 +364,10 @@ class EbicsXfer(models.TransientModel):
                 fn, self.format_id)
             if dups:
                 n = 1
-                fn = '_'.join[(fn, str(n))]
+                fn = '_'.join([fn, str(n)])
                 while self._check_duplicate_ebics_file(fn, self.format_id):
                     n += 1
-                    fn = '_'.join[(fn, str(n))]
+                    fn = '_'.join([fn, str(n)])
                 ef_vals['name'] = fn
 
     def _handle_download_data(self, data, file_format):
