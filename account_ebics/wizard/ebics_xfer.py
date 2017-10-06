@@ -15,14 +15,19 @@ import os
 from sys import exc_info
 from traceback import format_exception
 
-import fintech
-from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
-    EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
+try:
+    import fintech
+    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient,\
+        EbicsFunctionalError, EbicsTechnicalError, EbicsVerificationError
+    fintech.cryptolib = 'cryptography'
+except ImportError:
+    EbicsBank = object
+    logging.debug('Failed to import fintech')
+
 
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError
 
-fintech.cryptolib = 'cryptography'
 _logger = logging.getLogger(__name__)
 
 
