@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="invoice_supplier_form" model="ir.ui.view">
+      <field name="name">account.invoice.supplier.form.tax.manual</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_supplier_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <xpath expr="//field[@name='tax_line']/tree" position="attributes">
+            <attribute name="editable"/>
+          </xpath>
+          <xpath expr="//field[@name='tax_line']//field[@name='account_id']" position="after">
+            <field name="manual"/>
+          </xpath>
+          <xpath expr="//field[@name='tax_line']/tree" position="after">
+            <form string="Manual Invoice Taxes">
+              <group col="4">
+                <field name="name"/>
+                <field name="sequence"/>
+                <field name="account_id"/>
+                <field name="account_analytic_id"
+                       domain="[('type','&lt;&gt;','view'), ('company_id', '=', parent.company_id)]"
+                       groups="analytic.group_analytic_accounting"/>
+                <field name="manual"/>
+                <field name="base" on_change="base_change(base,parent.currency_id,parent.company_id,parent.date_invoice)" readonly="1"/>
+                <field name="amount" on_change="amount_change(amount, parent.currency_id,parent.company_id,parent.date_invoice)"/>
+                <separator colspan="4" string="Tax codes"/>
+                <field name="base_code_id" readonly="1"/>
+                <field name="base_amount" readonly="1"/>
+                <field name="tax_code_id"
+                       attrs="{'readonly': [('manual', '=', False)], 'required': [('manual', '=', True)]}"/>
+                <field name="tax_amount"
+                       attrs="{'readonly': [('manual', '=', False)]}"/>
+                <field name="factor_base" invisible="1"/>
+                <field name="factor_tax" invisible="1"/>
+              </group>
+            </form>
+          </xpath>
+        </data>
+      </field>
+    </record>
+
+    <record id="account.action_invoice_tree2" model="ir.actions.act_window">
+      <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase', 'readonly_by_pass': True}</field>
+    </record>
+
+    <record id="account.action_invoice_tree4" model="ir.actions.act_window">
+      <field name="context">{'default_type': 'in_refund', 'type': 'in_refund', 'journal_type': 'purchase_refund', 'readonly_by_pass': True}</field>
+    </record>
+
+  </data>
+</openerp>
