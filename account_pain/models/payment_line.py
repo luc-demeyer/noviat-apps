@@ -1,76 +1,79 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp.tools.translate import _
-from openerp.osv import fields, orm
+
 import re
+from lxml import etree
 import logging
+
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
+
 _logger = logging.getLogger(__name__)
 
 
-def check_bba_comm(val):
-    supported_chars = '0-9+*/ '
-    pattern = re.compile('[^' + supported_chars + ']')
-    if pattern.findall(val or ''):
-        return False
-    bbacomm = re.sub('\D', '', val or '')
-    if len(bbacomm) == 12:
-        base = int(bbacomm[:10])
-        mod = base % 97 or 97
-        if mod == int(bbacomm[-2:]):
-            return True
-    return False
-
-
-class payment_line(orm.Model):
+class PaymentLine(models.Model):
     _inherit = 'payment.line'
 
-    def _get_struct_comm_types(self, cr, uid, context=None):
-        res = self.pool.get('account.invoice').fields_get(
-            cr, uid,
-            ['reference_type'], context)['reference_type']['selection']
+    name = fields.Char(string='Payment Line Ref.')
+    state = fields.Selection(
+        selection=[('normal', 'Free Communication'),
+                   ('structured', 'Structured Communication')])
+    struct_comm_type = fields.Selection(
+        selection=lambda self: self._selection_struct_comm_type(),
+        string='Structured Communication Type')
+
+    @api.model
+    def _selection_struct_comm_type(self):
+        res = self.env['account.invoice'].fields_get(
+            allfields=['reference_type'])['reference_type']['selection']
         res.pop([i for i, x in enumerate(res) if x[0] == 'none'][0])
         bba_list = [i for i, x in enumerate(res) if x[0] == 'bba']
         if not bba_list:
             res.append(('bba', 'BBA Structured Communication'))
         return res
 
-    def _check_communication(self, cr, uid, ids):
-        for line in self.browse(cr, uid, ids):
+    @api.multi
+    @api.constrains('communication')
+    def _check_communication(self):
+        for line in self:
             if line.state == 'structured':
                 if line.struct_comm_type == 'bba':
-                    return check_bba_comm(line.communication)
-        return True
+                    if not check_bba_comm(line.communication):
+                        raise UserError(_(
+                            "Invalid BBA Structured Communication !"))
 
-    def fields_get(self, cr, uid, fields=None, context=None):
-        fields = super(payment_line, self).fields_get(
-            cr, uid, fields, context)
-        if context is None:
-            context = {}
-        if context.get('payment_line_readonly'):
-            for field in fields:
-                fields[field]['readonly'] = True
-        return fields
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
+                        submenu=False):
+        res = super(PaymentLine, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu)
+        if self._context.get('payment_line_readonly') \
+                and view_type in ['tree', 'form']:
+            doc = etree.XML(res['arch'])
+            tree = doc.xpath("/tree")
+            for node in tree:
+                if 'editable' in node.attrib:
+                    del node.attrib['editable']
+            form = doc.xpath("/form")
+            for el in [tree, form]:
+                for node in el:
+                    node.set('edit', 'false')
+                    node.set('create', 'false')
+                    node.set('delete', 'false')
+            res['arch'] = etree.tostring(doc)
+        return res
 
-    def unlink(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        if context.get('payment_line_readonly'):
-            raise orm.except_orm(
-                _('Warning'),
-                _("Delete operation not allowed !"
-                  "\nPlease go to the associated Payment Order "
-                  "in order to delete this payment line"))
-        return super(payment_line, self).unlink(cr, uid, ids, context=context)
-
-    def create(self, cr, uid, vals, context=None):
+    @api.model
+    def create(self, vals):
         """
         structured communication of payment line is created
         by referencing an invoice
         """
         if 'move_line_id' in vals and vals['move_line_id']:
-            move_line = self.pool.get('account.move.line').browse(
-                cr, uid, vals['move_line_id'], context)
+            move_line = self.env['account.move.line'].browse(
+                vals['move_line_id'])
             inv = move_line.invoice
             if inv and inv.reference_type != 'none':
                 vals['state'] = 'structured'
@@ -89,22 +92,23 @@ class payment_line(orm.Model):
                             '+++' + bbacomm[0:3] + '/' + bbacomm[3:7] + '/' \
                             + bbacomm[7:] + '+++'
                     else:
-                        raise orm.except_orm(
-                            _('Payment Instruction Error!'),
-                            _("Invalid BBA Structured Communication in "
-                              "Payment Line %s , please correct !")
-                            % vals['name'])
-        return super(payment_line, self).create(cr, uid, vals, context=context)
+                        raise UserError(_(
+                            "Payment Instruction Error !"
+                            "\nInvalid BBA Structured Communication in "
+                            "Payment Line %s, please correct !"
+                        ) % vals['name'])
+        pl = super(PaymentLine, self).create(vals)
+        # code infra bypasses a bug in account_payment module:
+        # when a payment line is created on a new, unsaved payment order
+        # the company_id is empty
+        if not pl.company_id:
+            pl.company_id = pl.order_id.mode.company_id
+        return pl
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if type(ids) is int:
-            ids = [ids]
-        for line in self.browse(cr, uid, ids, context):
-            vals2 = vals.copy()
-            if 'state' in vals:
-                line_state = vals['state']
-            else:
-                line_state = line.state
+    @api.multi
+    def write(self, vals):
+        for line in self:
+            line_state = vals.get('state') or line.state
             if line_state == 'structured':
                 if 'struct_comm_type' in vals:
                     struct_comm_type = vals['struct_comm_type']
@@ -117,29 +121,29 @@ class payment_line(orm.Model):
                         bbacomm = line.communication or ''
                     if check_bba_comm(bbacomm):
                         bbacomm = re.sub('\D', '', bbacomm)
-                        vals2['communication'] = \
+                        vals['communication'] = \
                             '+++' + bbacomm[0:3] + '/' + bbacomm[3:7] + '/' \
                             + bbacomm[7:] + '+++'
                     else:
-                        raise orm.except_orm(
-                            _('Payment Instruction Error!'),
-                            _("Invalid BBA Structured Communication in "
-                              "Payment Line %s , please correct !")
-                            % line.name)
-            super(payment_line, self).write(cr, uid, [line.id], vals2, context)
+                        name = vals.get('name') or line.name
+                        raise UserError(_(
+                            "Payment Instruction Error !"
+                            "\nInvalid BBA Structured Communication in "
+                            "Payment Line %s, please correct !"
+                        ) % name)
+            super(PaymentLine, line).write(vals)
         return True
 
-    _columns = {
-        'name': fields.char('Payment Line Ref.', size=64, required=True),
-        'state': fields.selection(
-            [('normal', 'Free Communication'),
-             ('structured', 'Structured Communication')],
-            'Communication Type', required=True),
-        'struct_comm_type': fields.selection(
-            _get_struct_comm_types, 'Structured Communication Type'),
-    }
-    _constraints = [
-        (_check_communication,
-         'Invalid BBA Structured Communication !',
-         ['Communication']),
-    ]
+
+def check_bba_comm(val):
+    supported_chars = '0-9+*/ '
+    pattern = re.compile('[^' + supported_chars + ']')
+    if pattern.findall(val or ''):
+        return False
+    bbacomm = re.sub('\D', '', val or '')
+    if len(bbacomm) == 12:
+        base = int(bbacomm[:10])
+        mod = base % 97 or 97
+        if mod == int(bbacomm[-2:]):
+            return True
+    return False

@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import re
 import time
 import base64
 from StringIO import StringIO
 from lxml import etree
+import logging
 
 from openerp import models, tools, _
 from openerp.exceptions import Warning as UserError
 
-import logging
 _logger = logging.getLogger(__name__)
 
 
@@ -93,8 +94,8 @@ class account_payment_make_payment(models.TransientModel):
         payment_mode = payment.mode
         pain_fname = re.sub('\W', '_', payment.reference).lower() + '.xml'
         company = self.pool.get('res.users').browse(cr, uid, uid).company_id
-        if not (payment_mode.bank_id.bank_bic
-                or payment_mode.bank_id.bank.bic):
+        if not (payment_mode.bank_id.bank_bic or
+                payment_mode.bank_id.bank.bic):
             raise UserError(
                 _('Configuration Error!'),
                 _("Please fill in the BIC code of the Bank "
@@ -175,7 +176,7 @@ class account_payment_make_payment(models.TransientModel):
                 note += _(
                     "\nThe Payment Date on Payment "
                     "Line %s has been changed."
-                    ) % line.name
+                ) % line.name
                 payment_line_obj.write(
                     cr, uid, line.id, {'date': execution_date})
 
@@ -209,8 +210,8 @@ class account_payment_make_payment(models.TransientModel):
                 BIC = etree.SubElement(FinInstnId, 'BIC')
                 BIC.text = re.sub(
                     '\s', '',
-                    payment_mode.bank_id.bank_bic.upper()
-                    or payment_mode.bank_id.bank.bic.upper())
+                    payment_mode.bank_id.bank_bic.upper() or
+                    payment_mode.bank_id.bank.bic.upper())
                 ChrgBr = etree.SubElement(PmtInf, 'ChrgBr')
                 ChrgBr.text = line.bank_id.charge_bearer or 'SLEV'
                 CdtTrfTxInf = etree.SubElement(PmtInf, 'CdtTrfTxInf')
@@ -298,7 +299,7 @@ class account_payment_make_payment(models.TransientModel):
                 'datas_fname': pain_fname,
                 'res_model': 'payment.order',
                 'res_id': active_id,
-                }, context=context)
+            }, context=context)
             payment_obj.set_done(cr, uid, [active_id], context)
         else:
             _logger.error(

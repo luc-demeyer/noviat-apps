@@ -22,7 +22,7 @@
                 res_model="payment.line"
                 domain="[('move_line_id.move_id.id', '=', move_id)]"
                 view_type="form"
-                context="{'payment_line_readonly':1, 'move_id': move_id}"/>
+                context="{'payment_line_readonly': 1, 'move_id': move_id}"/>
 
   </data>
 </openerp>

@@ -26,11 +26,11 @@
       <field name="view_mode">tree,form</field>
       <field name="search_view_id" ref="payment_line_view_search"/>
       <field name="view_id" ref="account_payment.view_payment_line_tree"/>
-      <field name="context">{'payment_line_readonly':1}</field>
+      <field name="context">{'payment_line_readonly': 1}</field>
     </record>
-    
+
     <menuitem id="payment_line_menu"
-              action="payment_line_action" 
+              action="payment_line_action"
               parent="account_payment.menu_main_payment"
               sequence="4"/>
 

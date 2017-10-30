@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp.osv import fields, orm
 from operator import itemgetter
 import logging
@@ -63,8 +64,8 @@ class account_move_line(orm.Model):
             "SELECT id FROM account_move_line l "
             "WHERE account_id IN "
             "(select id FROM account_account WHERE type in %s AND active) "
-            "AND reconcile_id IS null AND credit > 0 AND "
-            + where + " AND " + query,
+            "AND reconcile_id IS null AND credit > 0 AND " + where +
+            " AND " + query,
             (('payable', 'receivable'), ) + sql_args)
 
         res = cr.fetchall()

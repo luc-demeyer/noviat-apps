@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from datetime import date, timedelta
 from lxml import etree
+import logging
 
 from openerp import api, fields, models
 
-import logging
 _logger = logging.getLogger(__name__)
 
 
@@ -27,8 +28,7 @@ class PaymentOrderCreate(models.TransientModel):
         """
         journal_domain = [
             ('journal_id.type', 'in',
-             ['purchase', 'sale_refund', 'general', 'situation'])
-            ]
+             ['purchase', 'sale_refund', 'general', 'situation'])]
         return journal_domain
 
     @api.multi
@@ -94,7 +94,7 @@ class PaymentOrderCreate(models.TransientModel):
             'communication': aml.ref or '/',
             'date': date_to_pay,
             'currency': aml.currency_id.id or company_currency.id,
-            }
+        }
         return pl_vals
 
     @api.multi
