@@ -82,7 +82,9 @@ class CommonAccrual(object):
 
         return accrual_move_id.id, accruals
 
-    def _reconcile_accrued_expense_lines(self, accrual_lines):
+    def _reconcile_accrued_expense_lines(
+            self, accrual_lines,
+            writeoff_period_id=False, writeoff_journal_id=False):
         """
         The 'to_correct' dict is returned so that extension
         modules can take specific actions on these entries
@@ -131,13 +133,18 @@ class CommonAccrual(object):
                 )
             elif len(currencies) == 1:
                 if currencies.is_zero(check_cur):
-                    ctx = dict(self._context,
-                               account_period_prefer_normal=True)
-                    period = self.env[
-                        'account.period'].with_context(ctx).find()
+                    if not writeoff_period_id:
+                        ctx = dict(self._context,
+                                   account_period_prefer_normal=True)
+                        writeoff_period = self.env[
+                            'account.period'].with_context(ctx).find()
+                        writeoff_period_id = writeoff_period.id
+                    if not writeoff_journal_id:
+                        writeoff_journal_id = \
+                            self.company_id.accrual_journal_id.id
                     to_reconcile.reconcile(
-                        writeoff_journal_id=to_reconcile[0].journal_id.id,
-                        writeoff_period_id=period.id)
+                        writeoff_period_id=writeoff_period_id,
+                        writeoff_journal_id=writeoff_journal_id)
                 else:
                     to_correct[p_id] = (accrual_lines[p_id], check)
                     _logger.error(_(

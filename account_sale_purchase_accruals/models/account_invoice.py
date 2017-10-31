@@ -157,7 +157,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                 if aml.product_id.id in inv_accruals \
                         and aml.account_id in inv_accrual_accounts:
                     inv_accruals[aml.product_id.id] += aml
-            self._reconcile_accrued_expense_lines(inv_accruals)
+            self._reconcile_accrued_expense_lines(
+                inv_accruals, writeoff_period_id=self.period_id.id)
 
         # reconcile refund accrual with original invoice accrual
         # remark: this operation may fail, e.g. if original invoice
@@ -176,7 +177,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                     if orig_aml.product_id.id in accrual_lines:
                         accrual_lines[orig_aml.product_id.id] += orig_aml
         if accrual_lines:
-            self._reconcile_accrued_expense_lines(accrual_lines)
+            self._reconcile_accrued_expense_lines(
+                accrual_lines, writeoff_period_id=self.period_id.id)
 
     def _supplier_invoice_reconcile_accruals(self):
         """
@@ -211,7 +213,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                             and aml.product_id == product:
                         accrual_lines[product.id] += aml
         if accrual_lines:
-            self._reconcile_accrued_expense_lines(accrual_lines)
+            self._reconcile_accrued_expense_lines(
+                accrual_lines, writeoff_period_id=self.period_id.id)
 
     @api.multi
     def invoice_validate(self):

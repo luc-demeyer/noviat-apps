@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Sale Purchase Accruals',
-    'version': '8.0.1.1.3',
+    'version': '8.0.1.1.4',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
