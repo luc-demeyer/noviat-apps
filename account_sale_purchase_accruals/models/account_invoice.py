@@ -63,7 +63,9 @@ class AccountInvoice(models.Model, CommonAccrual):
         # pass the invoice date in the context
         # in order to retrieve the correct purchase price
         # for the expense accruals
-        ctx_date = dict(self._context, date=self.date_invoice)
+        ctx_date = dict(self._context,
+                        date=self.date_invoice,
+                        date_p=self.date_invoice)
 
         for ail in self.with_context(ctx_date).invoice_line:
             product = ail.product_id
@@ -157,7 +159,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                 if aml.product_id.id in inv_accruals \
                         and aml.account_id in inv_accrual_accounts:
                     inv_accruals[aml.product_id.id] += aml
-            self._reconcile_accrued_expense_lines(
+            self.with_context(ctx_date)._reconcile_accrued_expense_lines(
                 inv_accruals, writeoff_period_id=self.period_id.id)
 
         # reconcile refund accrual with original invoice accrual
@@ -177,7 +179,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                     if orig_aml.product_id.id in accrual_lines:
                         accrual_lines[orig_aml.product_id.id] += orig_aml
         if accrual_lines:
-            self._reconcile_accrued_expense_lines(
+            self.with_context(ctx_date)._reconcile_accrued_expense_lines(
                 accrual_lines, writeoff_period_id=self.period_id.id)
 
     def _supplier_invoice_reconcile_accruals(self):
@@ -213,7 +215,8 @@ class AccountInvoice(models.Model, CommonAccrual):
                             and aml.product_id == product:
                         accrual_lines[product.id] += aml
         if accrual_lines:
-            self._reconcile_accrued_expense_lines(
+            ctx = dict(self._context, date_p=self.date_invoice)
+            self.with_context(ctx)._reconcile_accrued_expense_lines(
                 accrual_lines, writeoff_period_id=self.period_id.id)
 
     @api.multi

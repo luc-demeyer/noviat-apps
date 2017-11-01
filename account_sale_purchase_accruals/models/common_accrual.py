@@ -142,7 +142,7 @@ class CommonAccrual(object):
                     if not writeoff_journal_id:
                         writeoff_journal_id = \
                             self.company_id.accrual_journal_id.id
-                    to_reconcile.reconcile(
+                    to_reconcile.with_context(self._context).reconcile(
                         writeoff_period_id=writeoff_period_id,
                         writeoff_journal_id=writeoff_journal_id)
                 else:
@@ -154,7 +154,7 @@ class CommonAccrual(object):
                         self.name, [x.id for x in to_reconcile]
                     )
             elif self.company_id.currency_id.is_zero(check):
-                to_reconcile.reconcile()
+                to_reconcile.with_context(self._context).reconcile()
             else:
                 to_correct[p_id] = (accrual_lines[p_id], check)
                 _logger.error(_(
