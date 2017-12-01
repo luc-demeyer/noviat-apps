@@ -142,8 +142,6 @@ class EbicsXfer(models.TransientModel):
                 self.note += _(
                     "EBICS File has been uploaded (OrderID %s)."
                 ) % OrderID
-                if self.ebics_config_id.ebics_version == 'H003':
-                    self.ebics_config_id._update_order_number(OrderID)
                 ef_note = _("EBICS OrderID: %s") % OrderID
                 if self._context.get('origin'):
                     ef_note += '\n' + _("Origin: %s") % self._context['origin']
@@ -185,6 +183,9 @@ class EbicsXfer(models.TransientModel):
                 self.note += _("Unknown Error")
                 tb = ''.join(format_exception(*exc_info()))
                 self.note += '\n%s' % tb
+
+            if self.ebics_config_id.ebics_version == 'H003':
+                self.ebics_config_id._update_order_number(OrderID)
 
         module = __name__.split('addons.')[1].split('.')[0]
         result_view = self.env.ref(

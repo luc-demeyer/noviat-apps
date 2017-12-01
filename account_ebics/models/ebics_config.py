@@ -2,7 +2,6 @@
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 """
 import logging
 logging.basicConfig(
@@ -18,7 +17,8 @@ from sys import exc_info
 from urllib2 import URLError
 try:
     import fintech
-    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient
+    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser,\
+        EbicsClient, EbicsFunctionalError, EbicsTechnicalError
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
@@ -151,6 +151,10 @@ class EbicsConfig(models.Model):
 
     # X.509 Distinguished Name attributes used to
     # create self-signed X.509 certificates
+    ebics_key_x509 = fields.Boolean(
+        string='X509 support',
+        help="Set this flag in order to work with "
+             "self-signed X.509 certificates")
     ebics_key_x509_dn_cn = fields.Char(
         string='Common Name [CN]',
         readonly=True, states={'draft': [('readonly', False)]},
@@ -270,21 +274,23 @@ class EbicsConfig(models.Model):
             userid=self.ebics_user)
 
         self._check_ebics_keys()
-        user.create_keys(
-            keyversion=self.ebics_key_version,
-            bitlength=self.ebics_key_bitlength)
+        if not os.path.isfile(self.ebics_keys):
+            user.create_keys(
+                keyversion=self.ebics_key_version,
+                bitlength=self.ebics_key_bitlength)
 
-        dn_attrs = {
-            'commonName': self.ebics_key_x509_dn_cn,
-            'organizationName': self.ebics_key_x509_dn_o,
-            'organizationalUnitName': self.ebics_key_x509_dn_ou,
-            'countryName': self.ebics_key_x509_dn_c,
-            'stateOrProvinceName': self.ebics_key_x509_dn_st,
-            'localityName': self.ebics_key_x509_dn_l,
-            'emailAddress': self.ebics_key_x509_dn_e,
-        }
-        kwargs = {k: v for k, v in dn_attrs.items() if v}
-        user.create_certificates(**kwargs)
+        if self.ebics_key_x509:
+            dn_attrs = {
+                'commonName': self.ebics_key_x509_dn_cn,
+                'organizationName': self.ebics_key_x509_dn_o,
+                'organizationalUnitName': self.ebics_key_x509_dn_ou,
+                'countryName': self.ebics_key_x509_dn_c,
+                'stateOrProvinceName': self.ebics_key_x509_dn_st,
+                'localityName': self.ebics_key_x509_dn_l,
+                'emailAddress': self.ebics_key_x509_dn_e,
+            }
+            kwargs = {k: v for k, v in dn_attrs.items() if v}
+            user.create_certificates(**kwargs)
 
         client = EbicsClient(bank, user, version=self.ebics_version)
 
@@ -294,7 +300,7 @@ class EbicsConfig(models.Model):
                 bank._order_number = self._get_order_number()
             OrderID = client.INI()
             _logger.info(
-                '%s, EBICS HIA command, OrderID=%s', self._name, OrderID)
+                '%s, EBICS INI command, OrderID=%s', self._name, OrderID)
             if self.ebics_version == 'H003':
                 self._update_order_number(OrderID)
         except URLError:
@@ -302,6 +308,18 @@ class EbicsConfig(models.Model):
             raise UserError(_(
                 "urlopen error:\n url '%s' - %s")
                 % (self.ebics_url, e[1].reason.strerror))
+        except EbicsFunctionalError:
+            e = exc_info()
+            error = _("EBICS Functional Error:")
+            error += '\n'
+            error += '%s (code: %s)' % (e[1].message, e[1].code)
+            raise UserError(error)
+        except EbicsTechnicalError:
+            e = exc_info()
+            error = _("EBICS Technical Error:")
+            error += '\n'
+            error += '%s (code: %s)' % (e[1].message, e[1].code)
+            raise UserError(error)
 
         # Send the public authentication and encryption keys to the bank.
         if self.ebics_version == 'H003':
