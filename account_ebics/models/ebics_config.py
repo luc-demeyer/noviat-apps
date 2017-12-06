@@ -386,7 +386,7 @@ class EbicsConfig(models.Model):
             keyring=keyring, partnerid=self.ebics_partner,
             userid=self.ebics_user)
         client = EbicsClient(
-            bank, user, version=self.ebics_config_id.ebics_version)
+            bank, user, version=self.ebics_version)
 
         public_bank_keys = client.HPB()
         tmp_dir = os.path.normpath(self.ebics_files + '/tmp')
