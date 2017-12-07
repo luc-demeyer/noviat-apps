@@ -26,5 +26,5 @@ Overdue message template customization
 --------------------------------------
 * %(partner_name)s: insert partner name
 * %(date)s: insert date
-* %(company_name): insert company.name
-* %(user_signature): insert user signature
+* %(company_name)s: insert company.name
+* %(user_signature)s: insert user signature
