@@ -47,23 +47,30 @@
         </group>
         <notebook>
           <page string="Keys" groups="account_ebics.group_ebics_manager">
+            <label string=""/>
             <header>
               <button name="ebics_init_1" states="draft" string="EBICS Initialisation" type="object" class="oe_highlight"
                       groups="account.group_account_manager"
+                      attrs="{'invisible': [('state', '=', 'active')]}"
                       help="Initialise EBICS Bank Keys"/>
               <button name="ebics_init_2" states="init" string="Account activated" type="object" class="oe_highlight"
                       groups="account.group_account_manager"
+                      attrs="{'invisible': [('state', '=', 'active')]}"
                       help="EBICS Initialisation - Push this button when the account has been activated by the bank."/>
               <button name="ebics_init_3" states="get_bank_keys" string="Get Bank Keys" type="object" class="oe_highlight"
                       groups="account.group_account_manager"
+                      attrs="{'invisible': [('state', '=', 'active')]}"
                       help="EBICS Initialisation - After the account has been activated the public bank keys must be downloaded and checked for consistency."/>
               <button name="ebics_init_4" states="to_verify" string="Bank Keys Verified" type="object" class="oe_highlight"
                       groups="account.group_account_manager"
+                      attrs="{'invisible': [('state', '=', 'active')]}"
                       help="EBICS Initialisation - Push this button when the public have been checked for consistency."/>
+              <button name="change_passphrase" string="Change Passphrase" type="object" class="oe_highlight"
+                      groups="account.group_account_manager"/>
             </header>
             <group col="4" name="ebics_key">
               <field name="ebics_keys"/>
-              <field name="ebics_passphrase" password="True"/>
+              <field name="ebics_passphrase" password="True" attrs="{'invisible': [('ebics_keys', '!=', False)]}"/>
               <field name="ebics_key_version"/>
               <field name="ebics_key_bitlength"/>
               <field name="ebics_key_x509"/>

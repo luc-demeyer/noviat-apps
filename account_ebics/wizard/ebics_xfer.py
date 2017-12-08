@@ -29,6 +29,8 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
+DOWNLOAD_TYPES = ['FDL', 'C53']  # list of supported order types for dowload
+
 
 class EbicsBank(EbicsBank):
 
@@ -96,11 +98,22 @@ class EbicsXfer(models.TransientModel):
 
     @api.onchange('ebics_config_id')
     def _onchange_ebics_config_id(self):
+        domain = {}
         if self._context.get('ebics_download'):
             download_formats = self.ebics_config_id.ebics_file_format_ids\
-                .filtered(lambda r: r.type == 'fdl')
+                .filtered(lambda r: r.type == 'down')
             if len(download_formats) == 1:
                 self.format_id = download_formats
+            domain['format_id'] = [('type', '=', 'down'),
+                                   ('id', 'in', download_formats.ids)]
+        else:
+            upload_formats = self.ebics_config_id.ebics_file_format_ids\
+                .filtered(lambda r: r.type == 'up')
+            if len(upload_formats) == 1:
+                self.format_id = upload_formats
+            domain['format_id'] = [('type', '=', 'up'),
+                                   ('id', 'in', upload_formats.ids)]
+        return {'domain': domain}
 
     @api.onchange('upload_data')
     def _onchange_upload_data(self):
@@ -216,15 +229,20 @@ class EbicsXfer(models.TransientModel):
             ebics_files = self.env['ebics.file']
             for df in download_formats:
                 success = False
+                order_type = df.order_type or 'FDL'
+                params = {}
+                if order_type == 'FDL':
+                    params['filetype'] = df.name
+                if order_type in ['FDL', 'C53']:
+                    params.update({
+                        'start': self.date_from or None,
+                        'end': self.date_to or None,
+                    })
+                kwargs = {k: v for k, v in params.items() if v}
                 try:
-                    data = client.FDL(
-                        filetype=df.name, start=self.date_from or None,
-                        end=self.date_to or None)
+                    method = getattr(client, order_type)
+                    data = method(**kwargs)
                     ebics_files += self._handle_download_data(data, df)
-                    self.note += '\n'
-                    self.note += _(
-                        "EBICS File '%s' is available for further processing."
-                    ) % ebics_files[-1].name
                     success = True
                 except EbicsFunctionalError:
                     e = exc_info()
@@ -260,6 +278,14 @@ class EbicsXfer(models.TransientModel):
                     client.confirm_download(trans_id=trans_id, success=success)
 
             ctx['ebics_file_ids'] = ebics_files._ids
+
+            if ebics_files:
+                self.note += '\n'
+                for f in ebics_files:
+                    self.note += _(
+                        "EBICS File '%s' is available for further processing."
+                    ) % f.name
+                    self.note += '\n'
 
         module = __name__.split('addons.')[1].split('.')[0]
         result_view = self.env.ref(
@@ -352,6 +378,7 @@ class EbicsXfer(models.TransientModel):
         """
         res = {
             'camt.xxx.cfonb120.stm': self._handle_cfonb120,
+            'camt.053.001.02.stm': self._handle_camt053,
         }
         return res
 
@@ -372,6 +399,16 @@ class EbicsXfer(models.TransientModel):
                 ef_vals['name'] = fn
 
     def _handle_download_data(self, data, file_format):
+        ebics_files = self.env['ebics.file']
+        if isinstance(data, dict):
+            for doc in data:
+                ebics_files += self._create_ebics_file(
+                    data[doc], file_format, docname=doc)
+        else:
+            ebics_files += self._create_ebics_file(data, file_format)
+        return ebics_files
+
+    def _create_ebics_file(self, data, file_format, docname=None):
         """
         Write the data as received over the EBICS connection
         to a temporary file so that is is available for
@@ -387,15 +424,18 @@ class EbicsXfer(models.TransientModel):
         tmp_dir = os.path.normpath(ebics_files_root + '/tmp')
         if not os.path.isdir(tmp_dir):
             os.makedirs(tmp_dir, 0700)
-        fn_date = self.date_to or fields.Date.today()
-        base_fn = '_'.join(
-            [self.ebics_config_id.ebics_host, fn_date])
+        fn_parts = [self.ebics_config_id.ebics_host]
+        if docname:
+            fn_parts.append(docname)
+        else:
+            fn_date = self.date_to or fields.Date.today()
+            fn_parts.append(fn_date)
+        base_fn = '_'.join(fn_parts)
         n = 1
-        fn = base_fn + '_' + str(n).rjust(3, '0')
-        full_tmp_fn = os.path.normpath(tmp_dir + '/' + fn)
+        full_tmp_fn = os.path.normpath(tmp_dir + '/' + base_fn)
         while os.path.exists(full_tmp_fn):
             n += 1
-            tmp_fn = base_fn + str(n).rjust(3, '0')
+            tmp_fn = base_fn + '_' + str(n).rjust(3, '0')
             full_tmp_fn = os.path.normpath(tmp_dir + '/' + tmp_fn)
 
         with open(full_tmp_fn, 'wb') as f:
@@ -473,3 +513,11 @@ class EbicsXfer(models.TransientModel):
 
     def _handle_cfonb240(self, data_in):
         return self._insert_line_terminator(data_in, 240)
+
+    def _handle_camt053(self, data_in):
+        """
+        Use this method if you need to fix camt files received
+        from your bank before passing them to the
+        Odoo Enterprise or Community CAMT parser.
+        """
+        return data_in

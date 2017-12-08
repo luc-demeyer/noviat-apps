@@ -10,7 +10,7 @@ class EbicsFileFormat(models.Model):
     _description = 'EBICS File Formats'
     _order = 'type,name'
 
-    name = fields.Char(string='Name', required=True)
+    name = fields.Char(string='Request Type', required=True)
     type = fields.Selection(
         selection=[('down', 'Download'),
                    ('up', 'Upload')],
@@ -29,8 +29,13 @@ class EbicsFileFormat(models.Model):
 
     @api.model
     def _selection_order_type(self):
-        return[
-            ('FUL', 'FUL'),
-            ('FDL', 'FDL'),
-            ('CCT', 'CCT'),
-        ]
+        up = self._supported_upload_order_types()
+        down = self._supported_download_order_types()
+        selection = [(x, x) for x in up + down]
+        return selection
+
+    def _supported_upload_order_types(self):
+        return ['FUL', 'CCT']
+
+    def _supported_download_order_types(self):
+        return ['FDL', 'C53']

@@ -122,9 +122,7 @@ class EbicsConfig(models.Model):
         help="File holding the EBICS Keys."
              "\nSpecify the full path (directory + filename).")
     ebics_passphrase = fields.Char(
-        string='EBICS Passphrase',
-        readonly=True, states={'draft': [('readonly', False)]},
-    )
+        string='EBICS Passphrase')
     ebics_key_version = fields.Selection(
         selection=[('A005', 'A005 (RSASSA-PKCS1-v1_5)'),
                    ('A006', 'A006 (RSASSA-PSS)')],
@@ -186,6 +184,7 @@ class EbicsConfig(models.Model):
     ebics_file_format_ids = fields.Many2many(
         comodel_name='ebics.file.format',
         column1='config_id', column2='format_id',
+        string='EBICS File Formats',
         readonly=True, states={'draft': [('readonly', False)]},
     )
     state = fields.Selection(
@@ -420,6 +419,24 @@ class EbicsConfig(models.Model):
             keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
         bank.activate_keys()
         return self.write({'state': 'active'})
+
+    @api.multi
+    def change_passphrase(self):
+        self.ensure_one()
+        ctx = dict(self._context, default_ebics_config_id=self.id)
+        module = __name__.split('addons.')[1].split('.')[0]
+        view = self.env.ref(
+            '%s.ebics_change_passphrase_view_form' % module)
+        return {
+            'name': _('EBICS keys change passphrase'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'ebics.change.passphrase',
+            'view_id': view.id,
+            'target': 'new',
+            'context': ctx,
+            'type': 'ir.actions.act_window',
+        }
 
     def _get_order_number(self):
         return self.order_number

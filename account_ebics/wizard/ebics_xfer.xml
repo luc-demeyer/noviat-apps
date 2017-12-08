@@ -9,10 +9,10 @@
       <form string="EBICS File Download">
         <group>
           <separator string="Select your bank :" colspan="2"/>
-          <field name="ebics_config_id" options="{'no_create': True}"/>
+          <field name="ebics_config_id" options="{'no_create': True, 'no_open': True}"/>
           <field name="date_from"/>
           <field name="date_to"/>
-          <field name="format_id" domain="[('type', '=', 'down')]"/>
+          <field name="format_id"/>
         </group>
         <footer>
           <button name="ebics_download" string="Download Files" type="object" class="oe_highlight"/>
@@ -31,12 +31,12 @@
       <form string="EBICS File Upload">
         <group>
           <separator string="Select your bank :" colspan="2"/>
-          <field name="ebics_config_id" options="{'no_create': True}"/>
+          <field name="ebics_config_id" options="{'no_create': True, 'no_open': True}"/>
           <separator string="Select your file :" colspan="2"/>
           <field name="upload_data" filename="upload_fname" required="1"/>
           <field name="upload_fname" invisible="1"/>
           <field name="upload_fname_dummy"/>
-          <field name="format_id" required="1" domain="[('type', '=', 'up')]"/>
+          <field name="format_id" required="1"/>
           <field name="order_type"/>
           <field name="test_mode" attrs="{'invisible': [('order_type', '!=', 'FUL')]}"/>
         </group>

@@ -129,6 +129,9 @@ class EbicsFile(models.Model):
             'camt.xxx.cfonb120.stm':
                 {'process': self._process_cfonb120,
                  'unlink': self._unlink_cfonb120},
+            'camt.053.001.02.stm':
+                {'process': self._process_camt053,
+                 'unlink': self._unlink_camt053},
         }
         return res
 
@@ -199,6 +202,45 @@ class EbicsFile(models.Model):
     def _unlink_cfonb120(self):
         """
         Placeholder for cfonb120 specific actions before removing the
+        EBICS data file and its related bank statements.
+        """
+        pass
+
+    @staticmethod
+    def _process_camt053(self):
+        import_module = 'account_bank_statement_import_camt'
+        self._check_import_module(import_module)
+        wiz_model = 'account.bank.statement.import'
+        wiz_vals = {'data_file': self.data}
+        wiz = self.env[wiz_model].create(wiz_vals)
+        res = wiz.import_file()
+        notifications = []
+        statement_ids = []
+        if res.get('context'):
+            notifications = res['context'].get('notifications', [])
+            statement_ids = res['context'].get('statement_ids', [])
+        if notifications:
+            for notif in notifications:
+                parts = []
+                for k in ['type', 'message', 'details']:
+                    if notif.get(k):
+                        msg = '%s: %s' % (k, notif[k])
+                        parts.append(msg)
+                self.note_process += '\n'.join(parts)
+                self.note_process += '\n'
+            self.note_process += '\n'
+        self.note_process += _(
+            "Number of Bank Statements: %s"
+        ) % len(statement_ids)
+        if statement_ids:
+            self.bank_statement_ids = [(6, 0, statement_ids)]
+        ctx = dict(self._context, statement_ids=statement_ids)
+        return self._process_result_action(ctx)
+
+    @staticmethod
+    def _unlink_camt053(self):
+        """
+        Placeholder for camt053 specific actions before removing the
         EBICS data file and its related bank statements.
         """
         pass
