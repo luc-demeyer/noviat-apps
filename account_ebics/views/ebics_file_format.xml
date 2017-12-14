@@ -8,6 +8,7 @@
       <tree string="EBICS File Formats">
         <field name="type"/>
         <field name="order_type"/>
+        <field name="signature_class"/>
         <field name="name"/>
         <field name="description"/>
       </tree>
@@ -23,6 +24,7 @@
           <field name="type"/>
           <field name="order_type"/>
           <field name="name"/>
+          <field name="signature_class"/>
           <field name="suffix"/>
           <newline/>
           <field name="description"/>

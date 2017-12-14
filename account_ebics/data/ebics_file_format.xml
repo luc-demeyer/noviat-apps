@@ -18,6 +18,22 @@
       <field name="suffix">xml</field>
     </record>
 
+    <record id="ebics_ff_pain_008_001_02_sdd" model="ebics.file.format">
+      <field name="name">pain.008.001.02.sdd</field>
+      <field name="type">up</field>
+      <field name="order_type">CDD</field>
+      <field name="description">Sepa Core Direct Debit Order in Format pain.008.001.02</field>
+      <field name="suffix">xml</field>
+    </record>
+
+    <record id="ebics_ff_pain_008_001_02_sbb" model="ebics.file.format">
+      <field name="name">pain.008.001.02.sbb</field>
+      <field name="type">up</field>
+      <field name="order_type">CDB</field>
+      <field name="description">Sepa Direct Debit (B2B) Order in Format pain.008.001.02</field>
+      <field name="suffix">xml</field>
+    </record>
+    
     <record id="ebics_ff_camt_xxx_cfonb120_stm" model="ebics.file.format">
       <field name="name">camt.xxx.cfonb120.stm</field>
       <field name="type">down</field>

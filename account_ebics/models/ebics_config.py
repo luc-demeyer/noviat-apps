@@ -105,8 +105,10 @@ class EbicsConfig(models.Model):
                    ('T', 'Transport signature')],
         string='Signature Class',
         required=True, default='T',
-        readonly=True, states={'draft': [('readonly', False)]}
-    )
+        readonly=True, states={'draft': [('readonly', False)]},
+        help="Default signature class."
+             "This default can be overriden for specific "
+             "EBICS transactions (cf. File Formats).")
     ebics_files = fields.Char(
         string='EBICS Files Root', required=True,
         readonly=True, states={'draft': [('readonly', False)]},
@@ -121,6 +123,8 @@ class EbicsConfig(models.Model):
         default=lambda self: self._default_ebics_keys(),
         help="File holding the EBICS Keys."
              "\nSpecify the full path (directory + filename).")
+    ebics_keys_found = fields.Boolean(
+        compute='_compute_ebics_keys_found')
     ebics_passphrase = fields.Char(
         string='EBICS Passphrase')
     ebics_key_version = fields.Selection(
@@ -217,6 +221,13 @@ class EbicsConfig(models.Model):
         return '/'.join(['/etc/odoo/ebics_keys',
                          self._cr.dbname,
                          'mykeys'])
+
+    @api.multi
+    def _compute_ebics_keys_found(self):
+        for cfg in self:
+            if cfg.ebics_keys:
+                dirname = os.path.dirname(self.ebics_keys)
+                self.ebics_keys_found = os.path.exists(dirname)
 
     @api.multi
     @api.constrains('order_number')
