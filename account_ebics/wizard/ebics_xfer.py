@@ -140,7 +140,6 @@ class EbicsXfer(models.TransientModel):
             format = self.format_id
             try:
                 order_type = format.order_type or 'FUL'
-                method = getattr(client, order_type)
                 if order_type == 'FUL':
                     kwargs = {}
                     # bank = self.ebics_config_id.bank_id.bank v8.0
@@ -149,9 +148,9 @@ class EbicsXfer(models.TransientModel):
                         kwargs['country'] = bank.country.code
                     if self.test_mode:
                         kwargs['TEST'] = 'TRUE'
-                    OrderID = method(format.name, upload_data, **kwargs)
-                elif order_type in ['CCT', 'CDD', 'CDB']:
-                    OrderID = method(upload_data)
+                    OrderID = client.FUL(format.name, upload_data, **kwargs)
+                elif order_type == 'CCT':
+                    OrderID = client.CCT(upload_data)
                 self.note += '\n'
                 self.note += _(
                     "EBICS File has been uploaded (OrderID %s)."
@@ -336,9 +335,7 @@ class EbicsXfer(models.TransientModel):
             keyring=keyring,
             partnerid=self.ebics_config_id.ebics_partner,
             userid=self.ebics_config_id.ebics_user)
-        signature_class = self.format_id.signature_class \
-            or self.ebics_config_id.signature_class
-        if signature_class == 'T':
+        if self.ebics_config_id.signature_class == 'T':
             user.manual_approval = True
 
         try:
