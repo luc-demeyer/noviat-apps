@@ -56,7 +56,12 @@ class partner_vat(orm.TransientModel):
         # All customers with Belgian VAT number must be included in the annual VAT Listing,
         # except those with only operations according article 44 of the VAT lawbook (reported via tax code 00).
         # You should uncheck the 'vat_subjected' flag for those customers.
-        partner_ids = obj_partner.search(cr, uid, [('vat_subjected', '!=', False), ('vat', 'ilike', 'BE%')], context=context)
+        partner_dom = [
+            '|', ('active', '=', True), ('active', '=', False),
+            ('vat', '=ilike', 'BE%'),
+            ('vat_subjected', '=', True),
+        ]
+        partner_ids = obj_partner.search(cr, uid, partner_dom, context=context)
         if not partner_ids:
             raise orm.except_orm(_('Error'), _('No belgian customers with a VAT number in your database.'))
         codes = ('00', '01', '02', '03', '45', '49')
