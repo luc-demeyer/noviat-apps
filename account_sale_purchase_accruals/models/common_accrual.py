@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -61,6 +61,7 @@ class CommonAccrual(object):
         grouped = {}
         fields_to_sum = self._accrual_fields_to_sum()
         for entry in aml_vals:
+            self._update_accrual_move_line_vals(entry)
             hashcode = self._accrual_hashcode(entry)
             if hashcode in grouped:
                 for field in entry:
@@ -73,9 +74,9 @@ class CommonAccrual(object):
         for group in grouped:
             entry = grouped[group]
             entry_type = entry['entry_type']
-            del entry['entry_type']
             entry['move_id'] = accrual_move_id.id
-            self._update_accrual_move_line_vals(entry)
+            del entry['entry_type']
+            del entry['origin']
             aml = self.env['account.move.line'].create(entry)
             if entry_type == 'accrual':
                 accruals[entry.get('product_id')] = aml

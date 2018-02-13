@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -122,6 +122,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                     'name': ail.name,
                     'analytic_account_id': ail.account_analytic_id.id,
                     'entry_type': 'expense',
+                    'origin': ail,
                 }
                 aml_vals.append(expense_vals)
 
@@ -135,6 +136,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                         procurement_action == 'move' and partner.id or False,
                     'name': ail.name,
                     'entry_type': 'accrual',
+                    'origin': ail,
                 }
                 if cur:
                     accrual_vals.update({

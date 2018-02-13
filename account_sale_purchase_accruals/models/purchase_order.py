@@ -142,6 +142,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'analytic_account_id': pol.account_analytic_id.id,
                     'entry_type': 'expense',
+                    'origin': pol,
                 }
                 s_aml_vals.append(expense_vals)
 
@@ -154,6 +155,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'partner_id': False,
                     'name': pol.name,
                     'entry_type': 'accrual',
+                    'origin': pol,
                 }
                 if cur:
                     accrual_vals.update({
@@ -186,6 +188,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'name': pol.name,
                     'analytic_account_id': pol.account_analytic_id.id,
                     'entry_type': 'expense',
+                    'origin': pol,
                 }
                 if cur:
                     expense_vals.update({
@@ -203,6 +206,7 @@ class PurchaseOrder(models.Model, CommonAccrual):
                     'partner_id': partner.id,
                     'name': pol.name,
                     'entry_type': 'accrual',
+                    'origin': pol,
                 }
                 if cur:
                     accrual_vals.update({
