@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import xlwt
 from datetime import datetime
-from openerp.osv import orm
+
+from openerp.exceptions import Warning as UserError
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell, _render
-from .account_partner_open_arap import partner_open_arap_print
+from .account_partner_open_arap import AccountPartnerOpenArap
 from openerp.tools.translate import translate
+
 import logging
 _logger = logging.getLogger(__name__)
 
 _ir_translation_name = 'account.partner.open.arap'
 
 
-class partner_open_arap_print_xls(partner_open_arap_print):
+class AccountPartnerOpenArapXls(AccountPartnerOpenArap):
 
     def __init__(self, cr, uid, name, context):
-        super(partner_open_arap_print_xls, self).__init__(
+        super(AccountPartnerOpenArapXls, self).__init__(
             cr, uid, name, context=context)
         p_obj = self.pool['res.partner']
         self.context = context
@@ -43,11 +45,11 @@ class partner_open_arap_print_xls(partner_open_arap_print):
             self.cr, _ir_translation_name, 'report', lang, src) or src
 
 
-class partner_open_arap_xls(report_xls):
+class PartnerOpenArapXls(report_xls):
 
     def __init__(self, name, table, rml=False,
                  parser=False, header=True, store=False):
-        super(partner_open_arap_xls, self).__init__(
+        super(PartnerOpenArapXls, self).__init__(
             name, table, rml, parser, header, store)
 
         # Cell Styles
@@ -263,8 +265,8 @@ class partner_open_arap_xls(report_xls):
             debit_pos = 'debit' in wl and wl.index('debit')
             credit_pos = 'credit' in wl and wl.index('credit')
             if not (credit_pos and debit_pos) and 'balance' in wl:
-                raise orm.except_orm(
-                    _('Customisation Error!'),
+                raise UserError(
+                    _('Customisation Error!') + '\n' +
                     _("The 'Balance' field is a calculated XLS field "
                       "requiring the presence of "
                       "the 'Debit' and 'Credit' fields !"))
@@ -378,11 +380,12 @@ class partner_open_arap_xls(report_xls):
                 bal_formula_d = debit_cell_d + '-' + credit_cell_d  # noqa: disable F841, report_xls namespace trick
 
                 line_cnt = len(p['lines'])
-                debit_start = rowcol_to_cell(row_pos_d+1, debit_pos_d)
-                debit_stop = rowcol_to_cell(row_pos_d+line_cnt, debit_pos_d)
+                debit_start = rowcol_to_cell(row_pos_d + 1, debit_pos_d)
+                debit_stop = rowcol_to_cell(row_pos_d + line_cnt, debit_pos_d)
                 debit_formula = 'SUM(%s:%s)' % (debit_start, debit_stop)
-                credit_start = rowcol_to_cell(row_pos_d+1, credit_pos_d)
-                credit_stop = rowcol_to_cell(row_pos_d+line_cnt, credit_pos_d)
+                credit_start = rowcol_to_cell(row_pos_d + 1, credit_pos_d)
+                credit_stop = rowcol_to_cell(row_pos_d + line_cnt,
+                                             credit_pos_d)
                 credit_formula = 'SUM(%s:%s)' % (credit_start, credit_stop)
                 c_specs_d = map(
                     lambda x: self.render(
@@ -453,11 +456,8 @@ class partner_open_arap_xls(report_xls):
             row_pos_d = self.xls_write_row(
                 ws_d, row_pos_d, row_data, row_style=self.rt_cell_style_right)
 
-    # end def generate_xls_report
 
-# end class partner_open_arap_xls
-
-partner_open_arap_xls(
+PartnerOpenArapXls(
     'report.account.partner.open.arap.period.xls',
     'wiz.partner.open.arap.period',
-    parser=partner_open_arap_print_xls)
+    parser=AccountPartnerOpenArapXls)

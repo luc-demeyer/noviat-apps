@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import partner_open_arap
+from . import wiz_partner_open_arap_period
