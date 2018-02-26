@@ -1378,7 +1378,6 @@ class AccountCodaImport(models.TransientModel):
                         coda_statement['currency'] +
                         ') - ' + coda_statement['description'])
                 self._coda_import_note += '\n' + err_string
-                break
 
             if coda_statement['type'] == 'info':
                 coda_st = self._create_info_statement(coda_statement)
