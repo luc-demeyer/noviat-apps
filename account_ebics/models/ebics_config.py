@@ -17,7 +17,8 @@ from sys import exc_info
 from urllib2 import URLError
 try:
     import fintech
-    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser, EbicsClient
+    from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser,\
+        EbicsClient, EbicsFunctionalError, EbicsTechnicalError
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
@@ -104,8 +105,10 @@ class EbicsConfig(models.Model):
                    ('T', 'Transport signature')],
         string='Signature Class',
         required=True, default='T',
-        readonly=True, states={'draft': [('readonly', False)]}
-    )
+        readonly=True, states={'draft': [('readonly', False)]},
+        help="Default signature class."
+             "This default can be overriden for specific "
+             "EBICS transactions (cf. File Formats).")
     ebics_files = fields.Char(
         string='EBICS Files Root', required=True,
         readonly=True, states={'draft': [('readonly', False)]},
@@ -120,10 +123,10 @@ class EbicsConfig(models.Model):
         default=lambda self: self._default_ebics_keys(),
         help="File holding the EBICS Keys."
              "\nSpecify the full path (directory + filename).")
+    ebics_keys_found = fields.Boolean(
+        compute='_compute_ebics_keys_found')
     ebics_passphrase = fields.Char(
-        string='EBICS Passphrase',
-        readonly=True, states={'draft': [('readonly', False)]},
-    )
+        string='EBICS Passphrase')
     ebics_key_version = fields.Selection(
         selection=[('A005', 'A005 (RSASSA-PKCS1-v1_5)'),
                    ('A006', 'A006 (RSASSA-PSS)')],
@@ -150,6 +153,10 @@ class EbicsConfig(models.Model):
 
     # X.509 Distinguished Name attributes used to
     # create self-signed X.509 certificates
+    ebics_key_x509 = fields.Boolean(
+        string='X509 support',
+        help="Set this flag in order to work with "
+             "self-signed X.509 certificates")
     ebics_key_x509_dn_cn = fields.Char(
         string='Common Name [CN]',
         readonly=True, states={'draft': [('readonly', False)]},
@@ -181,6 +188,7 @@ class EbicsConfig(models.Model):
     ebics_file_format_ids = fields.Many2many(
         comodel_name='ebics.file.format',
         column1='config_id', column2='format_id',
+        string='EBICS File Formats',
         readonly=True, states={'draft': [('readonly', False)]},
     )
     state = fields.Selection(
@@ -213,6 +221,13 @@ class EbicsConfig(models.Model):
         return '/'.join(['/etc/odoo/ebics_keys',
                          self._cr.dbname,
                          'mykeys'])
+
+    @api.multi
+    def _compute_ebics_keys_found(self):
+        for cfg in self:
+            if cfg.ebics_keys:
+                dirname = os.path.dirname(self.ebics_keys)
+                self.ebics_keys_found = os.path.exists(dirname)
 
     @api.multi
     @api.constrains('order_number')
@@ -269,21 +284,23 @@ class EbicsConfig(models.Model):
             userid=self.ebics_user)
 
         self._check_ebics_keys()
-        user.create_keys(
-            keyversion=self.ebics_key_version,
-            bitlength=self.ebics_key_bitlength)
+        if not os.path.isfile(self.ebics_keys):
+            user.create_keys(
+                keyversion=self.ebics_key_version,
+                bitlength=self.ebics_key_bitlength)
 
-        dn_attrs = {
-            'commonName': self.ebics_key_x509_dn_cn,
-            'organizationName': self.ebics_key_x509_dn_o,
-            'organizationalUnitName': self.ebics_key_x509_dn_ou,
-            'countryName': self.ebics_key_x509_dn_c,
-            'stateOrProvinceName': self.ebics_key_x509_dn_st,
-            'localityName': self.ebics_key_x509_dn_l,
-            'emailAddress': self.ebics_key_x509_dn_e,
-        }
-        kwargs = {k: v for k, v in dn_attrs.items() if v}
-        user.create_certificates(**kwargs)
+        if self.ebics_key_x509:
+            dn_attrs = {
+                'commonName': self.ebics_key_x509_dn_cn,
+                'organizationName': self.ebics_key_x509_dn_o,
+                'organizationalUnitName': self.ebics_key_x509_dn_ou,
+                'countryName': self.ebics_key_x509_dn_c,
+                'stateOrProvinceName': self.ebics_key_x509_dn_st,
+                'localityName': self.ebics_key_x509_dn_l,
+                'emailAddress': self.ebics_key_x509_dn_e,
+            }
+            kwargs = {k: v for k, v in dn_attrs.items() if v}
+            user.create_certificates(**kwargs)
 
         client = EbicsClient(bank, user, version=self.ebics_version)
 
@@ -293,7 +310,7 @@ class EbicsConfig(models.Model):
                 bank._order_number = self._get_order_number()
             OrderID = client.INI()
             _logger.info(
-                '%s, EBICS HIA command, OrderID=%s', self._name, OrderID)
+                '%s, EBICS INI command, OrderID=%s', self._name, OrderID)
             if self.ebics_version == 'H003':
                 self._update_order_number(OrderID)
         except URLError:
@@ -301,6 +318,18 @@ class EbicsConfig(models.Model):
             raise UserError(_(
                 "urlopen error:\n url '%s' - %s")
                 % (self.ebics_url, e[1].reason.strerror))
+        except EbicsFunctionalError:
+            e = exc_info()
+            error = _("EBICS Functional Error:")
+            error += '\n'
+            error += '%s (code: %s)' % (e[1].message, e[1].code)
+            raise UserError(error)
+        except EbicsTechnicalError:
+            e = exc_info()
+            error = _("EBICS Technical Error:")
+            error += '\n'
+            error += '%s (code: %s)' % (e[1].message, e[1].code)
+            raise UserError(error)
 
         # Send the public authentication and encryption keys to the bank.
         if self.ebics_version == 'H003':
@@ -312,7 +341,7 @@ class EbicsConfig(models.Model):
 
         # Create an INI-letter which must be printed and sent to the bank.
         lang = self.env.user.lang[:2]
-        cc = self.bank_id.country_id.code
+        cc = self.bank_id.bank_id.country.code
         if cc in ['FR', 'DE']:
             lang = cc
         tmp_dir = os.path.normpath(self.ebics_files + '/tmp')
@@ -322,7 +351,7 @@ class EbicsConfig(models.Model):
         fn = '_'.join([self.ebics_host, 'ini_letter', fn_date]) + '.pdf'
         full_tmp_fn = os.path.normpath(tmp_dir + '/' + fn)
         user.create_ini_letter(
-            bankname=self.bank_id.bank.name,
+            bankname=self.bank_id.bank_id.name,
             path=full_tmp_fn,
             lang=lang)
         with open(full_tmp_fn, 'rb') as f:
@@ -367,7 +396,7 @@ class EbicsConfig(models.Model):
             keyring=keyring, partnerid=self.ebics_partner,
             userid=self.ebics_user)
         client = EbicsClient(
-            bank, user, version=self.ebics_config_id.ebics_version)
+            bank, user, version=self.ebics_version)
 
         public_bank_keys = client.HPB()
         tmp_dir = os.path.normpath(self.ebics_files + '/tmp')
@@ -401,6 +430,24 @@ class EbicsConfig(models.Model):
             keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
         bank.activate_keys()
         return self.write({'state': 'active'})
+
+    @api.multi
+    def change_passphrase(self):
+        self.ensure_one()
+        ctx = dict(self._context, default_ebics_config_id=self.id)
+        module = __name__.split('addons.')[1].split('.')[0]
+        view = self.env.ref(
+            '%s.ebics_change_passphrase_view_form' % module)
+        return {
+            'name': _('EBICS keys change passphrase'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'ebics.change.passphrase',
+            'view_id': view.id,
+            'target': 'new',
+            'context': ctx,
+            'type': 'ir.actions.act_window',
+        }
 
     def _get_order_number(self):
         return self.order_number
