@@ -1547,7 +1547,8 @@ class AccountCodaImport(models.TransientModel):
 
             for st_line in statement.line_ids:
                 if st_line.amount and not st_line.journal_entry_id:
-                    transaction = json.loads(st_line.coda_transaction_dict)
+                    transaction = st_line.coda_transaction_dict \
+                        and json.loads(st_line.coda_transaction_dict)
                     if transaction:
                         try:
                             with self._cr.savepoint():
