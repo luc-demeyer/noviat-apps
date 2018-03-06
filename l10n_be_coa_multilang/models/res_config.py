@@ -30,8 +30,7 @@ class account_config_settings(models.TransientModel):
                 'next_action': 'account.action_wizard_multi_chart',
             })
             todo = env.ref(
-                'account.action_wizard_multi_chart_todo'
-                )
+                'account.action_wizard_multi_chart_todo')
             if todo.state == 'done':
                 todo.state = 'open'
         return super(account_config_settings, self).execute(

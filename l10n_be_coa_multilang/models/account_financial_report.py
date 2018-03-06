@@ -164,9 +164,9 @@ class account_account(models.Model):
                                         [(3, fin_report.id)]})
                                 updated = True
                     if be_report_id and (
-                            acc_type not in ['view', 'consolidation'] or
-                            (acc_type == 'view' and centralized)
-                            ) and not updated:
+                        acc_type not in ['view', 'consolidation'] or
+                        (acc_type == 'view' and centralized)
+                    ) and not updated:
                         vals.update(
                             {'financial_report_ids': [(4, be_report_id)]})
         return super(account_account, self).write(

@@ -26,7 +26,7 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         accounts = self.env['account.account'].with_context(upd_ctx).search(
             ['|', ('type', '!=', 'view'), '&', ('type', '=', 'view'),
              ('centralized', '=', True)]
-            )
+        )
 
         # delete old reporting configuration
         account_ids = [x.id for x in accounts]

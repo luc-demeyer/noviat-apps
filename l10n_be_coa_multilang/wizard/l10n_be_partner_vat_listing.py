@@ -2,8 +2,9 @@
 # noqa: skip pep8 control until this wizard is rewritten.
 # flake8: noqa
 # Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-# Copyright 2009-2016 Noviat
+# Copyright 2009-2018 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import time
 import base64
 import operator
@@ -83,19 +84,34 @@ class partner_vat(orm.TransientModel):
                       GROUP BY l2.partner_id) AS sub2 ON sub1.partner_id = sub2.partner_id
                     """,
             (codes, tuple(partner_ids), tuple(period_ids), tuple(partner_ids), tuple(period_ids)))
-        records = []
-        for record in cr.dictfetchall():
-            record['vat'] = record['vat'].replace(' ', '').replace('.', '').upper()
-            if record['turnover'] >= data['limit_amount']:
-                records.append(record)
-        records.sort(key=operator.itemgetter('vat'))
-        for record in records:
-            del record['partner_id']
-            id_client = obj_vat_lclient.create(cr, uid, record, context=context)
+
+        client_list = []
+        vat_group = {}
+        # remove entries < limit amount
+        for client in cr.dictfetchall():
+            vat = client['vat'].replace(' ', '').replace('.', '').upper()
+            client['vat'] = vat
+            if vat in vat_group:
+                vat_group[vat]['turnover'] += client['turnover']
+                vat_group[vat]['entries'].append(client)
+            else:
+                vat_group[vat] = {
+                    'turnover': client['turnover'],
+                    'entries': [client]}
+        for k in vat_group:
+            if vat_group[k]['turnover'] >= data['limit_amount']:
+                client_list += vat_group[k]['entries']
+
+        client_list.sort(key=lambda k: k['vat'])
+        for client in client_list:
+            del client['partner_id']
+            id_client = obj_vat_lclient.create(cr, uid, client, context=context)
             partners.append(id_client)
 
         if not partners:
-            raise orm.except_orm(_('insufficient data!'), _('No data found for the selected year.'))
+            raise orm.except_orm(
+                _('insufficient data!'),
+                _('No data found for the selected year.'))
         context.update({'partner_ids': partners, 'year': data['year'], 'limit_amount': data['limit_amount']})
         model_data_ids = obj_model_data.search(cr, uid, [('model', '=', 'ir.ui.view'), ('name', '=', 'view_vat_listing')])
         resource_id = obj_model_data.read(cr, uid, model_data_ids, fields=['res_id'])[0]['res_id']

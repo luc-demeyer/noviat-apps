@@ -21,7 +21,7 @@ class accounting_report(orm.TransientModel):
             cr, uid, ids, data, context=context)
         account_report_id = self.read(
             cr, uid, ids, ['account_report_id'], context=context
-            )[0]['account_report_id'][0]
+        )[0]['account_report_id'][0]
         mod_obj = self.pool.get('ir.model.data')
         module = 'l10n_be_coa_multilang'
         xml_ids = [
@@ -42,7 +42,7 @@ class report_financial_parser(report_account_common):
         report_date = datetime_field.context_timestamp(
             self.cr, self.uid,
             datetime.now(), self.context
-            ).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+        ).strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         self.localcontext.update({'report_date': report_date})
         super(report_financial_parser, self).set_context(
             objects, data, ids, report_type)

@@ -162,7 +162,7 @@ class wizard_multi_charts_accounts(models.TransientModel):
                     _("Module 'l10n_account_translate' is not available "
                       "in the addons path. "
                       "\nPlease download this module from 'apps.odoo.com'.")
-                    )
+                )
             if to_install.state != 'installed':
                 to_install.button_immediate_install()
 
@@ -314,11 +314,11 @@ class wizard_multi_charts_accounts(models.TransientModel):
                 tax_tmpls += tax_tmpls.search(
                     [('chart_template_id', '=', template.id)],
                     order='sequence,description,name'
-                    )
+                )
             taxes = env_no_ctx['account.tax'].search(
                 [('company_id', '=', wiz.company_id.id)],
                 order='sequence,description,name'
-                )
+            )
             # Perform basic sanity check on in/out pairs to protect against
             # changes in the process that generates tax objects from templates
             for i, tmpl in enumerate(tax_tmpls):
@@ -338,10 +338,10 @@ class wizard_multi_charts_accounts(models.TransientModel):
         for template in chart_templates:
             fpos_tmpls += fpos_tmpls.search(
                 [('chart_template_id', '=', template.id)], order='id'
-                )
+            )
         fpos = env_no_ctx['account.fiscal.position'].search(
             [('company_id', '=', wiz.company_id.id)], order='id'
-            )
+        )
         # Perform basic sanity check on in/out pairs to protect against
         # changes in the process that generates tax objects from templates
         for i, tmpl in enumerate(fpos_tmpls):
