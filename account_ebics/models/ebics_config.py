@@ -276,7 +276,7 @@ class EbicsConfig(models.Model):
                 _("Set state to 'draft' before Bank Key (re)initialisation."))
 
         keyring = EbicsKeyRing(
-            keys=self.ebics_keys, passphrase=self.ebics_passphrase)
+            keys=self.ebics_keys, passphrase=self.ebics_passphrase or None)
         bank = EbicsBank(
             keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
         user = EbicsUser(
