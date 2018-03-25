@@ -2,15 +2,15 @@
 <openerp>
   <data>
 
-    <record id="view_picking_form" model="ir.ui.view">
-      <field name="name">stock.picking.form.account</field>
-      <field name="model">stock.picking</field>
-      <field name="inherit_id" ref="stock.view_picking_form"/>
+    <record id="view_inventory_form" model="ir.ui.view">
+      <field name="name">stock.inventory.form.account</field>
+      <field name="model">stock.inventory</field>
+      <field name="inherit_id" ref="stock.view_inventory_form"/>
       <field name="arch" type="xml">
         <notebook position="inside">
           <page string="Accounting" groups="account.group_account_manager">
             <label for="valuation_move_ids"/>
-            <field name="valuation_move_ids" nolabel="1"/>
+            <field name="valuation_move_ids" nolabem="1"/>
           </page>
         </notebook>
       </field>

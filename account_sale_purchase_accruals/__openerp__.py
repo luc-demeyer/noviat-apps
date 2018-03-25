@@ -4,7 +4,7 @@
 
 {
     'name': 'Account Sale Purchase Accruals',
-    'version': '8.0.1.1.6',
+    'version': '8.0.1.2.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -24,6 +24,7 @@
         'views/purchase_order.xml',
         'views/res_company.xml',
         'views/stock_picking.xml',
+        'views/stock_inventory.xml',
     ],
     'installable': True,
 }

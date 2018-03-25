@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models
@@ -11,6 +11,9 @@ class AccountMove(models.Model):
     picking_id = fields.Many2one(
         comodel_name='stock.picking', index=True,
         string='Stock Picking', ondelete='cascade')
+    inventory_id = fields.Many2one(
+        comodel_name='stock.inventory', index=True,
+        string='Stock Inventory', ondelete='cascade')
 
     @api.model
     def create(self, vals, **kwargs):
@@ -24,6 +27,14 @@ class AccountMove(models.Model):
             vals.update({
                 'picking_id': pick_id,
                 'ref': ref.strip()})
+        if context.get('create_from_inventory'):
+            inventory_id = context['inventory_id']
+            inventory = self.env['stock.inventory'].browse(inventory_id)
+            ref = vals.get('ref') or inventory.name
+            vals.update({
+                'inventory_id': inventory_id,
+                'ref': ref.strip() if ref else '',
+            })
         if context.get('invoice'):
             ref = ''
             inv = context.get('invoice')

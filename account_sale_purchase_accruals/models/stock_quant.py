@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, models
@@ -26,7 +26,12 @@ class StockQuant(models.Model):
                 credit_line_vals['credit'] = cost
             else:
                 debit_line_vals['credit'] = -cost
-                credit_line_vals['debit'] = cost
+                credit_line_vals['debit'] = -cost
+            if cur != move.company_id.currency_id:
+                debit_line_vals['currency_id'] = cur.id
+                debit_line_vals['amount_currency'] = cost_cur
+                credit_line_vals['currency_id'] = cur.id
+                credit_line_vals['amount_currency'] = -cost_cur
         return res
 
     @api.model
@@ -34,6 +39,8 @@ class StockQuant(models.Model):
                                   debit_account_id, journal_id):
         ctx = dict(self._context,
                    picking_id=move.picking_id.id,
-                   create_from_picking=True)
+                   create_from_picking=True,
+                   inventory_id=move.inventory_id.id,
+                   create_from_inventory=True)
         super(StockQuant, self.with_context(ctx))._create_account_move_line(
             quants, move, credit_account_id, debit_account_id, journal_id)
