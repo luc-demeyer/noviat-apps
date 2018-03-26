@@ -323,6 +323,8 @@ class PartnerVatList(models.TransientModel):
             amount_data = record.copy()
             if record['vat'] == previous_record.get('vat'):
                 client_datas.pop()
+                record['turnover'] += previous_record['turnover']
+                record['vat_amount'] += previous_record['vat_amount']
                 amount_data['turnover'] += previous_record['turnover']
                 amount_data['vat_amount'] += previous_record['vat_amount']
                 amount_data['partner_name'] += ', ' + \

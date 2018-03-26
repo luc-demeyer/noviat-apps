@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '8.0.1.9.0',
+    'version': '8.0.1.9.1',
     'license': 'AGPL-3',
     'author': "Noviat, Odoo Community Association (OCA)",
     'website': 'http://www.noviat.com',
