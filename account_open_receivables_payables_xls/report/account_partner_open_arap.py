@@ -5,7 +5,7 @@
 from datetime import datetime
 
 from openerp import api, fields, models, _
-from openerp.exceptions import Warning as UserError
+from openerp.exceptions import except_orm
 from openerp.report import report_sxw
 
 import logging
@@ -51,6 +51,10 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
             'type': 'payable',
             'title': title_prefix + _('Open Payables'),
             'title_short': title_short_prefix + ', ' + _('AP')}
+        report_other = {
+            'type': 'open_items',
+            'title': title_prefix + _('Open Items'),
+            'title_short': title_short_prefix + ', ' + _('Open Items')}
 
         select_extra, join_extra, where_extra = \
             self.env['res.partner']._xls_query_extra()
@@ -104,6 +108,12 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
         move_selection += "AND ap.id in %s " % str(
             tuple(period_query_ids)).replace(',)', ')')
 
+        if wiz.account_ids:
+            account_selection = "AND a.id IN %s " % str(
+                wiz.account_ids._ids).replace(',)', ')')
+        else:
+            account_selection = "AND a.type = '%s' "
+
         # define subquery to select move_lines within FY/period
         # that are reconciled after FY/period
         if next_period_ids:
@@ -117,8 +127,8 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
             subquery = ''
 
         query_end = (
-            'WHERE m.company_id = %s '
-            'AND a.type = %s ' + move_selection +
+            'WHERE m.company_id = %s ' % wiz.company_id.id +
+            account_selection + move_selection +
             'AND (l.reconcile_id IS NULL ' + subquery + ') '
             'AND (l.debit+l.credit) != 0 ' + where_extra +
             'ORDER BY a_code, p_name, p_id, l_date')
@@ -127,17 +137,20 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
             reports = [report_ar]
         elif wiz.result_selection == 'supplier':
             reports = [report_ap]
-        else:
+        elif wiz.result_selection == 'customer_supplier':
             reports = [report_ar, report_ap]
+        else:
+            reports = [report_other]
 
         for report in reports:
-
-            self.cr.execute(
-                query_start + query_end, (wiz.company_id.id, report['type']))
-            all_lines = self.cr.dictfetchall()
+            query = query_start + query_end
+            if report['type'] != 'open_items':
+                query = query % report['type']
+            self.cr.execute(query)
+            lines = self.cr.dictfetchall()
             partners = []
 
-            if all_lines:
+            if lines:
 
                 # add reference of corresponding legal document
                 def lines_map(x):
@@ -152,30 +165,21 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
                         })
                     else:
                         x.update({'docname': x['move_name']})
-                map(lines_map, all_lines)
-
-                # insert a flag in every line to indicate the end of a partner
-                # this flag can be used to draw a full line between partners
-                for cnt in range(len(all_lines) - 1):
-                    if all_lines[cnt]['p_id'] != all_lines[cnt + 1]['p_id']:
-                        all_lines[cnt]['draw_line'] = 1
-                    else:
-                        all_lines[cnt]['draw_line'] = 0
-                all_lines[-1]['draw_line'] = 1
+                map(lines_map, lines)
 
                 p_map = map(
                     lambda x: {
                         'p_id': x['p_id'],
                         'p_name': x['p_name'],
                         'p_ref': x['p_ref']},
-                    all_lines)
+                    lines)
                 for p in p_map:
                     # remove duplicates while preserving list order
                     if p['p_id'] not in map(
                             lambda x: x.get('p_id', None), partners):
                         partners.append(p)
                         partner_lines = filter(
-                            lambda x: x['p_id'] == p['p_id'], all_lines)
+                            lambda x: x['p_id'] == p['p_id'], lines)
                         p.update({'lines': partner_lines})
                         debits = map(
                             lambda x: x['debit'] or 0.0, partner_lines)
@@ -194,13 +198,11 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
 
                 sum_debit = 0.0
                 sum_credit = 0.0
-                acc_lines = filter(
-                    lambda x: x['a_type'] == report['type'], all_lines)
-                debits = map(lambda x: x['debit'] or 0.0, acc_lines)
+                debits = map(lambda x: x['debit'] or 0.0, lines)
                 if debits:
                     sum_debit = reduce(lambda x, y: x + y, debits)
                     sum_debit = round(sum_debit, digits)
-                credits = map(lambda x: x['credit'] or 0.0, acc_lines)
+                credits = map(lambda x: x['credit'] or 0.0, lines)
                 if credits:
                     sum_credit = reduce(lambda x, y: x + y, credits)
                     sum_credit = round(sum_credit, digits)
@@ -209,8 +211,8 @@ class AccountPartnerOpenArap(report_sxw.rml_parse):
 
         reports = filter(lambda x: x.get('partners'), reports)
         if not reports:
-            raise UserError(
-                _('No Data Available') + '\n' +
+            raise except_orm(
+                _('No Data Available'),
                 _('No records found for your selection!'))
 
         report_date = fields.Datetime.context_timestamp(wiz, datetime.now())

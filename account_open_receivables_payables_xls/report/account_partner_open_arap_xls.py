@@ -5,7 +5,7 @@
 import xlwt
 from datetime import datetime
 
-from openerp.exceptions import Warning as UserError
+from openerp.exceptions import except_orm
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell, _render
 from .account_partner_open_arap import AccountPartnerOpenArap
@@ -265,8 +265,8 @@ class PartnerOpenArapXls(report_xls):
             debit_pos = 'debit' in wl and wl.index('debit')
             credit_pos = 'credit' in wl and wl.index('credit')
             if not (credit_pos and debit_pos) and 'balance' in wl:
-                raise UserError(
-                    _('Customisation Error!') + '\n' +
+                raise except_orm(
+                    _('Customisation Error!'),
                     _("The 'Balance' field is a calculated XLS field "
                       "requiring the presence of "
                       "the 'Debit' and 'Credit' fields !"))

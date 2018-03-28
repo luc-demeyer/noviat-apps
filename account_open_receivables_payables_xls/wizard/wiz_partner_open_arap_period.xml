@@ -9,10 +9,16 @@
       <field name="arch" type="xml">
         <form string="Open Receivables/Payables by Period">
           <group col="4" colspan="4">
-            <field name="period_id"/>
+            <field name="period_id" options="{'no_create': True}"/>
             <field name="target_move"/>
-            <field name="partner_id"/>
-            <field name="result_selection"/>
+            <field name="partner_id" options="{'no_create': True}"/>
+            <field name="result_selection"
+                   attrs="{'required': [('accounts', '=', False)]}"/>
+            <newline/>
+            <field name="account_ids" style="height:110px;" widget="many2many_tags"
+                   placeholder="Leave blank to select Receivable/Payable accounts"
+                   options="{'no_create': True}" colspan="4"/>
+            <field name="accounts" invisible="True"/>
             <field name="company_id" widget="selection" groups="base.group_multi_company"/>
           </group>
           <footer>

@@ -23,12 +23,21 @@ class WizPartnerOpenArapPeriod(models.TransientModel):
         selection=[('customer', 'Receivable Accounts'),
                    ('supplier', 'Payable Accounts'),
                    ('customer_supplier', 'Receivable and Payable Accounts')],
-        string='Filter on', default='customer', required=True)
+        string='Filter on', default='customer')
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         domain=[('parent_id', '=', False)],
         string='Partner',
         help="Leave blank to select all partners.")
+    account_ids = fields.Many2many(
+        comodel_name='account.account',
+        column1='wiz_id',
+        column2='account_id', string='Accounts',
+        domain=[('reconcile', '=', True)],
+        help="Leave blank to select all Receivable/Payable accounts"
+             "You can use this field to select any general account that "
+             "can be reconciled.")
+    accounts = fields.Boolean(compute='_compute_accounts')
     company_id = fields.Many2one(
         comodel_name='res.company',
         string='Company', readonly=True,
@@ -46,6 +55,20 @@ class WizPartnerOpenArapPeriod(models.TransientModel):
     @api.model
     def _default_company_id(self):
         return self.env['res.company']._company_default_get('account.account')
+
+    @api.depends('account_ids')
+    def _compute_accounts(self):
+        self.accounts = self.account_ids and True or False
+
+    @api.onchange('result_selection')
+    def _onchange_result_selection(self):
+        if self.result_selection:
+            self.account_ids = False
+
+    @api.onchange('account_ids')
+    def _onchange_account_ids(self):
+        if self.account_ids:
+            self.result_selection = False
 
     @api.multi
     def print_report(self):
