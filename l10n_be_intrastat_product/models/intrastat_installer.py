@@ -34,7 +34,7 @@ class IntrastatInstaller(models.TransientModel):
     @api.model
     def _load_code(self, row):
         code_obj = self.env['hs.code']
-        vals = {'description': row['description']}
+        vals = {'description': row['description'].decode('Windows-1252')}
         cn_unit_id = row['unit_id']
         if cn_unit_id:
             cn_unit_ref = 'intrastat_product.' + cn_unit_id

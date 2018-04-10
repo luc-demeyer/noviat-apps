@@ -26,6 +26,24 @@ from the official addons.
 If you have already installed these modules,
 you should uninstall them before installing this module.
 
+Configuration wizard to load intrastat codes:
+---------------------------------------------
+
+The module comes with a configuration wizard that allows you to load the intrastat codes into the database.
+The intrastat codes are available in 3 languages : english, dutch, french.
+
+If your databases has been configured to support multiple languages, we recommend the following procedure so that
+every user sees the intrastat code description in his own language:
+
+1. Go to Settings -> Configuration Wizards and open the 'Load Intrastat Codes' wizard.
+2. Change your Preferences to English
+3. Load the intrastat codes, select the english csv file
+4. Change your Preferences to Dutch
+5. Load the intrastat codes, select the dutch csv file
+6. Change your Preferences to French
+7. Load the intrastat codes, select the french csv file
+
+The system will load a large number of codes (9000+) hence this operation will take some time.
 
 Configuration
 =============
