@@ -11,6 +11,7 @@
     'author': 'Noviat',
     'depends': [
         'intrastat_product',
+        'stock_picking_invoice_link',
         'l10n_be_partner_kbo_bce',
         ],
     'conflicts': [
