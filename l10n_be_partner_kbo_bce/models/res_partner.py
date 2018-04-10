@@ -123,6 +123,13 @@ class ResPartner(models.Model):
                     "VAT Number '%s'.") % (kbn, vat)
                 )
 
+        # minimise overhead caused by sync of _commercial_fields
+        # and address fields to child records
+        if self.vat == sync_vals.get('vat'):
+            del sync_vals['vat']
+        if self.country_id.id == sync_vals.get('country_id'):
+            del sync_vals['country_id']
+
     def _update_kbo_bce_sync_vals(self, sync_vals):
         """
         Use this method for extra customisations, e.g.
