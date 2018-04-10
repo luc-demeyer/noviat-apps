@@ -13,9 +13,8 @@ class AccountInvoice(models.Model):
         transaction = super(
             AccountInvoice, self)._default_intrastat_transaction_id()
         if not transaction:
-            cpy_id = self.env[
+            cpy = self.env[
                 'res.company']._company_default_get('account.invoice')
-            cpy = self.env['res.company'].browse(cpy_id)
             if cpy.country_id.code.lower() == 'be':
                 module = __name__.split('addons.')[1].split('.')[0]
                 transaction = self.env.ref(
