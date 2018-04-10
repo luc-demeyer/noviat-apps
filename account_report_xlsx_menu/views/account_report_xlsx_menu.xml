@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="menu_account_report_xlsx"
+            name="Excel Reports"
+            parent="account.menu_finance_reports"
+            sequence="9"/>
+
+</odoo>

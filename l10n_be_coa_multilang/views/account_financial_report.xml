@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- TODO: move the 'code' field to a separate (OCA) module -->
+  
+  <record id="view_account_financial_report_form" model="ir.ui.view">
+    <field name="name">account.financial.report.form.code</field>
+    <field name="model">account.financial.report</field>
+    <field name="inherit_id" ref="account.view_account_financial_report_form"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+  
+  <record id="view_account_financial_report_tree" model="ir.ui.view">
+    <field name="name">account.financial.report.tree.code</field>
+    <field name="model">account.financial.report</field>
+    <field name="inherit_id" ref="account.view_account_financial_report_tree"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+  
+  <record id="view_account_financial_report_search" model="ir.ui.view">
+    <field name="name">account.financial.report.search.code</field>
+    <field name="model">account.financial.report</field>
+    <field name="inherit_id" ref="account.view_account_financial_report_search"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="view_account_report_tree_hierarchy" model="ir.ui.view">
+    <field name="name">account.report.hierarchy.code</field>
+    <field name="model">account.financial.report</field>
+    <field name="inherit_id" ref="account.view_account_report_tree_hierarchy"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+
+</odoo>

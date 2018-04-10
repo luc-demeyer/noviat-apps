@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="invoice_supplier_form" model="ir.ui.view">
+    <field name="name">account.invoice.supplier.form.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook//field[@name='tax_line_ids']//field[@name='tax_id']" position="after">
+        <field name="tax_code"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="invoice_form" model="ir.ui.view">
+    <field name="name">account.invoice.form.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook//field[@name='tax_line_ids']//field[@name='tax_id']" position="after">
+        <field name="tax_code"/>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

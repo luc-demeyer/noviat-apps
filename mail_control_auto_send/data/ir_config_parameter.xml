@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+  <!-- Add 'mail_disable_auto_send' configuration parameter -->
+  <record id="mail_disable_auto_send" model="ir.config_parameter">
+    <field name="key">mail_disable_auto_send</field>
+    <field name="value">[]</field>
+  </record>
+
+</odoo>

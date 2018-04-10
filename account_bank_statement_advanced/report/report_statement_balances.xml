@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <report id="balance_report"
+            model="bank.statement.balance.print"
+            string="Bank Statement Balances Report"
+            report_type="qweb-pdf"
+            name="account.report_statement_balances"
+            file="account.report_statement_balances"/>
+
+</odoo>

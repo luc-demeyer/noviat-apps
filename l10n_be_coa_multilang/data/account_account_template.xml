@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- account.account.template -->
+  <record id="aatn_400000" model="account.account.template">
+    <field name="name">Customers</field>
+    <field name="code">400000</field>
+    <field name="user_type_id" ref="account.data_account_type_receivable"/>
+    <field name="reconcile" eval="1"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_411000" model="account.account.template">
+    <field name="name">Input VAT - current account balance</field>
+    <field name="code">411000</field>
+    <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_411059" model="account.account.template">
+    <field name="name">VAT Deductible</field>
+    <field name="code">411059</field>
+    <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_411062" model="account.account.template">
+    <field name="name">VAT Deductible - Correction Case 62</field>
+    <field name="code">411062</field>
+    <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_440000" model="account.account.template">
+    <field name="name">Suppliers</field>
+    <field name="code">440000</field>
+    <field name="user_type_id" ref="account.data_account_type_payable"/>
+    <field name="reconcile" eval="1"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451000" model="account.account.template">
+    <field name="name">Output VAT - current account balance</field>
+    <field name="code">451000</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451054" model="account.account.template">
+    <field name="name">VAT Debt</field>
+    <field name="code">451054</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451055" model="account.account.template">
+    <field name="name">VAT Debt - Intracommunity</field>
+    <field name="code">451055</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451056" model="account.account.template">
+    <field name="name">VAT Debt - Cocontractant</field>
+    <field name="code">451056</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451057" model="account.account.template">
+    <field name="name">VAT Debt - Import</field>
+    <field name="code">451057</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_451061" model="account.account.template">
+    <field name="name">VAT Debt - Correction Case 61</field>
+    <field name="code">451061</field>
+    <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_550001" model="account.account.template">
+    <field name="name">Bank</field>
+    <field name="code">550001</field>
+    <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+    <field name="nocreate" eval="1"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_570001" model="account.account.template">
+    <field name="name">Cash</field>
+    <field name="code">570001</field>
+    <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+    <field name="nocreate" eval="1"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_580000" model="account.account.template">
+    <field name="name">Internal transfer account</field>
+    <field name="code">580000</field>
+    <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    <field name="reconcile" eval="1"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_600000" model="account.account.template">
+    <field name="name">Purchases of raw materials</field>
+    <field name="code">600000</field>
+    <field name="user_type_id" ref="account.data_account_type_expenses"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_654000" model="account.account.template">
+    <field name="name">Exchange rate losses</field>
+    <field name="code">654000</field>
+    <field name="user_type_id" ref="account.data_account_type_expenses"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_700000" model="account.account.template">
+    <field name="name">Sales</field>
+    <field name="code">700000</field>
+    <field name="user_type_id" ref="account.data_account_type_revenue"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_754000" model="account.account.template">
+    <field name="name">Exchange rate gains</field>
+    <field name="code">754000</field>
+    <field name="user_type_id" ref="account.data_account_type_revenue"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+  <record id="aatn_999999" model="account.account.template">
+    <field name="name">Undistributed Profits/Losses</field>
+    <field name="code">999999</field>
+    <field name="user_type_id" ref="account.data_unaffected_earnings"/>
+    <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
+  </record>
+
+</odoo>

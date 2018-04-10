@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+  <!-- TODO: move these entries to a seperate (OCA) module -->
+  <record id="account.action_account_financial_report_tree" model="ir.actions.act_window">
+    <field name="name">Financial Reports (OC)</field>
+  </record>
+  <menuitem id="menu_account_financial_report"
+            name="Financial Reports (OC)"
+            parent="account.account_management_menu"
+            action="account.action_account_financial_report_tree"/>
+
+</odoo>

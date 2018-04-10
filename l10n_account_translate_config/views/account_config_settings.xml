@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_account_config" model="ir.ui.view">
+      <field name="name">account settings</field>
+      <field name="model">account.config.settings</field>
+      <field name="inherit_id" ref="account.view_account_config_settings"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group[contains(@attrs, 'expects_chart_of_accounts')]" position="after">
+          <group attrs="{'invisible': [('module_l10n_multilang', '=', False)]}">
+            <label for="id" string="Features"/>
+            <div>
+              <field name="module_l10n_account_translate_off" class="oe_inline"/>
+              <label for="module_l10n_account_translate_off"/>
+            </div>
+            <field name="module_l10n_multilang" invisible="1"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <!-- Update entries in Belgium Legal NBB/BNB reportscheme. -->
+
+  <record id="l10n_be_update_be_reportscheme_view_form" model="ir.ui.view">
+    <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
+    <field name="model">l10n_be.update_be_reportscheme</field>
+    <field name="priority">1</field>
+    <field name="arch" type="xml">
+      <form string="Update financial reports configurattion" version="7.0">
+        <group>
+          <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
+        </group>
+        <footer>
+          <button name="update_be_reportscheme" string="Update" type="object" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="l10n_be_update_be_reportscheme_view_form_result" model="ir.ui.view">
+    <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
+    <field name="model">l10n_be.update_be_reportscheme</field>
+    <field name="priority">2</field>
+    <field name="arch" type="xml">
+      <form string="Update financial reports configurattion" version="7.0">
+        <group>
+          <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
+        </group>
+        <group colspan="4" col="1">
+          <separator string="Results:"/>
+          <field name="note" nolabel="1" width="850" height="200"/>
+        </group>
+        <footer>
+          <button name="update_be_reportscheme" string="Update" type="object" class="oe_highlight"/>
+          or
+          <button name="button_close" string="Close" type="object"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="l10n_be_update_be_reportscheme_action" model="ir.actions.act_window">
+    <field name="name">Update reporting configuration for Belgian BNB/NBB legal reportscheme</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_be.update_be_reportscheme</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="l10n_be_update_be_reportscheme_view_form"/>
+  </record>
+
+  <data noupdate="1">
+    <record id="l10n_be_update_be_reportscheme_todo" model="ir.actions.todo">
+      <field name="name">Belgian BNB/NBB reportscheme Configuration</field>
+      <field name="action_id" ref="l10n_be_update_be_reportscheme_action"/>
+      <field name="type">manual</field>
+      <field name="state">done</field>
+    </record>
+  </data>
+
+</odoo>

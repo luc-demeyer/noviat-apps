@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <t t-name="AccountMoveLineSearchExtension">
+    <div class="amlse">
+      <div class="btn-group oe_form_field" name="account">
+        <h4>Account :</h4>
+        <input type="text" class="oe_account_select_account"/>
+      </div>
+      <t t-if="analytic_group_analytic_accounting">
+        <div class="btn-group oe_form_field" name="analytic_account">
+          <h4>Analytic Account :</h4>
+          <input type="text" class="oe_account_select_analytic_account"/>
+        </div>
+      </t>
+      <div class="btn-group oe_form_field" name="partner">
+        <h4>Partner :</h4>
+        <input type="text" class="oe_account_select_partner"/>
+      </div>
+      <div class="btn-group" name="journal">
+        <h4>Journal :</h4>
+        <select class="oe_account_select_journal"/>
+      </div>
+      <div class="btn-group" name="date_range">
+        <h4>Date Range :</h4>
+        <select class="oe_account_select_date_range"/>
+      </div>
+      <div class="btn-group oe_form_field" name="reconcile">
+        <h4>Reconcile :</h4>
+        <input type="text" class="oe_account_select_reconcile"/>
+      </div>
+      <div class="btn-group oe_form_field" name="reconcile">
+        <h4>Amount :</h4>
+        <input type="text" class="oe_account_select_amount"/>
+      </div>
+    </div>
+  </t>
+
+</templates>

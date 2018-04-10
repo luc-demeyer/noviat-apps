@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="account_coda_import_view_form_import" model="ir.ui.view">
+    <field name="name">Import CODA File</field>
+    <field name="model">account.coda.import</field>
+    <field name="priority">1</field>
+    <field name="arch" type="xml">
+      <form string="Import CODA File">
+        <group>
+          <separator string="Select your file :" colspan="2"/>
+          <field name="coda_data" filename="coda_fname"/>
+          <field name="coda_fname" invisible="1"/>
+          <field name="coda_fname_dummy"/>
+          <field name="accounting_date"/>
+          <field name="reconcile"/>
+          <field name="skip_undefined"/>
+        </group>
+        <footer>
+          <button name="coda_parsing" string="Import" type="object" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_import_view_form_process" model="ir.ui.view">
+    <field name="name">Process CODA File</field>
+    <field name="model">account.coda.import</field>
+    <field name="arch" type="xml">
+      <form string="Process CODA File">
+        <group>
+          <field name="accounting_date"/>
+          <field name="reconcile"/>
+          <field name="skip_undefined"/>
+        </group>
+        <footer>
+          <button name="coda_parsing" string="Process" type="object" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_import_view_form_result" model="ir.ui.view">
+    <field name="name">Import CODA File</field>
+    <field name="model">account.coda.import</field>
+    <field name="priority">2</field>
+    <field name="arch" type="xml">
+      <form string="Import CODA File">
+        <separator colspan="4" string="Results :" />
+        <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
+        <footer>
+          <button name="action_open_bank_statements" string="View Bank Statement(s)" type="object" class="oe_highlight" invisible="not context.get('bk_st_ids')"/>
+          <button name="button_close" type="object" string="Close"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_import_action" model="ir.actions.act_window">
+    <field name="name">Import CODA File</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">account.coda.import</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="account_coda_import_view_form_import"/>
+  </record>
+
+  <menuitem id="account_coda_import_menu"
+            name="Import CODA Files"
+            parent="menu_coda_processing"
+            action="account_coda_import_action" sequence="41"/>
+
+</odoo>

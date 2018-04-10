@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="l10n_be_vat_common_view_form_xml" model="ir.ui.view">
+    <field name="name">Save XML</field>
+    <field name="model">l10n.be.vat.common</field>
+    <field name="priority" eval="3"/>
+    <field name="arch" type="xml">
+      <form>
+        <p>Click on link below to download the XML File</p>
+        <p>
+          <b>
+            <field name="file_save" readonly="1" filename="file_name"/>
+            <field name="file_name" invisible="1"/>
+          </b>
+        </p>
+        <footer>
+          <button string="Close" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+</odoo>

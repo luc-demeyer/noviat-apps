@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="invoice_supplier_form" model="ir.ui.view">
+    <field name="name">account.invoice.supplier.form.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <field name="reference" position="after">
+          <field name="name" string="Description"/>
+        </field>
+        <!-- TODO: make PR to add name attrib on notebook page with string='Other Info' to facilitate xpath -->
+        <xpath expr="//notebook/page/group//field[@name='name'][@invisible='1']" position="replace"/>
+      </data>
+    </field>
+  </record>
+
+</odoo>

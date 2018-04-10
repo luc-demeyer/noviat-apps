@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="account_coda_view_tree" model="ir.ui.view">
+    <field name="name">account.coda.tree</field>
+    <field name="model">account.coda</field>
+    <field name="arch" type="xml">
+      <tree string="CODA Files" create="false">
+        <field name="coda_creation_date"/>
+        <field name="name"/>
+        <field name="date"/>
+        <field name="user_id"/>
+        <field name="state"/>
+        <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="account_coda_view_form" model="ir.ui.view">
+    <field name="name">account.coda.form</field>
+    <field name="model">account.coda</field>
+    <field name="arch" type="xml">
+      <form string="CODA File" create="false">
+        <header>
+          <button name="set_to_draft" states="done" string="Set to Draft" type="object" groups="account.group_account_manager"/>
+          <button name="process"
+                  class="oe_highlight"
+                  states="draft"
+                  string="Process"
+                  type="object"
+                  groups="account.group_account_manager"
+                  help="Process the CODA File to create Bank Statements"/>
+          <field name="state" widget="statusbar"/>
+        </header>
+        <group colspan="4" col="4">
+          <field name="coda_creation_date"/>
+          <field name="name"/>
+          <field name="coda_data" filename="name"/>
+          <field name="date"/>
+          <field name="user_id"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </group>
+        <notebook>
+          <page string="Additional Information">
+            <field name="note" nolabel="1"/>
+          </page>
+          <page string="Bank Statements" attrs="{'invisible':[('bank_statement_ids','=',[])]}">
+            <field name="bank_statement_ids" nolabel="1"/>
+          </page>
+        </notebook>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_view_search" model="ir.ui.view">
+    <field name="name">account.coda.search</field>
+    <field name="model">account.coda</field>
+    <field name="arch" type="xml">
+      <search string="Search CODA Files">
+        <group col="10" colspan="4">
+          <field name="coda_creation_date"/>
+          <field name="name"/>
+          <field name="date"/>
+          <field name="user_id"/>
+          <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+        </group>
+        <newline/>
+        <group expand="0" string="Group By">
+          <filter string="CODA Creation Date" context="{'group_by':'coda_creation_date'}"/>
+          <filter string="State" context="{'group_by':'state'}"/>
+          <filter string="User" context="{'group_by':'user_id'}"/>
+          <filter string="Company" domain="[]" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="account_coda_action" model="ir.actions.act_window">
+    <field name="name">Imported CODA Files</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">account.coda</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="account_coda_view_tree"/>
+    <field name="search_view_id" ref="account_coda_view_search"/>
+  </record>
+
+</odoo>
