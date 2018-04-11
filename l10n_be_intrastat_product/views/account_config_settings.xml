@@ -8,7 +8,9 @@
     <field name="arch" type="xml">
       <field name="intrastat_region_id" position="attributes">
         <attribute name="invisible">0</attribute>
-        <attribute name="attrs">{'required': [('intrastat', '!=', 'exempt')], 'invisible': [('intrastat', '=', 'exempt')]}</attribute>
+      </field>
+      <field name="intrastat_incoterm_id" position="attributes">
+        <attribute name="invisible">0</attribute>
       </field>
     </field>
   </record>
