@@ -114,8 +114,8 @@ class ResPartner(models.Model):
         self._update_kbo_bce_sync_vals(sync_vals)
 
         # consistency check
-        kbn = sync_vals['kbo_bce_number']
-        vat = sync_vals['vat']
+        kbn = sync_vals.get('kbo_bce_number')
+        vat = sync_vals.get('vat')
         if kbn and vat:
             if kbn.replace('.', '') != self._sanitize_vat(vat)[2:]:
                 raise ValidationError(_(
