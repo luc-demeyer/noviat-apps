@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '10.0.0.1.8',
+    'version': '10.0.0.2.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
@@ -14,7 +14,7 @@
     'depends': [
         'base_iban',
         'l10n_be_invoice_bba_supplier',
-        #'l10n_be_partner',
+        'l10n_be_partner_bank',
         'account_bank_statement_advanced',
         'account_bank_statement_import_helper',
     ],

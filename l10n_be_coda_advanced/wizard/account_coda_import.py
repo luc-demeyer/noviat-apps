@@ -2042,10 +2042,11 @@ class AccountCodaImport(models.TransientModel):
             new_aml_dicts = [new_aml_dict]
         if counterpart_aml_dicts or payment_aml_rec or new_aml_dicts:
             try:
-                st_line.process_reconciliation(
-                    counterpart_aml_dicts=counterpart_aml_dicts,
-                    payment_aml_rec=payment_aml_rec,
-                    new_aml_dicts=new_aml_dicts)
+                with self._cr.savepoint():
+                    st_line.process_reconciliation(
+                        counterpart_aml_dicts=counterpart_aml_dicts,
+                        payment_aml_rec=payment_aml_rec,
+                        new_aml_dicts=new_aml_dicts)
             except (UserError, ValidationError) as e:
                 reconcile_note += _('\nApplication Error : ') + str(e)
             except Exception, e:
@@ -2192,11 +2193,8 @@ class AccountCodaImport(models.TransientModel):
         if bank_id:
             self.env['res.partner.bank'].create({
                 'partner_id': partner_id,
-                'name': partner_name,
-                'bank': bank_id,
-                'state': 'iban',
-                'bank_bic': bic,
-                'bank_name': bank_name,
+                'bank_id': bank_id,
+                'acc_type': 'iban',
                 'acc_number': iban,
             })
         return feedback
