@@ -231,7 +231,7 @@ class WizardMultiChartsAccounts(models.TransientModel):
         else:
             self.copy_xlat(langs, in_field, account_tmpls, accounts)
 
-        # copy account.tax translations
+        # copy account.tax codes and translations
         # skip xlats from templates in case tax rates (and hence naming)
         # can be modified via setup wizard
         if self.complete_tax_set:
@@ -257,6 +257,7 @@ class WizardMultiChartsAccounts(models.TransientModel):
                         "\nPlease report this issue via "
                         "your Odoo support channel.")
                         % (taxes._name, tmpl.name, taxes[i].name))
+                taxes[i].code = tmpl.code
             self.copy_xlat(langs, in_field, tax_tmpls, taxes)
 
         # copy account.fiscal.position translations and note field

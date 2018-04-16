@@ -1238,7 +1238,7 @@
     <field name="amount_type">group</field>
     <field name="type_tax_use">purchase</field>
     <field name="children_tax_ids" eval="[(6, 0, [ref('attn_VAT-IN-V82-12-EU-G-C1'), ref('attn_VAT-IN-V82-12-EU-G-C2')])]"/>
-    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_82D'), ref('tax_tag_84'), ref('tax_tag_88')])]"/>
+    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_82D'), ref('tax_tag_84'), ref('tax_tag_86')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="attn_VAT-IN-V82-06-EU-S-C1" model="account.tax.template">
@@ -1314,7 +1314,7 @@
     <field name="amount_type">group</field>
     <field name="type_tax_use">purchase</field>
     <field name="children_tax_ids" eval="[(6, 0, [ref('attn_VAT-IN-V82-06-EU-G-C1'), ref('attn_VAT-IN-V82-06-EU-G-C2')])]"/>
-    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_82D'), ref('tax_tag_84'), ref('tax_tag_88')])]"/>
+    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_82D'), ref('tax_tag_84'), ref('tax_tag_86')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="attn_VAT-IN-V82-00-EU-S" model="account.tax.template">
@@ -1800,6 +1800,7 @@
     <field name="amount">6</field>
     <field name="amount_type">percent</field>
     <field name="type_tax_use">none</field>
+    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_59')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="attn_VAT-IN-V83-06-ROW-CC-C2" model="account.tax.template">
@@ -1812,6 +1813,7 @@
     <field name="amount">-6</field>
     <field name="amount_type">percent</field>
     <field name="type_tax_use">none</field>
+    <field name="tag_ids" eval="[(6, 0, [ref('tax_tag_57')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="attn_VAT-IN-V83-06-ROW-CC" model="account.tax.template">
