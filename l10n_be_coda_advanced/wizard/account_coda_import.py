@@ -105,7 +105,8 @@ class AccountCodaImport(models.TransientModel):
         coda_statement['description'] = line[90:125].strip()
 
         def cba_filter(coda_bank):
-            cba_numbers = get_iban_and_bban(coda_bank.bank_id.acc_number)
+            cba_numbers = get_iban_and_bban(
+                coda_bank.bank_id.sanitized_acc_number)
             cba_currency = coda_bank.currency_id.name
             cba_descriptions = [
                 coda_bank.description1 or '',
@@ -121,13 +122,9 @@ class AccountCodaImport(models.TransientModel):
         if cba:
             cba = cba[0]
             coda_statement['coda_bank_params'] = cba
-            coda_statement['type'] = cba.type
-            company_banks = self.env['res.partner.bank'].search(
-                [('company_id', '=', cba.company_id.id)])
-            company_bank_accounts = [b.acc_number for b in company_banks]
-            self._company_bank_accounts = [
-                x.replace(' ', '')
-                for x in company_bank_accounts]
+            self._company_bank_accounts = \
+                cba.company_id.bank_journal_ids.mapped(
+                    'bank_account_id').mapped('sanitized_acc_number')
         else:
             if self.skip_undefined:
                 self._coda_import_note += _(
@@ -162,22 +159,6 @@ class AccountCodaImport(models.TransientModel):
         coda_statement['acc_holder'] = line[64:90]
         coda_statement['paper_ob_seq_number'] = line[2:5]
         coda_statement['coda_seq_number'] = line[125:128]
-
-        if cba and cba.type == 'skip':
-            self._coda_import_note += _(
-                "\n\nThe CODA File contains a statement which is not "
-                "processed since the associated CODA Bank Account "
-                "Configuration record is defined as type 'Skip' !"
-            ) + _(
-                "\nPlease adjust the settings for CODA Bank Account"
-                " '%s' ('Bank Account Number'='%s', 'Currency'='%s' "
-                "and 'Account Description'='%s') if you need to "
-                "import statements for this Bank Account !"
-            ) % (cba.name,
-                 coda_statement['acc_number'],
-                 coda_statement['currency'],
-                 coda_statement['description'])
-            skip = True
 
         if skip:
             coda_statement['skip'] = skip
@@ -495,8 +476,10 @@ class AccountCodaImport(models.TransientModel):
                 "\nPlease report this issue via your Odoo support channel."
             ) % line[2:10]
             raise UserError(_('Error !'), err_string)
-        comm_extra = line[10:63].rstrip()
-        transaction['name'] += comm_extra
+        comm_extra = line[10:63]
+        if not transaction.get('struct_comm_type_id'):
+            comm_extra = comm_extra.rstrip()
+        transaction['name'] += comm_extra.rstrip()
         transaction['communication'] += comm_extra
         transaction['payment_reference'] = line[63:98].strip()
         transaction['counterparty_bic'] = line[98:109].strip()
@@ -526,8 +509,10 @@ class AccountCodaImport(models.TransientModel):
                 counterparty_number = line[10:44].strip()
                 counterparty_currency = line[44:47].strip()
             counterparty_name = line[47:82].strip()
-            comm_extra = line[82:125].rstrip()
-            transaction['name'] += comm_extra
+            comm_extra = line[82:125]
+            if not transaction.get('struct_comm_type_id'):
+                comm_extra = comm_extra.rstrip()
+            transaction['name'] += comm_extra.rstrip()
             transaction['communication'] += comm_extra
         transaction['counterparty_number'] = counterparty_number
         transaction['counterparty_currency'] = counterparty_currency
@@ -664,8 +649,10 @@ class AccountCodaImport(models.TransientModel):
                 "\nPlease report this issue via your Odoo support channel."
             ) % transaction['ref']
             raise UserError(_('Error !'), err_string)
-        comm_extra = line[10:115].rstrip()
-        transaction['name'] += comm_extra
+        comm_extra = line[10:115]
+        if not transaction.get('struct_comm_type_id'):
+            comm_extra = comm_extra.rstrip()
+        transaction['name'] += comm_extra.rstrip()
         transaction['communication'] += comm_extra
 
         return coda_parsing_note
@@ -785,7 +772,7 @@ class AccountCodaImport(models.TransientModel):
     def _check_duplicate(self, coda_statement):
         cba = coda_statement['coda_bank_params']
         discard = False
-        if coda_statement['type'] == 'normal' and cba.discard_dup:
+        if cba.discard_dup:
             dups = self.env['account.bank.statement'].search(
                 [('name', '=', coda_statement['name']),
                  ('company_id', '=', cba.company_id.id)])
@@ -1333,8 +1320,7 @@ class AccountCodaImport(models.TransientModel):
                 self._coda_import_note += _(
                     "'\nCode Separate Application: %s"
                 ) % coda_statement['separate_application']
-            if coda_statement['type'] == 'normal' \
-                    and coda_statement['coda_note']:
+            if coda_statement['coda_note']:
                 bank_st.write({'coda_note': coda_statement['coda_note']})
 
         # end 'for coda_statement in coda_statements'
@@ -1395,16 +1381,9 @@ class AccountCodaImport(models.TransientModel):
         reconcile_note = reconcile_note or ''
         cba = statement.coda_bank_account_id
         if cba:
-
-            # TODO: move self._company_bank_accounts setting to common
-            # code block for use by parsing & reconcile
-            company_banks = self.env['res.partner.bank'].search(
-                [('company_id', '=', cba.company_id.id)])
-            company_bank_accounts = [b.acc_number for b in company_banks]
-            self._company_bank_accounts = [
-                x.replace(' ', '')
-                for x in company_bank_accounts]
-
+            self._company_bank_accounts = \
+                cba.company_id.bank_journal_ids.mapped(
+                    'bank_account_id').mapped('sanitized_acc_number')
             for st_line in statement.line_ids:
                 if st_line.amount and not st_line.journal_entry_ids:
                     transaction = st_line.coda_transaction_dict \
@@ -1415,11 +1394,12 @@ class AccountCodaImport(models.TransientModel):
                                 reconcile_note = self._st_line_reconcile(
                                     st_line, cba, transaction, reconcile_note)
                         except:
-                            e = exc_info()[0]
+                            exctype, value = exc_info()[:2]
                             reconcile_note += '\n\n' + _(
                                 "Error while processing statement line "
-                                "with ref '%s': %s"
-                            ) % (transaction['ref'], e)
+                                "with ref '%s':\n%s, \n%s"
+                            ) % (transaction['ref'], str(exctype),
+                                 ', '.join(value))
         return reconcile_note
 
     def _st_line_reconcile(self, st_line, cba, transaction, reconcile_note):
@@ -1874,7 +1854,8 @@ class AccountCodaImport(models.TransientModel):
         if transfer_accounts:
             # exclude transactions from
             # counterparty_number = bank account number of this statement
-            if cp_number not in get_iban_and_bban(cba.bank_id.acc_number):
+            if cp_number not in get_iban_and_bban(
+                    cba.bank_id.sanitized_acc_number):
                 transaction['account_id'] = cba.transfer_account.id
                 match['transfer_account'] = True
 
@@ -1882,7 +1863,7 @@ class AccountCodaImport(models.TransientModel):
             return reconcile_note, match
 
         partner_banks = self.env['res.partner.bank'].search(
-            [('acc_number', '=', cp_number)])
+            [('sanitized_acc_number', '=', cp_number)])
         partner_banks = partner_banks.filtered(lambda r: r.partner_id.active)
         if partner_banks:
             # filter out partners that belong to other companies
@@ -1952,13 +1933,12 @@ class AccountCodaImport(models.TransientModel):
     def _update_partner_bank(self, st_line, cba, transaction, reconcile_note):
         """ add bank account to partner record """
 
-        if transaction.get('partner_id') \
-                and transaction['counterparty_number'] \
+        cp = transaction['counterparty_number']
+        if transaction.get('partner_id') and cp \
                 and transaction.get('account_id') != cba.transfer_account.id:
             partner_banks = self.env['res.partner.bank'].search(
-                [('acc_number', '=', transaction['counterparty_number']),
-                 ('partner_id', '=', transaction['partner_id']),
-                 ('company_id', '=', False)],
+                [('sanitized_acc_number', '=', cp),
+                 ('partner_id', '=', transaction['partner_id'])],
                 order='id')
             if len(partner_banks) > 1:
                 reconcile_note = self._unlink_duplicate_partner_banks(
@@ -2041,6 +2021,10 @@ class AccountCodaImport(models.TransientModel):
                 st_line, cba, transaction)
             new_aml_dicts = [new_aml_dict]
         if counterpart_aml_dicts or payment_aml_rec or new_aml_dicts:
+            err = '\n\n' + _(
+                "Error while processing statement line "
+                "with ref '%s':"
+            ) % transaction['ref']
             try:
                 with self._cr.savepoint():
                     st_line.process_reconciliation(
@@ -2048,12 +2032,16 @@ class AccountCodaImport(models.TransientModel):
                         payment_aml_rec=payment_aml_rec,
                         new_aml_dicts=new_aml_dicts)
             except (UserError, ValidationError) as e:
-                reconcile_note += _('\nApplication Error : ') + str(e)
+                name, value = e[:2]
+                reconcile_note += err + _('\nApplication Error : ') + name
+                if value:
+                    reconcile_note += ', ' + value
             except Exception, e:
-                reconcile_note += _('\nSystem Error : ') + str(e)
+                reconcile_note += err + _('\nSystem Error : ') + str(e)
             except:
-                e = exc_info()[0]
-                reconcile_note += _('\nUnknown Error : ') + str(e)
+                exctype, value = exc_info()[:2]
+                reconcile_note += err + _(
+                    '\nUnknown Error : ') + str(exctype) + ', ' + str(value)
         return reconcile_note
 
     @api.multi
@@ -2692,29 +2680,50 @@ class AccountCodaImport(models.TransientModel):
             '5': _('cancellation')}
         st_line_name = _('European direct debit (SEPA)')
         settlement_date = str2date(comm[0:6])
-        direct_debit_type = direct_debit_types.get(comm[6], '')
-        direct_debit_scheme = direct_debit_schemes.get(comm[7], '')
-        paid_refusal = paid_refusals.get(comm[8], '')
+        direct_debit_type = direct_debit_types.get(comm[6])
+        direct_debit_scheme = direct_debit_schemes.get(comm[7])
+        paid_refusal = paid_refusals.get(comm[8])
         creditor_id = comm[9:44].strip()
         mandate_ref = comm[44:79].strip()
-        comm_zone = comm[79:141]
-        R_type = R_types.get(comm[141], '')
+        comm_zone = comm[79:141].strip()
+        R_type = R_types.get(comm[141])
         reason = comm[142:146].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Settlement Date') + ': %s' % settlement_date
-        st_line_comm += INDENT + _('Direct Debit Type') \
-            + ': %s' % direct_debit_type
-        st_line_comm += INDENT + _('Direct Debit Scheme') \
-            + ': %s' % direct_debit_scheme
-        st_line_comm += INDENT + _('Paid or reason for refusal') \
-            + ': %s' % paid_refusal
-        st_line_comm += INDENT + _('Creditor\'s Identification Code') \
-            + ': %s' % creditor_id
-        st_line_comm += INDENT + _('Mandate Reference') \
-            + ': %s' % mandate_ref
-        st_line_comm += INDENT + _('Communication') + ': %s' % comm_zone
-        st_line_comm += INDENT + _('R transaction Type') + ': %s' % R_type
-        st_line_comm += INDENT + _('Reason') + ': %s' % reason
+        td = {}
+        st_line_comm = '\n' + INDENT + st_line_name
+        if settlement_date:
+            td['settlement_date'] = settlement_date
+            st_line_comm += INDENT + _('Settlement Date') \
+                + ': %s' % settlement_date
+        if direct_debit_type:
+            td['direct_debit_type'] = direct_debit_type
+            st_line_comm += INDENT + _('Direct Debit Type') \
+                + ': %s' % direct_debit_type
+        if direct_debit_scheme:
+            td['direct_debit_scheme'] = direct_debit_scheme
+            st_line_comm += INDENT + _('Direct Debit Scheme') \
+                + ': %s' % direct_debit_scheme
+        if paid_refusal:
+            td['paid_refusal'] = paid_refusal
+            st_line_comm += INDENT + _('Paid or reason for refusal') \
+                + ': %s' % paid_refusal
+        if creditor_id:
+            td['creditor_id'] = creditor_id
+            st_line_comm += INDENT + _('Creditor\'s Identification Code') \
+                + ': %s' % creditor_id
+        if mandate_ref:
+            td['mandate_ref'] = mandate_ref
+            st_line_comm += INDENT + _('Mandate Reference') \
+                + ': %s' % mandate_ref
+        if comm_zone:
+            td['comm_zone'] = comm_zone
+            st_line_comm += INDENT + _('Communication') + ': %s' % comm_zone
+        if R_type:
+            td['R_type'] = R_type
+            st_line_comm += INDENT + _('R transaction Type') + ': %s' % R_type
+        if reason:
+            td['reason'] = reason
+            st_line_comm += INDENT + _('Reason') + ': %s' % reason
+        transaction['struct_comm_127'] = td
         return st_line_name, st_line_comm
 
     def _parse_comm_info(self, coda_statement, transaction):

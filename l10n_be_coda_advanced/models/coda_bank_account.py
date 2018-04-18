@@ -12,11 +12,6 @@ class CodaBankAccount(models.Model):
     _order = 'name'
 
     name = fields.Char(string='Name', required=True)
-    bank_id = fields.Many2one(
-        comodel_name='res.partner.bank',
-        string='Bank Account', required=True, copy=False,
-        help="Bank Account Number.\nThe CODA import function will "
-             "find its CODA processing parameters on this number.")
     description1 = fields.Char(
         string='Primary Account Description', size=35,
         help="The Primary or Secondary Account Description should match "
@@ -25,21 +20,20 @@ class CodaBankAccount(models.Model):
         string='Secondary Account Description', size=35,
         help="The Primary or Secondary Account Description should match "
              "the corresponding Account Description in the CODA file.")
-    type = fields.Selection(
-        selection=[('normal', 'Normal'),
-                   ('skip', 'Skip')],
-        string='Type', required=True,
-        default='normal', oldname='state',
-        help="No Bank Statements will be generated for "
-             "CODA Bank Statements from Bank Accounts of "
-             "type 'Skip'")
     journal_id = fields.Many2one(
         comodel_name='account.journal', string='Journal',
-        domain=[('type', '=', 'bank')], copy=False,
+        domain=[('type', '=', 'bank')], copy=False, required=True,
         help='Bank Journal for the Bank Statement')
+    bank_id = fields.Many2one(
+        comodel_name='res.partner.bank',
+        string='Bank Account', readonly=True,
+        related='journal_id.bank_account_id',
+        help="Bank Account Number.\nThe CODA import function will "
+             "find its CODA processing parameters on this number.")
     currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Currency', required=True,
-        default=lambda self: self.env.user.company_id.currency_id,
+        comodel_name='res.currency', string='Currency',
+        compute='_compute_currency_id',
+        store=True, readonly=True,
         help='The currency of the CODA Bank Statement')
     coda_st_naming = fields.Char(
         string='Bank Statement Naming Policy', size=64,
@@ -126,6 +120,18 @@ class CodaBankAccount(models.Model):
         store=True, readonly=True)
 
     @api.one
+    @api.depends('journal_id')
+    def _compute_currency_id(self):
+        aa = self.journal_id.default_debit_account_id
+        if not aa:
+            raise ValidationError(_(
+                "Configuration error !"
+                "\nNo 'Default Debit Account' defined on your bank journal"
+            ))
+        self.currency_id = aa.currency_id \
+            or self.journal_id.company_id.currency_id
+
+    @api.one
     @api.depends('bank_id', 'currency_id', 'description1')
     def _compute_display_name(self):
         display_name = self.bank_id.acc_number \
@@ -144,20 +150,6 @@ class CodaBankAccount(models.Model):
          "The combination of Bank Account, Account Description "
          "and Currency must be unique !"),
     ]
-
-    @api.one
-    @api.constrains('currency_id', 'journal_id')
-    def _check_currency(self):
-        if (self.type == 'normal') and self.journal_id:
-            c1 = self.journal_id.currency \
-                and self.currency_id != self.journal_id.currency
-            c2 = not self.journal_id.currency \
-                and self.currency_id != self.company_id.currency_id
-            if c1 or c2:
-                raise ValidationError(_(
-                    "Configuration Error!"
-                    "\nThe Bank Account Currency should match "
-                    "the Journal Currency !"))
 
     @api.one
     @api.returns('self', lambda value: value.id)
@@ -217,7 +209,7 @@ class CodaAccountMappingRule(models.Model):
     account_id = fields.Many2one(
         comodel_name='account.account', string='Account',
         ondelete='cascade', required=True,
-        domain=[('type', '!=', 'view')])
+        domain=[('deprecated', '=', False)])
     account_tax_id = fields.Many2one(
         comodel_name='account.tax', string='Tax', ondelete='cascade')
     tax_type = fields.Selection(

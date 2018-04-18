@@ -31,7 +31,6 @@
         <field name="currency_id"/>
         <field name="description1"/>
         <field name="journal_id"/>
-        <field name="type"/>
         <field name="company_id" groups="base.group_multi_company"/>
       </tree>
     </field>
@@ -44,15 +43,12 @@
       <form string="CODA Bank Account Configuration">
         <group col="4">
           <field name="name" colspan="4"/>
-          <field name="bank_id"
-                 domain="[('company_id', '=', company_id)]"/>
+          <field name="journal_id"/>
+          <field name="bank_id"/>
           <field name="description1"/>
           <field name="currency_id"/>
           <field name="description2"/>
           <field name="coda_st_naming"/>
-          <field name="type"/>
-          <field name="journal_id"
-                 attrs="{'required': [('type', '=', 'normal')], 'invisible': [('type', '=', 'skip')]}"/>
           <newline/>
           <field name="find_bbacom"/>
           <field name="find_inv_number"/>

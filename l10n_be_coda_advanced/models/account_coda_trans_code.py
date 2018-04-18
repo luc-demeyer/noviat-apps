@@ -8,8 +8,10 @@ from odoo import api, fields, models, _
 class AccountCodaTransCode(models.Model):
     _name = 'account.coda.trans.code'
     _description = 'CODA transaction code'
-    _rec_name = 'description'
+    _order = 'code'
 
+    name = fields.Char(
+        compute='_compute_name', readonly=True)
     code = fields.Char(string='Code', size=2, required=True)
     type = fields.Selection(
         [('code', 'Transaction Code'),
@@ -18,21 +20,19 @@ class AccountCodaTransCode(models.Model):
     parent_id = fields.Many2one('account.coda.trans.code', string='Family')
     description = fields.Char(string='Description', translate=True)
     comment = fields.Text('Comment', translate=True)
-    display_name = fields.Char(
-        compute='_compute_display_name', string="Display Name", readonly=True)
 
     @api.one
     @api.depends('code', 'description', 'type', 'parent_id')
-    def _compute_display_name(self):
-        display_name = self.code
+    def _compute_name(self):
+        name = self.code
         if self.description:
-            display_name += ' ' + self.description
+            name += ' ' + self.description
         if self.type == 'code':
             family = self.parent_id.code
-            display_name += ' (' + _('Family %s') % family + ')'
-        self.display_name = len(display_name) > 55 \
-            and display_name[:55] + '...' \
-            or display_name
+            name += ' (' + _('Family %s') % family + ')'
+        self.name = len(name) > 55 \
+            and name[:55] + '...' \
+            or name
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
@@ -43,4 +43,20 @@ class AccountCodaTransCode(models.Model):
         if not recs:
             recs = self.search(
                 [('description', operator, name)] + args, limit=limit)
-        return [(r.id, r.display_name) for r in recs]
+        return [(r.id, r.name) for r in recs]
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        if not args:
+            args = []
+        new_args = []
+        for arg in args:
+            if len(arg) == 3 and arg[0] == 'name':
+                new_arg = ['|',
+                           ('code', arg[1], arg[2]),
+                           ('description', arg[1], arg[2])]
+                new_args += new_arg
+            else:
+                new_args.append(arg)
+        return super(AccountCodaTransCode, self).search(
+            new_args, offset=offset, limit=limit, order=order, count=count)

@@ -6,8 +6,8 @@
     <field name="model">coda.bank.account</field>
     <field name="inherit_id" ref="l10n_be_coda_advanced.coda_bank_account_view_form"/>
     <field name="arch" type="xml">
-      <field name="find_inv_number" position="after">
-        <field name="find_so_number"/>
+      <field name="find_bbacom" position="before">
+        <field name="find_payment"/>
       </field>
     </field>
   </record>
