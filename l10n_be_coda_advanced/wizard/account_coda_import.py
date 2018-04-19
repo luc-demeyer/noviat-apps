@@ -105,16 +105,17 @@ class AccountCodaImport(models.TransientModel):
         coda_statement['description'] = line[90:125].strip()
 
         def cba_filter(coda_bank):
-            cba_numbers = get_iban_and_bban(
-                coda_bank.bank_id.sanitized_acc_number)
-            cba_currency = coda_bank.currency_id.name
-            cba_descriptions = [
-                coda_bank.description1 or '',
-                coda_bank.description2 or '']
-            if coda_statement['acc_number'] in cba_numbers \
-                    and coda_statement['currency'] == cba_currency \
-                    and coda_statement['description'] in cba_descriptions:
-                return True
+            acc_number = coda_bank.bank_id.sanitized_acc_number
+            if acc_number:
+                cba_numbers = get_iban_and_bban(acc_number)
+                cba_currency = coda_bank.currency_id.name
+                cba_descriptions = [
+                    coda_bank.description1 or '',
+                    coda_bank.description2 or '']
+                if coda_statement['acc_number'] in cba_numbers \
+                        and coda_statement['currency'] == cba_currency \
+                        and coda_statement['description'] in cba_descriptions:
+                    return True
             return False
 
         cba = filter(cba_filter, self._coda_banks)
