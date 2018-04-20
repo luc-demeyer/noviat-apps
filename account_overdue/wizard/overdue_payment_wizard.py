@@ -50,6 +50,7 @@ class OverduePaymentWizard(models.TransientModel):
 
     @api.multi
     def overdue_payment_print(self):
+        report = self._context.get('report_ref')
         company_id = self.company_id.id
         partner_select = self.partner_select
         account_select = self.account_select
@@ -75,6 +76,6 @@ class OverduePaymentWizard(models.TransientModel):
             'open_moves': open_moves,
         }
 
+        report = report or 'account_overdue.report_overdue'
         return self.env['report'].get_action(
-            overdue_partners, 'account_overdue.report_overdue',
-            data=datas)
+            overdue_partners, report, data=datas)

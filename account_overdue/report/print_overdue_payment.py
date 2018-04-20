@@ -11,10 +11,10 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class overdue_payment(report_sxw.rml_parse):
+class OverduePayment(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
-        super(overdue_payment, self).__init__(cr, uid, name, context=context)
+        super(OverduePayment, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'format_vat': self._format_vat,
             'get_company_data': self._get_company_data,
@@ -51,7 +51,7 @@ class overdue_payment(report_sxw.rml_parse):
             invoice_contact = p_obj.browse(
                 self.cr, self.uid, c_id)
             new_objects.append(invoice_contact)
-        super(overdue_payment, self).set_context(
+        super(OverduePayment, self).set_context(
             new_objects, datas, ids, report_type=report_type)
 
     def _get_company_data(self):
@@ -148,7 +148,9 @@ class overdue_payment(report_sxw.rml_parse):
                 'currency': currency or company_currency,
                 'od_days': od_days,
                 'od': entry.date_maturity and
-                maturity_date <= self.report_date and 'X' or ''}
+                maturity_date <= self.report_date and 'X' or '',
+                'entry': entry,
+            }
             lines.append(line)
 
         currencies = list(set([x['currency'] for x in lines]))
@@ -220,8 +222,8 @@ class overdue_payment(report_sxw.rml_parse):
         return ' | '.join(bank_data)
 
 
-class report_be_invoice(models.AbstractModel):
+class ReportAccountOverdue(models.AbstractModel):
     _name = 'report.account_overdue.report_overdue'
     _inherit = 'report.abstract_report'
     _template = 'account_overdue.report_overdue'
-    _wrapped_report_class = overdue_payment
+    _wrapped_report_class = OverduePayment
