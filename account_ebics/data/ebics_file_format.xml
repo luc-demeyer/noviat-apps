@@ -2,6 +2,10 @@
 <odoo>
   <data noupdate="1">
 
+    <!--
+    File format tested with the following banks:
+    - GLS Gemeinschaftsbank (Germany)
+    -->
     <record id="ebics_ff_camt_053_001_02_stm" model="ebics.file.format">
       <field name="name">camt.053.001.02.stm</field>
       <field name="type">down</field>
@@ -10,6 +14,10 @@
       <field name="suffix">c53.xml</field>
     </record>
 
+    <!--
+    File format tested with the following banks:
+    - GLS Gemeinschaftsbank (Germany)
+    -->
     <record id="ebics_ff_pain_001_001_03_sct" model="ebics.file.format">
       <field name="name">pain.001.001.03.sct</field>
       <field name="type">up</field>
@@ -34,6 +42,34 @@
       <field name="suffix">xml</field>
     </record>
     
+    <!--
+    File format tested with the following banks:
+    - Credit Suisse (Switzerland)
+    -->
+    <record id="ebics_ff_pain_001" model="ebics.file.format">
+      <field name="name">pain.001</field>
+      <field name="type">up</field>
+      <field name="order_type">XE2</field>
+      <field name="description">Payment Order in Format pain.001.001.03</field>
+      <field name="suffix">xml</field>
+    </record>
+
+    <!--
+    File format tested with the following banks:
+    - Credit Suisse (Switzerland)
+    -->
+    <record id="ebics_ff_pain_008" model="ebics.file.format">
+      <field name="name">pain.008</field>
+      <field name="type">up</field>
+      <field name="order_type">XE3</field>
+      <field name="description">Direct Debit Order in Format pain.008.001.02</field>
+      <field name="suffix">xml</field>
+    </record>
+
+    <!--
+    File format tested with the following banks:
+    - CIC (France)
+    -->
     <record id="ebics_ff_camt_xxx_cfonb120_stm" model="ebics.file.format">
       <field name="name">camt.xxx.cfonb120.stm</field>
       <field name="type">down</field>
@@ -42,6 +78,10 @@
       <field name="suffix">cfonb120.dat</field>
     </record>
 
+    <!--
+    File format tested with the following banks:
+    - CIC (France)
+    -->
     <record id="ebics_ff_pain_001_001_02_sct" model="ebics.file.format">
       <field name="name">pain.001.001.02.sct</field>
       <field name="type">up</field>

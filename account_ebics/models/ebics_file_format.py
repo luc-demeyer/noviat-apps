@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -46,7 +46,7 @@ class EbicsFileFormat(models.Model):
         return selection
 
     def _supported_upload_order_types(self):
-        return ['FUL', 'CCT', 'CDD', 'CDB']
+        return ['FUL', 'CCT', 'CDD', 'CDB', 'XE2', 'XE3']
 
     def _supported_download_order_types(self):
         return ['FDL', 'C53']
@@ -72,6 +72,9 @@ class EbicsFileFormat(models.Model):
             'pain.008.001.02.sbb',
             'camt.xxx.cfonb120.stm',
             'pain.001.001.02.sct',
+            'camt.053',
+            'pain.001',
+            'pain.008',
         ]
         selection = [(x, x) for x in request_types]
         return selection

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 """
@@ -22,14 +22,12 @@ try:
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
-    logging.debug('Failed to import fintech')
+    logging.error('Failed to import fintech')
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
-
-DOWNLOAD_TYPES = ['FDL', 'C53']  # list of supported order types for dowload
 
 
 class EbicsBank(EbicsBank):
@@ -140,7 +138,8 @@ class EbicsXfer(models.TransientModel):
             format = self.format_id
             try:
                 order_type = format.order_type or 'FUL'
-                method = getattr(client, order_type)
+                method = hasattr(client, order_type) \
+                    and getattr(client, order_type)
                 if order_type == 'FUL':
                     kwargs = {}
                     # bank = self.ebics_config_id.bank_id.bank v8.0
@@ -152,6 +151,12 @@ class EbicsXfer(models.TransientModel):
                     OrderID = method(format.name, upload_data, **kwargs)
                 elif order_type in ['CCT', 'CDD', 'CDB']:
                     OrderID = method(upload_data)
+                elif order_type in ['XE2', 'XE3']:
+                    OrderID = client.upload(order_type, upload_data)
+                else:
+                    # TODO: investigate if it makes sense usefull to support
+                    # a generic upload for a non-predefined order_type
+                    pass
                 self.note += '\n'
                 self.note += _(
                     "EBICS File has been uploaded (OrderID %s)."

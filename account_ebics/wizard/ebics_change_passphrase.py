@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -9,7 +9,7 @@ try:
     from fintech.ebics import EbicsKeyRing
     fintech.cryptolib = 'cryptography'
 except ImportError:
-    logging.debug('Failed to import fintech')
+    logging.error('Failed to import fintech')
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 """
@@ -22,7 +22,7 @@ try:
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
-    logging.debug('Failed to import fintech')
+    logging.error('Failed to import fintech')
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
@@ -275,13 +275,20 @@ class EbicsConfig(models.Model):
             raise UserError(
                 _("Set state to 'draft' before Bank Key (re)initialisation."))
 
-        keyring = EbicsKeyRing(
-            keys=self.ebics_keys, passphrase=self.ebics_passphrase or None)
-        bank = EbicsBank(
-            keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
-        user = EbicsUser(
-            keyring=keyring, partnerid=self.ebics_partner,
-            userid=self.ebics_user)
+        try:
+            keyring = EbicsKeyRing(
+                keys=self.ebics_keys,
+                passphrase=self.ebics_passphrase or None)
+            bank = EbicsBank(
+                keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
+            user = EbicsUser(
+                keyring=keyring, partnerid=self.ebics_partner,
+                userid=self.ebics_user)
+        except:
+            exctype, value = exc_info()[:2]
+            error = _("EBICS Initialisation Error:")
+            error += '\n' + str(exctype) + '\n' + str(value)
+            raise UserError(error)
 
         self._check_ebics_keys()
         if not os.path.isfile(self.ebics_keys):
@@ -405,8 +412,8 @@ class EbicsConfig(models.Model):
         fn_date = fields.Date.today()
         fn = '_'.join([self.ebics_host, 'public_bank_keys', fn_date]) + '.txt'
         self.write({
-            'ebics_ini_letter': base64.encodestring(public_bank_keys),
-            'ebics_ini_letter_fn': fn,
+            'ebics_public_bank_keys': base64.encodestring(public_bank_keys),
+            'ebics_public_bank_keys_fn': fn,
             'state': 'to_verify',
         })
 
