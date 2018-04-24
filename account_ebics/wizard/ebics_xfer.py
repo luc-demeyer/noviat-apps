@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 """
@@ -22,7 +22,7 @@ try:
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
-    logging.debug('Failed to import fintech')
+    logging.error('Failed to import fintech')
 
 from openerp import api, fields, models, _
 from openerp.exceptions import Warning as UserError

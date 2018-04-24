@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 """
@@ -395,8 +395,8 @@ class EbicsConfig(models.Model):
         fn_date = fields.Date.today()
         fn = '_'.join([self.ebics_host, 'public_bank_keys', fn_date]) + '.txt'
         self.write({
-            'ebics_ini_letter': base64.encodestring(public_bank_keys),
-            'ebics_ini_letter_fn': fn,
+            'ebics_public_bank_keys': base64.encodestring(public_bank_keys),
+            'ebics_public_bank_keys_fn': fn,
             'state': 'to_verify',
         })
 

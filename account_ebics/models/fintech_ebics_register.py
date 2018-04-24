@@ -7,7 +7,7 @@ try:
     import fintech
 except ImportError:
     fintech = None
-    logging.debug('Failed to import fintech')
+    logging.error('Failed to import fintech')
 from sys import exc_info
 from traceback import format_exception
 
