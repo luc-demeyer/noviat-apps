@@ -32,12 +32,12 @@ class AccountInvoice(models.Model):
     @api.multi
     @api.depends('amount_total', 'amount_tax')
     def _amount_cd(self):
-        self.ensure_one()
-        if self.company_id.country_id.code == 'BE':
-            pct = self.percent_cd
-            if pct:
-                self.amount_cd = self.amount_untaxed * (1 - pct/100) \
-                    + self.amount_tax
+        for inv in self:
+            if inv.company_id.country_id.code == 'BE':
+                pct = inv.percent_cd
+                if pct:
+                    inv.amount_cd = inv.amount_untaxed * (1 - pct/100) \
+                        + inv.amount_tax
 
     @api.onchange('percent_cd')
     def _onchange_percent_cd(self):
