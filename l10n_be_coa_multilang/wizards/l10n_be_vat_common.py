@@ -215,6 +215,7 @@ class l10nBeVatCommon(models.AbstractModel):
             raise UserError(_(
                 "No 'phone' for %s")
                 % self.declarant_id.name)
+        phone = phone.replace('+', '00')
 
         declarant_data = {
             'email': email,
