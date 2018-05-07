@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Advanced CODA statements Import',
-    'version': '8.0.2.2.2',
+    'version': '8.0.2.2.3',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
