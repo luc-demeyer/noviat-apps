@@ -1,0 +1,138 @@
+# Italian translation of Odoo 8.0.
+# This file contains the translation of the following modules:
+#    * account_overdue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 8.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2015-03-29 23:47:54.874000\n"
+"PO-Revision-Date: 2015-03-29 23:47:54.874000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: account_overdue
+#: model:ir.actions.act_window,name:account_overdue.action_overdue_payment_wizard
+#: model:ir.model,name:account_overdue.model_overdue_payment_wizard
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view
+msgid "Print Overdue Payments"
+msgstr "Imprimir pagos vencidos"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view
+msgid "Print Overdue Payments Selection Criteria :"
+msgstr "Imprimir Criterios de seleccion de pagos vencidos :"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,partner_select:0
+msgid "All Customers"
+msgstr "Tutti i clienti"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,partner_select:0
+msgid "Selected Customers"
+msgstr "Clientes escogidos"
+
+#. module: account_overdue
+#: field:overdue.payment.wizard,account_select:0
+msgid "Selected Accounts"
+msgstr "Cuentas escogidas"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,account_select:0
+msgid "Receivable Accounts"
+msgstr "Cuentas por cobrar"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,account_select:0
+msgid "Receivable and Payable Accounts"
+msgstr "Cuentas por cobrar y pagar"
+
+#. module: account_overdue
+#: code:addons/account_overdue/report/print_overdue_payment.py:94
+#, python-format
+msgid "Attn."
+msgstr "All'attenzione"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Total"
+msgstr "Totale"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Inv. no"
+msgstr "N. Fattura"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Mat. Date"
+msgstr "Mat. Date"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Date"
+msgstr "Data"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Amount"
+msgstr "Ammontare"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Open"
+msgstr "Abrir"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Days"
+msgstr "Giorni"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_document
+msgid "Total amount overdue"
+msgstr "Ammontare Totale Insoluto"
+
+#. module: account_overdue
+#: field:overdue.payment.wizard,company_id:0
+msgid "Company"
+msgstr "Azienda"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_layout_footer
+msgid "Email:"
+msgstr "Email:"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_layout_footer
+msgid "Fax:"
+msgstr "Fax:"
+
+#. module: account_overdue
+#: view:website:account_overdue.report_overdue_layout_footer
+msgid "Web:"
+msgstr "Web:"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view
+msgid "or"
+msgstr "o"
