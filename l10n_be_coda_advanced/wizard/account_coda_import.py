@@ -1001,7 +1001,7 @@ class AccountCodaImport(models.TransientModel):
                 '\n' + transaction['communication']
 
         elif transaction['type'] == 'communication':
-
+            transaction['name'] = 'free communication'
             coda_statement['coda_note'] += \
                 '\n' + transaction['communication']
 
