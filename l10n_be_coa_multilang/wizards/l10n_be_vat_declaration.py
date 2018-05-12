@@ -211,6 +211,13 @@ class l10nBeVatDeclaration(models.TransientModel):
             taxes = self.env['account.tax'].search(
                 [('tag_ids.code', '=', case.code)])
             aml_dom = [('tax_line_id.id', 'in', taxes.ids)]
+            # special case to support invoices containing
+            # only deductible VAT.
+            # This is an undocumented feature of this module
+            # since we recommended to add such a line into the invoice tax
+            # window (via the 'account_invoice_tax_manual' module).
+            if case.code == '59':
+                aml_dom = ['|', ('tax_ids.code', '=', 'VAT-V59')] + aml_dom
         elif case.code in self._other_cases():
             taxes = self.env['account.tax'].search(
                 [('tag_ids.code', '=', case.code)])
