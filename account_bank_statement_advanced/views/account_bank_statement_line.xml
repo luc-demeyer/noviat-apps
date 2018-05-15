@@ -24,6 +24,7 @@
           <field name="globalisation_amount" string="Glob. Am."/>
           <field name="reconcile_get"/>
           <field name="move_state"/>
+          <field name="journal_entry_id" invisible="1"/>
           <button name="action_process" attrs="{'invisible': [('move_state', '=', False)]}" string="Move" type="object" icon="gtk-go-forward"/>
           <button name="cancel" attrs="{'invisible': [('move_state', '=', False)]}" string="Cancel" type="object" icon="gtk-cancel"/>
           <field name="state" invisible="1"/>

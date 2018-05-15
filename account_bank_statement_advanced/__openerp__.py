@@ -4,7 +4,7 @@
 
 {
     'name': 'Advanced Bank Statement',
-    'version': '8.0.3.1.0',
+    'version': '8.0.3.1.1',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
