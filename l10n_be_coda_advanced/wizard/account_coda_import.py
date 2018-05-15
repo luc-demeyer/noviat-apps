@@ -1911,6 +1911,7 @@ class AccountCodaImport(models.TransientModel):
             aml_lookup_field = getattr(aml, search_field)
             if transaction['struct_comm_bba']:
                 aml_lookup_field = re.sub('\D', '', aml_lookup_field)
+                search_input = re.sub('\D', '', search_input)
             if search_input in aml_lookup_field:
                 refined.append(aml)
         return refined
