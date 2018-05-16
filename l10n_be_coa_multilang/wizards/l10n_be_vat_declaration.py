@@ -214,7 +214,7 @@ class l10nBeVatDeclaration(models.TransientModel):
             # special case to support invoices containing
             # only deductible VAT.
             # This is an undocumented feature of this module
-            # since we recommended to add such a line into the invoice tax
+            # since we recommend to add such a line into the invoice tax
             # window (via the 'account_invoice_tax_manual' module).
             if case.code == '59':
                 aml_dom = ['|', ('tax_ids.code', '=', 'VAT-V59')] + aml_dom
@@ -245,9 +245,25 @@ class l10nBeVatDeclaration(models.TransientModel):
                            self._tax_debt_in_refund_cases()):
             inv_type = 'in_refund'
         if inv_type:
-            aml_dom = ['&'] + aml_dom + [
-                '|', ('invoice_id', '=', False),
-                ('invoice_id.type', '=', inv_type)]
+            if inv_type in ['out_refund']:
+                # POS orders may not have an invoice but are
+                # posted in a sale journal hence we neeed to filter out
+                # the credit note cases for 'no invoice' entries in sale
+                # journals.
+                inv_type_args = [
+                    '|',
+                    ('invoice_id.type', '=', inv_type),
+                    '&',
+                    ('invoice_id', '=', False),
+                    ('journal_id.type', '!=', 'sale')
+                ]
+            else:
+                inv_type_args = [
+                    '|',
+                    ('invoice_id.type', '=', inv_type),
+                    ('invoice_id', '=', False),
+                ]
+            aml_dom = ['&'] + aml_dom + inv_type_args
         return aml_dom
 
     def _calc_parent_case_amount(self, case, amounts):
