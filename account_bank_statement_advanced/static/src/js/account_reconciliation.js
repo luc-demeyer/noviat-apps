@@ -12,8 +12,10 @@ odoo.define('account_bank_statement_advanced.reconcilation', function (require) 
         start: function() {
             var self = this;
             var res = this._super();
-            return $.when(res).then(function() {
-                self.change_partner_field.field.domain = [['parent_id', '=', false]];
+            return $.when(res).then(function () {
+                if (self.change_partner_field !== undefined) {
+                    self.change_partner_field.field.domain = [['parent_id', '=', false]];
+                };
             });
         },
 
