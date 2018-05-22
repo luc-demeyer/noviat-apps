@@ -43,6 +43,7 @@ class ResPartner(models.Model):
         contact_partners = self - company_partners
         super(ResPartner, contact_partners).write(vals)
         for partner in company_partners:
+            values = vals.copy()
             if any([x in vals for x in ['vat', 'kbo_bce_number',
                                         'is_company', 'country_id']]):
                 if 'vat' in vals:
@@ -64,8 +65,8 @@ class ResPartner(models.Model):
                 }
                 partner._sync_kbo_bce_number(sync_vals)
                 for k in sync_vals:
-                    vals[k] = sync_vals[k]
-            super(ResPartner, partner).write(vals)
+                    values[k] = sync_vals[k]
+            super(ResPartner, partner).write(values)
         return True
 
     def _vals_format_kbo_bce_number(self, vals):
