@@ -211,9 +211,19 @@ class EbicsFile(models.Model):
         import_module = 'account_bank_statement_import_camt'
         self._check_import_module(import_module)
         wiz_model = 'account.bank.statement.import'
-        wiz_vals = {'data_file': self.data}
+        wiz_vals = {
+            'data_file': self.data,
+            'filename': self.name,
+        }
         wiz = self.env[wiz_model].create(wiz_vals)
         res = wiz.import_file()
+        if res.get('res_model') \
+                == 'account.bank.statement.import.journal.creation':
+            if res.get('context'):
+                bank_account = res['context'].get('default_bank_acc_number')
+                raise UserError(_(
+                    "No financial journal found for Company Bank Account %s"
+                ) % bank_account)
         notifications = []
         statement_ids = []
         if res.get('context'):

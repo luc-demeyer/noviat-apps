@@ -15,6 +15,12 @@ import re
 import os
 from sys import exc_info
 from urllib.error import URLError
+
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
+
+_logger = logging.getLogger(__name__)
+
 try:
     import fintech
     from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser,\
@@ -22,12 +28,7 @@ try:
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
-    logging.error('Failed to import fintech')
-
-from odoo import api, fields, models, _
-from odoo.exceptions import UserError
-
-_logger = logging.getLogger(__name__)
+    _logger.warning('Failed to import fintech')
 
 
 class EbicsBank(EbicsBank):
