@@ -122,14 +122,15 @@ class CodaBankAccount(models.Model):
     @api.one
     @api.depends('journal_id')
     def _compute_currency_id(self):
-        aa = self.journal_id.default_debit_account_id
-        if not aa:
-            raise ValidationError(_(
-                "Configuration error !"
-                "\nNo 'Default Debit Account' defined on your bank journal"
-            ))
-        self.currency_id = aa.currency_id \
-            or self.journal_id.company_id.currency_id
+        if self.journal_id:
+            aa = self.journal_id.default_debit_account_id
+            if not aa:
+                raise ValidationError(_(
+                    "Configuration error !\n"
+                    "No 'Default Debit Account' defined on your bank journal"
+                ))
+            self.currency_id = aa.currency_id \
+                or self.journal_id.company_id.currency_id
 
     @api.one
     @api.depends('bank_id', 'currency_id', 'description1')
