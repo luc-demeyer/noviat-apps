@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="view_account_tax_template_search" model="ir.ui.view">
+    <field name="name">account.tax.template.search</field>
+    <field name="model">account.tax.template</field>
+    <field name="inherit_id" ref="account.view_account_tax_template_search"/>
+    <field name="arch" type="xml">
+      <field name="name" position="attributes">
+        <attribute name="filter_domain">['|', ('name','ilike',self), ('description','ilike',self), ('code', 'ilike', self')]</attribute>
+      </field>
+    </field>
+  </record>
+
+    <record id="view_account_tax_template_tree" model="ir.ui.view">
+    <field name="name">account.tax.template.tree</field>
+    <field name="model">account.tax.template</field>
+    <field name="inherit_id" ref="account.view_account_tax_template_tree"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+  
+  <record id="view_account_tax_template_form" model="ir.ui.view">
+    <field name="name">account.tax.template.form</field>
+    <field name="model">account.tax.template</field>
+    <field name="inherit_id" ref="account.view_account_tax_template_form"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="code"/>
+      </field>
+    </field>
+  </record>
+
+</odoo>
