@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 10.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2018-05-16 20:42:22.370000\n"
-"PO-Revision-Date: 2018-05-16 20:42:22.370000\n"
+"POT-Creation-Date: 2018-06-08 20:17:06.584000\n"
+"PO-Revision-Date: 2018-06-08 20:17:06.584000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1669,22 +1669,22 @@ msgstr "0% Cocontractant"
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-S
 msgid "Services within EU"
-msgstr "Services EU"
+msgstr "Services UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-G
 msgid "Goods within EU (Code L)"
-msgstr "Marchandises EU (Code L)"
+msgstr "Marchandises UE (Code L)"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-T
 msgid "Goods within EU (Code T)"
-msgstr "Marchandises EU (Code T)"
+msgstr "Marchandises UE (Code T)"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-ROW
 msgid "Export Outside EU"
-msgstr "Export hors EU"
+msgstr "Export hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-S
@@ -2189,152 +2189,152 @@ msgstr "0% Intracomm. - Biens d'investissement"
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC
 msgid "21% Outside EU - Raw mat., consum. and goods for resale"
-msgstr "21% Hors EU - Approvisionn. et marchandises"
+msgstr "21% Hors UE - Approvisionn. et marchandises"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C1
 msgid "VAT Deductible 21% Goods for resale - Outside EU"
-msgstr "TVA Déductible 21% approvisionn. et marchandises - Hors EU"
+msgstr "TVA Déductible 21% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C2
 msgid "VAT Debt 21% Goods for resale - Outside EU"
-msgstr "TVA à payer 21% approvisionn. et marchandises - Hors EU"
+msgstr "TVA à payer 21% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC
 msgid "12% Outside EU - Raw mat., consum. and goods for resale"
-msgstr "12% Hors EU - Approvisionn. et marchandises"
+msgstr "12% Hors UE - Approvisionn. et marchandises"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C1
 msgid "VAT Deductible 12% Goods for resale - Outside EU"
-msgstr "TVA Déductible 12% approvisionn. et marchandises - Hors EU"
+msgstr "TVA Déductible 12% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C2
 msgid "VAT Debt 12% Goods for resale - Outside EU"
-msgstr "TVA à payer 12% approvisionn. et marchandises - Hors EU"
+msgstr "TVA à payer 12% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC
 msgid "6% Outside EU - Raw mat., consum. and goods for resale"
-msgstr "6% Hors EU - Approvisionn. et marchandises"
+msgstr "6% Hors UE - Approvisionn. et marchandises"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C1
 msgid "VAT Deductible 6% Goods for resale - Outside EU"
-msgstr "TVA Déductible 6% approvisionn. et marchandises - Hors EU"
+msgstr "TVA Déductible 6% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C2
 msgid "VAT Debt 6% Goods for resale - Outside EU"
-msgstr "TVA à payer 6% approvisionn. et marchandises - Hors EU"
+msgstr "TVA à payer 6% approvisionn. et marchandises - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC
 msgid "0% Outside EU - Raw mat., consum. and goods for resale"
-msgstr "0% Hors EU - approvisionn. et marchandises"
+msgstr "0% Hors UE - approvisionn. et marchandises"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC
 msgid "21% Outside EU - Services and other goods"
-msgstr "21% Hors EU - Services et biens divers"
+msgstr "21% Hors UE - Services et biens divers"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C1
 msgid "VAT Deductible 21% Services and other goods - Outside EU"
-msgstr "TVA Déductible 21% services et biens divers - Hors EU"
+msgstr "TVA Déductible 21% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C2
 msgid "VAT Debt 21% Services and other goods - Outside EU"
-msgstr "TVA à payer 21% services et biens divers - Hors EU"
+msgstr "TVA à payer 21% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC
 msgid "12% Outside EU - Services and other goods"
-msgstr "12% Hors EU - Services et biens divers"
+msgstr "12% Hors UE - Services et biens divers"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C1
 msgid "VAT Deductible 12% Services and other goods - Outside EU"
-msgstr "TVA Déductible 12% services et biens divers - Hors EU"
+msgstr "TVA Déductible 12% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C2
 msgid "VAT Debt 12% Services and other goods - Outside EU"
-msgstr "TVA à payer 12% services et biens divers - Hors EU"
+msgstr "TVA à payer 12% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC
 msgid "6% Outside EU - Services and other goods"
-msgstr "6% Hors EU - Services et biens divers"
+msgstr "6% Hors UE - Services et biens divers"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C1
 msgid "VAT Deductible 6% Services and other goods - Outside EU"
-msgstr "TVA Déductible 6% services et biens divers - Hors EU"
+msgstr "TVA Déductible 6% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C2
 msgid "VAT Debt 6% Services and other goods - Outside EU"
-msgstr "TVA à payer 6% services et biens divers - Hors EU"
+msgstr "TVA à payer 6% services et biens divers - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC
 msgid "0% Outside EU - Services and other goods"
-msgstr "0% Hors EU - Services et biens divers"
+msgstr "0% Hors UE - Services et biens divers"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC
 msgid "21% Outside EU - Capital goods"
-msgstr "21% Hors EU - Biens d'investissement"
+msgstr "21% Hors UE - Biens d'investissement"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C1
 msgid "VAT Deductible 21% Capital goods - Outside EU"
-msgstr "TVA Déductible 21% biens d'investissement - Hors EU"
+msgstr "TVA Déductible 21% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C2
 msgid "VAT Debt 21% Capital goods - Outside EU"
-msgstr "TVA à payer 21% biens d'investissement - Hors EU"
+msgstr "TVA à payer 21% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC
 msgid "12% Outside EU - Capital goods"
-msgstr "12% Hors EU - Biens d'investissement"
+msgstr "12% Hors UE - Biens d'investissement"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C1
 msgid "VAT Deductible 12% Capital goods - Outside EU"
-msgstr "TVA Déductible 12% biens d'investissement - Hors EU"
+msgstr "TVA Déductible 12% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C2
 msgid "VAT Debt 12% Capital goods - Outside EU"
-msgstr "TVA à payer 12% biens d'investissement - Hors EU"
+msgstr "TVA à payer 12% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC
 msgid "6% Outside EU - Capital goods"
-msgstr "6% Hors EU - Biens d'investissement"
+msgstr "6% Hors UE - Biens d'investissement"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C1
 msgid "VAT Deductible 6% Capital goods - Outside EU"
-msgstr "TVA Déductible 6% biens d'investissement - Hors EU"
+msgstr "TVA Déductible 6% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C2
 msgid "VAT Debt 6% Capital goods - Outside EU"
-msgstr "TVA à payer 6% biens d'investissement - Hors EU"
+msgstr "TVA à payer 6% biens d'investissement - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC
 msgid "0% Outside EU - Capital goods"
-msgstr "0% Hors EU - Biens d'investissement"
+msgstr "0% Hors UE - Biens d'investissement"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V61
@@ -2629,152 +2629,152 @@ msgstr "TVA à payer 6% - Intracomm."
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C1
 msgid "VAT Deductible 21% - Outside EU"
-msgstr "TVA Déductible 21% - Hors EU"
+msgstr "TVA Déductible 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C2
 msgid "VAT Debt 21% - Outside EU"
-msgstr "TVA à payer 21% - Hors EU"
+msgstr "TVA à payer 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC
 msgid "21% Outside EU"
-msgstr "21% - Hors EU"
+msgstr "21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C1
 msgid "VAT Deductible 12% - Outside EU"
-msgstr "TVA Déductible 12% - Hors EU"
+msgstr "TVA Déductible 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C2
 msgid "VAT Debt 12% - Outside EU"
-msgstr "TVA à payer 12% - Hors EU"
+msgstr "TVA à payer 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC
 msgid "12% Outside EU"
-msgstr "12% - Hors EU"
+msgstr "12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C1
 msgid "VAT Deductible 6% - Outside EU"
-msgstr "TVA Déductible 6% - Hors EU"
+msgstr "TVA Déductible 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C2
 msgid "VAT Debt 6% - Outside EU"
-msgstr "TVA à payer 6% - Hors EU"
+msgstr "TVA à payer 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC
 msgid "6% Outside EU"
-msgstr "6% - Hors EU"
+msgstr "6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC
 msgid "0% Outside EU"
-msgstr "0% - Hors EU"
+msgstr "0% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C1
 msgid "VAT Deductible 21% - Outside EU"
-msgstr "TVA Déductible 21% - Hors EU"
+msgstr "TVA Déductible 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C2
 msgid "VAT Debt 21% - Outside EU"
-msgstr "TVA à payer 21% - Hors EU"
+msgstr "TVA à payer 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC
 msgid "21% Outside EU"
-msgstr "21% - Hors EU"
+msgstr "21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C1
 msgid "VAT Deductible 12% - Outside EU"
-msgstr "TVA Déductible 12% - Hors EU"
+msgstr "TVA Déductible 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C2
 msgid "VAT Debt 12% - Outside EU"
-msgstr "TVA à payer 12% - Hors EU"
+msgstr "TVA à payer 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC
 msgid "12% Outside EU"
-msgstr "12% - Hors EU"
+msgstr "12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C1
 msgid "VAT Deductible 6% - Outside EU"
-msgstr "TVA Déductible 6% - Hors EU"
+msgstr "TVA Déductible 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C2
 msgid "VAT Debt 6% - Outside EU"
-msgstr "TVA à payer 6% - Hors EU"
+msgstr "TVA à payer 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC
 msgid "6% Outside EU"
-msgstr "6% - Hors EU"
+msgstr "6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC
 msgid "0% Outside EU"
-msgstr "0% - Hors EU"
+msgstr "0% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C1
 msgid "VAT Deductible 21% - Outside EU"
-msgstr "TVA Déductible 21% - Hors EU"
+msgstr "TVA Déductible 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C2
 msgid "VAT Debt 21% - Outside EU"
-msgstr "TVA à payer 21% - Hors EU"
+msgstr "TVA à payer 21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC
 msgid "21% Outside EU"
-msgstr "21% - Hors EU"
+msgstr "21% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C1
 msgid "VAT Deductible 12% - Outside EU"
-msgstr "TVA Déductible 12% - Hors EU"
+msgstr "TVA Déductible 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C2
 msgid "VAT Debt 12% - Outside EU"
-msgstr "TVA à payer 12% - Hors EU"
+msgstr "TVA à payer 12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC
 msgid "12% Outside EU"
-msgstr "12% - Hors EU"
+msgstr "12% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C1
 msgid "VAT Deductible 6% - Outside EU"
-msgstr "TVA Déductible 6% - Hors EU"
+msgstr "TVA Déductible 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C2
 msgid "VAT Debt 6% - Outside EU"
-msgstr "TVA à payer 6% - Hors EU"
+msgstr "TVA à payer 6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC
 msgid "6% Outside EU"
-msgstr "6% - Hors EU"
+msgstr "6% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC
 msgid "0% Outside EU"
-msgstr "0% - Hors EU"
+msgstr "0% - Hors UE"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V61

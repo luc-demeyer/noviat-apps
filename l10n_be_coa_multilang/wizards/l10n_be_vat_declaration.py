@@ -247,7 +247,7 @@ class l10nBeVatDeclaration(models.TransientModel):
         if inv_type:
             if inv_type in ['out_refund']:
                 # POS orders may not have an invoice but are
-                # posted in a sale journal hence we neeed to filter out
+                # posted in a sale journal hence we need to filter out
                 # the credit note cases for 'no invoice' entries in sale
                 # journals.
                 inv_type_args = [
