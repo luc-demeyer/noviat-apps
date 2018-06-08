@@ -42,6 +42,7 @@ class AccountMoveLine(models.Model):
     def search(self, args, offset=0, limit=None, order=None, count=False):
         if 'account_move_line_search_extension' in self._context:
             for arg in args:
+
                 if arg[0] == 'amount_search' and len(arg) == 3:
                     digits = self.env['decimal.precision'].precision_get(
                         'Account')
@@ -70,6 +71,19 @@ class AccountMoveLine(models.Model):
                         arg[1] = '='
                         arg[2] = 0
                     break
+
+            for arg in args:
+                if (
+                    arg[0] == 'analytic_account_id' and
+                    isinstance(arg[0], basestring)
+                ):
+                    ana_dom = ['|',
+                               ('name', 'ilike', arg[2]),
+                               ('code', 'ilike', arg[2])]
+                    arg[2] = self.env['account.analytic.account'].search(
+                        ana_dom).ids
+                    break
+
         return super(AccountMoveLine, self).search(
             args, offset=offset, limit=limit, order=order, count=count)
 

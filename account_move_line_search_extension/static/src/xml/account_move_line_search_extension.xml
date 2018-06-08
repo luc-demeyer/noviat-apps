@@ -2,36 +2,35 @@
 <templates id="template" xml:space="preserve">
 
   <t t-name="AccountMoveLineSearchExtension">
-    <div class="amlse">
+    <div class="amlse" style="background-color: #f8f8f8; padding-bottom: 5px; padding-left: 5px;">
       <div class="btn-group oe_form_field" name="account">
         <h4>Account :</h4>
-        <input type="text" class="oe_account_select_account"/>
+        <input type="text" class="oe_account_select_account" style="border-style: solid;"/>
       </div>
-      <t t-if="analytic_group_analytic_accounting">
-        <div class="btn-group oe_form_field" name="analytic_account">
-          <h4>Analytic Account :</h4>
-          <input type="text" class="oe_account_select_analytic_account"/>
-        </div>
-      </t>
+      <!-- TODO add t-if to show analytic only to users of analytic group -->
+      <div class="btn-group oe_form_field" name="analytic_account">
+        <h4>Analytic Account :</h4>
+        <input type="text" class="oe_account_select_analytic_account" style="border-style: solid;"/>
+      </div>
       <div class="btn-group oe_form_field" name="partner">
         <h4>Partner :</h4>
-        <input type="text" class="oe_account_select_partner"/>
+        <input type="text" class="oe_account_select_partner" style="border-style: solid;"/>
       </div>
       <div class="btn-group" name="journal">
         <h4>Journal :</h4>
-        <select class="oe_account_select_journal"/>
+        <select class="oe_account_select_journal" style="border-style: solid; background-color: #ffffff;"/>
       </div>
       <div class="btn-group" name="date_range">
         <h4>Date Range :</h4>
-        <select class="oe_account_select_date_range"/>
+        <select class="oe_account_select_date_range" style="border-style: solid; background-color: #ffffff;"/>
       </div>
       <div class="btn-group oe_form_field" name="reconcile">
         <h4>Reconcile :</h4>
-        <input type="text" class="oe_account_select_reconcile"/>
+        <input type="text" class="oe_account_select_reconcile" style="border-style: solid;"/>
       </div>
-      <div class="btn-group oe_form_field" name="reconcile">
+      <div class="btn-group oe_form_field" name="amount">
         <h4>Amount :</h4>
-        <input type="text" class="oe_account_select_amount"/>
+        <input type="text" class="oe_account_select_amount" style="border-style: solid;"/>
       </div>
     </div>
   </t>

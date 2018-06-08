@@ -4,7 +4,7 @@
 
 {
     'name': 'Journal Items Search Extension',
-    'version': '10.0.0.1.3',
+    'version': '10.0.0.2.1',
     'license': 'AGPL-3',
     'author': 'Noviat, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/account-financial-tools',

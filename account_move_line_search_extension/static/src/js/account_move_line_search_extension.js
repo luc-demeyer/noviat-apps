@@ -128,9 +128,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
             var self = this;
             var domain = [];
             if (self.current_account) domain.push(['account_id.code', 'ilike', self.current_account]);
-            /* TODO: analytic
-            if (self.current_analytic_account) domain.push(['analytic_account_id', 'in', self.current_analytic_account]); //cf. def search
-            */
+            if (self.current_analytic_account) domain.push(['analytic_account_id', 'in', self.current_analytic_account]);
             if (self.current_partner) domain.push(['partner_id.name', 'ilike', self.current_partner]);
             if (self.current_journal) domain.push(['journal_id', '=', self.current_journal]);
             if (self.current_date_range) domain.push('&', ['date', '>=', date_start], ['date', '<=', date_end]);
