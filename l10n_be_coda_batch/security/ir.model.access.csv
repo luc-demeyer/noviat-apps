@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_coda_batch_log_manager,account.coda.batch.log manager,model_account_coda_batch_log,account.group_account_manager,1,1,1,1
+access_account_coda_batch_log_user,account.coda.batch.log user,model_account_coda_batch_log,account.group_account_user,1,0,0,0
+access_coda_batch_log_item_manager,coda.batch.log..item manager,model_coda_batch_log_item,account.group_account_manager,1,1,1,1
+access_account_coda_batch_log_item_user,coda.batch.log.item user,model_coda_batch_log_item,account.group_account_user,1,0,0,0

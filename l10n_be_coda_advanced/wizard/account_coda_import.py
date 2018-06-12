@@ -64,7 +64,7 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nCODA V%s statements are not supported, "
                 "please contact your bank !") % coda_version
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         coda_statement['coda_version'] = coda_version
         coda_statement['coda_transactions'] = {}
         coda_statement['date'] = str2date(line[5:11])
@@ -101,7 +101,7 @@ class AccountCodaImport(models.TransientModel):
             coda_statement['currency'] = line[39:42]
         else:
             err_string = _("\nUnsupported bank account structure !")
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         coda_statement['description'] = line[90:125].strip()
 
         def cba_filter(coda_bank):
@@ -151,7 +151,7 @@ class AccountCodaImport(models.TransientModel):
                       ) % (coda_statement['acc_number'],
                            coda_statement['currency'],
                            coda_statement['description'])
-                raise UserError(_('Data Error !'), err_string)
+                raise UserError(err_string)
         bal_start = list2float(line[43:58])  # old balance data
         if line[42] == '1':  # 1= Debit
             bal_start = - bal_start
@@ -214,7 +214,7 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nMovement data records of type 2.%s are not supported !"
             ) % line[1]
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
 
         return coda_parsing_note, transaction_seq
 
@@ -290,7 +290,7 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Type : %s !"
             ) % transaction['trans_type']
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         transaction['trans_type_id'] = trans_type[0].id
         transaction['trans_type_desc'] = trans_type[0].description
 
@@ -323,7 +323,7 @@ class AccountCodaImport(models.TransientModel):
                 # support > 9999 detail lines
                 err_string = _(
                     '\nTransaction Detail Limit reached !')
-                raise UserError(_('Data Error !'), err_string)
+                raise UserError(err_string)
             elif transaction['ref_move_detail'] != '0000':
                 if glob_lvl_stack[-1] == 0 \
                         and previous_main_move['type'] != 'globalisation':
@@ -361,7 +361,7 @@ class AccountCodaImport(models.TransientModel):
                 "\nThe File contains an invalid "
                 "CODA Transaction Family : %s !"
             ) % transaction['trans_family']
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         trans_family = trans_family[0]
         transaction['trans_family_id'] = trans_family.id
         transaction['trans_family_desc'] = trans_family.description
@@ -402,7 +402,7 @@ class AccountCodaImport(models.TransientModel):
                     "\nThe File contains an invalid "
                     "Structured Communication Type : %s !"
                 ) % transaction['struct_comm_type']
-                raise UserError(_('Data Error !'), err_string)
+                raise UserError(err_string)
             transaction['struct_comm_type_id'] = comm_type[0].id
             transaction['struct_comm_type_desc'] = comm_type[0].description
             transaction['communication'] = transaction['name'] = line[65:115]
@@ -476,7 +476,7 @@ class AccountCodaImport(models.TransientModel):
                 "\nCODA parsing error on movement data record 2.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
             ) % line[2:10]
-            raise UserError(_('Error !'), err_string)
+            raise UserError(err_string)
         comm_extra = line[10:63]
         if not transaction.get('struct_comm_type_id'):
             comm_extra = comm_extra.rstrip()
@@ -496,7 +496,7 @@ class AccountCodaImport(models.TransientModel):
                 "\nCODA parsing error on movement data record 2.3, seq nr %s!"
                 "'\nPlease report this issue via your Odoo support channel."
             ) % line[2:10]
-            raise UserError(_('Error !'), err_string)
+            raise UserError(err_string)
 
         if coda_statement['coda_version'] == '1':
             counterparty_number = line[10:22].strip()
@@ -566,7 +566,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.1, seq nr %s !"
                 "\nPlease report this issue via your Odoo support channel."
             ) % line[2:10]
-            raise UserError(_('Error !'), err_string)
+            raise UserError(err_string)
         info_line['main_move_sequence'] = mm_seq
         # positions 32-38 : transaction code
         info_line['trans_type'] = line[31]
@@ -577,7 +577,7 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Type : %s !"
             ) % info_line['trans_type']
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         info_line['trans_type_desc'] = trans_type[0].description
         info_line['trans_family'] = line[32:34]
         trans_family = filter(
@@ -588,7 +588,7 @@ class AccountCodaImport(models.TransientModel):
             err_string = _(
                 "\nThe File contains an invalid CODA Transaction Family : %s !"
             ) % info_line['trans_family']
-            raise UserError(_('Data Error !'), err_string)
+            raise UserError(err_string)
         trans_family = trans_family[0]
         info_line['trans_family_desc'] = trans_family.description
         info_line['trans_code'] = line[34:36]
@@ -623,7 +623,7 @@ class AccountCodaImport(models.TransientModel):
                     "\nThe File contains an invalid "
                     "Structured Communication Type : %s !"
                 ) % info_line['struct_comm_type']
-                raise UserError(_('Data Error !'), err_string)
+                raise UserError(err_string)
             info_line['struct_comm_type_desc'] = comm_type[0].description
             info_line['communication'] = info_line['name'] = \
                 line[43:113].strip()
@@ -649,7 +649,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.2, seq nr %s!"
                 "\nPlease report this issue via your Odoo support channel."
             ) % transaction['ref']
-            raise UserError(_('Error !'), err_string)
+            raise UserError(err_string)
         comm_extra = line[10:115]
         if not transaction.get('struct_comm_type_id'):
             comm_extra = comm_extra.rstrip()
@@ -668,7 +668,7 @@ class AccountCodaImport(models.TransientModel):
                 "information data record 3.3, seq nr %s !"
                 "\nPlease report this issue via your Odoo support channel."
             ) % line[2:10]
-            raise UserError(_('Error !'), err_string)
+            raise UserError(err_string)
         comm_extra = line[10:100].rstrip()
         transaction['name'] += comm_extra
         transaction['communication'] += comm_extra
@@ -1211,7 +1211,7 @@ class AccountCodaImport(models.TransientModel):
                 e = exc_info()[0]
                 err_string = _('\nUnknown Error : ') + str(e)
             if err_string:
-                raise UserError(_('CODA Import failed !'), err_string)
+                raise UserError(_('CODA Import failed !') + err_string)
 
         self._nb_err = 0
         self._err_string = ''
@@ -1674,7 +1674,7 @@ class AccountCodaImport(models.TransientModel):
                 err_code = 'M0001'
                 if self.batch:
                     return (err_code, err_string)
-                raise UserError(_('Error !'), err_string)
+                raise UserError(err_string)
 
         return reconcile_note, match
 

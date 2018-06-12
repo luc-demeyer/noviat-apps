@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="account_coda_batch_import_view_form" model="ir.ui.view">
+    <field name="name">CODA Batch Import</field>
+    <field name="model">account.coda.batch.import</field>
+    <field name="priority">1</field>
+    <field name="arch" type="xml">
+      <form string="CODA Batch Import">
+        <group attrs="{'invisible': [('note', '!=', False)]}">
+          <separator string="Select Folder" colspan="2"/>
+          <field name="directory"/>
+          <field name="reconcile"/>
+        </group>
+        <group attrs="{'invisible': [('note', '=', False)]}">
+          <field name="note" nolabel="1"/>
+        </group>
+        <footer attrs="{'invisible': [('note', '!=', False)]}">
+          <button name="coda_batch_import" string="Import" type="object" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_batch_import_view_form_result" model="ir.ui.view">
+    <field name="name">CODA Batch Import</field>
+    <field name="model">account.coda.batch.import</field>
+    <field name="priority">2</field>
+    <field name="arch" type="xml">
+      <form string="CODA Batch Import">
+        <header>
+          <button name="action_open_log" string="View Batch Import Log" type="object" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </header>
+        <separator colspan="4" string="Results :" />
+        <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_batch_import_action" model="ir.actions.act_window">
+    <field name="name">CODA Batch Import</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">account.coda.batch.import</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="account_coda_batch_import_view_form"/>
+  </record>
+
+  <menuitem  id="account_coda_batch_import_menu"
+             name="Batch Import CODA Files"
+             parent="l10n_be_coda_advanced.menu_coda_processing"
+             action="account_coda_batch_import_action"
+             sequence="50"/>
+
+  <act_window id="account_coda_batch_import_action_multi"
+              name="Batch Import CODA Files"
+              res_model="account.coda.batch.import"
+              src_model="account.coda.batch.log"
+              view_type="form"
+              view_mode="form"
+              target="new"
+              key2="client_action_multi"
+              multi="True"/>
+
+</odoo>
