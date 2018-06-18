@@ -34,6 +34,11 @@ Installation guidelines
 
 It is recommended not to install l10n_be when using this module.
 
+The l10n_be module is 'auto_installed' when creating a new database with the
+Country field set to Belgium. As a consequence we recommend to leave this
+field empty. The company country will be set to Belgium afterwards by the
+l10n_be_coa_multilang setup wizard.
+
 The setup wizard may fail when running on an Odoo instance without patch
 https://github.com/odoo/odoo/pull/21937.
 

@@ -10,20 +10,21 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
-class WizardMultiChartsAccounts(models.TransientModel):
+class L10nBeCoaMultilangConfig(models.TransientModel):
     """
     - load nl & fr languages
     - update company_id country to Belgium
     """
-    _inherit = 'wizard.multi.charts.accounts'
+    _inherit = 'res.config'
+    _name = 'l10n.be.coa.multilang.config'
 
     load_nl_BE = fields.Boolean(string='Load Dutch (nl_BE) Translation')
     load_fr_BE = fields.Boolean(string='Load French (fr_BE) Translation')
     load_nl_NL = fields.Boolean(string='Load Dutch (nl_NL) Translation')
     load_fr_FR = fields.Boolean(string='Load French (fr_FR) Translation')
-    l10n_be_coa_multilang = fields.Boolean(string='Multilingual Belgian CoA')
     monolang_coa = fields.Boolean(
         string='Monolingual Chart of Accounts',
+        default=lambda self: self._default_coa_lang(),
         help="If checked, the General Account will become "
              "a monolingual field. \n"
              "This behaviour can be changed afterwards via "
@@ -36,7 +37,24 @@ class WizardMultiChartsAccounts(models.TransientModel):
         default=lambda self: self._default_coa_lang(),
         help="Select the language of the Chart Of Accounts")
     company_id = fields.Many2one(
+        comodel_name='res.company', string='Company',
         default=lambda self: self._default_company_id())
+
+    @api.model
+    def _default_monolang_coa(self):
+        # TODO: review logic based upon actual setting of
+        # account.account,name translate flag
+        name = 'l10n_account_translate_off'
+        module = self.env['ir.module.module'].search(
+            ['name', '=', name])
+        if not module:
+            raise UserError(_(
+                "Module '%s' is not available "
+                "in the addons path. "
+                "\nPlease download this module from 'apps.odoo.com'."
+            ) % name)
+        if module.state == 'installed':
+            return True
 
     @api.model
     def _default_coa_lang(self):
@@ -55,9 +73,9 @@ class WizardMultiChartsAccounts(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         """
-        The standard default_get assumes that the user's default
-        company is equal to the company selected in the settings
-        but doesn't check which may give wrong results.
+        The default_get of the standard accounting setup wizard assumes that
+        the user's default company is equal to the company selected in the
+        settings but doesn't check which may give wrong results.
         We therefor have added this check here.
         """
         ctx = self._context.copy()
@@ -69,21 +87,8 @@ class WizardMultiChartsAccounts(models.TransientModel):
                    % cpy.name)
             ctx['default_company_id'] = ctx['chart_company_id']
             ctx['default_chart_template_id'] = ctx['chart_template_id']
-        res = super(WizardMultiChartsAccounts,
-                    self.with_context(ctx)).default_get(fields_list)
-        if res.get('chart_template_id'):
-            chart_template = self.env['account.chart.template'].browse(
-                res['chart_template_id'])
-            res['l10n_be_coa_multilang'] = chart_template.l10n_be_coa_multilang
-
-        return res
-
-    @api.onchange('chart_template_id')
-    def onchange_chart_template_id(self):
-        self.l10n_be_coa_multilang = \
-            self.chart_template_id.l10n_be_coa_multilang
-        return super(WizardMultiChartsAccounts, self
-                     ).onchange_chart_template_id()
+        return super(L10nBeCoaMultilangConfig,
+                     self.with_context(ctx)).default_get(fields_list)
 
     @api.onchange('load_nl_BE', 'load_fr_BE', 'load_nl_NL', 'load_fr_FR')
     def _onchange_load_lang(self):
@@ -98,7 +103,8 @@ class WizardMultiChartsAccounts(models.TransientModel):
         elif self.load_fr_BE or self.load_fr_FR:
             self.coa_lang = 'fr'
 
-    def copy_xlat(self, langs, in_field, in_recs, out_recs):
+    def copy_xlat(self, langs, in_field, in_recs, out_recs,
+                  field_check=True):
         # create ir.translation entries based upon
         # 1-1 relationship between in_ and out_ params
         if len(in_recs) != len(out_recs):
@@ -114,7 +120,8 @@ class WizardMultiChartsAccounts(models.TransientModel):
         for lang in langs:
             for i, in_rec in enumerate(in_recs):
                 out_rec = out_recs[i]
-                if getattr(in_rec, in_field) != getattr(out_rec, in_field):
+                if field_check and (getattr(in_rec, in_field)
+                                    != getattr(out_rec, in_field)):
                     _logger.error(
                         "generate translations from template "
                         "%s (id:%s) failed (error 3)!"
@@ -136,28 +143,29 @@ class WizardMultiChartsAccounts(models.TransientModel):
     @api.multi
     def execute(self):
         self_no_ctx = self.with_context({})
-        res = super(
-            WizardMultiChartsAccounts, self_no_ctx).execute()
-        if not self.l10n_be_coa_multilang:
-            return res
 
         if self.monolang_coa:
             to_install = self.env['ir.module.module'].search(
                 [('name', '=', 'l10n_account_translate_off')])
-            if not to_install:
-                raise UserError(
-                    _("Module 'l10n_account_translate_off' is not available "
-                      "in the addons path. "
-                      "\nPlease download this module from 'apps.odoo.com'.")
-                    )
             if to_install.state != 'installed':
                 to_install.button_immediate_install()
+        else:
+            to_install = self.env['ir.module.module'].search(
+                [('name', '=', 'l10n_multilang')])
+            if to_install.state != 'installed':
+                to_install.button_immediate_install()
+            to_uninstall = self.env['ir.module.module'].search(
+                [('name', '=', 'l10n_account_translate_off')])
+            if to_uninstall.state == 'installed':
+                to_uninstall.button_immediate_uninstall()
 
         # Update company country, this is required for auto-configuration
         # of the legal financial reportscheme.
         self.company_id.country_id = self.env.ref('base.be')
 
-        chart_template = self.chart_template_id
+        module = __name__.split('addons.')[1].split('.')[0]
+        chart_template = self.env.ref(
+            '%s.l10n_be_coa_multilang_template' % module)
         chart_templates = [chart_template]
         parent_chart = chart_template.parent_id
         while parent_chart:
@@ -229,36 +237,38 @@ class WizardMultiChartsAccounts(models.TransientModel):
             for i, account in enumerate(accounts):
                 account.name = account_tmpls[i].name
         else:
-            self.copy_xlat(langs, in_field, account_tmpls, accounts)
+            for i, account in enumerate(accounts):
+                account.name = account_tmpls[i].name
+            # no field value check to enable mono- to multi-lang
+            # via this confg wizard
+            self.copy_xlat(langs, in_field, account_tmpls, accounts,
+                           field_check=False)
 
         # copy account.tax codes and translations
-        # skip xlats from templates in case tax rates (and hence naming)
-        # can be modified via setup wizard
-        if self.complete_tax_set:
-            in_field = 'name'
-            tax_tmpls = self_no_ctx.env['account.tax.template']
-            for template in chart_templates:
-                tax_tmpls += tax_tmpls.search(
-                    [('chart_template_id', '=', template.id)],
-                    order='sequence,description,name'
-                    )
-            taxes = self_no_ctx.env['account.tax'].search(
-                [('company_id', '=', self.company_id.id)],
+        in_field = 'name'
+        tax_tmpls = self_no_ctx.env['account.tax.template']
+        for template in chart_templates:
+            tax_tmpls += tax_tmpls.search(
+                [('chart_template_id', '=', template.id)],
                 order='sequence,description,name'
                 )
-            # Perform basic sanity check on in/out pairs to protect against
-            # changes in the process that generates tax objects from templates
-            for i, tmpl in enumerate(tax_tmpls):
-                if tmpl.name != taxes[i].name:
-                    raise UserError(_(
-                        "The generation of translations from the template "
-                        "for %s failed! "
-                        "\nTax Template : %s, Tax: %s"
-                        "\nPlease report this issue via "
-                        "your Odoo support channel.")
-                        % (taxes._name, tmpl.name, taxes[i].name))
-                taxes[i].code = tmpl.code
-            self.copy_xlat(langs, in_field, tax_tmpls, taxes)
+        taxes = self_no_ctx.env['account.tax'].search(
+            [('company_id', '=', self.company_id.id)],
+            order='sequence,description,name'
+            )
+        # Perform basic sanity check on in/out pairs to protect against
+        # changes in the process that generates tax objects from templates
+        for i, tmpl in enumerate(tax_tmpls):
+            if tmpl.name != taxes[i].name:
+                raise UserError(_(
+                    "The generation of translations from the template "
+                    "for %s failed! "
+                    "\nTax Template : %s, Tax: %s"
+                    "\nPlease report this issue via "
+                    "your Odoo support channel.")
+                    % (taxes._name, tmpl.name, taxes[i].name))
+            taxes[i].code = tmpl.code
+        self.copy_xlat(langs, in_field, tax_tmpls, taxes)
 
         # copy account.fiscal.position translations and note field
         fpos_tmpls = self_no_ctx.env[
@@ -288,11 +298,10 @@ class WizardMultiChartsAccounts(models.TransientModel):
         for in_field in in_fields:
             self.copy_xlat(langs, in_field, fpos_tmpls, fpos)
 
-        ###### TODO #####
-        """
         # update the entries in the BNB/NBB legal report scheme
         upd_wiz = self.env['l10n_be.update_be_reportscheme']
-        note = upd_wiz._update_be_reportscheme()
+        upd_ctx = {'l10n.be.coa.multilang.config': 1}
+        note = upd_wiz.with_context(upd_ctx)._update_be_reportscheme()
         if note:
             wiz = upd_wiz.create({'note': note})
             module = __name__.split('addons.')[1].split('.')[0]
@@ -307,15 +316,7 @@ class WizardMultiChartsAccounts(models.TransientModel):
                 'view_id': False,
                 'target': 'new',
                 'views': [(view.id, 'form')],
-                'type': 'ir.actions.act_window'}
-        """
-
-        if not res:
-            menu = self.env.ref('base.menu_administration')
-            res = {
-                'type': 'ir.actions.client',
-                'tag': 'reload',
-                'params': {'menu_id': menu.id}
+                'type': 'ir.actions.act_window',
             }
-
-        return res
+        else:
+            return {}

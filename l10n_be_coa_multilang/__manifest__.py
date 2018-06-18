@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'license': 'AGPL-3',
     'author': "Noviat",
     'website': 'http://www.noviat.com',
@@ -45,12 +45,13 @@
         'views/report_l10nbevatlisting.xml',
         'views/res_partner.xml',
         'wizards/accounting_report.xml',
-        'wizards/wizard_multi_charts_accounts.xml',
+        'wizards/l10n_be_coa_multilang_config.xml',
         'wizards/l10n_be_update_be_reportscheme.xml',
         'wizards/l10n_be_vat_common.xml',
         'wizards/l10n_be_vat_declaration.xml',
         'wizards/l10n_be_vat_intracom.xml',
         'wizards/l10n_be_vat_listing.xml',
+        'data/account_chart_template_data.yml',
     ],
     'installable': True,
     'pre_init_hook': 'refine_tax_template_constraint',

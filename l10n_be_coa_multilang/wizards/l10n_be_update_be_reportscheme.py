@@ -56,6 +56,11 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         # write list of entries that are not included in
         # the BNB reports to the note field
         non_be_scheme_accounts = accounts - be_scheme_accounts
+        if self._context.get('l10n.be.coa.multilang.config'):
+            # avoid warning for unaffected earnings account
+            # when running config wizard
+            non_be_scheme_accounts = non_be_scheme_accounts.filtered(
+                lambda r: r.code != '999999')
         if non_be_scheme_accounts:
             note += _("Following accounts are not included in "
                       "the legal Belgian Balance and P&L reports:\n\n")
