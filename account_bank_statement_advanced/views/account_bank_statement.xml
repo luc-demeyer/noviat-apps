@@ -33,7 +33,7 @@
         <field name="moves_state"/>
         <button name="button_view_moves"
                 attrs="{'invisible': [('journal_entry_ids', '=', [])]}"
-                string="Moves" type="object" icon="fa-arrow-right text-success"/>
+                string="Moves" type="object" icon="fa-folder-open-o text-success"/>
         <field name="globalisation_id" string="Glob. Id"/>
         <field name="state" invisible="1"/>
       </xpath>
