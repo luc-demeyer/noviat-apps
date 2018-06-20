@@ -15,6 +15,12 @@ import re
 import os
 from sys import exc_info
 from urllib2 import URLError
+
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
+
+_logger = logging.getLogger(__name__)
+
 try:
     import fintech
     from fintech.ebics import EbicsKeyRing, EbicsBank, EbicsUser,\
@@ -22,12 +28,7 @@ try:
     fintech.cryptolib = 'cryptography'
 except ImportError:
     EbicsBank = object
-    logging.debug('Failed to import fintech')
-
-from openerp import api, fields, models, _
-from openerp.exceptions import Warning as UserError
-
-_logger = logging.getLogger(__name__)
+    _logger.warning('Failed to import fintech')
 
 
 class EbicsBank(EbicsBank):
@@ -105,8 +106,10 @@ class EbicsConfig(models.Model):
                    ('T', 'Transport signature')],
         string='Signature Class',
         required=True, default='T',
-        readonly=True, states={'draft': [('readonly', False)]}
-    )
+        readonly=True, states={'draft': [('readonly', False)]},
+        help="Default signature class."
+             "This default can be overriden for specific "
+             "EBICS transactions (cf. File Formats).")
     ebics_files = fields.Char(
         string='EBICS Files Root', required=True,
         readonly=True, states={'draft': [('readonly', False)]},
@@ -121,10 +124,10 @@ class EbicsConfig(models.Model):
         default=lambda self: self._default_ebics_keys(),
         help="File holding the EBICS Keys."
              "\nSpecify the full path (directory + filename).")
+    ebics_keys_found = fields.Boolean(
+        compute='_compute_ebics_keys_found')
     ebics_passphrase = fields.Char(
-        string='EBICS Passphrase',
-        readonly=True, states={'draft': [('readonly', False)]},
-    )
+        string='EBICS Passphrase')
     ebics_key_version = fields.Selection(
         selection=[('A005', 'A005 (RSASSA-PKCS1-v1_5)'),
                    ('A006', 'A006 (RSASSA-PSS)')],
@@ -186,6 +189,7 @@ class EbicsConfig(models.Model):
     ebics_file_format_ids = fields.Many2many(
         comodel_name='ebics.file.format',
         column1='config_id', column2='format_id',
+        string='EBICS File Formats',
         readonly=True, states={'draft': [('readonly', False)]},
     )
     state = fields.Selection(
@@ -218,6 +222,13 @@ class EbicsConfig(models.Model):
         return '/'.join(['/etc/odoo/ebics_keys',
                          self._cr.dbname,
                          'mykeys'])
+
+    @api.multi
+    def _compute_ebics_keys_found(self):
+        for cfg in self:
+            if cfg.ebics_keys:
+                dirname = os.path.dirname(self.ebics_keys)
+                self.ebics_keys_found = os.path.exists(dirname)
 
     @api.multi
     @api.constrains('order_number')
@@ -265,13 +276,20 @@ class EbicsConfig(models.Model):
             raise UserError(
                 _("Set state to 'draft' before Bank Key (re)initialisation."))
 
-        keyring = EbicsKeyRing(
-            keys=self.ebics_keys, passphrase=self.ebics_passphrase)
-        bank = EbicsBank(
-            keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
-        user = EbicsUser(
-            keyring=keyring, partnerid=self.ebics_partner,
-            userid=self.ebics_user)
+        try:
+            keyring = EbicsKeyRing(
+                keys=self.ebics_keys,
+                passphrase=self.ebics_passphrase or None)
+            bank = EbicsBank(
+                keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
+            user = EbicsUser(
+                keyring=keyring, partnerid=self.ebics_partner,
+                userid=self.ebics_user)
+        except:
+            exctype, value = exc_info()[:2]
+            error = _("EBICS Initialisation Error:")
+            error += '\n' + str(exctype) + '\n' + str(value)
+            raise UserError(error)
 
         self._check_ebics_keys()
         if not os.path.isfile(self.ebics_keys):
@@ -420,6 +438,24 @@ class EbicsConfig(models.Model):
             keyring=keyring, hostid=self.ebics_host, url=self.ebics_url)
         bank.activate_keys()
         return self.write({'state': 'active'})
+
+    @api.multi
+    def change_passphrase(self):
+        self.ensure_one()
+        ctx = dict(self._context, default_ebics_config_id=self.id)
+        module = __name__.split('addons.')[1].split('.')[0]
+        view = self.env.ref(
+            '%s.ebics_change_passphrase_view_form' % module)
+        return {
+            'name': _('EBICS keys change passphrase'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'ebics.change.passphrase',
+            'view_id': view.id,
+            'target': 'new',
+            'context': ctx,
+            'type': 'ir.actions.act_window',
+        }
 
     def _get_order_number(self):
         return self.order_number

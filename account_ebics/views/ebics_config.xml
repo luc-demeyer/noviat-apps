@@ -61,14 +61,19 @@
                 <button name="ebics_init_4" states="to_verify" string="Bank Keys Verified" type="object" class="oe_highlight"
                         groups="account.group_account_manager"
                         help="EBICS Initialisation - Push this button when the public have been checked for consistency."/>
+                <button name="change_passphrase" string="Change Passphrase" type="object" class="oe_highlight"
+                        attrs="{'invisible': [('ebics_keys_found', '=', False)]}"
+                        groups="account.group_account_manager"/>
               </header>
-              <group col="4" name="ebics_key">
-                <field name="ebics_keys"/>
-                <field name="ebics_passphrase" password="True"/>
-                <field name="ebics_key_version"/>
-                <field name="ebics_key_bitlength"/>
-                <field name="ebics_key_x509"/>
-              </group>
+            <group col="4" name="ebics_key">
+              <field name="ebics_keys"/>
+              <field name="ebics_keys_found" invisible="1"/>
+              <field name="ebics_passphrase" password="True" attrs="{'invisible': [('ebics_keys_found', '!=', False)]}"/>
+              <newline/>
+              <field name="ebics_key_version"/>
+              <field name="ebics_key_bitlength"/>
+              <field name="ebics_key_x509"/>
+            </group>
               <group colspan="4" name="ebics_ini_letter" attrs="{'invisible': [('ebics_ini_letter', '=', False)]}">
                 <field name="ebics_ini_letter_fn" invisible="1"/>
                 <field name="ebics_ini_letter" filename="ebics_ini_letter_fn"/>

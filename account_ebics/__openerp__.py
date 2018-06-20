@@ -4,7 +4,7 @@
 
 {
     'name': 'EBICS banking protocol',
-    'version': '8.0.1.1.1',
+    'version': '8.0.1.2.0',
     'license': 'AGPL-3',
     'author': 'Noviat',
     'category': 'Accounting & Finance',
@@ -17,6 +17,7 @@
         'views/ebics_config.xml',
         'views/ebics_file.xml',
         'views/ebics_file_format.xml',
+        'wizard/ebics_change_passphrase.xml',
         'wizard/ebics_xfer.xml',
     ],
     'installable': True,

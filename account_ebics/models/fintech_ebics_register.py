@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-try:
-    import fintech
-except ImportError:
-    fintech = None
-    logging.error('Failed to import fintech')
 from sys import exc_info
 from traceback import format_exception
 
 from openerp.tools import config
 
 _logger = logging.getLogger(__name__)
+
+try:
+    import fintech
+except ImportError:
+    fintech = None
+    _logger.warning('Failed to import fintech')
 
 fintech_register_name = config.get('fintech_register_name')
 fintech_register_keycode = config.get('fintech_register_keycode')
