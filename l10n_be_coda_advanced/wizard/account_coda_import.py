@@ -1400,7 +1400,7 @@ class AccountCodaImport(models.TransientModel):
                                 "Error while processing statement line "
                                 "with ref '%s':\n%s, \n%s"
                             ) % (transaction['ref'], str(exctype),
-                                 ', '.join(value))
+                                 ', '.join(v for v in value if v))
         return reconcile_note
 
     def _st_line_reconcile(self, st_line, cba, transaction, reconcile_note):
