@@ -29,7 +29,7 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         for account in accounts:
             for entry in scheme_table:
                 if account.code[:len(entry.account_group)] \
-                        == entry.account_group:
+                        == entry.account_group and entry.report_id:
                     be_scheme_accounts += account
                     break
 
@@ -48,9 +48,8 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
                     _("Configuration Error !"),
                     _("Configuration Error in the "
                       "Belgian Legal Financial Report Scheme."))
-            be_report_id = be_report_entries and \
-                be_report_entries.report_id.id
-            updates.append((4, be_report_id))
+            be_report = be_report_entries.report_id
+            updates.append((4, be_report.id))
             account.financial_report_ids = updates
 
         # write list of entries that are not included in
