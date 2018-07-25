@@ -58,7 +58,6 @@ class AccountCodaImport(models.TransientModel):
 
     def _coda_record_0(self, coda_statement, line, coda_parsing_note):
 
-        coda_statement['version'] = line[127]
         coda_version = line[127]
         if coda_version not in ['1', '2']:
             err_string = _(
@@ -625,8 +624,8 @@ class AccountCodaImport(models.TransientModel):
                 ) % info_line['struct_comm_type']
                 raise UserError(err_string)
             info_line['struct_comm_type_desc'] = comm_type[0].description
-            info_line['communication'] = info_line['name'] = \
-                line[43:113].strip()
+            info_line['communication'] = line[43:113]
+            info_line['name'] = info_line['communication'].strip()
         else:
             name = _("Extra information")
             info = line[40:113]
