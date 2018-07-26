@@ -17,6 +17,17 @@ class StockQuant(models.Model):
         credit_line_vals = res[1][2]
         debit = debit_line_vals['debit']
         credit = credit_line_vals['credit']
+
+        pol = move.purchase_line_id
+        if pol:
+            cur = pol.order_id.currency_id
+            if cur != move.company_id.currency_id:
+                cost_cur = pol.price_unit * qty
+                debit_line_vals['currency_id'] = cur.id
+                debit_line_vals['amount_currency'] = cost_cur
+                credit_line_vals['currency_id'] = cur.id
+                credit_line_vals['amount_currency'] = -cost_cur
+
         if not (debit or credit):
             cost, cost_cur, cur = \
                 move.product_id._get_purchase_pricelist_amount(

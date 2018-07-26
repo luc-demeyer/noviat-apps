@@ -72,13 +72,25 @@ class CommonAccrual(object):
 
         accruals = {}
         for group in grouped:
+            create_aml = True
             entry = grouped[group]
             entry_type = entry['entry_type']
             entry['move_id'] = accrual_move_id.id
             del entry['entry_type']
             del entry['origin']
-            aml = self.env['account.move.line'].create(entry)
-            if entry_type == 'accrual':
+            if entry['debit'] and entry['credit']:
+                amt = entry['debit'] - entry['credit']
+                if self.company_id.currency_id.is_zero(amt):
+                    create_aml = False
+                if amt > 0:
+                    entry['debit'] = amt
+                    entry['credit'] = 0.0
+                else:
+                    entry['debit'] = 0.0
+                    entry['credit'] = -amt
+            if create_aml:
+                aml = self.env['account.move.line'].create(entry)
+            if entry_type == 'accrual' and create_aml:
                 accruals[entry.get('product_id')] = aml
 
         return accrual_move_id.id, accruals
@@ -104,7 +116,7 @@ class CommonAccrual(object):
                     "%s, accrual reconcile failed for "
                     "account.move.line ids %s, "
                     "len(to_reconcile) < 2"),
-                    self.name, [x.id for x in to_reconcile]
+                    self._name, [x.id for x in to_reconcile]
                 )
                 continue
             if to_reconcile.mapped('reconcile_id'):
@@ -114,7 +126,7 @@ class CommonAccrual(object):
                     "account.move.line ids %s, "
                     "some entries are already reconciled, "
                     "cf. reconcile refs %s"),
-                    self.name, [x.id for x in to_reconcile],
+                    self._name, [x.id for x in to_reconcile],
                     rec_refs)
                 continue
             check = check_cur = 0.0
@@ -130,7 +142,7 @@ class CommonAccrual(object):
                     "%s, accrual reconcile failed for "
                     "account.move.line ids %s, "
                     "foreign currencies inconsistent"),
-                    self.name, [x.id for x in to_reconcile]
+                    self._name, [x.id for x in to_reconcile]
                 )
             elif len(currencies) == 1:
                 if currencies.is_zero(check_cur):
@@ -152,7 +164,7 @@ class CommonAccrual(object):
                         "%s, accrual reconcile failed for "
                         "account.move.line ids %s, "
                         "sum(amount_currency != 0.0"),
-                        self.name, [x.id for x in to_reconcile]
+                        self._name, [x.id for x in to_reconcile]
                     )
             elif self.company_id.currency_id.is_zero(check):
                 to_reconcile.with_context(self._context).reconcile()
@@ -162,6 +174,6 @@ class CommonAccrual(object):
                     "%s, accrual reconcile failed for "
                     "account.move.line ids %s, "
                     "sum(debit) != sum(credit)"),
-                    self.name, [x.id for x in to_reconcile]
+                    self._name, [x.id for x in to_reconcile]
                 )
         return to_correct

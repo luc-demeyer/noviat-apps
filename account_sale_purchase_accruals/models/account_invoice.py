@@ -198,7 +198,10 @@ class AccountInvoice(models.Model, CommonAccrual):
                 accrual_account = \
                     product.recursive_property_stock_account_input
                 if si_aml.account_id == accrual_account:
-                    accrual_lines[product.id] = si_aml
+                    if product.id in accrual_lines:
+                        accrual_lines[product.id] |= si_aml
+                    else:
+                        accrual_lines[product.id] = si_aml
                     pickings = self.purchase_order_ids.mapped('picking_ids')
                     accruals = pickings.mapped('valuation_move_ids')
                 else:
@@ -206,7 +209,10 @@ class AccountInvoice(models.Model, CommonAccrual):
                         product.recursive_accrued_expense_in_account_id
                     if accrual_account \
                             and si_aml.account_id == accrual_account:
-                        accrual_lines[product.id] = si_aml
+                        if product.id in accrual_lines:
+                            accrual_lines[product.id] |= si_aml
+                        else:
+                            accrual_lines[product.id] = si_aml
                         accruals = self.purchase_order_ids.mapped(
                             'p_accrual_move_id')
                     else:
@@ -215,7 +221,7 @@ class AccountInvoice(models.Model, CommonAccrual):
                 for aml in amls:
                     if aml.account_id == accrual_account \
                             and aml.product_id == product:
-                        accrual_lines[product.id] += aml
+                        accrual_lines[product.id] |= aml
         if accrual_lines:
             ctx = dict(self._context, date_p=self.date_invoice)
             self.with_context(ctx)._reconcile_accrued_expense_lines(
