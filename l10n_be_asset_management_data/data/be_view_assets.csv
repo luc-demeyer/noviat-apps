@@ -1,0 +1,11 @@
+code;name_en;name_nl;name_fr;parent_code
+20/28;FIXED ASSETS;VASTE ACTIVA;ACTIFS IMMOBILISES;
+20;Formation Expenses;Oprichtingskosten;Frais d'établissement;20/28
+21;Intangible Assets;Immateriële vaste activa;Immobilisations incorporelles;20/28
+22/27;Tangible Assets;Materiële vaste activa;Immobilisations corporelles;20/28
+22;Land and Buildings;Terreinen en gebouwen;Terrains et constructions;22/27
+23;Plant, Machinery and Equipment;Installaties, machines en uitrusting;Installations, machines et outillage;22/27
+24;Furniture and Vehicles;Meubilair en rollend materieel;Mobilier et matériel roulant;22/27
+25;Leasing and other similar Rights;Leasing en soortgelijke rechten;Location-financement et droits similaires;22/27
+26;Other Tangible Assets;Overige materiële vaste activa;Autres immobilisations corporelles;22/27
+;;;;
