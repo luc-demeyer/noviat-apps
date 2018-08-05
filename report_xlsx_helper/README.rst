@@ -6,8 +6,6 @@
 Excel report engine helpers
 ===========================
 
-DEPRECATED (renamed to report_xlsx_helper).
-
 This module provides a set of tools to facilitate the creation of excel reports with format xlsx.
 This module offers a similar functional coverage as the 8.0 version of the ``report_xls`` module.
 
@@ -44,7 +42,7 @@ facilitate the creation excel reports in Odoo.
 
 * Excel with multiple sheets
 
-  Download the ``account_journal_report_xlsx`` module
+  Download the ``account_asset_management_xls`` module
   from http://apps.odoo.com as example.
 
 Installation

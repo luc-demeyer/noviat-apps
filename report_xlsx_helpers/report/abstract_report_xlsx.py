@@ -102,8 +102,11 @@ class AbstractReportXlsx(ReportXlsx):
         bg_yellow = '#FFFFCC'
         bg_blue = '#CCFFFF'
         num_format = '#,##0.00'
+        num_format_conditional = '{0};[Red]-{0};{0}'.format(num_format)
         pct_format = '#,##0.00%'
+        pct_format_conditional = '{0};[Red]-{0};{0}'.format(pct_format)
         int_format = '#,##0'
+        int_format_conditional = '{0};[Red]-{0};{0}'.format(int_format)
         date_format = 'YYYY-MM-DD'
         theader_yellow = dict(theader, bg_color=bg_yellow)
         theader_blue = dict(theader, bg_color=bg_blue)
@@ -116,14 +119,20 @@ class AbstractReportXlsx(ReportXlsx):
         self.format_left = workbook.add_format({'align': 'left'})
         self.format_center = workbook.add_format({'align': 'center'})
         self.format_right = workbook.add_format({'align': 'right'})
-        self.format_amount = workbook.add_format({'align': 'right'})
-        self.format_amount.set_num_format(num_format)
-        self.format_percent = workbook.add_format({'align': 'right'})
-        self.format_percent.set_num_format(pct_format)
-        self.format_integer = workbook.add_format({'align': 'right'})
-        self.format_integer.set_num_format(int_format)
-        self.format_date = workbook.add_format({'align': 'left'})
-        self.format_date.set_num_format(date_format)
+        self.format_amount = workbook.add_format(
+            {'align': 'right', 'num_format': num_format})
+        self.format_amount_conditional = workbook.add_format(
+            {'align': 'right', 'num_format': num_format_conditional})
+        self.format_percent = workbook.add_format(
+            {'align': 'right', 'num_format': pct_format})
+        self.format_percent_conditional = workbook.add_format(
+            {'align': 'right', 'num_format': pct_format_conditional})
+        self.format_integer = workbook.add_format(
+            {'align': 'right', 'num_format': int_format})
+        self.format_integer_conditional = workbook.add_format(
+            {'align': 'right', 'num_format': int_format_conditional})
+        self.format_date = workbook.add_format(
+            {'align': 'left', 'num_format': date_format})
 
         self.format_left_bold = workbook.add_format(
             {'align': 'left', 'bold': True})
@@ -132,17 +141,22 @@ class AbstractReportXlsx(ReportXlsx):
         self.format_right_bold = workbook.add_format(
             {'align': 'right', 'bold': True})
         self.format_amount_bold = workbook.add_format(
-            {'align': 'right', 'bold': True})
-        self.format_amount_bold.set_num_format(num_format)
+            {'align': 'right', 'bold': True, 'num_format': num_format})
+        self.format_amount_bold_conditional = workbook.add_format(
+            {'align': 'right', 'bold': True,
+             'num_format': num_format_conditional})
         self.format_percent_bold = workbook.add_format(
-            {'align': 'right', 'bold': True})
-        self.format_percent_bold.set_num_format(pct_format)
+            {'align': 'right', 'bold': True, 'num_format': pct_format})
+        self.format_percent_bold_conditional = workbook.add_format(
+            {'align': 'right', 'bold': True,
+             'num_format': pct_format_conditional})
         self.format_integer_bold = workbook.add_format(
-            {'align': 'right', 'bold': True})
-        self.format_integer_bold.set_num_format(int_format)
+            {'align': 'right', 'bold': True, 'num_format': int_format})
+        self.format_integer_bold_conditional = workbook.add_format(
+            {'align': 'right', 'bold': True,
+             'num_format': int_format_conditional})
         self.format_date_bold = workbook.add_format(
-            {'align': 'left', 'bold': True})
-        self.format_date_bold.set_num_format(date_format)
+            {'align': 'left', 'bold': True, 'num_format': date_format})
 
         # formats for worksheet table column headers
         self.format_theader_yellow = workbook.add_format(theader_yellow)
@@ -151,28 +165,35 @@ class AbstractReportXlsx(ReportXlsx):
         self.format_theader_yellow_right = workbook.add_format(
             dict(theader_yellow, align='right'))
         self.format_theader_yellow_amount = workbook.add_format(
-            theader_yellow)
-        self.format_theader_yellow_amount.set_num_format(num_format)
+            dict(theader_yellow, num_format=num_format))
+        self.format_theader_yellow_amount_conditional = workbook.add_format(
+            dict(theader_yellow, num_format=num_format_conditional))
         self.format_theader_yellow_percent = workbook.add_format(
-            theader_yellow)
-        self.format_theader_yellow_percent.set_num_format(pct_format)
+            dict(theader_yellow, num_format=pct_format))
+        self.format_theader_yellow_percent_conditional = workbook.add_format(
+            dict(theader_yellow, num_format=pct_format_conditional))
         self.format_theader_yellow_integer = workbook.add_format(
-            theader_yellow)
-        self.format_theader_yellow_integer.set_num_format(int_format)
+            dict(theader_yellow, num_format=int_format))
+        self.format_theader_yellow_integer_conditional = workbook.add_format(
+            dict(theader_yellow, num_format=int_format_conditional))
 
         self.format_theader_blue = workbook.add_format(theader_blue)
         self.format_theader_blue_center = workbook.add_format(
             dict(theader_blue, align='center'))
         self.format_theader_blue_right = workbook.add_format(
             dict(theader_blue, align='right'))
-        self.format_theader_blue_amount = workbook.add_format(theader_blue)
-        self.format_theader_blue_amount.set_num_format(num_format)
+        self.format_theader_blue_amount = workbook.add_format(
+            dict(theader_blue, num_format=num_format))
+        self.format_theader_blue_amount_conditional = workbook.add_format(
+            dict(theader_blue, num_format=num_format_conditional))
         self.format_theader_blue_percent = workbook.add_format(
-            theader_blue)
-        self.format_theader_blue_percent.set_num_format(pct_format)
+            dict(theader_blue, num_format=pct_format))
+        self.format_theader_blue_percent_conditional = workbook.add_format(
+            dict(theader_blue, num_format=pct_format_conditional))
         self.format_theader_blue_integer = workbook.add_format(
-            theader_blue)
-        self.format_theader_blue_integer.set_num_format(int_format)
+            dict(theader_blue, num_format=int_format))
+        self.format_theader_blue_integer_conditional = workbook.add_format(
+            dict(theader_blue, num_format=int_format_conditional))
 
         # formats for worksheet table cells
         self.format_tleft = workbook.add_format(
@@ -181,15 +202,20 @@ class AbstractReportXlsx(ReportXlsx):
             dict(border, align='center'))
         self.format_tright = workbook.add_format(
             dict(border, align='right'))
-        self.format_tamount = workbook.add_format(border)
-        self.format_tamount.set_num_format(num_format)
-        self.format_tpercent = workbook.add_format(border)
-        self.format_tpercent.set_num_format(pct_format)
-        self.format_tinteger = workbook.add_format(border)
-        self.format_tinteger.set_num_format(int_format)
+        self.format_tamount = workbook.add_format(
+            dict(border, num_format=num_format))
+        self.format_tamount_conditional = workbook.add_format(
+            dict(border, num_format=num_format_conditional))
+        self.format_tpercent = workbook.add_format(
+            dict(border, num_format=pct_format))
+        self.format_tpercent_conditional = workbook.add_format(
+            dict(border, num_format=pct_format_conditional))
+        self.format_tinteger = workbook.add_format(
+            dict(border, num_format=int_format))
+        self.format_tinteger_conditional = workbook.add_format(
+            dict(border, num_format=int_format_conditional))
         self.format_tdate = workbook.add_format(
-            dict(border, align='left'))
-        self.format_tdate.set_num_format(date_format)
+            dict(border, align='left', num_format=date_format))
 
         self.format_tleft_bold = workbook.add_format(
             dict(border, align='left', bold=True))
@@ -198,17 +224,19 @@ class AbstractReportXlsx(ReportXlsx):
         self.format_tright_bold = workbook.add_format(
             dict(border, align='right', bold=True))
         self.format_tamount_bold = workbook.add_format(
-            dict(border, bold=True))
-        self.format_tamount_bold.set_num_format(num_format)
+            dict(border, bold=True, num_format=num_format))
+        self.format_tamount_bold_conditional = workbook.add_format(
+            dict(border, bold=True, num_format=num_format_conditional))
         self.format_tpercent_bold = workbook.add_format(
-            dict(border, bold=True))
-        self.format_tpercent_bold.set_num_format(pct_format)
+            dict(border, bold=True, num_format=pct_format))
+        self.format_tpercent_bold_conditional = workbook.add_format(
+            dict(border, bold=True, num_format=pct_format_conditional))
         self.format_tinteger_bold = workbook.add_format(
-            dict(border, bold=True))
-        self.format_tinteger_bold.set_num_format(int_format)
+            dict(border, bold=True, num_format=int_format))
+        self.format_tinteger_bold_conditional = workbook.add_format(
+            dict(border, bold=True, num_format=int_format_conditional))
         self.format_tdate_bold = workbook.add_format(
-            dict(border, align='left', bold=True))
-        self.format_tdate_bold.set_num_format(date_format)
+            dict(border, align='left', bold=True, num_format=date_format))
 
     def _set_column_width(self, ws, ws_params):
         """
