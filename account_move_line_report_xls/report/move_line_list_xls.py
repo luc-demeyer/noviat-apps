@@ -4,10 +4,10 @@
 
 import logging
 
-from odoo.addons.report_xlsx_helpers.report.abstract_report_xlsx \
+from odoo.addons.report_xlsx_helper.report.abstract_report_xlsx \
     import AbstractReportXlsx
 from odoo.report import report_sxw
-from openerp.tools.translate import translate
+from odoo.tools.translate import translate
 
 _logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 'lines': {
                     'value': self._render(
                         "datetime.strptime(line.date, '%Y-%m-%d')"),
-                    'format': self.format_tdate,
+                    'format': self.format_tcell_date_left,
                 },
                 'width': 13,
             },
@@ -101,7 +101,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 'lines': {
                     'value': self._render(
                         "datetime.strptime(line.date_maturity,'%Y-%m-%d')"),
-                    'format': self.format_tdate,
+                    'format': self.format_tcell_date_left,
                 },
                 'width': 13,
             },
@@ -112,12 +112,12 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.debit"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("debit_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -128,12 +128,12 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.credit"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("credit_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -144,12 +144,12 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.balance"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("bal_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -162,7 +162,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                     'value': self._render(
                         "line.full_reconcile_id "
                         "and line.full_reconcile_id.name"),
-                    'format': self.format_tcenter,
+                    'format': self.format_tcell_center,
                 },
                 'width': 12,
             },
@@ -175,7 +175,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                         "line.full_reconcile_id and line.balance or "
                         "(sum(line.matched_credit_ids.mapped('amount')) - "
                         "sum(line.matched_debit_ids.mapped('amount')))"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'width': 12,
             },
@@ -210,7 +210,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.amount_currency"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'width': 18,
             },
@@ -222,7 +222,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 'lines': {
                     'value': self._render(
                         "line.currency_id and line.currency_id.name"),
-                    'format': self.format_tcenter,
+                    'format': self.format_tcell_center,
                 },
                 'width': 6,
             },
@@ -243,7 +243,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 'lines': {
                     'value': self._render(
                         "line.company_id.currency_id.name"),
-                    'format': self.format_tcenter,
+                    'format': self.format_tcell_center,
                 },
                 'width': 10,
             },
@@ -307,7 +307,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.quantity"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'width': 8,
             },
@@ -338,7 +338,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.amount_residual"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'width': 18,
             },
@@ -349,7 +349,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.amount_residual_currency"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'width': 18,
             },
@@ -369,7 +369,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.blocked and 'x' or ''"),
-                    'format': self.format_tcenter,
+                    'format': self.format_tcell_center,
                 },
                 'width': 4,
             },
@@ -380,7 +380,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("line.id"),
-                    'format': self.format_tinteger,
+                    'format': self.format_tcell_integer_right,
                 },
                 'width': 12,
             },
@@ -411,7 +411,7 @@ class MoveLineXlsx(AbstractReportXlsx):
 
         row_pos = self._write_line(
             ws, row_pos, ws_params, col_specs_section='header',
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
         ws.freeze_panes(row_pos, 0)
 
@@ -423,7 +423,7 @@ class MoveLineXlsx(AbstractReportXlsx):
             row_pos = self._write_line(
                 ws, row_pos, ws_params, col_specs_section='lines',
                 render_space={'line': line},
-                default_format=self.format_tleft)
+                default_format=self.format_tcell_left)
 
         aml_cnt = len(amls)
         debit_start = self._rowcol_to_cell(row_pos - aml_cnt, debit_pos)
@@ -442,7 +442,7 @@ class MoveLineXlsx(AbstractReportXlsx):
                 'credit_formula': credit_formula,
                 'bal_formula': bal_formula,
             },
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
 
 MoveLineXlsx('report.move.line.list.xls',

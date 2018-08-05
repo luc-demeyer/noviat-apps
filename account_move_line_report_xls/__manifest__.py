@@ -9,7 +9,7 @@
     'author': "Noviat, Odoo Community Association (OCA)",
     'category': 'Accounting & Finance',
     'summary': 'Journal Items Excel export',
-    'depends': ['account', 'report_xlsx_helpers'],
+    'depends': ['account', 'report_xlsx_helper'],
     'data': [
         'report/move_line_list_xls.xml',
     ],
