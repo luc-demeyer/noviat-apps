@@ -14,9 +14,9 @@ class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
 
     def _find_additional_data(self, currency_code, account_number):
-        currency, journal = super(AccountBankStatementImport, self
-                                  )._find_additional_data(
-                                    currency_code, currency_code)
+        currency, journal = super(
+            AccountBankStatementImport, self
+        )._find_additional_data(currency_code, account_number)
         if not journal:
             sanitized_account_number = sanitize_account_number(account_number)
             fin_journals = self.env['account.journal'].search(
@@ -29,9 +29,9 @@ class AccountBankStatementImport(models.TransientModel):
         return currency, journal
 
     def _check_journal_bank_account(self, journal, account_number):
-        check = super(AccountBankStatementImport, self
-                      )._check_journal_bank_account(
-                        journal, account_number)
+        check = super(
+            AccountBankStatementImport, self
+        )._check_journal_bank_account(journal, account_number)
         if not check:
             check = account_number \
                 in journal.bank_account_id.sanitized_acc_number
