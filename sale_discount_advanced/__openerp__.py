@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2015 ICTSTUDIO (<http://www.ictstudio.eu>).
-# Copyright (C) 2016-2017 Noviat nv/sa (www.noviat.com).
+# Copyright (C) 2016-2018 Noviat nv/sa (www.noviat.com).
 # Copyright (C) 2016 Onestein (http://www.onestein.eu/).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -10,7 +10,7 @@
     'summary': """Order Amount Discounts related to Pricelists""",
     'website': "http://www.ictstudio.eu",
     'category': 'Sales',
-    'version': '8.0.1.3.7',
+    'version': '8.0.1.3.8',
     'license': 'AGPL-3',
     'depends': [
         'sale',

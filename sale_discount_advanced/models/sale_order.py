@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2015 ICTSTUDIO (<http://www.ictstudio.eu>).
-# Copyright (C) 2016-2017 Noviat nv/sa (www.noviat.com).
+# Copyright (C) 2016-2018 Noviat nv/sa (www.noviat.com).
 # Copyright (C) 2016 Onestein (http://www.onestein.eu/).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -68,16 +68,21 @@ class SaleOrder(models.Model):
         return res
 
     @api.multi
+    def action_button_confirm(self):
+        self.compute_discount()
+        return super(SaleOrder, self).action_button_confirm()
+
+    @api.multi
     def compute_discount(self):
         for order in self:
             if order.state not in ['draft', 'sent']:
-                return
-            if order._context.get('discount_calc'):
                 return
             order._update_discount()
 
     def _update_discount(self):
         self.ensure_one()
+        if self._context.get('discount_calc'):
+            return
 
         grouped_discounts = {}
         line_discount_amounts = {}
