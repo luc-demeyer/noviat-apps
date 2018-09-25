@@ -205,10 +205,10 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
         # The logic is based upon template codes with length equal
         # to acount.chart.template,code_digits which is the case
         # for the current 'l10n_be_coa_multilang' chart
-        codes = [x.code for x in accounts]
+        codes = accounts.mapped('code')
         account_tmpls = account_tmpls.filtered(
             lambda r: r.code in codes)
-        tmpl_codes = [x.code for x in account_tmpls]
+        tmpl_codes = account_tmpls.mapped('code')
         accounts = accounts.filtered(
             lambda r: r.code in tmpl_codes)
         if self.monolang_coa:
@@ -240,12 +240,11 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
             for i, account in enumerate(accounts):
                 account.name = account_tmpls[i].name
             # no field value check to enable mono- to multi-lang
-            # via this confg wizard
+            # via this config wizard
             self.copy_xlat(langs, in_field, account_tmpls, accounts,
                            field_check=False)
 
         # copy account.tax codes and translations
-        in_field = 'name'
         tax_tmpls = self_no_ctx.env['account.tax.template']
         for template in chart_templates:
             tax_tmpls += tax_tmpls.search(
@@ -268,7 +267,10 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
                     "your Odoo support channel.")
                     % (taxes._name, tmpl.name, taxes[i].name))
             taxes[i].code = tmpl.code
-        self.copy_xlat(langs, in_field, tax_tmpls, taxes)
+        in_fields = ['name', 'description']
+        for in_field in in_fields:
+            self.copy_xlat(langs, in_field, tax_tmpls, taxes,
+                           field_check=False)
 
         # copy account.fiscal.position translations and note field
         fpos_tmpls = self_no_ctx.env[
@@ -296,7 +298,8 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
                 fpos[i].note = tmpl.note
         in_fields = ['name', 'note']
         for in_field in in_fields:
-            self.copy_xlat(langs, in_field, fpos_tmpls, fpos)
+            self.copy_xlat(langs, in_field, fpos_tmpls, fpos,
+                           field_check=False)
 
         # update the entries in the BNB/NBB legal report scheme
         upd_wiz = self.env['l10n_be.update_be_reportscheme']

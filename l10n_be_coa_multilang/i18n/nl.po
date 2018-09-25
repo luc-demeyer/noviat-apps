@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 10.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2018-06-08 20:17:06.530000\n"
-"PO-Revision-Date: 2018-06-08 20:17:06.530000\n"
+"POT-Creation-Date: 2018-09-25 10:38:24.237000\n"
+"PO-Revision-Date: 2018-09-25 10:38:24.237000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2349,7 +2349,17 @@ msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V91
 msgid "Advance for Operations from December 1 to 20"
-msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
+msgstr "Voorschot voor handelingen van 1 tot 20 december"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V59
+msgid "VAT deductible case 59"
+msgstr "BTW aftrekbaar vak 59"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V82
+msgid "VAT base case 82"
+msgstr "BTW MvH vak 59"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-S
@@ -2789,7 +2799,7 @@ msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V91
 msgid "Advance for Operations from December 1 to 20"
-msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
+msgstr "Voorschot voor handelingen van 1 tot 20 december"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V59
