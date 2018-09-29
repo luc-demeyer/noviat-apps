@@ -7,7 +7,7 @@ import logging
 from lxml import etree
 
 from odoo import api, fields, models, _
-from odoo.addons.report_xlsx_helpers.report.abstract_report_xlsx \
+from odoo.addons.report_xlsx_helper.report.abstract_report_xlsx \
     import AbstractReportXlsx
 from odoo.report import report_sxw
 from openerp.tools.translate import translate
@@ -358,12 +358,12 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("c.base_amount"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("total_base_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -375,12 +375,12 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
                 'lines': {
                     'type': 'number',
                     'value': self._render("c.vat_amount"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("total_vat_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -430,7 +430,7 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
 
         row_pos = self._write_line(
             ws, row_pos, ws_params, col_specs_section='header',
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
         ws.freeze_panes(row_pos, 0)
 
@@ -444,7 +444,7 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
             row_pos = self._write_line(
                 ws, row_pos, ws_params, col_specs_section='lines',
                 render_space={'seq': seq, 'c': c},
-                default_format=self.format_tleft)
+                default_format=self.format_tcell_left)
             seq += 1
             previous_client = c
 
@@ -462,7 +462,7 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
                 'total_base_formula': total_base_formula,
                 'total_vat_formula': total_vat_formula,
             },
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
         return row_pos + 1
 

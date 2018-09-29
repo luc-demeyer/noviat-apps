@@ -7,7 +7,7 @@ import logging
 from lxml import etree
 
 from odoo import api, fields, models, _
-from odoo.addons.report_xlsx_helpers.report.abstract_report_xlsx \
+from odoo.addons.report_xlsx_helper.report.abstract_report_xlsx \
     import AbstractReportXlsx
 from odoo.report import report_sxw
 from openerp.tools.translate import translate
@@ -330,7 +330,7 @@ class l10nBeVatIntracomXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("c.code"),
-                    'format': self.format_tcenter,
+                    'format': self.format_tcell_center,
                 },
                 'width': 5,
             },
@@ -341,12 +341,12 @@ class l10nBeVatIntracomXlsx(AbstractReportXlsx):
                 },
                 'lines': {
                     'value': self._render("c.amount"),
-                    'format': self.format_tamount,
+                    'format': self.format_tcell_amount_right,
                 },
                 'totals': {
                     'type': 'formula',
                     'value': self._render("total_amount_formula"),
-                    'format': self.format_theader_yellow_amount,
+                    'format': self.format_theader_yellow_amount_right,
                 },
                 'width': 18,
             },
@@ -396,7 +396,7 @@ class l10nBeVatIntracomXlsx(AbstractReportXlsx):
 
         row_pos = self._write_line(
             ws, row_pos, ws_params, col_specs_section='header',
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
         ws.freeze_panes(row_pos, 0)
 
@@ -410,7 +410,7 @@ class l10nBeVatIntracomXlsx(AbstractReportXlsx):
             row_pos = self._write_line(
                 ws, row_pos, ws_params, col_specs_section='lines',
                 render_space={'seq': seq, 'c': c},
-                default_format=self.format_tleft)
+                default_format=self.format_tcell_left)
             seq += 1
             previous_client = c
 
@@ -423,7 +423,7 @@ class l10nBeVatIntracomXlsx(AbstractReportXlsx):
             render_space={
                 'total_amount_formula': total_amount_formula,
             },
-            default_format=self.format_theader_yellow)
+            default_format=self.format_theader_yellow_left)
 
         return row_pos + 1
 

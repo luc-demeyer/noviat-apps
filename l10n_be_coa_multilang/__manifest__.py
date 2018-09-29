@@ -4,7 +4,7 @@
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '10.0.1.1.2',
+    'version': '10.0.1.1.3',
     'license': 'AGPL-3',
     'author': "Noviat",
     'website': 'http://www.noviat.com',
@@ -19,7 +19,7 @@
         'account_accountant',
         'account_fiscal_year',
         'account_move_line_tax_editable',
-        'report_xlsx_helpers',
+        'report_xlsx_helper',
     ],
     'data': [
         'security/ir.model.access.csv',
