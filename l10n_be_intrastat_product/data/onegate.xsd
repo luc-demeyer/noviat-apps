@@ -72,7 +72,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="append"/>
       <xs:enumeration value="replace"/>
-      <xs:enumeration value="nihil"/>
+	  <xs:enumeration value="nihil"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

@@ -177,7 +177,18 @@ class L10nBeIntrastatProductDeclaration(models.Model):
             L10nBeIntrastatProductDeclaration, self
             )._group_line_hashcode_fields(computation_line)
         del res['product_origin_country']
+        if self.reporting_level == 'extended':
+            res['incoterm'] = computation_line.incoterm_id.id or False
         return res
+
+    @api.model
+    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+        vals = super(
+            L10nBeIntrastatProductDeclaration, self
+        )._prepare_grouped_fields(computation_line, fields_to_sum)
+        if self.reporting_level == 'extended':
+            vals['incoterm_id'] = computation_line.incoterm_id.id
+        return vals
 
     @api.one
     def _check_generate_xml(self):
@@ -296,11 +307,11 @@ class L10nBeIntrastatProductComputationLine(models.Model):
     _inherit = 'intrastat.product.computation.line'
 
     parent_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration',
+        comodel_name='l10n.be.intrastat.product.declaration',
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     declaration_line_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration.line',
+        comodel_name='l10n.be.intrastat.product.declaration.line',
         string='Declaration Line', readonly=True)
 
 
@@ -309,9 +320,10 @@ class L10nBeIntrastatProductDeclarationLine(models.Model):
     _inherit = 'intrastat.product.declaration.line'
 
     parent_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration',
+        comodel_name='l10n.be.intrastat.product.declaration',
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     computation_line_ids = fields.One2many(
-        'l10n.be.intrastat.product.computation.line', 'declaration_line_id',
+        comodel_name='l10n.be.intrastat.product.computation.line',
+        inverse_name='declaration_line_id',
         string='Computation Lines', readonly=True)
