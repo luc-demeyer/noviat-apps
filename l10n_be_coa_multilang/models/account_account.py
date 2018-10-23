@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2018 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -38,7 +38,7 @@ class AccountAccount(models.Model):
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         """ improve performance of _update_be_reportscheme method """
-        if self._context.get('update_be_reportscheme'):
+        if self.env.context.get('update_be_reportscheme'):
             be_companies = self.env['res.company'].search([]).filtered(
                 lambda r: r.country_id.code in self._get_be_scheme_countries()
             )

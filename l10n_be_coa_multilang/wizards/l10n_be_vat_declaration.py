@@ -83,7 +83,7 @@ class l10nBeVatDeclaration(models.TransientModel):
             'type': 'ir.actions.report.xml',
             'report_type': 'xlsx',
             'report_name': report_name,
-            'context': dict(self._context, xlsx_export=True),
+            'context': dict(self.env.context, xlsx_export=True),
             'datas': {'ids': [self.id]},
         }
         return report

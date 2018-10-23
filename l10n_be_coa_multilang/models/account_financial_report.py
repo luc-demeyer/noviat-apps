@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2018 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -27,13 +27,13 @@ class AccountFinancialReport(models.Model):
         """
         res = super(AccountFinancialReport, self)._convert_to_cache(
             values, update=update, validate=validate)
-        if self._context.get('add_code_to_name') \
+        if self.env.context.get('add_code_to_name') \
                 and res.get('code') and res.get('name'):
             res['name'] += ' - (' + res['code'] + ')'
         return res
 
     def _get_children_by_order(self):
-        if self._context.get('get_children_by_sequence'):
+        if self.env.context.get('get_children_by_sequence'):
             res = self.search(
                 [('id', 'child_of', self.ids[0]), ('invisible', '=', 0)],
                 order='sequence ASC')

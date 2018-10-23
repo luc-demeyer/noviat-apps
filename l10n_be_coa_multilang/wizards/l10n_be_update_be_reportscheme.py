@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2018 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -55,7 +55,7 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         # write list of entries that are not included in
         # the BNB reports to the note field
         non_be_scheme_accounts = accounts - be_scheme_accounts
-        if self._context.get('l10n.be.coa.multilang.config'):
+        if self.env.context.get('l10n.be.coa.multilang.config'):
             # avoid warning for unaffected earnings account
             # when running config wizard
             non_be_scheme_accounts = non_be_scheme_accounts.filtered(

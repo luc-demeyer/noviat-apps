@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2018 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -38,7 +38,7 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
         help="Select the language of the Chart Of Accounts")
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
-        default=lambda self: self._default_company_id())
+        required=True)
 
     @api.model
     def _default_monolang_coa(self):
@@ -58,35 +58,20 @@ class L10nBeCoaMultilangConfig(models.TransientModel):
 
     @api.model
     def _default_coa_lang(self):
-        res = self._context.get('lang')
+        res = self.env.context.get('lang')
         res = res and res[:2]
         return res in ['fr', 'nl'] and res or 'en'
 
     @api.model
-    def _default_company_id(self):
-        cid = self._context.get('company_id')
-        if cid:
-            return self.env['res.company'].browse(cid)
-        else:
-            return self.env.user.company_id
-
-    @api.model
     def default_get(self, fields_list):
-        """
-        The default_get of the standard accounting setup wizard assumes that
-        the user's default company is equal to the company selected in the
-        settings but doesn't check which may give wrong results.
-        We therefor have added this check here.
-        """
-        ctx = self._context.copy()
-        if ctx.get('chart_company_id'):
-            if ctx['chart_company_id'] != self.env.user.company_id.id:
-                cpy = self.env['res.company'].browse(ctx['chart_company_id'])
-                raise UserError(_(
-                   "Your 'Current Company' must be set to '%s' !")
-                   % cpy.name)
-            ctx['default_company_id'] = ctx['chart_company_id']
-            ctx['default_chart_template_id'] = ctx['chart_template_id']
+        ctx = self.env.context.copy()
+        active_model = self.env.context.get('active_model')
+        active_id = self.env.context.get('active_id')
+        if active_model == 'account.config.settings':
+            acc_config_wiz = self.env[active_model].browse(active_id)
+            ctx['default_company_id'] = acc_config_wiz.company_id.id
+        elif not ctx.get('default_company_id'):
+            ctx['default_company_id'] = self.env.user.company_id.id
         return super(L10nBeCoaMultilangConfig,
                      self.with_context(ctx)).default_get(fields_list)
 
