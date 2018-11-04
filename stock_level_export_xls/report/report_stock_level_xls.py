@@ -2,7 +2,7 @@
 # Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-# TO REMOVE after merge of oca/reporting-engine PR XX
+# TO REMOVE after merge of https://github.com/OCA/reporting-engine/pull/251
 from types import CodeType
 from datetime import datetime
 
@@ -525,7 +525,7 @@ class StockLevelXls(AbstractReportXlsx):
             },
             default_format=self.format_theader_yellow_left)
 
-    #TOREMOVE after merge of oca/reporting-engine PR XX
+    #TOREMOVE after merge of https://github.com/OCA/reporting-engine/pull/251
     def _write_line(self, ws, row_pos, ws_params, col_specs_section=None,
                     render_space=None, default_format=None):
         """
