@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="wiz_export_stock_level_view_form" model="ir.ui.view">
+    <field name="name">Generate stock level report</field>
+    <field name="model">wiz.export.stock.level</field>
+    <field name="arch" type="xml">
+      <form string="Export File">
+        <group name="options" col="4">
+          <separator string="Export Options" colspan="4"/>
+          <field name="stock_level_date"
+                 attrs="{'invisible': [('import_compatible', '=', True)]}"/>
+          <field name="add_cost"
+                 attrs="{'invisible': [('import_compatible', '=', True)]}"/>
+          <field name="import_compatible"/>
+        </group>
+        <group name="filters">
+          <separator string="Export Filters" colspan="2"/>
+          <group name="filters_left">
+            <field name="company_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   groups="base.group_multi_company"/>
+            <field name="warehouse_id"
+                   domain="[('company_id', '=', company_id)]"
+                   options="{'no_create': True, 'no_open': True}"
+                   attrs="{'invisible': [('import_compatible', '=', True)]}"/>
+            <field name="location_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   attrs="{'required': [('import_compatible', '=', True)]}"/>
+            <field name="owner_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   groups="stock.group_tracking_owner"/>
+          </group>
+          <group name="filters_right">
+            <field name="categ_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   attrs="{'invisible': [('product_select', '=', 'select')]}"/>
+            <field name="product_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   attrs="{'invisible': [('product_select', '=', 'select')]}"/>
+            <field name="lot_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   groups="stock.group_production_lot"/>
+            <field name="package_id"
+                   options="{'no_create': True, 'no_open': True}"
+                   groups="stock.group_tracking_lot"/>
+            <field name="product_type"/>
+            <field name="product_select" invisible="not context.get('active_model') in ['product.product', 'product.template']"/>
+          </group>
+        </group>
+        <footer>
+          <button name="xls_export" string="Export"
+                  type="object" default_focus="1"
+                   class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="wiz_export_stock_level_action" model="ir.actions.act_window">
+    <field name="name">Stock Level Excel export</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">wiz.export.stock.level</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="wiz_export_stock_level_view_form"/>
+    <field name="target">new</field>
+  </record>
+
+  <record id="wiz_export_stock_level_product_product_ir_value" model="ir.values">
+    <field name="key2">client_action_multi</field>
+    <field name="model">product.product</field>
+    <field name="name">Stock Level Excel export</field>
+    <field eval="'ir.actions.act_window,%d'%wiz_export_stock_level_action" name="value"/>
+  </record>
+
+  <record id="wiz_export_stock_level_product_template_ir_value" model="ir.values">
+    <field name="key2">client_action_multi</field>
+    <field name="model">product.template</field>
+    <field name="name">Stock Level Excel export</field>
+    <field eval="'ir.actions.act_window,%d'%wiz_export_stock_level_action" name="value"/>
+  </record>
+
+  <menuitem id="wiz_export_stock_level_menu"
+            name="Stock Level Excel export"
+            parent="stock.menu_stock_inventory_control"
+            action="wiz_export_stock_level_action"
+            sequence="50"/>
+
+</odoo>

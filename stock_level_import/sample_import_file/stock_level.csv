@@ -1,0 +1,8 @@
+Stock Levels at 2016-07-18 09:12:13;;;;;;;;
+;;;;;;;;
+Stock Location;Product;Product UOM;Quantity;Cost;Stock Value;location_id;product_id;product_uom_id
+Stock;bocht 45°;PCE;500,00;12,00;6.000,00;12;5;1
+Stock;C-001;PCE;499,00;20,00;9.980,00;12;4;1
+Stock;O-001;PCE;10,00;5,00;50,00;12;2;1
+Stock;T-001;PCE;105,00;35,00;3.675,00;12;3;1
+;;;;;19.705,00;;;
