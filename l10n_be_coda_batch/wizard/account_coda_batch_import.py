@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -23,6 +23,10 @@ class AccountCodaBatchImport(models.TransientModel):
         'CODA Batch Import Folder', required=True,
         default=lambda self: self._default_directory(),
         help='Folder containing the CODA Files for the batch import.')
+    period_id = fields.Many2one(
+        'account.period', string='Force Period',
+        domain=[('state', '=', 'draft'), ('special', '=', False)],
+        help="Keep empty to use the period of the bank statement date.")
     note = fields.Text(string='Batch Import Log', readonly=True)
     reconcile = fields.Boolean(
         help="Launch Automatic Reconcile after CODA import.", default=True)
@@ -116,7 +120,7 @@ class AccountCodaBatchImport(models.TransientModel):
             try:
                 statements = coda_import_wiz._coda_parsing(
                     codafile=coda_file[1], codafilename=coda_file[2],
-                    period_id=None, batch=True)
+                    period=self.period_id, batch=True)
                 if self.reconcile or self._context.get('automatic_reconcile'):
                     reconcile_note = ''
                     for statement in statements:
@@ -126,18 +130,18 @@ class AccountCodaBatchImport(models.TransientModel):
                         self._log_note += reconcile_note
                 self._log_note += _(
                     "\n\nCODA File '%s' has been imported.\n"
-                    ) % coda_file[2]
+                ) % coda_file[2]
             except Warning, e:
                 self._nb_err += 1
                 self._err_log += _(
                     "\n\nError while processing CODA File '%s' :\n%s"
-                    ) % (coda_file[2], ''.join(e.args))
+                ) % (coda_file[2], ''.join(e.args))
             except:
                 self._nb_err += 1
                 tb = ''.join(format_exception(*exc_info()))
                 self._err_log += _(
                     "\n\nError while processing CODA File '%s' :\n%s"
-                    ) % (coda_file[2], tb)
+                ) % (coda_file[2], tb)
             file_import_time = time.time() - time_start
             _logger.warn(
                 'File %s processing time = %.3f seconds',
@@ -158,7 +162,7 @@ class AccountCodaBatchImport(models.TransientModel):
             'note': note,
             'file_count': len(files),
             'error_count': self._nb_err,
-            })
+        })
         coda_batch.state = log_state
 
         if restart:
@@ -199,10 +203,10 @@ class AccountCodaBatchImport(models.TransientModel):
         self._nb_err += 1
         self._err_log += _(
             "\n\nError while processing CODA File '%s' :"
-            ) % (filename)
+        ) % (filename)
         self._err_log += _(
             "\nThis CODA File is marked by your bank as a 'Duplicate' !"
-            )
+        )
         self._err_log += _(
             '\nPlease treat this CODA File manually !')
 
@@ -233,7 +237,7 @@ class AccountCodaBatchImport(models.TransientModel):
                     self._nb_err += 1
                     self._err_log += _(
                         "\n\nError while processing CODA File '%s' :"
-                        ) % (filename)
+                    ) % (filename)
                     self._err_log += _("\nEmpty File !")
                 else:
                     for line in recordlist:

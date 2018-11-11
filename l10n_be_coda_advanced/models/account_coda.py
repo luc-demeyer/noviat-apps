@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 
 
 class AccountCoda(models.Model):
@@ -45,6 +46,9 @@ class AccountCoda(models.Model):
     @api.multi
     def unlink(self):
         for coda in self:
+            if coda.state != 'draft':
+                raise UserError(
+                    _("Only CODA File objects in state 'draft' can be deleted !"))
             coda.bank_statement_ids.unlink()
         return super(AccountCoda, self).unlink()
 

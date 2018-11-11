@@ -11,6 +11,7 @@
           <group attrs="{'invisible': [('note', '!=', False)]}">
             <separator string="Select Folder" colspan="2"/>
             <field name="directory"/>
+            <field name="period_id"/>
             <field name="reconcile"/>
           </group>
           <group attrs="{'invisible': [('note', '=', False)]}">

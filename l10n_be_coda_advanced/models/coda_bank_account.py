@@ -62,7 +62,7 @@ class CodaBankAccount(models.Model):
              "(as specified on 'New Balance' record): %(paper)s")
     transfer_account = fields.Many2one(
         'account.account', string='Default Internal Transfer Account',
-        domain=[('code', 'like', '58%'), ('type', '!=', 'view')],
+        domain=[('code', '=like', '58%'), ('type', '!=', 'view')],
         required=True,
         help="Set here the default account that will be used for "
              "internal transfer between own bank accounts "

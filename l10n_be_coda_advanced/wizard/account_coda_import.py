@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2018 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -7,6 +7,11 @@ import json
 import logging
 import re
 import time
+import zipfile
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
 from sys import exc_info
 from traceback import format_exception
 
@@ -39,7 +44,8 @@ class AccountCodaImport(models.TransientModel):
     """
     _skip_undefined = False
 
-    coda_data = fields.Binary(string='CODA File', required=True)
+    coda_data = fields.Binary(
+        string='CODA (Zip) File', required=True)
     coda_fname = fields.Char(
         string='CODA Filename', default='', required=True)
     coda_fname_dummy = fields.Char(
@@ -705,7 +711,7 @@ class AccountCodaImport(models.TransientModel):
         return coda_parsing_note, transaction_seq
 
     def _coda_record_8(self, coda_statement, line, coda_parsing_note,
-                       transaction_seq, period_id):
+                       transaction_seq, period):
 
         cba = coda_statement['coda_bank_params']
         # get list of lines parsed already
@@ -739,22 +745,21 @@ class AccountCodaImport(models.TransientModel):
             bal_end = - bal_end
         coda_statement['balance_end_real'] = bal_end
 
-        if not period_id:
+        if not period:
             if coda_statement['new_balance_date']:
-                periods = self.env['account.period'].search(
+                period = self.env['account.period'].search(
                     [('date_start', '<=', coda_statement['new_balance_date']),
                      ('date_stop', '>=', coda_statement['new_balance_date']),
                      ('special', '=', False),
                      ('company_id', '=', cba.company_id.id)])
             else:
-                periods = self.env['account.period'].search(
+                period = self.env['account.period'].search(
                     [('date_start', '<=', coda_statement['date']),
                      ('date_stop', '>=', coda_statement['date']),
                      ('special', '=', False),
                      ('company_id', '=', cba.company_id.id)])
-            period_id = periods and periods[0].id
         if coda_statement['type'] == 'normal':
-            if not period_id:
+            if not period:
                 err_string = _(
                     "\nThe CODA Statement New Balance date doesn't fall "
                     "within a defined Accounting Period !"
@@ -762,7 +767,6 @@ class AccountCodaImport(models.TransientModel):
                 ) % coda_statement['new_balance_date']
                 raise Warning(_('Data Error !'), err_string)
             else:
-                period = self.env['account.period'].browse(period_id)
                 if period.state == 'done':
                     err_string = _(
                         "\nYou cannot load the CODA Statement "
@@ -771,7 +775,7 @@ class AccountCodaImport(models.TransientModel):
                         "reopen period %s."
                     ) % period.code
                     raise Warning(err_string)
-        coda_statement['period_id'] = period_id
+        coda_statement['period_id'] = period.id
 
         # update coda_statement['name'] with data from 8 record
         if cba.coda_st_naming:
@@ -1243,9 +1247,154 @@ class AccountCodaImport(models.TransientModel):
 
     @api.multi
     def coda_parsing(self):
+        if self.coda_fname.split('.')[-1].lower() == 'zip':
+            return self._coda_zip()
         return self._coda_parsing()
 
-    def _coda_parsing(self, codafile=None, codafilename=None, period_id=None,
+    def _coda_zip(self):
+        """
+        Expand ZIP archive before CODA parsing.
+        TODO: refactor code to share logic with 'l10n_be_coda_batch' module
+        """
+        self._ziplog_note = ''
+        self._ziperr_log = ''
+        coda_files = []
+        try:
+            coda_data = base64.decodestring(self.coda_data)
+            with zipfile.ZipFile(StringIO(coda_data)) as coda_zip:
+                for fn in coda_zip.namelist():
+                    if not fn.endswith('/'):
+                        coda_files.append((coda_zip.read(fn), fn))
+        # fall back to regular CODA file processing if zip expand fails
+        except zipfile.BadZipfile, e:
+            _logger.error(str(e))
+            return self._coda_parsing()
+        except:
+            tb = ''.join(format_exception(*exc_info()))
+            _logger.error("Unknown Error while reading zip file\n%s", tb)
+            return self._coda_parsing()
+        coda_files = self._sort_files(coda_files)
+        coda_ids = []
+        bk_st_ids = []
+
+        # process CODA files
+        for coda_file in coda_files:
+            time_start = time.time()
+            try:
+                statements = self._coda_parsing(
+                    codafile=coda_file[1], codafilename=coda_file[2],
+                    period=self.period_id, batch=True)
+                coda_ids += [self._coda_id]
+                bk_st_ids += statements.ids
+                if self.reconcile:
+                    reconcile_note = ''
+                    for statement in statements:
+                        reconcile_note = self._automatic_reconcile(
+                            statement, reconcile_note=reconcile_note)
+                    if reconcile_note:
+                        self._ziplog_note += reconcile_note
+                self._ziplog_note += _(
+                    "\n\nCODA File '%s' has been imported.\n"
+                ) % coda_file[2]
+                self._ziplog_note += (
+                    '\n' + _("Number of statements processed")
+                    + ' : {}'.format(len(bk_st_ids))
+                )
+            except Warning, e:
+                self._ziperr_log += _(
+                    "\n\nError while processing CODA File '%s' :\n%s"
+                ) % (coda_file[2], ''.join(e.args))
+            except:
+                tb = ''.join(format_exception(*exc_info()))
+                self._ziperr_log += _(
+                    "\n\nError while processing CODA File '%s' :\n%s"
+                ) % (coda_file[2], tb)
+            file_import_time = time.time() - time_start
+            _logger.warn(
+                'File %s processing time = %.3f seconds',
+                coda_file[2], file_import_time)
+
+        note = _("ZIP archive import results:")
+        note += self._ziperr_log + self._ziplog_note
+        log_footer = _('\n\nNumber of files : %s') % str(len(coda_files))
+        self.note = note + log_footer
+
+        ctx = dict(self.env.context, coda_ids=coda_ids, bk_st_ids=bk_st_ids)
+        module = __name__.split('addons.')[1].split('.')[0]
+        result_view = self.env.ref(
+            '%s.account_coda_import_view_form_result' % module)
+        return {
+            'name': _('CODA ZIP import result'),
+            'res_id': self.id,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.coda.import',
+            'view_id': result_view.id,
+            'target': 'new',
+            'context': ctx,
+            'type': 'ir.actions.act_window',
+        }
+
+    def _msg_duplicate(self, filename):
+        self._nb_err += 1
+        self._ziperr_log += _(
+            "\n\nError while processing CODA File '%s' :") % (filename)
+        self._ziperr_log += _(
+            "\nThis CODA File is marked by your bank as a 'Duplicate' !")
+        self._ziperr_log += _(
+            '\nPlease treat this CODA File manually !')
+
+    def _msg_exception(self, filename):
+        self._nb_err += 1
+        self._ziperr_log += _(
+            "\n\nError while processing CODA File '%s' :") % (filename)
+        self._ziperr_log += _('\nInvalid Header Record !')
+
+    def _msg_noheader(self, filename):
+        self._nb_err += 1
+        self._ziperr_log += _(
+            "\n\nError while processing CODA File '%s' :") % (filename)
+        self._ziperr_log += _("\nMissing Header Record !")
+
+    def _sort_files(self, coda_files_in):
+        """
+        Sort CODA files on creation date.
+        """
+        coda_files = []
+        for data, filename in coda_files_in:
+            coda_creation_date = False
+            recordlist = unicode(
+                data, 'windows-1252', 'strict').split('\n')
+            if not recordlist:
+                self._nb_err += 1
+                self._ziperr_log += _(
+                    "\n\nError while processing CODA File '%s' :"
+                ) % (filename)
+                self._ziperr_log += _("\nEmpty File !")
+            else:
+                for line in recordlist:
+                    if not line:
+                        pass
+                    elif line[0] == '0':
+                        try:
+                            coda_creation_date = str2date(line[5:11])
+                            if line[16] == 'D':
+                                self._msg_duplicate(filename)
+                            else:
+                                coda_files += [
+                                    (coda_creation_date,
+                                     data,
+                                     filename)]
+                        except:
+                            self._msg_exception(filename)
+                        break
+                    else:
+                        self._msg_noheader(filename)
+                        break
+        coda_files.sort()
+        return coda_files
+
+    def _coda_parsing(self, codafile=None, codafilename=None, period=None,
                       batch=False):
 
         if batch:
@@ -1260,7 +1409,6 @@ class AccountCodaImport(models.TransientModel):
             recordlist = unicode(
                 base64.decodestring(codafile),
                 'windows-1252', 'strict').split('\n')
-            period_id = self.period_id and self.period_id.id or False
 
         self._coda_id = self._context.get('coda_id')
         self._coda_banks = self.env['coda.bank.account'].search([])
@@ -1269,7 +1417,6 @@ class AccountCodaImport(models.TransientModel):
         self._trans_categs = self.env[
             'account.coda.trans.category'].search([])
         self._comm_types = self.env['account.coda.comm.type'].search([])
-        self._error_log = ''
         self._coda_import_note = ''
         coda_statements = []
 
@@ -1323,7 +1470,7 @@ class AccountCodaImport(models.TransientModel):
                 # new balance record
                 coda_parsing_note = self._coda_record_8(
                     coda_statement, line, coda_parsing_note, st_line_seq,
-                    period_id)
+                    period)
 
             elif line[0] == '9':
                 # footer record
@@ -1486,8 +1633,6 @@ class AccountCodaImport(models.TransientModel):
         coda_note_header += " %s :" % self.env.user.name
         coda_note_footer = '\n\n' + _("Number of statements processed") \
             + ' : ' + str(len(coda_statements))
-        self._error_log = self._error_log + '\n' + \
-            _("Number of errors") + ' : ' + str(self._nb_err) + '\n'
 
         if not self._nb_err:
             coda = self.env['account.coda'].browse(self._coda_id)
@@ -1511,16 +1656,13 @@ class AccountCodaImport(models.TransientModel):
 
         self.note = note
 
-        ctx = self._context.copy()
-        ctx.update({
-            'coda_id': self._coda_id,
-            'bk_st_ids': bank_statements.ids,
-            'coda_st_ids': coda_st_ids,
-        })
+        ctx = dict(self.env.context,
+                   coda_ids=[self._coda_id],
+                   bk_st_ids=bank_statements.ids,
+                   coda_st_ids=coda_st_ids)
         module = __name__.split('addons.')[1].split('.')[0]
         result_view = self.env.ref(
             '%s.account_coda_import_view_form_result' % module)
-
         return {
             'name': _('Import CODA File result'),
             'res_id': self.id,
@@ -2163,7 +2305,7 @@ class AccountCodaImport(models.TransientModel):
         action = self.env['ir.actions.act_window'].for_xml_id(
             module, 'coda_bank_statement_action')
         domain = eval(action.get('domain') or '[]')
-        domain += [('coda_id', '=', self._context.get('coda_id'))]
+        domain += [('coda_id', 'in', self.env.context.get('coda_ids'))]
         action.update({'domain': domain})
         return action
 
@@ -2173,7 +2315,17 @@ class AccountCodaImport(models.TransientModel):
         action = self.env['ir.actions.act_window'].for_xml_id(
             'account', 'action_bank_statement_tree')
         domain = eval(action.get('domain') or '[]')
-        domain += [('coda_id', '=', self._context.get('coda_id'))]
+        domain += [('coda_id', 'in', self.env.context.get('coda_ids'))]
+        action.update({'domain': domain})
+        return action
+
+    @api.multi
+    def action_open_coda_files(self):
+        self.ensure_one()
+        action = self.env['ir.actions.act_window'].for_xml_id(
+            'l10n_be_coda_advanced', 'account_coda_action')
+        domain = eval(action.get('domain') or '[]')
+        domain += [('id', 'in', self.env.context.get('coda_ids'))]
         action.update({'domain': domain})
         return action
 
