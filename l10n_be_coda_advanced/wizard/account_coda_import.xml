@@ -51,9 +51,16 @@
     <field name="arch" type="xml">
       <form string="Import CODA File">
         <separator colspan="4" string="Results :" />
-        <field name="note" colspan="4" nolabel="1" width="850" height="400"/>
+        <field name="note" colspan="4" nolabel="1" width="850" height="500"/>
         <footer>
-          <button name="action_open_bank_statements" string="View Bank Statement(s)" type="object" class="oe_highlight" invisible="not context.get('bk_st_ids')"/>
+          <button name="action_open_bank_statements"
+                  string="View Bank Statement(s)"
+                  type="object" class="oe_highlight"
+                  invisible="not context.get('bk_st_ids')"/>
+          <button name="action_open_coda_files"
+                  string="View CODA Files(s)"
+                  type="object"
+                  invisible="not context.get('coda_ids')"/>
           <button name="button_close" type="object" string="Close"/>
         </footer>
       </form>

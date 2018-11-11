@@ -53,7 +53,7 @@ class CodaBankAccount(models.Model):
     transfer_account = fields.Many2one(
         comodel_name='account.account',
         string='Default Internal Transfer Account',
-        domain=[('code', 'like', '58%')],
+        domain=[('code', '=like', '58%')],
         required=True,
         help="Set here the default account that will be used for "
              "internal transfer between own bank accounts "
