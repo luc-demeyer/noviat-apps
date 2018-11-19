@@ -24,8 +24,8 @@ class AccountInvoice(models.Model):
                 node.set(
                     'modifiers',
                     '{"invisible": '
-                    '[["state", "not in", ["draft", "proforma2", "open"]], '
-                    '["amount_total", "!=", 0]]}'
+                    '["|", ["state", "=", "cancel"], '
+                    '"&", ["state", "=", "paid"], ["amount_total", "!=", 0]]}'
                 )
             res['arch'] = etree.tostring(doc)
         return res
