@@ -2,7 +2,7 @@
 <odoo>
 
   <!-- TODO: move the 'code' field to a separate (OCA) module -->
-  
+
   <record id="view_account_financial_report_form" model="ir.ui.view">
     <field name="name">account.financial.report.form.code</field>
     <field name="model">account.financial.report</field>
@@ -13,7 +13,7 @@
       </field>
     </field>
   </record>
-  
+
   <record id="view_account_financial_report_tree" model="ir.ui.view">
     <field name="name">account.financial.report.tree.code</field>
     <field name="model">account.financial.report</field>
@@ -24,7 +24,7 @@
       </field>
     </field>
   </record>
-  
+
   <record id="view_account_financial_report_search" model="ir.ui.view">
     <field name="name">account.financial.report.search.code</field>
     <field name="model">account.financial.report</field>
