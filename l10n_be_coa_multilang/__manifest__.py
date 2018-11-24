@@ -11,6 +11,7 @@
     'category': 'Localization',
     'depends': [
         'account_account_tag_code',
+        'account_financial_report_date_range',
         'account_tax_code',
         'l10n_multilang',
         'l10n_account_translate_config',
