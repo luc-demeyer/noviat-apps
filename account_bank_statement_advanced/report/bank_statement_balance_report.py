@@ -11,8 +11,8 @@ from odoo.exceptions import UserError
 class BankStatementBalanceReport(report_sxw.rml_parse):
 
     def set_context(self, wiz, data, ids, report_type=None):
-        if not wiz.journal_ids:
-            raise UserError(_('No Financial Journals selected!'))
+        journals = wiz.journal_ids or \
+            wiz.env['account.journal'].search([('type', '=', 'bank')])
         self.cr.execute(
             "SELECT s.name AS s_name, s.date AS s_date, j.code AS j_code, "
             "s.balance_end_real AS s_balance, "
@@ -29,7 +29,7 @@ class BankStatementBalanceReport(report_sxw.rml_parse):
             "   ON (s.journal_id = d.journal_id AND s.date = d.max_date) "
             "WHERE s.journal_id IN %s "
             "ORDER BY j_curr_id, j.code",
-            (wiz.date_balance, wiz.journal_ids._ids))
+            (wiz.date_balance, journals._ids))
         lines = self.cr.dictfetchall()
         [x.update(
             {'currency': wiz.env['res.currency'].browse(x['j_curr_id'])})
