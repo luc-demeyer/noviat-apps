@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2017-09-03 10:57:16.700000\n"
-"PO-Revision-Date: 2017-09-03 10:57:16.700000\n"
+"POT-Creation-Date: 2018-11-26 19:38:54.618000\n"
+"PO-Revision-Date: 2018-11-26 19:38:54.618000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -195,7 +195,7 @@ msgid "CODA Bank Account Configuration"
 msgstr "CODA bankrekening instellingen"
 
 #. module: l10n_be_coda_advanced
-#: field:coda.bank.account,acive:0
+#: field:coda.bank.account,active:0
 msgid "Active"
 msgstr "Actief"
 
@@ -495,7 +495,7 @@ msgid "Communication"
 msgstr "Mededeling"
 
 #. module: l10n_be_coda_advanced
-#: field:account.coda.import:0
+#: field:account.coda.import,note:0
 msgid "Log"
 msgstr "Log"
 
@@ -551,8 +551,8 @@ msgstr "Bekijk CODA dagafschrift(en)"
 
 #. module: l10n_be_coda_advanced
 #: field:account.coda.import,coda_data:0
-msgid "CODA File"
-msgstr "CODA bestand"
+msgid "CODA (Zip) File "
+msgstr "CODA (Zip) bestand"
 
 #. module: l10n_be_coda_advanced
 #: field:account.coda.import,coda_fname:0
