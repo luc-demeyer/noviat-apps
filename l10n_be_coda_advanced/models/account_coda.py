@@ -48,7 +48,8 @@ class AccountCoda(models.Model):
         for coda in self:
             if coda.state != 'draft':
                 raise UserError(
-                    _("Only CODA File objects in state 'draft' can be deleted !"))
+                    _("Only CODA File objects in state"
+                      " 'draft' can be deleted !"))
             coda.bank_statement_ids.unlink()
         return super(AccountCoda, self).unlink()
 

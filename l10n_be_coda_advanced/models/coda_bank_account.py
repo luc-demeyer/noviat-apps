@@ -10,6 +10,14 @@ class CodaBankAccount(models.Model):
     _name = 'coda.bank.account'
     _description = 'CODA Bank Account Configuration'
     _order = 'name'
+    _sql_constraints = [
+        ('account_uniq_1', 'unique (journal_id, description1, currency_id)',
+         "The combination of Bank Account, Primary Account Description "
+         "and Currency must be unique !"),
+        ('account_uniq_2', 'unique (journal_id, description2, currency_id)',
+         "The combination of Bank Account, Secondary Account Description "
+         "and Currency must be unique !"),
+    ]
 
     name = fields.Char(string='Name', required=True)
     description1 = fields.Char(
@@ -50,9 +58,10 @@ class CodaBankAccount(models.Model):
              "(as specified on 'Old Balance' record): %(paper_ob)s"
              "\nPaper Statement sequence number "
              "(as specified on 'New Balance' record): %(paper)s")
+    # TODO: rename to transfer_account_id
     transfer_account = fields.Many2one(
         comodel_name='account.account',
-        string='Default Internal Transfer Account',
+        string='Internal Funds Transfer Account',
         domain=[('code', '=like', '58%')],
         required=True,
         help="Set here the default account that will be used for "
@@ -143,14 +152,9 @@ class CodaBankAccount(models.Model):
             and display_name[:55] + '...' \
             or display_name
 
-    _sql_constraints = [
-        ('account_uniq_1', 'unique (bank_id, description1, currency_id)',
-         "The combination of Bank Account, Account Description "
-         "and Currency must be unique !"),
-        ('account_uniq_2', 'unique (bank_id, description2, currency_id)',
-         "The combination of Bank Account, Account Description "
-         "and Currency must be unique !"),
-    ]
+    @api.onchange('company_id')
+    def _onchange_company_id(self):
+        self.transfer_account = self.company_id.transfer_account_id
 
     @api.one
     @api.returns('self', lambda value: value.id)
