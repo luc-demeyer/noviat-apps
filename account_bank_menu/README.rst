@@ -6,7 +6,7 @@
 Account Bank Menu
 =================
 
-This module adds a menu entry *Bank and Cash* to the *Accounting' menu
+This module adds a menu entry *Bank and Cash* to the *Accounting* menu
 since the use of the accounting dashboard is not always practical especially
 for companies with lots of bank accounts.
 so that these can be cancelled and corrected via 'Set to Draft'.
