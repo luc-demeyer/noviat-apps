@@ -4,7 +4,6 @@
 
 
 from odoo import api, fields, models, _
-# from odoo.exceptions import UserError
 
 
 class AccountBankStatementLine(models.Model):
@@ -22,7 +21,7 @@ class AccountBankStatementLine(models.Model):
     globalisation_id = fields.Many2one(
         comodel_name='account.bank.statement.line.global',
         string='Globalisation ID',
-        states={'confirm': [('readonly', True)]},
+        readonly=True,
         help="Code to identify transactions belonging to the same "
              "globalisation level within a batch payment")
     globalisation_amount = fields.Monetary(
