@@ -723,7 +723,13 @@ class AccountCodaImport(models.TransientModel):
                     'glob_lvl_flag': last_transaction['glob_lvl_flag']})
         coda_statement['paper_nb_seq_number'] = line[1:4]
         bal_end = list2float(line[42:57])
-        coda_statement['new_balance_date'] = str2date(line[57:63])
+        new_balance_date = str2date(line[57:63])
+        if not new_balance_date:
+            # take date of first transaction
+            tr1 = coda_statement['coda_transactions'].get(1)
+            if tr1:
+                new_balance_date = tr1.get('entry_date')
+        coda_statement['new_balance_date'] = new_balance_date
         if line[41] == '1':    # 1=Debit
             bal_end = - bal_end
         coda_statement['balance_end_real'] = bal_end
