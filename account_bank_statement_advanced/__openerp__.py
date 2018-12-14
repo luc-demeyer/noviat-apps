@@ -23,6 +23,7 @@
         'views/account_bank_statement.xml',
         'views/account_bank_statement_line.xml',
         'views/account_bank_statement_line_global.xml',
+        'views/account_journal.xml',
         'views/report_layout.xml',
         'views/report_statement_balances.xml',
         'wizard/bank_statement_balance_print.xml',

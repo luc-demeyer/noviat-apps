@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<openerp>
+
+  <record id="view_account_journal_form" model="ir.ui.view">
+    <field name="name">account.journal.form</field>
+    <field name="model">account.journal</field>
+    <field name="inherit_id" ref="account.view_account_journal_form"/>
+    <field name="arch" type="xml">
+      <!--
+      Allow to set code when creating new journal.
+      Change of code is protected by write method when there are accounting entries.
+      -->
+      <field name="code" position="attributes">
+        <attribute name="attrs"/>
+      </field>
+    </field>
+  </record>
+
+</openerp>
