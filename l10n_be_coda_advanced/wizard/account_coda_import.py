@@ -725,10 +725,8 @@ class AccountCodaImport(models.TransientModel):
         bal_end = list2float(line[42:57])
         new_balance_date = str2date(line[57:63])
         if not new_balance_date:
-            # take date of first transaction
-            tr1 = coda_statement['coda_transactions'].get(1)
-            if tr1:
-                new_balance_date = tr1.get('entry_date')
+            # take date of last transaction
+            new_balance_date = last_transaction.get('entry_date')
         coda_statement['new_balance_date'] = new_balance_date
         if line[41] == '1':    # 1=Debit
             bal_end = - bal_end
