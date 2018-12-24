@@ -193,12 +193,17 @@ class l10nBeVatIntracom(models.TransientModel):
     def _node_IntraListing(self, parent, ns_map, ref):
         intra_list = self._get_intra_list()
         AmountSum = sum([x['amount'] for x in intra_list.values()])
+        ClientsNbr = len(intra_list)
+        if not ClientsNbr:
+            raise UserError(_(
+                "No Intracom transactions found for %s."
+                ) % self.period)
 
         IntraListing = etree.SubElement(
             parent, 'IntraListing',
             attrib={
                 'SequenceNumber': '1',
-                'ClientsNbr': '%s' % len(intra_list),
+                'ClientsNbr': '%s' % ClientsNbr,
                 'DeclarantReference': ref,
                 'AmountSum': '%.2f' % AmountSum,
             }
