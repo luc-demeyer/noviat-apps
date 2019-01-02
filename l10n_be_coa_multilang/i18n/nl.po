@@ -1,0 +1,2813 @@
+# Dutch translation of Odoo Server.
+# This file contains the translation of the following modules:
+#    * l10n_be_coa_multilang
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 11.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2018-12-23 20:24:44.387000\n"
+"PO-Revision-Date: 2018-12-23 20:24:44.387000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 
+""Language: Dutch
+""Plural-Forms: nplurals=2; plural=(n > 1);
+"
+#. module: l10n_be_coa_multilang
+#: model:account.chart.template,name:l10n_be_coa_multilang.l10n_be_coa_multilang_template
+msgid "Belgian Chart of Accounts (en/nl/fr)"
+msgstr "Belgisch Minimum Algemeen Rekeningstelsel (en/nl/fr)"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:10
+msgid "No records found for your selection!"
+msgstr "Geen records gevonden voor uw keuze!"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_fiscalyear.py:11
+msgid "No Data Available"
+msgstr "Geen gegevens beschikbaar"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:10
+msgid "No records found for your selection!"
+msgstr "Geen records gevonden voor uw keuze!"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/wizard/nov_print_journal.py:11
+msgid "No Data Available"
+msgstr "Geen gegevens beschikbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_bs
+msgid "Belgian Balance Sheet"
+msgstr "Belgische Balans"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_account_report_be_pl
+msgid "Belgian Profit And Loss"
+msgstr "Belgische Resultatenrekening"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_finance_belgian_statement
+msgid "Belgian Statements and Reports"
+msgstr "Belgische overzichten en aangiften"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_bs
+msgid "Belgian Balance Sheet"
+msgstr "Belgische Balans"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_account_report_be_pl
+msgid "Belgian Profit And Loss"
+msgstr "Belgische Resultatenrekening"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_be_legal_financial_reportscheme
+msgid "Belgian Legal Financial Report Scheme"
+msgstr "Schema Belgische Wettelijke Rapportage"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_be_legal_financial_reportscheme
+msgid "Belgian Legal Financial Report Scheme"
+msgstr "Schema Belgische Wettelijke Rapportage"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_declaration
+msgid "Periodical VAT Declaration"
+msgstr "Periodieke BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_declaration
+msgid "Periodical VAT Declaration"
+msgstr "Periodieke BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Periodical VAT Declaration"
+msgstr "Periodieke BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Options"
+msgstr "Opties"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Comments"
+msgstr "Commentaar"
+
+#. module: l10n_be_coa_multilang
+#: view:l10n_be.vat.declaration:0
+msgid "Last Declaration"
+msgstr "Laatste Aangifte"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,period_id:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,ask_restitution:0
+msgid "Ask Restitution"
+msgstr "Aanvraag terugbetaling"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,ask_payment:0
+msgid "Ask Payment"
+msgstr "Aanvraag betaalformulieren"
+
+#. module: l10n_be_coa_multilang
+#: field:l10n_be.vat.declaration,client_nihil:0
+msgid "Last Declaration"
+msgstr "Laatste Aangifte"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.l10n_be_vat_intra
+msgid "Intracom VAT Declaration"
+msgstr "Intracommunautaire BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_vat_intra
+msgid "Intracom VAT Declaration"
+msgstr "Intracommunautaire BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: view:partner.vat.intra:0
+msgid "Intracom VAT Declaration"
+msgstr "Intracommunautaire BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.partner_vat_listing
+msgid "Annual Listing of VAT subjected Customers"
+msgstr "Jaarlijkse BTW-listing Klanten"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.actions.act_window,name:l10n_be_coa_multilang.action_partner_vat_listing
+msgid "Partner VAT Listing"
+msgstr "BTW-listing Klanten"
+
+#. module: l10n_be_coa_multilang
+#: field:partner.vat,year:0
+msgid "Year"
+msgstr "Jaar"
+
+#. module: l10n_be_coa_multilang
+#: field:partner.vat,limit_amount:0
+msgid "Limit Amount"
+msgstr "Bestedingslimiet"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_fy
+msgid "Print Open Receivables/Payables by Fiscal Year"
+msgstr "Debiteuren/Crediteuren overzicht per boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_partner_open_arap_period
+msgid "Print Open Receivables/Payables by Period"
+msgstr "Debiteuren/Crediteuren overzicht per periode"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal
+msgid "Print Journal by Period"
+msgstr "Dagboekoverzicht per periode"
+
+#. module: l10n_be_coa_multilang
+#: model:ir.ui.menu,name:l10n_be_coa_multilang.menu_nov_print_journal_fiscalyear
+msgid "Print Journal by Fiscal Year"
+msgstr "Dagboekoverzicht per boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Journal Overview"
+msgstr "Dagboekoverzicht"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Fiscal Year"
+msgstr "Boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Account"
+msgstr "Rekening"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "VAT"
+msgstr "BTW"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Debit"
+msgstr "Debet"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "Credit"
+msgstr "Credit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.fiscalyear.print:0
+msgid "VAT Declaration"
+msgstr "BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Journal Overview"
+msgstr "Dagboekoverzicht"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Account"
+msgstr "Rekening"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "VAT"
+msgstr "BTW"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Debit"
+msgstr "Debet"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "Credit"
+msgstr "Credit"
+
+#. module: l10n_be_coa_multilang
+#: report:nov.account.journal.period.print:0
+msgid "VAT Declaration"
+msgstr "BTW aangifte"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:10
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:11
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:12
+msgid "Due Date"
+msgstr "Vervaldatum"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:13
+msgid "Account"
+msgstr "Rekening"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:14
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:14
+msgid "Debit"
+msgstr "Debet"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:15
+msgid "Credit"
+msgstr "Credit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:16
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.fy.print:17
+msgid "Totals"
+msgstr "Totalen"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:10
+msgid "Document"
+msgstr "Document"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:11
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:12
+msgid "Due Date"
+msgstr "Vervaldatum"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:13
+msgid "Account"
+msgstr "Rekening"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:14
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:14
+msgid "Debit"
+msgstr "Debet"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:15
+msgid "Credit"
+msgstr "Credit"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:16
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: l10n_be_coa_multilang
+#: report:account.partner.open.arap.period.print:17
+msgid "Totals"
+msgstr "Totalen"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:10
+msgid "Open Receivables"
+msgstr "Debiteuren"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Open Payables"
+msgstr "Crediteuren"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Fiscal Year"
+msgstr "Boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: code:addons/l10n_be_coa_multilang/report/account_partner_open_arap.py:11
+msgid "Period"
+msgstr "Periode"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Print Journal by Fiscal Year"
+msgstr "Dagboekoverzicht per boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Cancel"
+msgstr "Annuleer"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "Boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,journal_id:0
+msgid "Journal"
+msgstr "Dagboek"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal.fiscalyear:0
+msgid "Print"
+msgstr "Print"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal.fiscalyear,sort:0
+msgid "Entries Sorted By"
+msgstr "Boekingen gesorteerd op"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal.fiscalyear,sort:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal.fiscalyear,sort:0
+msgid "Number"
+msgstr "Nummer"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Print Journal by Period"
+msgstr "Dagboekoverzicht per periode"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Cancel"
+msgstr "Annuleer"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,journal_ids:0
+msgid "Journals"
+msgstr "Dagboeken"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,period_ids:0
+msgid "Periods"
+msgstr "Periodes"
+
+#. module: l10n_be_coa_multilang
+#: view:nov.print.journal:0
+msgid "Print"
+msgstr "Print"
+
+#. module: l10n_be_coa_multilang
+#: field:nov.print.journal,sort:0
+msgid "Entries Sorted By"
+msgstr "Boekingen gesorteerd op"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal,sort:0
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_be_coa_multilang
+#: selection:nov.print.journal,sort:0
+msgid "Number"
+msgstr "Nummer"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "Nr"
+msgstr "Nr"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "VAT Number"
+msgstr "BTW Nummer"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "Base Amount"
+msgstr "Maatstaf van Heffing"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "VAT Amount"
+msgstr "Bedrag BTW"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "Company"
+msgstr "Bedrijf"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.listing:0
+msgid "Year"
+msgstr "Jaar"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Nr"
+msgstr "Nr"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "VAT Number"
+msgstr "BTW Nummer"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Code"
+msgstr "Code"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Amount"
+msgstr "Bedrag"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Company"
+msgstr "Bedrijf"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.intracom:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "Case"
+msgstr "Vak"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "VAT Number"
+msgstr "BTW Nummer"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "Description"
+msgstr "Omschrijving"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "Amount"
+msgstr "Bedrag"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "Company"
+msgstr "Bedrijf"
+
+#. module: l10n_be_coa_multilang
+#: report:l10n.be.vat.declaration:0
+msgid "Period"
+msgstr "Periode"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_00
+msgid "Operations subject to a special arrangement"
+msgstr "Handelingen onderworpen aan een bijzondere regeling"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_01
+msgid "Operations subject to 6% VAT"
+msgstr "Uitgaande handelingen aan 6% BTW"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_02
+msgid "Operations subject to 12% VAT"
+msgstr "Uitgaande handelingen aan 12% BTW"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_03
+msgid "Operations subject to 21% VAT"
+msgstr "Uitgaande handelingen aan 21% BTW"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_44
+msgid "Intra Community Services"
+msgstr "Vrijgestelde intracommunautaire leveringen van diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_45
+msgid "VAT due by the Cocontractant"
+msgstr "BTW verschuldigd door de medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_46L
+msgid "VAT exempt Intra Community Supplies of Goods"
+msgstr "Vrijgestelde intracommunautaire leveringen van goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_46T
+msgid "VAT exempt Intra Community ABC Supplies"
+msgstr "ABC verkopen intracommunautair"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_47
+msgid "Other VAT exempt Operations"
+msgstr "Andere vrijgestelde handelingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_48
+msgid "Issued Credit Notes Operations Grid [44] and [46]"
+msgstr "Uitgereikte creditnota's handelingen roosters [44] en [46]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_49
+msgid "Issued Credit Notes Other Operations Section II"
+msgstr "Uitgereikte creditnota’s andere handelingen van kader II"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_81D
+msgid "Purchases of Goods, Raw Materials and Consumables"
+msgstr "Aankopen van handelsgoederen, grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_81ND
+msgid "Purchases of Goods, Raw Mater. and Consum. - VAT Non Deductible"
+msgstr "Aankopen van handelsgoederen, grond- en hulpstoffen - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_82D
+msgid "Purchases of various Goods and Services"
+msgstr "Aankopen van diverse goederen en diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_82ND
+msgid "Purchases of various Goods and Services - VAT Non Deductible"
+msgstr "Aankopen van diverse goederen en diensten - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_83D
+msgid "Purchases of Assets"
+msgstr "Aankopen van bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_83ND
+msgid "Purchases of Assets - VAT Non Deductible"
+msgstr "Aankopen van bedrijfsmiddelen - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_84
+msgid "Incoming Credit Notes Operations Grid [86] and [88]"
+msgstr "Credit notas op de handelingen roosters [86] en [88]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_85D
+msgid "Incoming Credit Notes other Operations"
+msgstr "Ontvangen creditnota’s andere handelingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_85ND
+msgid "Incoming Credit Notes other Operations - VAT Non Deductible"
+msgstr "Ontvangen creditnota’s andere handelingen - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_86
+msgid "Intra Community and ABC Acquisitions"
+msgstr "Intracommunautaire verwervingen en ABC-verkopen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_87
+msgid "Other Incoming Operations"
+msgstr "Andere inkomende handelingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_88
+msgid "Intra Community Services"
+msgstr "Diensten ontvangen van intracom dienstverlener"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_VI
+msgid "Balance (71-72)"
+msgstr "Saldo (71-72)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_XX
+msgid "To Pay - Total"
+msgstr "Te Betalen - Totaal"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_54
+msgid "VAT on Operations Grids [01], [02], [03]"
+msgstr "BTW op handelingen roosters [01], [02], [03]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_55
+msgid "VAT on Operations Grids [86] and  [88]"
+msgstr "BTW op handelingen in roosters [86] en [88]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_56
+msgid "VAT on Operations Grid [87]"
+msgstr "BTW op handelingen in rooster [87]"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_57
+msgid "VAT on Imports"
+msgstr "BTW op invoeren met verlegging van heffing"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_61
+msgid "VAT adjustments in favor of the Tax Authority"
+msgstr "Diverse BTW regularisaties in het voordeel van de Staat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_63
+msgid "VAT Debt from Incoming Credit Notes"
+msgstr "Terug te storten BTW vermeld op ontvangen creditnota’s"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_59
+msgid "Deductible VAT"
+msgstr "Aftrekbare  BTW"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_62
+msgid "VAT adjustments in favor of the Declarant"
+msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_64
+msgid "Deductible VAT from Outgoing Credit Notes"
+msgstr "Te recupereren BTW vermeld op uitgereikte creditnota’s"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.tag,name:l10n_be_coa_multilang.tax_tag_91
+msgid "Advance for Operations from December 1 to 20"
+msgstr "Voorschot voor handelingen van 1 tot 20 december"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_400000
+msgid "Customers"
+msgstr "Klanten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_411000
+msgid "Input VAT - current account balance"
+msgstr "Terug te vorderen BTW - Rekening courant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_411059
+msgid "VAT Deductible"
+msgstr "BTW Aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_411062
+msgid "VAT Deductible - Correction Case 62"
+msgstr "BTW Aftrekbaar - herziening vak 62"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_440000
+msgid "Suppliers"
+msgstr "Leveranciers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451000
+msgid "Output VAT - current account balance"
+msgstr "Te betalen BTW - Rekening courant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451054
+msgid "VAT Debt"
+msgstr "BTW schuld"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451055
+msgid "VAT Debt - Intracommunity"
+msgstr "BTW schuld - Intracommunautaire verwervingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451056
+msgid "VAT Debt - Cocontractant"
+msgstr "BTW schuld - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451057
+msgid "VAT Debt - Import"
+msgstr "BTW schuld - invoer met verlegging"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_451061
+msgid "VAT Debt - Correction Case 61"
+msgstr "BTW schuld - herziening vak 61"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_550001
+msgid "Bank"
+msgstr "Bank"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_570001
+msgid "Cash"
+msgstr "Kas"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_580000
+msgid "Internal transfer account"
+msgstr "Interne overboekingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_600000
+msgid "Purchases of raw materials"
+msgstr "Aankopen van grondstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_654000
+msgid "Exchange rate losses"
+msgstr "Nadelige wisselresultaten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_700000
+msgid "Sales"
+msgstr "Verkopen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_754000
+msgid "Exchange rate gains"
+msgstr "Voordelige wisselresultaten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.account.template,name:l10n_be_coa_multilang.aatn_999999
+msgid "Undistributed Profits/Losses"
+msgstr "Niet uitgekeerde winsten/verliezen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_BE_2_FULL
+msgid "Belgium Balance Sheet (Full Model)"
+msgstr "Belgische Balans (volledig model)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_219000
+msgid "TOTAL ASSETS"
+msgstr "TOTAAL VAN DE ACTIVA"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211000
+msgid "FIXED ASSETS"
+msgstr "VASTE ACTIVA"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211100
+msgid "Formation Expenses"
+msgstr "Oprichtingskosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211200
+msgid "Intangible Assets"
+msgstr "Immateriële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211300
+msgid "Tangible Assets"
+msgstr "Materiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211310
+msgid "Land and Buildings"
+msgstr "Terreinen en gebouwen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211320
+msgid "Plant, Machinery and Equipment"
+msgstr "Installaties, machines en uitrusting"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211330
+msgid "Furniture and Vehicles"
+msgstr "Meubilair en rollend materieel"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211340
+msgid "Leasing and other similar Rights"
+msgstr "Leasing en soortgelijke rechten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211350
+msgid "Other Tangible Assets"
+msgstr "Overige materiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211360
+msgid "Assets under Construction and Advance Payment"
+msgstr "Activa in aanbouw en vooruitbetalingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211400
+msgid "Financial Assets"
+msgstr "Financiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211410
+msgid "Affiliated Enterprises"
+msgstr "Verbonden ondernemingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211411
+msgid "Participating Interests"
+msgstr "Deelnemingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211412
+msgid "Amounts Receivable"
+msgstr "Vorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211420
+msgid "Enterprises Linked by Participating Interests"
+msgstr "Ondernemingen waarmee een deelnemingsverhouding bestaat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211421
+msgid "Participating Interests"
+msgstr "Deelnemingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211422
+msgid "Amounts Receivable"
+msgstr "Vorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211430
+msgid "Other Financial Assets"
+msgstr "Andere financiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211431
+msgid "Shares"
+msgstr "Aandelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_211432
+msgid "Amounts Receivable and Cash Guarantees"
+msgstr "Vorderingen en borgtochten in contanten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212000
+msgid "CURRENT ASSETS"
+msgstr "VLOTTENDE ACTIVA"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212100
+msgid "Amounts Receivable after One Year"
+msgstr "Vorderingen op meer dan één jaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212110
+msgid "Trade Debtors"
+msgstr "Handelsvorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212120
+msgid "Other Amounts Receivable"
+msgstr "Overige vorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212200
+msgid "Stocks and Contracts in Progress"
+msgstr "Voorraden en bestellingen in uitvoering"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212210
+msgid "Stocks"
+msgstr "Voorraden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212211
+msgid "Raw Materials and Consumables"
+msgstr "Grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212212
+msgid "Work in Progress"
+msgstr "Goederen in bewerking"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212213
+msgid "Finished Goods"
+msgstr "Gereed product"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212214
+msgid "Goods purchased for Resale"
+msgstr "Handelsgoederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212215
+msgid "Imovable Property acquired for Resale"
+msgstr "Onroerende goederen bestemd voor verkoop"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212216
+msgid "Advance Payments"
+msgstr "Vooruitbetalingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212220
+msgid "Contracts in progress"
+msgstr "Bestellingen in uitvoering"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212300
+msgid "Amounts Receivable within one Year"
+msgstr "Vorderingen op ten hoogste één jaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212310
+msgid "Trade Debtors"
+msgstr "Handelsvorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212320
+msgid "Other Amounts Receivable"
+msgstr "Overige vorderingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212400
+msgid "Investments"
+msgstr "Geldbeleggingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212410
+msgid "Own Shares"
+msgstr "Eigen aandelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212420
+msgid "Other Investments and Deposits"
+msgstr "Overige beleggingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212500
+msgid "Cash at Bank and in Hand"
+msgstr "Liquide middelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_212600
+msgid "Deferred Charges and Accrued Income"
+msgstr "Overlopende rekeningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_229000
+msgid "TOTAL LIABILITIES"
+msgstr "TOTAAL VAN DE PASSIVA"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221000
+msgid "EQUITY CAPITAL"
+msgstr "EIGEN VERMOGEN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221100
+msgid "Capital"
+msgstr "Kapitaal"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221110
+msgid "Issued Capital"
+msgstr "Geplaatst kapitaal"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221120
+msgid "Uncalled Capital"
+msgstr "Niet-opgevraagd kapitaal"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221200
+msgid "Share Premium Account"
+msgstr "Uitgiftepremies"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221300
+msgid "Revaluation Surpluses"
+msgstr "Herwaarderingsmeerwaarden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221400
+msgid "Reserves"
+msgstr "Reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221410
+msgid "Legal Reserve"
+msgstr "Wettelijke reserve"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221420
+msgid "Reserves not available for Distribution"
+msgstr "Onbeschikbare reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221421
+msgid "In respect of own Shares held"
+msgstr "Voor eigen aandelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221422
+msgid "Other"
+msgstr "Andere"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221430
+msgid "Untaxed Reserves"
+msgstr "Belastingvrije reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221440
+msgid "Reserves available for Distribution"
+msgstr "Beschikbare reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221500
+msgid "Accumulated Profits (Losses)"
+msgstr "Overgedragen winst (verlies)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221600
+msgid "Investment Grants"
+msgstr "Kapitaalsubsidies"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_221700
+msgid "Advance to Partners on the distribution of the net assets"
+msgstr "Voorschot aan de vennoten op de verdeling van het netto-actief"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222000
+msgid "PROVISIONS AND DEFERRED TAXES"
+msgstr "VOORZIENINGEN EN UITGESTELDE BELASTINGEN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222100
+msgid "Provisions for Liabilities and Charges"
+msgstr "Voorzieningen voor risico's en kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222110
+msgid "Pensions and similar Obligations"
+msgstr "Pensioenen en soortgelijke verplichtingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222120
+msgid "Taxation"
+msgstr "Belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222130
+msgid "Major Repairs and Maintenance"
+msgstr "Grote herstellings- en onderhoudswerken"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222140
+msgid "Other Liabilities and Charges"
+msgstr "Overige risico's en kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_222200
+msgid "Deferred Taxes"
+msgstr "Uitgestelde belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223000
+msgid "DEBTS"
+msgstr "SCHULDEN"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223100
+msgid "Amounts Payable after one Year"
+msgstr "Schulden op meer dan één jaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223110
+msgid "Financial Debts"
+msgstr "Financiële schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223111
+msgid "Subordinated Loans"
+msgstr "Achtergestelde leningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223112
+msgid "Unsubordinated Debentures"
+msgstr "Niet-achtergestelde obligatieleningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223113
+msgid "Leasing and other similar Obligations"
+msgstr "Leasingschulden en soortgelijke schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223114
+msgid "Credit Institutions"
+msgstr "Kredietinstellingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223115
+msgid "Other Loans"
+msgstr "Overige leningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223120
+msgid "Trade Debts"
+msgstr "Handelsschulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223121
+msgid "Suppliers"
+msgstr "Leveranciers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223122
+msgid "Bills of Exchange Payable"
+msgstr "Te betalen wissels"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223130
+msgid "Advances received on Contracts in Progress"
+msgstr "Ontvangen vooruitbetalingen op bestellingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223140
+msgid "Other Amounts Payable"
+msgstr "Overige schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223200
+msgid "Amounts Payable within one Year"
+msgstr "Schulden op ten hoogste één jaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223210
+msgid "Portion of amounts Payable after one Year due within the year"
+msgstr "Schulden op meer dan één jaar die binnen het jaar vervallen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223220
+msgid "Financial Debts"
+msgstr "Financiële schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223221
+msgid "Credit Institutions"
+msgstr "Kredietinstellingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223222
+msgid "Other Loans"
+msgstr "Overige leningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223230
+msgid "Trade Debts"
+msgstr "Handelsschulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223231
+msgid "Suppliers"
+msgstr "Leveranciers"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223232
+msgid "Bills of Exchange Payable"
+msgstr "Te betalen wissels"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223240
+msgid "Advances received on Contracts in Progress"
+msgstr "Ontvangen vooruitbetalingen op bestellingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223250
+msgid "Taxes, Remuneration and Social Security"
+msgstr "Schulden met betrekking tot belastingen, bezoldigingen en sociale lasten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223251
+msgid "Taxes"
+msgstr "Belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223252
+msgid "Remuneration and Social Security"
+msgstr "Bezoldigingen en sociale lasten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223260
+msgid "Other Amounts Payable"
+msgstr "Overige schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_223300
+msgid "Accrued Charges and Deferred Income"
+msgstr "Overlopende rekeningen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_BE_3_FULL
+msgid "Belgium P&L (Full Model)"
+msgstr "Belgische Resultatenrekening (volledig model)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_35000
+msgid "Fiscal Year Profit (Loss) to be allocated"
+msgstr "Te bestemmen winst (verlies) van het boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34000
+msgid "Fiscal Year Profit (Loss)"
+msgstr "Winst (Verlies) van het boekjaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33000
+msgid "Fiscal Year Profit (Loss) before Taxation"
+msgstr "Winst (Verlies) van het boekjaar vóór belasting"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32000
+msgid "Profit (Loss) from Normal Operations before Taxation"
+msgstr "Winst (Verlies) uit de gewone bedrijfsuitoefening vóór belasting"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31000
+msgid "Operating Profit (Loss)"
+msgstr "Bedrijfswinst (Bedrijfsverlies)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30100
+msgid "Operating Income"
+msgstr "Bedrijfsopbrengsten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30110
+msgid "Turnover"
+msgstr "Omzet"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30120
+msgid "Increase (Decrease) in Stocks, Final Goods, Etc."
+msgstr "Voorraad goederen in bewerking en gereed product en bestellingen in uitvoering: toename (afname)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30130
+msgid "Fixed Assets Own Construction"
+msgstr "Geproduceerde vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30140
+msgid "Other Operating Income"
+msgstr "Andere bedrijfsopbrengsten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30200
+msgid "Operating Charges"
+msgstr "Bedrijfskosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30210
+msgid "Raw Materials, Consumables and Goods for Resale"
+msgstr "Handelsgoederen, grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30211
+msgid "Purchases"
+msgstr "Aankopen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30212
+msgid "Decrease (Increase) in Stocks"
+msgstr "Voorraad: afname (toename)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30220
+msgid "Services and Other Goods"
+msgstr "Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30230
+msgid "Remunerations, Social Security Costs and Pensions"
+msgstr "Bezoldigingen, sociale lasten en pensioenen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30240
+msgid "Depreciation and Amounts Written Off on Formation Expenses, on  Intangible and  Tangible Assets"
+msgstr "Afschrijvingen en waardeverminderingen op oprichtingskosten, op immateriële en materiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30250
+msgid "Amounts Written Off on Stocks, Orders in Progress and Trade Debts: Increase (Decrease)"
+msgstr "Waardeverminderingen op voorraden, op bestellingen in uitvoering en op handelsvorderingen: toevoegingen (terugnemingen)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30260
+msgid "Provisions for Liabilities and Charges: Increase (Decrease)"
+msgstr "Voorzieningen voor risico's en kosten: toevoegingen (bestedingen en terugnemingen)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30270
+msgid "Other Operating Charges"
+msgstr "Andere bedrijfskosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_30280
+msgid "Restructuring Charges activated as Operating Charges"
+msgstr "Als herstructureringskosten geactiveerde bedrijfskosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31100
+msgid "Financial Income"
+msgstr "Financiële opbrengsten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31110
+msgid "Income from Financial Fixed Assets"
+msgstr "Opbrengsten uit financiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31120
+msgid "Income from Current Assets"
+msgstr "Opbrengsten uit vlottende activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31130
+msgid "Other Financial Income"
+msgstr "Andere financiële opbrengsten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31200
+msgid "Financial Charges"
+msgstr "Financiële kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31210
+msgid "Debt Charges"
+msgstr "Kosten van schulden"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31220
+msgid "Amounts Written Off on other than Stocks, Orders in Progress and Trade Debts: Increase (Decrease)"
+msgstr "Waardeverminderingen op vlottende activa andere dan voorraden, bestellingen in uitvoering en handelsvorderingen: toevoegingen (terugnemingen)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_31230
+msgid "Other Financial Charges"
+msgstr "Andere financiële kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32100
+msgid "Extraordinary Income"
+msgstr "Uitzonderlijke opbrengsten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32110
+msgid "Adjustment to Depreciation and Write Off on Intangible and Tangible Assets"
+msgstr "Terugneming van afschrijvingen en van waardeverminderingen op immateriële en materiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32120
+msgid "Adjustment to Amounts Written Off on Financial Fixed Assets"
+msgstr "Terugneming van waardeverminderingen op financiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32130
+msgid "Adjustment to Provisions for Extraordinary Liabilities and Charges"
+msgstr "Terugneming van voorzieningen voor uitzonderlijke risico's en kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32140
+msgid "Gain on Disposal of Fixed Assets"
+msgstr "Meerwaarden bij de realisatie van vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32150
+msgid "Other Extraordinary Income"
+msgstr "Meerwaarden bij de realisatie van vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32200
+msgid "Extraordinary Charges"
+msgstr "Uitzonderlijke kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32210
+msgid "Extraordinary Depreciation and Amounts Written Off on Formation Expenses, Intangible and Tangible Assets"
+msgstr "Uitzonderlijke afschrijvingen en waardeverminderingen op oprichtingskosten, op immateriële en materiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32220
+msgid "Amounts Written Off on Financial Fixed Assets"
+msgstr "Waardeverminderingen op financiële vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32230
+msgid "Provisions for Extraordinary Liabilities and Charges"
+msgstr "Voorzieningen voor uitzonderlijke risico's en kosten: toevoegingen (bestedingen)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32240
+msgid "Loss on Disposal of Fixed Assets"
+msgstr "Minderwaarden bij de realisatie van vaste activa"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32250
+msgid "Other Extraordinary Charges"
+msgstr "Andere uitzonderlijke kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_32260
+msgid "Restructuring Charges activated as Extraordinary Charges"
+msgstr "Als herstructureringskosten geactiveerde uitzonderlijke kosten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33100
+msgid "Transfer from Deferred Taxes"
+msgstr "Onttrekking aan de uitgestelde belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33200
+msgid "Transfer to Deferred Taxes"
+msgstr "Overboeking naar de uitgestelde belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33300
+msgid "Income Taxes"
+msgstr "Belastingen op het resultaat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33310
+msgid "Income Taxes"
+msgstr "Belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_33320
+msgid "Adjustment of Income Taxes and Provisions for Taxes"
+msgstr "Regularisering van belastingen en terugneming van voorzieningen voor belastingen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34100
+msgid "Transfer from Untaxed Reserves"
+msgstr "Onttrekking aan de belastingvrije reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.financial.report,name:l10n_be_coa_multilang.account_financial_report_34200
+msgid "Transfer to Untaxed Reserves"
+msgstr "Overboeking naar de belastingvrije reserves"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_national
+msgid "National Regime"
+msgstr "Nationaal regime"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_cocontractant
+msgid "National Regime - Cocontractant"
+msgstr "Nationaal regime - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_intracom
+msgid "Intra Community Regime"
+msgstr "Intra-communautair regime"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,name:l10n_be_coa_multilang.afptn_extracom
+msgid "Extra Community Regime"
+msgstr "Extra-communautair regime"
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,note:l10n_be_coa_multilang.afptn_cocontractant
+msgid "VAT subject to reverse charge."
+msgstr "BTW verlegd."
+
+#. module: l10n_be_coa_multilang
+#: model:account.fiscal.position.template,note:l10n_be_coa_multilang.afptn_intracom
+msgid "Tax-free intra-Community supply / VAT subject to reverse charge."
+msgstr "Vrij van btw wegens intracommunautaire levering / BTW verlegd."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-S
+msgid "21% Services"
+msgstr "21% Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-G
+msgid "21% Goods"
+msgstr "21% Goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-S
+msgid "21% Services - Cash Discount 2%"
+msgstr "21%  Diensten - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-G
+msgid "21% Goods - Cash Discount 2%"
+msgstr "21% Goederen - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-INC-S
+msgid "21% Services (Price Incl.)"
+msgstr "21% Diensten (Prijs incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-21-INC-G
+msgid "21% Goods (Price Incl.)"
+msgstr "21% Goederen (Prijs incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-12-S
+msgid "12% Services"
+msgstr "12% Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-12-G
+msgid "12% Goods"
+msgstr "12% Goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-06-S
+msgid "6% Services"
+msgstr "6% Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-06-G
+msgid "6% Goods"
+msgstr "6% Goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-S
+msgid "0% Services"
+msgstr "0% Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-G
+msgid "0% Goods"
+msgstr "0% Goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-CC
+msgid "0% Cocontractant"
+msgstr "0% Medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-S
+msgid "Services within EU"
+msgstr "Diensten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-G
+msgid "Goods within EU (Code L)"
+msgstr "Goederen EU (Code L)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-EU-T
+msgid "Goods within EU (Code T)"
+msgstr "Goederen EU (Code T)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-OUT-00-ROW
+msgid "Export Outside EU"
+msgstr "Export buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-S
+msgid "21% - Services for resale"
+msgstr "21% - Diensten voor wederverkoop"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-G
+msgid "21% - Raw mat., consum. and goods for resale"
+msgstr "21% - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12
+msgid "12% - Raw mat., consum. and goods for resale"
+msgstr "12% - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06
+msgid "6% - Raw mat., consum. and goods for resale"
+msgstr "6% - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00
+msgid "0% - Raw mat., consum. and goods for resale"
+msgstr "0% - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-S
+msgid "21% - Services"
+msgstr "21% - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CD2-S
+msgid "21% - Services - Cash Discount 2%"
+msgstr "21% - Diensten - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-INC-S
+msgid "21% - Services (Price Incl.)"
+msgstr "21% - Diensten (Prijs incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-G
+msgid "21% - Other goods"
+msgstr "21% - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-S
+msgid "12% - Services"
+msgstr "12% - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-G
+msgid "12% - Other goods"
+msgstr "12% - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-S
+msgid "6% - Services"
+msgstr "6% - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-G
+msgid "6% - Other goods"
+msgstr "6% - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-S
+msgid "0% - Services"
+msgstr "0% - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-G
+msgid "0% - Other goods"
+msgstr "0% - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21
+msgid "21% - Capital goods"
+msgstr "21% - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12
+msgid "12% - Capital goods"
+msgstr "12% - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06
+msgid "6% - Capital goods"
+msgstr "6% - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00
+msgid "0% - Capital goods"
+msgstr "0% - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC
+msgid "21% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "21% Medecontract. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C1
+msgid "VAT Deductible 21% Goods - Cocontractant"
+msgstr "BTW aftrekbaar 21% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C2
+msgid "VAT Debt 21% Goods - Cocontractant"
+msgstr "BTW schuld 21% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC
+msgid "12% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "12% Medecontract. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C1
+msgid "VAT Deductible 12% Goods - Cocontractant"
+msgstr "BTW aftrekbaar 12% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C2
+msgid "VAT Debt 12% Goods - Cocontractant"
+msgstr "BTW schuld 12% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC
+msgid "6% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "6% Medecontract. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C1
+msgid "VAT Deductible 6% Goods - Cocontractant"
+msgstr "BTW aftrekbaar 6% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C2
+msgid "VAT Debt 6% Goods - Cocontractant"
+msgstr "BTW schuld 6% goederen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-CC
+msgid "0% Cocontract. - Raw mat., consum. and goods for resale"
+msgstr "BTW IN 0% Medecontract. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC
+msgid "21% Cocontract. - Services and other goods"
+msgstr "21% Medecontract. - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C1
+msgid "VAT Deductible 21% Services - Cocontractant"
+msgstr "BTW aftrekbaar 21% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C2
+msgid "VAT Debt 21% Services - Cocontractant"
+msgstr "BTW schuld 21% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC
+msgid "12% Cocontract. - Services and other goods"
+msgstr "12% Medecontract. - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C1
+msgid "VAT Deductible 12% Services - Cocontractant"
+msgstr "BTW aftrekbaar 12% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C2
+msgid "VAT Debt 12% Services - Cocontractant"
+msgstr "BTW schuld 12% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC
+msgid "6% Cocontract. - Services and other goods"
+msgstr "6% Medecontract. - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C1
+msgid "VAT Deductible 6% Services - Cocontractant"
+msgstr "BTW aftrekbaar 6% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C2
+msgid "VAT Debt 6% Services - Cocontractant"
+msgstr "BTW schuld 6% diensten - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-CC
+msgid "0% Cocontract. - Services and other goods"
+msgstr "0% Medecontract. - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC
+msgid "21% Cocontract. - Capital goods"
+msgstr "21% Medecontract. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C1
+msgid "VAT Deductible 21% Capital goods - Cocontractant"
+msgstr "BTW aftrekbaar 21% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C2
+msgid "VAT Debt 21% Capital goods - Cocontractant"
+msgstr "BTW schuld 21% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC
+msgid "12% Cocontract. - Capital goods"
+msgstr "12% Medecontract. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C1
+msgid "VAT Deductible 12% Capital goods - Cocontractant"
+msgstr "BTW aftrekbaar 12% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C2
+msgid "VAT Debt 12% Capital goods - Cocontractant"
+msgstr "BTW schuld 12% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC
+msgid "6% Cocontract. - Capital goods"
+msgstr "6% Medecontract. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C1
+msgid "VAT Deductible 6% Capital goods - Cocontractant"
+msgstr "BTW aftrekbaar 6% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C2
+msgid "VAT Debt 6% Capital goods - Cocontractant"
+msgstr "BTW schuld 6% bedrijfsmiddelen - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-CC
+msgid "0% Cocontract. - Capital goods"
+msgstr "0% Medecontract. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-INC
+msgid "Car Expenses - VAT 50% Deductible (Price Incl.)"
+msgstr "Autokosten - BTW 50% aftrekbaar (Prijs incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-INC
+msgid "Car Expenses - VAT 35% Deductible (Price Incl.)"
+msgstr "Autokosten - BTW 35% aftrekbaar (Prijs incl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC
+msgid "Car Expenses - VAT 50% Deductible (Price Excl.)"
+msgstr "Autokosten - BTW 50% aftrekbaar (Prijs excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C1
+msgid "CAR50-EXC - VAT Non Deductible"
+msgstr "CAR50-EXC - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C2
+msgid "CAR50-EXC - VAT Deductible"
+msgstr "CAR50-EXC - BTW aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC
+msgid "Car Expenses - VAT 35% Deductible (Price Excl.)"
+msgstr "Autokosten - BTW 35% aftrekbaar (Prijs excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C1
+msgid "CAR35-EXC - VAT Non Deductible"
+msgstr "CAR35-EXC - BTW niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C2
+msgid "CAR35-EXC - VAT Deductible"
+msgstr "CAR35-EXC - BTW aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S
+msgid "21% Intracomm. - Services for resale"
+msgstr "21% Intracomm. - Diensten voor wederverkoop"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C1
+msgid "VAT Deductible 21% Services for resale - Intracomm."
+msgstr "BTW aftrekbaar 21% diensten voor wederverkoop - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C2
+msgid "VAT Debt 21% Services for resale - Intracomm."
+msgstr "BTW schuld 21% diensten voor wederverkoop - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G
+msgid "21% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "21% Intracomm. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C1
+msgid "VAT Deductible 21% Goods for resale - Intracomm."
+msgstr "BTW aftrekbaar 21% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C2
+msgid "VAT Debt 21% Goods for resale - Intracomm."
+msgstr "BTW schuld 21% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU
+msgid "12% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "12% Intracomm. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C1
+msgid "VAT Deductible 12% Goods for resale - Intracomm."
+msgstr "BTW aftrekbaar 12% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C2
+msgid "VAT Debt 12% Goods for resale - Intracomm."
+msgstr "BTW schuld 12% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU
+msgid "6% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "6% Intracomm. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C1
+msgid "VAT Deductible 6% Goods for resale - Intracomm."
+msgstr "BTW aftrekbaar 6% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C2
+msgid "VAT Debt 6% Goods for resale - Intracomm."
+msgstr "BTW schuld 6% handelsgoederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-EU
+msgid "0% Intracomm. - Raw mat., consum. and goods for resale"
+msgstr "0% Intracomm. - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S
+msgid "21% Intracomm. - Services"
+msgstr "21% Intracomm. - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C1
+msgid "VAT Deductible 21% Services - Intracomm."
+msgstr "BTW aftrekbaar 21% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C2
+msgid "VAT Debt 21% Services - Intracomm."
+msgstr "BTW schuld 21% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G
+msgid "21% Intracomm. - Other goods"
+msgstr "21% Intracomm. - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C1
+msgid "VAT Deductible 21% Other goods - Intracomm."
+msgstr "BTW aftrekbaar 21% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C2
+msgid "VAT Debt 21% Other goods - Intracomm."
+msgstr "BTW schuld 21% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S
+msgid "12% Intracomm. - Services"
+msgstr "12% Intracomm. - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C1
+msgid "VAT Deductible 12% Services - Intracomm."
+msgstr "BTW aftrekbaar 12% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C2
+msgid "VAT Debt 12% Services - Intracomm."
+msgstr "BTW schuld 12% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G
+msgid "12% Intracomm. - Other goods"
+msgstr "12% Intracomm. - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C1
+msgid "VAT Deductible 12% Other goods - Intracomm."
+msgstr "BTW aftrekbaar 12% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C2
+msgid "VAT Debt 12% Other goods - Intracomm."
+msgstr "BTW schuld 12% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S
+msgid "6% Intracomm. - Services"
+msgstr "6% Intracomm. - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C1
+msgid "VAT Deductible 6% Services - Intracomm."
+msgstr "BTW aftrekbaar 6% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C2
+msgid "VAT Debt 6% Services - Intracomm."
+msgstr "BTW schuld 6% diensten - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G
+msgid "6% Intracomm. - Other goods"
+msgstr "6% Intracomm. - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C1
+msgid "VAT Deductible 6% Other goods - Intracomm."
+msgstr "BTW aftrekbaar 6% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C2
+msgid "VAT Debt 6% Other goods - Intracomm."
+msgstr "BTW schuld 6% diverse goederen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-S
+msgid "0% Intracomm. - Services"
+msgstr "0% Intracomm. - Diensten"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-EU-G
+msgid "0% Intracomm. - Other goods"
+msgstr "0% Intracomm. - Diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU
+msgid "21% Intracomm. - Capital goods"
+msgstr "21% Intracomm. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C1
+msgid "VAT Deductible 21% Capital goods - Intracomm."
+msgstr "BTW aftrekbaar 21% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C2
+msgid "VAT Debt 21% Capital goods - Intracomm."
+msgstr "BTW schuld 21% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU
+msgid "12% Intracomm. - Capital goods"
+msgstr "12% Intracomm. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C1
+msgid "VAT Deductible 12% Capital goods - Intracomm."
+msgstr "BTW aftrekbaar 12% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C2
+msgid "VAT Debt 12% Capital goods - Intracomm."
+msgstr "BTW schuld 12% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU
+msgid "6% Intracomm. - Capital goods"
+msgstr "6% Intracomm. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C1
+msgid "VAT Deductible 6% Capital goods - Intracomm."
+msgstr "BTW aftrekbaar 6% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C2
+msgid "VAT Debt 6% Capital goods - Intracomm."
+msgstr "BTW schuld 6% bedrijfsmiddelen - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-EU
+msgid "0% Intracomm. - Capital goods"
+msgstr "0% Intracomm. - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC
+msgid "21% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "21% Buiten EU - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C1
+msgid "VAT Deductible 21% Goods for resale - Outside EU"
+msgstr "BTW aftrekbaar 21% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C2
+msgid "VAT Debt 21% Goods for resale - Outside EU"
+msgstr "BTW schuld 21% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC
+msgid "12% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "12% Buiten EU - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C1
+msgid "VAT Deductible 12% Goods for resale - Outside EU"
+msgstr "BTW aftrekbaar 12% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C2
+msgid "VAT Debt 12% Goods for resale - Outside EU"
+msgstr "BTW schuld 12% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC
+msgid "6% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "6% Buiten EU - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C1
+msgid "VAT Deductible 6% Goods for resale - Outside EU"
+msgstr "BTW aftrekbaar 6% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C2
+msgid "VAT Debt 6% Goods for resale - Outside EU"
+msgstr "BTW schuld 6% handelsgoederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC
+msgid "0% Outside EU - Raw mat., consum. and goods for resale"
+msgstr "0% Buiten EU - Handelsgoed., grond- en hulpstoffen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC
+msgid "21% Outside EU - Services and other goods"
+msgstr "21% Buiten EU - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C1
+msgid "VAT Deductible 21% Services and other goods - Outside EU"
+msgstr "BTW aftrekbaar 21% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C2
+msgid "VAT Debt 21% Services and other goods - Outside EU"
+msgstr "BTW schuld 21% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC
+msgid "12% Outside EU - Services and other goods"
+msgstr "12% Buiten EU - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C1
+msgid "VAT Deductible 12% Services and other goods - Outside EU"
+msgstr "BTW aftrekbaar 12% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C2
+msgid "VAT Debt 12% Services and other goods - Outside EU"
+msgstr "BTW schuld 12% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC
+msgid "6% Outside EU - Services and other goods"
+msgstr "6% Buiten EU - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C1
+msgid "VAT Deductible 6% Services and other goods - Outside EU"
+msgstr "BTW aftrekbaar 6% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C2
+msgid "VAT Debt 6% Services and other goods - Outside EU"
+msgstr "BTW schuld 6% diensten en diverse goederen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC
+msgid "0% Outside EU - Services and other goods"
+msgstr "0% Buiten EU - Diensten en diverse goederen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC
+msgid "21% Outside EU - Capital goods"
+msgstr "21% Buiten EU - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C1
+msgid "VAT Deductible 21% Capital goods - Outside EU"
+msgstr "BTW aftrekbaar 21% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C2
+msgid "VAT Debt 21% Capital goods - Outside EU"
+msgstr "BTW schuld 21% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC
+msgid "12% Outside EU - Capital goods"
+msgstr "12% Buiten EU - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C1
+msgid "VAT Deductible 12% Capital goods - Outside EU"
+msgstr "BTW aftrekbaar 12% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C2
+msgid "VAT Debt 12% Capital goods - Outside EU"
+msgstr "BTW schuld 12% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC
+msgid "6% Outside EU - Capital goods"
+msgstr "6% Buiten EU - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C1
+msgid "VAT Deductible 6% Capital goods - Outside EU"
+msgstr "BTW aftrekbaar 6% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C2
+msgid "VAT Debt 6% Capital goods - Outside EU"
+msgstr "BTW schuld 6% bedrijfsmiddelen - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC
+msgid "0% Outside EU - Capital goods"
+msgstr "0% Buiten EU - Bedrijfsmiddelen"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V61
+msgid "VAT adjustments in favor of the Tax Authority"
+msgstr "Diverse BTW regularisaties in het voordeel van de Staat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V62
+msgid "VAT adjustments in favor of the Declarant"
+msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V91
+msgid "Advance for Operations from December 1 to 20"
+msgstr "Voorschot voor handelingen van 1 tot 20 december"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V59
+msgid "VAT deductible case 59"
+msgstr "BTW aftrekbaar vak 59"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V82
+msgid "VAT base case 82"
+msgstr "BTW MvH vak 59"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-S
+msgid "21% - Cash Discount 2%"
+msgstr "21% - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-G
+msgid "21% - Cash Discount 2%"
+msgstr "21% - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CD2-S
+msgid "21% - Cash Discount 2%"
+msgstr "21% - Korting contant 2%"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C1
+msgid "VAT Deductible 21% - Cocontractant"
+msgstr "BTW aftrekbaar 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "BTW schuld 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C1
+msgid "VAT Deductible 12% - Cocontractant"
+msgstr "BTW aftrekbaar 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "BTW schuld 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C1
+msgid "VAT Deductible 6% - Cocontractant"
+msgstr "BTW aftrekbaar 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "BTW schuld 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C1
+msgid "VAT Deductible 21% - Cocontractant"
+msgstr "BTW aftrekbaar 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "BTW schuld 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C1
+msgid "VAT Deductible 12% - Cocontractant"
+msgstr "BTW aftrekbaar 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "BTW schuld 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C1
+msgid "VAT Deductible 6% - Cocontractant"
+msgstr "BTW aftrekbaar 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "BTW schuld 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C1
+msgid "VAT Deductible 21% - Cocontractant"
+msgstr "BTW aftrekbaar 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-CC-C2
+msgid "VAT Debt 21% - Cocontractant"
+msgstr "BTW schuld 21% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C1
+msgid "VAT Deductible 12% - Cocontractant"
+msgstr "BTW aftrekbaar 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-CC-C2
+msgid "VAT Debt 12% - Cocontractant"
+msgstr "BTW schuld 12% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C1
+msgid "VAT Deductible 6% - Cocontractant"
+msgstr "BTW aftrekbaar 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-CC-C2
+msgid "VAT Debt 6% - Cocontractant"
+msgstr "BTW schuld 6% - medecontractant"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-INC
+msgid "Car Expenses - VAT 50% Deductible"
+msgstr "Autokosten - BTW 50% aftrekbaar (Prijs excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-INC
+msgid "Car Expenses - VAT 35% Deductible"
+msgstr "Autokosten - BTW 35% aftrekbaar (Prijs excl.)"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C1
+msgid "CAR50-EXC - VAT Non Deductible"
+msgstr "BTW 50% niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC-C2
+msgid "CAR50-EXC - VAT Deductible"
+msgstr "BTW 50% aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR50-EXC
+msgid "Car Expenses - VAT 50% Deductible"
+msgstr "Autokosten - BTW 50% aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C1
+msgid "CAR35-EXC - VAT Non Deductible"
+msgstr "BTW 65% niet aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC-C2
+msgid "CAR35-EXC - VAT Deductible"
+msgstr "BTW 35% aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-CAR35-EXC
+msgid "Car Expenses - VAT 35% Deductible"
+msgstr "Autokosten - BTW 35% aftrekbaar"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C1
+msgid "VAT Deductible 21%  - Intracomm."
+msgstr "BTW aftrekbaar 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-S-C2
+msgid "VAT Debt 21% - Intracomm."
+msgstr "BTW schuld 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C1
+msgid "VAT Deductible 21%  - Intracomm."
+msgstr "BTW aftrekbaar 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-EU-G-C2
+msgid "VAT Debt 21% - Intracomm."
+msgstr "BTW schuld 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C1
+msgid "VAT Deductible 12%  - Intracomm."
+msgstr "BTW aftrekbaar 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-EU-C2
+msgid "VAT Debt 12% - Intracomm."
+msgstr "BTW schuld 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C1
+msgid "VAT Deductible 6%  - Intracomm."
+msgstr "BTW aftrekbaar 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-EU-C2
+msgid "VAT Debt 6% - Intracomm."
+msgstr "BTW schuld 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C1
+msgid "VAT Deductible 21%  - Intracomm."
+msgstr "BTW aftrekbaar 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-S-C2
+msgid "VAT Debt 21% - Intracomm."
+msgstr "BTW schuld 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C1
+msgid "VAT Deductible 21%  - Intracomm."
+msgstr "BTW aftrekbaar 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-EU-G-C2
+msgid "VAT Debt 21% - Intracomm."
+msgstr "BTW schuld 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C1
+msgid "VAT Deductible 12%  - Intracomm."
+msgstr "BTW aftrekbaar 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-S-C2
+msgid "VAT Debt 12% - Intracomm."
+msgstr "BTW schuld 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C1
+msgid "VAT Deductible 12%  - Intracomm."
+msgstr "BTW aftrekbaar 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-EU-G-C2
+msgid "VAT Debt 12% - Intracomm."
+msgstr "BTW schuld 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C1
+msgid "VAT Deductible 6%  - Intracomm."
+msgstr "BTW aftrekbaar 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-S-C2
+msgid "VAT Debt 6% - Intracomm."
+msgstr "BTW schuld 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C1
+msgid "VAT Deductible 6%  - Intracomm."
+msgstr "BTW aftrekbaar 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-EU-G-C2
+msgid "VAT Debt 6% - Intracomm."
+msgstr "BTW schuld 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C1
+msgid "VAT Deductible 21% - Intracomm."
+msgstr "BTW aftrekbaar 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-EU-C2
+msgid "VAT Debt 21% - Intracomm."
+msgstr "BTW schuld 21% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C1
+msgid "VAT Deductible 12%  - Intracomm."
+msgstr "BTW aftrekbaar 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-EU-C2
+msgid "VAT Debt 12% - Intracomm."
+msgstr "BTW schuld 12% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C1
+msgid "VAT Deductible 6%  - Intracomm."
+msgstr "BTW aftrekbaar 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-EU-C2
+msgid "VAT Debt 6% - Intracomm."
+msgstr "BTW schuld 6% - Intracomm."
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C1
+msgid "VAT Deductible 21% - Outside EU"
+msgstr "BTW aftrekbaar 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC-C2
+msgid "VAT Debt 21% - Outside EU"
+msgstr "BTW schuld 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-21-ROW-CC
+msgid "21% Outside EU"
+msgstr "21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C1
+msgid "VAT Deductible 12% - Outside EU"
+msgstr "BTW aftrekbaar 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC-C2
+msgid "VAT Debt 12% - Outside EU"
+msgstr "BTW schuld 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-12-ROW-CC
+msgid "12% Outside EU"
+msgstr "12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C1
+msgid "VAT Deductible 6% - Outside EU"
+msgstr "BTW aftrekbaar 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC-C2
+msgid "VAT Debt 6% - Outside EU"
+msgstr "BTW schuld 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-06-ROW-CC
+msgid "6% Outside EU"
+msgstr "6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V81-00-ROW-CC
+msgid "0% Outside EU"
+msgstr "0% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C1
+msgid "VAT Deductible 21% - Outside EU"
+msgstr "BTW aftrekbaar 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC-C2
+msgid "VAT Debt 21% - Outside EU"
+msgstr "BTW schuld 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-21-ROW-CC
+msgid "21% Outside EU"
+msgstr "21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C1
+msgid "VAT Deductible 12% - Outside EU"
+msgstr "BTW aftrekbaar 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC-C2
+msgid "VAT Debt 12% - Outside EU"
+msgstr "BTW schuld 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-12-ROW-CC
+msgid "12% Outside EU"
+msgstr "12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C1
+msgid "VAT Deductible 6% - Outside EU"
+msgstr "BTW aftrekbaar 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC-C2
+msgid "VAT Debt 6% - Outside EU"
+msgstr "BTW schuld 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-06-ROW-CC
+msgid "6% Outside EU"
+msgstr "6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V82-00-ROW-CC
+msgid "0% Outside EU"
+msgstr "0% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C1
+msgid "VAT Deductible 21% - Outside EU"
+msgstr "BTW aftrekbaar 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC-C2
+msgid "VAT Debt 21% - Outside EU"
+msgstr "BTW schuld 21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-21-ROW-CC
+msgid "21% Outside EU"
+msgstr "21% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C1
+msgid "VAT Deductible 12% - Outside EU"
+msgstr "BTW aftrekbaar 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC-C2
+msgid "VAT Debt 12% - Outside EU"
+msgstr "BTW schuld 12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-12-ROW-CC
+msgid "12% Outside EU"
+msgstr "12% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C1
+msgid "VAT Deductible 6% - Outside EU"
+msgstr "BTW aftrekbaar 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC-C2
+msgid "VAT Debt 6% - Outside EU"
+msgstr "BTW schuld 6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-06-ROW-CC
+msgid "6% Outside EU"
+msgstr "6% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-IN-V83-00-ROW-CC
+msgid "0% Outside EU"
+msgstr "0% - Buiten EU"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V61
+msgid "VAT adjustments in favor of the Tax Authority"
+msgstr "Diverse BTW regularisaties in het voordeel van de Staat"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V62
+msgid "VAT adjustments in favor of the Declarant"
+msgstr "Diverse BTW regularisaties in het voordeel van de aangever"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V91
+msgid "Advance for Operations from December 1 to 20"
+msgstr "Voorschot voor handelingen van 1 tot 20 december"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V59
+msgid "VAT deductible case 59"
+msgstr "BTW aftrekbaar vak 59"
+
+#. module: l10n_be_coa_multilang
+#: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-V82
+msgid "VAT base case 82"
+msgstr "BTW MvH vak 59"
+

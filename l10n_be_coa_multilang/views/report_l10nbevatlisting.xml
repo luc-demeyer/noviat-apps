@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="report_l10nbevatlisting">
+    <t t-call="web.html_container">
+      <t t-set="data_report_margin_top" t-value="20"/>
+      <t t-call="l10n_be_coa_multilang.l10n_be_layout">
+
+        <div class="page">
+          <h3>Annual Listing of VAT Subjected Customers</h3>
+
+          <div class="row mt32 mb32">
+            <div class="col-xs-3">
+              <strong>Company Name</strong>
+              <p t-esc="res_company.name"/>
+            </div>
+            <div class="col-xs-3">
+              <strong>Vat Number</strong>
+              <p t-esc="res_company.vat"/>
+            </div>
+            <div class="col-xs-3">
+              <strong>Year</strong>
+              <p t-esc="docs.year"/>
+            </div>
+          </div>
+
+          <table class="table table-condensed" width="100%">
+            <thead>
+              <tr>
+                <th width="5%">Nr</th>
+                <th width="16%">VAT Number</th>
+                <th width="47%">Partner</th>
+                <th width="16%" class="text-right">Base Amount</th>
+                <th width="16%" class="text-right">VAT Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                  <strong>
+                    <span t-esc="sum(docs.client_ids.mapped('base_amount'))"
+                          t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/>
+                  </strong>
+                </td>
+                <td class="text-right">
+                  <strong>
+                    <span t-esc="sum(docs.client_ids.mapped('vat_amount'))"
+                          t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/>
+                  </strong>
+                </td>
+              </tr>
+              <t t-set="seq" t-value="1"/>
+              <tr t-foreach="docs.client_ids" t-as="c">
+                <span t-if="seq > 1">
+                  <span t-if="c.vat == previous_client.vat">
+                    <t t-set="seq" t-value="seq - 1"/>
+                  </span>
+                </span>
+                <td>
+                  <span t-esc="seq"/>
+                </td>
+                <td>
+                  <span t-field="c.vat"/>
+                </td>
+                <td>
+                  <span t-field="c.partner_id.name"/>
+                </td>
+                <td class="text-right">
+                  <span t-field="c.base_amount"/>
+                </td>
+                <td class="text-right">
+                  <span t-esc="c.vat_amount"/>
+                </td>
+                <t t-set="seq" t-value="seq + 1"/>
+                <t t-set="previous_client" t-value="c"/>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </t>
+    </t>
+  </template>
+
+</odoo>

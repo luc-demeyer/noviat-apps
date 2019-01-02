@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="be_legal_financial_reportscheme_view_tree" model="ir.ui.view">
+    <field name="name">be.legal.financial.reportscheme.tree</field>
+    <field name="model">be.legal.financial.reportscheme</field>
+    <field name="arch" type="xml">
+      <tree string="Belgian Legal Financial Report Scheme">
+        <field name="account_group"/>
+        <field name="account_type_id"/>
+        <field name="report_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="be_legal_financial_reportscheme_view_form_view" model="ir.ui.view">
+    <field name="name">be.legal.financial.reportscheme.form</field>
+    <field name="model">be.legal.financial.reportscheme</field>
+    <field name="arch" type="xml">
+      <form string="Belgian Legal Financial Report Scheme">
+        <group col="6">
+          <field name="account_group"/>
+          <field name="account_type_id"/>
+          <field name="report_id"/>
+        </group>
+          <notebook>
+            <page string="Accounts">
+              <field name="account_ids">
+                <tree string="Accounts">
+                  <field name="code"/>
+                  <field name="name"/>
+                </tree>
+              </field>
+            </page>
+          </notebook>
+      </form>
+    </field>
+  </record>
+
+  <record id="be_legal_financial_reportscheme_action" model="ir.actions.act_window">
+    <field name="name">Belgian Legal Financial Report Scheme</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">be.legal.financial.reportscheme</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="be_legal_financial_reportscheme_menu"
+            action="be_legal_financial_reportscheme_action"
+            parent="account.account_management_menu"
+            sequence="16"/>
+
+</odoo>

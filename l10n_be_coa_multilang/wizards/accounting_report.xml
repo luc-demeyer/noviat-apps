@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="menu_belgian_statements_and_reports"
+          name="Belgian Statements and Reports"
+          parent="account.menu_finance_reports"
+          groups="account.group_account_manager"/>
+  
+  <record id="accounting_report_action_be_bs" model="ir.actions.act_window">
+    <field name="name">Belgian Balance Sheet</field>
+    <field name="res_model">accounting.report</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="account.accounting_report_view"/>
+    <field name="target">new</field>
+    <field name="context"
+           eval="{'default_account_report_id':ref('account_financial_report_BE_2_FULL')}"/>
+  </record>
+  
+  <menuitem id="accounting_report_menu_be_bs"
+            name="Belgian Balance Sheet"
+            action="accounting_report_action_be_bs" 
+            parent="menu_belgian_statements_and_reports"
+            sequence="100"/>
+
+  <record id="accounting_report_action_be_pl" model="ir.actions.act_window">
+    <field name="name">Belgian Profit And Loss</field>
+    <field name="res_model">accounting.report</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="account.accounting_report_view"/>
+    <field name="target">new</field>
+    <field name="context">{}</field>
+    <field name="context" eval="{'default_account_report_id':ref('account_financial_report_BE_3_FULL')}"/>
+  </record>
+
+  <menuitem id="accounting_report_menu_be_pl"
+          name="Belgian Profit And Loss"
+          action="accounting_report_action_be_pl"
+          parent="menu_belgian_statements_and_reports"
+          sequence="200"/>
+  
+</odoo>

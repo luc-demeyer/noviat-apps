@@ -1,0 +1,47 @@
+<odoo>
+
+  <record id="l10n_be_coa_multilang_config_view_form" model="ir.ui.view">
+    <field name="name">l10n_be_coa_multilang setup</field>
+    <field name="model">l10n.be.coa.multilang.config</field>
+    <field name="inherit_id" ref="base.res_config_view_base"/>
+    <field name="arch" type="xml">
+      <form position="attributes">
+        <attribute name="string">Accounting Application Configuration</attribute>
+      </form>
+      <group name="res_config_contents" position="replace">
+        <group>
+          <field name="company_id" readonly="1"/>
+        </group>
+        <group col="4" colspan="4">
+          <field name="monolang_coa"/>
+          <field name="coa_lang" attrs="{'invisible':[('monolang_coa', '=', False)]}"/>
+        </group>
+        <group col="4" colspan="4" attrs="{'invisible':['|', ('load_nl_NL', '=', True), ('load_fr_FR', '=', True)]}">
+          <field name="load_nl_BE"/>
+          <field name="load_fr_BE"/>
+        </group>
+        <group col="4" colspan="4" attrs="{'invisible':['|', ('load_nl_BE', '=', True), ('load_fr_BE', '=', True)]}">
+          <field name="load_nl_NL"/>
+          <field name="load_fr_FR"/>
+        </group>
+      </group>
+    </field>
+  </record>
+
+  <record id="l10n_be_coa_multilang_config_action" model="ir.actions.act_window">
+    <field name="name">l10n_be_coa_multilang setup</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n.be.coa.multilang.config</field>
+    <field name="view_id" ref="l10n_be_coa_multilang_config_view_form"/>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <record id="l10n_be_coa_multilang_config_action_todo" model="ir.actions.todo">
+    <field name="name">l10n_be_coa_multilang setup wizard</field>
+    <field name="action_id" ref="l10n_be_coa_multilang_config_action"/>
+    <field name="type">automatic</field>
+  </record>
+
+</odoo>

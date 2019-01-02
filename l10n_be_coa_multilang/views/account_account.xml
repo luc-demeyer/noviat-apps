@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- show financial reporting entries on account form -->
+  <record id="view_account_form" model="ir.ui.view">
+    <field name="name">account.account.form.financial_report_ids</field>
+    <field name="model">account.account</field>
+    <field name="inherit_id" ref="account.view_account_form"/>
+    <field name="arch" type="xml">
+      <field name="deprecated" position="after">
+        <notebook name="financial_reports" colspan="2">
+          <page string="Financial Report entries (OC)">
+            <field name="financial_report_ids">
+              <tree string="Financial report entries">
+                <field name="name" string="Report Entry"/>
+                <field name="code"/>
+              </tree>
+            </field>
+          </page>
+        </notebook>
+      </field>
+    </field>
+  </record>
+
+</odoo>

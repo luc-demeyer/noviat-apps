@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- account.account.tag -->
+  <record id="tax_tag_00" model="account.account.tag">
+    <field name="name">Operations subject to a special arrangement</field>
+    <field name="code">00</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_01" model="account.account.tag">
+    <field name="name">Operations subject to 6% VAT</field>
+    <field name="code">01</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_02" model="account.account.tag">
+    <field name="name">Operations subject to 12% VAT</field>
+    <field name="code">02</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_03" model="account.account.tag">
+    <field name="name">Operations subject to 21% VAT</field>
+    <field name="code">03</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_44" model="account.account.tag">
+    <field name="name">Intra Community Services</field>
+    <field name="code">44</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_45" model="account.account.tag">
+    <field name="name">VAT due by the Cocontractant</field>
+    <field name="code">45</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_46L" model="account.account.tag">
+    <field name="name">VAT exempt Intra Community Supplies of Goods</field>
+    <field name="code">46L</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_46T" model="account.account.tag">
+    <field name="name">VAT exempt Intra Community ABC Supplies</field>
+    <field name="code">46T</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_47" model="account.account.tag">
+    <field name="name">Other VAT exempt Operations</field>
+    <field name="code">47</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_48" model="account.account.tag">
+    <field name="name">Issued Credit Notes Operations Grid [44] and [46]</field>
+    <field name="code">48</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_49" model="account.account.tag">
+    <field name="name">Issued Credit Notes Other Operations Section II</field>
+    <field name="code">49</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_81D" model="account.account.tag">
+    <field name="name">Purchases of Goods, Raw Materials and Consumables</field>
+    <field name="code">81D</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_81ND" model="account.account.tag">
+    <field name="name">Purchases of Goods, Raw Mater. and Consum. - VAT Non Deductible</field>
+    <field name="code">81ND</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_82D" model="account.account.tag">
+    <field name="name">Purchases of various Goods and Services</field>
+    <field name="code">82D</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_82ND" model="account.account.tag">
+    <field name="name">Purchases of various Goods and Services - VAT Non Deductible</field>
+    <field name="code">82ND</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_83D" model="account.account.tag">
+    <field name="name">Purchases of Assets</field>
+    <field name="code">83D</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_83ND" model="account.account.tag">
+    <field name="name">Purchases of Assets - VAT Non Deductible</field>
+    <field name="code">83ND</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_84" model="account.account.tag">
+    <field name="name">Incoming Credit Notes Operations Grid [86] and [88]</field>
+    <field name="code">84</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_85D" model="account.account.tag">
+    <field name="name">Incoming Credit Notes other Operations</field>
+    <field name="code">85D</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_85ND" model="account.account.tag">
+    <field name="name">Incoming Credit Notes other Operations - VAT Non Deductible</field>
+    <field name="code">85ND</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_86" model="account.account.tag">
+    <field name="name">Intra Community and ABC Acquisitions</field>
+    <field name="code">86</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_87" model="account.account.tag">
+    <field name="name">Other Incoming Operations</field>
+    <field name="code">87</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_88" model="account.account.tag">
+    <field name="name">Intra Community Services</field>
+    <field name="code">88</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_VI" model="account.account.tag">
+    <field name="name">Balance (71-72)</field>
+    <field name="code">VI</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_XX" model="account.account.tag">
+    <field name="name">To Pay - Total</field>
+    <field name="code">XX</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_54" model="account.account.tag">
+    <field name="name">VAT on Operations Grids [01], [02], [03]</field>
+    <field name="code">54</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_55" model="account.account.tag">
+    <field name="name">VAT on Operations Grids [86] and  [88]</field>
+    <field name="code">55</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_56" model="account.account.tag">
+    <field name="name">VAT on Operations Grid [87]</field>
+    <field name="code">56</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_57" model="account.account.tag">
+    <field name="name">VAT on Imports</field>
+    <field name="code">57</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_61" model="account.account.tag">
+    <field name="name">VAT adjustments in favor of the Tax Authority</field>
+    <field name="code">61</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_63" model="account.account.tag">
+    <field name="name">VAT Debt from Incoming Credit Notes</field>
+    <field name="code">63</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_59" model="account.account.tag">
+    <field name="name">Deductible VAT</field>
+    <field name="code">59</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_62" model="account.account.tag">
+    <field name="name">VAT adjustments in favor of the Declarant</field>
+    <field name="code">62</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_64" model="account.account.tag">
+    <field name="name">Deductible VAT from Outgoing Credit Notes</field>
+    <field name="code">64</field>
+    <field name="applicability">taxes</field>
+  </record>
+  <record id="tax_tag_91" model="account.account.tag">
+    <field name="name">Advance for Operations from December 1 to 20</field>
+    <field name="code">91</field>
+    <field name="applicability">taxes</field>
+  </record>
+
+</odoo>

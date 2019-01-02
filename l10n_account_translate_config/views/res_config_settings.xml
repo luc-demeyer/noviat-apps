@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">account settings</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <div data-key="account_invoicing" position="inside">
+        <field name="module_l10n_multilang" invisible="1"/>
+        <h2 id="account_translate_h2"
+            attrs="{'invisible': [('module_l10n_multilang', '=', False)]}">Chart of Accounts</h2>
+        <div class="row mt16 o_settings_container"
+             id="account_translate_div"
+             attrs="{'invisible': [('module_l10n_multilang', '=', False)]}">
+          <div class="col-xs-12 col-md-6 o_setting_box">
+            <div class="o_setting_left_pane"
+                 name="account_translate_left_pane">
+              <field name="module_l10n_account_translate_off"/>
+            </div>
+            <div class="o_setting_right_pane"
+                 name="account_translate_right_pane">
+              <label for="module_l10n_account_translate_off"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </field>
+  </record>
+
+</odoo>

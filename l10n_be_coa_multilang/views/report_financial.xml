@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <template id="report_financiall10nbe" inherit_id="account.report_financial">
+
+    <xpath expr="//t[@t-call='web.html_container']" position="inside">
+      <t t-set="data_report_margin_top" t-value="20"/>
+    </xpath>
+    <xpath expr="//t[@t-call='web.internal_layout']" position="attributes">
+      <attribute name="t-call">l10n_be_coa_multilang.l10n_be_layout</attribute>
+    </xpath>
+
+    <xpath expr="//div[hasclass('page')]/h2" position="replace">
+      <h3 t-esc="data['account_report_id'][1]"/>
+    </xpath>
+
+    <xpath expr="//table[1]/thead/tr/th[1]" position="attributes">
+      <attribute name="width">40%</attribute>
+    </xpath>
+    <xpath expr="//table[1]/tbody/tr/t/t" position="before">
+      <t t-set="padleft" t-value="'padding-left:' + str(20 * (a.get('level', 0) - 1)) + 'px;'"/>
+    </xpath>
+    <xpath expr="//table[1]/tbody/tr/t/td/span[1]" position="replace"/>
+    <xpath expr="//table[1]/tbody/tr/t/td[1]" position="attributes">
+      <attribute name="t-att-style">padleft</attribute>
+    </xpath>
+    <xpath expr="//table[1]/thead/tr/th[2]" position="attributes">
+      <attribute name="width">20%</attribute>
+    </xpath>
+    <xpath expr="//table[1]/thead/tr/th[3]" position="attributes">
+      <attribute name="width">20%</attribute>
+    </xpath>
+    <xpath expr="//table[1]/thead/tr/th[4]" position="attributes">
+      <attribute name="width">20%</attribute>
+    </xpath>
+
+    <xpath expr="//table[2]/thead/tr/th[1]" position="attributes">
+      <attribute name="width">80%</attribute>
+    </xpath>
+    <xpath expr="//table[2]/tbody/tr/t/t" position="before">
+      <t t-set="padleft" t-value="'padding-left:' + str(20 * (a.get('level', 0) - 1)) + 'px;'"/>
+    </xpath>
+    <xpath expr="//table[2]/tbody/tr/t/td/span[1]" position="replace"/>
+    <xpath expr="//table[2]/tbody/tr/t/td[1]" position="attributes">
+      <attribute name="t-att-style">padleft</attribute>
+    </xpath>
+
+    <xpath expr="//table[3]/thead/tr/th[1]" position="attributes">
+      <attribute name="width">80%</attribute>
+    </xpath>
+    <xpath expr="//table[3]/tbody/tr/t/t" position="before">
+      <t t-set="padleft" t-value="'padding-left:' + str(20 * (a.get('level', 0) - 1)) + 'px;'"/>
+    </xpath>
+    <xpath expr="//table[3]/tbody/tr/t/td/span[1]" position="replace"/>
+    <xpath expr="//table[3]/tbody/tr/t/td[1]" position="attributes">
+      <attribute name="t-att-style">padleft</attribute>
+    </xpath>
+
+  </template>
+
+</odoo>

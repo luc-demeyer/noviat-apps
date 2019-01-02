@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- 
+    We need to set the 'transfer_account_id' at chart template
+    creation time since it is a required field.
+  -->
+  <record id="aatn_580000" model="account.account.template">
+    <field name="name">Internal transfer account</field>
+    <field name="code">580000</field>
+    <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+  </record>
+
+  <record id="l10n_be_coa_multilang_template" model="account.chart.template">
+    <field name="name">Belgian Chart of Accounts (en/nl/fr)</field>
+    <field name="l10n_be_coa_multilang" eval="1"/>
+    <field name="transfer_account_id" ref="aatn_580000"/>
+    <field name="currency_id" ref="base.EUR"/>
+    <field name="bank_account_code_prefix">550</field>
+    <field name="cash_account_code_prefix">570</field>
+    <field name="code_digits">6</field>
+  </record>
+
+</odoo>
