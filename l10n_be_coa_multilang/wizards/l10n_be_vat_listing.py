@@ -419,7 +419,7 @@ class l10nBeVatListingXlsx(AbstractReportXlsx):
         row_pos += 1
         ws.write_string(row_pos, 1, self._('VAT Number') + ':',
                         self.format_left_bold)
-        ws.write_string(row_pos, 2, listing.company_id.vat)
+        ws.write_string(row_pos, 2, listing.company_id.vat or '')
         row_pos += 1
         ws.write_string(row_pos, 1, self._('Year') + ':',
                         self.format_left_bold)
