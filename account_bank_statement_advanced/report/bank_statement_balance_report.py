@@ -48,7 +48,8 @@ class BankStatementBalanceReport(report_sxw.rml_parse):
         if not lines:
             raise UserError(_('No records found for your selection!'))
 
-        report_date = fields.Datetime.context_timestamp(wiz, datetime.now())
+        report_date = fields.Datetime.context_timestamp(
+            wiz.env.user, datetime.now()).strftime('%Y-%m-%d %H:%M')
 
         self.localcontext.update({
             'lines': lines,
