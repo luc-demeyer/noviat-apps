@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -48,7 +48,6 @@ class WizExportStockLevel(models.TransientModel):
         ('consu', 'Consumable'),
         ], string='Product Type',
         default='product',
-        groups='base.group_no_one',
         help="Leave blank to include Stockable and Consumable products")
     product_select = fields.Selection([
         ('all', 'All Products'),

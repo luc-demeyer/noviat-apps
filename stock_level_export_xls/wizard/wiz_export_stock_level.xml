@@ -44,7 +44,8 @@
             <field name="package_id"
                    options="{'no_create': True, 'no_open': True}"
                    groups="stock.group_tracking_lot"/>
-            <field name="product_type"/>
+            <field name="product_type"
+                   groups="base.group_no_one"/>
             <field name="product_select" invisible="not context.get('active_model') in ['product.product', 'product.template']"/>
           </group>
         </group>
