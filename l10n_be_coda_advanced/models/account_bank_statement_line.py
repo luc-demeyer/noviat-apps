@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -20,4 +20,4 @@ class AccountBankStatementLine(models.Model):
         Such lines are used in CODA files to give additional information).
         """
         if not self.coda_transaction_dict:
-            super(AccountBankStatementLine, self)
+            super(AccountBankStatementLine, self)._check_amount()

@@ -1,6 +1,8 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
+   :alt: License: AGPL-3
 
+=====================================
 Module to import CODA bank statements
 =====================================
 
@@ -16,8 +18,6 @@ Features
     * Automatic Financial Journal assignment via CODA configuration parameters.
     * Support for multiple Journals per Bank Account Number.
     * Support for multiple statements from different bank accounts in a single CODA file.
-    * Support for 'parsing only' CODA Bank Accounts (defined as type='info' in 
-      the CODA Bank Account configuration records).
     * Multi-language CODA parsing, parsing configuration data provided for EN, NL, FR.
     * Support for 'globalisation' of transactions (performed by the customer or the bank).
       A globalised transaction is presented in the bank statement with its global level (or levels)
@@ -26,8 +26,9 @@ Features
     * All information supplied in the CODA file is presented in the bank statement.
       This includes also non-transactional data such as 'free communication' supplied
       by the bank via the CODA File.
-      Tranaction specific information can be found in the 'Notes' field of the transaction.
+      Transaction specific information can be found in the 'Notes' field of the transaction.
       Generic communication is available via the 'CODA Notes' field of the Bank Statement.
+    * Support for zip files containing multiple CODA files
 
 Reconciliation logic
 --------------------
@@ -97,7 +98,6 @@ Installation instructions
 
     2) We recommend to run this module in combination with the following Noviat modules:
 
-       - account_pain
        - l10n_be_coda_pain
        - l10n_be_coda_sale
 
