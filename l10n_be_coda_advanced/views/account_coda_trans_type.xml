@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="account_coda_trans_type_view_tree" model="ir.ui.view">
+    <field name="name">account.coda.trans.type.tree</field>
+    <field name="model">account.coda.trans.type</field>
+    <field name="arch" type="xml">
+      <tree string="CODA Transaction Types">
+        <field name="type"/>
+        <field name="parent_id"/>
+        <field name="description"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="account_coda_trans_type_view_form" model="ir.ui.view">
+    <field name="name">account.coda.trans.type.form</field>
+    <field name="model">account.coda.trans.type</field>
+    <field name="arch" type="xml">
+      <form string="CODA Transaction Type">
+        <group>
+          <field name="type"/>
+          <field name="parent_id"/>
+          <field name="description" colspan="4"/>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <record id="account_coda_trans_type_action" model="ir.actions.act_window">
+    <field name="name">CODA Transaction Types</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">account.coda.trans.type</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>

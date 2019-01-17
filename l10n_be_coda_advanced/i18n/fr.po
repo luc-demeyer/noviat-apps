@@ -1,0 +1,3771 @@
+# French translation of Odoo 10.0.
+# This file contains the translation of the following modules:
+#	* l10n_be_coda_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 10.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2018-11-26 21:14:24.963000\n"
+"PO-Revision-Date: 2018-11-26 21:14:24.963000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: l10n_be_coda_advanced
+#: view:account.bank.statement:0
+msgid "Bank Statements"
+msgstr "Relevés"
+
+#. module: l10n_be_coda_advanced
+#: view:account.bank.statement:0
+msgid "CODA Notes"
+msgstr "Notes CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_bank_statement_coda_id
+msgid "CODA Data File"
+msgstr "Fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_bank_statement_coda_note
+msgid "CODA Notes"
+msgstr "Notes CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "CODA Files"
+msgstr "Fichiers CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "CODA File"
+msgstr "Fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "Additional Information"
+msgstr "Informations additionelles"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "Bank Statements"
+msgstr "Relevés"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda:0
+msgid "CODA Statements"
+msgstr "Relevés de compte CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_coda_creation_date
+msgid "CODA Creation Date"
+msgstr "Date de création du CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_coda_data
+msgid "CODA File"
+msgstr "Fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_date
+msgid "Import Date"
+msgstr "Date de l'import"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_name
+msgid "CODA Filename"
+msgstr "Nom du fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_note
+msgid "Import Log"
+msgstr "Import log"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_statement_ids
+msgid "Generated CODA Bank Statements"
+msgstr "Relevés CODA générés"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.comm.type:0
+msgid "CODA Structured Communication Types"
+msgstr "Opérations CODA - Communications structurées"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.comm.type:0
+msgid "CODA Structured Communication Type"
+msgstr "Opérations CODA - Communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_comm_type_code
+msgid "Structured Communication Type"
+msgstr "Type de communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_comm_type_description
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.category:0
+msgid "CODA Transaction Categories"
+msgstr "Opérations CODA - Rubriques"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.category:0
+msgid "CODA Transaction Category"
+msgstr "Opérations CODA - Rubrique"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_category_category
+msgid "Transaction Category"
+msgstr "Opérations CODA - Rubrique"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_category_description
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.code:0
+msgid "CODA Transaction Codes"
+msgstr "Opérations CODA - Codes"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.code:0
+msgid "CODA Transaction Code"
+msgstr "Opérations CODA - Code"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_code_comment
+msgid "Comment"
+msgstr "Commentaire"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_code_description
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_code_parent_id
+msgid "Family"
+msgstr "Famille"
+
+#. module: l10n_be_coda_advanced
+#: selection:account.coda.trans.code,type:0
+msgid "Transaction Code"
+msgstr "Opérations CODA - Code"
+
+#. module: l10n_be_coda_advanced
+#: selection:account.coda.trans.code,type:0
+msgid "Transaction Family"
+msgstr "Opérations CODA - Famille"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.type:0
+msgid "CODA Transaction Types"
+msgstr "Opérations CODA - Types"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.trans.type:0
+msgid "CODA Transaction Type"
+msgstr "Opérations CODA - Type"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_type_description
+msgid "Description"
+msgstr "Description"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_trans_type_type
+msgid "Transaction Type"
+msgstr "Opérations CODA - Type"
+
+#. module: l10n_be_coda_advanced
+#: view:coda.bank.account:0
+msgid "CODA Bank Account Configuration"
+msgstr "Configuration compte bancaire CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_description1
+msgid "Primary Account Description"
+msgstr "Libellé du compte"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_description2
+msgid "Secondary Account Description"
+msgstr "Libellé alternatif du compte"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_journal_id
+msgid "Journal"
+msgstr "Journal"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_bank_id
+msgid "Bank Account"
+msgstr "Compte bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_currency_id
+msgid "Currency"
+msgstr "Devises"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_coda_st_naming
+msgid "Bank Statement Naming Policy"
+msgstr "Nomenclature relevé de compte"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_transfer_account
+msgid "Internal Funds Transfer Account"
+msgstr "Compte virements internes"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_mapping_ids
+msgid "Account Mapping Rules"
+msgstr "Account Mapping Rules"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_active
+msgid "Active"
+msgstr "Actif"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_company_id
+msgid "Company"
+msgstr "Nom de la société"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_coda_bank_account_state
+msgid "Type"
+msgstr "Type"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_import_note
+msgid "Log"
+msgstr "Log"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Select Details"
+msgstr "Sélectionnez les détailles"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Select your file :"
+msgstr "Sélectionnez votre fichier:"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Import"
+msgstr "Importer"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Results :"
+msgstr "Résultat :"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "Close"
+msgstr "Clôturer"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "View Bank Statement(s)"
+msgstr "Voir les relevés de compte"
+
+#. module: l10n_be_coda_advanced
+#: view:account.coda.import:0
+msgid "View CODA Bank Statement(s)"
+msgstr "Voir les relevés CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_import_coda_data
+msgid "CODA (Zip) File "
+msgstr "Fichier CODA (Zip)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:10
+msgid "Bank Statements"
+msgstr "Relevés"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:11
+msgid "CODA Bank Statements"
+msgstr "Relevés de compte CODA"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:12
+msgid "Extra information"
+msgstr "Information additionelle"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:13
+msgid "The CODA File has been processed by"
+msgstr "Le fichier CODA est traité par"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+msgid "Number of statements processed"
+msgstr "Nombre de relevés traités"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:15
+msgid "\n\nBank Journal: %s\nCODA Version: %s\nCODA Sequence Number: %s\nPaper Statement Sequence Number: %s\nBank Account: %s\nAccount Holder Name: %s\nDate: %s, Starting Balance:  %.2f, Ending Balance: %.2f%s"
+msgstr "\n\nJournal financier: %s\nVersion CODA: %s\nNuméro de séquence du CODA: %s\nNuméro de séquence de l'extrait de compte papier: %s\nCompte bancaire: %s\nNom du titulaire du compte: %s\nDate: %s, Ancien solde:  %.2f, Nouveau solde: %.2f%s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:16
+msgid "Transaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nCommunication: %s"
+msgstr "Type de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nCommunication: %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:17
+msgid "Partner Name: %s \nPartner Account Number: %s\nTransaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nPayment Reference: %s\nCommunication: %s"
+msgstr "Nom du partennaire: %s \nNuméro de compte en banque du partennaire: %s\nType de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nRéférence paiement: %s\nCommunication: %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:18
+msgid "Free Communication:\n %s"
+msgstr "Message Libre:\n %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:20
+msgid "Payment with ISO 11649 structured format communication"
+msgstr "Paiement avec ISO 11649 communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:21
+msgid "Payment with a structured format communication applying the ISO standard 11649"
+msgstr "Communication structurée d’un paiement conforme au standard ISO 11649"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:23
+msgid "Number (e.g. of the cheque, of the card, etc.)"
+msgstr "numéro (par ex. du chèque, de la carte, etc.)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:26
+msgid "Gross amount in the currency of the account"
+msgstr "Montant brut dans la devise du compte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:27
+msgid "Gross amount in the original currency"
+msgstr "Montant brut dans la devise initiale"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:28
+msgid "Rate"
+msgstr "Cours de change"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:29
+msgid "Currency"
+msgstr "Devise"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:30
+msgid "Structured format communication"
+msgstr "Communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:31
+msgid "Country code of the principal"
+msgstr "Code-pays du donneur d'ordre"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:32
+msgid "Equivalent in EUR"
+msgstr "Contre-valeur en EUR"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:34
+msgid "VAT, withholding tax on income, commission, etc."
+msgstr "TVA, précompte mobilier, commission, etc."
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:35
+msgid "Equivalent in the currency of the account"
+msgstr "Contre-valeur dans la devise du compte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:36
+msgid "Amount on which % is calculated"
+msgstr "Montant sur lequel le % est appliqué"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:37
+msgid "Percent"
+msgstr "Taux"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:38
+msgid "Minimum applicable"
+msgstr "Minimum applicable"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:39
+msgid "Minimum not applicable"
+msgstr "Minimum non applicable"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:41
+msgid "Direct debit – DOM’80"
+msgstr "Domiciliations – DOM'80"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:42
+msgid "Direct Debit Number"
+msgstr "Numéro domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:43
+msgid "Central (Pivot) Date"
+msgstr "Date pivot"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:44
+msgid "Communication Zone"
+msgstr "Zone de communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:45
+msgid "Paid or reason for refusal"
+msgstr "Payé ou motif du refus"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:46
+msgid "Creditor's Number"
+msgstr "Numéro du créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:47
+msgid "paid"
+msgstr "payé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:48
+msgid "direct debit cancelled or nonexistent"
+msgstr "domiciliation révoquée ou inexistante"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:49
+msgid "refusal - other reason"
+msgstr "refus - autre raison"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:50
+msgid "payer disagrees"
+msgstr "payeur pas d'accord"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:51
+msgid "direct debit number linked to another identification number of the creditor"
+msgstr "numéro de domiciliation lié à un autre numéro d'identification créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:53
+msgid "Closing"
+msgstr "Clôture"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:54
+msgid "Closing, period from %s to %s"
+msgstr "Clôture, période du %s à %s"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:55
+msgid "Interest rates, calculation basis"
+msgstr "Chiffres taux, base de calcul"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:56
+msgid "Interest"
+msgstr "Taux"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:58
+msgid "ATM/POS debit"
+msgstr "Débit ATM/POS"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:59
+msgid "Card Number"
+msgstr "Numéro de la carte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:60
+msgid "Card Scheme"
+msgstr "Schéma de carte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:61
+msgid "Terminal Number"
+msgstr "Numéro du terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:62
+msgid "First Transaction Sequence Number"
+msgstr "Numéro de séquence première opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:63
+msgid "Last Transaction Sequence Number"
+msgstr "Numéro de séquence dernière opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:64
+msgid "Transaction Sequence Number"
+msgstr "Numéro de séquence opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:65
+msgid "Date of first transaction"
+msgstr "Date première opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:66
+msgid "Date of last transaction"
+msgstr "Date dernière opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:67
+msgid "Time"
+msgstr "Temps de l'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:68
+msgid "Transaction Type"
+msgstr "Type d'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:69
+msgid "Terminal Identification"
+msgstr "Identification du terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:70
+msgid "Original Amount"
+msgstr "Montant initial"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:71
+msgid "Volume"
+msgstr "Volume"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:72
+msgid "Product Code"
+msgstr "Code produit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:73
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:74
+msgid "Private"
+msgstr "Privé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:75
+msgid "Other"
+msgstr "Autres"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:77
+msgid "Withdrawal"
+msgstr "Retrait"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:78
+msgid "Proton loading"
+msgstr "Chargement Proton"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:79
+msgid "Reimbursement Proton balance"
+msgstr "Restitution solde Proton"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:80
+msgid "Reversal of purchases"
+msgstr "Contre-passation achats"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:81
+msgid "Distribution sector"
+msgstr "Secteur de distribution"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:82
+msgid "Teledata"
+msgstr "Teledata"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:83
+msgid "Fuel"
+msgstr "Énergie"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:85
+msgid "POS credit - globalisation"
+msgstr "Crédit POS – globalisation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:86
+msgid "POS credit - individual transaction"
+msgstr "Crédit POS – opération individuelle"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:87
+msgid "POS Number"
+msgstr "Numéro POS"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:88
+msgid "Period Number"
+msgstr "Numéro de la période"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:89
+msgid "Transaction Reference"
+msgstr "Référence de l'opération"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:91
+msgid "Terminal cash deposit"
+msgstr "Versement au terminal"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:92
+msgid "Validation Date"
+msgstr "Date de validation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:93
+msgid "Validation Sequence Number"
+msgstr "Numéro de séquence de la validation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:94
+msgid "Amount (given by the customer)"
+msgstr "Montant initial"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:95
+msgid "Conformity Code"
+msgstr "Code de conformité"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:96
+msgid "Message"
+msgstr "Communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:98
+msgid "guarantee without fixed term"
+msgstr "cautionnement sans échéance fixe"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:99
+msgid "Starting Date"
+msgstr "Date de prise d'effet"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:100
+msgid "Maturity Date"
+msgstr "Date d'échéance"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:101
+msgid "Basic Amount"
+msgstr "Montant de base"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:102
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:103
+msgid "Term in days"
+msgstr "Durée en jours"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:104
+msgid "Guarantee Number"
+msgstr "Numéro de cautionnement"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:106
+msgid "Settlement credit cards"
+msgstr "Décompte cartes de crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:107
+msgid "Issuing Institution"
+msgstr "Établissement émetteur"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:108
+msgid "Invoice Number"
+msgstr "Numéro de facture"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:109
+msgid "Identification Number"
+msgstr "Numéro d'identification"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:110
+msgid "Date"
+msgstr "Date"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:112
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:113
+msgid "Credit Account Number"
+msgstr "Numéro de compte du crédit"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:114
+msgid "Old Balance"
+msgstr "Ancien solde"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:115
+msgid "New Balance"
+msgstr "Nouveau solde"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:116
+msgid "Amount"
+msgstr "Montant"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:117
+msgid "End Date"
+msgstr "Échéance"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:118
+msgid "Nominal Interest Rate or Rate of Charge"
+msgstr "Taux d'intérêt nominal ou taux de chargement"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:120
+msgid "European direct debit (SEPA)"
+msgstr "Domiciliation européenne (direct debit SEPA)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:121
+msgid "Settlement Date"
+msgstr "Date de décompte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:122
+msgid "Direct Debit Type"
+msgstr "Type de domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:123
+msgid "Direct Debit Scheme"
+msgstr "Plan de domiciliation"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:124
+msgid "Creditor's Identification Code"
+msgstr "Code créancier"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:125
+msgid "Mandate Reference"
+msgstr "Mandat référence"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:126
+msgid "Communication"
+msgstr "Communication"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:127
+msgid "R transaction Type"
+msgstr "Type de transaction R"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:128
+msgid "Reason"
+msgstr "Raison"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:129
+msgid "unspecified"
+msgstr "non précisé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:130
+msgid "recurrent"
+msgstr "récurrent"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:131
+msgid "one-off"
+msgstr "one-off"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:132
+msgid "1-st (recurrent)"
+msgstr "1-st (recurrent)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:133
+msgid "last (recurrent)"
+msgstr "last (recurrent)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:134
+msgid "technical problem"
+msgstr "problème technique"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:135
+msgid "refusal - reason not specified"
+msgstr "refus - raison non précisé"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:136
+msgid "debtor disagrees"
+msgstr "débiteur pas d'accord"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:137
+msgid "debtor's account problem"
+msgstr "problème du compte débiteur"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:138
+msgid "reject"
+msgstr "inexécutable (reject)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:139
+msgid "return"
+msgstr "impayé (return)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:140
+msgid "refund"
+msgstr "rembousement (refund)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:141
+msgid "reversal"
+msgstr "rectification (reversal)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:142
+msgid "cancellation"
+msgstr "annulation (cancellation)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:144
+msgid "Name"
+msgstr "Nom"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:145
+msgid "Street"
+msgstr "Rue"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:146
+msgid "Locality"
+msgstr "Localité"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:147
+msgid "Identification Code"
+msgstr "Code d’identification"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:149
+msgid "Description of the detail"
+msgstr "Libellé du détail"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:150
+msgid "Category"
+msgstr "Rubrique"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:152
+msgid "Number of notes/coins"
+msgstr "Nombre de billets/pièces"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:153
+msgid "Note/coin denomination"
+msgstr "Dénomination du billet/pièce"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:154
+msgid "Total amount"
+msgstr "Montant total"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_statement_action_goto_account_coda
+msgid "CODA Data File"
+msgstr "Fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_account_action
+msgid "CODA Bank Account Configuration"
+msgstr "Configuration compte bancaire CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_comm_type_action
+msgid "CODA Structured Communication Types"
+msgstr "Opérations CODA - Communications structurées"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_category_action
+msgid "CODA Transaction Categories"
+msgstr "Opérations CODA - Rubriques"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_code_action
+msgid "CODA Transaction Codes"
+msgstr "Opérations CODA - Codes"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_trans_type_action
+msgid "CODA Transaction Types"
+msgstr "Opérations CODA - Types"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.coda_bank_statement_action
+msgid "CODA Bank Statements"
+msgstr "Relevés CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.act_window,name:l10n_be_coda_advanced.account_coda_action
+msgid "Imported CODA Files"
+msgstr "Fichiers CODA importés"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.wizard,name:l10n_be_coda_advanced.account_coda_import_action_cbs
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.actions.wizard,name:l10n_be_coda_advanced.wizard_account_coda_action_ac
+msgid "Import CODA File"
+msgstr "Importer le fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_coda_processing
+msgid "CODA Processing"
+msgstr "Traitement CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_import_menu
+msgid "Import CODA Files"
+msgstr "Importer les fichiers CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.coda_bank_account_menu
+msgid "CODA Bank Account Configuration"
+msgstr "Configuration compte bancaire CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_comm_type_menu
+msgid "CODA Structured Communication Types"
+msgstr "Opérations CODA - Communications structurées"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_category_menu
+msgid "CODA Transaction Categories"
+msgstr "Opérations CODA - Rubriques"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_code_menu
+msgid "CODA Transaction Codes"
+msgstr "Opérations CODA - Codes"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_trans_type_menu
+msgid "CODA Transaction Types"
+msgstr "Opérations CODA - Types"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.coda_bank_statement_menu
+msgid "CODA Bank Statements"
+msgstr "Relevés CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.account_coda_menu
+msgid "Imported CODA Files"
+msgstr "Fichiers CODA importés"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.ui.menu,name:l10n_be_coda_advanced.menu_coda_configuration
+msgid "CODA Configuration"
+msgstr "Configuration CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_0
+msgid "Simple amount without detailed data; e.g. : an individual credit transfer (free of charges)."
+msgstr "Montant simple sans détails, par ex. : un virement individuel (sans frais)."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_1
+msgid "Amount as totalised by the customer; e.g. a file regrouping payments of wages or payments made to suppliers or a file regrouping collections for which the customer is debited or credited with one single amount. As a matter of principle, this type is also used when no detailed data is following (type 5)."
+msgstr "Montant globalisé par le client, par ex. un fichier avec paiements de salaire ou de fournisseurs ou un fichier avec recouvrements pour lesquels le client est débité ou crédité d'un montant unique. Ce type peut, en principe, également être utilisé s'il n'y a pas de détails (type 5) qui suivent."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_5
+msgid "Detail of 1. Standard procedure is no detailing. However, the customer may ask for detailed data to be included into his file after the overall record (type 1)."
+msgstr "Détails de 1. De manière standard, les détails ne sont pas rendus. Le client peut toutefois choisir de recevoir les détails après l'enregistrement global (type 1) dans son fichier."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_2
+msgid "Amount as totalised by the bank; e.g. : the total amount of a series of credit transfers with a structured communication As a matter of principle, this type will also be used when no detailed data (type 6 or 7) is following."
+msgstr "Montant globalisé par la banque, par ex. : le montant total d'une série de virements à communication structurée. Ce type peut, en principe, également être utilisé s'il n'y a pas de détails (type 6 ou 7) qui suivent."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_6
+msgid "Detail of 2. Simple amount without detailed data. Normally, data of this kind comes after type 2. The customer may ask for a separate file containing the detailed data. In that case, one will speak of a ‘separate application’. The records in a separate application keep type 6."
+msgstr "Détails de 2. Montant simple sans détails. Normalement, ces détails suivent le type 2. Le client peut choisir de recevoir ces détails dans un fichier distinct. On parle alors d'une "application distincte". Les enregistrements dans une application distincte conservent le type 6."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_7
+msgid "Detail of 2. Simple account with detailed data The records in a separate application keep type 7."
+msgstr "Détails de 2. Montant simple avec détails. Les enregistrements dans une application distincte conservent le type 7."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_9
+msgid "Detail of 7. The records in a separate application keep type 9."
+msgstr "Détails de 7. Les enregistrements dans une application distincte conservent le type 9."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_3
+msgid "Simple amount with detailed data; e.g. in case of charges for cross-border credit transfers."
+msgstr "Montant simple avec détails; par ex. coûts sur virements étrangers."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.type,description:l10n_be_coda_advanced.actt_8
+msgid "Detail of 3."
+msgstr "Détails de 3."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_00
+msgid "Undefined transactions"
+msgstr "Opérations non définies"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_00
+msgid "Undefined transaction"
+msgstr "Opérations non codées"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_33
+msgid "Value correction"
+msgstr "Rectification de valeur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_35
+msgid "Correction"
+msgstr "Rectification"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_39
+msgid "Cancellation of a transaction"
+msgstr "Annulation d'une opération"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_83
+msgid "Value correction"
+msgstr "Rectification de valeur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_85
+msgid "Correction"
+msgstr "Rectification"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_87
+msgid "Costs refunded"
+msgstr "Restitution de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_00_89
+msgid "Cancellation of a transaction"
+msgstr "Annulation d'une opération"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_01
+msgid "Domestic or local SEPA credit transfers"
+msgstr "Virements nationaux/locaux – SEPA credit transfers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_01
+msgid "Individual transfer order"
+msgstr "Virement simple"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_02
+msgid "Individual transfer order initiated by the bank"
+msgstr "Virement simple initié par la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_03
+msgid "Standing order"
+msgstr "Ordre permanent"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_05
+msgid "Payment of wages, etc."
+msgstr "Paiement salaire, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_07
+msgid "Collective transfer"
+msgstr "Virement collectif"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_09
+msgid "Your semi-standing order"
+msgstr "Votre ordre semi-permanent"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_11
+msgid "Your semi-standing order – payment to employees"
+msgstr "Votre ordre semi-permanent - paiement travailleurs"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_13
+msgid "Transfer from your account"
+msgstr "Virement de votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_15
+msgid "Balance due insurance premium"
+msgstr "Prime d'assurance solde restant dû"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_17
+msgid "Financial centralisation"
+msgstr "Centralisation financière"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_37
+msgid "Costs"
+msgstr "Coûts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_39
+msgid "Your issue circular cheque"
+msgstr "Votre émission chèque circulaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_50
+msgid "Transfer in your favour"
+msgstr "Virement en votre faveur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_51
+msgid "Transfer in your favour – initiated by the bank"
+msgstr "Virement en votre faveur initié par la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_52
+msgid "Payment in your favour"
+msgstr "Versement en votre faveur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_54
+msgid "Unexecutable transfer order"
+msgstr "Virement non exécutable"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_60
+msgid "Non-presented circular cheque"
+msgstr "Chèque circulaire non présenté"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_62
+msgid "Unpaid postal order"
+msgstr "Assignation postale impayée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_64
+msgid "Transfer to your account"
+msgstr "Virement à votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_66
+msgid "Financial centralization"
+msgstr "Centralisation financière"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_87
+msgid "Reimbursement of costs"
+msgstr "Restitution des frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_03
+msgid "Cheques"
+msgstr "Chèques"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_01
+msgid "Payment of your cheque"
+msgstr "Paiement de votre chèque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_03
+msgid "Your purchase by payment card"
+msgstr "Votre achat avec carte de paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_05
+msgid "Payment of voucher"
+msgstr "Paiement de bon"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_07
+msgid "Definitely unpaid cheque"
+msgstr "Chèque définitivement impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_09
+msgid "Unpaid voucher"
+msgstr "Bon impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_11
+msgid "Department store cheque"
+msgstr "Chèque magasin"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_13
+msgid "Eurocheque written out abroad"
+msgstr "Eurochèque émis à l'étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_15
+msgid "Your purchase bank cheque"
+msgstr "Confection chèque bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_17
+msgid "Your certified cheque"
+msgstr "Votre chèque certifié"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_19
+msgid "Settlement of credit cards"
+msgstr "Décompte cartes de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_35
+msgid "Cash advance"
+msgstr "Facilité de caisse"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_37
+msgid "Cheque-related costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_38
+msgid "Provisionally unpaid"
+msgstr "Provisoirement impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_39
+msgid "Provisionally unpaid due to other reason than manual presentation"
+msgstr "Provisoirement impayé pour une raison autre q'une présentation manuelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_50
+msgid "Credit of a payment via terminal"
+msgstr "Crédit d'un paiement via terminal"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_52
+msgid "First credit of cheques, vouchers, luncheon vouchers, postal orders, credit under usual reserve"
+msgstr "Premier crédit de chèques, bons, chèques repas, assignations postales, crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_56
+msgid "Non-presented certified cheques"
+msgstr "Chèques certifiés non présentés"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_58
+msgid "Remittance of cheques, vouchers, etc. credit after collection"
+msgstr "Remise de chèques, bons, etc. crédit après encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_60
+msgid "Reversal of voucher"
+msgstr "Contre-passation d'un bon"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_62
+msgid "Reversal of cheque"
+msgstr "Contre-passation chèque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_63
+msgid "Second credit of unpaid cheque"
+msgstr "Deuxième crédit d’un chèque impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_64
+msgid "Reversal of settlement of credit card"
+msgstr "Contre-passation décompte cartes de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_66
+msgid "Remittance of cheque by your branch - credit under usual reserve"
+msgstr "Remise d'un chèque par votre succursale"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_68
+msgid "Credit of a payment via electronic purse"
+msgstr "Crédit d'un paiement via portemonnaie électronique"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_87
+msgid "Reimbursement of cheque-related costs"
+msgstr "Restitution des frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_03_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_04
+msgid "Cards"
+msgstr "Cartes"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_01
+msgid "Loading a GSM card"
+msgstr "Chargement carte GSM "
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_02
+msgid "Payment by means of a payment card within the Eurozone"
+msgstr "Paiement par carte de débit dans l’euro zone"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_03
+msgid "Settlement credit cards"
+msgstr "Décompte cartes de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_04
+msgid "Cash withdrawal from an ATM"
+msgstr "Retrait d’argent via guichet automatique"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_05
+msgid "Loading Proton"
+msgstr "Chargement Proton"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_06
+msgid "Payment with tank card"
+msgstr "Paiement par carte essence"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_07
+msgid "Payment by GSM"
+msgstr "Paiement par GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_08
+msgid "Payment by means of a payment card outside the Eurozone"
+msgstr "Paiement par carte de débit en dehors de l’euro zone"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_50
+msgid "Credit after a payment at a terminal"
+msgstr "Crédit d’un paiement via terminal"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_51
+msgid "Unloading Proton"
+msgstr "Déchargement Proton"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_52
+msgid "Loading GSM cards"
+msgstr "Chargement cartes GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_53
+msgid "Cash deposit at an ATM"
+msgstr "Versement d’argent à un guichet automatique"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_55
+msgid "Income from payments by GSM"
+msgstr "Réceptions paiements par GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_68
+msgid "Credit after Proton payments"
+msgstr "Crédit de paiements via Proton"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_87
+msgid "Reimbursement of costs"
+msgstr "Restitution frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_05
+msgid "Direct debit"
+msgstr "Domiciliations – Direct Debit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_01
+msgid "Payment"
+msgstr "Paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_03
+msgid "Unpaid debt"
+msgstr "Recouvrement impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_05
+msgid "Reimbursement"
+msgstr "Restitution"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_37
+msgid "Costs"
+msgstr "Coûts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_50
+msgid "Credit after collection"
+msgstr "Crédit après encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_52
+msgid "Credit under usual reserve"
+msgstr "Crédit sauf bonne fin"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_54
+msgid "Reimbursement"
+msgstr "Remboursement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_56
+msgid "Unexecutable reimbursement"
+msgstr "Remboursement inexécutable"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_58
+msgid "Reversal"
+msgstr "contre-passation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_05_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_07
+msgid "Domestic commercial paper"
+msgstr "Effets de commerce nationaux"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_01
+msgid "Payment commercial paper"
+msgstr "Paiement effet de commerce"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_03
+msgid "Payment receipt card"
+msgstr "Paiement carte-récépissé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_05
+msgid "Commercial paper claimed back"
+msgstr "Effet demandé en retour"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_06
+msgid "Extension of maturity date"
+msgstr "Prorogation d'échéance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_07
+msgid "Unpaid commercial paper"
+msgstr "Effet de commerce impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_08
+msgid "Payment in advance"
+msgstr "Paiement anticipatif"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_09
+msgid "Agio on supplier's bill"
+msgstr "Agios sur effet-fournisseur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_10
+msgid "Renewal of agreed maturity date"
+msgstr "Renouvellement échéance conventionnelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_12
+msgid "Safe custody"
+msgstr "Mise en pension"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_14
+msgid "Warrant fallen due"
+msgstr "Warrant échu"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_37
+msgid "Costs related to commercial paper"
+msgstr "Frais en rapport avec l’effet de commerce"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_39
+msgid "Return of an irregular bill of exchange"
+msgstr "Renvoi d'un effet irrégulier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_50
+msgid "Remittance of commercial paper - credit after collection"
+msgstr "Remise d'effet de commerce avec crédit après encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_52
+msgid "Remittance of commercial paper - credit under usual reserve"
+msgstr "Remise effet de commerce avec crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_54
+msgid "Remittance of commercial paper for discount"
+msgstr "Remise d'effet à l'escompte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_56
+msgid "Remittance of supplier's bill with guarantee"
+msgstr "Remise d'effet-fournisseur avec aval"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_58
+msgid "Remittance of supplier's bill without guarantee"
+msgstr "Remise d'effet-fournisseur sans aval"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_64
+msgid "Warrant"
+msgstr "Warrant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_86
+msgid "Payment after cession"
+msgstr "Rentrée après cession"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_07_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_09
+msgid "Counter transactions"
+msgstr "Opérations de guichet"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_01
+msgid "Cash withdrawal"
+msgstr "Retrait en espèces"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_03
+msgid "Cash withdrawal by card (ATM)"
+msgstr "Retrait d'argent avec carte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_05
+msgid "Purchase of foreign bank notes"
+msgstr "Achat devises Via le débit du compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_07
+msgid "Purchase of gold/pieces"
+msgstr "Achat d'or/pièces"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_09
+msgid "Purchase of petrol coupons"
+msgstr "Achat bons d'essence"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_11
+msgid "Your purchase of luncheon vouchers"
+msgstr "Votre achat de chèques repas"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_13
+msgid "Cash withdrawal by your branch or agents"
+msgstr "Retrait d'argent par votre succursale/vos agents"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_15
+msgid "Your purchase of lottery tickets"
+msgstr "Votre achat de billets de loterie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_17
+msgid "Purchase of fiscal stamps"
+msgstr "Achat de timbres fiscaux"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_19
+msgid "Difference in payment"
+msgstr "Différence de versement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_21
+msgid "Cash withdrawal on card (PROTON)"
+msgstr "Retrait d'argent avec carte (PROTON)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_25
+msgid "Purchase of traveller’s cheque"
+msgstr "Achat chèques de voyage"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_50
+msgid "Cash payment"
+msgstr "Versement en espèces"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_52
+msgid "Payment night safe"
+msgstr "Versement coffre de nuit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_54
+msgid "Your payment ATM"
+msgstr "Votre versement ATM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_56
+msgid "Reserve"
+msgstr "Réserve"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_58
+msgid "Payment by your branch/agents"
+msgstr "Versement par votre succursale/agents"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_60
+msgid "Sale of foreign bank notes"
+msgstr "Vente devises"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_62
+msgid "Sale of gold/pieces under usual reserve"
+msgstr "Vente d'or/pièces sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_64
+msgid "Your winning lottery ticket"
+msgstr "Votre billet de loterie gagnant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_66
+msgid "Repurchase of petrol coupons"
+msgstr "Rachat bons d'essence"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_68
+msgid "Difference in payment"
+msgstr "Différence de versement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_70
+msgid "Sale of traveller’s cheque"
+msgstr "Vente chèques de voyage"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_09_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_11
+msgid "Securities"
+msgstr "Titres, coupons"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_01
+msgid "Purchase of securities"
+msgstr "Achat de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_02
+msgid "Tenders"
+msgstr "Adjudication"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_03
+msgid "Subscription to securities"
+msgstr "Souscription de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_04
+msgid "Issues"
+msgstr "Emissions"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_05
+msgid "Partial payment subscription"
+msgstr "Libération souscription partielle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_06
+msgid "Share option plan – exercising an option"
+msgstr "Action plan d’option – exercice d’option"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_09
+msgid "Settlement of securities"
+msgstr "Liquidation de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_11
+msgid "Payable coupons/repayable securities"
+msgstr "Coupons payables/titres remboursables"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_13
+msgid "Your repurchase of issue"
+msgstr "Rachat émission"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_15
+msgid "Interim interest on subscription"
+msgstr "intérêts intérimaires en cas de souscription"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_17
+msgid "Management fee"
+msgstr "Commission frais de gestion"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_19
+msgid "Regularisation costs"
+msgstr "Frais de régularisation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_50
+msgid "Sale of securities"
+msgstr "Vente de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_51
+msgid "Tender"
+msgstr "Adjudication"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_52
+msgid "Payment of coupons from a deposit or settlement of coupons delivered over the counter - credit under usual reserve"
+msgstr "Paiement de coupons en dépôt ou décompte de coupons reçus au guichet - crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_56
+msgid "Reserve"
+msgstr "Réserve"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_58
+msgid "Repayable securities from a deposit or delivered at the counter - credit under usual reserve"
+msgstr "Titres remboursables provenant d'un dépôt ou remis au guichet - crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_62
+msgid "Interim interest on subscription"
+msgstr "Intérêts intérimaires en cas de souscription"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_64
+msgid "Your issue"
+msgstr "Votre émission"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_66
+msgid "Retrocession of issue commission"
+msgstr "Rétrocession de commission de souscription"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_68
+msgid "Compensation for missing coupon"
+msgstr "Indemnité pour coupon manquant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_70
+msgid "Settlement of securities"
+msgstr "Liquidation de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement des frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_11_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_13
+msgid "Credit"
+msgstr "Crédits"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_01
+msgid "Short-term loan"
+msgstr "Prêt à court terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_02
+msgid "Long-term loan"
+msgstr "Prêt à long terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_05
+msgid "Settlement of fixed advance"
+msgstr "Remboursement avance fixe"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_07
+msgid "Your repayment instalment credits"
+msgstr "Remboursement crédits à tempérament"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_11
+msgid "Your repayment mortgage loan"
+msgstr "Remboursement prêt hypothécaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_13
+msgid "Settlement of bank acceptances"
+msgstr "Liquidation acceptations bancaires"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_15
+msgid "Your repayment hire-purchase and similar claims"
+msgstr "Remboursement leasing et créances similaires"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_19
+msgid "Documentary import credits"
+msgstr "Crédits documentaires importation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_21
+msgid "Other credit applications"
+msgstr "Autres crédits"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_37
+msgid "Credit-related costs"
+msgstr "Frais inhérents aux crédits"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_50
+msgid "Settlement of instalment credit"
+msgstr "Paiement crédit à tempérament"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_54
+msgid "Fixed advance – capital and interest"
+msgstr "Avance fixe – capital et intérêts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_55
+msgid "Fixed advance – interest only"
+msgstr "Avance fixe – uniquement intérêts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_56
+msgid "Subsidy"
+msgstr "Subvention"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_60
+msgid "Settlement of mortgage loan"
+msgstr "Paiement prêt hypothécaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_62
+msgid "Term loan"
+msgstr "Prêt à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_68
+msgid "Documentary export credits"
+msgstr "Crédits documentaires exportation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_70
+msgid "Settlement of discount bank acceptance"
+msgstr "Décompte escompte acceptation bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_13_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_30
+msgid "Various transactions"
+msgstr "Opérations diverses"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_01
+msgid "Spot purchase of foreign exchange"
+msgstr "Achat de devises au comptant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_03
+msgid "Forward purchase of foreign exchange"
+msgstr "Achat de devises à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_05
+msgid "Capital and/or interest term investment"
+msgstr "Capital et/ou intérêts placements à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_33
+msgid "Value (date) correction"
+msgstr "Correction application valeur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_39
+msgid "Undefined transaction"
+msgstr "Opération non codifiée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_50
+msgid "Spot sale of foreign exchange"
+msgstr "Vente de devises au comptant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_52
+msgid "Forward sale of foreign exchange"
+msgstr "Vente de devises à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_54
+msgid "Capital and/or interest term investment"
+msgstr "Capital et/ou intérêts placements à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_55
+msgid "Interest term investment"
+msgstr "Intérêts placements à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_83
+msgid "Value (date) correction"
+msgstr "Correction application valeur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_89
+msgid "Undefined transaction"
+msgstr "Opération non codifiée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_30_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_35
+msgid "Closing (periodical settlements for interest, costs,…)"
+msgstr "Clôture (clôtures périodiques d’intérêts, frais, etc..)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_01
+msgid "Closing"
+msgstr "Clôture"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_37
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_50
+msgid "Closing"
+msgstr "Clôture"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_35_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_41
+msgid "International credit transfers - non-SEPA credit transfers"
+msgstr "Virements internationaux/non-SEPA"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_01
+msgid "Transfer"
+msgstr "Virement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_03
+msgid "Standing order"
+msgstr "Ordre permanent"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_05
+msgid "Collective payments of wages"
+msgstr "Paiements de salaires collectifs"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_07
+msgid "Collective transfers"
+msgstr "Virements collectifs"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_13
+msgid "Transfer from your account"
+msgstr "Virement de votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_17
+msgid "Financial centralisation (debit)"
+msgstr "Centralisation financière"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_37
+msgid "Costs relating to outgoing foreign transfers and non-SEPA transfers"
+msgstr "Frais relatifs aux virements internationaux, non SEPA, sortants"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_38
+msgid "Costs relating to incoming foreign and non-SEPA transfers"
+msgstr "Frais relatifs aux virements internationaux, non SEPA, entrants"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_50
+msgid "Transfer"
+msgstr "Virement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_64
+msgid "Transfer to your account"
+msgstr "Virement à votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_66
+msgid "Financial centralisation (credit)"
+msgstr "Centralisation financière (crédit)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_41_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_43
+msgid "Foreign cheques"
+msgstr "Chèques étrangers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_01
+msgid "Payment of a foreign cheque"
+msgstr "Paiement chèque étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_07
+msgid "Unpaid foreign cheque"
+msgstr "Chèque étranger impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_15
+msgid "Purchase of an international bank cheque"
+msgstr "Achat chèque bancaire international"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_37
+msgid "Costs relating to payment of foreign cheques"
+msgstr "Frais en rapport avec le paiement des chèques étrangers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_52
+msgid "Remittance of foreign cheque credit under usual reserve"
+msgstr "Remise chèque sur l'étranger - crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_58
+msgid "Remittance of foreign cheque credit after collection"
+msgstr "Remise chèque sur l'étranger – crédit après encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_62
+msgid "Reversal of cheques"
+msgstr "Contre-passation chèques"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_70
+msgid "Purchase of traveller’s cheque"
+msgstr "Rachat chèque de voyage"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_43_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_47
+msgid "Foreign commercial paper"
+msgstr "Effets de commerce étrangers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_01
+msgid "Payment of foreign bill"
+msgstr "Paiement effet étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_05
+msgid "Bill claimed back"
+msgstr "Effet demandé en retour"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_06
+msgid "Extension"
+msgstr "Prolongation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_07
+msgid "Unpaid foreign bill"
+msgstr "Effet étranger impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_11
+msgid "Payment documents abroad"
+msgstr "Paiement documents étrangers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_13
+msgid "Discount foreign supplier's bills"
+msgstr "Escompte effet fournisseur étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_14
+msgid "Warrant fallen due"
+msgstr "Warrant échu"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_37
+msgid "Costs relating to the payment of a foreign bill"
+msgstr "Frais en rapport avec le paiement de l'effet étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_50
+msgid "Remittance of foreign bill credit after collection"
+msgstr "Remise d'effet étr. - crédit après encaiss."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_52
+msgid "Remittance of foreign bill credit under usual reserve"
+msgstr "Remise d'effet étranger - crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_54
+msgid "Discount abroad"
+msgstr "Escompte étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_56
+msgid "Remittance of guaranteed foreign supplier's bill"
+msgstr "Remise d'effet fournisseur étranger avec aval"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_58
+msgid "Idem without guarantee"
+msgstr "Idem sans aval"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_60
+msgid "Remittance of documents abroad - credit under usual reserve"
+msgstr "Remise de documents étrangers - crédit sbf"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_62
+msgid "Remittance of documents abroad - credit after collection"
+msgstr "Remise de documents étrangers - crédit après encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_64
+msgid "Warrant"
+msgstr "Warrant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_87
+msgid "Reimbursement of costs"
+msgstr "Remboursement de frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_47_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_49
+msgid "Foreign counter transactions"
+msgstr "Opérations guichet à l'étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_49_03
+msgid "ATM withdrawal"
+msgstr "Retrait ATM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_80
+msgid "Separately charged costs and provisions"
+msgstr "Frais et commissions isolés"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_01
+msgid "Guarantee card charges"
+msgstr "Frais de carte de garantie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_02
+msgid "Costs relating to electronic output"
+msgstr "Frais output électronique"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_03
+msgid "Payment card charges"
+msgstr "Frais de carte de paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_04
+msgid "Costs for holding a documentary cash credit"
+msgstr "Frais détention crédit de caisse"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_05
+msgid "Card charges"
+msgstr "Frais de carte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_06
+msgid "Damage relating to bills and cheques"
+msgstr "Dommages effets et chèques"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_07
+msgid "Insurance costs"
+msgstr "Frais d'assurance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_08
+msgid "Registering compensation for savings accounts"
+msgstr "Indemnité de classement pour comptes d'épargne"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_09
+msgid "Postage"
+msgstr "Frais de port"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_10
+msgid "Purchase of Smartcard"
+msgstr "Achat smartcard"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_11
+msgid "Costs for the safe custody of correspondence"
+msgstr "Frais de garde de correspondance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_12
+msgid "Costs for opening a bank guarantee"
+msgstr "Frais ouverture garantie bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_13
+msgid "Renting of safes"
+msgstr "Location de coffre-fort"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_14
+msgid "Handling costs instalment credit"
+msgstr "Frais dossier crédit à tempérament"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_15
+msgid "Night safe"
+msgstr "Coffre de nuit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_16
+msgid "Bank confirmation to revisor or accountant"
+msgstr "Déclaration bancaire au réviseur ou à l’expert-comptable"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_17
+msgid "Charge for safe custody"
+msgstr "Droit de garde"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_18
+msgid "Trade information"
+msgstr "Informations sur effets de commerce"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_19
+msgid "Special charge for safe custody"
+msgstr "Droit de garde spécial"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_20
+msgid "Drawing up a certificate"
+msgstr "Confection attestation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_21
+msgid "Pay-packet charges"
+msgstr "Frais enveloppe appointements"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_22
+msgid "Management/custody"
+msgstr "Gestion/garde"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_23
+msgid "Research costs"
+msgstr "Frais de recherche"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_24
+msgid "Participation in and management of interest refund system"
+msgstr "Adhésion et gestion système ristourne d'intérêts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_25
+msgid "Renting of direct debit box"
+msgstr "Location de boîte postale"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_26
+msgid "Travel insurance premium"
+msgstr "Prime assistance de voyage"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_27
+msgid "Subscription fee"
+msgstr "Frais d'abonnement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_29
+msgid "Information charges"
+msgstr "Frais de renseignements"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_31
+msgid "Writ service fee"
+msgstr "Frais d'huissier de justice"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_33
+msgid "Miscellaneous fees and commissions"
+msgstr "Commission et frais divers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_35
+msgid "Costs"
+msgstr "Frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_37
+msgid "Access right to database"
+msgstr "Droit d'accès banque de données"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_39
+msgid "Surety fee"
+msgstr "Commission cautionnement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_41
+msgid "Research costs"
+msgstr "Frais d'étude"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_43
+msgid "Printing of forms"
+msgstr "Confection de formulaires"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_45
+msgid "Documentary credit charges"
+msgstr "Frais de crédit documentaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_47
+msgid "Charging fees for transactions"
+msgstr "Tarification d'opérations"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_49
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction (débit)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_80_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction (crédit)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_01
+msgid "Credit transfer given by the customer on paper or electronically, even if the execution date of this transfer is in the future. Domestic payments as well as euro payments meeting the requirements."
+msgstr "Virement remis par le client sur papier ou par voie électronique, même si cette opération a une date d’exécution dans le futur. Il s’agit de paiements tant nationaux qu’européens satisfaisant aux conditions en vigueur."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_02
+msgid "The bank takes the initiative for debiting the customer’s account."
+msgstr "Débit du compte d’un client à l’initiative de la banque."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_03
+msgid "Credit transfer for which the order has been given once and which is carried out again at regular intervals without any change."
+msgstr "Virement pour lequel un ordre a été donné une seule fois et qui est exécuté à l’identique aux dates convenues."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_05
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Le donneur d’ordre est débité pour le montant total du fichier remis."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_07
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Le donneur d’ordre est débité pour le montant total du fichier remis."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_13
+msgid "Transfer from one account to another account of the same customer at the bank's or the customer's initiative (intracompany)."
+msgstr "Virement d'un compte à un autre compte du même client à l'initiative de la banque ou du client (intracompany)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_17
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Si la banque globalise, cette opération est qualifiée de type 2. Cette globalisation peut être suivie des mouvements de détail."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_39
+msgid "To be used for issued circular cheques given in consignment"
+msgstr "A utiliser pour les chèques circulaires émis donnés en consignation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_51
+msgid "The bank takes the initiative for crediting the customer’s account."
+msgstr "Crédit du compte du client à l’initiative de la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_52
+msgid "Payment by a third person"
+msgstr "Versement par un tiers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_64
+msgid "Intracompany"
+msgstr "intracompany"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_01_66
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Si la banque globalise, cette opération est qualifiée de type 2. Cette globalisation peut être suivie des mouvements de détail."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_05
+msgid "Payment of holiday pay, etc."
+msgstr "Bon pour pécule de vacances, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_15
+msgid "Cheque drawn by the bank on itself, usually with charges."
+msgstr "Chèque tiré par la banque sur ses caisses, généralement avec frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_17
+msgid "Amount of the cheque; if any, charges receive code 37"
+msgstr "Il s'agit ici du montant du chèque, les coûts éventuels reçoivent le code 37"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_58
+msgid "Also for vouchers, postal orders, anything but bills of exchange, acquittances, promissory notes, etc."
+msgstr "Egalement pour bons, assignations postales, mandats postaux, tout sauf les effets, quittances, promesses, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_62
+msgid "cheques debited on account, but debit cancelled afterwards for lack of cover (double debit/contra-entry of transaction 01 or 05)"
+msgstr "Chèques débités sur le compte, mais dont le débit est annulé ultérieurement pour manque de provision (débit double/ contrepassation de l'opération 01 ou 05)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_87
+msgid "Overall amount, VAT included"
+msgstr "Montant global, T.V.A. comprise"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_01
+msgid "Debit customer who is loading"
+msgstr "Débit client qui a chargé une carte GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_02
+msgid "Eurozone = countries which have the euro as their official currency"
+msgstr "euro zone : pays pour lesquels l’euro est la monnaie officielle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_03
+msgid "See annexe III : communication 124"
+msgstr "Voir annexe III : communication 124"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_04
+msgid "At home as well as abroad"
+msgstr "Tant au niveau national qu’étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_08
+msgid "Eurozone = countries which have the euro as their official currency"
+msgstr "euro zone : pays pour lesquels l’euro est la monnaie officielle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_37
+msgid "Various costs for possessing or using a payment card"
+msgstr "Différents frais liés à la détention ou l’utilisation d’une carte de paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_50
+msgid "Except Proton"
+msgstr "Excepté Proton"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_04_52
+msgid "Credit provider"
+msgstr "Credit provider"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_05_58
+msgid "(cancellation of an undue debit of the debtor at the initiative of the financial institution or the debtor for lack of cover)"
+msgstr "(Annulation d'un débit irrégulier du débiteur à l'initiative de la banque ou du débiteur suite à un manque de provision)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_01
+msgid "Bills of exchange, acquittances, promissory notes; debit of the drawee"
+msgstr "Effet, quittance, promesse, débit du tiré"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_05
+msgid "Bill claimed back at the drawer's request (bill claimed back before maturity date)"
+msgstr "Effet demandé en retour par le tireur (effet réclamé avant l'échéance)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_06
+msgid "Costs chargeable to the remitter"
+msgstr "Frais à charge du remettant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_07
+msgid "Contra-entry of a direct credit or of a discount"
+msgstr "Contre-passation d'un crédit direct ou d'un escompte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_08
+msgid "Debit of the remitter when the drawee pays in advance directly to the remitter (regards bank acceptances)"
+msgstr "Débit du remettant lorsque le tiré paie anticipativement et directement le remettant (concernant acceptations bancaires)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_09
+msgid "Debit of the agios to the account of the drawee"
+msgstr "Débit des agios à charge du tiré"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_37
+msgid "If any, detail in the category (e.g. costs for presentation for acceptance, etc.)"
+msgstr "Le détail figure éventuellement dans la rubrique (par ex. frais pour présentation à l'acceptation, etc.)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_39
+msgid "Debit of the drawer after credit under usual reserve or discount"
+msgstr "Débit du tireur après crédit sbf ou escompte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_50
+msgid "Credit of the remitter"
+msgstr "Crédit du remettant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_07_54
+msgid "Among other things advances or promissory notes"
+msgstr "Entre autres avances ou promesses"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_01
+msgid "Withdrawal by counter cheque or receipt; cash remitted by the bank clerk"
+msgstr "Retrait à l'aide d'un chèque guichet ou contre reçu; argent remis par l'employé de banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_13
+msgid "On the account of the head office"
+msgstr "Sur le compte de la maison mère"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_19
+msgid "Used in case of payments accepted under reserve of count, result of overcrediting"
+msgstr "Utilisé en cas de versements acceptés sous réserve de comptage; conséquence d'un crédit trop élevé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_50
+msgid "For own account - the comment for the client is given in the communication; also for mixed payments (cash + cheques) - not to be communicated to the clients; for payments made by a third person: see family 01"
+msgstr "Pour compte propre - le commentaire pour le client se trouve dans la communication; ce code peut également être utilisé pour les versements mixtes (espèces + chèques) - à ne pas communiquer à la clientèle; pour les versements faits par des tiers voir famille 01"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_58
+msgid "Takes priority over transaction 52 (hence a payment made by an agent in a night safe = 58 and not 52)"
+msgstr "Prime sur opération 52 (c.-à-d., un versement fait par un agent dans un coffre de nuit = 58 et non 52)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_09_68
+msgid "In case of payment accepted under reserve of count; result of undercrediting - see also transaction 19"
+msgstr "Utilisé en cas de versements acceptés sous réserve de comptage; conséquence d'un crédit trop peu élevé - voir aussi opération 19"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_01
+msgid "Purchase of domestic or foreign securities, including subscription rights, certificates, etc."
+msgstr "Achat de titres belges ou étrangers, y compris droits de souscription, certificats, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_02
+msgid "Payment to the bank on maturity date"
+msgstr "A l’échéance, la banque est indemnisée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_03
+msgid "Bonds, shares, tap issues of CDs, with or without payment of interest, etc."
+msgstr "Obligations, actions, émissions au robinet de bons de caisse avec ou sans décompte d'intérêt, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_05
+msgid "Debit of the subscriber for the complementary payment of partly-paid shares"
+msgstr "Débit du souscripteur pour la libération complémentaire d'actions non entièrement libérées"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_09
+msgid "For professionals (stockbrokers) only, whoever the issuer may be (Belgian or foreigner)"
+msgstr "Exclusivement pour les professionnels (agents de change), quel que soit l'émetteur (belge ou étranger)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_11
+msgid "Debit of the issuer by the bank in charge of the financial service"
+msgstr "Débit de la société émettrice par la banque chargée du service financier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_13
+msgid "Unissued part (see 64)"
+msgstr "Fraction non placée (voir 64)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_15
+msgid "In case of subscription before the interest due date"
+msgstr "En cas de souscription avant la date prévue pour le début de la jouissance d'intérêts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_51
+msgid "Company issues paper in return for cash"
+msgstr "L’entreprise émet des titres et reçoit des espèces en échange"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_52
+msgid "Whatever the currency of the security"
+msgstr "Quelle que soit la devise du titre"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_62
+msgid "When reimbursed separately to the subscriber"
+msgstr "Lorsque rémunération distincte pour le souscripteur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_64
+msgid "Amount paid to the issuer by the bank in charge of the placement (firm underwriting or not); also used for the payment in full of partly-paid shares, see transaction 05"
+msgstr "Montant versé à l'émetteur par la banque chargée du placement (prix ferme ou non); également utilisé lorsqu'on complète la libération des actions non entièrement libérées, voir opération 05"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_66
+msgid "For professionals such as insurances and stockbrokers"
+msgstr "Au profit de professionnels tels que les compagnies d'assurances et les agents de change"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_68
+msgid "In case coupons attached to a purchased security are missing"
+msgstr "Utilisé lorsqu'un coupon manque à un titre acheté par un client"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_11_70
+msgid "Only with stockbrokers when they deliver the securities to the bank"
+msgstr "Exclusivement avec les agents de change lorsque ceux-ci livrent les titres à la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_13_01
+msgid "Capital and/or interest (specified by the category)"
+msgstr "Capital et/ou intérêts (sera spécifié dans la rubrique)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_13_05
+msgid "Full or partial reimbursement of a fixed advance at maturity date"
+msgstr "Remboursement total ou partiel d'une avance fixe à l'échéance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_13_07
+msgid "Often by standing order or direct debit. In case of direct debit, family 13 is used."
+msgstr "Souvent par ordre permanent ou par domiciliation. En cas de domiciliation, utilisation de la Fam. 13."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_13_15
+msgid "Hire-purchase agreement under which the financial institution is the lessor"
+msgstr "Leasing où l'établissement financier = donneur de leasing"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_13_56
+msgid "Interest or capital subsidy"
+msgstr "Subvention en intérêts ou prime de capital"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_41_13
+msgid "Intracompany"
+msgstr "Intracompany"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_41_64
+msgid "Intracompany"
+msgstr "intracompany"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_43_01
+msgid "Debit of a cheque in foreign currency or in EUR in favour of a foreigner"
+msgstr "Débit d'un chèque en devise étrangère ou en euro en faveur d'un étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_43_07
+msgid "Foreign cheque remitted for collection that returns unpaid"
+msgstr "Chèque sur l'étranger remis à l'encaissement qui revient impayé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_47_11
+msgid "Bills of lading"
+msgstr "Connaissements"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_47_13
+msgid "Debit customer, payment of agios, interest, exchange commission, etc."
+msgstr "Débit client, agios décompte étranger, intérêts, commission de change, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_07
+msgid "- insurance costs of account holders against fatal accidents - passing-on of several insurance costs"
+msgstr "- frais d'assurance des titulaires de compte en cas d'accident mortel 
+- imputation de divers frais d'assurance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_09
+msgid "Postage recouped to the debit of the customer (including forwarding charges)"
+msgstr "Frais de port récupérés à charge du client (y compris frais d'expédition)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_11
+msgid "Costs chargeable to clients who ask to have their correspondence kept at their disposal at the bank's counter"
+msgstr "Frais à charge des clients qui demandent que leur courrier soit gardé à leur disposition au guichet de la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_13
+msgid "Commission for renting a safe deposit box"
+msgstr "Commission de location de coffres-forts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_15
+msgid "Commission collected to the debit of the customer to whom the bank delivers a key which gives access to the night safe"
+msgstr "Commission perçue à charge du client à qui la banque confie une clef donnant accès au coffre de nuit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_17
+msgid "Collected for unsealed deposit of securities, and other parcels"
+msgstr "Perçu pour la conservation à découvert de titres et autres colis"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_19
+msgid "Collected for securities, gold, pass-books, etc. placed in safe custody"
+msgstr "Perçu pour titres, or, carnets, etc. confiés en dépôt"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_21
+msgid "Charges for preparing pay packets"
+msgstr "Frais pour la préparation d'enveloppes d'appointements"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_23
+msgid "Costs charged for all kinds of research (information on past transactions, address retrieval, ...)"
+msgstr "Coûts facturés pour diverses recherches (renseignements concernant des opérations passées, recherche d'adresses, ...)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_25
+msgid "Commission for the renting of boxes put at the disposal for the correspondence"
+msgstr "Commission de location de boîtes pour la mise à disposition du courrier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_27
+msgid "For publications of the financial institution"
+msgstr "Pour publications de l'institution financière"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_29
+msgid "Charges collected for: - commercial information - sundry information"
+msgstr "Frais perçus pour : 
+- des renseignements commerciaux 
+- renseignements divers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_31
+msgid "E.g. for signing invoices"
+msgstr "Par ex. pour la signature de factures"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_33
+msgid "Costs not specified otherwise, often with a manual communication (e.g. for collecting, ordering funds). VAT excluded = type 0 VAT included = type 3 (at least 3 articles)"
+msgstr "Frais non définis ailleurs, souvent avec avis manuel (par ex. pour retrait, commande de valeurs) 
+Sans TVA = type 0 
+Avec TVA = type 3 (minimum 3 articles)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_35
+msgid "Costs charged for calculating the amount of the tax to be paid (e.g. Fiscomat)."
+msgstr "Frais imputés pour le calcul du montant de l'impôt à payer (par ex. Fiscomat)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_37
+msgid "Fixed right, either one-off or periodical; for details, see "categories""
+msgstr "Droit d'accès fixe - peut être unique ou périodique - pour les détails voir "rubriques""
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_80_39
+msgid "Agios on guarantees given"
+msgstr "Frais d'ouverture d'une garantie bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_000
+msgid "Net amount"
+msgstr "Montant net"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_001
+msgid "Interest received"
+msgstr "Intérêts crédités"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_002
+msgid "Interest paid"
+msgstr "Intérêts débités"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_003
+msgid "Credit commission"
+msgstr "Commission de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_004
+msgid "Postage"
+msgstr "Frais de port"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_005
+msgid "Renting of letterbox"
+msgstr "Loyer boîte courrier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_006
+msgid "Various fees/commissions"
+msgstr "Commissions et frais divers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_007
+msgid "Access right to database"
+msgstr "Droit d'accès banque de données"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_008
+msgid "Information charges"
+msgstr "Frais pour renseignements"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_009
+msgid "Travelling expenses"
+msgstr "Frais de déplacement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_010
+msgid "Writ service fee"
+msgstr "Frais d'huissier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_011
+msgid "VAT"
+msgstr "TVA"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_012
+msgid "Exchange commission"
+msgstr "Commission de change"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_013
+msgid "Payment commission"
+msgstr "Commission de paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_014
+msgid "Collection commission"
+msgstr "Commission d'encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_015
+msgid "Correspondent charges"
+msgstr "Frais correspondant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_016
+msgid "BLIW/IBLC dues"
+msgstr "Redevance I.B.L.C."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_017
+msgid "Research costs"
+msgstr "Frais d'étude"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_018
+msgid "Tental guarantee charges"
+msgstr "Frais pour garantie locative"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_019
+msgid "Tax on physical delivery"
+msgstr "Taxe livraison matérielle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_020
+msgid "Costs of physical delivery"
+msgstr "Coûts livraison matérielle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_021
+msgid "Costs for drawing up a bank cheque"
+msgstr "Frais confection chèque bancaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_022
+msgid "Priority costs"
+msgstr "Frais de priorité"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_023
+msgid "Exercising fee"
+msgstr "Commission d'exercice"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_024
+msgid "Growth premium"
+msgstr "Prime de croissance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_025
+msgid "Individual entry for exchange charges"
+msgstr "Comptab. indiv. de frais de change"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_026
+msgid "Handling commission"
+msgstr "Commission de manipulation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_027
+msgid "Charges for unpaid bills"
+msgstr "Frais traites impayées"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_028
+msgid "Fidelity premium"
+msgstr "Prime de fidélité"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_029
+msgid "Protest charges"
+msgstr "Frais de protêt"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_030
+msgid "Account insurance"
+msgstr "Assurance compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_031
+msgid "Charges foreign cheque"
+msgstr "Frais chèque étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_032
+msgid "Drawing up a circular cheque"
+msgstr "Confection chèque circulaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_033
+msgid "Charges for a foreign bill"
+msgstr "Frais effet étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_034
+msgid "Reinvestment fee"
+msgstr "Indemnité de remploi"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_035
+msgid "Charges foreign documentary bill"
+msgstr "Frais effet documentaire étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_036
+msgid "Costs relating to a refused cheque"
+msgstr "Frais chèque refusé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_037
+msgid "Commission for handling charges"
+msgstr "Commission pour frais de dossier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_039
+msgid "Telecommunications"
+msgstr "Télécommunications"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_041
+msgid "Credit card costs"
+msgstr "Frais carte de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_042
+msgid "Payment card costs"
+msgstr "Frais carte de paiement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_043
+msgid "Insurance costs"
+msgstr "Frais d'assurance"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_045
+msgid "Handling costs"
+msgstr "Frais de dossier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_047
+msgid "Charges extension bill"
+msgstr "Frais de prolongation d'un effet"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_049
+msgid "Fiscal stamps/stamp duty"
+msgstr "Timbres fiscaux/droit de timbre"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_050
+msgid "Capital term investment"
+msgstr "Capital placement à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_051
+msgid "Withholding tax"
+msgstr "Précompte mobilier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_052
+msgid "Residence state tax"
+msgstr "Prélèvement (européen) pour l’Etat de résidence"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_053
+msgid "Printing of forms"
+msgstr "Confection de formulaires"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_055
+msgid "Repayment loan or credit capital"
+msgstr "Amortis. capital d'un prêt ou d'un crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_057
+msgid "Interest subsidy"
+msgstr "Subvention en intérêts"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_058
+msgid "Capital premium"
+msgstr "Prime de capital"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_059
+msgid "Default interest"
+msgstr "Intérêts moratoires"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_061
+msgid "Charging fees for transactions"
+msgstr "Tarification d'opérations"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_063
+msgid "Rounding differences"
+msgstr "Différences d'arrondi"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_065
+msgid "Interest payment advice"
+msgstr "Avis de bonification"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_066
+msgid "Fixed loan advance - reimbursement"
+msgstr "Acompte fixe crédits – remboursement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_067
+msgid "Fixed loan advance - extension"
+msgstr "Acompte fixe crédits – prolongation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_068
+msgid "Countervalue of an entry"
+msgstr "Contre-valeur d'une écriture"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_069
+msgid "Forward arbitrage contracts : sum to be supplied by customer"
+msgstr "Contrats à terme arbitrage : somme à payer par le client"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_070
+msgid "Forward arbitrage contracts : sum to be supplied by bank"
+msgstr "Contrats à terme arbitrage : somme à payer par la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_071
+msgid "Fixed loan advance - availability"
+msgstr "Acompte fixe crédits – mise à disposition"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_072
+msgid "Countervalue of commission to third party"
+msgstr "Contre-valeur commissions à des tiers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_073
+msgid "Costs of ATM abroad"
+msgstr "Coûts guichets automatiques étrangers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_074
+msgid "Mailing costs"
+msgstr "Coûts de courrier"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_100
+msgid "Gross amount"
+msgstr "Montant brut"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_200
+msgid "Overall documentary credit charges"
+msgstr "Frais de crédit documentaire global"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_201
+msgid "Advice notice commission"
+msgstr "Commission de préavis"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_202
+msgid "Advising commission | Additional advising commission"
+msgstr "Commission de notification | Commission de notification additionnelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_203
+msgid "Confirmation fee | Additional confirmation fee | Commitment fee | Flat fee | Confirmation reservation commission | Additional reservation commission"
+msgstr "Commission de confirmation | Commission de confirmation additionnelle | Commission d'engagement | Commission flat | Commission de réservation de confirmation | Commission de réservation additionnelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_204
+msgid "Amendment fee"
+msgstr "Commission de modification"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_205
+msgid "Documentary payment commission | Document commission | Drawdown fee | Negotiation fee"
+msgstr "Commission de paiement documentaire | Commission documentaire | Commission d'utilisation | Commission de négociation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_206
+msgid "Surety fee/payment under reserve"
+msgstr "Commission pour garanties/paiement sous réserve"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_207
+msgid "Non-conformity fee"
+msgstr "Commission pour divergences"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_208
+msgid "Commitment fee deferred payment"
+msgstr "Commission d'engagement paiement différé"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_209
+msgid "Transfer commission"
+msgstr "Commission de transfert"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_210
+msgid "Commitment fee"
+msgstr "Commission de mise à disposition"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_211
+msgid "Credit arrangement fee | Additional credit arrangement fee"
+msgstr "Commission d'ouverture de crédit | Commission d'ouverture de crédit additionnelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_212
+msgid "Warehousing fee"
+msgstr "Commission de d’entreposage"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_213
+msgid "Financing fee"
+msgstr "Commission de financement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_214
+msgid "Issue commission (delivery order)"
+msgstr "Commission d'émission (laissez-suivre)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_400
+msgid "Acceptance fee"
+msgstr "Commission d'acceptation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_401
+msgid "Visa charges"
+msgstr "Frais de visa"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_402
+msgid "Certification costs"
+msgstr "Frais de certification"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_403
+msgid "Minimum discount rate"
+msgstr "Droit minimum d'escompte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_404
+msgid "Discount commission"
+msgstr "Commission d'escompte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_405
+msgid "Bill guarantee commission"
+msgstr "Commission d'aval"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_406
+msgid "Collection charges"
+msgstr "Frais de recouvrement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_407
+msgid "Costs Article 45"
+msgstr "Frais d'article 45"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_408
+msgid "Cover commission"
+msgstr "Commission de couverture"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_409
+msgid "Safe deposit charges"
+msgstr "Frais de garde"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_410
+msgid "Reclamation charges"
+msgstr "Frais de retour"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_411
+msgid "Fixed collection charge"
+msgstr "Droit fixe d'encaissement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_412
+msgid "Advice of expiry charges"
+msgstr "Frais d'avis d'expiration"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_413
+msgid "Acceptance charges"
+msgstr "Frais d'acceptation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_414
+msgid "Regularisation charges"
+msgstr "Frais de régularisation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_415
+msgid "Surety fee"
+msgstr "Commission de cautionnement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_416
+msgid "Charges for the deposit of security"
+msgstr "Frais de dépôt de caution"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_418
+msgid "Endorsement commission"
+msgstr "Commission d'endossement"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_419
+msgid "Bank service fee"
+msgstr "Commission d'intervention"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_420
+msgid "Retention charges"
+msgstr "Frais de retenue"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_425
+msgid "Foreign broker's commission"
+msgstr "Courtage étranger"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_426
+msgid "Belgian broker's commission"
+msgstr "Courtage belge"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_427
+msgid "Belgian Stock Exchange tax"
+msgstr "Taxe boursière belge"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_428
+msgid "Interest accrued"
+msgstr "Intérêts courus"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_429
+msgid "Foreign Stock Exchange tax"
+msgstr "Taxe boursière étrangère"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_430
+msgid "Recovery of foreign tax"
+msgstr "Récupération taxe étrangère"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_431
+msgid "Delivery of a copy"
+msgstr "Livraison copie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_001
+msgid "Data concerning the counterparty"
+msgstr "Données de la contrepartie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_002
+msgid "Communication of the bank"
+msgstr "Communication de la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_003
+msgid "RBP data"
+msgstr "données RBP"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_004
+msgid "Counterparty’s banker"
+msgstr "Banquier de la contrepartie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_005
+msgid "Data concerning the correspondent"
+msgstr "Données du correspondant"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_006
+msgid "Information concerning the detail amount"
+msgstr "Informations relatives à des montants du détail"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_007
+msgid "Information concerning the detail cash"
+msgstr "Informations relatives aux espèces"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_008
+msgid "Identification of the de ultimate beneficiary/creditor (SEPA SCT/SDD)"
+msgstr "Identification du créditeur final/ultime du SEPA CT ou DD"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_009
+msgid "Identification of the de ultimate ordering customer/debtor (SEPA SCT/SDD)"
+msgstr "Identification du débiteur final/ultime du SEPA CT ou DD"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_010
+msgid "Information pertaining to sale or purchase of securities"
+msgstr "Informations relatives à une vente ou à un achat de titres"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_011
+msgid "Information pertaining to coupons"
+msgstr "Information relative à des coupons"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_100
+msgid "(SEPA) payment with a structured format communication applying the ISO standard 11649: Structured creditor reference to remittance information"
+msgstr "Communication structurée d’un paiement conforme au standard ISO 11649: "Structured creditor reference to remittance information""
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_101
+msgid "Credit transfer or cash payment with structured format communication"
+msgstr "Virement ou versement à communication structurée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_102
+msgid "Credit transfer or cash payment with reconstituted structured format communication"
+msgstr "Virement ou versement à communication structurée reconstituée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_103
+msgid "number (e.g. of the cheque, of the card, etc.)"
+msgstr "numéro"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_104
+msgid "Equivalent in EUR"
+msgstr "montant de la contre-valeur en EUR"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_105
+msgid "original amount of the transaction"
+msgstr "montant initial de l'opération"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_106
+msgid "Method of calculation (VAT, withholding tax on income, commission, etc.)"
+msgstr "Mode de calcul (TVA, précompte mobilier, commission, etc.)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_107
+msgid "Direct debit – DOM’80"
+msgstr "Domiciliations – DOM'80"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_108
+msgid "Closing"
+msgstr "Clôture"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_111
+msgid "POS credit – Globalisation"
+msgstr "Crédit POS – globalisation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_112
+msgid "ATM payment (usually Eurocheque card)"
+msgstr "Versement ATM ( généralement carte eurochèque)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_113
+msgid "ATM/POS debit"
+msgstr "Débit ATM/POS"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_114
+msgid "POS credit - individual transaction"
+msgstr "Crédit POS – opération individuelle"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_115
+msgid "Terminal cash deposit"
+msgstr "Versement au terminal"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_120
+msgid "Correction of a transaction"
+msgstr "Opération corrigée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_121
+msgid "Commercial bills"
+msgstr "Effets de commerce"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_122
+msgid "Bills - calculation of interest"
+msgstr "Effets - calcul de l'intérêt"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_123
+msgid "Fees and commissions"
+msgstr "Frais et commissions"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_124
+msgid "Number of the credit card"
+msgstr "Numéro de la carte de crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_125
+msgid "Credit"
+msgstr "Crédit"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_126
+msgid "Term investments"
+msgstr "Placements à terme"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_127
+msgid "European direct debit (SEPA)"
+msgstr "Domiciliation européenne (Direct debit SEPA)"
+

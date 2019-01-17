@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="bank_statement_cancel_form_inherit" model="ir.ui.view">
+    <field name="name">account.bank.statement.form</field>
+    <field name="model">account.bank.statement</field>
+    <field name="inherit_id" ref="account_cancel.bank_statement_cancel_form_inherit"/>
+    <field name="arch" type="xml">
+      <button name="button_cancel_reconciliation" position="after">
+        <!--
+        <field name="reconcile_get"/>
+        -->
+        <field name="moves_state"/>
+        <button name="button_view_moves"
+                attrs="{'invisible': [('journal_entry_ids', '=', [])]}"
+                string="Moves" type="object" icon="fa-folder-open-o text-success"/>
+        <field name="globalisation_id" string="Glob. Id"/>
+      </button>
+    </field>
+  </record>
+
+  <record id="view_bank_statement_form" model="ir.ui.view">
+    <field name="name">account.bank.statement.form</field>
+    <field name="model">account.bank.statement</field>
+    <field name="inherit_id" ref="account.view_bank_statement_form"/>
+    <field name="arch" type="xml">
+      <!-- 
+        placeholder for modules that implement automatic reconciliation, e.g.
+        - l10n_be_coda_advanced
+        -->
+      <button name="%(account.action_bank_reconcile_bank_statements)d" position="before">
+        <button name="automatic_reconcile" string="Automatic Reconcile" type="object" class="oe_highlight" invisible="1"/>
+      </button>
+      <button name="%(account.action_bank_reconcile_bank_statements)d" position="attributes">
+        <attribute name="string">Manual Reconcile</attribute>
+      </button>
+
+      <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
+        <attribute name="decoration-info">amount and not journal_entry_ids</attribute>
+      </xpath>
+      <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='date']" position="after">
+        <field name="val_date"/>
+      </xpath>
+      <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='ref']" position="attributes">
+        <attribute name="groups"/>
+      </xpath>
+
+      <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="after">
+        <form string="Statement Line" create="false" delete="false">
+          <div class="oe_button_box" name="button_box">
+            <button class="oe_stat_button" name="button_view_moves"
+                    string="Journal Entries" type="object"
+                    attrs="{'invisible': [('journal_entry_ids', '=', [])]}" icon="fa-bars"/>
+            <button name="button_cancel_reconciliation"
+                    attrs="{'invisible': ['|',('journal_entry_ids', '=', []), ('state', '=', 'confirm')]}"
+                    string="Cancel" type="object" icon="fa fa-undo text-warning"/>
+          </div>
+          <group name="invisible">
+            <field name="state" invisible="1"/>
+            <field name="journal_entry_ids" invisible="1"/>
+          </group>
+          <group name="line" attrs="{'readonly': [('state', '=', 'confirm')]}">
+            <group name="g1">
+              <field name="date"/>
+              <field name="name"/>
+              <field name="partner_id"/>
+            </group>
+            <group name="g2">
+              <field name="val_date"/>
+              <field name="ref"/>
+              <field name="bank_account_id"/>
+            </group>
+            <newline/>
+            <group name="g3">
+              <field name="amount"/>
+              <field name="currency_id" groups="base.group_multi_currency"
+                     attrs="{'readonly': [('journal_entry_ids', '!=', [])]}"/>
+              <field name="amount_currency" groups="base.group_multi_currency"
+                     attrs="{'readonly': [('journal_entry_ids', '!=', [])], 'invisible': [('currency_id', '=', False)]}"/>
+            </group>
+            <group name="g4">
+              <field name="globalisation_id" attrs="{'invisible': [('globalisation_id', '=', False)]}" readonly="1"/>
+              <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}" readonly="1"/>
+            </group>
+            <newline/>
+            <!--
+            <group name="g5">
+              <field name="reconcile_get"/>
+              <field name="sequence" attrs="{'readonly': [('move_state', '!=', False)]}"/>
+            </group>
+            <group name="g6">
+              <field name="moves_state"/>
+            </group>
+            -->
+            <separator string="Notes"/>
+            <field colspan="2" name="note" nolabel="1"/>
+          </group>
+        </form>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

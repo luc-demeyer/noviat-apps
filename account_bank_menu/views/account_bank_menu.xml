@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="menu_finance_bank_and_cash"
+            name="Bank and Cash"
+            parent="account.menu_finance"
+            sequence="7"/>
+
+  <menuitem string="Bank Statements"
+            action="account.action_bank_statement_tree"
+            id="account_bank_statement_menu"
+            parent="menu_finance_bank_and_cash"
+            sequence="10"/>
+
+</odoo>
