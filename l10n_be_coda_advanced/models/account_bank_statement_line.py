@@ -20,4 +20,4 @@ class AccountBankStatementLine(models.Model):
         Such lines are used in CODA files to give additional information).
         """
         if not self.coda_transaction_dict:
-            super(AccountBankStatementLine, self)
+            super(AccountBankStatementLine, self)._check_amount()
