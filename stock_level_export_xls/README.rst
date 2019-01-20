@@ -15,7 +15,7 @@ tool for inventory updates.
 Usage
 =====
 
-- Via Inventroy menu
+- Via Inventory menu
 
 Select Inventory Control/Stock Level Excel export.
 
