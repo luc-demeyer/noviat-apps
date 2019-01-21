@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Belgium - Multilingual Chart of Accounts (en/nl/fr)',
-    'version': '8.0.1.9.1',
+    'version': '8.0.1.9.2',
     'license': 'AGPL-3',
     'author': "Noviat, Odoo Community Association (OCA)",
     'website': 'http://www.noviat.com',

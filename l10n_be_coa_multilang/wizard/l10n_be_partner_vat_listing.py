@@ -34,7 +34,7 @@ class PartnerVat(models.TransientModel):
 
     year = fields.Char(
         string='Year', size=4, required=True,
-        default=str(int(time.strftime('%Y')) - 1))
+        default=lambda self: str(int(time.strftime('%Y')) - 1))
     limit_amount = fields.Integer(
         string='Limit Amount', required=True, default=250)
 
