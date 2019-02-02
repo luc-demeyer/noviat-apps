@@ -106,4 +106,4 @@ Known issues / Roadmap
 Assistance
 ----------
 
-Contact info@noviat.com for help with the implementation of Advanced CODA processing in Odoo.
+Contact info@noviat.com for help with the implementation of this module.
