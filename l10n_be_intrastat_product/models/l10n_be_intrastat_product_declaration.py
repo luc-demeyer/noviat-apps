@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning as UserError
-from openerp.exceptions import RedirectWarning
 
 from lxml import etree
 import logging
+
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
+from openerp.exceptions import RedirectWarning
+
 _logger = logging.getLogger(__name__)
 
 _INTRASTAT_XMLNS = 'http://www.onegate.eu/2010-01-01'
@@ -30,7 +31,7 @@ class L10nBeIntrastatProductDeclaration(models.Model):
     def _get_intrastat_transaction(self, inv_line):
         transaction = super(
             L10nBeIntrastatProductDeclaration, self
-            )._get_intrastat_transaction(inv_line)
+        )._get_intrastat_transaction(inv_line)
         if not transaction:
             module = __name__.split('addons.')[1].split('.')[0]
             transaction = self.env.ref(
@@ -59,14 +60,14 @@ class L10nBeIntrastatProductDeclaration(models.Model):
                             'hs_code_id': self._credit_note_code.id,
                             'region_id': invoice.src_dest_region_id.id,
                             'transaction_id': False,
-                            })
+                        })
                     else:
                         line_vals.clear()
                 else:
                     line_vals.update({
                         'region_id': invoice.src_dest_region_id.id,
                         'transaction_id': self._transaction_2.id,
-                        })
+                    })
 
             else:  # 'out_refund':
                 if self.type == 'dispatches':
@@ -75,14 +76,14 @@ class L10nBeIntrastatProductDeclaration(models.Model):
                             'hs_code_id': self._credit_note_code.id,
                             'region_id': invoice.src_dest_region_id.id,
                             'transaction_id': False,
-                            })
+                        })
                     else:
                         line_vals.clear()
                 else:
                     line_vals.update({
                         'region_id': invoice.src_dest_region_id.id,
                         'transaction_id': self._transaction_2.id,
-                        })
+                    })
         else:
             # Manual correction of the declaration lines can be required
             # when the sum of the computation lines results in
@@ -90,25 +91,35 @@ class L10nBeIntrastatProductDeclaration(models.Model):
             line_vals.update({
                 'weight': -line_vals['weight'],
                 'suppl_unit_qty': -line_vals['suppl_unit_qty'],
-                'amount_company_currency':
-                    -line_vals['amount_company_currency'],
-                })
+                'amount_company_currency': -line_vals[
+                    'amount_company_currency'],
+            })
 
     def _update_computation_line_vals(self, inv_line, line_vals):
         super(L10nBeIntrastatProductDeclaration, self
               )._update_computation_line_vals(inv_line, line_vals)
         # handling of refunds
         # cf. NBB/BNB Intrastat guide 2016, Part,  I - Basis, par 9.6
-        if inv_line.invoice_id.type in ['in_refund', 'out_refund']:
+        inv = inv_line.invoice_id
+        if inv.type in ['in_refund', 'out_refund']:
             self._handle_refund(inv_line, line_vals)
 
         if line_vals:
+            if self.type == 'dispatches':
+                vat_number = self._sanitize_vat(inv.partner_id.vat)
+                if not vat_number:
+                    note = "\n" + _(
+                        "Missing VAT Number on partner '%s'"
+                        % inv.partner_id.name_get()[0][1])
+                    self._note += note
+                else:
+                    line_vals['vat_number'] = vat_number
             # extended declaration
-            if self._extended:
+            if self.reporting_level == 'extended':
                 incoterm = self._get_incoterm(inv_line)
                 line_vals.update({
                     'incoterm_id': incoterm.id,
-                    })
+                })
 
     def _handle_invoice_accessory_cost(
             self, invoice, lines_current_invoice,
@@ -127,10 +138,11 @@ class L10nBeIntrastatProductDeclaration(models.Model):
         pass
 
     def _gather_invoices_init(self):
-        if self.company_id.country_id.code not in ('be', 'BE'):
+        if self.company_id.country_id.code != 'BE':
             raise UserError(
                 _("The Belgian Intrastat Declaration requires "
-                  "the Company's Country to be equal to 'Belgium'."))
+                  "the Company's Country to be equal to 'Belgium' "
+                  "(country code BE)."))
 
         module = __name__.split('addons.')[1].split('.')[0]
 
@@ -147,7 +159,7 @@ class L10nBeIntrastatProductDeclaration(models.Model):
                 "Intrastat Code '%s' not found. "
                 "\nYou can update your codes "
                 "via the Intrastat Configuration Wizard."
-                ) % special_code
+            ) % special_code
             raise RedirectWarning(
                 msg, action.id,
                 _("Go to the Intrastat Configuration Wizard."))
@@ -171,6 +183,33 @@ class L10nBeIntrastatProductDeclaration(models.Model):
             domain.append(
                 ('type', 'in', ('out_invoice', 'in_refund', 'out_refund')))
         return domain
+
+    def _sanitize_vat(self, vat):
+        return vat and vat.replace(' ', '').replace('.', '').upper()
+
+    @api.model
+    def _group_line_hashcode_fields(self, computation_line):
+        res = super(
+            L10nBeIntrastatProductDeclaration, self
+        )._group_line_hashcode_fields(computation_line)
+        if self.type == 'arrivals':
+            del res['product_origin_country']
+        if self.type == 'dispatches':
+            res['vat_number'] = computation_line.vat_number
+        if self.reporting_level == 'extended':
+            res['incoterm'] = computation_line.incoterm_id.id or False
+        return res
+
+    @api.model
+    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+        vals = super(
+            L10nBeIntrastatProductDeclaration, self
+        )._prepare_grouped_fields(computation_line, fields_to_sum)
+        if self.type == 'dispatches':
+            vals['vat_number'] = computation_line.vat_number
+        if self.reporting_level == 'extended':
+            vals['incoterm_id'] = computation_line.incoterm_id.id
+        return vals
 
     @api.one
     def _check_generate_xml(self):
@@ -199,53 +238,66 @@ class L10nBeIntrastatProductDeclaration(models.Model):
         Item = etree.SubElement(parent, 'Item')
         etree.SubElement(
             Item, 'Dim',
-            attrib={'prop': 'EXTRF'}).text = self._decl_code
+            attrib={'prop': 'EXTRF'}
+        ).text = self._decl_code
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXCNT'}
-            ).text = line.src_dest_country_id.code
+        ).text = line.src_dest_country_id.code
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXTTA'}
-            ).text = line.transaction_id.code
+        ).text = line.transaction_id.code
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXREG'}
-            ).text = line.region_id.code
+        ).text = line.region_id.code
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXTGO'}
-            ).text = line.hs_code_id.local_code
+        ).text = line.hs_code_id.local_code
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXWEIGHT'}
-            ).text = str(line.weight)
+        ).text = str(line.weight)
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXUNITS'}
-            ).text = str(line.suppl_unit_qty)
+        ).text = str(line.suppl_unit_qty)
         etree.SubElement(
             Item, 'Dim',
             attrib={'prop': 'EXTXVAL'}
-            ).text = str(line.amount_company_currency)
+        ).text = str(line.amount_company_currency)
+        if self.type == 'dispatches':
+            etree.SubElement(
+                Item, 'Dim',
+                attrib={'prop': 'EXCNTORI'}
+            ).text = line.product_origin_country_id.code or 'QU'
+            etree.SubElement(
+                Item, 'Dim',
+                attrib={'prop': 'PARTNERID'}
+            ).text = line.vat_number or ''
         if self.reporting_level == 'extended':
             etree.SubElement(
                 Item, 'Dim',
                 attrib={'prop': 'EXTPC'}
-                ).text = line.transport_id.code
+            ).text = line.transport_id.code
             etree.SubElement(
                 Item, 'Dim',
                 attrib={'prop': 'EXDELTRM'}
-                ).text = line.incoterm_id.code
+            ).text = line.incoterm_id.code
 
     def _node_Data(self, parent):
         Data = etree.SubElement(parent, 'Data')
         Data.set('close', 'true')
-        report_form = 'EXF' + self._decl_code
-        if self.reporting_level == 'standard':
-            report_form += 'S'
+        if self.type == 'arrivals':
+            report_form = 'EXF19%s'
         else:
-            report_form += 'E'
+            report_form = 'INTRASTAT_X_%sF'
+        if self.reporting_level == 'standard':
+            report_form = report_form % 'S'
+        else:
+            report_form = report_form % 'E'
         Data.set('form', report_form)
         if self.action != 'nihil':
             for line in self.declaration_line_ids:
@@ -255,7 +307,10 @@ class L10nBeIntrastatProductDeclaration(models.Model):
         Report = etree.SubElement(parent, 'Report')
         Report.set('action', self.action)
         Report.set('date', self.year_month)
-        report_code = 'EX' + self._decl_code
+        if self.type == 'arrivals':
+            report_code = 'EX19'
+        else:
+            report_code = 'INTRASTAT_X_'
         if self.reporting_level == 'standard':
             report_code += 'S'
         else:
@@ -268,8 +323,16 @@ class L10nBeIntrastatProductDeclaration(models.Model):
 
         if self.type == 'arrivals':
             self._decl_code = '19'
+            if self.reporting_level == 'standard':
+                xsd = 'ex19s'
+            else:
+                xsd = 'ex19e'
         else:
             self._decl_code = '29'
+            if self.reporting_level == 'standard':
+                xsd = 'intrastat_x_s'
+            else:
+                xsd = 'intrastat_x_e'
 
         ns_map = {
             None: _INTRASTAT_XMLNS,
@@ -282,7 +345,10 @@ class L10nBeIntrastatProductDeclaration(models.Model):
         xml_string = etree.tostring(
             root, pretty_print=True, encoding='UTF-8', xml_declaration=True)
         module = __name__.split('addons.')[1].split('.')[0]
-        self._check_xml_schema(xml_string, '%s/data/onegate.xsd' % module)
+        self._check_xml_schema(
+            xml_string,
+            '%s/data/%s.xsd' % (module, xsd)
+        )
         return xml_string
 
 
@@ -291,12 +357,15 @@ class L10nBeIntrastatProductComputationLine(models.Model):
     _inherit = 'intrastat.product.computation.line'
 
     parent_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration',
+        comodel_name='l10n.be.intrastat.product.declaration',
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     declaration_line_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration.line',
+        comodel_name='l10n.be.intrastat.product.declaration.line',
         string='Declaration Line', readonly=True)
+    vat_number = fields.Char(
+        string='VAT Number',
+        help="VAT number of the trading partner")
 
 
 class L10nBeIntrastatProductDeclarationLine(models.Model):
@@ -304,17 +373,13 @@ class L10nBeIntrastatProductDeclarationLine(models.Model):
     _inherit = 'intrastat.product.declaration.line'
 
     parent_id = fields.Many2one(
-        'l10n.be.intrastat.product.declaration',
+        comodel_name='l10n.be.intrastat.product.declaration',
         string='Intrastat Product Declaration',
         ondelete='cascade', readonly=True)
     computation_line_ids = fields.One2many(
-        'l10n.be.intrastat.product.computation.line', 'declaration_line_id',
+        comodel_name='l10n.be.intrastat.product.computation.line',
+        inverse_name='declaration_line_id',
         string='Computation Lines', readonly=True)
-
-    @api.model
-    def _group_line_hashcode_fields(self, computation_line):
-        res = super(
-            L10nBeIntrastatProductDeclarationLine, self
-            )._group_line_hashcode_fields(computation_line)
-        del res['product_origin_country']
-        return res
+    vat_number = fields.Char(
+        string='VAT Number',
+        help="VAT number of the trading partner")

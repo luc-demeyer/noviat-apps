@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from openerp import api, models
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.model
-    def _default_intrastat_transaction(self):
+    def _default_intrastat_transaction_id(self):
         transaction = super(
-            AccountInvoice, self)._default_intrastat_transaction()
+            AccountInvoice, self)._default_intrastat_transaction_id()
         if not transaction:
             cpy_id = self.env[
                 'res.company']._company_default_get('account.invoice')

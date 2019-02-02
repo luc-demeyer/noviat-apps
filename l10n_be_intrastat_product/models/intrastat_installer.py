@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp import tools
 import csv
 
-CN_file_year = '2017'
+from openerp import api, fields, models, _
+from openerp import tools
+
+CN_file_year = '2019'
 CN_file_delimiter = ';'
 
 
@@ -34,7 +35,7 @@ class IntrastatInstaller(models.TransientModel):
     @api.model
     def _load_code(self, row):
         code_obj = self.env['hs.code']
-        vals = {'description': row['description']}
+        vals = {'description': row['description'].decode('Windows-1252')}
         cn_unit_id = row['unit_id']
         if cn_unit_id:
             cn_unit_ref = 'intrastat_product.' + cn_unit_id
