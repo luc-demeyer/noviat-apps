@@ -17,6 +17,9 @@
         <attribute name="invisible"/>
         <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
       </field>
+      <field name="invoice_id" position="before">
+        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+      </field>
     </field>
   </record>
 
@@ -41,6 +44,9 @@
     <field name="mode">primary</field>
     <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_form"/>
     <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+      </field>
       <field name="region_id" position="attributes">
         <attribute name="invisible"/>
       </field>
@@ -57,6 +63,9 @@
     <field name="mode">primary</field>
     <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_tree"/>
     <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+      </field>
       <field name="region_id" position="attributes">
         <attribute name="invisible"/>
       </field>

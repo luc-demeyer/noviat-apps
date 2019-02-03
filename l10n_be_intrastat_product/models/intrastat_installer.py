@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
 from odoo import tools
 import csv
 
-CN_file_year = '2017'
+CN_file_year = '2019'
 CN_file_delimiter = ';'
 
 

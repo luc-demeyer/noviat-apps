@@ -84,14 +84,6 @@ This module adds the following configuration parameters:
 
   You can define a default Intrastat Code on the Product or the Product Category.
 
-Usage
-=====
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/119/10.0
-
-
 Known issues / Roadmap
 ======================
 
@@ -111,36 +103,7 @@ Known issues / Roadmap
 - The current version of the Belgian Intrastat reporting module does not perform a
   cross-check with the VAT declaration.
 
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-financial-reporting/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback `here <https://github.com/OCA/
-account-financial-reporting/issues/new?body=module:%20
-l10n_be_report_intrastat%0Aversion:%20
-8.0.0.1%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
-
-Credits
-=======
-
-Contributors
-------------
-
-* Luc De Meyer, Noviat <info@noviat.com>
-
-Maintainer
+Assistance
 ----------
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
+Contact info@noviat.com for help with the implementation of this module.
