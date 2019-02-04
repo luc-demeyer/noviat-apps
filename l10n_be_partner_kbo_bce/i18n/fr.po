@@ -1,0 +1,22 @@
+# French translation of Odoo Server.
+# This file contains the translation of the following modules:
+#    * l10n_be_partner_kbo_bce
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-06 11:30:51.934000\n"
+"PO-Revision-Date: 2018-04-06 11:30:51.934000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_be_partner_kbo_bce
+#: model:ir.model.fields,field_description:l10n_be_partner_kbo_bce.field_res_partner_kbo_bce_number
+msgid "KBO/BCE Number"
+msgstr "Numéro BCE"
