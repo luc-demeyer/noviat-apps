@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -1297,8 +1297,8 @@ class AccountCodaImport(models.TransientModel):
                     "\n\nCODA File '%s' has been imported.\n"
                 ) % coda_file[2]
                 self._ziplog_note += (
-                    '\n' + _("Number of statements processed")
-                    + ' : {}'.format(len(bk_st_ids))
+                    '\n' + _("Number of statements processed") +
+                    ' : {}'.format(len(bk_st_ids))
                 )
             except Warning, e:
                 self._ziperr_log += _(
@@ -2159,7 +2159,9 @@ class AccountCodaImport(models.TransientModel):
             return reconcile_note, match
 
         partner_banks = self.env['res.partner.bank'].search(
-            [('acc_number', '=', cp_number)])
+            [('acc_number', '=', cp_number), '|',
+             ('partner_id.company_id', '=', False),
+             ('partner_id.company_id', '=', cba.company_id.id)])
         partner_banks = partner_banks.filtered(lambda r: r.partner_id.active)
         if partner_banks:
             # filter out partners that belong to other companies

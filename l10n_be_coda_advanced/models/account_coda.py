@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, fields, models, _
@@ -48,7 +48,8 @@ class AccountCoda(models.Model):
         for coda in self:
             if coda.state != 'draft':
                 raise UserError(
-                    _("Only CODA File objects in state 'draft' can be deleted !"))
+                    _("Only CODA File objects in state"
+                      " 'draft' can be deleted !"))
             coda.bank_statement_ids.unlink()
         return super(AccountCoda, self).unlink()
 
