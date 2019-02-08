@@ -4,9 +4,12 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, RedirectWarning
+from odoo.addons.report_xlsx_helper.report.abstract_report_xlsx \
+    import AbstractReportXlsx
 
 from lxml import etree
 import logging
+_render = AbstractReportXlsx._render
 _logger = logging.getLogger(__name__)
 
 _INTRASTAT_XMLNS = 'http://www.onegate.eu/2010-01-01'
@@ -344,6 +347,38 @@ class L10nBeIntrastatProductDeclaration(models.Model):
             '%s/data/%s.xsd' % (module, xsd)
         )
         return xml_string
+
+    def _xls_computation_line_fields(self):
+        res = super(L10nBeIntrastatProductDeclaration, self
+                    )._xls_computation_line_fields()
+        if self.type == 'dispatches':
+            i = res.index('product_origin_country')
+            res.insert(i + 1, 'vat_number')
+        return res
+
+    def _xls_declaration_line_fields(self):
+        res = super(L10nBeIntrastatProductDeclaration, self
+                    )._xls_declaration_line_fields()
+        if self.type == 'dispatches':
+            i = res.index('hs_code')
+            res.insert(i + 1, 'vat_number')
+            res.insert(i + 1, 'product_origin_country')
+        return res
+
+    def _xls_template(self):
+        res = super(L10nBeIntrastatProductDeclaration, self)._xls_template()
+        res['vat_number'] = {
+            'header': {
+                'type': 'string',
+                'value': _('VAT Number'),
+            },
+            'line': {
+                'value': _render(
+                    "line.vat_number or ''"),
+            },
+            'width': 18,
+        }
+        return res
 
 
 class L10nBeIntrastatProductComputationLine(models.Model):

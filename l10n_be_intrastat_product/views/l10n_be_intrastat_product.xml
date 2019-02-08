@@ -11,7 +11,11 @@
         <attribute name="invisible"/>
       </field>
       <field name="amount_accessory_cost_company_currency" position="attributes">
-        <attribute name="invisible">1</attribute>/>
+        <attribute name="invisible">1</attribute>
+      </field>
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'invisible': [('type', '=', 'arrivals')]}</attribute>
       </field>
       <field name="incoterm_id" position="attributes">
         <attribute name="invisible"/>
@@ -32,8 +36,14 @@
       <field name="region_id" position="attributes">
         <attribute name="invisible"/>
       </field>
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible">context.get('type') == 'arrivals'</attribute>
+      </field>
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" invisible="context.get('type') == 'arrivals'"/>
+      </field>
       <field name="amount_accessory_cost_company_currency" position="attributes">
-        <attribute name="invisible">1</attribute>/>
+        <attribute name="invisible">1</attribute>
       </field>
     </field>
   </record>
@@ -44,6 +54,10 @@
     <field name="mode">primary</field>
     <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_form"/>
     <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'invisible': [('type', '=', 'arrivals')]}</attribute>
+      </field>
       <field name="product_origin_country_id" position="after">
         <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
       </field>
@@ -63,8 +77,11 @@
     <field name="mode">primary</field>
     <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_tree"/>
     <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible">context.get('type') == 'arrivals'</attribute>
+      </field>
       <field name="product_origin_country_id" position="after">
-        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+        <field name="vat_number" invisible="context.get('type') == 'arrivals'"/>
       </field>
       <field name="region_id" position="attributes">
         <attribute name="invisible"/>
