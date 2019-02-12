@@ -521,9 +521,9 @@ class AccountMoveLineImport(models.TransientModel):
                     line[hf] = line[hf].decode(self.codepage).strip()
                 except:
                     tb = ''.join(format_exception(*exc_info()))
-                    raise UserError(
-                        _("Wrong Code Page"),
-                        _("Error while processing line '%s' :\n%s")
+                    raise UserError(_(
+                        "Wrong Code Page.\n"
+                        "Error while processing line '%s' :\n%s")
                         % (line, tb))
 
             # step 2: process input fields
