@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -31,5 +31,7 @@ class AccountAccountTag(models.Model):
         for tag in self:
             if tag.code:
                 name = ' - '.join([tag.code, tag.name])
-                result.append((tag.id, name))
+            else:
+                name = tag.name
+            result.append((tag.id, name))
         return result

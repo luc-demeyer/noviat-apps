@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2017 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'account tag code',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Accounting & Finance',
     'summary': """
         Add 'code' field to account tags
