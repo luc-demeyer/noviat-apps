@@ -30,5 +30,7 @@ class AccountAccountTag(models.Model):
         for tag in self:
             if tag.code:
                 name = ' - '.join([tag.code, tag.name])
-                result.append((tag.id, name))
+            else:
+                name = tag.name
+            result.append((tag.id, name))
         return result
