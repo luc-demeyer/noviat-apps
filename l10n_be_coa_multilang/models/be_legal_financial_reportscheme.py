@@ -1,4 +1,4 @@
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
@@ -17,6 +17,10 @@ class BeLegalFinancialReportscheme(models.Model):
         comodel_name='account.account.type',
         string='Account Type',
         required=True)
+    account_tag_ids = fields.Many2many(
+        comodel_name='account.account.tag',
+        relation='be_scheme_account_tag_rel',
+        string='Tags')
     report_id = fields.Many2one(
         comodel_name='account.financial.report',
         string='Report Entry',

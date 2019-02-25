@@ -41,7 +41,6 @@
   <record id="l10n_be_coa_multilang_config_action_todo" model="ir.actions.todo">
     <field name="name">l10n_be_coa_multilang setup wizard</field>
     <field name="action_id" ref="l10n_be_coa_multilang_config_action"/>
-    <field name="type">automatic</field>
   </record>
 
 </odoo>

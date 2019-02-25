@@ -449,7 +449,7 @@
   </record>
   <record id="account_be_scheme_440" model="be.legal.financial.reportscheme">
     <field name="account_group">440</field>
-    <field name="account_type_id" ref="account.data_account_type_receivable"/>
+    <field name="account_type_id" ref="account.data_account_type_payable"/>
     <field name="report_id" ref="account_financial_report_223231"/>
   </record>
   <record id="account_be_scheme442" model="be.legal.financial.reportscheme">
@@ -551,406 +551,487 @@
     <field name="account_group">70</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_30110"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_71" model="be.legal.financial.reportscheme">
     <field name="account_group">71</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_30120"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_72" model="be.legal.financial.reportscheme">
     <field name="account_group">72</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_30130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_74" model="be.legal.financial.reportscheme">
     <field name="account_group">74</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_30140"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme600" model="be.legal.financial.reportscheme">
     <field name="account_group">600</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme601" model="be.legal.financial.reportscheme">
     <field name="account_group">601</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme602" model="be.legal.financial.reportscheme">
     <field name="account_group">602</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme603" model="be.legal.financial.reportscheme">
     <field name="account_group">603</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme604" model="be.legal.financial.reportscheme">
     <field name="account_group">604</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme605" model="be.legal.financial.reportscheme">
     <field name="account_group">605</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme606" model="be.legal.financial.reportscheme">
     <field name="account_group">606</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme607" model="be.legal.financial.reportscheme">
     <field name="account_group">607</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme608" model="be.legal.financial.reportscheme">
     <field name="account_group">608</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30211"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_609" model="be.legal.financial.reportscheme">
     <field name="account_group">609</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30212"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_61" model="be.legal.financial.reportscheme">
     <field name="account_group">61</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30220"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_62" model="be.legal.financial.reportscheme">
     <field name="account_group">62</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_630" model="be.legal.financial.reportscheme">
     <field name="account_group">630</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30240"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme631" model="be.legal.financial.reportscheme">
     <field name="account_group">631</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme632" model="be.legal.financial.reportscheme">
     <field name="account_group">632</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme633" model="be.legal.financial.reportscheme">
     <field name="account_group">633</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme634" model="be.legal.financial.reportscheme">
     <field name="account_group">634</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme635" model="be.legal.financial.reportscheme">
     <field name="account_group">635</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30260"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme636" model="be.legal.financial.reportscheme">
     <field name="account_group">636</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30260"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme637" model="be.legal.financial.reportscheme">
     <field name="account_group">637</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30260"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme640" model="be.legal.financial.reportscheme">
     <field name="account_group">640</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme641" model="be.legal.financial.reportscheme">
     <field name="account_group">641</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme642" model="be.legal.financial.reportscheme">
     <field name="account_group">642</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme643" model="be.legal.financial.reportscheme">
     <field name="account_group">643</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme644" model="be.legal.financial.reportscheme">
     <field name="account_group">644</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme645" model="be.legal.financial.reportscheme">
     <field name="account_group">645</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme646" model="be.legal.financial.reportscheme">
     <field name="account_group">646</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme647" model="be.legal.financial.reportscheme">
     <field name="account_group">647</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme648" model="be.legal.financial.reportscheme">
     <field name="account_group">648</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30270"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_649" model="be.legal.financial.reportscheme">
     <field name="account_group">649</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_30280"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_750" model="be.legal.financial.reportscheme">
     <field name="account_group">750</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31110"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme_751" model="be.legal.financial.reportscheme">
     <field name="account_group">751</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31120"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme752" model="be.legal.financial.reportscheme">
     <field name="account_group">752</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme753" model="be.legal.financial.reportscheme">
     <field name="account_group">753</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme754" model="be.legal.financial.reportscheme">
     <field name="account_group">754</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme755" model="be.legal.financial.reportscheme">
     <field name="account_group">755</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme756" model="be.legal.financial.reportscheme">
     <field name="account_group">756</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme757" model="be.legal.financial.reportscheme">
     <field name="account_group">757</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme758" model="be.legal.financial.reportscheme">
     <field name="account_group">758</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme759" model="be.legal.financial.reportscheme">
     <field name="account_group">759</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_31130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme_650" model="be.legal.financial.reportscheme">
     <field name="account_group">650</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31210"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme_651" model="be.legal.financial.reportscheme">
     <field name="account_group">651</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31220"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme652" model="be.legal.financial.reportscheme">
     <field name="account_group">652</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme653" model="be.legal.financial.reportscheme">
     <field name="account_group">653</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme654" model="be.legal.financial.reportscheme">
     <field name="account_group">654</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme655" model="be.legal.financial.reportscheme">
     <field name="account_group">655</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme656" model="be.legal.financial.reportscheme">
     <field name="account_group">656</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme657" model="be.legal.financial.reportscheme">
     <field name="account_group">657</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme658" model="be.legal.financial.reportscheme">
     <field name="account_group">658</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme659" model="be.legal.financial.reportscheme">
     <field name="account_group">659</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_31230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
   </record>
   <record id="account_be_scheme_760" model="be.legal.financial.reportscheme">
     <field name="account_group">760</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32110"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_761" model="be.legal.financial.reportscheme">
     <field name="account_group">761</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32120"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_762" model="be.legal.financial.reportscheme">
     <field name="account_group">762</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32130"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_763" model="be.legal.financial.reportscheme">
     <field name="account_group">763</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32140"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme764" model="be.legal.financial.reportscheme">
     <field name="account_group">764</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme765" model="be.legal.financial.reportscheme">
     <field name="account_group">765</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme766" model="be.legal.financial.reportscheme">
     <field name="account_group">766</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme767" model="be.legal.financial.reportscheme">
     <field name="account_group">767</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme768" model="be.legal.financial.reportscheme">
     <field name="account_group">768</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme769" model="be.legal.financial.reportscheme">
     <field name="account_group">769</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_32150"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_660" model="be.legal.financial.reportscheme">
     <field name="account_group">660</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32210"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_661" model="be.legal.financial.reportscheme">
     <field name="account_group">661</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32220"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_662" model="be.legal.financial.reportscheme">
     <field name="account_group">662</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32230"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_663" model="be.legal.financial.reportscheme">
     <field name="account_group">663</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32240"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme664" model="be.legal.financial.reportscheme">
     <field name="account_group">664</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme665" model="be.legal.financial.reportscheme">
     <field name="account_group">665</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme666" model="be.legal.financial.reportscheme">
     <field name="account_group">666</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme667" model="be.legal.financial.reportscheme">
     <field name="account_group">667</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme668" model="be.legal.financial.reportscheme">
     <field name="account_group">668</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32250"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_669" model="be.legal.financial.reportscheme">
     <field name="account_group">669</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_32260"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_investing')])]"/>
   </record>
   <record id="account_be_scheme_780" model="be.legal.financial.reportscheme">
     <field name="account_group">780</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_33100"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_680" model="be.legal.financial.reportscheme">
     <field name="account_group">680</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_33200"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme670" model="be.legal.financial.reportscheme">
     <field name="account_group">670</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_33310"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme671" model="be.legal.financial.reportscheme">
     <field name="account_group">671</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_33310"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme672" model="be.legal.financial.reportscheme">
     <field name="account_group">672</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_33310"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme673" model="be.legal.financial.reportscheme">
     <field name="account_group">673</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_33310"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_77" model="be.legal.financial.reportscheme">
     <field name="account_group">77</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_33320"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_69" model="be.legal.financial.reportscheme">
     <field name="account_group">69</field>
@@ -966,11 +1047,13 @@
     <field name="account_group">789</field>
     <field name="account_type_id" ref="account.data_account_type_revenue"/>
     <field name="report_id" ref="account_financial_report_34100"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="account_be_scheme_689" model="be.legal.financial.reportscheme">
     <field name="account_group">689</field>
     <field name="account_type_id" ref="account.data_account_type_expenses"/>
     <field name="report_id" ref="account_financial_report_34200"/>
+    <field name="account_tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
   </record>
   <record id="" model="be.legal.financial.reportscheme">
     <field name="account_group">499</field>
