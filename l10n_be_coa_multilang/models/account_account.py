@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -21,17 +21,26 @@ class AccountAccount(models.Model):
         countries = self._get_be_scheme_countries()
         if self.code and \
                 self.company_id.country_id.code in countries:
-            update = []
-            if self._origin.code:
-                old = self._get_be_reportscheme_tag(self._origin.code)
-                if old.report_id:
-                    update.append((3, old.report_id.id))
-            new = self._get_be_reportscheme_tag(self.code)
-            if new.report_id:
-                update.append((4, new.report_id.id))
-            if update:
-                self.financial_report_ids = update
-            self.user_type_id = new.account_type_id
+            entry, entries = self._get_be_reportscheme_entry(self.code)
+
+            be_reports = entries.mapped('report_id')
+            for report in self.financial_report_ids:
+                if report in be_reports and report != entry.report_id:
+                    self.financial_report_ids -= report
+            if entry.report_id not in self.financial_report_ids:
+                self.financial_report_ids += entry.report_id
+
+            cf_tags = self._get_cash_flow_statement_tags()
+            for tag in self.tag_ids:
+                if tag in cf_tags and tag not in entry.account_tag_ids:
+                    self.tag_ids -= tag
+            for new_tag in entry.account_tag_ids:
+                if new_tag not in self.tag_ids:
+                    self.tag_ids += new_tag
+
+            if self.user_type_id != entry.account_type_id:
+                self.user_type_id = entry.account_type_id
+
         if hasattr(super(AccountAccount, self), '_onchange_code'):
             super(AccountAccount, self)._onchange_code()
 
@@ -55,13 +64,16 @@ class AccountAccount(models.Model):
             company = self.env[
                 'res.company']._company_default_get('account.account')
         if company.country_id.code in self._get_be_scheme_countries():
-            scheme_tag = self._get_be_reportscheme_tag(vals.get('code', ''))
-            if scheme_tag:
-                if scheme_tag.report_id:
+            entry, entries = self._get_be_reportscheme_entry(
+                vals.get('code', ''))
+            if entry:
+                if entry.report_id:
                     vals['financial_report_ids'] = [
-                        (4, scheme_tag.report_id.id)]
+                        (4, entry.report_id.id)]
                 if not vals.get('user_type_id'):
-                    vals['user_type_id'] = scheme_tag.account_type_id.id
+                    vals['user_type_id'] = entry.account_type_id.id
+                if not vals.get('tag_ids'):
+                    vals['tag_ids'] = [(6, 0, entry.account_tag_ids.ids)]
         return super(AccountAccount, self).create(vals)
 
     @api.multi
@@ -73,16 +85,17 @@ class AccountAccount(models.Model):
                     or self.company_id
                 if company.country_id.code in self._get_be_scheme_countries():
                     update = []
-                    old = self._get_be_reportscheme_tag(self.code)
+                    old, entries = self._get_be_reportscheme_entry(self.code)
                     if old.report_id:
                         update.append((3, old.report_id.id))
-                    new = self._get_be_reportscheme_tag(vals.get('code', ''))
+                    new, entries = self._get_be_reportscheme_entry(
+                        vals.get('code', ''))
                     if new.report_id:
                         update.append((4, new.report_id.id))
                     if update:
                         vals['financial_report_ids'] = vals.get(
                             'financial_report_ids', [])
-                        vals['financial_report_ids'].append(update)
+                        vals['financial_report_ids'].extend(update)
         return super(AccountAccount, self).write(vals)
 
     def _get_be_scheme_countries(self):
@@ -92,13 +105,28 @@ class AccountAccount(models.Model):
         """
         return ['BE']
 
-    def _get_be_reportscheme_tag(self, code):
-        scheme_tags = self.env[
+    def _get_cash_flow_statement_tags(self):
+        """
+        Use this method if you have changed the standard
+        'account_reports' Cash Flow report
+        """
+        tags = self.env['account.account.tag']
+        refs = [
+            'account.account_tag_operating',
+            'account.account_tag_financing',
+            'account.account_tag_investing',
+        ]
+        for ref in refs:
+            tags += self.env.ref(ref)
+        return tags
+
+    def _get_be_reportscheme_entry(self, code):
+        entries = self.env[
             'be.legal.financial.reportscheme'].search([])
-        scheme_tag = scheme_tags.filtered(
+        entry = entries.filtered(
             lambda r: r.account_group == code[0:len(r.account_group)])
-        if len(scheme_tag) > 1:
+        if len(entry) > 1:
             raise UserError(
                 _("Configuration Error in the "
                   "Belgian Legal Financial Report Scheme."))
-        return scheme_tag
+        return entry, entries

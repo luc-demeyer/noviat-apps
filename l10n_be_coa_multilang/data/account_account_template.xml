@@ -95,24 +95,28 @@
     <field name="name">Purchases of raw materials</field>
     <field name="code">600000</field>
     <field name="user_type_id" ref="account.data_account_type_expenses"/>
+    <field name="tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="aatn_654000" model="account.account.template">
     <field name="name">Exchange rate losses</field>
     <field name="code">654000</field>
     <field name="user_type_id" ref="account.data_account_type_expenses"/>
+    <field name="tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="aatn_700000" model="account.account.template">
     <field name="name">Sales</field>
     <field name="code">700000</field>
     <field name="user_type_id" ref="account.data_account_type_revenue"/>
+    <field name="tag_ids" eval="[(6,0,[ref('account.account_tag_operating')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="aatn_754000" model="account.account.template">
     <field name="name">Exchange rate gains</field>
     <field name="code">754000</field>
     <field name="user_type_id" ref="account.data_account_type_revenue"/>
+    <field name="tag_ids" eval="[(6,0,[ref('account.account_tag_financing')])]"/>
     <field name="chart_template_id" ref="l10n_be_coa_multilang_template"/>
   </record>
   <record id="aatn_999999" model="account.account.template">

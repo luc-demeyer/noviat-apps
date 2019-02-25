@@ -18,21 +18,24 @@
     <field name="model">be.legal.financial.reportscheme</field>
     <field name="arch" type="xml">
       <form string="Belgian Legal Financial Report Scheme">
-        <group col="6">
+        <group>
           <field name="account_group"/>
           <field name="account_type_id"/>
+          <field name="account_tag_ids" widget="many2many_tags"
+                 domain="[('applicability', '!=', 'taxes')]"
+                 options="{'no_open': True}"/>
           <field name="report_id"/>
         </group>
-          <notebook>
-            <page string="Accounts">
-              <field name="account_ids">
-                <tree string="Accounts">
-                  <field name="code"/>
-                  <field name="name"/>
-                </tree>
-              </field>
-            </page>
-          </notebook>
+        <notebook>
+          <page string="Accounts">
+            <field name="account_ids">
+              <tree string="Accounts">
+                <field name="code"/>
+                <field name="name"/>
+              </tree>
+            </field>
+          </page>
+        </notebook>
       </form>
     </field>
   </record>

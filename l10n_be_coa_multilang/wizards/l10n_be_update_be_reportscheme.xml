@@ -12,6 +12,10 @@
         <group>
           <label string="Update general accounts reporting configuration for Belgian BNB/NBB legal reportscheme." width="500"/>
         </group>
+        <group>
+          <field name="update_account_type"/>
+          <field name="update_account_tags"/>
+        </group>
         <footer>
           <button name="update_be_reportscheme" string="Update" type="object" class="oe_highlight"/>
           or
@@ -57,7 +61,6 @@
     <record id="l10n_be_update_be_reportscheme_todo" model="ir.actions.todo">
       <field name="name">Belgian BNB/NBB reportscheme Configuration</field>
       <field name="action_id" ref="l10n_be_update_be_reportscheme_action"/>
-      <field name="type">manual</field>
       <field name="state">done</field>
     </record>
   </data>

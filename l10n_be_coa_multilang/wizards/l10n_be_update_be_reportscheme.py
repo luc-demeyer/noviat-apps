@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -10,6 +10,10 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
     _name = 'l10n_be.update_be_reportscheme'
     _description = 'Update BNB/NBB financial reports configuration'
 
+    update_account_type = fields.Boolean(
+        help="Update also Account Types")
+    update_account_tags = fields.Boolean(
+        help="Update also Account Tags")
     note = fields.Text('Result', readonly=True)
 
     def _update_be_reportscheme(self):
@@ -21,6 +25,7 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
         upd_ctx = {'update_be_reportscheme': True}
         scheme_table = self.env['be.legal.financial.reportscheme'].search([])
         be_reports = scheme_table.mapped('report_id')
+        cf_tags = self.env['account.account']._get_cash_flow_statement_tags()
         accounts = self.env[
             'account.account'].with_context(upd_ctx).search([])
 
@@ -33,13 +38,13 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
                     be_scheme_accounts += account
                     break
 
-        # delete old reporting configuration
         for account in be_scheme_accounts:
+
             updates = []
             old = account.financial_report_ids.filtered(
                 lambda r: r in be_reports)
-            if old:
-                updates.append((3, old.id))
+            for o in old:
+                updates.append((3, o.id))
             be_report_entries = scheme_table.filtered(
                 lambda x:
                 account.code[:len(x.account_group)] == x.account_group)
@@ -51,6 +56,20 @@ class l10n_be_update_be_reportscheme(models.TransientModel):
             be_report = be_report_entries.report_id
             updates.append((4, be_report.id))
             account.financial_report_ids = updates
+
+            if self.update_account_type:
+                account_type = be_report_entries.account_type_id
+                if account.user_type_id != account_type:
+                    account.user_type_id = account_type
+
+            if self.update_account_tags:
+                account_tags = be_report_entries.account_tag_ids
+                for tag in account.tag_ids:
+                    if tag in cf_tags and tag not in account_tags:
+                        account.tag_ids -= tag
+                for new_tag in account_tags:
+                    if new_tag not in account.tag_ids:
+                        account.tag_ids += new_tag
 
         # write list of entries that are not included in
         # the BNB reports to the note field
