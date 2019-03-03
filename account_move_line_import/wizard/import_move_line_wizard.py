@@ -58,18 +58,17 @@ class AccountMoveLineImport(models.TransientModel):
     @api.depends('lines', 'csv_separator')
     def _compute_dialect(self):
         if self.lines:
+            first_lines = self.lines.split(b'\n', 3)
             try:
-                self.dialect = csv.Sniffer().sniff(
-                    self.lines[:128].decode(), delimiters=';,')
+                sample = b'\n'.join(first_lines[:3]).decode(self.codepage)
+                self.dialect = csv.Sniffer().sniff(sample, delimiters=';,')
             except Exception:
-                # csv.Sniffer is not always reliable
-                # in the detection of the delimiter
                 self.dialect = csv.Sniffer().sniff(
-                    '"header 1";"header 2";\r\n')
-                if ',' in self.lines[128]:
-                    self.dialect.delimiter = ','
-                elif ';' in self.lines[128]:
+                    '"header 1";"header 2";\n')
+                if b';' in first_lines[0]:
                     self.dialect.delimiter = ';'
+                elif b',' in first_lines[0]:
+                    self.dialect.delimiter = ','
         if self.csv_separator:
             self.dialect.delimiter = str(self.csv_separator)
 
@@ -79,6 +78,8 @@ class AccountMoveLineImport(models.TransientModel):
             self.csv_separator = self.dialect.delimiter
             if self.csv_separator == ';':
                 self.decimal_separator = ','
+            if self.lines[:3] == b'\xef\xbb\xbf':
+                self.codepage = 'utf-8-sig'
 
     @api.onchange('csv_separator')
     def _onchange_csv_separator(self):
@@ -99,7 +100,8 @@ class AccountMoveLineImport(models.TransientModel):
         self._accounts_dict = {a.code: a.id for a in accounts}
         self._sum_debit = self._sum_credit = 0.0
         self._get_orm_fields()
-        lines, header = self._remove_leading_lines(self.lines.decode())
+        lines, header = self._remove_leading_lines(
+            self.lines.decode(self.codepage))
         header_fields = next(csv.reader(
             io.StringIO(header), dialect=self.dialect))
         self._header_fields = self._process_header(header_fields)
