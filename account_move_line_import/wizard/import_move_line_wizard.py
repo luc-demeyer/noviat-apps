@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 try:
@@ -60,18 +60,17 @@ class AccountMoveLineImport(models.TransientModel):
     @api.depends('lines', 'csv_separator')
     def _compute_dialect(self):
         if self.lines:
+            first_lines = self.lines.split('\n', 3)
             try:
-                self.dialect = csv.Sniffer().sniff(
-                    self.lines[:128], delimiters=';,')
+                sample = '\n'.join(first_lines[:3])
+                self.dialect = csv.Sniffer().sniff(sample, delimiters=';,')
             except:
-                # csv.Sniffer is not always reliable
-                # in the detection of the delimiter
                 self.dialect = csv.Sniffer().sniff(
-                    '"header 1";"header 2";\r\n')
-                if ',' in self.lines[128]:
-                    self.dialect.delimiter = ','
-                elif ';' in self.lines[128]:
+                    '"header 1";"header 2";\n')
+                if ';' in first_lines[0]:
                     self.dialect.delimiter = ';'
+                elif ',' in first_lines[0]:
+                    self.dialect.delimiter = ','
         if self.csv_separator:
             self.dialect.delimiter = str(self.csv_separator)
 
@@ -81,6 +80,8 @@ class AccountMoveLineImport(models.TransientModel):
             self.csv_separator = self.dialect.delimiter
             if self.csv_separator == ';':
                 self.decimal_separator = ','
+            if self.lines[:3] == '\xef\xbb\xbf':
+                self.codepage = 'utf-8-sig'
 
     @api.onchange('csv_separator')
     def _onchange_csv_separator(self):
@@ -93,6 +94,8 @@ class AccountMoveLineImport(models.TransientModel):
         header = False
         while not header:
             ln = input.next()
+            if self.codepage == 'utf-8-sig' and ln[:3] == '\xef\xbb\xbf':
+                ln = ln[3:]
             if not ln or ln and ln[0] in [self.csv_separator, '#']:
                 continue
             else:
