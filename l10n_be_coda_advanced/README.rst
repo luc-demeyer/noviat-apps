@@ -28,7 +28,6 @@ Features
       by the bank via the CODA File.
       Transaction specific information can be found in the 'Notes' field of the transaction.
       Generic communication is available via the 'CODA Notes' field of the Bank Statement.
-    * Support for zip files containing multiple CODA files
 
 Reconciliation logic
 --------------------
