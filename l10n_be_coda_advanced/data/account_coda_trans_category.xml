@@ -69,7 +69,7 @@
     </record>
     <record id="actrca_016" model="account.coda.trans.category">
       <field name="category">016</field>
-      <field name="description">BLIW/IBLC dues</field>
+      <field name="description">Negative interest</field>
     </record>
     <record id="actrca_017" model="account.coda.trans.category">
       <field name="category">017</field>
@@ -435,6 +435,22 @@
       <field name="category">431</field>
       <field name="description">Delivery of a copy</field>
     </record>
+    <record id="actrca_435" model="account.coda.trans.category">
+      <field name="category">435</field>
+      <field name="description">Tax on physical securities</field>
+    </record>
+    <record id="actrca_436" model="account.coda.trans.category">
+      <field name="category">436</field>
+      <field name="description">Supplimentary tax</field>
+    </record>
+    <record id="actrca_437" model="account.coda.trans.category">
+      <field name="category">437</field>
+      <field name="description">Speculation tax</field>
+    </record>
+    <record id="actrca_438" model="account.coda.trans.category">
+      <field name="category">438</field>
+      <field name="description">Securities account tax</field>
+    </record>
 
-    </data>
+  </data>
 </odoo>

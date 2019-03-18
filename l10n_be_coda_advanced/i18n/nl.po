@@ -1,13 +1,13 @@
-# Dutch translation of Odoo 10.0.
+# Dutch translation of Odoo 11.0.
 # This file contains the translation of the following modules:
 #	* l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo 10.0\n"
+"Project-Id-Version: Odoo 11.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2018-11-26 21:14:24.945000\n"
-"PO-Revision-Date: 2018-11-26 21:14:24.945000\n"
+"POT-Creation-Date: 2019-03-18 18:23:35.909000\n"
+"PO-Revision-Date: 2019-03-18 18:23:35.909000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -608,6 +608,21 @@ msgstr "Privé"
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:75
 msgid "Other"
 msgstr "Andere"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:76
+msgid "Cumulative"
+msgstr "Cumul"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:76
+msgid "Cumulative on network"
+msgstr "Cumul on network"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:76
+msgid "POS others"
+msgstr "POS andere"
 
 #. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:77
@@ -1252,7 +1267,7 @@ msgstr "Niet uitbetaalde postassignatie"
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_64
 msgid "Transfer to your account"
-msgstr "Overschrijving naar uw rekening intracompany"
+msgstr "Overschrijving naar uw rekening"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_66
@@ -1266,6 +1281,96 @@ msgstr "Terugstorting kosten"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_01_99
+msgid "Cancellation or correction"
+msgstr "Annulering of correctie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_02
+msgid "Instant SEPA credit transfer"
+msgstr "Instant SEPA overschrijvingen"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_01
+msgid "Individual transfer order"
+msgstr "Enkelvoudige overschrijving"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_02
+msgid "Individual transfer order initiated by the bank"
+msgstr "Enkelvoudige overschrijving geïnitieerd door de bank"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_03
+msgid "Standing order"
+msgstr "Doorlopende opdracht"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_05
+msgid "Payment of wages, etc."
+msgstr "Betaling lonen, e.d."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_07
+msgid "Collective transfer"
+msgstr "Collectieve overschrijving"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_13
+msgid "Transfer from your account"
+msgstr "Uw half doorlopende opdracht"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_17
+msgid "Financial centralisation"
+msgstr "Uw half doorlopende opdracht - betaling werknemers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_37
+msgid "Costs"
+msgstr "Overschrijving van uw rekening"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_49
+msgid "Cancellation or correction"
+msgstr "Premie schuldsaldoverzekering"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_50
+msgid "Transfer in your favour"
+msgstr "Overschrijving te uwen gunste"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_51
+msgid "Transfer in your favour – initiated by the bank"
+msgstr "Overschrijving te uwen gunste – geïnitieerd door de bank"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_52
+msgid "Payment in your favour"
+msgstr "Storting te uwen gunste"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_54
+msgid "Unexecutable transfer order"
+msgstr "Onuitvoerbare overschrijving"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_64
+msgid "Transfer to your account"
+msgstr "Overschrijving naar uw rekening"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_66
+msgid "Financial centralization"
+msgstr "Financiële centralisatie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_87
+msgid "Reimbursement of costs"
+msgstr "Terugstorting kosten"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_99
 msgid "Cancellation or correction"
 msgstr "Annulering of correctie"
 
@@ -1455,6 +1560,16 @@ msgid "Payment by means of a payment card outside the Eurozone"
 msgstr "Betaling met debetkaart buiten eurozone"
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_09
+msgid "Upload of prepaid card"
+msgstr "Opladen van voorafbetaalde kaart"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_10
+msgid "Correction for prepaid card"
+msgstr "Correctie voor voorafbetaalde kaart"
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_37
 msgid "Costs"
 msgstr "Kosten"
@@ -1485,9 +1600,19 @@ msgid "Cash deposit at an ATM"
 msgstr "Geldstorting aan automaat"
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_54
+msgid "Download of prepaid card"
+msgstr "Ontladen van voorafbetaalde kaart"
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_55
 msgid "Income from payments by GSM"
 msgstr "Ontvangsten betalingen met GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_56
+msgid "Correction for prepaid card"
+msgstr "Correctie voor voorafbetaalde kaart"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_68
@@ -2690,6 +2815,61 @@ msgid "In case of centralisation by the bank, type 2 will be allotted to this tr
 msgstr "Indien de bank totaliseert, krijgt deze verrichting het type 2. Dit globaal kan gevolgd worden door de detailbewegingen."
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_01
+msgid "Credit transfer given by the customer."
+msgstr "Overschrijving door de cliënt"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_02
+msgid "The bank takes the initiative for debiting the customer’s account."
+msgstr "Debiteren van de rekening van een cliënt op initiatief van de bank."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_03
+msgid "Credit transfer for which the order has been given once and which is carried out again at regular intervals without any change."
+msgstr "Overschrijving waarvoor eenmalig een opdracht is gegeven en die op afgesproken tijdstippen opnieuw en ongewijzigd wordt uitgevoerd."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_05
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Opdrachtgever wordt voor het totale bedrag van het afgegeven bestand gedebiteerd."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_07
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Opdrachtgever wordt voor het totale bedrag van het afgegeven bestand gedebiteerd."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_13
+msgid "Transfer from one account to another account of the same customer at the bank's or the customer's initiative (intracompany)."
+msgstr "Overschrijving van een rekening naar een andere rekening van dezelfde cliënt op initiatief van de bank of van de cliënt (intracompany)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_17
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Indien de bank totaliseert, krijgt deze verrichting het type 2. Dit globaal kan gevolgd worden door de detailbewegingen."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_51
+msgid "The bank takes the initiative for crediting the customer’s account."
+msgstr "Crediteren van de rekening van de cliënt op initiatief van de bank"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_52
+msgid "Payment by a third person"
+msgstr "Storting door een derde"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_64
+msgid "Intracompany"
+msgstr "Intracompany"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_66
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Indien de bank totaliseert, krijgt deze verrichting het type 2. Dit globaal kan gevolgd worden door de detailbewegingen."
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_05
 msgid "Payment of holiday pay, etc."
 msgstr "Bon voor vakantiegelden, enz."
@@ -3136,8 +3316,8 @@ msgstr "Kosten correspondent"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_016
-msgid "BLIW/IBLC dues"
-msgstr "Retributie B.L.I.W."
+msgid "Negative interest"
+msgstr "Negatieve intrest"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_017
@@ -3593,6 +3773,26 @@ msgstr "Recuperatie buitenlandse belasting"
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_431
 msgid "Delivery of a copy"
 msgstr "Aflevering kopie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_435
+msgid "Tax on physical securities"
+msgstr "Taks effecten aan toonder"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_436
+msgid "Supplimentary tax"
+msgstr "Bijkomende heffing"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_437
+msgid "Speculation tax"
+msgstr "Speculatietaks"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_438
+msgid "Securities account tax"
+msgstr "Effectenrekeningtaks"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_001
