@@ -2615,8 +2615,10 @@ class AccountCodaImport(models.TransientModel):
             '5': 'TINA',
             '9': _('Other')}
         trans_types = {
+            '0': _('Cumulative'),
             '1': _('Withdrawal'),
             '2': _('Cumulative on network'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
@@ -2662,6 +2664,7 @@ class AccountCodaImport(models.TransientModel):
             '2': _('Proton loading'),
             '3': _('Reimbursement Proton balance'),
             '4': _('Reversal of purchases'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
@@ -2734,6 +2737,7 @@ class AccountCodaImport(models.TransientModel):
             '9': _('Other')}
         trans_types = {
             '1': _('Withdrawal'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}

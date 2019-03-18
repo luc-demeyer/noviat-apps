@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 8.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2018-11-26 19:38:54.671000\n"
-"PO-Revision-Date: 2018-11-26 19:38:54.671000\n"
+"POT-Creation-Date: 2019-03-18 20:13:38.669000\n"
+"PO-Revision-Date: 2019-03-18 20:13:38.669000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1520,6 +1520,96 @@ msgid "Cancellation or correction"
 msgstr "Annulation ou correction"
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_02
+msgid "Instant SEPA credit transfer"
+msgstr "Virements SEPA instantanés"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_01
+msgid "Individual transfer order"
+msgstr "Virement simple"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_02
+msgid "Individual transfer order initiated by the bank"
+msgstr "Virement simple initié par la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_03
+msgid "Standing order"
+msgstr "Ordre permanent"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_05
+msgid "Payment of wages, etc."
+msgstr "Paiement salaire, etc."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_07
+msgid "Collective transfer"
+msgstr "Virement collectif"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_13
+msgid "Transfer from your account"
+msgstr "Votre ordre semi-permanent"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_17
+msgid "Financial centralisation"
+msgstr "Votre ordre semi-permanent - paiement travailleurs"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_37
+msgid "Costs"
+msgstr "Virement de votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_49
+msgid "Cancellation or correction"
+msgstr "Prime d'assurance solde restant dû"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_50
+msgid "Transfer in your favour"
+msgstr "Virement en votre faveur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_51
+msgid "Transfer in your favour – initiated by the bank"
+msgstr "Virement en votre faveur initié par la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_52
+msgid "Payment in your favour"
+msgstr "Versement en votre faveur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_54
+msgid "Unexecutable transfer order"
+msgstr "Virement non exécutable"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_64
+msgid "Transfer to your account"
+msgstr "Virement à votre compte"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_66
+msgid "Financial centralization"
+msgstr "Centralisation financière"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_87
+msgid "Reimbursement of costs"
+msgstr "Restitution des frais"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_02_99
+msgid "Cancellation or correction"
+msgstr "Annulation ou correction"
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcf_03
 msgid "Cheques"
 msgstr "Chèques"
@@ -1705,6 +1795,16 @@ msgid "Payment by means of a payment card outside the Eurozone"
 msgstr "Paiement par carte de débit en dehors de l’euro zone"
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_09
+msgid "Upload of prepaid card"
+msgstr "Chargement d’une carte prépayée"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_10
+msgid "Correction for prepaid card"
+msgstr "Correction pour une carte prépayée"
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_37
 msgid "Costs"
 msgstr "Frais"
@@ -1735,9 +1835,19 @@ msgid "Cash deposit at an ATM"
 msgstr "Versement d’argent à un guichet automatique"
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_54
+msgid "Download of prepaid card"
+msgstr "Déchargement d’une carte prépayée"
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_55
 msgid "Income from payments by GSM"
 msgstr "Réceptions paiements par GSM"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_56
+msgid "Correction for prepaid card"
+msgstr "Correction pour une carte prépayée"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,description:l10n_be_coda_advanced.actcc_04_68
@@ -2940,6 +3050,61 @@ msgid "In case of centralisation by the bank, type 2 will be allotted to this tr
 msgstr "Si la banque globalise, cette opération est qualifiée de type 2. Cette globalisation peut être suivie des mouvements de détail."
 
 #. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_01
+msgid "Credit transfer given by the customer."
+msgstr "Virement remis par le client"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_02
+msgid "The bank takes the initiative for debiting the customer’s account."
+msgstr "Débit du compte d’un client à l’initiative de la banque."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_03
+msgid "Credit transfer for which the order has been given once and which is carried out again at regular intervals without any change."
+msgstr "Virement pour lequel un ordre a été donné une seule fois et qui est exécuté à l’identique aux dates convenues."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_05
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Le donneur d’ordre est débité pour le montant total du fichier remis."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_07
+msgid "The principal will be debited for the total amount of the file entered."
+msgstr "Le donneur d’ordre est débité pour le montant total du fichier remis."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_13
+msgid "Transfer from one account to another account of the same customer at the bank's or the customer's initiative (intracompany)."
+msgstr "Virement d'un compte à un autre compte du même client à l'initiative de la banque ou du client (intracompany)"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_17
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Si la banque globalise, cette opération est qualifiée de type 2. Cette globalisation peut être suivie des mouvements de détail."
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_51
+msgid "The bank takes the initiative for crediting the customer’s account."
+msgstr "Crédit du compte du client à l’initiative de la banque"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_52
+msgid "Payment by a third person"
+msgstr "Versement par un tiers"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_64
+msgid "Intracompany"
+msgstr "intracompany"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_02_66
+msgid "In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement."
+msgstr "Si la banque globalise, cette opération est qualifiée de type 2. Cette globalisation peut être suivie des mouvements de détail."
+
+#. module: l10n_be_coda_advanced
 #: model:account.coda.trans.code,comment:l10n_be_coda_advanced.actcc_03_05
 msgid "Payment of holiday pay, etc."
 msgstr "Bon pour pécule de vacances, etc."
@@ -3396,8 +3561,8 @@ msgstr "Frais correspondant"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_016
-msgid "BLIW/IBLC dues"
-msgstr "Redevance I.B.L.C."
+msgid "Negative interest"
+msgstr "Intérêt négatif"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_017
@@ -3853,6 +4018,26 @@ msgstr "Récupération taxe étrangère"
 #: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_431
 msgid "Delivery of a copy"
 msgstr "Livraison copie"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_435
+msgid "Tax on physical securities"
+msgstr "Taxe sur les titres au porteur"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_436
+msgid "Supplimentary tax"
+msgstr "Cotisation supplémentaire"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_437
+msgid "Speculation tax"
+msgstr "Taxe de spéculation"
+
+#. module: l10n_be_coda_advanced
+#: model:account.coda.trans.category,description:l10n_be_coda_advanced.actrca_438
+msgid "Securities account tax"
+msgstr "Taxe sur les comptes titres"
 
 #. module: l10n_be_coda_advanced
 #: model:account.coda.comm.type,description:l10n_be_coda_advanced.acct_001
