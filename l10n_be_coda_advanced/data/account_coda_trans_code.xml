@@ -217,6 +217,124 @@
       <field name="parent_id" ref="actcf_01"/>
       <field name="description">Cancellation or correction</field>
     </record>
+    <record id="actcf_02" model="account.coda.trans.code">
+      <field name="code">02</field>
+      <field name="type">family</field>
+      <field name="description">Instant SEPA credit transfer</field>
+    </record>
+    <record id="actcc_02_01" model="account.coda.trans.code">
+      <field name="code">01</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Individual transfer order</field>
+      <field name="comment">Credit transfer given by the customer.</field>
+    </record>
+    <record id="actcc_02_02" model="account.coda.trans.code">
+      <field name="code">02</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Individual transfer order initiated by the bank</field>
+      <field name="comment">The bank takes the initiative for debiting the customer’s account.</field>
+    </record>
+    <record id="actcc_02_03" model="account.coda.trans.code">
+      <field name="code">03</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Standing order</field>
+      <field name="comment">Credit transfer for which the order has been given once and which is carried out again at regular intervals without any change.</field>
+    </record>
+    <record id="actcc_02_05" model="account.coda.trans.code">
+      <field name="code">05</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Payment of wages, etc.</field>
+      <field name="comment">The principal will be debited for the total amount of the file entered.</field>
+    </record>
+    <record id="actcc_02_07" model="account.coda.trans.code">
+      <field name="code">07</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Collective transfer</field>
+      <field name="comment">The principal will be debited for the total amount of the file entered.</field>
+    </record>
+    <record id="actcc_02_13" model="account.coda.trans.code">
+      <field name="code">13</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Transfer from your account</field>
+      <field name="comment">Transfer from one account to another account of the same customer at the bank's or the customer's initiative (intracompany).</field>
+    </record>
+    <record id="actcc_02_17" model="account.coda.trans.code">
+      <field name="code">17</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Financial centralisation</field>
+      <field name="comment">In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement.</field>
+    </record>
+    <record id="actcc_02_37" model="account.coda.trans.code">
+      <field name="code">37</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Costs</field>
+    </record>
+    <record id="actcc_02_49" model="account.coda.trans.code">
+      <field name="code">49</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Cancellation or correction</field>
+    </record>
+    <record id="actcc_02_50" model="account.coda.trans.code">
+      <field name="code">50</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Transfer in your favour</field>
+    </record>
+    <record id="actcc_02_51" model="account.coda.trans.code">
+      <field name="code">51</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Transfer in your favour – initiated by the bank</field>
+      <field name="comment">The bank takes the initiative for crediting the customer’s account.</field>
+    </record>
+    <record id="actcc_02_52" model="account.coda.trans.code">
+      <field name="code">52</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Payment in your favour</field>
+      <field name="comment">Payment by a third person</field>
+    </record>
+    <record id="actcc_02_54" model="account.coda.trans.code">
+      <field name="code">54</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Unexecutable transfer order</field>
+    </record>
+    <record id="actcc_02_64" model="account.coda.trans.code">
+      <field name="code">64</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Transfer to your account</field>
+      <field name="comment">Intracompany</field>
+    </record>
+    <record id="actcc_02_66" model="account.coda.trans.code">
+      <field name="code">66</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Financial centralization</field>
+      <field name="comment">In case of centralisation by the bank, type 2 will be allotted to this transaction. This total can be followed by the detailed movement.</field>
+    </record>
+    <record id="actcc_02_87" model="account.coda.trans.code">
+      <field name="code">87</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Reimbursement of costs</field>
+    </record>
+    <record id="actcc_02_99" model="account.coda.trans.code">
+      <field name="code">99</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_02"/>
+      <field name="description">Cancellation or correction</field>
+    </record>
     <record id="actcf_03" model="account.coda.trans.code">
       <field name="code">03</field>
       <field name="type">family</field>
@@ -448,6 +566,18 @@
       <field name="description">Payment by means of a payment card outside the Eurozone</field>
       <field name="comment">Eurozone = countries which have the euro as their official currency</field>
     </record>
+    <record id="actcc_04_09" model="account.coda.trans.code">
+      <field name="code">09</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_04"/>
+      <field name="description">Upload of prepaid card</field>
+    </record>
+    <record id="actcc_04_10" model="account.coda.trans.code">
+      <field name="code">10</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_04"/>
+      <field name="description">Correction for prepaid card</field>
+    </record>
     <record id="actcc_04_37" model="account.coda.trans.code">
       <field name="code">37</field>
       <field name="type">code</field>
@@ -487,11 +617,23 @@
       <field name="parent_id" ref="actcf_04"/>
       <field name="description">Cash deposit at an ATM</field>
     </record>
+    <record id="actcc_04_54" model="account.coda.trans.code">
+      <field name="code">54</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_04"/>
+      <field name="description">Download of prepaid card</field>
+    </record>
     <record id="actcc_04_55" model="account.coda.trans.code">
       <field name="code">55</field>
       <field name="type">code</field>
       <field name="parent_id" ref="actcf_04"/>
       <field name="description">Income from payments by GSM</field>
+    </record>
+    <record id="actcc_04_56" model="account.coda.trans.code">
+      <field name="code">56</field>
+      <field name="type">code</field>
+      <field name="parent_id" ref="actcf_04"/>
+      <field name="description">Correction for prepaid card</field>
     </record>
     <record id="actcc_04_68" model="account.coda.trans.code">
       <field name="code">68</field>
@@ -1910,5 +2052,5 @@
       <field name="description">Cancellation or correction</field>
     </record>
 
-    </data>
+  </data>
 </odoo>
