@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
@@ -128,10 +128,11 @@ class OverduePayment(report_sxw.rml_parse):
             res += ' ' + p_cpy.title.name
         res += '</b>'
         if p.parent_id and not p.is_company:
-            res += '<br/>' + self._("Attn.", p.lang) + ' '
-            if p.title:
-                res += p.title.name + ' '
-            res += p.name
+            if p.name:
+                res += '<br/>' + self._("Attn.", p.lang) + ' '
+                if p.title:
+                    res += p.title.name + ' '
+                res += p.name
         res += '<br/>' + self._get_address(p)
         return res
 
