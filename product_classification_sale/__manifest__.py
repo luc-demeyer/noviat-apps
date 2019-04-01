@@ -9,7 +9,7 @@
     'website': 'http://www.noviat.com',
     'category': 'Product Management',
     'depends': [
-        'product',
+        'product_classification',
     ],
     'data': [
         'views/menu.xml',
