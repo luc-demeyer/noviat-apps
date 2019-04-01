@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <record id="product_classification_root" model="product.classification">
+      <field name="name">All</field>
+    </record>
+
+  </data>
+</odoo>

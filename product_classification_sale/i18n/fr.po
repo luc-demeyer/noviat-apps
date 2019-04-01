@@ -1,0 +1,109 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * product_classification
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-17 14:30+0000\n"
+"PO-Revision-Date: 2016-06-17 14:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-product_classification8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_classification
+#: model:ir.actions.act_window,help:product_classification.product_classification_action_hierarchy
+msgid "<p>\n"
+"          List of products per classification. You\n"
+"          can click on a classification to get the list of all products linked to\n"
+"          this classification or to a child of this classification.\n"
+"        </p>\n"
+"      "
+msgstr "<p>\n"
+"          Liste des produits par classificaion. Vous pouvez cliquer sur une\n"
+"          classification pour obtenir la liste des produits qui y sont liés soit directement,\n"
+"          soit via une classification enfant de celle-ci.\n"
+"        </p>\n"
+"      "
+
+#. module: product_classification
+#: model:ir.actions.act_window,name:product_classification.product_classification_action_hierarchy
+#: model:ir.ui.menu,name:product_classification.product_classification_menu
+msgid "Catalog"
+msgstr "Catalogue"
+
+#. module: product_classification
+#: field:product.classification,child_ids:0
+msgid "Child Classifications"
+msgstr "Classifications enfants"
+
+#. module: product_classification
+#: field:product.classification,name:0
+msgid "Classification"
+msgstr "Classification"
+
+#. module: product_classification
+#: model:ir.actions.act_window,name:product_classification.product_classification_action_form
+#: model:ir.ui.menu,name:product_classification.product_classification_menu_action_form
+#: view:product.classification:product_classification.product_classification_view_form
+#: view:product.classification:product_classification.product_classification_view_tree
+#: view:product.classification:product_classification.product_classification_view_search
+#: view:product.template:product_classification.product_template_form_view
+msgid "Classifications"
+msgstr "Classifications"
+
+#. module: product_classification
+#: model:ir.model,name:product_classification.model_product_classification
+#: field:product.template,classification_ids:0
+msgid "Product Classification"
+msgstr "Classification de produits"
+
+#. module: product_classification
+#: view:product.template:product_classification.product_template_form_view
+msgid "Create"
+msgstr "Créé"
+
+#. module: product_classification
+#: field:product.classification,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: product_classification
+#: field:product.classification,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: product_classification
+#: view:product.template:product_classification.product_template_search_view
+msgid "Creation Date"
+msgstr "Date de création"
+
+#. module: product_classification
+#: field:product.classification,note:0
+msgid "Description"
+msgstr "Description"
+
+#. module: product_classification
+#: field:product.classification,complete_name:0
+msgid "Complete Name"
+msgstr "Nom complet"
+
+#. module: product_classification
+#: field:product.classification,parent_id:0
+msgid "Parent Classification"
+msgstr "Classification parente"
+
+#. module: product_classification
+#: view:product.classification:product_classification.product_classification_view_tree_hierarchy
+msgid "Product Classifications"
+msgstr "Classifications de produit"
+
+#. module: product_classification
+#: model:ir.actions.act_window,name:product_classification.product_classification_action_tree
+#: field:product.classification,product_tmpl_ids:0
+msgid "Products"
+msgstr "Articles"

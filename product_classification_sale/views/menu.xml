@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <menuitem id="product_classification_menu"
+            action="product_classification.product_classification_action"
+            parent="sale.prod_config_main"
+            sequence="1"/>
+  
+</odoo>
