@@ -12,8 +12,14 @@ class ProductClassification(models.Model):
     _rec_name = 'complete_name'
     _order = 'parent_left'
 
+    _sql_constraints = [(
+        'code_parent_uniq',
+        'unique(code, parent_id)',
+        'Duplicate Product Classification code !')]
+
     name = fields.Char(
         string='Classification', required=True)
+    code = fields.Char()
     note = fields.Text(
         string='Description')
     complete_name = fields.Char(
