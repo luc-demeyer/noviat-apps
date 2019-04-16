@@ -1,24 +1,6 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2019 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.osv import osv, orm, fields
 from openerp.tools.translate import _
@@ -1775,8 +1757,10 @@ def parse_comm_move(self, cr, uid, line, comm_type_table, context):
             '5': 'TINA',
             '9': _('Other')}
         trans_types = {
+            '0': _('Cumulative'),
             '1': _('Withdrawal'),
             '2': _('Cumulative on network'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
@@ -1812,6 +1796,7 @@ def parse_comm_move(self, cr, uid, line, comm_type_table, context):
             '2': _('Proton loading'),
             '3': _('Reimbursement Proton balance'),
             '4': _('Reversal of purchases'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
@@ -1873,6 +1858,7 @@ def parse_comm_move(self, cr, uid, line, comm_type_table, context):
             '9': _('Other')}
         trans_types = {
             '1': _('Withdrawal'),
+            '5': _('POS others'),
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
@@ -2045,5 +2031,3 @@ def parse_comm_info(self, cr, uid, line, comm_type_table, context):
             'Please contact Noviat (info@noviat.be) for more information about the development roadmap', comm_type)
 
     return st_line_name, st_line_comm
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

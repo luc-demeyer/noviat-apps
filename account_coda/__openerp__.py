@@ -1,27 +1,10 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#
-#    Copyright (c) 2014-now Noviat nv/sa (www.noviat.com).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009-2019 Noviat.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': 'Belgium - Import bank CODA statements',
-    'version': '7.4',
+    'version': '7.5',
     'author': 'Noviat',
     'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
@@ -31,7 +14,7 @@
 
     Supported are CODA flat files in V2 format from Belgian bank accounts.
     - CODA v1 support.
-    - CODA v2.2 support.
+    - CODA v2 support.
     - Foreign Currency support.
     - Support for all data record types (0, 1, 2, 3, 4, 8, 9).
     - Parsing & logging of all Transaction Codes and Structured Format Communications.
@@ -106,5 +89,3 @@
     'license': 'AGPL-3',
     'certificate' : '001237207321716002029',
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
