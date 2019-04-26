@@ -38,8 +38,9 @@ class ProductClassification(models.Model):
         string='Right parent', index=True)
     product_tmpl_ids = fields.Many2many(
         comodel_name='product.template',
+        relation='product_classification_product_template_rel',
         column1='classification_id', column2='product_tmpl_id',
-        string='Partners')
+        string='Products')
     active = fields.Boolean(
         string='Active', default=True,
         help="The active field allows you to hide "

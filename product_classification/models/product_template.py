@@ -9,6 +9,7 @@ class ProductTemplate(models.Model):
 
     classification_ids = fields.Many2many(
         comodel_name='product.classification',
+        relation='product_classification_product_template_rel',
         column1='product_tmpl_id',
         column2='classification_id',
         string='Product Classification')
