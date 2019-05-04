@@ -44,7 +44,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
         },
 
         start: function () {
-            var start_super = this._super.apply(this, arguments);
+            this._super.apply(this, arguments);
             var self = this;
             return $.when(this.get_render_dict()).then(function (render_dict) {
                 self.$el.parent().prepend(QWeb.render('AccountMoveLineSearchExtension', render_dict));
@@ -136,7 +136,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
         aml_search_domain: function () {
             var domain = [];
             if (this.current_account) domain.push(['account_id.code', 'ilike', this.current_account]);
-            if (this.current_analytic_account) domain.push(['analytic_account_id', 'in', this.current_analytic_account]);
+            if (this.current_analytic_account) domain.push(['analytic_account_search', 'in', this.current_analytic_account]);
             if (this.current_partner) domain.push(['partner_id.name', 'ilike', this.current_partner]);
             if (this.current_journal) domain.push(['journal_id', '=', this.current_journal]);
             if (this.current_date_range) {

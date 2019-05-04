@@ -45,13 +45,11 @@ class AccountMoveLine(models.Model):
                     break
 
             for arg in args:
-                if (
-                    arg[0] == 'analytic_account_id' and
-                    isinstance(arg[0], str)
-                ):
+                if arg[0] == 'analytic_account_search':
                     ana_dom = ['|',
                                ('name', 'ilike', arg[2]),
                                ('code', 'ilike', arg[2])]
+                    arg[0] = 'analytic_account_id'
                     arg[2] = self.env['account.analytic.account'].search(
                         ana_dom).ids
                     break
