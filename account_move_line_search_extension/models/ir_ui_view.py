@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class IrUiView(models.Model):
@@ -11,3 +11,10 @@ class IrUiView(models.Model):
     type = fields.Selection(
         selection_add=[('amlse',
                         'AccountMoveLineSearchExtension')])
+
+    @api.model
+    def postprocess(self, model, node, view_id, in_tree_view, model_fields):
+        if node.tag == 'amlse':
+            in_tree_view = True
+        return super(IrUiView, self).postprocess(
+            model, node, view_id, in_tree_view, model_fields)

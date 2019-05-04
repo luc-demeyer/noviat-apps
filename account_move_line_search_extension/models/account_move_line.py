@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from lxml import etree
-from lxml.builder import E
 import re
+from lxml import etree
 
 from odoo import api, models
 
@@ -13,34 +12,8 @@ class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
     @api.model
-    def _get_default_amlse_view(self):
-        element = E.field(name=self._rec_name_fallback())
-        return E.tree(element, string=self._description)
-
-    @api.model
-    def fields_view_get(self, view_id=None, view_type=False,
-                        toolbar=False, submenu=False):
-        res = super(AccountMoveLine, self).fields_view_get(
-            view_id=view_id, view_type=view_type,
-            toolbar=toolbar, submenu=submenu)
-        if self._context.get('account_move_line_search_extension') \
-                and view_type in ['amlse', 'tree', 'form']:
-            doc = etree.XML(res['arch'])
-            tree = doc.xpath("/tree")
-            for node in tree:
-                if 'editable' in node.attrib:
-                    del node.attrib['editable']
-            form = doc.xpath("/form")
-            for node in form:
-                node.set('edit', 'false')
-                node.set('create', 'false')
-                node.set('delete', 'false')
-            res['arch'] = etree.tostring(doc)
-        return res
-
-    @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        if 'account_move_line_search_extension' in self._context:
+        if 'account_move_line_search_extension' in self.env.context:
             for arg in args:
 
                 if arg[0] == 'amount_search' and len(arg) == 3:
@@ -60,8 +33,8 @@ class AccountMoveLine(models.Model):
                             "WHERE round({0} - {2}, {3}) = 0.0 "
                             "OR round({1} - {2}, {3}) = 0.0"
                         ).format(f1, f2, val, digits)
-                        self._cr.execute(query)
-                        res = self._cr.fetchall()
+                        self.env.cr.execute(query)
+                        res = self.env.cr.fetchall()
                         ids = res and [x[0] for x in res] or [0]
                         arg[0] = 'id'
                         arg[1] = 'in'
@@ -73,19 +46,51 @@ class AccountMoveLine(models.Model):
                     break
 
             for arg in args:
-                if (
-                    arg[0] == 'analytic_account_id' and
-                    isinstance(arg[0], basestring)
-                ):
+                if arg[0] == 'analytic_account_search':
                     ana_dom = ['|',
                                ('name', 'ilike', arg[2]),
                                ('code', 'ilike', arg[2])]
+                    arg[0] = 'analytic_account_id'
                     arg[2] = self.env['account.analytic.account'].search(
                         ana_dom).ids
                     break
 
         return super(AccountMoveLine, self).search(
             args, offset=offset, limit=limit, order=order, count=count)
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='form',
+                        toolbar=False, submenu=False):
+        res = super(AccountMoveLine, self).fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu)
+        if (self.env.context.get('account_move_line_search_extension')
+                and view_type == 'form'):
+            doc = etree.XML(res['arch'])
+            form = doc.xpath("/form")
+            for node in form:
+                node.set('edit', 'false')
+                node.set('create', 'false')
+                node.set('delete', 'false')
+            res['arch'] = etree.tostring(doc)
+        return res
+
+    @api.model
+    def get_amlse_render_dict(self):
+        """
+        The result of this method is merged into the
+        action context for the Qweb rendering.
+        """
+        render_dict = {}
+        for group in self._get_amlse_groups():
+            if self.env.user.has_group(group):
+                render_dict[group.replace('.', '_')] = True
+        return render_dict
+
+    def _get_amlse_groups(self):
+        return [
+            'analytic.group_analytic_accounting',
+        ]
 
 
 def str2float(val):
@@ -101,5 +106,5 @@ def str2float(val):
         val = val.replace('.', '').replace(',', '.')
     try:
         return float(val)
-    except:
+    except Exception:
         return None

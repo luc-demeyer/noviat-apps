@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates id="template" xml:space="preserve">
+<templates id="template">
 
   <t t-name="AccountMoveLineSearchExtension">
     <div class="amlse" style="background-color: #f8f8f8; padding-bottom: 5px; padding-left: 5px;">
@@ -7,11 +7,12 @@
         <h4>Account :</h4>
         <input type="text" class="oe_account_select_account" style="border-style: solid;"/>
       </div>
-      <!-- TODO add t-if to show analytic only to users of analytic group -->
-      <div class="btn-group oe_form_field" name="analytic_account">
-        <h4>Analytic Account :</h4>
-        <input type="text" class="oe_account_select_analytic_account" style="border-style: solid;"/>
-      </div>
+      <t t-if="analytic_group_analytic_accounting">
+        <div class="btn-group oe_form_field" name="analytic_account">
+          <h4>Analytic Account :</h4>
+          <input type="text" class="oe_account_select_analytic_account" style="border-style: solid;"/>
+        </div>
+      </t>
       <div class="btn-group oe_form_field" name="partner">
         <h4>Partner :</h4>
         <input type="text" class="oe_account_select_partner" style="border-style: solid;"/>

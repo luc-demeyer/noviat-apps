@@ -1,5 +1,5 @@
 /*
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2019 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 */
 
@@ -26,26 +26,21 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
             this.current_date_range = null;
             this.current_reconcile = null;
             this.current_amount = null;
-            this.options.addable = false;
-            this.set_render_dict();
         },
 
         start: function () {
-            var tmp = this._super.apply(this, arguments);
+            this._super.apply(this, arguments);
             var self = this;
-            var d1, d2;
-            this.$el.parent().prepend(QWeb.render('AccountMoveLineSearchExtension', self.render_dict));
-            d1 = $.when(new Model('account.journal').query(['name']).all().then(function (result) {
-                self.journals = result}));
-            d2 = $.when(new Model('date.range').query(['name', 'date_start', 'date_end']).all().then(function (result) {
-                self.date_ranges = result}));
-            self.set_change_events();
-            return $.when(tmp, d1, d2);
-        },
-
-        is_action_enabled: function (action) {
-            /* remove 'Delete' from Sidebar */
-            return action == 'delete' ? false : this._super.apply(this, arguments);
+            return $.when(this.get_render_dict()).then(function (render_dict) {
+                self.$el.parent().prepend(QWeb.render('AccountMoveLineSearchExtension', render_dict));
+                $.when(new Model('account.journal').query(['name']).all().then(function (result) {
+                    self.journals = result;
+                }));
+                $.when(new Model('date.range').query(['name', 'date_start', 'date_end']).all().then(function (result) {
+                    self.date_ranges = result;
+                }));
+                self.set_change_events();
+            });
         },
 
         set_change_events: function () {
@@ -80,12 +75,19 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
             });
         },
 
-        set_render_dict: function () {
+        get_render_dict: function () {
             /*
             Customise this function to modify the rendering dict for the qweb template.
-            By default the action context is passed as rendering dict.
+            By default the action context is merged into the result of the 'account.move.line, get_amlse_render_dict()' method.
             */
-            this.render_dict = this.dataset.get_context().__contexts[1];
+            var self = this;
+            return $.when(new Model('account.move.line')
+                .call('get_amlse_render_dict')
+                .then(function (result) {
+                    var render_dict = _.extend(result, self.dataset.get_context().__contexts[1]);
+                    return render_dict;
+                })
+            );
         },
 
         do_search: function (domain, context, group_by, selection_field) {
@@ -128,7 +130,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
             var self = this;
             var domain = [];
             if (self.current_account) domain.push(['account_id.code', 'ilike', self.current_account]);
-            if (self.current_analytic_account) domain.push(['analytic_account_id', 'in', self.current_analytic_account]);
+            if (self.current_analytic_account) domain.push(['analytic_account_search', 'in', self.current_analytic_account]);
             if (self.current_partner) domain.push(['partner_id.name', 'ilike', self.current_partner]);
             if (self.current_journal) domain.push(['journal_id', '=', self.current_journal]);
             if (self.current_date_range) domain.push('&', ['date', '>=', date_start], ['date', '<=', date_end]);
