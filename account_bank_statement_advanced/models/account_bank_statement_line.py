@@ -163,3 +163,9 @@ class AccountBankStatementLine(models.Model):
             excluded_ids=excluded_ids)
         lines = [l for l in lines if l['st_line']['amount'] != 0.0]
         return lines
+
+    def _prepare_reconciliation_move(self, move_ref):
+        data = super()._prepare_reconciliation_move(move_ref)
+        if self.statement_id.accounting_date:
+            data['date'] = self.statement_id.accounting_date
+        return data

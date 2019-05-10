@@ -35,6 +35,10 @@
         <attribute name="string">Manual Reconcile</attribute>
       </button>
 
+      <field name="date" position="after">
+        <field name="accounting_date"/>
+      </field>
+      
       <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree" position="attributes">
         <attribute name="decoration-info">amount and not journal_entry_ids</attribute>
       </xpath>

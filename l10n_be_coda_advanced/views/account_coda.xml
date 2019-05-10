@@ -11,6 +11,7 @@
         <field name="date"/>
         <field name="user_id"/>
         <field name="state"/>
+        <field name="bank_statement_count"/>
         <field name="company_id" widget="selection" groups="base.group_multi_company"/>
       </tree>
     </field>
