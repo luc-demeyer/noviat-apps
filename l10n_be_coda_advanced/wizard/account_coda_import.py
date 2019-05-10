@@ -848,8 +848,8 @@ class AccountCodaImport(models.TransientModel):
             'name': coda_statement['name'],
             'journal_id': journal.id,
             'coda_id': self._coda_id,
-            'date': self.accounting_date
-            or coda_statement['new_balance_date'],
+            'date': coda_statement['new_balance_date'],
+            'accounting_date': self.accounting_date,
             'balance_start': coda_statement['balance_start'],
             'balance_end_real': coda_statement['balance_end_real'],
             'state': 'open',

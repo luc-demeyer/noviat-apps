@@ -17,6 +17,9 @@ class AccountCoda(models.Model):
         comodel_name='account.bank.statement',
         inverse_name='coda_id',
         string='Generated Bank Statements', readonly=True)
+    bank_statement_count = fields.Integer(
+        compute='_compute_bank_statement_count',
+        string='# of Bank Statements')
     note = fields.Text(string='Import Log', readonly=True)
     coda_creation_date = fields.Date(
         string='CODA Creation Date', readonly=True)
@@ -42,6 +45,10 @@ class AccountCoda(models.Model):
         ('coda_uniq', 'unique (name, coda_creation_date)',
          'This CODA has already been imported !')
     ]
+
+    @api.one
+    def _compute_bank_statement_count(self):
+        self.bank_statement_count = len(self.bank_statement_ids)
 
     @api.multi
     def unlink(self):
