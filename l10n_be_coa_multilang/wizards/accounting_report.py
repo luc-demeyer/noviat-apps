@@ -1,4 +1,4 @@
-# Copyright 2009-2017 Noviat
+# Copyright 2009-2019 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -19,5 +19,8 @@ class AccountingReport(models.TransientModel):
             self.env.ref('%s.%s' % (module, ref))
             for ref in refs]
         if account_report in be_legal_reports:
-            result.update({'get_children_by_sequence': True})
+            result.update({
+                'get_children_by_sequence': True,
+                'add_code_to_name': True,
+            })
         return result
