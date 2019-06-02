@@ -57,3 +57,15 @@ class ProductClassification(models.Model):
         else:
             parent_path = ''
         return parent_path + cl.name
+
+    @api.multi
+    def get_product_tmpls_recursively(self):
+        """
+        Returns all product.template records belonging to this
+        classification or its children.
+        """
+        self.ensure_one()
+        res = self.product_tmpl_ids
+        for classif in self.child_ids:
+            res |= classif.get_product_tmpls_recursively()
+        return res
