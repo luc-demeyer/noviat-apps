@@ -42,7 +42,7 @@ class L10nBeIntrastatProductDeclaration(models.Model):
             msg = _(
                 "The Intrastat Region of the Company is not set, "
                 "please configure it first.")
-            self._company_warning(msg)
+            self._account_config_warning(msg)
         return region
 
     def _handle_refund(self, inv_line, line_vals):
