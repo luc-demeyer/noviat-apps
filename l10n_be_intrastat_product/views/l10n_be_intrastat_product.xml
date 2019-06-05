@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="l10n_be_intrastat_product_computation_line_view_form" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.computation.line.form</field>
+    <field name="model">l10n.be.intrastat.product.computation.line</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_computation_line_view_form"/>
+    <field name="arch" type="xml">
+      <field name="region_id" position="attributes">
+        <attribute name="invisible"/>
+      </field>
+      <field name="amount_accessory_cost_company_currency" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </field>
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'invisible': [('type', '=', 'arrivals')]}</attribute>
+      </field>
+      <field name="incoterm_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+      </field>
+      <field name="invoice_id" position="before">
+        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_computation_line_view_tree" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.computation.line.tree</field>
+    <field name="model">l10n.be.intrastat.product.computation.line</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_computation_line_view_tree"/>
+    <field name="arch" type="xml">
+      <field name="region_id" position="attributes">
+        <attribute name="invisible"/>
+      </field>
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'column_invisible': [('parent.type', '=', 'arrivals')]}</attribute>
+      </field>
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"/>
+      </field>
+      <field name="amount_accessory_cost_company_currency" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </field>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_line_view_form" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.line.form</field>
+    <field name="model">l10n.be.intrastat.product.declaration.line</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_form"/>
+    <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'invisible': [('type', '=', 'arrivals')]}</attribute>
+      </field>
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" attrs="{'invisible': [('type', '=', 'arrivals')]}"/>
+      </field>
+      <field name="region_id" position="attributes">
+        <attribute name="invisible"/>
+      </field>
+      <field name="incoterm_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+      </field>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_line_view_tree" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.line.tree</field>
+    <field name="model">l10n.be.intrastat.product.declaration.line</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_tree"/>
+    <field name="arch" type="xml">
+      <field name="product_origin_country_id" position="attributes">
+        <attribute name="invisible"/>
+        <attribute name="attrs">{'column_invisible': [('parent.type', '=', 'arrivals')]}</attribute>
+      </field>
+      <field name="product_origin_country_id" position="after">
+        <field name="vat_number" attrs="{'column_invisible': [('parent.type', '=', 'arrivals')]}"/>
+      </field>
+      <field name="region_id" position="attributes">
+        <attribute name="invisible"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_view_form" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.form</field>
+    <field name="model">l10n.be.intrastat.product.declaration</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_form"/>
+    <field name="arch" type="xml">
+      <form position="attributes">
+        <attribute name="string">Belgian Intrastat Product Declaration</attribute>
+      </form>
+      <field name="reporting_level" position="attributes">
+        <attribute name="invisible"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_view_tree" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.tree</field>
+    <field name="model">l10n.be.intrastat.product.declaration</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_tree"/>
+    <field name="arch" type="xml">
+      <tree position="attributes">
+        <attribute name="string">Belgian Intrastat Product Declaration</attribute>
+      </tree>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_view_search" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.search</field>
+    <field name="model">l10n.be.intrastat.product.declaration</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_search"/>
+    <field name="arch" type="xml">
+      <search position="attributes">
+        <attribute name="string">Search Belgian Intrastat Product Declaration</attribute>
+      </search>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_view_graph" model="ir.ui.view">
+    <field name="name">l10n.be.intrastat.product.declaration.graph</field>
+    <field name="model">l10n.be.intrastat.product.declaration</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_graph"/>
+    <field name="arch" type="xml">
+      <graph position="attributes">
+        <attribute name="string">Belgian Intrastat Product Declaration</attribute>
+      </graph>
+    </field>
+  </record>
+
+  <record id="l10n_be_intrastat_product_declaration_action" model="ir.actions.act_window">
+    <field name="name">Belgian Intrastat Product Declaration</field>
+    <field name="res_model">l10n.be.intrastat.product.declaration</field>
+    <field name="view_mode">tree,form,graph</field>
+  </record>
+
+  <menuitem id="l10n_be_intrastat_product_declaration_menu"
+            parent="intrastat_base.menu_intrastat_base_root"
+            action="l10n_be_intrastat_product_declaration_action"
+            groups="group_l10n_be_intrastat_product"/>
+
+</odoo>
