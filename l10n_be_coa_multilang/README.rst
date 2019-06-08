@@ -64,7 +64,7 @@ be set automatically based upon the account group (the first digits of the accou
 2) Fiscal Year
 --------------
 
-Configure your Fiscal Years via Accountint -> Configuration -> Date Ranges.
+Configure your Fiscal Years via Accounting -> Configuration -> Date Ranges.
 
 3) VAT Declarations
 -------------------
