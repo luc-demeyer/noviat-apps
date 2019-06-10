@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
-from openerp.exceptions import UserError
+from odoo.exceptions import UserError
 
 
 class AccountAccount(models.Model):
