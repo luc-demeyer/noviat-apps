@@ -32,29 +32,33 @@ class ResPartner(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'is_company' in vals:
-            if vals['is_company']:
+        # base module, res_partner.py drops 'is_company' from vals
+        # hence we save vals before super()
+        vals_in = vals.copy()
+        if 'is_company' in vals_in:
+            if vals_in['is_company']:
                 company_partners = self
             else:
                 company_partners = self.env['res.partner']
         else:
             company_partners = self.filtered(lambda r: r.is_company)
         contact_partners = self - company_partners
+
         super(ResPartner, contact_partners).write(vals)
         for partner in company_partners:
-            values = vals.copy()
-            if any([x in vals for x in ['vat', 'kbo_bce_number',
-                                        'is_company', 'country_id']]):
-                if 'vat' in vals:
-                    vat = vals['vat']
+            values = vals_in.copy()
+            if any([x in vals_in for x in ['vat', 'kbo_bce_number',
+                                           'is_company', 'country_id']]):
+                if 'vat' in vals_in:
+                    vat = vals_in['vat']
                 else:
                     vat = partner.vat
-                if 'kbo_bce_number' in vals:
-                    kbo_bce_number = vals['kbo_bce_number']
+                if 'kbo_bce_number' in vals_in:
+                    kbo_bce_number = vals_in['kbo_bce_number']
                 else:
                     kbo_bce_number = partner.kbo_bce_number
-                if 'country_id' in vals:
-                    country_id = vals['country_id']
+                if 'country_id' in vals_in:
+                    country_id = vals_in['country_id']
                 else:
                     country_id = partner.country_id.id
                 sync_vals = {
