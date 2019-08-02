@@ -6,6 +6,6 @@ from openerp import fields, models
 
 
 class MailTemplate(models.Model):
-    _inherit = 'mail.template'
+    _inherit = 'email.template'
 
     active = fields.Boolean(default=True)
