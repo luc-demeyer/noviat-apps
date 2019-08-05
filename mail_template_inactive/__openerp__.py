@@ -11,7 +11,7 @@
     'version': '8.0.1.0.0',
     'license': 'AGPL-3',
     'depends': [
-        'mail',
+        'email_template',
     ],
     'data': [
         'views/mail_template.xml',
