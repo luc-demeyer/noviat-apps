@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+
+  <t t-extend="reconciliation.line.create">
+
+    <t t-jquery="tr[class='create_amount']" t-operation="append">
+      <tr class="create_product_id">
+        <td class="o_td_label">Product</td>
+        <td class="o_td_field"></td>
+      </tr>
+    </t>
+
+  </t>
+
+</templates>

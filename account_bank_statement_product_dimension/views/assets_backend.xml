@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="assets_backend" name="account assets" inherit_id="account.assets_backend">
+    <xpath expr="." position="inside">
+      <script type="text/javascript" src="/account_bank_statement_product_dimension/static/src/js/abs.js"></script>
+    </xpath>
+  </template>
+
+</odoo>
