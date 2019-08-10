@@ -4,6 +4,7 @@
 import base64
 import logging
 from lxml import etree
+import time
 
 from odoo import api, fields, models, _
 from odoo.tools.translate import translate
@@ -489,6 +490,7 @@ class l10nBeVatDeclaration(models.TransientModel):
 class l10nBeVatDeclarationCase(models.TransientModel):
     _name = 'l10n.be.vat.declaration.case'
     _order = 'sequence'
+    _description = 'Periodical VAT Declaration line'
 
     declaration_id = fields.Many2one(
         comodel_name='l10n.be.vat.declaration',
@@ -1069,19 +1071,23 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
             decl.company_id.name,
             journal.name + '({})'.format(journal.code),
             decl.period])
-        col_specs_summary = self._get_vat_summary_template()
+        ws_params_summary = {
+            'col_specs': self._get_vat_summary_template(),
+            'wanted_list': ['tax_code', 'tax_amount'],
+        }
         return {
             'ws_name': journal.code,
             'generate_ws_method': '_journal_report',
             'title': title,
             'wanted_list': wl,
             'col_specs': col_specs,
-            'col_specs_summary': col_specs_summary,
+            'ws_params_summary': ws_params_summary,
             'journal': journal,
         }
 
     def _journal_report(self, wb, ws, ws_params, data, decl):
 
+        time_start = time.time()
         ws.set_landscape()
         ws.fit_to_pages(1, 0)
         ws.set_header(self.xls_headers['standard'])
@@ -1095,6 +1101,11 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
                                       decl, journal)
         row_pos = self._journal_lines(ws, row_pos, ws_params, data,
                                       decl, journal)
+        time_end = time.time() - time_start
+        _logger.debug(
+            "VAT Transaction report processing time for "
+            "Journal %s = %.3f seconds",
+            journal.code, time_end)
 
     def _journal_title(self, ws, row_pos, ws_params, data, decl, journal):
         return self._write_ws_title(ws, row_pos, ws_params)
@@ -1112,8 +1123,10 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
 
         ws.freeze_panes(row_pos, 0)
 
-        aml_dom = self._date_dom + [('journal_id', '=', journal.id)]
-        amls = self.env['account.move.line'].search(aml_dom, order='date')
+        am_dom = self._date_dom + [('journal_id', '=', journal.id)]
+        ams = self.env['account.move'].search(
+            am_dom, order='name, date')
+        amls = ams.mapped('line_ids')
 
         tax_totals = {}
         tax_map = decl._get_tax_map()
@@ -1168,20 +1181,17 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
             },
             default_format=self.format_theader_yellow_left)
 
-        col_specs_summary = ws_params['col_specs_summary']
-        wanted_list_summary = ['tax_code', 'tax_amount']
-        ws_params['col_specs'] = col_specs_summary
-        ws_params['wanted_list'] = wanted_list_summary
+        ws_params_summary = ws_params['ws_params_summary']
         row_pos += 1
         tcs = list(tax_totals.keys())
         tcs.sort()
         if tcs:
             row_pos = self._write_line(
-                ws, row_pos, ws_params, col_specs_section='header',
+                ws, row_pos, ws_params_summary, col_specs_section='header',
                 default_format=self.format_theader_yellow_left)
             for tc in tcs:
                 row_pos = self._write_line(
-                    ws, row_pos, ws_params, col_specs_section='lines',
+                    ws, row_pos, ws_params_summary, col_specs_section='lines',
                     render_space={
                         'l': aml,
                         'tc': tc,
