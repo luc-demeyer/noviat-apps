@@ -1136,6 +1136,8 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
             tax_amount = None
             aml_taxes = aml.tax_ids | aml.tax_line_id
             for tax in aml_taxes:
+                if tax.id not in tax_map:
+                    continue
                 for entry in tax_map[tax.id]:
                     aml_check = eval(entry[0].format(aml='aml'))
                     if aml_check:
