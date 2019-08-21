@@ -312,8 +312,9 @@ class l10nBeVatDeclaration(models.TransientModel):
                 ]
                 inv_check = (
                     "{aml}.invoice_id.type == '%s'"
-                    " and not {aml}.invoice_id"
-                    " and {aml}.journal_id.type == 'sale'"
+                    " or "
+                    "(not {aml}.invoice_id"
+                    " and {aml}.journal_id.type == 'sale')"
                 ) % inv_type
             else:
                 inv_type_args = [
@@ -322,8 +323,8 @@ class l10nBeVatDeclaration(models.TransientModel):
                     ('invoice_id', '=', False),
                 ]
                 inv_check = (
-                    "{aml}.invoice_id.type == '%s'"
-                    " or not {aml}.invoice_id"
+                    "({aml}.invoice_id.type == '%s'"
+                    " or not {aml}.invoice_id)"
                 ) % inv_type
             aml_dom = ['&'] + aml_dom + inv_type_args
             aml_check = aml_check + ' and ' + inv_check
