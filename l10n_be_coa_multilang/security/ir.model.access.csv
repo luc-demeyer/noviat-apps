@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_be_legal_financial_report_scheme_manager,be.legal.financial.report.scheme manager,model_be_legal_financial_report_scheme,account.group_account_manager,1,1,1,1
+access_be_legal_financial_report_scheme_user,be.legal.financial.report.scheme user,model_be_legal_financial_report_scheme,account.group_account_user,1,0,0,0
+access_be_legal_financial_report_chart_manager,be.legal.financial.report.chart manager,model_be_legal_financial_report_chart,account.group_account_manager,1,1,1,1
+access_be_legal_financial_report_chart_user,be.legal.financial.report.chart user,model_be_legal_financial_report_chart,account.group_account_user,1,0,0,0
+access_account_tax_code_chart_manager,account.tax.code.chart manager,model_account_tax_code_chart,account.group_account_manager,1,1,1,1
+access_account_tax_code_chart_user,account.tax.code.chart user,model_account_tax_code_chart,account.group_account_user,1,0,0,0

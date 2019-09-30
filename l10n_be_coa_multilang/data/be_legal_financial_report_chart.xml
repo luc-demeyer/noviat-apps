@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- be.legal.financial.report.chart -->
+  <record id="be_report_chart_BE_3_FULL" model="be.legal.financial.report.chart">
+    <field name="name">Belgium Balance Sheet (Full Model)</field>
+    <field name="sequence">300000</field>
+    <field name="factor" eval="0"/>
+  </record>
+  <record id="be_report_chart_310000" model="be.legal.financial.report.chart">
+    <field name="name">ASSETS</field>
+    <field name="sequence">310000</field>
+    <field name="parent_id" ref="be_report_chart_BE_3_FULL"/>
+    <field name="factor" eval="0"/>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_319000" model="be.legal.financial.report.chart">
+    <field name="name">TOTAL ASSETS</field>
+    <field name="code">20/58</field>
+    <field name="sequence">319000</field>
+    <field name="parent_id" ref="be_report_chart_310000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_311000" model="be.legal.financial.report.chart">
+    <field name="name">FORMATION EXPENSES</field>
+    <field name="code">20</field>
+    <field name="sequence">311000</field>
+    <field name="parent_id" ref="be_report_chart_319000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_311100" model="be.legal.financial.report.chart">
+    <field name="name">FIXED ASSETS</field>
+    <field name="code">21/28</field>
+    <field name="sequence">311100</field>
+    <field name="parent_id" ref="be_report_chart_319000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_311200" model="be.legal.financial.report.chart">
+    <field name="name">Intangible Assets</field>
+    <field name="code">21</field>
+    <field name="sequence">311200</field>
+    <field name="parent_id" ref="be_report_chart_311100"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_311300" model="be.legal.financial.report.chart">
+    <field name="name">Tangible Assets</field>
+    <field name="code">22/27</field>
+    <field name="sequence">311300</field>
+    <field name="parent_id" ref="be_report_chart_311100"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_311310" model="be.legal.financial.report.chart">
+    <field name="name">Land and Buildings</field>
+    <field name="code">22</field>
+    <field name="sequence">311310</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311320" model="be.legal.financial.report.chart">
+    <field name="name">Plant, Machinery and Equipment</field>
+    <field name="code">23</field>
+    <field name="sequence">311320</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311330" model="be.legal.financial.report.chart">
+    <field name="name">Furniture and Vehicles</field>
+    <field name="code">24</field>
+    <field name="sequence">311330</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311340" model="be.legal.financial.report.chart">
+    <field name="name">Leasing and other similar Rights</field>
+    <field name="code">25</field>
+    <field name="sequence">311340</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311350" model="be.legal.financial.report.chart">
+    <field name="name">Other Tangible Assets</field>
+    <field name="code">26</field>
+    <field name="sequence">311350</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311360" model="be.legal.financial.report.chart">
+    <field name="name">Assets under Construction and Advance Payment</field>
+    <field name="code">27</field>
+    <field name="sequence">311360</field>
+    <field name="parent_id" ref="be_report_chart_311300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311400" model="be.legal.financial.report.chart">
+    <field name="name">Financial Assets</field>
+    <field name="code">28</field>
+    <field name="sequence">311400</field>
+    <field name="parent_id" ref="be_report_chart_319000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_311410" model="be.legal.financial.report.chart">
+    <field name="name">Affiliated Enterprises</field>
+    <field name="code">280/1</field>
+    <field name="sequence">311410</field>
+    <field name="parent_id" ref="be_report_chart_311400"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_311411" model="be.legal.financial.report.chart">
+    <field name="name">Participating Interests</field>
+    <field name="code">280</field>
+    <field name="sequence">311411</field>
+    <field name="parent_id" ref="be_report_chart_311410"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311412" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Receivable</field>
+    <field name="code">281</field>
+    <field name="sequence">311412</field>
+    <field name="parent_id" ref="be_report_chart_311410"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311420" model="be.legal.financial.report.chart">
+    <field name="name">Enterprises Linked by Participating Interests</field>
+    <field name="code">282/3</field>
+    <field name="sequence">311420</field>
+    <field name="parent_id" ref="be_report_chart_311400"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_311421" model="be.legal.financial.report.chart">
+    <field name="name">Participating Interests</field>
+    <field name="code">282</field>
+    <field name="sequence">311421</field>
+    <field name="parent_id" ref="be_report_chart_311420"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311422" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Receivable</field>
+    <field name="code">283</field>
+    <field name="sequence">311422</field>
+    <field name="parent_id" ref="be_report_chart_311420"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311430" model="be.legal.financial.report.chart">
+    <field name="name">Other Financial Assets</field>
+    <field name="code">284/8</field>
+    <field name="sequence">311430</field>
+    <field name="parent_id" ref="be_report_chart_311400"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_311431" model="be.legal.financial.report.chart">
+    <field name="name">Shares</field>
+    <field name="code">284</field>
+    <field name="sequence">311431</field>
+    <field name="parent_id" ref="be_report_chart_311430"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_311432" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Receivable and Cash Guarantees</field>
+    <field name="code">285/8</field>
+    <field name="sequence">311432</field>
+    <field name="parent_id" ref="be_report_chart_311430"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312000" model="be.legal.financial.report.chart">
+    <field name="name">CURRENT ASSETS</field>
+    <field name="code">29/58</field>
+    <field name="sequence">312000</field>
+    <field name="parent_id" ref="be_report_chart_319000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_312100" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Receivable after One Year</field>
+    <field name="code">29</field>
+    <field name="sequence">312100</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_312110" model="be.legal.financial.report.chart">
+    <field name="name">Trade Debtors</field>
+    <field name="code">290</field>
+    <field name="sequence">312110</field>
+    <field name="parent_id" ref="be_report_chart_312100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312120" model="be.legal.financial.report.chart">
+    <field name="name">Other Amounts Receivable</field>
+    <field name="code">291</field>
+    <field name="sequence">312120</field>
+    <field name="parent_id" ref="be_report_chart_312100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312200" model="be.legal.financial.report.chart">
+    <field name="name">Stocks and Contracts in Progress</field>
+    <field name="code">3</field>
+    <field name="sequence">312200</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_312210" model="be.legal.financial.report.chart">
+    <field name="name">Stocks</field>
+    <field name="code">30/36</field>
+    <field name="sequence">312210</field>
+    <field name="parent_id" ref="be_report_chart_312200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_312211" model="be.legal.financial.report.chart">
+    <field name="name">Raw Materials and Consumables</field>
+    <field name="code">30/31</field>
+    <field name="sequence">312211</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312212" model="be.legal.financial.report.chart">
+    <field name="name">Work in Progress</field>
+    <field name="code">32</field>
+    <field name="sequence">312212</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312213" model="be.legal.financial.report.chart">
+    <field name="name">Finished Goods</field>
+    <field name="code">33</field>
+    <field name="sequence">312213</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312214" model="be.legal.financial.report.chart">
+    <field name="name">Goods purchased for Resale</field>
+    <field name="code">34</field>
+    <field name="sequence">312214</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312215" model="be.legal.financial.report.chart">
+    <field name="name">Imovable Property acquired for Resale</field>
+    <field name="code">35</field>
+    <field name="sequence">312215</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312216" model="be.legal.financial.report.chart">
+    <field name="name">Advance Payments</field>
+    <field name="code">36</field>
+    <field name="sequence">312216</field>
+    <field name="parent_id" ref="be_report_chart_312210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312220" model="be.legal.financial.report.chart">
+    <field name="name">Contracts in progress</field>
+    <field name="code">37</field>
+    <field name="sequence">312220</field>
+    <field name="parent_id" ref="be_report_chart_312200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312300" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Receivable within one Year</field>
+    <field name="code">40/41</field>
+    <field name="sequence">312300</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_312310" model="be.legal.financial.report.chart">
+    <field name="name">Trade Debtors</field>
+    <field name="code">40</field>
+    <field name="sequence">312310</field>
+    <field name="parent_id" ref="be_report_chart_312300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312320" model="be.legal.financial.report.chart">
+    <field name="name">Other Amounts Receivable</field>
+    <field name="code">41</field>
+    <field name="sequence">312320</field>
+    <field name="parent_id" ref="be_report_chart_312300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312400" model="be.legal.financial.report.chart">
+    <field name="name">Investments</field>
+    <field name="code">50/53</field>
+    <field name="sequence">312400</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_312410" model="be.legal.financial.report.chart">
+    <field name="name">Own Shares</field>
+    <field name="code">50</field>
+    <field name="sequence">312410</field>
+    <field name="parent_id" ref="be_report_chart_312400"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312420" model="be.legal.financial.report.chart">
+    <field name="name">Other Investments and Deposits</field>
+    <field name="code">51/53</field>
+    <field name="sequence">312420</field>
+    <field name="parent_id" ref="be_report_chart_312400"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_312500" model="be.legal.financial.report.chart">
+    <field name="name">Cash at Bank and in Hand</field>
+    <field name="code">54/58</field>
+    <field name="sequence">312500</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_312600" model="be.legal.financial.report.chart">
+    <field name="name">Deferred Charges and Accrued Income</field>
+    <field name="code">490/1</field>
+    <field name="sequence">312600</field>
+    <field name="parent_id" ref="be_report_chart_312000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_320000" model="be.legal.financial.report.chart">
+    <field name="name">LIABILITIES</field>
+    <field name="sequence">320000</field>
+    <field name="parent_id" ref="be_report_chart_BE_3_FULL"/>
+    <field name="factor" eval="0"/>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_329000" model="be.legal.financial.report.chart">
+    <field name="name">TOTAL LIABILITIES</field>
+    <field name="code">10/49</field>
+    <field name="sequence">329000</field>
+    <field name="parent_id" ref="be_report_chart_320000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_321000" model="be.legal.financial.report.chart">
+    <field name="name">EQUITY CAPITAL</field>
+    <field name="code">10/15</field>
+    <field name="sequence">321000</field>
+    <field name="parent_id" ref="be_report_chart_329000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_321100" model="be.legal.financial.report.chart">
+    <field name="name">Capital</field>
+    <field name="code">10</field>
+    <field name="sequence">321100</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_321110" model="be.legal.financial.report.chart">
+    <field name="name">Issued Capital</field>
+    <field name="code">100</field>
+    <field name="sequence">321110</field>
+    <field name="parent_id" ref="be_report_chart_321100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321120" model="be.legal.financial.report.chart">
+    <field name="name">Uncalled Capital</field>
+    <field name="code">101</field>
+    <field name="sequence">321120</field>
+    <field name="parent_id" ref="be_report_chart_321100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321200" model="be.legal.financial.report.chart">
+    <field name="name">Share Premium Account</field>
+    <field name="code">11</field>
+    <field name="sequence">321200</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_321300" model="be.legal.financial.report.chart">
+    <field name="name">Revaluation Surpluses</field>
+    <field name="code">12</field>
+    <field name="sequence">321300</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_321400" model="be.legal.financial.report.chart">
+    <field name="name">Reserves</field>
+    <field name="code">13</field>
+    <field name="sequence">321400</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_321410" model="be.legal.financial.report.chart">
+    <field name="name">Legal Reserve</field>
+    <field name="code">130</field>
+    <field name="sequence">321410</field>
+    <field name="parent_id" ref="be_report_chart_321400"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321420" model="be.legal.financial.report.chart">
+    <field name="name">Reserves not available for Distribution</field>
+    <field name="code">131</field>
+    <field name="sequence">321420</field>
+    <field name="parent_id" ref="be_report_chart_321400"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_321421" model="be.legal.financial.report.chart">
+    <field name="name">In respect of own Shares held</field>
+    <field name="code">1310</field>
+    <field name="sequence">321421</field>
+    <field name="parent_id" ref="be_report_chart_321420"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321422" model="be.legal.financial.report.chart">
+    <field name="name">Other</field>
+    <field name="code">1311</field>
+    <field name="sequence">321422</field>
+    <field name="parent_id" ref="be_report_chart_321420"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321430" model="be.legal.financial.report.chart">
+    <field name="name">Untaxed Reserves</field>
+    <field name="code">132</field>
+    <field name="sequence">321430</field>
+    <field name="parent_id" ref="be_report_chart_321400"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321440" model="be.legal.financial.report.chart">
+    <field name="name">Reserves available for Distribution</field>
+    <field name="code">133</field>
+    <field name="sequence">321440</field>
+    <field name="parent_id" ref="be_report_chart_321400"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_321500" model="be.legal.financial.report.chart">
+    <field name="name">Accumulated Profits (Losses)</field>
+    <field name="code">14</field>
+    <field name="sequence">321500</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_321600" model="be.legal.financial.report.chart">
+    <field name="name">Investment Grants</field>
+    <field name="code">15</field>
+    <field name="sequence">321600</field>
+    <field name="parent_id" ref="be_report_chart_321000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_321700" model="be.legal.financial.report.chart">
+    <field name="name">Advance to Partners on the distribution of the net assets</field>
+    <field name="code">19</field>
+    <field name="sequence">321700</field>
+    <field name="parent_id" ref="be_report_chart_329000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_322000" model="be.legal.financial.report.chart">
+    <field name="name">PROVISIONS AND DEFERRED TAXES</field>
+    <field name="code">16</field>
+    <field name="sequence">322000</field>
+    <field name="parent_id" ref="be_report_chart_329000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_322100" model="be.legal.financial.report.chart">
+    <field name="name">Provisions for Liabilities and Charges</field>
+    <field name="code">160/5</field>
+    <field name="sequence">322100</field>
+    <field name="parent_id" ref="be_report_chart_322000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_322110" model="be.legal.financial.report.chart">
+    <field name="name">Pensions and similar Obligations</field>
+    <field name="code">160</field>
+    <field name="sequence">322110</field>
+    <field name="parent_id" ref="be_report_chart_322100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_322120" model="be.legal.financial.report.chart">
+    <field name="name">Taxation</field>
+    <field name="code">161</field>
+    <field name="sequence">322120</field>
+    <field name="parent_id" ref="be_report_chart_322100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_322130" model="be.legal.financial.report.chart">
+    <field name="name">Major Repairs and Maintenance</field>
+    <field name="code">162</field>
+    <field name="sequence">322130</field>
+    <field name="parent_id" ref="be_report_chart_322100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_322140" model="be.legal.financial.report.chart">
+    <field name="name">Environmental obligations</field>
+    <field name="code">163</field>
+    <field name="sequence">322140</field>
+    <field name="parent_id" ref="be_report_chart_322100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_322150" model="be.legal.financial.report.chart">
+    <field name="name">Other Liabilities and Charges</field>
+    <field name="code">164/5</field>
+    <field name="sequence">322150</field>
+    <field name="parent_id" ref="be_report_chart_322100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_322200" model="be.legal.financial.report.chart">
+    <field name="name">Deferred Taxes</field>
+    <field name="code">168</field>
+    <field name="sequence">322200</field>
+    <field name="parent_id" ref="be_report_chart_322000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_323000" model="be.legal.financial.report.chart">
+    <field name="name">DEBTS</field>
+    <field name="code">17/49</field>
+    <field name="sequence">323000</field>
+    <field name="parent_id" ref="be_report_chart_329000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_323100" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Payable after one Year</field>
+    <field name="code">17</field>
+    <field name="sequence">323100</field>
+    <field name="parent_id" ref="be_report_chart_323000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_323110" model="be.legal.financial.report.chart">
+    <field name="name">Financial Debts</field>
+    <field name="code">170/4</field>
+    <field name="sequence">323110</field>
+    <field name="parent_id" ref="be_report_chart_323100"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_323111" model="be.legal.financial.report.chart">
+    <field name="name">Subordinated Loans</field>
+    <field name="code">170</field>
+    <field name="sequence">323111</field>
+    <field name="parent_id" ref="be_report_chart_323110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323112" model="be.legal.financial.report.chart">
+    <field name="name">Unsubordinated Debentures</field>
+    <field name="code">171</field>
+    <field name="sequence">323112</field>
+    <field name="parent_id" ref="be_report_chart_323110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323113" model="be.legal.financial.report.chart">
+    <field name="name">Leasing and other similar Obligations</field>
+    <field name="code">172</field>
+    <field name="sequence">323113</field>
+    <field name="parent_id" ref="be_report_chart_323110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323114" model="be.legal.financial.report.chart">
+    <field name="name">Credit Institutions</field>
+    <field name="code">173</field>
+    <field name="sequence">323114</field>
+    <field name="parent_id" ref="be_report_chart_323110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323115" model="be.legal.financial.report.chart">
+    <field name="name">Other Loans</field>
+    <field name="code">174</field>
+    <field name="sequence">323115</field>
+    <field name="parent_id" ref="be_report_chart_323110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323120" model="be.legal.financial.report.chart">
+    <field name="name">Trade Debts</field>
+    <field name="code">175</field>
+    <field name="sequence">323120</field>
+    <field name="parent_id" ref="be_report_chart_323100"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_323121" model="be.legal.financial.report.chart">
+    <field name="name">Suppliers</field>
+    <field name="code">1750</field>
+    <field name="sequence">323121</field>
+    <field name="parent_id" ref="be_report_chart_323120"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323122" model="be.legal.financial.report.chart">
+    <field name="name">Bills of Exchange Payable</field>
+    <field name="code">1751</field>
+    <field name="sequence">323122</field>
+    <field name="parent_id" ref="be_report_chart_323120"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323130" model="be.legal.financial.report.chart">
+    <field name="name">Advances received on Contracts in Progress</field>
+    <field name="code">176</field>
+    <field name="sequence">323130</field>
+    <field name="parent_id" ref="be_report_chart_323100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323140" model="be.legal.financial.report.chart">
+    <field name="name">Other Amounts Payable</field>
+    <field name="code">178/9</field>
+    <field name="sequence">323140</field>
+    <field name="parent_id" ref="be_report_chart_323100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323200" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Payable within one Year</field>
+    <field name="code">42/48</field>
+    <field name="sequence">323200</field>
+    <field name="parent_id" ref="be_report_chart_323000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_323210" model="be.legal.financial.report.chart">
+    <field name="name">Portion of amounts Payable after one Year due within the year</field>
+    <field name="code">42</field>
+    <field name="sequence">323210</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323220" model="be.legal.financial.report.chart">
+    <field name="name">Financial Debts</field>
+    <field name="code">43</field>
+    <field name="sequence">323220</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_323221" model="be.legal.financial.report.chart">
+    <field name="name">Credit Institutions</field>
+    <field name="code">430/8</field>
+    <field name="sequence">323221</field>
+    <field name="parent_id" ref="be_report_chart_323220"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323222" model="be.legal.financial.report.chart">
+    <field name="name">Other Loans</field>
+    <field name="code">439</field>
+    <field name="sequence">323222</field>
+    <field name="parent_id" ref="be_report_chart_323220"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323230" model="be.legal.financial.report.chart">
+    <field name="name">Trade Debts</field>
+    <field name="code">44</field>
+    <field name="sequence">323230</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_323231" model="be.legal.financial.report.chart">
+    <field name="name">Suppliers</field>
+    <field name="code">440/4</field>
+    <field name="sequence">323231</field>
+    <field name="parent_id" ref="be_report_chart_323230"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323232" model="be.legal.financial.report.chart">
+    <field name="name">Bills of Exchange Payable</field>
+    <field name="code">441</field>
+    <field name="sequence">323232</field>
+    <field name="parent_id" ref="be_report_chart_323230"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323240" model="be.legal.financial.report.chart">
+    <field name="name">Advances received on Contracts in Progress</field>
+    <field name="code">46</field>
+    <field name="sequence">323240</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323250" model="be.legal.financial.report.chart">
+    <field name="name">Taxes, Remuneration and Social Security</field>
+    <field name="code">45</field>
+    <field name="sequence">323250</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_323251" model="be.legal.financial.report.chart">
+    <field name="name">Taxes</field>
+    <field name="code">450/3</field>
+    <field name="sequence">323251</field>
+    <field name="parent_id" ref="be_report_chart_323250"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323252" model="be.legal.financial.report.chart">
+    <field name="name">Remuneration and Social Security</field>
+    <field name="code">454/9</field>
+    <field name="sequence">323252</field>
+    <field name="parent_id" ref="be_report_chart_323250"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323260" model="be.legal.financial.report.chart">
+    <field name="name">Other Amounts Payable</field>
+    <field name="code">47/48</field>
+    <field name="sequence">323260</field>
+    <field name="parent_id" ref="be_report_chart_323200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_323300" model="be.legal.financial.report.chart">
+    <field name="name">Accrued Charges and Deferred Income</field>
+    <field name="code">492/3</field>
+    <field name="sequence">323300</field>
+    <field name="parent_id" ref="be_report_chart_323000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_BE_4_FULL" model="be.legal.financial.report.chart">
+    <field name="name">Belgium P&amp;L (Full Model)</field>
+    <field name="sequence">40000</field>
+    <field name="factor" eval="0"/>
+  </record>
+  <record id="be_report_chart_45000" model="be.legal.financial.report.chart">
+    <field name="name">Fiscal Year Profit (Loss) to be allocated</field>
+    <field name="code">9905</field>
+    <field name="sequence">45000</field>
+    <field name="parent_id" ref="be_report_chart_BE_4_FULL"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_44000" model="be.legal.financial.report.chart">
+    <field name="name">Fiscal Year Profit (Loss)</field>
+    <field name="code">9904</field>
+    <field name="sequence">44000</field>
+    <field name="parent_id" ref="be_report_chart_45000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_43000" model="be.legal.financial.report.chart">
+    <field name="name">Fiscal Year Profit (Loss) before Taxation</field>
+    <field name="code">9903</field>
+    <field name="sequence">43000</field>
+    <field name="parent_id" ref="be_report_chart_44000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_41000" model="be.legal.financial.report.chart">
+    <field name="name">Operating Profit (Loss)</field>
+    <field name="code">9901</field>
+    <field name="sequence">41000</field>
+    <field name="parent_id" ref="be_report_chart_43000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_40100" model="be.legal.financial.report.chart">
+    <field name="name">Operating Income</field>
+    <field name="code">70/76A</field>
+    <field name="sequence">40100</field>
+    <field name="parent_id" ref="be_report_chart_41000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_40110" model="be.legal.financial.report.chart">
+    <field name="name">Turnover</field>
+    <field name="code">70</field>
+    <field name="sequence">40110</field>
+    <field name="parent_id" ref="be_report_chart_40100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_40120" model="be.legal.financial.report.chart">
+    <field name="name">Increase (Decrease) in Stocks, Final Goods, Etc.</field>
+    <field name="code">71</field>
+    <field name="sequence">40120</field>
+    <field name="parent_id" ref="be_report_chart_40100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_40130" model="be.legal.financial.report.chart">
+    <field name="name">Fixed Assets Own Construction</field>
+    <field name="code">72</field>
+    <field name="sequence">40130</field>
+    <field name="parent_id" ref="be_report_chart_40100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_40140" model="be.legal.financial.report.chart">
+    <field name="name">Other Operating Income</field>
+    <field name="code">74</field>
+    <field name="sequence">40140</field>
+    <field name="parent_id" ref="be_report_chart_40100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_40150" model="be.legal.financial.report.chart">
+    <field name="name">Non-recurring Operating Income</field>
+    <field name="code">76A</field>
+    <field name="sequence">40150</field>
+    <field name="parent_id" ref="be_report_chart_40100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_40200" model="be.legal.financial.report.chart">
+    <field name="name">Operating Charges</field>
+    <field name="code">60/66A</field>
+    <field name="sequence">40200</field>
+    <field name="parent_id" ref="be_report_chart_41000"/>
+    <field name="factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_40210" model="be.legal.financial.report.chart">
+    <field name="name">Raw Materials, Consumables and Goods for Resale</field>
+    <field name="code">60</field>
+    <field name="sequence">40210</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_40211" model="be.legal.financial.report.chart">
+    <field name="name">Purchases</field>
+    <field name="code">600/8</field>
+    <field name="sequence">40211</field>
+    <field name="parent_id" ref="be_report_chart_40210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40212" model="be.legal.financial.report.chart">
+    <field name="name">Decrease (Increase) in Stocks</field>
+    <field name="code">609</field>
+    <field name="sequence">40212</field>
+    <field name="parent_id" ref="be_report_chart_40210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40220" model="be.legal.financial.report.chart">
+    <field name="name">Services and Other Goods</field>
+    <field name="code">61</field>
+    <field name="sequence">40220</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40230" model="be.legal.financial.report.chart">
+    <field name="name">Remunerations, Social Security Costs and Pensions</field>
+    <field name="code">62</field>
+    <field name="sequence">40230</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40240" model="be.legal.financial.report.chart">
+    <field name="name">Depreciation and Amounts Written Off on Formation Expenses, on  Intangible and  Tangible Assets</field>
+    <field name="code">630</field>
+    <field name="sequence">40240</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_40250" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Written Off on Stocks, Orders in Progress and Trade Debts: Increase (Decrease)</field>
+    <field name="code">631/4</field>
+    <field name="sequence">40250</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40260" model="be.legal.financial.report.chart">
+    <field name="name">Provisions for Liabilities and Charges: Increase (Decrease)</field>
+    <field name="code">635/8</field>
+    <field name="sequence">40260</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40270" model="be.legal.financial.report.chart">
+    <field name="name">Other Operating Charges</field>
+    <field name="code">640/8</field>
+    <field name="sequence">40270</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40280" model="be.legal.financial.report.chart">
+    <field name="name">Restructuring Charges activated as Operating Charges</field>
+    <field name="code">649</field>
+    <field name="sequence">40280</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_40290" model="be.legal.financial.report.chart">
+    <field name="name">Non-recurring  Operating Charges</field>
+    <field name="code">66A</field>
+    <field name="sequence">40290</field>
+    <field name="parent_id" ref="be_report_chart_40200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_41100" model="be.legal.financial.report.chart">
+    <field name="name">Financial Income</field>
+    <field name="code">75/76B</field>
+    <field name="sequence">41100</field>
+    <field name="parent_id" ref="be_report_chart_43000"/>
+    <field name="factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_41110" model="be.legal.financial.report.chart">
+    <field name="name">Recurring Financial Income</field>
+    <field name="code">75</field>
+    <field name="sequence">41110</field>
+    <field name="parent_id" ref="be_report_chart_41100"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_41120" model="be.legal.financial.report.chart">
+    <field name="name">Income from Financial Fixed Assets</field>
+    <field name="code">750</field>
+    <field name="sequence">41120</field>
+    <field name="parent_id" ref="be_report_chart_41110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_41130" model="be.legal.financial.report.chart">
+    <field name="name">Income from Current Assets</field>
+    <field name="code">751</field>
+    <field name="sequence">41130</field>
+    <field name="parent_id" ref="be_report_chart_41110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_41140" model="be.legal.financial.report.chart">
+    <field name="name">Other Financial Income</field>
+    <field name="code">752/9</field>
+    <field name="sequence">41140</field>
+    <field name="parent_id" ref="be_report_chart_41110"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_41150" model="be.legal.financial.report.chart">
+    <field name="name">Non-recurring Financial Income</field>
+    <field name="code">76B</field>
+    <field name="sequence">41150</field>
+    <field name="parent_id" ref="be_report_chart_41100"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_41200" model="be.legal.financial.report.chart">
+    <field name="name">Financial Charges</field>
+    <field name="code">65/66B</field>
+    <field name="sequence">41200</field>
+    <field name="parent_id" ref="be_report_chart_43000"/>
+    <field name="factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_41210" model="be.legal.financial.report.chart">
+    <field name="name">Recurring Financial Charges</field>
+    <field name="code">65</field>
+    <field name="sequence">41210</field>
+    <field name="parent_id" ref="be_report_chart_41200"/>
+    <field name="factor" eval="1"/>
+    <field name="font">u</field>
+  </record>
+  <record id="be_report_chart_41220" model="be.legal.financial.report.chart">
+    <field name="name">Debt Charges</field>
+    <field name="code">650</field>
+    <field name="sequence">41220</field>
+    <field name="parent_id" ref="be_report_chart_41210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_41230" model="be.legal.financial.report.chart">
+    <field name="name">Amounts Written Off on other than Stocks, Orders in Progress and Trade Debts: Increase (Decrease)</field>
+    <field name="code">651</field>
+    <field name="sequence">41230</field>
+    <field name="parent_id" ref="be_report_chart_41210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_41240" model="be.legal.financial.report.chart">
+    <field name="name">Other Financial Charges</field>
+    <field name="code">652/9</field>
+    <field name="sequence">41240</field>
+    <field name="parent_id" ref="be_report_chart_41210"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_41250" model="be.legal.financial.report.chart">
+    <field name="name">Non-recurring Financial Charges</field>
+    <field name="code">66B</field>
+    <field name="sequence">41250</field>
+    <field name="parent_id" ref="be_report_chart_41200"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_43100" model="be.legal.financial.report.chart">
+    <field name="name">Transfer from Deferred Taxes</field>
+    <field name="code">780</field>
+    <field name="sequence">43100</field>
+    <field name="parent_id" ref="be_report_chart_44000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_43200" model="be.legal.financial.report.chart">
+    <field name="name">Transfer to Deferred Taxes</field>
+    <field name="code">680</field>
+    <field name="sequence">43200</field>
+    <field name="parent_id" ref="be_report_chart_44000"/>
+    <field name="factor" eval="-1"/>
+    <field name="balance_factor" eval="1"/>
+    <field name="color">darkblue</field>
+    <field name="font">b</field>
+  </record>
+  <record id="be_report_chart_43300" model="be.legal.financial.report.chart">
+    <field name="name">Income Taxes</field>
+    <field name="code">67/77</field>
+    <field name="sequence">43300</field>
+    <field name="parent_id" ref="be_report_chart_44000"/>
+    <field name="factor" eval="-1"/>
+    <field name="color">darkblue</field>
+    <field name="font">bu</field>
+  </record>
+  <record id="be_report_chart_43310" model="be.legal.financial.report.chart">
+    <field name="name">Income Taxes</field>
+    <field name="code">670/3</field>
+    <field name="sequence">43310</field>
+    <field name="parent_id" ref="be_report_chart_43300"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="1"/>
+  </record>
+  <record id="be_report_chart_43320" model="be.legal.financial.report.chart">
+    <field name="name">Adjustment of Income Taxes and Provisions for Taxes</field>
+    <field name="code">77</field>
+    <field name="sequence">43320</field>
+    <field name="parent_id" ref="be_report_chart_43300"/>
+    <field name="factor" eval="-1"/>
+    <field name="balance_factor" eval="-1"/>
+  </record>
+  <record id="be_report_chart_44100" model="be.legal.financial.report.chart">
+    <field name="name">Transfer from Untaxed Reserves</field>
+    <field name="code">789</field>
+    <field name="sequence">44100</field>
+    <field name="parent_id" ref="be_report_chart_45000"/>
+    <field name="factor" eval="1"/>
+    <field name="balance_factor" eval="-1"/>
+    <field name="color">darkblue</field>
+  </record>
+  <record id="be_report_chart_44200" model="be.legal.financial.report.chart">
+    <field name="name">Transfer to Untaxed Reserves</field>
+    <field name="code">689</field>
+    <field name="sequence">44200</field>
+    <field name="parent_id" ref="be_report_chart_45000"/>
+    <field name="factor" eval="-1"/>
+    <field name="balance_factor" eval="1"/>
+    <field name="color">darkblue</field>
+  </record>
+
+</odoo>

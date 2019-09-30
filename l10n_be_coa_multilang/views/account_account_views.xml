@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- show belgian financial reporting entries on account form -->
+  <record id="view_account_form" model="ir.ui.view">
+    <field name="name">account.account.form.be_scheme_report_ids</field>
+    <field name="model">account.account</field>
+    <field name="inherit_id" ref="account.view_account_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='deprecated']/ancestor::group" position="after">
+        <field name="company_country_code" invisible="1"/>
+        <group name="be_financial_reports"
+               attrs="{'invisible': [('company_country_code', '!=', 'BE')]}"
+               col="1">
+          <separator string="Belgian Financial Reports"/>
+          <field name="be_report_chart_ids" nolabel="1">
+            <tree string="BNB/NBB report entries">
+              <field name="name" string="Report Entry"/>
+              <field name="code"/>
+            </tree>
+          </field>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

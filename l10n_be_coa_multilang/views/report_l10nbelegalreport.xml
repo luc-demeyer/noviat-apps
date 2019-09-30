@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="report_l10nbelegalreport">
+    <t t-call="web.html_container">
+      <t t-set="data_report_margin_top" t-value="20"/>
+      <t t-call="l10n_be_coa_multilang.l10n_be_layout">
+
+        <div class="page">
+          <h3 t-esc="docs.chart_id.name"/>
+
+          <div class="row mt32 mb32">
+            <div class="col-3">
+              <strong>Company Name</strong>
+              <p t-esc="res_company.name"/>
+            </div>
+            <div class="col-3">
+              <strong>VAT Number</strong>
+              <p t-esc="res_company.vat"/>
+            </div>
+            <div class="col-3" t-if="docs.type == 'pl'">
+              <strong>Start Date</strong>
+              <p t-esc="docs.date_from"/>
+            </div>
+            <div class="col-3">
+              <strong>End Date</strong>
+              <p t-esc="docs.date_to"/>
+            </div>
+          </div>
+
+          <table class="table table-sm" width="100%">
+            <thead>
+              <tr class="border-top-none">
+                <th width="68%"/>
+                <th width="32%"/>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="docs.line_ids" t-as="l">
+                <!-- TODO: introduce padding field on chart and use l.padding in stead of the autocalculated l.level-->
+                <t t-set="padleft" t-value="'padding-left:' + str(15 * (l.level)) + 'px;'"/>
+                <t t-set="tr_class" t-value="'font-weight-bold' if l.chart_id.font and 'b' in l.chart_id.font else ''"/>
+                <t t-set="chart_entry" t-value="l.chart_id.code and ' - '.join([l.chart_id.code, l.chart_id.name]) or l.chart_id.name"/>
+                <tr t-att-class="tr_class">
+                  <td t-att-style="padleft">
+                    <span t-esc="chart_entry"/>
+                  </td>
+                  <span t-if="l.chart_id.code">
+                    <td class="text-right">
+                      <span t-field="l.amount"/>
+                    </td>
+                  </span>
+                  <span t-if="not l.chart_id.code">
+                    <td/>
+                  </span>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+
+        </div>
+
+      </t>
+    </t>
+  </template>
+
+</odoo>

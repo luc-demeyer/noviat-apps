@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <!-- CODA Configuration -->
+  <menuitem id="menu_coda_configuration" name="CODA Configuration" parent="account.menu_finance_configuration" sequence="30"/>
+
+  <!-- CODA Bank Account Configuration -->
+  <menuitem id="coda_bank_account_menu" action="coda_bank_account_action" parent="menu_coda_configuration" sequence="1"/>
+
+  <!-- CODA Transaction Types -->
+  <menuitem id="account_coda_trans_type_menu" action="account_coda_trans_type_action" parent="menu_coda_configuration" sequence="2"/>
+
+  <!-- CODA Transaction Codes -->
+  <menuitem id="account_coda_trans_code_menu" action="account_coda_trans_code_action" parent="menu_coda_configuration" sequence="3"/>
+
+  <!-- CODA Transaction Categories -->
+  <menuitem id="account_coda_trans_category_menu" action="account_coda_trans_category_action" parent="menu_coda_configuration" sequence="4"/>
+
+  <!-- CODA Structured Communication Types -->
+  <menuitem id="account_coda_comm_type_menu" action="account_coda_comm_type_action" parent="menu_coda_configuration" sequence="5"/>
+
+  <!-- CODA Processing -->
+  <menuitem id="menu_coda_processing" name="CODA Processing" parent="account_bank_menu.menu_finance_bank_and_cash" sequence="40"/>
+
+  <!-- CODA Files -->
+  <menuitem id="account_coda_menu" name="Imported CODA Files" parent="menu_coda_processing" action="account_coda_action" sequence="42"/>
+
+</odoo>

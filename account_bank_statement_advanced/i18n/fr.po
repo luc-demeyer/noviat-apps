@@ -1,0 +1,283 @@
+# French translation of Odoo Server.
+# This file contains the translation of the following modules:
+#    * account_bank_statement_advanced
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 12.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2019-09-09 22:54:06.506000\n"
+"PO-Revision-Date: 2019-09-09 22:54:06.506000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: French\n
+""Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Statement Lines"
+msgstr "Transactions bancaires"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Statement Line"
+msgstr "Transaction bancaire"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Total Amount"
+msgstr "Montant total"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.bank_statement_cancel_form_inherit
+msgid "Glob. Id"
+msgstr "Id. glob."
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.bank_statement_cancel_form_inherit
+msgid "Glob. Am."
+msgstr "Mont. glob."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Glob. Amount"
+msgstr "Montant glob."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Notes"
+msgstr "Notes"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Search Bank Transactions"
+msgstr "Recherche de transactions"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Debit"
+msgstr "Debit"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Credit"
+msgstr "Credit"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Debit Transactions."
+msgstr "Transactions debit."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Credit Transactions."
+msgstr "Transactions credit."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Extended Filters..."
+msgstr "Filtres étendus..."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Group By..."
+msgstr "Grouper par..."
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.bank_statement_cancel_form_inherit
+msgid "Journal"
+msgstr "Journal"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.bank_statement_cancel_form_inherit
+msgid "Statement"
+msgstr "Relevé"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.bank_statement_cancel_form_inherit
+msgid "Fin.Account"
+msgstr "Compte général"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Glob. Lvl"
+msgstr "Niveau Glob."
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Notes"
+msgstr "Notes"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: account_bank_statement_advanced
+#: view:account.bank.statement.line:0
+msgid "Confirmed"
+msgstr "Confirmée"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.view_bank_statement_line_search
+msgid "Draft Statement Lines."
+msgstr "Transactions brouillon."
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.view_bank_statement_line_search
+msgid "Confirmed Statement Lines."
+msgstr "Transactions confirmées."
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__counterparty_bic
+msgid "Counterparty BIC"
+msgstr "BIC de la contrepartie"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__counterparty_currency
+msgid "Counterparty Currency"
+msgstr "Devise de la contrepartie"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__counterparty_name
+msgid "Counterparty Name"
+msgstr "Nom de la contrepartie"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__counterparty_number
+msgid "Counterparty Number"
+msgstr "No de la contrepartie"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__date
+msgid "Entry Date"
+msgstr "Date de comptabilisation"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__globalisation_amount
+msgid "Glob. Amount"
+msgstr "Montant glob."
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__globalisation_id
+msgid "Globalisation ID"
+msgstr "ID de globalisation"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__journal_id
+msgid "Journal"
+msgstr "Journal"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__val_date
+msgid "Value Date"
+msgstr "Date de valeur"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line__payment_reference
+msgid "Payment Reference"
+msgstr "Référence paiement"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__bank_statement_line_ids
+msgid "Bank Statement Lines"
+msgstr "Transactions bancaires"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__child_ids
+msgid "Child Codes"
+msgstr "Codes fils"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__code
+msgid "Code"
+msgstr "Code"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__payment_reference
+msgid "Payment Reference"
+msgstr "Référence paiement"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__parent_id
+msgid "Parent Code"
+msgstr "Code parent"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_account_bank_statement_line_global__type
+msgid "Type"
+msgstr "Type"
+
+#. module: account_bank_statement_advanced
+#: selection:account.bank.statement.line.global,type:0
+msgid "Manual"
+msgstr "Manuelle"
+
+#. module: account_bank_statement_advanced
+#: selection:account.bank.statement.line.global,type:0
+msgid "CODA"
+msgstr "CODA"
+
+#. module: account_bank_statement_advanced
+#: selection:account.bank.statement.line.global,type:0
+msgid "ISO 20022"
+msgstr "ISO 20022"
+
+#. module: account_bank_statement_advanced
+#: model:ir.actions.act_window,name:account_bank_statement_advanced.action_bank_statement_line
+msgid "Bank Statement Lines"
+msgstr "Transactions bancaires"
+
+#. module: account_bank_statement_advanced
+#: model:ir.ui.menu,name:account_bank_statement_advanced.account_bank_statement_line_menu
+msgid "Bank Transactions"
+msgstr "Transactions bancaires"
+
+#. module: account_bank_statement_advanced
+#: model:ir.model.fields,field_description:account_bank_statement_advanced.field_res_company__bank_ids
+msgid "Company Banks"
+msgstr "Comptes bancaires"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Bank Statement Balances Report"
+msgstr "Soldes relevés bancaires"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Name"
+msgstr "Nom"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Date"
+msgstr "Date"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Journal"
+msgstr "Journal"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Closing Balance"
+msgstr "Solde"
+
+#. module: account_bank_statement_advanced
+#: model_terms:ir.ui.view,arch_db:account_bank_statement_advanced.statement_balance_report
+msgid "Total"
+msgstr "Total"
+

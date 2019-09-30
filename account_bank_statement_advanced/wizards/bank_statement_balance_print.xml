@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="bank_statement_balance_print_view_form" model="ir.ui.view">
+    <field name="name">Bank Statement Balances Report</field>
+    <field name="model">bank.statement.balance.print</field>
+    <field name="arch" type="xml">
+      <form string="Bank Statement Balances Report">
+        <group>
+          <separator string="Select Financial Journals" colspan="2"/>
+          <field name="journal_ids"
+                 widget="many2many_tags"
+                 placeholder="Keep empty for using all journals"/>
+          <separator string="Select Balance Date" colspan="2"/>
+          <field name="date_balance"/>
+        </group>
+        <footer>
+          <button name="balance_print" string="Print" type="object"
+                  default_focus="1" class="oe_highlight"/>
+          or
+          <button string="Cancel" class="oe_link" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="bank_statement_balance_print_action" model="ir.actions.act_window">
+    <field name="name">Bank Statement Balances Report</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">bank.statement.balance.print</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="bank_statement_balance_print_view_form"/>
+    <field name="binding_model_id" ref="account.model_account_bank_statement" />
+    <field name="binding_type">report</field>
+  </record>
+
+</odoo>

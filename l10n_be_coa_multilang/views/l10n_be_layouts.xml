@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <template id="l10n_be_layout">
+    <t t-if="o and 'company_id' in o">
+      <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+      <t t-set="company" t-value="res_company"></t>
+    </t>
+    <t t-call="web.internal_layout">
+      <div class="footer">
+        <div class="row">
+          <div class="col-4" style="margin-top:50px;">
+            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+          </div>
+          <div class="col-4 text-center" style="margin-top:50px;">
+            <span t-esc="company.name"/>
+          </div>
+          <div class="col-4 text-right" style="margin-top:50px;">
+
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <span class="page"/>
+              </li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <span class="topage"/>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <t t-raw="0"/>
+    </t>
+  </template>
+
+</odoo>

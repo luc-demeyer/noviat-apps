@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="statement_balance_report">
+    <t t-call="web.html_container">
+
+      <t t-set="data_report_margin_top" t-value="20"/>
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+      </t>
+
+      <t t-call="web.internal_layout">
+
+        <div class="page">
+          <h3>
+            <span>Bank Statement Balances Report</span>
+            <span t-esc="date_balance"/>
+          </h3>
+
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th style="border-bottom:1px solid black !important;">Name</th>
+                <th style="border-bottom:1px solid black !important;">Date</th>
+                <th style="border-bottom:1px solid black !important;">Journal</th>
+                <th class="text-right" style="border-bottom:1px solid black !important;">Closing Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr t-foreach="lines" t-as="l">
+                <td>
+                  <span t-esc="l['s_name']"/>
+                </td>
+                <td>
+                  <span t-esc="l['s_date']"/>
+                </td>
+                <td>
+                  <span t-esc="l['j_code']"/>
+                </td>
+                <td class="text-right">
+                  <span t-esc="l['s_balance']" t-options="{'widget': 'monetary', 'display_currency': l['currency']}"/>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr t-foreach="totals" t-as="t">
+                <td>
+                  &amp;nbsp;
+                </td>
+                <td>
+                  &amp;nbsp;
+                </td>
+                <td>
+                  <strong>
+                    <span>Total</span>
+                    <span t-esc="len(totals)&gt;1 and (' ' + t['currency'].symbol) or '' "/>:
+                  </strong>
+                </td>
+                <td class="text-right">
+                  <strong>
+                    <span t-esc="t['total_amount']" t-options="{'widget': 'monetary', 'display_currency': t['currency']}"/>
+                  </strong>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="footer">
+          <div class="row">
+            <div class="col-4" style="margin-top:50px;">
+              <span t-esc="report_date"/>
+            </div>
+            <div class="col-4 text-center" style="margin-top:50px;">
+              <span t-esc="company.name"/>
+            </div>
+            <div class="col-4 text-right" style="margin-top:50px;">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <span class="page"/>
+                </li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item">
+                  <span class="topage"/>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </t>
+    </t>
+
+  </template>
+
+</odoo>

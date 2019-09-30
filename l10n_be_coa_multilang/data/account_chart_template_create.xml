@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="l10n_be_coa_multilang_template" model="account.chart.template">
+    <field name="name">Belgian Chart of Accounts (en/nl/fr)</field>
+    <field name="l10n_be_coa_multilang" eval="1"/>
+    <field name="currency_id" ref="base.EUR"/>
+    <field name="bank_account_code_prefix">550</field>
+    <field name="cash_account_code_prefix">570</field>
+    <field name="transfer_account_code_prefix">580</field>
+    <field name="code_digits">6</field>
+  </record>
+
+</odoo>

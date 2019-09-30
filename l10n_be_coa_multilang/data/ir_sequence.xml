@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <!-- declarantnum sequences for VAT wizards -->
+  <record model="ir.sequence" id="seq_declarantseq">
+    <field name="name">Declarantseq</field>
+    <field name="code">declarantseq</field>
+    <field name="padding">5</field>
+  </record>
+
+</odoo>

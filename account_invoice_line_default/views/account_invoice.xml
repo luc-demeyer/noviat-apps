@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="invoice_supplier_form" model="ir.ui.view">
+    <field name="name">account.invoice.supplier.form.inherit</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <field name="date_due" position="after">
+          <field name="name" string="Description"/>
+        </field>
+        <xpath expr="//notebook/page[@name='other_info']//field[@name='name']" position="replace"/>
+      </data>
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_be_iso20022_pain
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-20 01:41+0000\n"
+"PO-Revision-Date: 2017-12-20 01:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_be_iso20022_pain
+#: code:addons/l10n_be_iso20022_pain/models/account_payment_line.py:16
+#, python-format
+msgid "BBA Structured Communication"
+msgstr "Communication Structurée"
+
+#. module: l10n_be_iso20022_pain
+#: code:addons/l10n_be_iso20022_pain/models/account_payment_line.py:39
+#, python-format
+msgid "Invalid BBA Structured Communication !"
+msgstr "Communication Structurée invalide !"
+
+#. module: l10n_be_iso20022_pain
+#: model:ir.model,name:l10n_be_iso20022_pain.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: l10n_be_iso20022_pain
+#: model:ir.model,name:l10n_be_iso20022_pain.model_account_payment_line
+msgid "Payment Lines"
+msgstr "Lignes de paiement"

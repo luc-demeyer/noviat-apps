@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <template id="report_assets_common" name="l10n_be_report report_assets_common" inherit_id="web.report_assets_common">
+    <xpath expr="." position="inside">
+      <link rel="stylesheet" type="text/scss" href="/l10n_be_coa_multilang/static/src/scss/l10n_be_report.scss"/>
+    </xpath>
+  </template>
+
+</odoo>

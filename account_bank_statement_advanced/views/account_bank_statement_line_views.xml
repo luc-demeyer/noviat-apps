@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="view_bank_statement_line_tree" model="ir.ui.view">
+    <field name="name">bank.statement.line.list</field>
+    <field name="model">account.bank.statement.line</field>
+    <field name="inherit_id" ref="account.view_bank_statement_line_tree"/>
+    <field name="arch" type="xml">
+      <tree position="attributes">
+        <attribute name="delete">false</attribute>
+        <attribute name="decoration-info">amount and not journal_entry_ids</attribute>
+        <attribute name="default_order">statement_date desc, sequence, id</attribute>
+      </tree>
+      <field name="journal_id" position="after">
+        <field name="journal_code" string="Journal" readonly="1"/>
+        <field name="statement_date" readonly="1"/>
+        <field name="state" invisible="1"/>
+        <field name="journal_entry_ids" invisible="1"/>
+      </field>
+      <field name="date" position="after">
+        <field name="val_date"/>
+      </field>
+      <field name="amount" position="attributes">
+        <attribute name="sum">Total Amount</attribute>
+      </field>
+      <field name="amount" position="after">
+        <field name="moves_state"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="view_bank_statement_line_form" model="ir.ui.view">
+    <field name="name">bank.statement.line.form</field>
+    <field name="model">account.bank.statement.line</field>
+    <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+    <field name="arch" type="xml">
+      <form position="attributes">
+        <attribute name="edit">false</attribute>
+        <attribute name="delete">false</attribute>
+      </form>
+      <field name="statement_id" position="attributes">
+        <attribute name="readonly">1</attribute>
+      </field>
+      <group col="4" position="before">
+        <div class="oe_button_box" name="button_box">
+          <button class="oe_stat_button" name="button_view_moves"
+                  string="Journal Entries" type="object"
+                  attrs="{'invisible': [('journal_entry_ids', '=', [])]}" icon="fa-bars"/>
+        </div>
+      </group>
+      <group col="4" position="attributes">
+        <attribute name="attrs">{'readonly': [('state', '=', 'confirm')]}</attribute>
+      </group>
+      <field name="statement_id" position="after">
+        <field name="journal_code" readonly="1"/>
+        <field name="state" invisible="1"/>
+        <field name="journal_entry_ids" invisible="1"/>
+      </field>
+      <field name="date" position="after">
+        <field name="val_date"/>
+      </field>
+      <field name="amount" position="after">
+        <field name="moves_state"/>
+        <field name="globalisation_id" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
+        <field name="globalisation_amount" attrs="{'invisible': [('globalisation_id', '=', False)]}"/>
+        <field name="state" invisible="1"/>
+      </field>
+      <field name="note" position="replace">
+        <newline/>
+        <separator string="Notes" colspan="4"/>
+        <field name="note" nolabel="1" colspan="4"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="view_bank_statement_line_search" model="ir.ui.view">
+    <field name="name">account.bank.statement.line.search</field>
+    <field name="model">account.bank.statement.line</field>
+    <field name="inherit_id" ref="account.view_bank_statement_line_search"/>
+    <field name="arch" type="xml">
+      <field name="name" position="attributes">
+        <attribute name="filter_domain">['|', ('name', 'ilike', self), ('ref', 'ilike', self)]</attribute>
+        <attribute name="string">Bank Transaction</attribute>
+      </field>
+      <field name="name" position="after">
+        <field name="val_date"/>
+      </field>
+      <field name="date" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </field>
+      <field name="journal_id" position="after">
+        <separator/>
+        <field name="amount"/>
+        <field name="globalisation_id" string="Glob. Id"/>
+        <field name="globalisation_amount" string="Glob. Amount"/>
+        <field name="note"/>
+        <separator/>
+        <filter name="debit" string="Debit"
+                domain="[('amount', '&gt;', 0)]"
+                help="Amount &gt; 0"/>
+        <filter name="credit" string="Credit"
+                domain="[('amount', '&lt;', 0)]"
+                help="Amount &lt; 0"/>
+        <separator/>
+        <filter name="draft" string="Draft"
+                domain="[('state', '=', 'draft')]"
+                help="Draft Statement Lines"/>
+        <filter name="confirm" string="Confirmed"
+                domain="[('state', '=', 'confirm')]"
+                help="Confirmed Statement Lines"/>
+        <group expand="0" string="Group By">
+          <filter string="Journal" name="journal" context="{'group_by': 'journal_id'}"/>
+          <filter string="Statement" name="statement" context="{'group_by': 'statement_id'}"/>
+        </group>
+      </field>
+    </field>
+  </record>
+
+  <record id="account.action_bank_statement_line" model="ir.actions.act_window">
+    <field name="name">Bank Transactions</field>
+    <field name="view_ids"
+           eval="[(5, 0, 0),
+                  (0, 0, {'view_mode': 'tree', 'view_id': ref('account.view_bank_statement_line_tree')}),
+                  (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_bank_statement_line_form')})]"/>
+  </record>
+
+  <menuitem id="account_bank_statement_line_menu"
+            name="Bank Transactions"
+            action="account.action_bank_statement_line"
+            parent="account_bank_menu.menu_finance_bank_and_cash"
+            sequence="20"/>
+
+</odoo>
