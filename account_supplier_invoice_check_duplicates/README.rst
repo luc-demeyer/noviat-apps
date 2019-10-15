@@ -16,6 +16,6 @@ with
 - same date
 - same amount
 
-This logic can be cujstomized via the _get_dup_domain method.
+This logic can be customized via the _get_dup_domain method.
 
 The duplicate checking can be bypassed via the 'Force Encoding' flag.
