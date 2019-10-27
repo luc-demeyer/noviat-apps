@@ -28,6 +28,7 @@ class ResPartner(models.Model):
             ('date_maturity', '<=', report_date),
             ('full_reconcile_id', '=', False),
             ('partner_id', 'in', partner_ids),
+            ('partner_id.customer', '=', True),
         ]
         if account_select == 'receivable':
             dom.append(('account_id.internal_type', '=', 'receivable'))
