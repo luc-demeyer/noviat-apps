@@ -28,7 +28,7 @@ class AccountBankStatement(models.Model):
         coda_statements._balance_check()
         coda_statements = coda_statements.filtered(
             lambda r: r.state == 'open')
-        moves = coda_statements.mapped('line_ids').mapped('journal_entry_ids')
+        moves = coda_statements.mapped('line_ids.journal_entry_ids.move_id')
         unposted = moves.filtered(lambda r: r.state == 'draft')
         unposted.post()
         for statement in coda_statements:

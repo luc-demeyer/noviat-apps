@@ -25,8 +25,7 @@ PARSE_COMMS_MOVE = [
     '100', '101', '102', '103', '105', '106', '107', '108', '111', '113',
     '114', '115', '121', '122', '123', '124', '125', '126', '127']
 PARSE_COMMS_INFO = [
-    '001', '002', '004', '005', '006', '007',
-    '107', '008', '009', '010', '011']
+    '001', '002', '004', '005', '006', '007', '008', '009', '010', '011']
 
 
 class AccountCodaImport(models.TransientModel):
@@ -36,7 +35,7 @@ class AccountCodaImport(models.TransientModel):
     coda_data = fields.Binary(
         string='CODA (Zip) File', required=True)
     coda_fname = fields.Char(
-        string='CODA Filename', default='', required=True)
+        string='CODA Filename (invisible)', default='', required=True)
     coda_fname_dummy = fields.Char(
         related='coda_fname', string='CODA Filename', readonly=True)
     accounting_date = fields.Date(
@@ -881,8 +880,9 @@ class AccountCodaImport(models.TransientModel):
                     transaction['name'], transaction['communication'] = \
                         self._parse_comm_move(coda_statement, transaction)
             elif transaction['struct_comm_type'] in PARSE_COMMS_MOVE:
-                    transaction['name'], transaction['communication'] = \
-                        self._parse_comm_move(coda_statement, transaction)
+                transaction['struct_comm_raw'] = transaction['communication']
+                transaction['name'], transaction['communication'] = \
+                    self._parse_comm_move(coda_statement, transaction)
 
         transaction['name'] = transaction['name'].strip()
 
@@ -1578,6 +1578,11 @@ class AccountCodaImport(models.TransientModel):
         """
         Matching and Reconciliation logic.
         Returns: reconcile_note
+
+        TODO:
+        - refactor matching logic
+        - adapt logic to reconcile single payment matching multiple
+          journal items.
         """
         # match on payment reference
         reconcile_note, match = self._match_payment_reference(
@@ -1691,22 +1696,13 @@ class AccountCodaImport(models.TransientModel):
         # check bba scor in bank statement line against open invoices
         if transaction['struct_comm_bba'] and cba.find_bbacom:
             if transaction['amount'] > 0:
-                dom_customer = [('type', '=', 'out_invoice')]
-                dom_supplier = [('type', '=', 'in_refund')]
+                domain = [('type', 'in', ['out_invoice', 'in_refund'])]
             else:
-                dom_customer = [('type', '=', 'out_refund')]
-                dom_supplier = [('type', '=', 'in_invoice')]
-            dom_customer += [
-                ('state', '=', 'open'),
-                ('reference', '=', transaction['struct_comm_bba']),
-                ('reference_type', '=', 'bba')]
-            dom_supplier += [
-                ('state', '=', 'open'),
-                ('supplier_payment_ref', '=', transaction['struct_comm_bba']),
-                ('supplier_payment_ref_type', '=', 'bba')]
-            invoices = self.env['account.invoice'].search(dom_customer)
-            if not invoices:
-                invoices = self.env['account.invoice'].search(dom_supplier)
+                domain = [('type', 'in', ['in_invoice', 'out_refund'])]
+            domain += [('state', '=', 'open'),
+                       ('reference', '=', transaction['struct_comm_bba']),
+                       ('reference_type', '=', 'bba')]
+            invoices = self.env['account.invoice'].search(domain)
             if not invoices:
                 reconcile_note += _(
                     "\n    Bank Statement '%s' line '%s':"
@@ -1783,23 +1779,43 @@ class AccountCodaImport(models.TransientModel):
             invoice = self.env['account.invoice'].browse(match['invoice_id'])
             partner = invoice.partner_id.commercial_partner_id
             transaction['partner_id'] = partner.id
-            imls = self.env['account.move.line'].search(
-                [('move_id', '=', invoice.move_id.id),
-                 ('full_reconcile_id', '=', False),
-                 ('account_id', '=', invoice.account_id.id)])
-            if imls:
-                transaction['counterpart_aml_id'] = imls[0].id
+            imls = invoice.move_id.filtered(
+                lambda r: r.account_id == invoice.account_id
+                and not r.full_reconcile_id)
+            cur = cba.currency_id
+            if cur == self.journal_id.company_id.currency_id:
+                amt_fld = 'amount_residual'
+            elif cur == invoice.currency_id:
+                amt_fld = 'amount_residual_currency'
             else:
-                err_string = _(
-                    "\nThe CODA parsing detected a database inconsistency "
-                    "while processing movement data record 2.3, seq nr %s !"
-                    "'\nPlease report this issue via your "
-                    "Odoo support channel."
-                ) % transaction['ref']
-                err_code = 'M0001'
-                if self.batch:
-                    return (err_code, err_string)
-                raise UserError(err_string)
+                reconcile_note += _(
+                    "\n    Bank Statement '%s' line '%s':"
+                    "\n        Invoice %s matching "
+                    "Structured Communication '%s' has another "
+                    "currency than this CODA file."
+                    "\n        A manual reconciliation is required."
+                ) % (st_line.statement_id.name, transaction['ref'],
+                     invoice.number, transaction['struct_comm_bba'])
+                return reconcile_note, match
+
+            matches = []
+            for iml in imls:
+                iml_amt = getattr(iml, amt_fld)
+                if cur.is_zero(iml_amt - transaction['amount']):
+                    matches.append(iml)
+            if len(matches) == 1:
+                aml = matches[0]
+                match['move_line_id'] = aml.id
+                transaction['counterpart_aml_id'] = aml.id
+            else:
+                reconcile_note += _(
+                    "\n    Bank Statement '%s' line '%s':"
+                    "\n        Invoice %s matching "
+                    "Structured Communication '%s' has different "
+                    "residual amounts."
+                    "\n        A manual reconciliation is required."
+                ) % (st_line.statement_id.name, transaction['ref'],
+                     invoice.number, transaction['struct_comm_bba'])
 
         return reconcile_note, match
 
@@ -2327,95 +2343,139 @@ class AccountCodaImport(models.TransientModel):
         return st_line_name, st_line_comm
 
     def _parse_comm_move_100(self, coda_statement, transaction):
-        comm = transaction['communication']
         st_line_name = _(
             "Payment with ISO 11649 structured format communication")
-        st_line_comm = '\n' + INDENT + _(
+        comm = transaction['communication']
+        comm_fields = [
+            {'name': 'struct_comm_iso11649',
+             'label': _('ISO 11649 Communication'),
+             'value': comm.strip()},
+        ]
+        line_note = _(
             "Payment with a structured format communication "
             "applying the ISO standard 11649"
         ) + ':'
-        st_line_comm += INDENT + _(
+        line_note += INDENT + _(
             "Structured creditor reference to remittance information")
-        st_line_comm += INDENT + comm
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            line_note, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_101(self, coda_statement, transaction):
-        comm = st_line_comm = transaction['communication']
-        st_line_name = st_line_comm = \
+        line_note = _(
+            "Credit transfer or cash payment with "
+            "structured format communication")
+        comm = transaction['communication']
+        st_line_name = bba_comm_formatted = \
             '+++' + comm[0:3] + '/' + comm[3:7] + '/' + comm[7:12] + '+++'
+        comm_fields = [
+            {'name': 'struct_comm_bba', 'add_to_note': False,
+             'value': comm[0:12]},
+            {'name': 'struct_comm_bba_formatted',
+             'label': _('structured format communication'),
+             'value': bba_comm_formatted},
+        ]
+        line_note, st_line_comm = self._handle_struct_comm_details(
+            line_note, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_102(self, coda_statement, transaction):
-        comm = st_line_comm = transaction['communication']
-        st_line_name = st_line_comm = \
+        line_note = _(
+            "Credit transfer or cash payment with reconstituted "
+            "structured format communication")
+        comm = transaction['communication']
+        st_line_name = bba_comm_formatted = \
             '+++' + comm[0:3] + '/' + comm[3:7] + '/' + comm[7:12] + '+++'
+        comm_fields = [
+            {'name': 'struct_comm_bba', 'add_to_note': False,
+             'value': comm[0:12]},
+            {'name': 'struct_comm_bba_formatted',
+             'label': _('structured format communication'),
+             'value': bba_comm_formatted},
+        ]
+        line_note, st_line_comm = self._handle_struct_comm_details(
+            line_note, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_103(self, coda_statement, transaction):
         comm = transaction['communication']
         st_line_name = ', '.join(
             [transaction['trans_family_desc'], _('Number')])
+        comm_fields = [
+            {'name': 'number', 'add_to_note': False,
+             'value': comm.strip()},
+        ]
+        self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         st_line_comm = comm
         return st_line_name, st_line_comm
 
     def _parse_comm_move_105(self, coda_statement, transaction):
         comm_type = transaction['struct_comm_type']
-        comm = st_line_comm = transaction['communication']
+        comm = transaction['communication']
         st_line_name = self._comm_types.filtered(
             lambda r, t=comm_type: r.code == t).description
         amount = transaction.get('amount', 0.0)
         sign = amount < 0 and -1 or 1
-        amount_currency_account = sign * list2float(comm[0:15])
-        amount_currency_original = sign * list2float(comm[15:30])
-        rate = number2float(comm[30:42], 8)
-        currency = comm[42:45].strip()
-        struct_format_comm = comm[45:57].strip()
-        country_code = comm[57:59].strip()
-        amount_eur = sign * list2float(comm[59:74])
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
-            "Gross amount in the currency of the account"
-        ) + ': %.2f' % amount_currency_account
-        if amount_currency_original:
-            st_line_comm += INDENT + _(
-                "Gross amount in the original currency"
-            ) + ': %.2f' % amount_currency_original
-        if rate:
-            st_line_comm += INDENT + _('Rate') + ': %.4f' % rate
-        if currency:
-            st_line_comm += INDENT + _('Currency') + ': %s' % currency
-        if struct_format_comm:
-            st_line_comm += INDENT + _('Structured format communication') \
-                + ': %s' % struct_format_comm
-        if country_code:
-            st_line_comm += INDENT + _('Country code of the principal') \
-                + ': %s' % country_code
-        if amount_eur:
-            st_line_comm += INDENT + _('Equivalent in EUR') \
-                + ': %.2f' % amount_eur
-        st_line_comm += '\n'
+        comm_fields = [
+            {'name': 'amount_currency_account',
+             'label': _('Gross amount in the currency of the account'),
+             'value': sign * list2float(comm[0:15]), 'format': '{:0.2f}'},
+            {'name': 'amount_currency_original',
+             'label': _('Gross amount in the original currency'),
+             'value': sign * list2float(comm[15:30]), 'format': '{:0.2f}'},
+            {'name': 'rate', 'label': _('Rate'),
+             'value': number2float(comm[30:42], 8), 'format': '{:0.4f}'},
+            {'name': 'currency', 'label': _('Currency'),
+             'value': comm[42:45].strip()},
+            {'name': 'struct_format_comm',
+             'label': _('Structured format communication'),
+             'value': comm[45:57].strip()},
+            {'name': 'country_code',
+             'label': _('Country code of the principal'),
+             'value': comm[57:59].strip()},
+            {'name': 'amount_eur',
+             'label': _('Equivalent in EUR'),
+             'value': sign * list2float(comm[59:74]), 'format': '{:0.2f}'},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_106(self, coda_statement, transaction):
-        comm = transaction['communication']
         st_line_name = _(
             "VAT, withholding tax on income, commission, etc.")
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
-            "Equivalent in the currency of the account"
-        ) + ': %.2f' % list2float(comm[0:15])
-        st_line_comm += INDENT + _('Amount on which % is calculated') \
-            + ': %.2f' % list2float(comm[15:30])
-        st_line_comm += INDENT + _('Percent') \
-            + ': %.4f' % number2float(comm[30:42], 8)
-        st_line_comm += INDENT + (
-            comm[42] == 1 and
-            _('Minimum applicable') or
-            _('Minimum not applicable')
-        )
-        st_line_comm += INDENT + _('Equivalent in EUR') \
-            + ': %.2f' % list2float(comm[43:58])
+        comm = transaction['communication']
+        comm_fields = [
+            {'name': 'amount_currency_account',
+             'label': _('Equivalent in the currency of the account'),
+             'value': list2float(comm[0:15]), 'format': '{:0.2f}'},
+            {'name': 'tax_base_amount',
+             'label': _('Amount on which % is calculated'),
+             'value': list2float(comm[15:30]), 'format': '{:0.2f}'},
+            {'name': 'percent', 'label': _('Percent'),
+             'value': number2float(comm[30:42], 8), 'format': '{:0.4f}'},
+        ]
+        minimum = comm[42] == '1' and True or False
+        label = minimum and _('Minimum applicable') \
+            or _('Minimum not applicable')
+        comm_fields += [
+            {'name': 'minimum_applicable', 'label': label, 'value': comm[42]},
+            {'name': 'equivalent_eur',
+             'label': _('Equivalent in EUR'),
+             'value': list2float(comm[43:58]), 'format': '{:0.2f}'},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_107(self, coda_statement, transaction):
+        """
+        Structured communication 107 has been deleted as from CODA 2.4
+        We keep the parsing method so that old CODA files can still be
+        processed.
+        """
+        st_line_name = _("Direct debit - DOM'80")
         comm = transaction['communication']
         paid_refusals = {
             '0': _('paid'),
@@ -2424,42 +2484,55 @@ class AccountCodaImport(models.TransientModel):
             'D': _('payer disagrees'),
             'E': _('direct debit number linked to another '
                    'identification number of the creditor')}
-        st_line_name = _('Direct debit - DOM\'80')
-        direct_debit_number = comm[0:12].strip()
-        pivot_date = str2date(comm[12:18])
-        comm_zone = comm[18:48]
-        paid_refusal = paid_refusals.get(comm[48], '')
-        creditor_number = comm[49:60].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
-            'Direct Debit Number') + ': %s' % direct_debit_number
-        st_line_comm += INDENT + _('Central (Pivot) Date') \
-            + ': %s' % pivot_date
-        st_line_comm += INDENT + _('Communication Zone') \
-            + ': %s' % comm_zone
-        st_line_comm += INDENT + _('Paid or reason for refusal') \
-            + ': %s' % paid_refusal
-        st_line_comm += INDENT + _("Creditor's Number") \
-            + ': %s' % creditor_number
+        comm_fields = [
+            {'name': 'direct_debit_number', 'label': _('Direct Debit Number'),
+             'value': comm[0:12].strip()},
+            {'name': 'pivot_date', 'label': _('Central (Pivot) Date'),
+             'value': str2date(comm[12:18])},
+            {'name': 'comm_zone', 'label': _('Communication Zone'),
+             'value': str2date(comm[18:48])},
+            {'name': 'paid_refusal', 'label': _('Paid or reason for refusal'),
+             'value': paid_refusals.get(comm[48], '')},
+            {'name': 'creditor_number', 'label': _("Creditor's Number"),
+             'value': comm[49:60].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_108(self, coda_statement, transaction):
         comm = transaction['communication']
+        period_from = str2date(comm[42:48])
+        period_to = str2date(comm[48:54])
         st_line_name = _(
             'Closing, period from %s to %s'
-        ) % (str2date(comm[42:48]), str2date(comm[48:54]))
+        ) % (period_from, period_to)
+        comm_fields = [
+            {'name': 'amount_currency_account',
+             'label': _('Equivalent in the currency of the account'),
+             'value': list2float(comm[0:15]), 'format': '{:0.2f}'},
+        ]
         interest = comm[30:42].strip('0')
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT + _(
-            'Equivalent in the currency of the account'
-        ) + ': %.2f' % list2float(comm[0:15])
         if interest:
-            st_line_comm += INDENT + _(
-                'Interest rates, calculation basis'
-            ) + ': %.2f' % list2float(comm[15:30]) + INDENT + _(
-                'Interest'
-            ) + ': %.2f' % list2float(comm[30:42])
+            comm_fields += [
+                {'name': 'calculation_basis',
+                 'label': _('Interest rates, calculation basis'),
+                 'value': list2float(comm[15:30]), 'format': '{:0.2f}'},
+                {'name': 'interest', 'label': _('Interest'),
+                 'value': list2float(comm[30:42]), 'format': '{:0.2f}'},
+            ]
+        comm_fields += [
+            {'name': 'period_from', 'add_to_note': False,
+             'value': period_from},
+            {'name': 'period_to', 'add_to_note': False,
+             'value': period_to},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_111(self, coda_statement, transaction):
+        st_line_name = _('POS credit - globalisation')
         comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
@@ -2475,37 +2548,48 @@ class AccountCodaImport(models.TransientModel):
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
-        st_line_name = _('POS credit - globalisation')
-        card_scheme = card_schemes.get(comm[0], '')
-        pos_number = comm[1:7].strip()
-        period_number = comm[7:10].strip()
-        first_sequence_number = comm[10:16].strip()
-        trans_first_date = str2date(comm[16:22])
-        last_sequence_number = comm[22:28].strip()
-        trans_last_date = str2date(comm[28:34])
-        trans_type = trans_types.get(comm[34], '')
+        comm_fields = [
+            {'name': 'card_scheme', 'label': _('Card Scheme'),
+             'value': card_schemes.get(comm[0], '')},
+            {'name': 'pos_number', 'label': _('POS Number'),
+             'value': comm[1:7].strip()},
+            {'name': 'period_number', 'label': _('Period Number'),
+             'value': comm[7:10].strip()},
+            {'name': 'first_sequence_number',
+             'label': _('First Transaction Sequence Number'),
+             'value': comm[10:16].strip()},
+            {'name': 'trans_first_date',
+             'label': _('Date of first transaction'),
+             'value': str2date(comm[16:22])},
+            {'name': 'last_sequence_number',
+             'label': _('Last Transaction Sequence Number'),
+             'value': comm[22:28].strip()},
+            {'name': 'trans_last_date',
+             'label': _('Date of last transaction'),
+             'value': str2date(comm[28:34])},
+            {'name': 'trans_type',
+             'label': _('Transaction Type'),
+             'value': trans_types.get(comm[34], '')},
+        ]
         terminal_name = comm[35:50].strip()
         terminal_city = comm[51:60].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Card Scheme') + ': %s' % card_scheme
-        st_line_comm += INDENT + _('POS Number') + ': %s' % pos_number
-        st_line_comm += INDENT + _('Period Number') \
-            + ': %s' % period_number
-        st_line_comm += INDENT + _('First Transaction Sequence Number') \
-            + ': %s' % first_sequence_number
-        st_line_comm += INDENT + _('Date of first transaction') \
-            + ': %s' % trans_first_date
-        st_line_comm += INDENT + _('Last Transaction Sequence Number') \
-            + ': %s' % last_sequence_number
-        st_line_comm += INDENT + _('Date of last transaction') \
-            + ': %s' % trans_last_date
-        st_line_comm += INDENT + _('Transaction Type') \
-            + ': %s' % trans_type
-        st_line_comm += INDENT + _('Terminal Identification') + \
-            ': %s' % terminal_name + ', ' + terminal_city
+        terminal_identification = ', '.join(
+            [x for x in [terminal_name, terminal_city] if x])
+        comm_fields += [
+            {'name': 'terminal_name', 'add_to_note': False,
+             'value': terminal_name},
+            {'name': 'terminal_city', 'add_to_note': False,
+             'value': terminal_city},
+            {'name': 'terminal_identification',
+             'label': _('Terminal Identification'),
+             'value': terminal_identification},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_113(self, coda_statement, transaction):
+        st_line_name = _('ATM/POS debit')
         comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
@@ -2535,52 +2619,70 @@ class AccountCodaImport(models.TransientModel):
             '12': _('Avgas'),
             '16': _('other types'),
         }
-        st_line_name = _('ATM/POS debit')
-        card_number = comm[0:16].strip()
-        card_scheme = card_schemes.get(comm[16], '')
-        terminal_number = comm[17:23].strip()
-        sequence_number = comm[23:29].strip()
-        trans_date = comm[29:35].strip() and str2date(comm[29:35]) or ''
-        trans_hour = comm[35:39].strip() and str2time(comm[35:39]) or ''
-        trans_type = trans_types.get(comm[39], '')
+        comm_fields = [
+            {'name': 'card_number', 'label': _('Card Number'),
+             'value': comm[0:16].strip()},
+            {'name': 'card_scheme', 'label': _('Card Scheme'),
+             'value': card_schemes.get(comm[16], '')},
+            {'name': 'terminal_number', 'label': _('Terminal Number'),
+             'value': comm[17:23].strip()},
+            {'name': 'sequence_number',
+             'label': _('Transaction Sequence Number'),
+             'value': comm[23:29].strip()},
+        ]
+        trans_date = comm[29:35].strip()
+        trans_date = trans_date and str2date(trans_date)
+        trans_hour = comm[35:39].strip()
+        trans_hour = trans_hour and str2time(trans_hour)
+        trans_time = ' '.join([x for x in [trans_date, trans_hour] if x])
+        comm_fields += [
+            {'name': 'transaction_date', 'add_to_note': False,
+             'value': trans_date},
+            {'name': 'transaction_hour', 'add_to_note': False,
+             'value': trans_hour},
+            {'name': 'transaction_time', 'label': _('Time'),
+             'value': trans_time},
+            {'name': 'trans_type',
+             'label': _('Transaction Type'),
+             'value': trans_types.get(comm[39], '')},
+        ]
         terminal_name = comm[40:56].strip()
         terminal_city = comm[56:66].strip()
+        terminal_identification = ', '.join(
+            [x for x in [terminal_name, terminal_city] if x])
+        comm_fields += [
+            {'name': 'terminal_name', 'add_to_note': False,
+             'value': terminal_name},
+            {'name': 'terminal_city', 'add_to_note': False,
+             'value': terminal_city},
+            {'name': 'terminal_identification',
+             'label': _('Terminal Identification'),
+             'value': terminal_identification},
+        ]
         orig_amount = comm[66:81].strip() and list2float(comm[66:81])
-        rate = number2float(comm[81:93], 8)
-        currency = comm[93:96]
-        volume = number2float(comm[96:101], 2)
-        product_code = product_codes.get(comm[101:103], '')
-        unit_price = number2float(comm[103:108], 2)
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Card Number') + ': %s' % card_number
-        st_line_comm += INDENT + _('Card Scheme') + ': %s' % card_scheme
-        if terminal_number:
-            st_line_comm += INDENT + _('Terminal Number') \
-                + ': %s' % terminal_number
-        st_line_comm += INDENT + _('Transaction Sequence Number') \
-            + ': %s' % sequence_number
-        st_line_comm += INDENT + _('Time') \
-            + ': %s' % trans_date + ' ' + trans_hour
-        st_line_comm += INDENT + _('Transaction Type') \
-            + ': %s' % trans_type
-        st_line_comm += INDENT + _('Terminal Identification') \
-            + ': %s' % terminal_name + ', ' + terminal_city
         if orig_amount:
-            st_line_comm += INDENT + _('Original Amount') \
-                + ': %.2f' % orig_amount
-            st_line_comm += INDENT + _('Rate') + ': %.4f' % rate
-            st_line_comm += INDENT + _('Currency') + ': %s' % currency
-        if volume:
-            st_line_comm += INDENT + _('Volume') + ': %.2f' % volume
-        if product_code:
-            st_line_comm += INDENT + _('Product Code') \
-                + ': %s' % product_code
-        if unit_price:
-            st_line_comm += INDENT + _('Unit Price') \
-                + ': %.2f' % unit_price
+            comm_fields += [
+                {'name': 'orig_amount', 'label': _('Original Amount'),
+                 'value': orig_amount, 'format': '{:0.2f}'},
+                {'name': 'rate', 'label': _('Rate'),
+                 'value': number2float(comm[81:93], 8), 'format': '{:0.2f}'},
+                {'name': 'currency', 'label': _('Currency'),
+                 'value': comm[93:96]},
+            ]
+        comm_fields += [
+            {'name': 'volume', 'label': _('Volume'),
+             'value': number2float(comm[96:101], 2), 'format': '{:0.2f}'},
+            {'name': 'product_code', 'label': _('Product Code'),
+             'value': product_codes.get(comm[101:103], '')},
+            {'name': 'unit_price', 'label': _('Unit Price'),
+             'value': number2float(comm[103:108], 2), 'format': '{:0.2f}'},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_114(self, coda_statement, transaction):
+        st_line_name = _('POS credit - individual transaction')
         comm = transaction['communication']
         card_schemes = {
             '1': 'Bancontact/Mister Cash',
@@ -2594,134 +2696,141 @@ class AccountCodaImport(models.TransientModel):
             '7': _('Distribution sector'),
             '8': _('Teledata'),
             '9': _('Fuel')}
-        st_line_name = _('POS credit - individual transaction')
-        card_scheme = card_schemes.get(comm[0], '')
-        pos_number = comm[1:7].strip()
-        period_number = comm[7:10].strip()
-        sequence_number = comm[10:16].strip()
-        trans_date = str2date(comm[16:22])
-        trans_hour = str2time(comm[22:26])
-        trans_type = trans_types.get(comm[26], '')
+        comm_fields = [
+            {'name': 'card_scheme', 'label': _('Card Scheme'),
+             'value': card_schemes.get(comm[0], '')},
+            {'name': 'pos_number', 'label': _('POS Number'),
+             'value': comm[1:7].strip()},
+            {'name': 'period_number', 'label': _('Period Number'),
+             'value': comm[7:10].strip()},
+            {'name': 'sequence_number',
+             'label': _('Transaction Sequence Number'),
+             'value': comm[10:16].strip()},
+        ]
+        trans_date = comm[16:22].strip()
+        trans_date = trans_date and str2date(trans_date)
+        trans_hour = comm[22:26].strip()
+        trans_hour = trans_hour and str2time(trans_hour)
+        trans_time = ' '.join([x for x in [trans_date, trans_hour] if x])
+        comm_fields += [
+            {'name': 'transaction_date', 'add_to_note': False,
+             'value': trans_date},
+            {'name': 'transaction_hour', 'add_to_note': False,
+             'value': trans_hour},
+            {'name': 'transaction_time', 'label': _('Time'),
+             'value': trans_time},
+            {'name': 'trans_type', 'label': _('Transaction Type'),
+             'value': trans_types.get(comm[26], '')},
+        ]
         terminal_name = comm[27:43].strip()
         terminal_city = comm[43:53].strip()
-        trans_reference = comm[53:69].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Card Scheme') + ': %s' % card_scheme
-        if pos_number:
-            st_line_comm += INDENT + _('POS Number') + ': %s' % pos_number
-        if period_number:
-            st_line_comm += INDENT + _('Period Number') \
-                + ': %s' % period_number
-        if sequence_number:
-            st_line_comm += INDENT + _('Transaction Sequence Number') \
-                + ': %s' % sequence_number
-        if trans_date or trans_hour:
-            st_line_comm += INDENT + _('Time') \
-                + ': %s' % trans_date + ' ' + trans_hour
-        if trans_type:
-            st_line_comm += INDENT + _('Transaction Type') \
-                + ': %s' % trans_type
-        if terminal_name or terminal_city:
-            st_line_comm += INDENT + _('Terminal Identification') \
-                + ': %s' % terminal_name + ', ' + terminal_city
-        if trans_reference:
-            st_line_comm += INDENT + _('Transaction Reference') \
-                + ': %s' % trans_reference
+        terminal_identification = ', '.join(
+            [x for x in [terminal_name, terminal_city] if x])
+        comm_fields += [
+            {'name': 'terminal_name', 'add_to_note': False,
+             'value': terminal_name},
+            {'name': 'terminal_city', 'add_to_note': False,
+             'value': terminal_city},
+            {'name': 'terminal_identification',
+             'label': _('Terminal Identification'),
+             'value': terminal_identification},
+            {'name': 'trans_reference',
+             'label': _('Transaction Reference'),
+             'value': comm[53:69].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_115(self, coda_statement, transaction):
-        comm = transaction['communication']
         st_line_name = _('Terminal cash deposit')
+        comm = transaction['communication']
         card_schemes = {
             '2': _('Private'),
             '9': _('Other')}
-        card_number = comm[:16].strip()
-        card_scheme = card_schemes.get(comm[16], '')
-        terminal_number = comm[17:23].strip()
-        sequence_number = comm[23:29].strip()
+        comm_fields = [
+            {'name': 'card_number', 'label': _('Card Number'),
+             'value': comm[:16].strip()},
+            {'name': 'card_scheme', 'label': _('Card Scheme'),
+             'value': card_schemes.get(comm[16], '')},
+            {'name': 'terminal_number', 'label': _('Terminal Number'),
+             'value': comm[17:23].strip()},
+            {'name': 'sequence_number',
+             'label': _('Transaction Sequence Number'),
+             'value': comm[23:29].strip()},
+        ]
         payment_day = comm[29:35].strip()
         payment_hour = comm[35:39].strip()
-        validation_date = comm[39:45].strip()
-        validation_sequence_number = comm[45:51].strip()
-        amount = list2float(comm[51:66])
-        conformity_code = comm[66].strip()
+        payment_time = ' '.join([x for x in [payment_day, payment_hour] if x])
+        comm_fields += [
+            {'name': 'payment_day', 'add_to_note': False,
+             'value': payment_day},
+            {'name': 'payment_hour', 'add_to_note': False,
+             'value': payment_hour},
+            {'name': 'payment_time', 'label': _('Time'),
+             'value': payment_time},
+            {'name': 'validation_date', 'label': _('Validation Date'),
+             'value': comm[39:45].strip()},
+            {'name': 'validation_sequence_number',
+             'label': _('Validation Sequence Number'),
+             'value': comm[45:51].strip()},
+            {'name': 'amount', 'label': _('Amount (given by the customer)'),
+             'value': list2float(comm[51:66]), 'format': '{:0.2f}'},
+            {'name': 'conformity_code', 'label': _('Conformity Code'),
+             'value': comm[66].strip()},
+        ]
         terminal_name = comm[67:83].strip()
         terminal_city = comm[83:93].strip()
-        message = comm[93:105].strip()
-        td = {}
-        st_line_comm = '\n' + INDENT + st_line_name
-        if card_number:
-            td['card_number'] = card_number
-            st_line_comm += INDENT + _('Card Number') + ': %s' % card_number
-        if card_scheme:
-            td['card_scheme'] = card_scheme
-            st_line_comm += INDENT + _('Card Scheme') + ': %s' % card_scheme
-        if terminal_number:
-            td['terminal_number'] = terminal_number
-            st_line_comm += INDENT + _('Terminal Number') \
-                + ': %s' % terminal_number
-        if sequence_number:
-            td['sequence_number'] = sequence_number
-            st_line_comm += INDENT + _('Transaction Sequence Number') \
-                + ': %s' % sequence_number
-        if payment_day or payment_hour:
-            td['payment_day'] = payment_day
-            td['payment_hour'] = payment_hour
-            st_line_comm += INDENT + _('Time') \
-                + ': %s' % payment_day + ' ' + payment_hour
-        if validation_date:
-            td['validation_date'] = validation_date
-            st_line_comm += INDENT + _('Validation Date') \
-                + ': %s' % validation_date
-        if validation_sequence_number:
-            td['validation_sequence_number'] = validation_sequence_number
-            st_line_comm += INDENT + _('Validation Sequence Number') \
-                + ': %s' % validation_sequence_number
-        td['amount'] = amount
-        st_line_comm += INDENT + _('Amount (given by the customer)') \
-            + ': %.2f' % amount
-        if conformity_code:
-            td['conformity_code'] = conformity_code
-            st_line_comm += INDENT + _('Conformity Code') \
-                + ': %s' % conformity_code
-        if terminal_name or terminal_city:
-            td['terminal_name'] = terminal_name
-            td['terminal_city'] = terminal_city
-            st_line_comm += INDENT + _('Terminal Identification') \
-                + ': %s' % terminal_name + ', ' + terminal_city
-        if message:
-            td['message'] = message
-            st_line_comm += INDENT + _('Message') + ': %s' % message
-        transaction['struct_comm_115'] = td
+        terminal_identification = ', '.join(
+            [x for x in [terminal_name, terminal_city] if x])
+        comm_fields += [
+            {'name': 'terminal_name', 'add_to_note': False,
+             'value': terminal_name},
+            {'name': 'terminal_city', 'add_to_note': False,
+             'value': terminal_city},
+            {'name': 'terminal_identification',
+             'label': _('Terminal Identification'),
+             'value': terminal_identification},
+            {'name': 'message', 'label': _('Message'),
+             'value': comm[93:105].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_123(self, coda_statement, transaction):
         comm = transaction['communication']
         st_line_name = transaction['name']
-        starting_date = str2date(comm[0:6])
+        comm_fields = [
+            {'name': 'starting_date', 'label': _('Starting Date'),
+             'value': str2date(comm[0:6])},
+        ]
         maturity_date = comm[6:12] == '999999' \
             and _('guarantee without fixed term') or str2date(comm[0:6])
-        basic_amount = list2float(comm[12:27])
-        percent = number2float(comm[27:39], 8)
-        term = comm[39:43].lstrip('0')
+        comm_fields += [
+            {'name': 'maturity_date', 'label': _('Maturity Date'),
+             'value': maturity_date},
+            {'name': 'basic_amount', 'label': _('Basic Amount'),
+             'value': list2float(comm[12:27]), 'format': '{:0.2f}'},
+            {'name': 'percent', 'label': _('Percentage'),
+             'value': number2float(comm[27:39], 8), 'format': '{:0.4f}'},
+            {'name': 'term', 'label': _('Term in days'),
+             'value': comm[39:43].lstrip('0')},
+        ]
         minimum = comm[43] == '1' and True or False
-        guarantee_number = comm[44:57].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Starting Date') + ': %s' % starting_date
-        st_line_comm += INDENT + _('Maturity Date') \
-            + ': %s' % maturity_date
-        st_line_comm += INDENT + _('Basic Amount') \
-            + ': %.2f' % basic_amount
-        st_line_comm += INDENT + _('Percentage') + ': %.4f' % percent
-        st_line_comm += INDENT + _('Term in days') + ': %s' % term
-        st_line_comm += INDENT + (
-            minimum and _('Minimum applicable') or
-            _('Minimum not applicable'))
-        st_line_comm += INDENT + _(
-            'Guarantee Number') + ': %s' % guarantee_number
+        label = minimum and _('Minimum applicable') \
+            or _('Minimum not applicable')
+        comm_fields += [
+            {'name': 'minimum_applicable', 'label': label, 'value': comm[43]},
+            {'name': 'guarantee_number', 'label': _('Guarantee Number'),
+             'value': comm[44:57].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_124(self, coda_statement, transaction):
+        st_line_name = _('Settlement credit cards')
         comm = transaction['communication']
         card_issuers = {
             '1': 'Mastercard',
@@ -2729,21 +2838,21 @@ class AccountCodaImport(models.TransientModel):
             '3': 'American Express',
             '4': 'Diners Club',
             '9': _('Other')}
-        st_line_name = _('Settlement credit cards')
-        card_number = comm[0:20].strip()
-        card_issuer = card_issuers.get(comm[20], '')
-        invoice_number = comm[21:33].strip()
-        identification_number = comm[33:48].strip()
-        date = comm[48:54].strip() and str2date(comm[48:54]) or ''
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Card Number') + ': %s' % card_number
-        st_line_comm += INDENT + _('Issuing Institution') \
-            + ': %s' % card_issuer
-        st_line_comm += INDENT + _('Invoice Number') \
-            + ': %s' % invoice_number
-        st_line_comm += INDENT + _('Identification Number') \
-            + ': %s' % identification_number
-        st_line_comm += INDENT + _('Date') + ': %s' % date
+        comm_fields = [
+            {'name': 'card_number', 'label': _('Card Number'),
+             'value': comm[0:20].strip()},
+            {'name': 'card_issuer', 'label': _('Issuing Institution'),
+             'value': card_issuers.get(comm[20], '')},
+            {'name': 'invoice_number', 'label': _('Invoice Number'),
+             'value': comm[21:33].strip()},
+            {'name': 'identification_number',
+             'label': _('Identification Number'),
+             'value': comm[33:48].strip()},
+            {'name': 'date', 'label': _('Date'),
+             'value': comm[48:54].strip() and str2date(comm[48:54]) or ''},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_125(self, coda_statement, transaction):
@@ -2752,34 +2861,42 @@ class AccountCodaImport(models.TransientModel):
         if transaction['trans_family'] not in ST_LINE_NAME_FAMILIES:
             st_line_name = _('Credit')
         credit_account = comm[0:27].strip()
+        credit_account_formatted = credit_account
         if check_bban('BE', credit_account):
-            credit_account = '-'.join(
+            credit_account_formatted = '-'.join(
                 [credit_account[:3],
                  credit_account[3:10],
                  credit_account[10:]])
-        old_balance = list2float(comm[27:42])
-        new_balance = list2float(comm[42:57])
-        amount = list2float(comm[57:72])
-        currency = comm[72:75]
-        start_date = str2date(comm[75:81])
-        end_date = str2date(comm[81:87])
-        rate = number2float(comm[87:99], 8)
-        trans_reference = comm[99:112].strip()
-        st_line_comm = '\n' + INDENT + st_line_name + INDENT \
-            + _('Credit Account Number') + ': %s' % credit_account
-        st_line_comm += INDENT + _('Old Balance') + ': %.2f' % old_balance
-        st_line_comm += INDENT + _('New Balance') + ': %.2f' % new_balance
-        st_line_comm += INDENT + _('Amount') + ': %.2f' % amount
-        st_line_comm += INDENT + _('Currency') + ': %s' % currency
-        st_line_comm += INDENT + _('Starting Date') + ': %s' % start_date
-        st_line_comm += INDENT + _('End Date') + ': %s' % end_date
-        st_line_comm += INDENT + _(
-            'Nominal Interest Rate or Rate of Charge') + ': %.4f' % rate
-        st_line_comm += INDENT + _(
-            'Transaction Reference') + ': %s' % trans_reference
+        comm_fields = [
+            {'name': 'credit_account', 'add_to_note': False,
+             'value': credit_account},
+            {'name': 'credit_account_formatted',
+             'label': _('Credit Account Number'),
+             'value': credit_account_formatted},
+            {'name': 'old_balance', 'label': _('Old Balance'),
+             'value': list2float(comm[27:42]), 'format': '{:0.2f}'},
+            {'name': 'new_balance', 'label': _('New Balance'),
+             'value': list2float(comm[42:57]), 'format': '{:0.2f}'},
+            {'name': 'amount', 'label': _('Amount'),
+             'value': list2float(comm[57:72]), 'format': '{:0.2f}'},
+            {'name': 'currency', 'label': _('Currency'),
+             'value': comm[72:75]},
+            {'name': 'start_date', 'label': _('Starting Date'),
+             'value': comm[75:81]},
+            {'name': 'end_date', 'label': _('End Date'),
+             'value': comm[81:87]},
+            {'name': 'rate',
+             'label': _('Nominal Interest Rate or Rate of Charge'),
+             'value': number2float(comm[87:99], 8), 'format': '{:0.4f}'},
+            {'name': 'trans_reference', 'label': _('Transaction Reference'),
+             'value': comm[99:112].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
         return st_line_name, st_line_comm
 
     def _parse_comm_move_127(self, coda_statement, transaction):
+        st_line_name = _('European direct debit (SEPA)')
         comm = transaction['communication']
         direct_debit_types = {
             '0': _('unspecified'),
@@ -2804,52 +2921,50 @@ class AccountCodaImport(models.TransientModel):
             '3': _('refund'),
             '4': _('reversal'),
             '5': _('cancellation')}
-        st_line_name = _('European direct debit (SEPA)')
-        settlement_date = str2date(comm[0:6])
-        direct_debit_type = direct_debit_types.get(comm[6])
-        direct_debit_scheme = direct_debit_schemes.get(comm[7])
-        paid_refusal = paid_refusals.get(comm[8])
-        creditor_id = comm[9:44].strip()
-        mandate_ref = comm[44:79].strip()
-        comm_zone = comm[79:141].strip()
-        R_type = R_types.get(comm[141])
-        reason = comm[142:146].strip()
-        td = {}
+        comm_fields = [
+            {'name': 'settlement_date', 'label': _('Settlement Date'),
+             'value': str2date(comm[0:6])},
+            {'name': 'direct_debit_type', 'label': _('Direct Debit Type'),
+             'value': direct_debit_types.get(comm[6], '')},
+            {'name': 'direct_debit_scheme', 'label': _('Direct Debit Scheme'),
+             'value': direct_debit_schemes.get(comm[7], '')},
+            {'name': 'paid_refusal', 'label': _('Paid or reason for refusal'),
+             'value': paid_refusals.get(comm[8], '')},
+            {'name': 'creditor_id',
+             'label': _("Creditor's Identification Code"),
+             'value': comm[9:44].strip()},
+            {'name': 'mandate_ref', 'label': _('Mandate Reference'),
+             'value': comm[44:79].strip()},
+            {'name': 'comm_zone', 'label': _('Communication'),
+             'value': comm[79:141].strip()},
+            {'name': 'R_type', 'label': _('R transaction Type'),
+             'value': R_types.get(comm[141], '')},
+            {'name': 'reason', 'label': _('Reason'),
+             'value': comm[142:146].strip()},
+        ]
+        st_line_name, st_line_comm = self._handle_struct_comm_details(
+            st_line_name, comm_fields, coda_statement, transaction)
+        return st_line_name, st_line_comm
+
+    def _handle_struct_comm_details(
+            self, st_line_name, comm_fields, coda_statement, transaction):
+        """
+        Use this method to customise the presentation of the
+        structured communication transaction details.
+        """
+        comm_fields = [f for f in comm_fields if f.get('value')]
+        transaction['struct_comm_details'] = {
+            x['name']: x['value'] for x in comm_fields}
         st_line_comm = '\n' + INDENT + st_line_name
-        if settlement_date:
-            td['settlement_date'] = settlement_date
-            st_line_comm += INDENT + _('Settlement Date') \
-                + ': %s' % settlement_date
-        if direct_debit_type:
-            td['direct_debit_type'] = direct_debit_type
-            st_line_comm += INDENT + _('Direct Debit Type') \
-                + ': %s' % direct_debit_type
-        if direct_debit_scheme:
-            td['direct_debit_scheme'] = direct_debit_scheme
-            st_line_comm += INDENT + _('Direct Debit Scheme') \
-                + ': %s' % direct_debit_scheme
-        if paid_refusal:
-            td['paid_refusal'] = paid_refusal
-            st_line_comm += INDENT + _('Paid or reason for refusal') \
-                + ': %s' % paid_refusal
-        if creditor_id:
-            td['creditor_id'] = creditor_id
-            st_line_comm += INDENT + _('Creditor\'s Identification Code') \
-                + ': %s' % creditor_id
-        if mandate_ref:
-            td['mandate_ref'] = mandate_ref
-            st_line_comm += INDENT + _('Mandate Reference') \
-                + ': %s' % mandate_ref
-        if comm_zone:
-            td['comm_zone'] = comm_zone
-            st_line_comm += INDENT + _('Communication') + ': %s' % comm_zone
-        if R_type:
-            td['R_type'] = R_type
-            st_line_comm += INDENT + _('R transaction Type') + ': %s' % R_type
-        if reason:
-            td['reason'] = reason
-            st_line_comm += INDENT + _('Reason') + ': %s' % reason
-        transaction['struct_comm_127'] = td
+        for comm_field in comm_fields:
+            if not comm_field.get('add_to_note', True):
+                continue
+            st_line_comm += INDENT
+            label = comm_field.get('label', '')
+            if label:
+                st_line_comm += label + ': '
+            fmt = comm_field.get('format') or '{}'
+            st_line_comm += fmt.format(comm_field.get('value'))
         return st_line_name, st_line_comm
 
     def _parse_comm_info(self, coda_statement, transaction):

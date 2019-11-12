@@ -86,11 +86,14 @@ def str2date(date_str):
     try:
         return time.strftime('%Y-%m-%d', time.strptime(date_str, '%d%m%y'))
     except Exception:
-        return False
+        return ''
 
 
 def str2time(time_str):
-    return time_str[:2] + ':' + time_str[2:]
+    try:
+        return time_str[:2] + ':' + time_str[2:]
+    except Exception:
+        return ''
 
 
 def str2float(str):
@@ -101,10 +104,10 @@ def str2float(str):
 
 
 def list2float(lst):
-            try:
-                return str2float((lambda s: s[:-3] + '.' + s[-3:])(lst))
-            except Exception:
-                return 0.0
+    try:
+        return str2float((lambda s: s[:-3] + '.' + s[-3:])(lst))
+    except Exception:
+        return 0.0
 
 
 def number2float(s, d):

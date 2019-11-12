@@ -1,18 +1,20 @@
-# French translation of Odoo 11.0.
+# French translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_be_coda_advanced
+#    * l10n_be_coda_advanced
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo 11.0\n"
 "Report-Msgid-Bugs-To: support@noviat.com\n"
-"POT-Creation-Date: 2019-03-18 18:23:35.926000\n"
-"PO-Revision-Date: 2019-03-18 18:23:35.926000\n"
+"POT-Creation-Date: 2019-09-08 10:51:08.136000\n"
+"PO-Revision-Date: 2019-09-08 10:51:08.136000\n"
 "Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
+"Language: French\n
+""Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_be_coda_advanced
 #: view:account.bank.statement:0
@@ -315,6 +317,16 @@ msgid "CODA (Zip) File "
 msgstr "Fichier CODA (Zip)"
 
 #. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_import_coda_fname
+msgid "CODA Filename"
+msgstr "Nom du fichier CODA"
+
+#. module: l10n_be_coda_advanced
+#: model:ir.model.fields,field_description:l10n_be_coda_advanced.field_account_coda_import_coda_fname_dummy
+msgid "CODA Filename"
+msgstr "Nom du fichier CODA"
+
+#. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:10
 msgid "Bank Statements"
 msgstr "Relevés"
@@ -325,142 +337,152 @@ msgid "CODA Bank Statements"
 msgstr "Relevés de compte CODA"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:12
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:13
 msgid "Extra information"
 msgstr "Information additionelle"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:13
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:15
 msgid "The CODA File has been processed by"
 msgstr "Le fichier CODA est traité par"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:16
 msgid "Number of statements processed"
 msgstr "Nombre de relevés traités"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:14
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:17
 msgid "Number of errors"
 msgstr "Nombre d'erreurs"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:15
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:18
 msgid "\n\nBank Journal: %s\nCODA Version: %s\nCODA Sequence Number: %s\nPaper Statement Sequence Number: %s\nBank Account: %s\nAccount Holder Name: %s\nDate: %s, Starting Balance:  %.2f, Ending Balance: %.2f%s"
 msgstr "\n\nJournal financier: %s\nVersion CODA: %s\nNuméro de séquence du CODA: %s\nNuméro de séquence de l'extrait de compte papier: %s\nCompte bancaire: %s\nNom du titulaire du compte: %s\nDate: %s, Ancien solde:  %.2f, Nouveau solde: %.2f%s"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:16
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:19
 msgid "Transaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nCommunication: %s"
 msgstr "Type de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nCommunication: %s"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:17
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:20
 msgid "Partner Name: %s \nPartner Account Number: %s\nTransaction Type: %s - %s\nTransaction Family: %s - %s\nTransaction Code: %s - %s\nTransaction Category: %s - %s\nStructured Communication Type: %s - %s\nPayment Reference: %s\nCommunication: %s"
 msgstr "Nom du partennaire: %s \nNuméro de compte en banque du partennaire: %s\nType de l'opération: %s - %s\nFamille de l'opération: %s - %s\nCode de l'opération: %s - %s\nRubrique de l'opération: %s - %s\nType de communication structurée: %s - %s\nRéférence paiement: %s\nCommunication: %s"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:18
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:21
 msgid "Free Communication:\n %s"
 msgstr "Message Libre:\n %s"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:20
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:23
 msgid "Payment with ISO 11649 structured format communication"
 msgstr "Paiement avec ISO 11649 communication structurée"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:21
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:24
 msgid "Payment with a structured format communication applying the ISO standard 11649"
 msgstr "Communication structurée d’un paiement conforme au standard ISO 11649"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:23
-msgid "Number (e.g. of the cheque, of the card, etc.)"
-msgstr "numéro (par ex. du chèque, de la carte, etc.)"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:26
-msgid "Gross amount in the currency of the account"
-msgstr "Montant brut dans la devise du compte"
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:25
+msgid "ISO 11649 Communication"
+msgstr "ISO 11649 Communication"
 
 #. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:27
-msgid "Gross amount in the original currency"
-msgstr "Montant brut dans la devise initiale"
+msgid "Credit transfer or cash payment with structured format communication"
+msgstr "Virement ou versement à communication structurée"
 
 #. module: l10n_be_coda_advanced
 #: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:28
-msgid "Rate"
-msgstr "Cours de change"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:29
-msgid "Currency"
-msgstr "Devise"
-
-#. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:30
 msgid "Structured format communication"
 msgstr "Communication structurée"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:31
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:30
+msgid "Number (e.g. of the cheque, of the card, etc.)"
+msgstr "numéro (par ex. du chèque, de la carte, etc.)"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:32
+msgid "Gross amount in the currency of the account"
+msgstr "Montant brut dans la devise du compte"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:33
+msgid "Gross amount in the original currency"
+msgstr "Montant brut dans la devise initiale"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:34
+msgid "Rate"
+msgstr "Cours de change"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:35
+msgid "Currency"
+msgstr "Devise"
+
+#. module: l10n_be_coda_advanced
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:36
 msgid "Country code of the principal"
 msgstr "Code-pays du donneur d'ordre"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:32
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:37
 msgid "Equivalent in EUR"
 msgstr "Contre-valeur en EUR"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:34
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:39
 msgid "VAT, withholding tax on income, commission, etc."
 msgstr "TVA, précompte mobilier, commission, etc."
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:35
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:40
 msgid "Equivalent in the currency of the account"
 msgstr "Contre-valeur dans la devise du compte"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:36
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:41
 msgid "Amount on which % is calculated"
 msgstr "Montant sur lequel le % est appliqué"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:37
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:42
 msgid "Percent"
 msgstr "Taux"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:38
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:43
 msgid "Minimum applicable"
 msgstr "Minimum applicable"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:39
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:44
 msgid "Minimum not applicable"
 msgstr "Minimum non applicable"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:41
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:46
 msgid "Direct debit – DOM’80"
 msgstr "Domiciliations – DOM'80"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:42
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:47
 msgid "Direct Debit Number"
 msgstr "Numéro domiciliation"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:43
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:48
 msgid "Central (Pivot) Date"
 msgstr "Date pivot"
 
 #. module: l10n_be_coda_advanced
-#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:44
+#: code:addons/l10n_be_coda_advanced/wizard/coda_import.py:49
 msgid "Communication Zone"
 msgstr "Zone de communication"
 
