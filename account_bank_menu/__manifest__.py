@@ -3,7 +3,7 @@
 
 {
     'name': 'Account Bank Menu',
-    'summary': "Adds *Bank and Cash* to the *Accounting' menu",
+    'summary': "Adds 'Bank and Cash' to the 'Accounting' menu",
     'version': '11.0.1.0.0',
     'category': 'Accounting & Finance',
     'website': 'https://github.com/OCA/account-financial-tools',
