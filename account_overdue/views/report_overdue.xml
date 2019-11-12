@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="report_overdue_document">
+    <t t-call="account_overdue.report_overdue_layout">
+      <div class="page">
+
+        <div class="act_as_row_no_border">
+          <div class="window_envelope_address_company">
+            <span t-raw="get_company_data()"/>
+          </div>
+          <div class="window_envelope_address_invoice">
+            <div class="window_envelope_address_company">
+              <span t-raw="get_partner_data(p)"/>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <p>
+          <span t-raw="message(p)"/>
+        </p>
+
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Inv. no</th>
+              <th>Mat. Date</th>
+              <th class="text-right">Amount</th>
+              <th class="text-right">Paid</th>
+              <th class="text-right">Open</th>
+              <th class="text-center">Days</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr t-foreach="getLines(p)['lines']" t-as="l">
+              <t t-set="aml" t-value="l['entry']"/>
+              <td>
+                <span t-field="aml.date"/>
+              </td>
+              <td>
+                <span t-esc="l['invoice_number']"/>
+              </td>
+              <td>
+                <span t-if="aml.date_maturity">
+                  <span t-field="aml.date_maturity"/>
+                </span>
+                <span t-if="not aml.date_maturity">
+                  <span>'-'</span>
+                </span>
+              </td>
+              <td class="text-right">
+                <span t-esc="l['amount']"
+                      t-options='{"widget": "monetary", "display_currency": l[&apos;currency&apos;]}'/>
+              </td>
+              <td class="text-right">
+                <span t-esc="l['amount_paid']"
+                      t-options='{"widget": "monetary", "display_currency": l[&apos;currency&apos;]}'/>
+              </td>
+              <td class="text-right">
+                <span t-esc="l['amount_residual']"
+                      t-options='{"widget": "monetary", "display_currency": l[&apos;currency&apos;]}'/>
+              </td>
+              <td class="text-center">
+                <span t-esc="l['od_days']"/>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr t-foreach="getLines(p)['totals']" t-as="t">
+              <td>&amp;nbsp;</td>
+              <td>&amp;nbsp;</td>
+              <span t-if="len(getLines(p)['totals']) == 1">
+                <td style="border-top:1px solid">
+                  <strong>Total</strong>
+                </td>
+              </span>
+              <span t-if="not len(getLines(p)['totals'])==1">
+                <td class="text-right" style="border-top:1px solid">
+                  <strong>
+                    <span>Total</span>
+                    <span t-esc="t['currency'].symbol"/>
+                  </strong>
+                </td>
+              </span>
+              <td class="text-right" style="border-top:1px solid">
+                <strong>
+                  <span t-esc="t['total_amount']"
+                        t-options='{"widget": "monetary", "display_currency": t[&apos;currency&apos;]}'/>
+                </strong>
+              </td>
+              <td class="text-right" style="border-top:1px solid">
+                <strong>
+                  <span t-esc="t['total_paid']"
+                        t-options='{"widget": "monetary", "display_currency": t[&apos;currency&apos;]}'/>
+                </strong>
+              </td>
+              <td class="text-right" style="border-top:1px solid">
+                <strong>
+                  <span t-esc="t['total_residual']"
+                        t-options='{"widget": "monetary", "display_currency": t[&apos;currency&apos;]}'/>
+                </strong>
+              </td>
+              <td>&amp;nbsp;</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <p>
+          <strong>Total amount overdue</strong>
+          <strong>
+            <span>:&amp;nbsp;</span>
+            <span t-set="total_cnt" t-value="0"/>
+            <span t-foreach="getLines(p)['totals']" t-as="t">
+              <span t-if="t['total_overdue']">
+                <span t-if="total_cnt > 0" t-esc="' + '"/>
+                <span t-esc="t['total_overdue']"
+                      t-options='{"widget": "monetary", "display_currency": t[&apos;currency&apos;]}'/>
+                <span t-set="total_cnt" t-value="total_cnt + 1"/>
+              </span>
+            </span>
+          </strong>
+        </p>
+
+        <p style="page-break-after:always"></p>
+
+      </div>
+    </t>
+  </template>
+
+  <template id="report_overdue">
+    <t t-call="web.html_container">
+      <t t-foreach="partners" t-as="p">
+        <t t-call="account_overdue.report_overdue_document" t-lang="p.lang"/>
+      </t>
+    </t>
+  </template>
+
+</odoo>

@@ -1,0 +1,130 @@
+# French translation of Odoo Server
+# This file contains the translation of the following modules:
+#    * account_overdue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 10.0\n"
+"Report-Msgid-Bugs-To: support@noviat.com\n"
+"POT-Creation-Date: 2015-03-29 23:47:54.874000\n"
+"PO-Revision-Date: 2018-05-06 21:00:00.874000\n"
+"Last-Translator: Luc De Meyer (Noviat nv/sa)\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_overdue
+#: model:ir.actions.act_window,name:account_overdue.overdue_payment_wizard_action
+#: model:ir.model,name:account_overdue.model_overdue_payment_wizard
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view_form
+msgid "Print Overdue Payments"
+msgstr "Règlements en retard"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view_form
+msgid "Print Overdue Payments Selection Criteria :"
+msgstr "Règlements en retard,  critères de recherche : "
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_overdue
+#: view:overdue.payment.wizard:account_overdue.overdue_payment_wizard_view_form
+msgid "Print"
+msgstr "Imprimer"
+
+#. module: account_overdue
+#: model:ir.model.fields,field_description:account_overdue.field_overdue_payment_wizard_partner_select
+msgid "Selected Customers"
+msgstr "Clients sélectionnés"
+
+#. module: account_overdue
+#: model:ir.model.fields,field_description:account_overdue.field_overdue_payment_wizard_account_select
+msgid "Selected Accounts"
+msgstr "Comptes sélectionnés"
+
+#. module: account_overdue
+#: model:ir.model.fields,field_description:account_overdue.field_overdue_payment_wizard_company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,partner_select:0
+msgid "All Customers"
+msgstr "Tous les clients"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,partner_select:0
+msgid "Selected Customers"
+msgstr "Clients sélectionnés"
+
+#. module: account_overdue
+#: field:overdue.payment.wizard,account_select:0
+msgid "Selected Accounts"
+msgstr "Comptes sélectionnés"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,account_select:0
+msgid "Receivable Accounts"
+msgstr "Comptes à recevoir"
+
+#. module: account_overdue
+#: selection:overdue.payment.wizard,account_select:0
+msgid "Receivable and Payable Accounts"
+msgstr "Comptes à recevoir et à payer"
+
+#. module: account_overdue
+#: code:addons/account_overdue/report/print_overdue_payment.py:1
+#, python-format
+msgid "Attn."
+msgstr "Attn."
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Inv. no"
+msgstr "Fact. no"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Mat. Date"
+msgstr "Echéance"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Date"
+msgstr "Date"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Amount"
+msgstr "Montant"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Paid"
+msgstr "Payé"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Open"
+msgstr "Ouvert"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "Days"
+msgstr "Jours"
+
+#. module: account_overdue
+#: model:ir.ui.view,arch_db:account_overdue.report_overdue_document
+msgid "<strong>Total amount overdue</strong>"
+msgstr "<strong>Montant total échu</strong>"
