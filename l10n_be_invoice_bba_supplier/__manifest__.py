@@ -3,7 +3,7 @@
 
 {
     'name': 'Supplier payment with Belgian structured communication',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.2.0',
     'category': 'Accounting & Finance',
     'website': 'https://www.noviat.com',
     'author': 'Noviat',
@@ -12,6 +12,7 @@
         'views/account_invoice.xml',
     ],
     'depends': [
+        'account_supplier_invoice_number',
         'l10n_be_invoice_bba',
     ],
     'installable': True,

@@ -6,13 +6,14 @@
     <field name="model">account.invoice</field>
     <field name="inherit_id" ref="account.invoice_supplier_form"/>
     <field name="arch" type="xml">
-      <data>
-        <field name="currency_id" position="after">
-          <field name="supplier_payment_ref_type"/>
-          <field name="supplier_payment_ref"
-                 attrs="{'required': [('supplier_payment_ref_type', '=', 'bba')]}"/>
-        </field>
-      </data>
+      <field name="reference_type" position="attributes">
+        <attribute name="string">Communication Type</attribute>
+        <attribute name="help">Payment Communication Type</attribute>
+      </field>
+      <field name="reference" position="attributes">
+        <attribute name="string">Communication</attribute>
+        <attribute name="help">Payment Communication</attribute>
+      </field>
     </field>
   </record>
 
