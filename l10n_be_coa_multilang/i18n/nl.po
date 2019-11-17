@@ -2359,7 +2359,7 @@ msgstr "BTW aftrekbaar vak 59"
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,name:l10n_be_coa_multilang.attn_VAT-V82
 msgid "VAT base case 82"
-msgstr "BTW MvH vak 59"
+msgstr "BTW MvH vak 82"
 
 #. module: l10n_be_coa_multilang
 #: model:account.tax.template,description:l10n_be_coa_multilang.attn_VAT-OUT-21-CD2-S
