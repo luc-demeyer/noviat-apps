@@ -96,7 +96,7 @@ Installation instructions
 
     1) This module is **NOT** compatible with the **l10n_be_coda** module.
 
-    2) We recommend to run this module in combination with the following Noviat modules:
+    2) You can run this module in combination with the following Noviat modules:
 
        - l10n_be_coda_pain
        - l10n_be_coda_sale

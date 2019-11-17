@@ -24,6 +24,9 @@ class AccountCodaImport(models.TransientModel):
         return reconcile_note, res
 
     def _match_sale_order(self, st_line, cba, transaction, reconcile_note):
+        """
+        TODO: refactor code to remove cr.execute, invoice rebrowse, search
+        """
 
         match = {}
 
@@ -56,13 +59,13 @@ class AccountCodaImport(models.TransientModel):
                         inv_ids = [x[0] for x in res]
                         if len(inv_ids) == 1:
                             invoice = self.env['account.invoice'].browse(
-                                inv_ids[0])
+                                inv_ids)
                             imls = self.env['account.move.line'].search(
                                 [('move_id', '=', invoice.move_id.id),
                                  ('reconcile_id', '=', False),
                                  ('account_id', '=', invoice.account_id.id)])
                             if imls:
-                                transaction['reconcile'] = imls[0].id
+                                transaction['counterpart_amls'] = imls
 
         return reconcile_note, match
 

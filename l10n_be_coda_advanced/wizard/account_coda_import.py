@@ -848,7 +848,10 @@ class AccountCodaImport(models.TransientModel):
                 bank_st = st.create(st_vals)
         except (UserError, ValidationError) as e:
             self._nb_err += 1
-            self._err_string += _('\nError ! ') + str(e)
+            err_string = e.name
+            if e.value:
+                err_string += ', ' + e.value
+            self._err_string += _('\nApplication Error ! ') + err_string
             tb = ''.join(format_exception(*exc_info()))
             _logger.error(
                 "Application Error while processing Statement %s\n%s",
@@ -1135,9 +1138,13 @@ class AccountCodaImport(models.TransientModel):
                     + ' : {}'.format(len(bk_st_ids))
                 )
             except UserError as e:
+                err_string = e.name
+                if e.value:
+                    err_string += ', ' + e.value
                 self._ziperr_log += _(
-                    "\n\nError while processing CODA File '%s' :\n%s"
-                ) % (coda_file[2], ''.join(e.args))
+                    "\n\nApplication Error while processing CODA File"
+                    " '%s' :\n%s"
+                ) % (coda_file[2], err_string)
             except Exception:
                 tb = ''.join(format_exception(*exc_info()))
                 self._ziperr_log += _(
@@ -1339,7 +1346,11 @@ class AccountCodaImport(models.TransientModel):
                     })
                     self._coda_id = coda.id
             except (UserError, ValidationError) as e:
-                err_string = _('\nApplication Error : ') + str(e)
+                err_string = e.name
+                if e.value:
+                    err_string += ', ' + e.value
+                err_string = _(
+                    '\nApplication Error : ') + err_string
             except Exception as e:
                 err_string = _('\nSystem Error : ') + str(e)
             if err_string:
@@ -1523,9 +1534,9 @@ class AccountCodaImport(models.TransientModel):
                             exctype, value = exc_info()[:2]
                             reconcile_note += '\n\n' + _(
                                 "Error while processing statement line "
-                                "with ref '%s':\n%s, \n%s"
-                            ) % (transaction['ref'], str(exctype),
-                                 ', '.join(v for v in value if v))
+                                "with ref '%s':\n%s: %s"
+                            ) % (transaction['ref'], exctype.__name__,
+                                 str(value))
         return reconcile_note
 
     def _st_line_reconcile(self, st_line, cba, transaction, reconcile_note):
@@ -1538,7 +1549,7 @@ class AccountCodaImport(models.TransientModel):
 
         # override default account mapping by mappings
         # defined in rules engine
-        if not transaction.get('counterpart_aml_id') \
+        if not transaction.get('counterpart_amls') \
                 or transaction.get('account_id'):
             if cba.account_mapping_ids:
                 kwargs = {
@@ -1564,7 +1575,7 @@ class AccountCodaImport(models.TransientModel):
                     for k in rule:
                         transaction[k] = rule[k]
 
-        if transaction.get('counterpart_aml_id') \
+        if transaction.get('counterpart_amls') \
                 or transaction.get('account_id'):
             reconcile_note = self._create_move_and_reconcile(
                 st_line, cba, transaction, reconcile_note)
@@ -1578,11 +1589,6 @@ class AccountCodaImport(models.TransientModel):
         """
         Matching and Reconciliation logic.
         Returns: reconcile_note
-
-        TODO:
-        - refactor matching logic
-        - adapt logic to reconcile single payment matching multiple
-          journal items.
         """
         # match on payment reference
         reconcile_note, match = self._match_payment_reference(
@@ -1779,11 +1785,11 @@ class AccountCodaImport(models.TransientModel):
             invoice = self.env['account.invoice'].browse(match['invoice_id'])
             partner = invoice.partner_id.commercial_partner_id
             transaction['partner_id'] = partner.id
-            imls = invoice.move_id.filtered(
+            imls = invoice.move_id.line_ids.filtered(
                 lambda r: r.account_id == invoice.account_id
                 and not r.full_reconcile_id)
             cur = cba.currency_id
-            if cur == self.journal_id.company_id.currency_id:
+            if cur == cba.company_id.currency_id:
                 amt_fld = 'amount_residual'
             elif cur == invoice.currency_id:
                 amt_fld = 'amount_residual_currency'
@@ -1799,15 +1805,21 @@ class AccountCodaImport(models.TransientModel):
                 return reconcile_note, match
 
             matches = []
+            iml_amt_total = 0.0
             for iml in imls:
                 iml_amt = getattr(iml, amt_fld)
+                iml_amt_total += iml_amt
                 if cur.is_zero(iml_amt - transaction['amount']):
                     matches.append(iml)
             if len(matches) == 1:
                 aml = matches[0]
                 match['move_line_id'] = aml.id
-                transaction['counterpart_aml_id'] = aml.id
-            else:
+                transaction['counterpart_amls'] = [aml]
+            if not matches:
+                if cur.is_zero(iml_amt_total - transaction['amount']):
+                    match['move_line_ids'] = imls.ids
+                    transaction['counterpart_amls'] = imls
+            if not match:
                 reconcile_note += _(
                     "\n    Bank Statement '%s' line '%s':"
                     "\n        Invoice %s matching "
@@ -1864,7 +1876,7 @@ class AccountCodaImport(models.TransientModel):
             aml = matches[0]
             match['move_line_id'] = aml.id
             transaction['partner_id'] = aml.partner_id.id
-            transaction['counterpart_aml_id'] = aml.id
+            transaction['counterpart_amls'] = [aml]
 
         return reconcile_note, match
 
@@ -1951,7 +1963,7 @@ class AccountCodaImport(models.TransientModel):
             aml = matches[0]
             match['move_line_id'] = aml.id
             transaction['partner_id'] = aml.partner_id.id
-            transaction['counterpart_aml_id'] = aml.id
+            transaction['counterpart_amls'] = [aml]
 
         return reconcile_note, match
 
@@ -2127,38 +2139,39 @@ class AccountCodaImport(models.TransientModel):
 
         return new_aml_dict
 
-    def _prepare_counterpart_aml_dict(self, st_line, cba, transaction):
+    def _prepare_counterpart_aml_dicts(self, st_line, cba, transaction):
 
-        aml = self.env['account.move.line'].browse(
-            transaction['counterpart_aml_id'])
-        am_name = aml.move_id.name if aml.move_id.name != '/' else ''
-        aml_name = aml.name
-        name = ' '.join([am_name, aml_name])
-        counterpart_aml_dict = {
-            'move_line': aml,
-            'name': name,
-        }
-        # the process_reconciliation method takes assumes that the
-        # input mv_line_dict 'debit'/'credit' contains the amount
-        # in bank statement line currency and will handle the currency
-        # conversions
-        if transaction['amount'] > 0:
-            counterpart_aml_dict['debit'] = 0.0
-            counterpart_aml_dict['credit'] = transaction['amount']
-        else:
-            counterpart_aml_dict['debit'] = -transaction['amount']
-            counterpart_aml_dict['credit'] = 0.0
+        counterpart_aml_dicts = []
+        amls = transaction['counterpart_amls']
+        for aml in amls:
+            am_name = aml.move_id.name if aml.move_id.name != '/' else ''
+            aml_name = aml.name
+            name = ' '.join([am_name, aml_name])
+            counterpart_aml_dict = {
+                'move_line': aml,
+                'name': name,
+            }
+            # the process_reconciliation method takes assumes that the
+            # input mv_line_dict 'debit'/'credit' contains the amount
+            # in bank statement line currency and will handle the currency
+            # conversions
+            if transaction['amount'] > 0:
+                counterpart_aml_dict['debit'] = 0.0
+                counterpart_aml_dict['credit'] = transaction['amount']
+            else:
+                counterpart_aml_dict['debit'] = -transaction['amount']
+                counterpart_aml_dict['credit'] = 0.0
+            counterpart_aml_dicts.append(counterpart_aml_dict)
 
-        return counterpart_aml_dict
+        return counterpart_aml_dicts
 
     def _create_move_and_reconcile(self, st_line, cba, transaction,
                                    reconcile_note):
 
         counterpart_aml_dicts = payment_aml_rec = new_aml_dicts = None
-        if transaction.get('counterpart_aml_id'):
-            counterpart_aml_dict = self._prepare_counterpart_aml_dict(
+        if transaction.get('counterpart_amls'):
+            counterpart_aml_dicts = self._prepare_counterpart_aml_dicts(
                 st_line, cba, transaction)
-            counterpart_aml_dicts = [counterpart_aml_dict]
         if transaction.get('account_id'):
             new_aml_dict = self._prepare_new_aml_dict(
                 st_line, cba, transaction)
@@ -2175,10 +2188,9 @@ class AccountCodaImport(models.TransientModel):
                         payment_aml_rec=payment_aml_rec,
                         new_aml_dicts=new_aml_dicts)
             except (UserError, ValidationError) as e:
-                name, value = e[:2]
-                reconcile_note += err + _('\nApplication Error : ') + name
-                if value:
-                    reconcile_note += ', ' + value
+                reconcile_note += err + _('\nApplication Error : ') + e.name
+                if e.value:
+                    reconcile_note += ', ' + e.value
             except Exception as e:
                 reconcile_note += err + _('\nSystem Error : ') + str(e)
         return reconcile_note
