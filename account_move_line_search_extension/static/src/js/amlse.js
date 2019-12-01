@@ -27,6 +27,23 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
 
     });
 
+    var amlseListRenderer = ListRenderer.extend({
+
+        init: function (parent, state, params) {
+            /*
+            The ListRenderer requires fieldsInfo['list'] when a widget is set on a list view.
+            Cf. code block:
+            if (node.attrs.widget) {
+                description = this.state.fieldsInfo.list[name].Widget.prototype.description;
+            The OCA module 'web_tree_many2one_clickable' adds the many2one widget to list view cells resulting
+            in a js error when we do not initialise fieldsInfo['list'].
+            */
+            this._super.apply(this, arguments);
+            this.state.fieldsInfo['list'] = this.state.fieldsInfo['amlse'];
+        },
+
+    });
+
     var amlseController = ListController.extend({
 
         init: function (parent, model, renderer, params) {
@@ -154,7 +171,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
     var amlseListSearchView = ListView.extend({
 
         config: _.extend({}, BasicView.prototype.config, {
-            Renderer: ListRenderer,
+            Renderer: amlseListRenderer,
             Controller: amlseController,
         }),
         viewType: 'amlse',
@@ -166,6 +183,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
     return {
         amlseController: amlseController,
         amlseListSearchView: amlseListSearchView,
+        amlseListRenderer: amlseListRenderer,
     };
 
 });
