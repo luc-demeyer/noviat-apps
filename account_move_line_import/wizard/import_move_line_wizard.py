@@ -46,7 +46,7 @@ class AccountMoveLineImport(models.TransientModel):
 
     @api.model
     def _default_codepage(self):
-        return 'Windows-1252'
+        return 'utf-8'
 
     @api.one
     @api.depends('aml_data')
@@ -122,8 +122,6 @@ class AccountMoveLineImport(models.TransientModel):
             'date_maturity': {'method': self._handle_date_maturity},
             'due date': {'method': self._handle_date_maturity},
             'currency': {'method': self._handle_currency},
-            'tax account': {'method': self._handle_tax_code},
-            'tax_code': {'method': self._handle_tax_code},
             'analytic account': {'method': self._handle_analytic_account},
         }
         return res
@@ -375,28 +373,6 @@ class AccountMoveLineImport(models.TransientModel):
             else:
                 msg = _("Currency '%s' not found !") % name
                 self._log_line_error(line, msg)
-
-    def _handle_tax_code(self, field, line, move, aml_vals):
-        if not aml_vals.get('tax_code_id'):
-            input = line[field]
-            tc_mod = self.env['account.tax.code']
-            codes = tc_mod.search([
-                ('code', '=', input)])
-            if not codes:
-                codes = tc_mod.search(
-                    [('name', '=', input)])
-            if not codes:
-                msg = _("%s '%s' not found !") % (field, input)
-                self._log_line_error(line, msg)
-                return
-            elif len(codes) > 1:
-                msg = _("Multiple %s entries with Code "
-                        "or Name '%s' found !") % (field, input)
-                self._log_line_error(line, msg)
-                return
-            else:
-                code = codes[0]
-                aml_vals['tax_code_id'] = code.id
 
     def _handle_analytic_account(self, field, line, move, aml_vals):
         if not aml_vals.get('analytic_account_id'):

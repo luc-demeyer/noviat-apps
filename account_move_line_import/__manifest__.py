@@ -4,11 +4,10 @@
 
 {
     'name': 'Account Move Line Import',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'license': 'AGPL-3',
-    'author': 'Noviat,'
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/account-financial-tools',
+    'author': 'Noviat',
+    'website': 'http://www.noviat.com',
     'category': 'Accounting & Finance',
     'summary': 'Import Accounting Entries',
     'depends': ['account'],

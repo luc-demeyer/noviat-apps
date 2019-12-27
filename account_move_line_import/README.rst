@@ -69,10 +69,6 @@ This module has implemented specific support for the following fields:
 
   Specify currency code, e.g. 'USD', 'EUR', ... )
 
-- Tax Account (or tax_code)
-
-  Lookup logic : exact match on tax case 'code' field, if not found exact match on tax case 'name'.
-
 - Analytic Account (or analytic_account)
 
   Lookup logic : exact match on code,
@@ -94,44 +90,3 @@ Input file example
 ------------------
 
 Cf. directory 'sample_import_file' of this module.
-
-Known Issues
-============
-
-This module uses the Python *csv* module for the reading of the input csv file.
-The input csv file should take into account the limitations of the *csv* module:
-
-Unicode input is not supported. Also, there are some issues regarding ASCII NUL characters.
-Accordingly, all input should be UTF-8 or printable ASCII.
-Results are unpredictable when this is not the case.
-
-Bug Tracker
-===========
-
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/account-financial-tools/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed feedback.
-
-Credits
-=======
-
-Contributors
-------------
-
-* Luc De Meyer, Noviat <info@noviat.com>
-
-Maintainer
-----------
-
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
-
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-To contribute to this module, please visit https://odoo-community.org.
