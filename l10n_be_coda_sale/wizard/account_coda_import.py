@@ -28,7 +28,10 @@ class AccountCodaImport(models.TransientModel):
         TODO: refactor code to remove cr.execute, invoice rebrowse, search
         """
 
-        match = {}
+        match = transaction['matching_info']
+
+        if match['status'] in ['break', 'done']:
+            return reconcile_note
 
         if transaction['communication'] and cba.find_so_number \
                 and transaction['amount'] > 0:
@@ -36,10 +39,11 @@ class AccountCodaImport(models.TransientModel):
                 st_line, cba, transaction, reconcile_note)
             if so_res and len(so_res) == 1:
                 so_id = so_res[0][0]
+                match['status'] = 'done'
                 match['sale_order_id'] = so_id
                 sale_order = self.env['sale.order'].browse(so_id)
                 partner = sale_order.partner_id.commercial_partner_id
-                transaction['partner_id'] = partner.id
+                match['partner_id'] = partner.id
                 inv_ids = [x.id for x in sale_order.invoice_ids]
                 if inv_ids:
                     amount_fmt = '%.2f'
@@ -51,7 +55,8 @@ class AccountCodaImport(models.TransientModel):
                             % round(-transaction['amount'], 2)
                     self.env.cr.execute(
                         "SELECT id FROM account_invoice "
-                        "WHERE state = 'open' AND amount_total = %s "
+                        "WHERE state = 'open' "
+                        "AND round(amount_total, 2) = %s "
                         "AND id in %s",
                         (amount_rounded, tuple(inv_ids)))
                     res = self.env.cr.fetchall()
@@ -65,9 +70,20 @@ class AccountCodaImport(models.TransientModel):
                                  ('reconcile_id', '=', False),
                                  ('account_id', '=', invoice.account_id.id)])
                             if imls:
-                                transaction['counterpart_amls'] = imls
+                                cur = cba.currency_id
+                                cpy_cur = cba.company_id.currency_id
+                                # TODO: add support for more
+                                # multi-currency use cases
+                                if invoice.currency_id == cur:
+                                    if cur == cpy_cur:
+                                        amt_fld = 'amount_residual'
+                                    else:
+                                        amt_fld = 'amount_residual_currency'
+                                    match['counterpart_amls'] = [
+                                        (aml, getattr(aml, amt_fld))
+                                        for aml in imls]
 
-        return reconcile_note, match
+        return reconcile_note
 
 
 def repl_special(s):
