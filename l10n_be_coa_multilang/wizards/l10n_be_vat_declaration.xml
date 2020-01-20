@@ -42,6 +42,8 @@
         <header>
           <button name="create_xml" string="Create XML" type="object" class="oe_highlight"/>
           <button name="create_xls" string="Export" type="object" class="oe_highlight"/>
+          <button name="create_detail_xls" string="Export Transactions" type="object" class="oe_highlight"
+                  help="Export transaction details per journal."/>
           <button name="print_declaration" string="Print" type="object" class="oe_highlight"/>
         </header>
         <group name="selection_criteria" colspan="4" col="6">
