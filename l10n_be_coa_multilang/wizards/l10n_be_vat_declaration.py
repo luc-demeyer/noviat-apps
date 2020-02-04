@@ -1,4 +1,4 @@
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2020 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -107,8 +107,7 @@ class l10nBeVatDeclaration(models.TransientModel):
     def create_xml(self):
         """
         Intervat XML Periodical VAT Declaration.
-        In the current version of this module the 'Representative'
-        is equal to the 'Declarant'.
+        TODO: add support for 'Representative' (Mandataris)
         """
 
         ns_map = {
@@ -121,9 +120,9 @@ class l10nBeVatDeclaration(models.TransientModel):
             attrib={'VATDeclarationsNbr': '1'},
             nsmap=ns_map)
 
-        self._node_Representative(Doc, ns_map)
+        # self._node_Representative(Doc, ns_map)
         ref = self._get_declaration_ref()
-        self._node_RepresentativeReference(Doc, ns_map, ref)
+        # self._node_RepresentativeReference(Doc, ns_map, ref)
 
         self._node_VATDeclaration(Doc, ns_map, ref)
 
@@ -252,8 +251,6 @@ class l10nBeVatDeclaration(models.TransientModel):
             account.move.line domain if get_domain=True
             else account.move.line condition
         """
-        expense_app = hasattr(self.env['account.move.line'], 'expense_id')
-        pos_app = 'pos.order' in self.env.registry
         if case_code in self._invoice_base_cases():
             taxes = self.env['account.tax'].search(
                 [('tag_ids.code', '=', case_code)])
@@ -300,39 +297,37 @@ class l10nBeVatDeclaration(models.TransientModel):
                            self._tax_debt_in_refund_cases()):
             inv_type = 'in_refund'
         if inv_type:
-            if inv_type in ['out_refund'] and pos_app:
-                # POS orders may not have an invoice but are
-                # posted in a sale journal hence we need to filter out
-                # the credit note cases for 'no invoice' entries in sale
-                # journals.
+            if inv_type in ['out_refund']:
+                # filter out refund cases when the Journal Item
+                # has no originating invoice, e.g.
+                # POS Orders, misc. operations
                 inv_type_args = [
                     '|',
                     ('invoice_id.type', '=', inv_type),
                     '&',
                     ('invoice_id', '=', False),
-                    ('journal_id.type', '!=', 'sale')
+                    ('debit', '>', 0)
                 ]
                 inv_check = (
                     "({aml}.invoice_id.type == '%s'"
                     " or "
-                    "(not {aml}.invoice_id"
-                    " and {aml}.journal_id.type == 'sale'))"
+                    "(not {aml}.invoice_id and ({aml}.debit > 0)))"
                 ) % inv_type
-            elif inv_type in ['in_refund'] and expense_app:
-                # Expense notes do not have an invoice hence we check
-                # the expense_id field to filter out
-                # the credit note cases for expense entries
+            elif inv_type in ['in_refund']:
+                # filter out refund cases when the Journal Item
+                # has no originating invoice, e.g.
+                # bank costs, expense notes, misc. operations
                 inv_type_args = [
                     '|',
                     ('invoice_id.type', '=', inv_type),
                     '&',
                     ('invoice_id', '=', False),
-                    ('expense_id', '=', False),
+                    ('credit', '>', 0),
                 ]
                 inv_check = (
                     "({aml}.invoice_id.type == '%s'"
                     " or "
-                    "not ({aml}.invoice_id or {aml}.expense_id))"
+                    "(not {aml}.invoice_id and ({aml}.credit > 0)))"
                 ) % inv_type
             else:
                 inv_type_args = [
