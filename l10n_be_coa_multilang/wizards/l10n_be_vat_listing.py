@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2009-2018 Noviat
+# Copyright 2009-2020 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -82,9 +82,8 @@ class l10nBeVatListing(models.TransientModel):
     @api.multi
     def create_xml(self):
         """
-        Intervat XML Client Listing.
-        In the current version of this module the 'Representative'
-        is equal to the 'Declarant'.
+        Intervat XML Periodical VAT Declaration.
+        TODO: add support for 'Representative' (Mandataris)
         """
 
         ns_map = {
@@ -97,9 +96,9 @@ class l10nBeVatListing(models.TransientModel):
             attrib={'ClientListingsNbr': '1'},
             nsmap=ns_map)
 
-        self._node_Representative(Doc, ns_map)
+        # self._node_Representative(Doc, ns_map)
         ref = self._get_declaration_ref()
-        self._node_RepresentativeReference(Doc, ns_map, ref)
+        # self._node_RepresentativeReference(Doc, ns_map, ref)
 
         self._node_ClientListing(Doc, ns_map, ref)
 
