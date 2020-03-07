@@ -268,7 +268,10 @@ class l10nBeVatDeclaration(models.TransientModel):
             # window (via the 'account_invoice_tax_manual' module).
             if case_code == '59':
                 aml_dom = ['|', ('tax_ids.code', '=', 'VAT-V59')] + aml_dom
-                aml_check = "{aml}.tax_ids.code == 'VAT-V59' or " + aml_check
+                aml_check = (
+                    "len({aml}.tax_ids) == 1 "
+                    "and {aml}.tax_ids.code == 'VAT-V59' or "
+                    + aml_check)
         elif case_code in self._other_cases():
             taxes = self.env['account.tax'].search(
                 [('tag_ids.code', '=', case_code)])
@@ -675,8 +678,10 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
         j_ids = list(j_dict.keys())
         self._journal_totals = j_dict
         # search i.s.o. browse for account.journal _order
-        self._journals = self.env['account.journal'].search(
-            [('id', 'in', j_ids)])
+        # active_test = False needed to add support for the
+        # account_journal_inactive module
+        j_mod = self.env['account.journal'].with_context(active_test=False)
+        self._journals = j_mod.search([('id', 'in', j_ids)])
         slist = [self._get_centralisation_ws_params(wb, data, decl)]
         for journal in self._journals:
             slist.append(self._get_journal_ws_params(wb, data, decl, journal))
@@ -1146,7 +1151,7 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
         tax_map = decl._get_tax_map()
         cround = decl.company_id.currency_id.round
         for aml in amls:
-            tax_codes = ''
+            tax_codes = []
             tax_amount = None
             aml_taxes = aml.tax_ids | aml.tax_line_id
             for tax in aml_taxes:
@@ -1155,25 +1160,24 @@ class l10nBeVatDetailXlsx(models.AbstractModel):
                 for entry in tax_map[tax.id]:
                     aml_check = eval(entry[0].format(aml='aml'))
                     if aml_check:
-                        tc = entry[1]
+                        tc = tc_str = entry[1]
                         tax_amount = cround(
                             entry[2] * (aml.debit or 0.0) -
                             entry[3] * (aml.credit or 0.0))
-                        if tc not in tax_totals:
-                            tax_totals[tc] = tax_amount
-                        else:
-                            tax_totals[tc] += tax_amount
-                        if tax_codes:
-                            tax_codes += ', '
-                        tax_codes += tc
                         if tax_amount < 0:
-                            tax_codes += '(-1)'
+                            tc_str += '(-1)'
+                        if tc_str not in tax_codes:
+                            tax_codes.append(tc_str)
+                            if tc not in tax_totals:
+                                tax_totals[tc] = tax_amount
+                            else:
+                                tax_totals[tc] += tax_amount
 
             row_pos = self._write_line(
                 ws, row_pos, ws_params, col_specs_section='lines',
                 render_space={
                     'l': aml,
-                    'tax_code': tax_codes,
+                    'tax_code': ', '.join(tax_codes),
                     'tax_amount': tax_amount and abs(tax_amount),
                 },
                 default_format=self.format_tcell_left)
