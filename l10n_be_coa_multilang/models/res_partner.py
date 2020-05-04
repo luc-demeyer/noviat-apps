@@ -25,7 +25,7 @@ class ResPartner(models.Model):
     @api.model
     def _default_vat_subjected(self):
         if self.company_type == 'company':
-            self.vat_subjected == self.vat and True or False
+            return self.vat and True or False
 
     @api.onchange('vat')
     def _onchange_vat(self):
