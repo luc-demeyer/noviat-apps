@@ -1,5 +1,5 @@
 /*
-# Copyright 2009-2019 Noviat.
+# Copyright 2009-2020 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 */
 
@@ -152,7 +152,7 @@ odoo.define('account_move_line_search_extension.amlse', function (require) {
 
         aml_search_domain: function () {
             var domain = [];
-            if (this.current_account) domain.push(['account_id.code', 'ilike', this.current_account]);
+            if (this.current_account) domain.push(['account_id.code', '=ilike', this.current_account.concat('%')]);
             if (this.current_analytic_account) domain.push(['analytic_account_search', 'in', this.current_analytic_account]);
             if (this.current_partner) domain.push(['partner_id.name', 'ilike', this.current_partner]);
             if (this.current_journal) domain.push(['journal_id', '=', this.current_journal]);
