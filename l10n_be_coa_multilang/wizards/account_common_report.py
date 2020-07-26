@@ -1,17 +1,29 @@
-# Copyright 2009-2018 Noviat.
+# Copyright 2009-2020 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class AccountCommonReport(models.TransientModel):
     _inherit = 'account.common.report'
 
+    journal_ids = fields.Many2many(
+        default=lambda self: self._default_journal_ids())
+
+    @api.model
+    def _default_journal_ids(self):
+        """
+        include data from inactive journals by default
+        """
+        res = self.env['account.journal'].with_context(
+            active_test=False).search([])
+        return res
+
     def _build_contexts(self, data):
         """
         No date_from for balance sheet if we select a fiscal year.
         """
-        result = super(AccountCommonReport, self)._build_contexts(data)
+        result = super()._build_contexts(data)
         if self.date_range_id.type_id.fiscal_year:
             module = __name__.split('addons.')[1].split('.')[0]
             be_bs = self.env.ref(
@@ -22,7 +34,10 @@ class AccountCommonReport(models.TransientModel):
 
     @api.multi
     def check_report(self):
-        res = super(AccountCommonReport, self).check_report()
+        # include data from inactive journals
+        ctx = dict(self.env.context, active_test=False)
+        res = super(
+            AccountCommonReport, self.with_context(ctx)).check_report()
         if self.date_range_id.type_id.fiscal_year:
             module = __name__.split('addons.')[1].split('.')[0]
             be_bs = self.env.ref(
