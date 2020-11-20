@@ -14,10 +14,12 @@
           <field name="coda_fname_dummy"/>
           <field name="accounting_date"/>
           <field name="reconcile"/>
+          <field name="reconcile_matching_details"
+                 attrs="{'invisible': [('reconcile', '=', False)]}"/>
           <field name="skip_undefined"/>
         </group>
         <footer>
-          <button name="coda_parsing" string="Import" type="object" class="oe_highlight"/>
+          <button name="coda_import" string="Import" type="object" class="oe_highlight"/>
           or
           <button string="Cancel" class="oe_link" special="cancel"/>
         </footer>
@@ -36,7 +38,7 @@
           <field name="skip_undefined"/>
         </group>
         <footer>
-          <button name="coda_parsing" string="Process" type="object" class="oe_highlight"/>
+          <button name="coda_import" string="Process" type="object" class="oe_highlight"/>
           or
           <button string="Cancel" class="oe_link" special="cancel"/>
         </footer>
@@ -56,7 +58,7 @@
           <button name="action_open_bank_statements"
                   string="View Bank Statement(s)"
                   type="object" class="oe_highlight"
-                  invisible="not context.get('bk_st_ids')"/>
+                  invisible="not context.get('coda_ids')"/>
           <button name="action_open_coda_files"
                   string="View CODA Files(s)"
                   type="object"

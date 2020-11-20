@@ -1,4 +1,4 @@
-# Copyright 2009-2019 Noviat.
+# Copyright 2009-2020 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import time
@@ -40,9 +40,12 @@ class AccountBankStatement(models.Model):
             'date_done': time.strftime("%Y-%m-%d %H:%M:%S")})
         return True
 
-    def _automatic_reconcile(self, reconcile_note):
+    def _automatic_reconcile(self, reconcile_note='', st_lines=None):
+        self.ensure_one()
         if self.coda_bank_account_id:
             wiz = self.env['account.coda.import']
             reconcile_note = wiz._automatic_reconcile(
-                self, reconcile_note)
-        return super()._automatic_reconcile(reconcile_note)
+                self, reconcile_note=reconcile_note, st_lines=st_lines)
+            return reconcile_note
+        return super()._automatic_reconcile(
+            reconcile_note=reconcile_note, st_lines=st_lines)

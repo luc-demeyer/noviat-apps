@@ -45,7 +45,24 @@
         <div class="oe_button_box" name="button_box">
           <button class="oe_stat_button" name="button_view_moves"
                   string="Journal Entries" type="object"
-                  attrs="{'invisible': [('journal_entry_ids', '=', [])]}" icon="fa-bars"/>
+                  attrs="{'invisible': [('journal_entry_ids', '=', [])]}"
+                  icon="fa-bars"/>
+          <button class="oe_stat_button" name="manual_reconcile"
+                  attrs="{'invisible': ['|', '|', ('journal_entry_ids', '!=', []), ('state', '=', 'confirm'), ('amount', '=', 0)]}"
+                  string="Manual Reconcile" type="object"
+                  icon="fa-share-square-o"/>
+          <!--
+            placeholder for modules that implement automatic reconciliation, e.g.
+            - l10n_be_coda_advanced
+          -->
+          <button class="oe_stat_button" name="automatic_reconcile"
+                  attrs="{'invisible': 1}"
+                  string="Automatic Reconcile" type="object"
+                  icon="fa-gears"/>
+          <button class="oe_stat_button" name="button_cancel_reconciliation"
+                  attrs="{'invisible': ['|', ('journal_entry_ids', '=', []), ('state', '=', 'confirm')]}"
+                  string="Revert reconciliation" type="object"
+                  icon="fa fa-undo text-warning"/>
         </div>
       </group>
       <group col="4" position="attributes">
@@ -102,6 +119,9 @@
                 domain="[('amount', '&lt;', 0)]"
                 help="Amount &lt; 0"/>
         <separator/>
+        <filter name="no_moves" string="No Moves"
+                domain="[('moves_state', '=', False), ('amount', '!=', 0)]"
+                help="Statement Lines without Journal Entreis"/>
         <filter name="draft" string="Draft"
                 domain="[('state', '=', 'draft')]"
                 help="Draft Statement Lines"/>

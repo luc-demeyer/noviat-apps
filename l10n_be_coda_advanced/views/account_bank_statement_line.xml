@@ -13,4 +13,15 @@
     </field>
   </record>
 
+  <record id="view_bank_statement_line_form" model="ir.ui.view">
+    <field name="name">bank.statement.line.form</field>
+    <field name="model">account.bank.statement.line</field>
+    <field name="inherit_id" ref="account_bank_statement_advanced.view_bank_statement_line_form"/>
+    <field name="arch" type="xml">
+      <button name="automatic_reconcile" position="attributes">
+        <attribute name="attrs">{'invisible': ['|', '|', ('journal_entry_ids', '!=', []), ('state', '=', 'confirm'), ('amount', '=', 0)]}</attribute>
+      </button>
+    </field>
+  </record>
+
 </odoo>

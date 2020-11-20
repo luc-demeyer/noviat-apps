@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+
+  <record id="coda_bank_account_view_form" model="ir.ui.view">
+    <field name="name">coda.bank.account.form</field>
+    <field name="model">coda.bank.account</field>
+    <field name="inherit_id" ref="l10n_be_coda_advanced.coda_bank_account_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='account_mapping_ids']/tree//field[@name='split']" position="attributes">
+        <attribute name="invisible"/>
+      </xpath>
+      <xpath expr="//field[@name='account_mapping_ids']/form//field[@name='split']" position="attributes">
+        <attribute name="invisible"/>
+      </xpath>
+      <xpath expr="//field[@name='account_mapping_ids']/form//field[@name='split']" position="after">
+        <newline/>
+        <field name="transaction_amount_pos"
+               attrs="{'invisible': [('split', '=', False)], 'required': [('split', '=', True)]}"/>
+        <field name="transaction_cost_pos"
+               attrs="{'invisible': [('split', '=', False)], 'required': [('split', '=', True)]}"/>
+        <newline/>
+        <field name="cost_trans_code_id" domain="[('parent_id', '=', trans_family_id)]"/>
+        <field name="cost_trans_category_id"/>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

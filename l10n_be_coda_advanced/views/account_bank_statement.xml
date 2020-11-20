@@ -8,8 +8,10 @@
     <field name="arch" type="xml">
       <button name="automatic_reconcile" position="attributes">
         <attribute name="attrs">{'invisible': ['|', ('all_lines_reconciled', '=', True), ('line_ids', '=', [])]}</attribute>
-        <attribute name="invisible" eval="False"/>
       </button>
+      <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']//button[@name='automatic_reconcile']" position="attributes">
+        <attribute name="attrs">{'invisible': ['|', '|', ('journal_entry_ids', '!=', []), ('state', '=', 'confirm'), ('amount', '=', 0)]}</attribute>
+      </xpath>
       <page name="statement_line_ids" position="after">
         <page string="CODA Notes" name="coda_note">
           <field name="coda_note"/>

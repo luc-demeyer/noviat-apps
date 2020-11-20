@@ -76,28 +76,37 @@
                 <field name="trans_family_id"/>
                 <field name="trans_code_id"/>
                 <field name="trans_category_id"/>
-                <field name="partner_id"/>
                 <field name="struct_comm_type_id"/>
-                <field name="account_id"/>
+                <field name="split" invisible="1"/>
+                <field name="account_id" attrs="{'invisible': [('split', '=', True)]}"/>
               </tree>
               <form string="Account Mapping Rules">
-                <group col="4">
+                <group name="main" col="4">
                   <field name="name"/>
                   <field name="sequence"/>
                   <field name="active"/>
+                </group>
+                <group name="condition" col="4">
                   <separator string="Conditions" colspan="4"/>
+                  <field name="partner_name"/>
+                  <field name="counterparty_number"/>
+                  <field name="partner_id"
+                         domain="['|', ('parent_id', '=', False), ('is_company' ,'=', True)]"
+                         attrs="{'invisible': [('split', '=', True)]}"/>
+                  <newline/>
                   <field name="trans_type_id" context="{'mapping_rule':1}"/>
                   <field name="trans_family_id"/>
                   <field name="trans_code_id" domain="[('parent_id', '=', trans_family_id)]"/>
                   <field name="trans_category_id"/>
-                  <field name="partner_id"
-                         domain="['|', ('parent_id', '=', False), ('is_company' ,'=', True)]"/>
                   <field name="freecomm"/>
                   <field name="struct_comm_type_id"/>
                   <field name="structcomm"/>
                   <field name="payment_reference"/>
+                  <field name="split" invisible="1"/>
+                </group>
+                <group name="result" col="4" attrs="{'invisible': [('split', '=', True)]}">
                   <separator string="Result" colspan="4"/>
-                  <field name="account_id"/>
+                  <field name="account_id" attrs="{'required': [('split', '=', False)]}"/>
                   <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                   <newline/>
                   <field name="account_tax_id"/>
