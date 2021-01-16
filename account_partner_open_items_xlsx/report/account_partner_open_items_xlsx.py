@@ -1,4 +1,4 @@
-# Copyright 2009-2019 Noviat
+# Copyright 2009-2021 Noviat
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from functools import reduce
@@ -170,9 +170,18 @@ class AccountPartnerOpenItemsXlsx(models.AbstractModel):
         query_end = (
             "WHERE m.company_id = %s " % wiz.company_id.id +
             move_selection + account_selection + partner_selection +
-            "AND "
-            "((l.full_reconcile_id IS NULL "
-            "  AND COALESCE(pr.amount, 0) < abs(l.balance)) "
+            """
+    AND (
+      (l.full_reconcile_id IS NULL AND
+         (pr.id IS NULL
+          OR CASE WHEN l.id = pr.debit_move_id
+               THEN (SELECT date FROM account_move_line WHERE id = pr.credit_move_id)
+               ELSE (SELECT date FROM account_move_line WHERE id = pr.debit_move_id)
+             END > '{0}'
+          OR COALESCE(pr.amount, 0) < abs(l.balance)
+         )
+      )
+            """.format(wiz.date_at)
             + reconciled_after + ") "
             "AND l.balance != 0 " + where_extra +
             "ORDER BY a_code")
